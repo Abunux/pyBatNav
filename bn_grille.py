@@ -260,7 +260,6 @@ class GrilleJoueur(Grille):
 	
 	def add_bateau_alea(self, taille):
 		"""Ajoute un bateau aléatoire (valide)"""
-		#~ bateau = self.make_bateau_alea(taille)
 		valide = False
 		while not valide :
 			bateau = self.make_bateau_alea(taille)
@@ -330,6 +329,7 @@ class GrilleSuivi(Grille):
 		return cases_eliminees
 		
 if __name__ == "__main__" :
+	# Essai de calcul de probabilité pour chaque case de contenir un bateau
 	from time import time
 	start=time()
 	probas = {}
@@ -352,4 +352,4 @@ if __name__ == "__main__" :
 			print("%.4f"%(probas[(i,j)]), end=' ')
 		print("%.4f"%probas[(i,j)])
 
-	print(time()-start)
+	print("Temps : %.2f secondes" % (time()-start))
