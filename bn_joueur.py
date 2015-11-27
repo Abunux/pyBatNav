@@ -1,6 +1,5 @@
 # Version 0.1.0
 
-import random as rand
 from time import time
 
 from bn_grille import *
@@ -12,11 +11,18 @@ class Joueur:
 	"""Classe pour définir le joueur"""
 	def __init__(self, nom='Joueur'):
 		"""Initialisation du joueur"""
+		# Nom du joueur
 		self.nom = nom
+		
+		# Grilles de jeu
 		self.grille_joueur = GrilleJoueur()
 		self.grille_adverse = GrilleJoueur()
 		self.grille_suivi = GrilleSuivi()
-		self.coups_joues = []
+		
+		# Liste des cases jouées
+		self.cases_jouees = []
+		
+		# Nombre d'essais
 		self.essais = 0
 
 		# Liste des messages à afficher pendant la résolution
@@ -35,7 +41,7 @@ class Joueur:
 		et la string est un message à afficher"""
 		
 		# Coup invalide
-		if case in self.coups_joues :
+		if case in self.cases_jouees :
 			return (False, "%s : Déjà joué" % alpha(case))
 		if not self.grille_suivi.test_case(case) :
 			return (False, "%s : Coup invalide" % alpha(case))
@@ -50,7 +56,7 @@ class Joueur:
 			
 		# Mise à jour des paramètres du joueur et de la grille
 		self.grille_suivi.update_vides()
-		self.coups_joues.append(case)
+		self.cases_jouees.append(case)
 		self.essais += 1
 		
 		return resultat
@@ -69,10 +75,6 @@ class Ordi(Joueur):
 		self.case_courante = None
 		# Première case touchée sur un bateau
 		self.case_touchee = None
-		
-		# Liste des cases que l'ordi va jouer
-		# Le but est de remplir cette liste dès le début de la partie et de la vider au fur et à mesure
-		self.cases_jouees = [] 
 	
 	#
 	# Affichages -------------------------------------------------------

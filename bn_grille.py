@@ -22,7 +22,7 @@ class Bateau :
 		self.sens = sens
 		self.end = (self.start[0]+(self.taille-1)*self.sens[0] , self.start[1]+(self.taille-1)*self.sens[1])
 		
-		# Récupération des casses occupées par le bateau
+		# Récupération des cases occupées par le bateau
 		self.cases = []
 		for k in range(taille) :
 			self.cases.append((self.start[0]+k*self.sens[0] , self.start[1]+k*self.sens[1]))
