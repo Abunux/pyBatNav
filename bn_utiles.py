@@ -1,11 +1,21 @@
+#
+# Module bn_utiles
+#
+# Implémente les constantes et quelques fonctions utiles
+# 
+# Auteurs : Frédéric Muller et Lionel Reboul
+#
+# Licence CC BY-NC-SA
+#
 # Version 0.1.0
+#
 
 import os
 
 #
 # Constantes ----------------------------------------------------------------------------------------------------
 #
-BN_DROITE = BN_HORIZONTAL =(1, 0)
+BN_DROITE = BN_HORIZONTAL = (1, 0)
 BN_GAUCHE = (-1, 0)
 BN_BAS = BN_VERTICAL = (0, 1)
 BN_HAUT = (0, -1)
@@ -33,7 +43,7 @@ def signe(x):
 	elif x < 0 : return -1
 	else : return 0
 
-def alpha(case) :
+def alpha(case):
 	"""Convertit les coordonnées de case en notation du jeu
 	Par ex (2,3) devient "C3" """
 	return chr(case[0]+65)+str(case[1])

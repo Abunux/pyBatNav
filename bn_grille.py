@@ -1,4 +1,18 @@
+#
+# Module bn_grille
+#
+# Implémente les classes :
+#	- Bateau : modélise un bateau
+#	- Grille : classe de base pour une grille
+#		- GrilleJoueur : dérivée de Grille, la grille où on place ses bateaux
+#		- GrilleSuivi : dérivée de Grille, la grille de suivi des coups
+# 
+# Auteurs : Frédéric Muller et Lionel Reboul
+#
+# Licence CC BY-NC-SA
+#
 # Version 0.1.0
+#
 
 import random as rand
 
@@ -7,7 +21,7 @@ from bn_utiles import *
 #
 #----------------------------------------------------------------------------------------------------------------
 #
-class Bateau :
+class Bateau(object):
 	"""Classe pour définir les bateaux"""
 	def __init__(self, taille, start, sens):
 		"""Un bateau est défini par :
@@ -24,14 +38,14 @@ class Bateau :
 		
 		# Récupération des cases occupées par le bateau
 		self.cases = []
-		for k in range(taille) :
+		for k in range(taille):
 			self.cases.append((self.start[0]+k*self.sens[0] , self.start[1]+k*self.sens[1]))
 		
 		# Récupération des cases adjacentes
 		self.cases_adj = []
 		self.cases_adj.append((self.start[0]-self.sens[0] , self.start[1]-self.sens[1]))
 		self.cases_adj.append((self.end[0]+self.sens[0] , self.end[1]+self.sens[1]))
-		for k in range(taille) :
+		for k in range(taille):
 			self.cases_adj.append((self.cases[k][0]+self.sens[1] , self.cases[k][1]+self.sens[0]))
 			self.cases_adj.append((self.cases[k][0]-self.sens[1] , self.cases[k][1]-self.sens[0]))
 #
@@ -81,7 +95,7 @@ class Grille(object):
 				self.etat[(i,j)] = 0
 				self.vides.append((i,j))
 				
-	def update_vides(self) :
+	def update_vides(self):
 		"""Met à jour la liste des cases vides"""
 		# --> À optimiser mais remove ne marche pas... (j'ai essayé)
 		self.vides = []
@@ -107,7 +121,7 @@ class Grille(object):
 		"""Test si une case est valide (dans la grille) et vide"""
 		return 0 <= case[0] < self.xmax and 0 <= case[1] < self.ymax and self.etat[case] == 0
 	
-	def adjacent(self, case) :
+	def adjacent(self, case):
 		"""Retourne la liste des cases vides adjacentes à case
 		dans l'ordre : DROITE, GAUCHE, HAUT, BAS"""
 		adj = []
@@ -120,7 +134,7 @@ class Grille(object):
 	#
 	# Gestion des tailles des bateaux ----------------------------------
 	#
-	def get_taille_max(self) :
+	def get_taille_max(self):
 		"""Met à jour la taille du bateau le plus grand restant"""
 		if self.taille_bateaux :
 			self.taille_max = max(self.taille_bateaux)
@@ -189,7 +203,7 @@ class Grille(object):
 			chaine = CAR_V+' '+str(j)+' '+CAR_V
 			
 			# Cases suivantes
-			for i in range(self.xmax) :
+			for i in range(self.xmax):
 				if self.etat[(i,j)] == 1 :
 					symbole = CAR_TOUCH
 				elif self.etat[(i,j)] == -1 :
@@ -223,7 +237,7 @@ class GrilleJoueur(Grille):
 	def test_bateau(self, bateau):
 		"""Test si le bateau est valide (rentre bien) dans la grille"""
 		for case in bateau.cases :
-			if not self.test_case(case) :
+			if not self.test_case(case):
 				return False
 		return True
 	
@@ -232,7 +246,7 @@ class GrilleJoueur(Grille):
 		if self.test_bateau(bateau):
 			for case in bateau.cases :
 				self.etat[case] = 1
-			for case in bateau.cases_adj :
+			for case in bateau.cases_adj:
 				if self.test_case(case):
 					self.etat[case] = -1
 					
@@ -290,14 +304,14 @@ class GrilleSuivi(Grille):
 		# Comptage des cases libres à gauche ou en haut
 		x = case[0]
 		y = case[1]
-		while self.test_case((x-direction[0], y-direction[1])) :
+		while self.test_case((x-direction[0], y-direction[1])):
 			m += 1
 			x -= direction[0]
 			y -= direction[1]
 		# Comptage des cases libres à droite ou en bas
 		x = case[0]
 		y = case[1]
-		while self.test_case((x+direction[0], y+direction[1])) :
+		while self.test_case((x+direction[0], y+direction[1])):
 			m += 1
 			x += direction[0]
 			y += direction[1]
@@ -333,7 +347,7 @@ if __name__ == "__main__" :
 	for c in probas :
 		probas[c]*=1/n
 	
-	for j in range(10) :
+	for j in range(10):
 		for i in range(9):
 			print("%.4f"%(probas[(i,j)]), end=' ')
 		print("%.4f"%probas[(i,j)])

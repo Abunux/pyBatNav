@@ -1,4 +1,16 @@
+#
+# Module bn_joueurs
+#
+# Implémente les classes :
+#	- Joueur : la classe de base des joueurs
+#	- Ordinateur : dérivée de Joueur, pour résoudre une grille automatiquement
+# 
+# Auteurs : Frédéric Muller et Lionel Reboul
+#
+# Licence CC BY-NC-SA
+#
 # Version 0.1.0
+#
 
 from time import time
 
@@ -7,7 +19,7 @@ from bn_grille import *
 #
 #----------------------------------------------------------------------------------------------------------------
 #
-class Joueur:
+class Joueur(object):
 	"""Classe pour définir le joueur"""
 	def __init__(self, nom='Joueur'):
 		"""Initialisation du joueur"""
@@ -43,11 +55,11 @@ class Joueur:
 		# Coup invalide
 		if case in self.cases_jouees :
 			return (False, "%s : Déjà joué" % alpha(case))
-		if not self.grille_suivi.test_case(case) :
+		if not self.grille_suivi.test_case(case):
 			return (False, "%s : Coup invalide" % alpha(case))
 			
 		# Coup valide
-		if self.grille_adverse.is_touche(case) :
+		if self.grille_adverse.is_touche(case):
 			resultat = (True, "%s : Touché" % alpha(case))
 			self.grille_suivi.etat[case] = 1
 		else :
@@ -171,7 +183,7 @@ class Ordi(Joueur):
 		# Case adjacente à la nouvelle case touchée
 		# signe(case_courante[0]-case_touchee[0]) permet de savoir de quel côté est la case adjacente
 		nv_case = (self.case_courante[0] + direction[0]*signe(self.case_courante[0]-self.case_touchee[0]) , self.case_courante[1] + direction[1]*signe(self.case_courante[1]-self.case_touchee[1]))
-		if self.grille_suivi.test_case(nv_case) :
+		if self.grille_suivi.test_case(nv_case):
 			self.add_queue(nv_case)
 		
 		self.affiche_queue()
@@ -179,7 +191,7 @@ class Ordi(Joueur):
 		# Mise à jour de la liste des cases touchées sur ce bateau
 		self.liste_touches.append(self.case_courante)
 	
-	def update_queue_manque(self) :
+	def update_queue_manque(self):
 		"""Met à jour la file d'attente en éliminant une direction impossible, après avoir manqué la case en face"""
 		# Écart entre la case touchee initiale et la case jouée
 		delta = (self.case_courante[0]-self.case_touchee[0], self.case_courante[1]-self.case_touchee[1])
@@ -232,7 +244,7 @@ class Ordi(Joueur):
 		"""Élimine les cases adjacents à un bateau coulé"""
 		for case_touchee in self.liste_touches :
 			for case_impossible in self.grille_suivi.adjacent(case_touchee):
-				if self.grille_suivi.test_case(case_impossible) :
+				if self.grille_suivi.test_case(case_impossible):
 					self.grille_suivi.etat[case_impossible] = -1
 					self.messages.append("J'élimine la case adjacente %s" % alpha(case_impossible))
 		self.grille_suivi.update()
@@ -283,7 +295,6 @@ class Ordi(Joueur):
 				self.pop_queue()
 			
 			# Tire sur la case choisie
-			self.cases_jouees.append(self.case_courante)
 			resultat = self.tire_case()
 
 			# Si on touche
@@ -307,7 +318,7 @@ class Ordi(Joueur):
 					
 			# Si on manque
 			else :
-				if len(self.liste_touches) == 1:
+				if len(self.liste_touches) == 1 :
 					# Si on n'a touché qu'une case et qu'on vient de manquer, on vient donc de tirer sur une de ses cases adjacentes
 					# On élimine alors la case dans la direction dans laquelle le plus petit bateau ne rentre pas (si c'est le cas)
 					self.update_queue_manque()

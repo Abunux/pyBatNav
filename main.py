@@ -2,13 +2,15 @@
 # Projet de bataille navale
 # dans le cadre de la formation ISN
 #
+# Programme principal
+#
 # Auteurs : Frédéric Muller et Lionel Reboul
+#
+# Licence CC BY-NC-SA
 #
 # Projet démarré le 14/11/2015
 # Dernière màj : 27/11/2015
 # Version 0.1.0
-#
-# Licence CC BY-NC-SA
 #
 
 from bn_utiles import *
@@ -16,14 +18,14 @@ from bn_grille import *
 from bn_joueur import *
 from bn_interface import *
 
-if __name__== '__main__':
+if __name__== '__main__' :
 	"""Programme principal"""
 
 #
 #----------------------------------------------------------------------------------------------------------------
 #
 
-	def jeu_ordi(affiche = True) :
+	def jeu_ordi(affiche = True):
 		grille = GrilleJoueur()
 		grille.init_bateaux_alea()
 		ordi = Ordi()
@@ -35,7 +37,7 @@ if __name__== '__main__':
 #----------------------------------------------------------------------------------------------------------------
 #
 
-	def jeu_solo() :
+	def jeu_solo():
 		"""Jeu solo sur une grille aléatoire"""
 		# Initialisation de la partie
 		grille = GrilleJoueur()
@@ -49,7 +51,7 @@ if __name__== '__main__':
 			clear()
 			joueur.grille_suivi.affiche()
 			print(message)
-			case = input('Coups (Entrée pour un coup aléatoire) : ')
+			case = input('Coups (Entrée pour un coup aléatoire): ')
 			if case == '' :
 				message = joueur.tire((rand.randint(0,joueur.grille_adverse.xmax-1), rand.randint(0,joueur.grille_adverse.ymax-1)))[1]
 			else :
@@ -78,7 +80,7 @@ if __name__== '__main__':
 		n = int(input("Nombre de répétitions : "))
 		temps = 0
 		s = 0
-		for k in range(n) :
+		for k in range(n):
 			(e,t) = jeu_ordi(affiche=False)
 			s += e
 			temps += t
