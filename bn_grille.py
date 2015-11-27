@@ -238,8 +238,8 @@ class GrilleJoueur(Grille):
 					
 	def make_bateau_alea(self, taille):
 		"""Crée un bateau aléatoire (pas forcément valide)"""
-		x = rand.randint(0, self.xmax-1)
-		y = rand.randint(0, self.ymax-1)
+		x = rand.randrange(0, self.xmax)
+		y = rand.randrange(0, self.ymax)
 		sens = rand.choice([BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS])
 		bateau = Bateau(taille, (x,y), sens)
 		return bateau
@@ -315,3 +315,27 @@ class GrilleSuivi(Grille):
 		self.update_vides()
 		return cases_eliminees
 		
+if __name__ == "__main__" :
+	from time import time
+	start=time()
+	probas = {}
+	for i in range(10):
+		for j in range(10):
+			probas[(i,j)]=0
+	n=10000
+	for k in range(n):
+		grille=GrilleJoueur()
+		grille.init_bateaux_alea()
+		for c in grille.etat :
+			if grille.etat[c]==1 :
+				probas[c]+=1
+	
+	for c in probas :
+		probas[c]*=1/n
+	
+	for j in range(10) :
+		for i in range(9):
+			print("%.4f"%(probas[(i,j)]), end=' ')
+		print("%.4f"%probas[(i,j)])
+
+	print(time()-start)
