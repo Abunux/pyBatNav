@@ -9,7 +9,7 @@
 # Licence CC BY-NC-SA
 #
 # Projet démarré le 14/11/2015
-# Dernière màj : 27/11/2015
+# Dernière màj : 28/11/2015
 # Version 0.1.0
 #
 
@@ -44,31 +44,7 @@ if __name__== '__main__' :
 		grille.init_bateaux_alea()
 		joueur = Joueur()
 		joueur.grille_adverse = grille
-		message = "Début de partie"
-		
-		# Début de partie
-		while not joueur.grille_suivi.fini():
-			clear()
-			joueur.grille_suivi.affiche()
-			#~ print(message)
-			joueur.affiche_messages()
-			case = input('Coups (Entrée pour un coup aléatoire): ')
-			if case == '' :
-				joueur.tire_aleatoire()
-			else :
-				try :
-					joueur.tire((ord(case[0])-65, int(case[1])))
-				except :
-					joueur.messages.append("%s : Coup invalide" % case)
-
-		# Fin de partie
-		clear()
-		joueur.grille_suivi.affiche()
-		joueur.messages.append("Bravo !! Partie terminée en %d coups" % joueur.essais)
-		joueur.affiche_messages()
-		info("Grille de l'adversaire :")
-		joueur.grille_adverse.affiche()
-		info("Coups joués : ", ' '.join([alpha(case) for case in joueur.cases_jouees]))
+		joueur.jeu_solo()
 		
 #	
 #----------------------------------------------------------------------------------------------------------------

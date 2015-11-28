@@ -89,6 +89,35 @@ class Joueur(object):
 			return self.tire(rand.choice(liste_cases))
 		else :
 			return self.tire(rand.choice(self.grille_suivi.vides))
+	
+	def jeu_solo(self):
+		"""Lance une partie solo sur une grille aléatoire"""
+		self.messages.append("Début de partie")
+		# Début de la partie
+		while not self.grille_suivi.fini():
+			# Affichages
+			clear()
+			self.grille_suivi.affiche()
+			self.affiche_messages()
+			
+			# Entrée de la case et tire
+			case = input('Coups (Entrée pour un coup aléatoire): ')
+			if case == '' :
+				self.tire_aleatoire()
+			else :
+				try :
+					self.tire((ord(case[0])-65, int(case[1])))
+				except :
+					self.messages.append("%s : Coup invalide" % case)
+
+		# Fin de partie
+		clear()
+		self.grille_suivi.affiche()
+		self.messages.append("Bravo !! Partie terminée en %d coups" % self.essais)
+		self.affiche_messages()
+		info("Grille de l'adversaire :")
+		self.grille_adverse.affiche()
+		info("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
 		
 
 class Ordi(Joueur):
