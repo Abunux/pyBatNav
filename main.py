@@ -50,26 +50,39 @@ if __name__== '__main__' :
 		while not joueur.grille_suivi.fini():
 			clear()
 			joueur.grille_suivi.affiche()
-			print(message)
+			#~ print(message)
+			joueur.affiche_messages()
 			case = input('Coups (Entrée pour un coup aléatoire): ')
 			if case == '' :
-				message = joueur.tire((rand.randint(0,joueur.grille_adverse.xmax-1), rand.randint(0,joueur.grille_adverse.ymax-1)))[1]
+				joueur.tire_aleatoire()
 			else :
 				try :
-					message = joueur.tire((ord(case[0])-65, int(case[1])))[1]
+					joueur.tire((ord(case[0])-65, int(case[1])))
 				except :
-					message = "%s : Coup invalide" % case
+					joueur.messages.append("%s : Coup invalide" % case)
 
 		# Fin de partie
 		clear()
 		joueur.grille_suivi.affiche()
-		print("Bravo !! Partie terminée en %d coups" % joueur.essais)
-#
+		joueur.messages.append("Bravo !! Partie terminée en %d coups" % joueur.essais)
+		joueur.affiche_messages()
+		info("Grille de l'adversaire :")
+		joueur.grille_adverse.affiche()
+		info("Coups joués : ", ' '.join([alpha(case) for case in joueur.cases_jouees]))
+		
+#	
 #----------------------------------------------------------------------------------------------------------------
 #
 
 # Menu de lancement 
+	clear()
+	print("--------------------")
+	print("| Bataille navalle |")
+	print("--------------------")
+	print("(Il est conseillé de passer en mode plein écran)")
+	print()
 	print("""Choix du jeu :
+--------------
   S : Solo
   O : Ordi 
   T : Test algo""")
@@ -84,7 +97,7 @@ if __name__== '__main__' :
 			(e,t) = jeu_ordi(affiche=False)
 			s += e
 			temps += t
-		print("Moyenne : %.2f"%(s/n))
+		print("Nombre de coups moyen : %.2f coups"%(s/n))
 		print("Temps moyen : %.5f secondes"%(temps/n))
 	else :
 		jeu_ordi()

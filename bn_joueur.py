@@ -54,16 +54,24 @@ class Joueur(object):
 		
 		# Coup invalide
 		if case in self.cases_jouees :
-			return (False, "%s : Déjà joué" % alpha(case))
+			self.messages.append("%s : Déjà joué" % alpha(case))
+			return False
+			#~ return (False, "%s : Déjà joué" % alpha(case))
 		if not self.grille_suivi.test_case(case):
-			return (False, "%s : Coup invalide" % alpha(case))
+			self.messages.append("%s : Coup invalide" % alpha(case))
+			return False
+			#~ return (False, "%s : Coup invalide" % alpha(case))
 			
 		# Coup valide
 		if self.grille_adverse.is_touche(case):
-			resultat = (True, "%s : Touché" % alpha(case))
+			self.messages.append("%s : Touché" % alpha(case))
+			resultat = True
+			#~ resultat = (True, "%s : Touché" % alpha(case))
 			self.grille_suivi.etat[case] = 1
 		else :
-			resultat = (False, "%s : Manqué" % alpha(case))
+			self.messages.append("%s : Manqué" % alpha(case))
+			resultat = False
+			#~ resultat = (False, "%s : Manqué" % alpha(case))
 			self.grille_suivi.etat[case] = -1
 			
 		# Mise à jour des paramètres du joueur et de la grille
@@ -73,6 +81,15 @@ class Joueur(object):
 		
 		return resultat
 
+	def tire_aleatoire(self):
+		"""Choisi une case aléatoire"""
+		liste_cases = [(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]
+		if liste_cases :
+		#~ return self.tire(rand.choice([(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]))
+			return self.tire(rand.choice(liste_cases))
+		else :
+			return self.tire(rand.choice(self.grille_suivi.vides))
+		
 
 class Ordi(Joueur):
 	def __init__(self, nom='HAL'):
@@ -115,11 +132,13 @@ class Ordi(Joueur):
 	#
 	# Tire sur une case ------------------------------------------------
 	#
-	def tire_case(self):
+	def tire_case_courante(self):
 		"""Tire sur la case courante"""
-		(resultat, message) = self.tire(self.case_courante)
-		self.messages.append(message)
-		return resultat
+		#~ (resultat, message) = self.tire(self.case_courante)
+		#~ (resultat, message) = self.tire(self.case_courante)
+		#~ self.messages.append(message)
+		#~ return resultat
+		return self.tire(self.case_courante)
 	
 	#
 	# Gestion de la file d'attente -------------------------------------
@@ -295,7 +314,7 @@ class Ordi(Joueur):
 				self.pop_queue()
 			
 			# Tire sur la case choisie
-			resultat = self.tire_case()
+			resultat = self.tire_case_courante()
 
 			# Si on touche
 			if resultat :
