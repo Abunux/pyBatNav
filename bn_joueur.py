@@ -45,6 +45,12 @@ class Joueur(object):
 		if affiche :
 			while self.messages :
 				print("<%s> %s "%(self.nom, self.messages.pop(0)))
+	
+	def add_bateau(self, start, direction):
+		"""Ajoute un bateau sur la grille du joueur"""
+		bateau = Bateau(start, direction)
+		if self.grille_joueur.test_bateau():
+			self.grille_joueur.add_bateau(bateau)
 		
 	def tire(self, case):
 		"""Tire sur la case (x,y)
