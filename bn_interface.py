@@ -47,7 +47,7 @@ class JoueurTK(Joueur):
 		self.grille_adverse = GrilleJoueurTK()
 		self.grille_suivi = GrilleSuiviTK()
 	
-	# voilà un exemple de surcharge
+	# Voilà un exemple de surcharge
 	def affiche_messages(self, affiche = True):
 		if affiche :
 			while self.messages :

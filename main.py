@@ -24,19 +24,20 @@ if __name__== '__main__' :
 #
 #----------------------------------------------------------------------------------------------------------------
 #
-
 	def jeu_ordi(affiche = True):
+		"""Résolution d'une grille par l'ordinateur"""
+		# Initialisation de la partie
 		grille = GrilleJoueur()
 		grille.init_bateaux_alea()
 		ordi = Ordi()
 		ordi.grille_adverse = grille
+		
 		temps = ordi.joue(affiche = affiche)
 		return (ordi.essais, temps) # Pour les tests de performance
 
 #
 #----------------------------------------------------------------------------------------------------------------
 #
-
 	def jeu_solo():
 		"""Jeu solo sur une grille aléatoire"""
 		# Initialisation de la partie
@@ -44,9 +45,10 @@ if __name__== '__main__' :
 		grille.init_bateaux_alea()
 		joueur = Joueur()
 		joueur.grille_adverse = grille
-		joueur.jeu_solo()
 		
-#	
+		joueur.jeu_solo()
+
+#
 #----------------------------------------------------------------------------------------------------------------
 #
 

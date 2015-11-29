@@ -50,46 +50,86 @@ class Joueur(object):
 		"""Tire sur la case (x,y)
 		Renvoie un tuple (booléen, string)
 		où booléen = True si la case est touchée, False si non touché ou case invalide
-		et la string est un message à afficher"""
-		
+		et la string est un message à afficher"""		
 		# Coup invalide
 		if case in self.cases_jouees :
 			self.messages.append("%s : Déjà joué" % alpha(case))
 			return False
-			#~ return (False, "%s : Déjà joué" % alpha(case))
 		if not self.grille_suivi.test_case(case):
 			self.messages.append("%s : Coup invalide" % alpha(case))
 			return False
-			#~ return (False, "%s : Coup invalide" % alpha(case))
 			
 		# Coup valide
 		if self.grille_adverse.is_touche(case):
 			self.messages.append("%s : Touché" % alpha(case))
 			resultat = True
-			#~ resultat = (True, "%s : Touché" % alpha(case))
 			self.grille_suivi.etat[case] = 1
 		else :
 			self.messages.append("%s : Manqué" % alpha(case))
 			resultat = False
-			#~ resultat = (False, "%s : Manqué" % alpha(case))
 			self.grille_suivi.etat[case] = -1
 			
 		# Mise à jour des paramètres du joueur et de la grille
 		self.grille_suivi.update_vides()
 		self.cases_jouees.append(case)
 		self.essais += 1
-		
 		return resultat
-
-	def tire_aleatoire(self):
-		"""Choisi une case aléatoire"""
+	
+	def case_aleatoire(self):
+		"""Retourne une case aléatoire parmi les cases vides"""
+		#~ return self.case_max()
 		liste_cases = [(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]
 		if liste_cases :
-		#~ return self.tire(rand.choice([(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]))
-			return self.tire(rand.choice(liste_cases))
+			return rand.choice(liste_cases)
 		else :
-			return self.tire(rand.choice(self.grille_suivi.vides))
+			return rand.choice(self.grille_suivi.vides)
 	
+	def tire_aleatoire(self):
+		"""Tire sur une case aléatoire"""
+		self.tire(self.case_aleatoire())
+		
+	
+	#
+	# Calculs de probabilités ------------------------------------------
+	#
+	def case_max(self, n=1000):
+		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
+		Retourne la case la plus probable en essayant différents arrangements des bateaux restants
+		Marche pas... (à mon avis pb dans Grille.make_bateau_alea(), boucle infinie)"""
+		start=time()
+		probas = {}
+		for i in range(self.grille_suivi.xmax):
+			for j in range(self.grille_suivi.ymax):
+				probas[(i,j)]=0
+		for k in range(n):
+			grille_tmp = GrilleSuivi()
+			for c in self.grille_suivi.etat :
+				grille_tmp.etat[c]=self.grille_suivi.etat[c]
+			grille_tmp.init_bateaux_alea()
+			for c in grille_tmp.etat :
+				if self.grille_suivi.etat[c] == 0 and grille_tmp.etat[c]==1 :
+					probas[c]+=1
+		for c in probas :
+			probas[c]*=1/n
+		case_max = (0,0)
+		pmax = 0
+		for c in probas :
+			if probas[c] > pmax and (c[0]+c[1])%2 == 0:
+				pmax = probas[c]
+				case_max = c
+		
+		for j in range(self.grille_suivi.ymax):
+			for i in range(self.grille_suivi.xmax-1):
+				print("%.4f"%(probas[(i,j)]), end=' ')
+			print("%.4f"%probas[(self.grille_suivi.xmax-1,j)])
+		print("Cae max :", case_max)
+		print("Temps : %.2f secondes" % (time()-start))
+		
+		return case_max
+	
+	#
+	# Partie solo sur une grille aléatoire -----------------------------
+	#
 	def jeu_solo(self):
 		"""Lance une partie solo sur une grille aléatoire"""
 		self.messages.append("Début de partie")
@@ -98,6 +138,7 @@ class Joueur(object):
 			# Affichages
 			clear()
 			self.grille_suivi.affiche()
+			self.calcul_probas()
 			self.affiche_messages()
 			
 			# Entrée de la case et tire
@@ -155,18 +196,14 @@ class Ordi(Joueur):
 	#
 	def make_case_aleatoire(self):
 		"""Choisi une case aléatoire"""
-		self.case_courante = rand.choice([(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0])
-		self.messages.append("Je tire au hasard sur la case %s"%alpha(self.case_courante))
+		self.case_courante = self.case_aleatoire()
+		self.messages.append("Je tire au hasard sur la case %s" % alpha(self.case_courante))
 	
 	#
 	# Tire sur une case ------------------------------------------------
 	#
 	def tire_case_courante(self):
 		"""Tire sur la case courante"""
-		#~ (resultat, message) = self.tire(self.case_courante)
-		#~ (resultat, message) = self.tire(self.case_courante)
-		#~ self.messages.append(message)
-		#~ return resultat
 		return self.tire(self.case_courante)
 	
 	#
@@ -178,6 +215,7 @@ class Ordi(Joueur):
 		self.queue.append(case)
 	
 	def rem_queue(self, case):
+		"""Enlève la case de la file d'attente"""
 		if case in self.queue :
 			self.queue.remove(case)
 			self.messages.append("J'enlève la case %s de la file d'attente" % alpha(case))
@@ -218,18 +256,18 @@ class Ordi(Joueur):
 		else :
 			direction = BN_VERTICAL
 		
-		# Si on vient de découvrir la direction, on l'affiche et on enlève de la queue les cases qui ne sont pas dans la bonne direction
+		# Si on vient de découvrir la direction, on l'affiche et on enlève de la file d'attente les cases qui ne sont pas dans la bonne direction
 		if len(self.liste_touches)==1 :
 			if direction == BN_HORIZONTAL :
 				self.messages.append("Le bateau touché est horizontal")
 			else :
 				self.messages.append("Le bateau touché est vertical")
-			# On enlève de la queue les cases qui ne sont pas dans la bonne direction
+			# On enlève de la file d'attente les cases qui ne sont pas dans la bonne direction
 			self.rem_queue((self.case_touchee[0]-direction[1], self.case_touchee[1]-direction[0]))
 			self.rem_queue((self.case_touchee[0]+direction[1], self.case_touchee[1]+direction[0]))
 			
 		# Case adjacente à la nouvelle case touchée
-		# signe(case_courante[0]-case_touchee[0]) permet de savoir de quel côté est la case adjacente
+		# signe(self.case_courante[k]-self.case_touchee[k]) permet de savoir de quel côté est la case adjacente (k=0 ou k=1)
 		nv_case = (self.case_courante[0] + direction[0]*signe(self.case_courante[0]-self.case_touchee[0]) , self.case_courante[1] + direction[1]*signe(self.case_courante[1]-self.case_touchee[1]))
 		if self.grille_suivi.test_case(nv_case):
 			self.add_queue(nv_case)
@@ -285,7 +323,7 @@ class Ordi(Joueur):
 	def rem_bateau(self):
 		"""Enlève le dernier bateau coulé"""
 		self.grille_suivi.rem_bateau(len(self.liste_touches))
-		self.messages.append("Bateau coulé, je l'enlève de la liste des bateaux à chercher")
+		self.messages.append("Bateau de taille %d coulé ! Je l'enlève de la liste des bateaux à chercher" % len(self.liste_touches))
 		self.affiche_bateaux()
 	
 	def elimine_adjacentes(self):
@@ -352,11 +390,11 @@ class Ordi(Joueur):
 					self.liste_touches = [self.case_courante]
 					self.case_touchee = self.case_courante # 1ère case touchée du bateau
 					
-					# On ajoute les case adjacentes possibles à la case, en ordre aléatoire :
+					# On ajoute les case adjacentes possibles à la case, en ordre aléatoire
 					self.add_adjacentes_premiere()
 					
-				# Sinon on détermine le sens du bateau et on met à jour la queue avec ses cases adjacentes
-				# en enlevant celles qui ne sont pas dans la bonne direction
+				# Sinon on détermine le sens du bateau et on met à jour la file d'attente avec ses cases adjacentes
+				# et on enlève celles qui ne sont pas dans la bonne direction
 				else :
 					self.update_queue_touche()
 
@@ -367,7 +405,7 @@ class Ordi(Joueur):
 			# Si on manque
 			else :
 				if len(self.liste_touches) == 1 :
-					# Si on n'a touché qu'une case et qu'on vient de manquer, on vient donc de tirer sur une de ses cases adjacentes
+					# Si on n'a touché qu'une case et qu'on vient de manquer (on vient donc de tirer sur une de ses cases adjacentes)
 					# On élimine alors la case dans la direction dans laquelle le plus petit bateau ne rentre pas (si c'est le cas)
 					self.update_queue_manque()
 			
@@ -389,3 +427,11 @@ class Ordi(Joueur):
 		
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
+
+
+if __name__ == "__main__" :
+	grille = GrilleJoueur()
+	grille.init_bateaux_alea()
+	ordi = Ordi()
+	ordi.grille_adverse = grille
+	ordi.joue()

@@ -39,9 +39,12 @@ def info(*args):
 	
 def signe(x):
 	"""Retourne le signe de x"""
-	if x > 0 : return 1
-	elif x < 0 : return -1
-	else : return 0
+	if x > 0 : 
+		return 1
+	elif x < 0 : 
+		return -1
+	else : 
+		return 0
 
 def alpha(case):
 	"""Convertit les coordonnées de case en notation du jeu
