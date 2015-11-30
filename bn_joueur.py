@@ -144,7 +144,7 @@ class Joueur(object):
 			# Affichages
 			clear()
 			self.grille_suivi.affiche()
-			self.calcul_probas()
+			#~ self.calcul_probas()
 			self.affiche_messages()
 			
 			# Entrée de la case et tire
@@ -350,6 +350,58 @@ class Ordi(Joueur):
 	#
 	# Résolution de la grille ------------------------------------------
 	#
+	def coup_suivant(self):
+		"""Fait jouer à l'ordi le coup suivant"""
+		# Si la file d'attente est vide : soit on a tiré dans le vide au hasard, soit on vient de couler un bateau
+		if not self.queue :
+			# Si on vient de couler un bateau
+			if self.liste_touches :
+				# On l'enlève de la liste des bateaux à couler
+				self.rem_bateau()
+				# Mise à jour des cases adjacentes au bateau coulé (cases impossibles)
+				self.elimine_adjacentes()
+				
+			# Élimination des cases dans lesquelles le plus petit bateau restant ne peut pas rentrer
+			self.elimine_petites()
+			# Réinitialisation des cases touchées
+			self.liste_touches = []
+			
+			# Choisit sur une case aléatoire 
+			self.make_case_aleatoire()
+		
+		# Si la file d'attente n'est pas vide, on choisit sa 1ère case qu'on enlève de la file d'attente
+		else :
+			self.pop_queue()
+		
+		# Tire sur la case choisie
+		resultat = self.tire_case_courante()
+
+		# Si on touche
+		if resultat :
+			# Si c'est la 1ère case du bateau, on remplit la file d'attente avec ses 4 cases adjacentes possibles
+			if not self.liste_touches :
+				self.liste_touches = [self.case_courante]
+				self.case_touchee = self.case_courante # 1ère case touchée du bateau
+				
+				# On ajoute les case adjacentes possibles à la case, en ordre aléatoire
+				self.add_adjacentes_premiere()
+				
+			# Sinon on détermine le sens du bateau et on met à jour la file d'attente avec ses cases adjacentes
+			# et on enlève celles qui ne sont pas dans la bonne direction
+			else :
+				self.update_queue_touche()
+
+			# Si la taille du bateau qu'on est entrain de couler est la taille max des bateaux sur la grille, on arrête
+			if self.test_plus_grand():
+				self.vide_queue()
+				
+		# Si on manque
+		else :
+			if len(self.liste_touches) == 1 :
+				# Si on n'a touché qu'une case et qu'on vient de manquer (on vient donc de tirer sur une de ses cases adjacentes)
+				# On élimine alors la case dans la direction dans laquelle le plus petit bateau ne rentre pas (si c'est le cas)
+				self.update_queue_manque()
+	
 	def joue(self, affiche=True):
 		"""Lance la partie de l'ordinateur"""
 		# affiche : affichage ou non des informations
@@ -358,62 +410,14 @@ class Ordi(Joueur):
 		start = time()
 		
 		# C'est parti !!!
-		while not self.grille_suivi.fini():
+		while not self.grille_suivi.fini():			
 			if affiche :
 				clear()
-				self.grille_suivi.affiche()
+				self.grille_suivi.affiche()			
 			
 			self.affiche_messages(affiche=affiche)
-				
-			# Si la file d'attente est vide : soit on a tiré dans le vide au hasard, soit on vient de couler un bateau
-			if not self.queue :
-				# Si on vient de couler un bateau
-				if self.liste_touches :
-					# On l'enlève de la liste des bateaux à couler
-					self.rem_bateau()
-					# Mise à jour des cases adjacentes au bateau coulé (cases impossibles)
-					self.elimine_adjacentes()
-					
-				# Élimination des cases dans lesquelles le plus petit bateau restant ne peut pas rentrer
-				self.elimine_petites()
-				# Réinitialisation des cases touchées
-				self.liste_touches = []
-				
-				# Choisit sur une case aléatoire 
-				self.make_case_aleatoire()
 			
-			# Si la file d'attente n'est pas vide, on choisit sa 1ère case qu'on enlève de la file d'attente
-			else :
-				self.pop_queue()
-			
-			# Tire sur la case choisie
-			resultat = self.tire_case_courante()
-
-			# Si on touche
-			if resultat :
-				# Si c'est la 1ère case du bateau, on remplit la file d'attente avec ses 4 cases adjacentes possibles
-				if not self.liste_touches :
-					self.liste_touches = [self.case_courante]
-					self.case_touchee = self.case_courante # 1ère case touchée du bateau
-					
-					# On ajoute les case adjacentes possibles à la case, en ordre aléatoire
-					self.add_adjacentes_premiere()
-					
-				# Sinon on détermine le sens du bateau et on met à jour la file d'attente avec ses cases adjacentes
-				# et on enlève celles qui ne sont pas dans la bonne direction
-				else :
-					self.update_queue_touche()
-
-				# Si la taille du bateau qu'on est entrain de couler est la taille max des bateaux sur la grille, on arrête
-				if self.test_plus_grand():
-					self.vide_queue()
-					
-			# Si on manque
-			else :
-				if len(self.liste_touches) == 1 :
-					# Si on n'a touché qu'une case et qu'on vient de manquer (on vient donc de tirer sur une de ses cases adjacentes)
-					# On élimine alors la case dans la direction dans laquelle le plus petit bateau ne rentre pas (si c'est le cas)
-					self.update_queue_manque()
+			self.coup_suivant()
 			
 			if affiche :
 				input("Entrée pour continuer")
