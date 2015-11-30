@@ -32,7 +32,7 @@ if __name__== '__main__' :
 		ordi = Ordi()
 		ordi.grille_adverse = grille
 		
-		temps = ordi.joue(affiche = affiche)
+		temps = ordi.resolution(affiche = affiche)
 		return (ordi.essais, temps) # Pour les tests de performance
 
 #

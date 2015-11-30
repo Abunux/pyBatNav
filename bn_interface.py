@@ -26,14 +26,14 @@ class GrilleTK(Grille):
 #
 #----------------------------------------------------------------------------------------------------------------
 #
-class GrilleJoueurTK(Grille):
+class GrilleJoueurTK(GrilleJoueur, GrilleTK):
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
 		GrilleJoueur.__init__(self, xmax, ymax, taille_bateaux)
 
 #
 #----------------------------------------------------------------------------------------------------------------
 #
-class GrilleSuiviTK(Grille):
+class GrilleSuiviTK(GrilleSuivi, GrilleTK):
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
 		GrilleSuivi.__init__(self, xmax, ymax, taille_bateaux)
 
@@ -58,7 +58,7 @@ class JoueurTK(Joueur):
 #----------------------------------------------------------------------------------------------------------------
 #
 
-class OrdiTK(Ordi):
+class OrdiTK(Ordi, JoueurTK):
 	def __init__(self, nom='HAL'):
 		Ordi.__init__(self, nom)
 

@@ -402,18 +402,18 @@ class Ordi(Joueur):
 				# On élimine alors la case dans la direction dans laquelle le plus petit bateau ne rentre pas (si c'est le cas)
 				self.update_queue_manque()
 	
-	def joue(self, affiche=True):
-		"""Lance la partie de l'ordinateur"""
+	def resolution(self, affiche=True):
+		"""Lance la résolution de la grille par l'ordinateur"""
 		# affiche : affichage ou non des informations
 		
 		# Lancement du chrono
 		start = time()
 		
 		# C'est parti !!!
-		while not self.grille_suivi.fini():			
+		while not self.grille_suivi.fini():
 			if affiche :
 				clear()
-				self.grille_suivi.affiche()			
+				self.grille_suivi.affiche()
 			
 			self.affiche_messages(affiche=affiche)
 			
@@ -444,4 +444,4 @@ if __name__ == "__main__" :
 	grille.init_bateaux_alea()
 	ordi = Ordi()
 	ordi.grille_adverse = grille
-	ordi.joue()
+	ordi.resolution()
