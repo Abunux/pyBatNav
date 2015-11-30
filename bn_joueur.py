@@ -46,12 +46,15 @@ class Joueur(object):
 			while self.messages :
 				print("<%s> %s "%(self.nom, self.messages.pop(0)))
 	
-	def add_bateau(self, start, direction):
+	def add_bateau(self, taille, start, direction):
 		"""Ajoute un bateau sur la grille du joueur"""
-		bateau = Bateau(start, direction)
-		if self.grille_joueur.test_bateau():
+		bateau = Bateau(taille, start, direction)
+		if self.grille_joueur.test_bateau(bateau):
 			self.grille_joueur.add_bateau(bateau)
-		
+			return True
+		else :
+			return False
+			
 	def tire(self, case):
 		"""Tire sur la case (x,y)
 		Renvoie un tuple (booléen, string)
@@ -172,6 +175,11 @@ class Ordi(Joueur):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
 		
+		# Initialisation de sa grille
+		self.grille_joueur.init_bateaux_alea()
+		
+		# Variables pour la résolution :
+		# ------------------------------
 		# File d'attente
 		self.queue = []
 		# Liste des case touchées sur un bateau
@@ -214,10 +222,10 @@ class Ordi(Joueur):
 	
 	#
 	# Gestion de la file d'attente -------------------------------------
-	#	
+	#
 	def add_queue(self, case):
 		"""Ajoute la case à la file d'attente"""
-		self.messages.append("J'ajoute la case %s à la file d'attente"%alpha(case))
+		self.messages.append("J'ajoute la case %s à la file d'attente" % alpha(case))
 		self.queue.append(case)
 	
 	def rem_queue(self, case):
@@ -238,7 +246,7 @@ class Ordi(Joueur):
 				if c[1] == self.case_touchee[1] :
 					self.add_queue(c)
 		else :
-			self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s"%(self.grille_suivi.taille_min, alpha(self.case_touchee)))
+			self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 		
 		# On teste si le bateau rentre verticalement
 		if self.grille_suivi.get_max_space(self.case_touchee, direction=BN_VERTICAL) >= self.grille_suivi.taille_min :
@@ -246,7 +254,7 @@ class Ordi(Joueur):
 				if c[0] == self.case_touchee[0] :
 					self.add_queue(c)
 		else :
-			self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s"%(self.grille_suivi.taille_min, alpha(self.case_touchee)))
+			self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 					
 		# On mélange la file d'attente pour ne pas que l'algo soit prévisible
 		self.shuffle_queue()
@@ -427,7 +435,7 @@ class Ordi(Joueur):
 			clear()
 			self.grille_suivi.affiche()
 			
-		self.messages.append("Partie terminée en %d coups"%self.essais)
+		self.messages.append("Partie terminée en %d coups" % self.essais)
 		self.affiche_messages(affiche=affiche)
 		
 		if affiche :
@@ -438,8 +446,62 @@ class Ordi(Joueur):
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
 
+class Partie(object):
+	"""En cours de construction..."""
+	def __init__(self, joueur=Joueur(), adversaire=Ordi()):
+		self.joueur = joueur
+		self.adversaire = adversaire
+		# Test si le joueur 2 est l'ordi
+		self.ordi = isinstance(self.adversaire, Ordi) 
+	
+	def add_bateau_joueur(self, taille):
+		"""Ajoute un bateau pour le joueur"""
+		info("Placement du bateau de taille %d" % taille)
+		try :
+			case = coord(input("Case de départ : "))
+		except :
+			info("Saisie invalide")
+			info()
+			return False
+		info("Direction :")
+		info("H : Haut")
+		info("B : Bas")
+		info("D : Droite")
+		info("G : Gauche")
+		d = input("Direction : ")
+		if d.upper() == 'H' :
+			direction = BN_HAUT
+		elif d.upper() == 'B' :
+			direction = BN_BAS
+		elif d.upper() == 'D' :
+			direction = BN_DROITE
+		elif d.upper() == 'G' :
+			direction = BN_GAUCHE
+		try :
+			bateau = Bateau(taille, case, direction)
+		except :
+			info("Saisie invalide")
+			info()
+			return False
+		return self.joueur.add_bateau(taille, case, direction)
+		
+	def place_bateaux_joueur(self):
+		"""Place tous les bateaux du joueur"""
+		for t in self.joueur.grille_joueur.taille_bateaux :
+			self.joueur.grille_joueur.affiche()
+			#~ ok = False
+			#~ while not ok :
+				#~ ok = self.add_bateau_joueur(t)
+			while not self.add_bateau_joueur(t):
+				pass
+			
+
 
 if __name__ == "__main__" :
+	
+	p = Partie()
+	p.place_bateaux_joueur()
+	quit()
 	grille = GrilleJoueur()
 	grille.init_bateaux_alea()
 	ordi = Ordi()

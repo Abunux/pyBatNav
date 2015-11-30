@@ -50,3 +50,8 @@ def alpha(case):
 	"""Convertit les coordonnées de case en notation du jeu
 	Par ex (2,3) devient "C3" """
 	return chr(case[0]+65)+str(case[1])
+
+def coord(case_alpha):
+	"""Converti une case en coordonnées 
+	par ex "C3" devient (2,3)"""
+	return (ord(case_alpha[0].upper())-65, int(case_alpha[1]))

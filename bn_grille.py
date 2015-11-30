@@ -137,8 +137,7 @@ class Grille(object):
 	# Gestion des espaces impossibles ----------------------------------
 	#
 	def get_max_space(self, case, direction=BN_ALLDIR):
-		"""Renvoie la plus grande place possible sur cette case dans une direction"""
-		
+		"""Renvoie la plus grande place possible sur cette case dans une direction"""		
 		if direction == BN_ALLDIR:
 			return max(self.get_max_space(case, BN_HORIZONTAL), self.get_max_space(case, BN_VERTICAL))
 		
