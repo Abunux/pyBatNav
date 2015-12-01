@@ -59,6 +59,28 @@ if __name__== '__main__' :
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+	def test_algo(n=1000):
+		"""Test l'ago de l'ordinateur en faisant n parties"""
+		temps_total = 0
+		liste_essais = []
+		for k in range(n):
+			(essais,temps) = jeu_ordi(affiche=False)
+			temps_total += temps
+			liste_essais.append(essais)
+			
+		print()
+		print("Résultats de la simulation :")
+		print()
+		print("Nombre de coups moyen : %.2f coups" % (sum(liste_essais)/n))
+		print("Nombre de coups minimum : %.2f coups" % min(liste_essais))
+		print("Nombre de coups maximum : %.2f coups" % max(liste_essais))
+		print()
+		print("Temps moyen par partie : %.5f secondes" % (temps_total/n))
+		
+#
+#----------------------------------------------------------------------------------------------------------------
+#
+
 # Menu de lancement 
 	clear()
 	print("--------------------")
@@ -79,25 +101,9 @@ if __name__== '__main__' :
 		jeu_solo()
 		
 	elif choix.lower() == 't' :
-		print()
+		clear()
 		n = int(input("Nombre de répétitions : "))
-		temps_total = 0
-		liste_essais = []
-		mini = 100
-		maxi = 0
-		for k in range(n):
-			(essais,temps) = jeu_ordi(affiche=False)
-			temps_total += temps
-			liste_essais.append(essais)
-			
-		print()
-		print("Résultats de la simulation :")
-		print()
-		print("Nombre de coups moyen : %.2f coups" % (sum(liste_essais)/n))
-		print("Nombre de coups minimum : %.2f coups" % min(liste_essais))
-		print("Nombre de coups maximum : %.2f coups" % max(liste_essais))
-		print()
-		print("Temps moyen par partie : %.5f secondes"%(temps_total/n))
+		test_algo(n)
 		
 	elif choix.lower() == 'o' :
 		jeu_ordi()
