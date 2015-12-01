@@ -59,7 +59,7 @@ class Joueur(object):
 		"""Tire sur la case (x,y)
 		Renvoie un tuple (booléen, string)
 		où booléen = True si la case est touchée, False si non touché ou case invalide
-		et la string est un message à afficher"""		
+		et la string est un message à afficher"""
 		# Coup invalide
 		if case in self.cases_jouees :
 			self.messages.append("%s : Déjà joué" % alpha(case))
@@ -103,7 +103,7 @@ class Joueur(object):
 			self.tire_aleatoire()
 		else :
 			try :
-				self.tire((ord(case[0])-65, int(case[1])))
+				self.tire(coord(case))
 			except :
 				self.messages.append("%s : Coup invalide" % case)
 				self.joue_coup()
@@ -111,11 +111,12 @@ class Joueur(object):
 		
 	#
 	# Calculs de probabilités ------------------------------------------
+	# Marche pas !!!...
 	#
 	def case_max(self, n=1000):
 		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
 		Retourne la case la plus probable en essayant différents arrangements des bateaux restants
-		Marche pas... (à mon avis pb dans Grille.make_bateau_alea(), boucle infinie)"""
+		Marche pas... (pb dans Grille.make_bateau_alea(), fait une boucle infinie)"""
 		start=time()
 		probas = {}
 		for i in range(self.grille_suivi.xmax):
@@ -142,7 +143,7 @@ class Joueur(object):
 			for i in range(self.grille_suivi.xmax-1):
 				print("%.4f"%(probas[(i,j)]), end=' ')
 			print("%.4f"%probas[(self.grille_suivi.xmax-1,j)])
-		print("Cae max :", case_max)
+		print("Case max :", case_max)
 		print("Temps : %.2f secondes" % (time()-start))
 		
 		return case_max
@@ -150,9 +151,6 @@ class Joueur(object):
 	#
 	# Partie solo sur une grille aléatoire -----------------------------
 	#
-	
-	
-		
 	def jeu_solo(self):
 		"""Lance une partie solo sur une grille aléatoire"""
 		self.messages.append("Début de partie")
@@ -161,19 +159,11 @@ class Joueur(object):
 			# Affichages
 			clear()
 			self.grille_suivi.affiche()
-			#~ self.calcul_probas()
 			self.affiche_messages()
 			
-			# Entrée de la case et tire
-			case = input('Coups (Entrée pour un coup aléatoire): ')
-			if case == '' :
-				self.tire_aleatoire()
-			else :
-				try :
-					self.tire((ord(case[0])-65, int(case[1])))
-				except :
-					self.messages.append("%s : Coup invalide" % case)
-
+			# Joue un coup
+			self.joue_coup()
+			
 		# Fin de partie
 		clear()
 		self.grille_suivi.affiche()
@@ -468,17 +458,25 @@ class Ordi(Joueur):
 class Partie(object):
 	"""En cours de construction..."""
 	def __init__(self, joueur=Joueur(), adversaire=Ordi()):
+		# Création des joueurs
 		self.joueur = joueur
 		self.adversaire = adversaire
 		# Test si le joueur 2 est l'ordi
 		self.ordi = isinstance(self.adversaire, Ordi) 
+		
+		# Lance la partie
+		self.lance_partie()
 	
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
 		info("Placement du bateau de taille %d" % taille)
+		case = input("Case de départ (entrée pour un bateau aléatoire) : ")
 		try :
-			case = coord(input("Case de départ : "))
+			case = coord(case)
 		except :
+			if case == "" :
+				self.joueur.grille_joueur.add_bateau_alea(taille)
+				return True
 			info("Saisie invalide")
 			info()
 			return False
@@ -532,17 +530,25 @@ class Partie(object):
 		"""Partie à deux joueurs
 		En chantier..."""
 		self.place_bateaux_joueur()
-		#~ self.joueur.grille_joueur.init_bateaux_alea()
 		self.get_bateaux_adverse()
 		self.adversaire.grille_adverse = self.joueur.grille_joueur
 		
+		clear()
+		print("VOtre grille de jeu :")
+		print()
+		self.joueur.grille_joueur.affiche()
+		print()
+		input("Entrée pour commencer la partie")
+		
 		while not self.joueur.grille_suivi.fini() and not self.adversaire.grille_suivi.fini() :
 			clear()
-			print("Votre grille :")
+			print("Votre grille de suivi :")
 			print()
 			self.joueur.grille_suivi.affiche()
 			self.joueur.joue_coup()
 			clear()
+			print()
+			print()
 			self.joueur.grille_suivi.affiche()
 			self.joueur.affiche_messages()
 			print()
@@ -551,7 +557,8 @@ class Partie(object):
 				input("Entrée pour le coup suivant")
 				clear()
 				self.get_coup_adverse()
-				print("Grille de l'adversaire : ")
+				print("Grille de suivi l'adversaire : ")
+				print()
 				self.adversaire.grille_suivi.affiche()
 				self.adversaire.affiche_messages()
 				print()
@@ -566,12 +573,10 @@ class Partie(object):
 #----------------------------------------------------------------------------------------------------------------
 #
 if __name__ == "__main__" :
-	
-	
+
 	joueur = Joueur("Toto")
 	ordi = Ordi()
 	partie = Partie(joueur, ordi)
-	partie.lance_partie()
 	quit()
 	
 	grille = GrilleJoueur()

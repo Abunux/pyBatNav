@@ -334,15 +334,18 @@ class GrilleSuivi(GrilleJoueur):
 #
 if __name__ == "__main__" :
 	# Essai de calcul de probabilité pour chaque case de contenir un bateau
-	
-	start=time()
+
 	probas = {}
 	for i in range(10):
 		for j in range(10):
 			probas[(i,j)]=0
-	n=10000
+	
+	n = int(input("Taille de l'échantillon : "))
+	print()
+	
+	start=time()
 	for k in range(n):
-		grille=GrilleJoueur()
+		grille = GrilleJoueur()
 		grille.init_bateaux_alea()
 		for c in grille.etat :
 			if grille.etat[c]==1 :
@@ -355,5 +358,7 @@ if __name__ == "__main__" :
 		for i in range(9):
 			print("%.4f"%(probas[(i,j)]), end=' ')
 		print("%.4f"%probas[(9,j)])
-
+	
+	print()
+	print("Échantillon de taille %d" % n)
 	print("Temps : %.2f secondes" % (time()-start))
