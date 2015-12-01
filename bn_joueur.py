@@ -487,13 +487,11 @@ class Partie(object):
 		
 	def place_bateaux_joueur(self):
 		"""Place tous les bateaux du joueur"""
-		for t in self.joueur.grille_joueur.taille_bateaux :
+		for taille in self.joueur.grille_joueur.taille_bateaux :
 			self.joueur.grille_joueur.affiche()
-			#~ ok = False
-			#~ while not ok :
-				#~ ok = self.add_bateau_joueur(t)
-			while not self.add_bateau_joueur(t):
-				pass
+			while not self.add_bateau_joueur(taille):
+				print("Le bateau de taille %d ne convient pas" % taille)
+				print()
 			
 
 
