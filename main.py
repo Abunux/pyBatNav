@@ -52,6 +52,12 @@ if __name__== '__main__' :
 #----------------------------------------------------------------------------------------------------------------
 #
 
+	def jeu_contre_ordi():
+		joueur = Joueur("Toto")
+		ordi = Ordi()
+		partie = Partie(joueur, ordi)
+		partie.lance_partie()
+
 # Menu de lancement 
 	clear()
 	print("--------------------")
@@ -63,6 +69,7 @@ if __name__== '__main__' :
 --------------
   S : Solo
   O : Ordi 
+  J : Jeu contre l'ordinateur
   T : Test algo""")
 	choix = input("--> [O|s|t] ")
 	if choix.lower() == 's' :
@@ -77,5 +84,7 @@ if __name__== '__main__' :
 			temps += t
 		print("Nombre de coups moyen : %.2f coups"%(s/n))
 		print("Temps moyen : %.5f secondes"%(temps/n))
+	elif choix.lower() == 'j' :
+		jeu_contre_ordi()
 	else :
 		jeu_ordi()
