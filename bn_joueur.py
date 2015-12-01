@@ -97,7 +97,18 @@ class Joueur(object):
 		"""Tire sur une case aléatoire"""
 		self.tire(self.case_aleatoire())
 		
-	
+	def joue_coup(self):
+		case = input('Coups (Entrée pour un coup aléatoire): ')
+		if case == '' :
+			self.tire_aleatoire()
+		else :
+			try :
+				self.tire((ord(case[0])-65, int(case[1])))
+			except :
+				self.messages.append("%s : Coup invalide" % case)
+				self.joue_coup()
+		#~ self.affiche_messages()
+		
 	#
 	# Calculs de probabilités ------------------------------------------
 	#
@@ -139,6 +150,9 @@ class Joueur(object):
 	#
 	# Partie solo sur une grille aléatoire -----------------------------
 	#
+	
+	
+		
 	def jeu_solo(self):
 		"""Lance une partie solo sur une grille aléatoire"""
 		self.messages.append("Début de partie")
@@ -169,7 +183,9 @@ class Joueur(object):
 		self.grille_adverse.affiche()
 		info("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
 		
-
+#
+#----------------------------------------------------------------------------------------------------------------
+#
 class Ordi(Joueur):
 	def __init__(self, nom='HAL'):
 		# Initialisation de la classe Joueur
@@ -446,6 +462,9 @@ class Ordi(Joueur):
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
 
+#
+#----------------------------------------------------------------------------------------------------------------
+#
 class Partie(object):
 	"""En cours de construction..."""
 	def __init__(self, joueur=Joueur(), adversaire=Ordi()):
@@ -492,14 +511,68 @@ class Partie(object):
 			while not self.add_bateau_joueur(taille):
 				print("Le bateau de taille %d ne convient pas" % taille)
 				print()
-			
+	
+	def get_bateaux_adverse(self):
+		"""Récupère la liste des bateaux adverses"""
+		self.adversaire.grille_joueur = GrilleJoueur()
+		if self.ordi :
+			self.adversaire.grille_joueur.init_bateaux_alea()
+		else :
+			print("Récupération des bateaux de l'adversaire via le réseau à implémenter")
+		self.joueur.grille_adverse = self.adversaire.grille_joueur
+		
+	def get_coup_adverse(self):
+		if self.ordi :
+			self.adversaire.coup_suivant()
+		else :
+			print("Récupération du coup de l'adversaire via le réseau à implémenter")
+	
+	def lance_partie(self):
+		"""Partie à deux joueurs
+		En chantier..."""
+		self.place_bateaux_joueur()
+		#~ self.joueur.grille_joueur.init_bateaux_alea()
+		self.get_bateaux_adverse()
+		self.adversaire.grille_adverse = self.joueur.grille_joueur
+		
+		while not self.joueur.grille_suivi.fini() and not self.adversaire.grille_suivi.fini() :
+			clear()
+			print("Votre grille :")
+			print()
+			self.joueur.grille_suivi.affiche()
+			self.joueur.joue_coup()
+			clear()
+			self.joueur.grille_suivi.affiche()
+			self.joueur.affiche_messages()
+			print()
 
-
+			if not self.adversaire.grille_suivi.fini() :
+				input("Entrée pour le coup suivant")
+				clear()
+				self.get_coup_adverse()
+				print("Grille de l'adversaire : ")
+				self.adversaire.grille_suivi.affiche()
+				self.adversaire.affiche_messages()
+				print()
+				input("Entrée pour le coup suivant")
+				
+		if self.joueur.grille_suivi.fini():
+			print("Vous avez gagné en %d coups" % self.joueur.essais)
+		else :
+			print("L'adversaire a gagné en %d coups" % self.adversaire.essais)
+		
+#
+#----------------------------------------------------------------------------------------------------------------
+#
 if __name__ == "__main__" :
 	
-	p = Partie()
-	p.place_bateaux_joueur()
+	
+	joueur = Joueur("Toto")
+	ordi = Ordi()
+	partie = Partie(joueur, ordi)
+	partie.lance_partie()
 	quit()
+	
 	grille = GrilleJoueur()
 	grille.init_bateaux_alea()
 	ordi = Ordi()

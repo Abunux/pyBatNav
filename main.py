@@ -9,7 +9,7 @@
 # Licence CC BY-NC-SA
 #
 # Projet démarré le 14/11/2015
-# Dernière màj : 28/11/2015
+# Dernière màj : 01/12/2015
 # Version 0.1.0
 #
 
