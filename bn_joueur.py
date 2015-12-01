@@ -432,7 +432,9 @@ class Partie(object):
 		
 		# Lance la partie
 		self.lance_partie()
-	
+	#
+	# Gestion des bateaux du joueur ------------------------------------
+	#
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
 		info("Placement du bateau de taille %d" % taille)
@@ -477,6 +479,9 @@ class Partie(object):
 				print("Le bateau de taille %d ne convient pas" % taille)
 				print()
 	
+	#
+	# Gestion de l'adversaire ------------------------------------------
+	#
 	def get_bateaux_adverse(self):
 		"""Récupère la liste des bateaux adverses"""
 		self.adversaire.grille_joueur = GrilleJoueur()
@@ -492,9 +497,11 @@ class Partie(object):
 		else :
 			print("Récupération du coup de l'adversaire via le réseau à implémenter")
 	
+	#
+	# Lancement de la partie -------------------------------------------
+	#
 	def lance_partie(self):
-		"""Partie à deux joueurs
-		En chantier..."""
+		"""Partie à deux joueurs"""
 		self.place_bateaux_joueur()
 		self.get_bateaux_adverse()
 		self.adversaire.grille_adverse = self.joueur.grille_joueur
