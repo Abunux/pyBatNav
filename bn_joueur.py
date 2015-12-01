@@ -86,7 +86,7 @@ class Joueur(object):
 	
 	def case_aleatoire(self):
 		"""Retourne une case aléatoire parmi les cases vides"""
-		#~ return self.case_max()
+		#~ return self.grille_suivi.case_max()
 		liste_cases = [(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]
 		if liste_cases :
 			return rand.choice(liste_cases)
@@ -109,44 +109,6 @@ class Joueur(object):
 				self.joue_coup()
 		#~ self.affiche_messages()
 		
-	#
-	# Calculs de probabilités ------------------------------------------
-	# Marche pas !!!...
-	#
-	def case_max(self, n=1000):
-		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
-		Retourne la case la plus probable en essayant différents arrangements des bateaux restants
-		Marche pas... (pb dans Grille.make_bateau_alea(), fait une boucle infinie)"""
-		start=time()
-		probas = {}
-		for i in range(self.grille_suivi.xmax):
-			for j in range(self.grille_suivi.ymax):
-				probas[(i,j)]=0
-		for k in range(n):
-			grille_tmp = GrilleSuivi()
-			for c in self.grille_suivi.etat :
-				grille_tmp.etat[c]=self.grille_suivi.etat[c]
-			grille_tmp.init_bateaux_alea()
-			for c in grille_tmp.etat :
-				if self.grille_suivi.etat[c] == 0 and grille_tmp.etat[c]==1 :
-					probas[c]+=1
-		for c in probas :
-			probas[c]*=1/n
-		case_max = (0,0)
-		pmax = 0
-		for c in probas :
-			if probas[c] > pmax and (c[0]+c[1])%2 == 0:
-				pmax = probas[c]
-				case_max = c
-		
-		for j in range(self.grille_suivi.ymax):
-			for i in range(self.grille_suivi.xmax-1):
-				print("%.4f"%(probas[(i,j)]), end=' ')
-			print("%.4f"%probas[(self.grille_suivi.xmax-1,j)])
-		print("Case max :", case_max)
-		print("Temps : %.2f secondes" % (time()-start))
-		
-		return case_max
 	
 	#
 	# Partie solo sur une grille aléatoire -----------------------------

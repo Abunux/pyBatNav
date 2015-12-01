@@ -132,6 +132,48 @@ class Grille(object):
 			if  self.test_case(case_adj):
 				adj.append(case_adj)
 		return adj
+	
+	#
+	# Calculs de probabilités ------------------------------------------
+	# Marche pas !!!...
+	#
+	def case_max(self, n=1000):
+		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
+		Retourne la case la plus probable en essayant différents arrangements des bateaux restants
+		Marche pas... (pb dans Grille.make_bateau_alea(), fait une boucle infinie)"""
+		start=time()
+		probas = {}
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				probas[(i,j)]=0
+		for k in range(n):
+			grille_tmp = GrilleSuivi()
+			for c in self.etat :
+				grille_tmp.etat[c]=self.etat[c]
+			grille_tmp.init_bateaux_alea()
+			for c in grille_tmp.etat :
+				if self.etat[c] == 0 and grille_tmp.etat[c]==1 :
+					probas[c]+=1
+		for c in probas :
+			probas[c]*=1/n
+		case_max = (0,0)
+		pmax = 0
+		for c in probas :
+			if probas[c] > pmax and (c[0]+c[1])%2 == 0:
+				pmax = probas[c]
+				case_max = c
+		
+		for j in range(self.ymax):
+			for i in range(self.xmax-1):
+				print("%.4f"%(probas[(i,j)]), end=' ')
+			print("%.4f"%probas[(self.xmax-1,j)])
+		
+		print()
+		print("Échantillon de taille %d" % n)
+		print("Temps : %.2f secondes" % (time()-start))
+		print("Case max :", case_max)
+
+		return case_max
 
 	#
 	# Gestion des espaces impossibles ----------------------------------
@@ -334,31 +376,9 @@ class GrilleSuivi(GrilleJoueur):
 #
 if __name__ == "__main__" :
 	# Essai de calcul de probabilité pour chaque case de contenir un bateau
-
-	probas = {}
-	for i in range(10):
-		for j in range(10):
-			probas[(i,j)]=0
 	
+	grille = GrilleSuivi()
 	n = int(input("Taille de l'échantillon : "))
-	print()
+	print()	
+	grille.case_max(n)
 	
-	start=time()
-	for k in range(n):
-		grille = GrilleJoueur()
-		grille.init_bateaux_alea()
-		for c in grille.etat :
-			if grille.etat[c]==1 :
-				probas[c]+=1
-	
-	for c in probas :
-		probas[c]*=1/n
-	
-	for j in range(10):
-		for i in range(9):
-			print("%.4f"%(probas[(i,j)]), end=' ')
-		print("%.4f"%probas[(9,j)])
-	
-	print()
-	print("Échantillon de taille %d" % n)
-	print("Temps : %.2f secondes" % (time()-start))
