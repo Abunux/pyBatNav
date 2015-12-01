@@ -86,7 +86,7 @@ class Joueur(object):
 	
 	def case_aleatoire(self):
 		"""Retourne une case aléatoire parmi les cases vides"""
-		#~ return self.grille_suivi.case_max()
+		#~ return self.grille_suivi.case_max()[0]
 		liste_cases = [(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]
 		if liste_cases :
 			return rand.choice(liste_cases)
@@ -178,6 +178,9 @@ class Ordi(Joueur):
 	#
 	def make_case_aleatoire(self):
 		"""Choisi une case aléatoire"""
+		#~ (case_max, pmax) = self.grille_suivi.case_max()
+		#~ self.case_courante = case_max
+		#~ self.messages.append("Je tire la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
 		self.case_courante = self.case_aleatoire()
 		self.messages.append("Je tire au hasard sur la case %s" % alpha(self.case_courante))
 	
@@ -288,8 +291,9 @@ class Ordi(Joueur):
 		
 	def vide_queue(self):
 		"""Vide la file d'attente"""
-		self.messages.append("Je vide ma file d'attente")
 		self.queue = []
+		self.messages.append("Je vide ma file d'attente")
+		
 	
 	def test_plus_grand(self):
 		"""Renvoie True si on a touché autant de cases que le plus grand bateau"""

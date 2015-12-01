@@ -142,10 +142,10 @@ class Grille(object):
 		Retourne la case la plus probable en essayant différents arrangements des bateaux restants
 		Marche pas... (pb dans Grille.make_bateau_alea(), fait une boucle infinie)"""
 		start=time()
-		probas = {}
+		self.probas = {}
 		for i in range(self.xmax):
 			for j in range(self.ymax):
-				probas[(i,j)]=0
+				self.probas[(i,j)]=0
 		for k in range(n):
 			grille_tmp = GrilleSuivi()
 			for c in self.etat :
@@ -153,27 +153,28 @@ class Grille(object):
 			grille_tmp.init_bateaux_alea()
 			for c in grille_tmp.etat :
 				if self.etat[c] == 0 and grille_tmp.etat[c]==1 :
-					probas[c]+=1
-		for c in probas :
-			probas[c]*=1/n
+					self.probas[c]+=1
+		for c in self.probas :
+			self.probas[c]*=1/n
 		case_max = (0,0)
 		pmax = 0
-		for c in probas :
-			if probas[c] > pmax and (c[0]+c[1])%2 == 0:
-				pmax = probas[c]
+		for c in self.probas :
+			if self.probas[c] > pmax and (c[0]+c[1])%2 == 0:
+				pmax = self.probas[c]
 				case_max = c
 		
 		for j in range(self.ymax):
 			for i in range(self.xmax-1):
-				print("%.4f"%(probas[(i,j)]), end=' ')
-			print("%.4f"%probas[(self.xmax-1,j)])
+				print("%.4f"%(self.probas[(i,j)]), end=' ')
+			print("%.4f"%self.probas[(self.xmax-1,j)])
 		
 		print()
 		print("Échantillon de taille %d" % n)
 		print("Temps : %.2f secondes" % (time()-start))
 		print("Case max :", case_max)
+		print("Probas : %.5f" % pmax)
 
-		return case_max
+		return (case_max, pmax)
 
 	#
 	# Gestion des espaces impossibles ----------------------------------
@@ -356,6 +357,7 @@ class Grille(object):
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # Les deux clases suivantes, héritées de Grille ont pour rôle de distinguer les fonctions spécifiques à chaque type de grille
+# (Non utilisé pour l'instant)
 # ---------------------------------------------------------------------------------------------------------------------------
 
 class GrilleJoueur(Grille):
