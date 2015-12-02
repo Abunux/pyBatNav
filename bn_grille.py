@@ -133,6 +133,14 @@ class Grille(object):
 				adj.append(case_adj)
 		return adj
 	
+	def copie_grille_tmp(self):
+		"""Crée une copie temporaire e la grille"""
+		grille_tmp = Grille()
+		for case in self.etat :
+			grille_tmp.etat[case] = self.etat[case]
+		grille_tmp.taille_bateaux = self.taille_bateaux[:]
+		return grille_tmp
+	
 	#
 	# Calculs de probabilités ------------------------------------------
 	# Marche pas !!!...
@@ -149,28 +157,26 @@ class Grille(object):
 			for j in range(self.ymax):
 				self.probas[(i,j)]=0
 		
-		# On teste différents arrangements aléatoires de bateaux
+		# On crée différents arrangements aléatoires de bateaux
 		for k in range(n):
 			# On utilise une grille tempoaraire, copiée à partir de la grille_suivi courante
-			grille_tmp = GrilleSuivi()
-			for c in self.etat :
-				grille_tmp.etat[c] = self.etat[c]
+			grille_tmp = self.copie_grille_tmp()
 			# Arrangement aléatoire de bateaux
 			grille_tmp.init_bateaux_alea()
-			for c in grille_tmp.etat :
-				if self.etat[c] == 0 and grille_tmp.etat[c] == 1 :
-					self.probas[c] += 1
+			for case in grille_tmp.etat :
+				if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
+					self.probas[case] += 1
 		# Calcul des probas
-		for c in self.probas :
-			self.probas[c] *= 1/n
+		for case in self.probas :
+			self.probas[case] *= 1/n
 		
 		# Détermination de la case la plus probable, parmi les cases "noires"
 		case_max = (0,0)
 		pmax = 0
-		for c in self.probas :
-			if self.probas[c] > pmax and (c[0]+c[1])%2 == 0:
-				pmax = self.probas[c]
-				case_max = c
+		for case in self.probas :
+			if self.probas[case] > pmax and (case[0]+case[1])%2 == 0:
+				pmax = self.probas[case]
+				case_max = case
 		
 		# Affichages pour les tests
 		for j in range(self.ymax):
@@ -180,9 +186,9 @@ class Grille(object):
 		
 		print()
 		print("Échantillon de taille %d" % n)
-		print("Temps : %.2f secondes" % (time()-start))
+		print("Temps : %.4f secondes" % (time()-start))
 		print("Case max :", case_max)
-		print("Probas : %.5f" % pmax)
+		print("Proba max : %.5f" % pmax)
 		
 		# Retourne la case la plus probable et sa proba
 		return (case_max, pmax)
@@ -270,12 +276,30 @@ class Grille(object):
 		"""Crée un bateau aléatoire (pas forcément valide)"""
 		x = rand.randrange(0, self.xmax)
 		y = rand.randrange(0, self.ymax)
+		#~ #self.update_vides()
+		#~ #(x,y) = rand.choice(self.vides)
 		sens = rand.choice([BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS])
 		bateau = Bateau(taille, (x,y), sens)
 		return bateau
+		
+	#~ def make_bateau_alea(self, taille):
+		#~ """Crée un bateau aléatoire (valide)"""
+		#~ self.update_vides()
+		#~ grille_tmp = self.copie_grille_tmp()
+		#~ 
+		#~ dir_possibles = []
+		#~ while not dir_possibles :
+			#~ (x,y) = rand.choice(self.vides)
+			#~ for sens in [BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS] :
+				#~ if grille_tmp.test_bateau(Bateau(taille, (x,y), sens)):
+					#~ dir_possibles.append(sens)
+		#~ sens = rand.choice(dir_possibles)
+		#~ bateau = Bateau(taille, (x,y), sens)
+		#~ return bateau
 	
 	def add_bateau_alea(self, taille):
 		"""Ajoute un bateau aléatoire (valide)"""
+		#~ self.update_vides()
 		valide = False
 		while not valide :
 			bateau = self.make_bateau_alea(taille)
@@ -284,7 +308,7 @@ class Grille(object):
 	
 	def init_bateaux_alea(self):
 		"""Initialise une grille avec des bateaux aléatoires"""
-		for taille in self.taille_bateaux :
+		for taille in self.taille_bateaux[::-1] :
 			self.add_bateau_alea(taille)
 	
 	# 
