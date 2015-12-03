@@ -36,7 +36,10 @@ def clear():
 def info(*args):
 	"""Affiche les infos de débug"""
 	print(*args)
-	
+
+def enter_to_continue():
+	input("Appuyéez sur Entrée pour continuer")
+
 def signe(x):
 	"""Retourne le signe de x"""
 	if x > 0 : 

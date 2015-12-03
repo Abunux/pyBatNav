@@ -15,6 +15,7 @@
 from time import time
 
 from bn_grille import *
+from bn_utiles import *
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -42,9 +43,10 @@ class Joueur(object):
 		
 	def affiche_messages(self, affiche=True):
 		"""Affiche la liste des messages"""
+		# Méthode à surcharger suivant l'interface
 		if affiche :
 			while self.messages :
-				print("<%s> %s "%(self.nom, self.messages.pop(0)))
+				info("<%s> %s "%(self.nom, self.messages.pop(0)))
 	
 	def add_bateau(self, taille, start, direction):
 		"""Ajoute un bateau sur la grille du joueur"""
@@ -98,42 +100,17 @@ class Joueur(object):
 		self.tire(self.case_aleatoire())
 		
 	def joue_coup(self):
-		case = input('Coups (Entrée pour un coup aléatoire): ')
-		if case == '' :
-			self.tire_aleatoire()
-		else :
-			try :
-				self.tire(coord(case))
-			except :
-				self.messages.append("%s : Coup invalide" % case)
-				self.joue_coup()
-		#~ self.affiche_messages()
-		
+		"""Joue un coup"""
+		# Méthode à surcharger suivant l'interface 
+		pass
 	
 	#
 	# Partie solo sur une grille aléatoire -----------------------------
 	#
 	def jeu_solo(self):
 		"""Lance une partie solo sur une grille aléatoire"""
-		self.messages.append("Début de partie")
-		# Début de la partie
-		while not self.grille_suivi.fini():
-			# Affichages
-			clear()
-			self.grille_suivi.affiche()
-			self.affiche_messages()
-			
-			# Joue un coup
-			self.joue_coup()
-			
-		# Fin de partie
-		clear()
-		self.grille_suivi.affiche()
-		self.messages.append("Bravo !! Partie terminée en %d coups" % self.essais)
-		self.affiche_messages()
-		info("Grille de l'adversaire :")
-		self.grille_adverse.affiche()
-		info("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
+		# Méthode à surcharger suivant l'interface
+		pass
 		
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -382,39 +359,20 @@ class Ordi(Joueur):
 				# On élimine alors la case dans la direction dans laquelle le plus petit bateau ne rentre pas (si c'est le cas)
 				self.update_queue_manque()
 	
-	def resolution(self, affiche=True):
-		"""Lance la résolution de la grille par l'ordinateur"""
-		# affiche : affichage ou non des informations
+	def resolution(self):
+		"""Lance la résolution de la grille par l'ordinateur, aucun affichage"""
+		# Méthode à surcharger suivant l'interface
 		
 		# Lancement du chrono
 		start = time()
 		
 		# C'est parti !!!
 		while not self.grille_suivi.fini():
-			if affiche :
-				clear()
-				self.grille_suivi.affiche()
-			
-			self.affiche_messages(affiche=affiche)
-			
 			self.coup_suivant()
 			
-			if affiche :
-				input("Entrée pour continuer")
-			
 		# Fin de la partie
-		if affiche :
-			clear()
-			self.grille_suivi.affiche()
-			
 		self.messages.append("Partie terminée en %d coups" % self.essais)
-		self.affiche_messages(affiche=affiche)
-		
-		if affiche :
-			info("Grille de l'adversaire :")
-			self.grille_adverse.affiche()
-			info("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
-		
+				
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
 
@@ -432,52 +390,21 @@ class Partie(object):
 		
 		# Lance la partie
 		self.lance_partie()
+		
 	#
 	# Gestion des bateaux du joueur ------------------------------------
 	#
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
-		info("Placement du bateau de taille %d" % taille)
-		case = input("Case de départ (entrée pour un bateau aléatoire) : ")
-		try :
-			case = coord(case)
-		except :
-			if case == "" :
-				self.joueur.grille_joueur.add_bateau_alea(taille)
-				return True
-			info("Saisie invalide")
-			info()
-			return False
-		info("Direction :")
-		info("H : Haut")
-		info("B : Bas")
-		info("D : Droite")
-		info("G : Gauche")
-		d = input("Direction : ")
-		if d.upper() == 'H' :
-			direction = BN_HAUT
-		elif d.upper() == 'B' :
-			direction = BN_BAS
-		elif d.upper() == 'D' :
-			direction = BN_DROITE
-		elif d.upper() == 'G' :
-			direction = BN_GAUCHE
-		try :
-			bateau = Bateau(taille, case, direction)
-		except :
-			info("Saisie invalide")
-			info()
-			return False
-		return self.joueur.add_bateau(taille, case, direction)
+		# Méthode à surcharger suivant l'interface
+		pass
 		
 	def place_bateaux_joueur(self):
 		"""Place tous les bateaux du joueur"""
 		for taille in self.joueur.grille_joueur.taille_bateaux :
-			clear()
-			self.joueur.grille_joueur.affiche()
 			while not self.add_bateau_joueur(taille):
-				print("Le bateau de taille %d ne convient pas" % taille)
-				print()
+				info("Le bateau de taille %d ne convient pas" % taille)
+
 	
 	#
 	# Gestion de l'adversaire ------------------------------------------
@@ -488,72 +415,20 @@ class Partie(object):
 		if self.ordi :
 			self.adversaire.grille_joueur.init_bateaux_alea()
 		else :
-			print("Récupération des bateaux de l'adversaire via le réseau à implémenter")
+			info("Récupération des bateaux de l'adversaire via le réseau à implémenter")
 		self.joueur.grille_adverse = self.adversaire.grille_joueur
 		
 	def get_coup_adverse(self):
 		if self.ordi :
 			self.adversaire.coup_suivant()
 		else :
-			print("Récupération du coup de l'adversaire via le réseau à implémenter")
+			info("Récupération du coup de l'adversaire via le réseau à implémenter")
 	
 	#
 	# Lancement de la partie -------------------------------------------
 	#
 	def lance_partie(self):
 		"""Partie à deux joueurs"""
-		self.place_bateaux_joueur()
-		self.get_bateaux_adverse()
-		self.adversaire.grille_adverse = self.joueur.grille_joueur
-		
-		clear()
-		print("VOtre grille de jeu :")
-		print()
-		self.joueur.grille_joueur.affiche()
-		print()
-		input("Entrée pour commencer la partie")
-		
-		while not self.joueur.grille_suivi.fini() and not self.adversaire.grille_suivi.fini() :
-			clear()
-			print("Votre grille de suivi :")
-			print()
-			self.joueur.grille_suivi.affiche()
-			self.joueur.joue_coup()
-			clear()
-			print()
-			print()
-			self.joueur.grille_suivi.affiche()
-			self.joueur.affiche_messages()
-			print()
+		# Méthode à surcharger suivant l'interface
+		pass
 
-			if not self.adversaire.grille_suivi.fini() :
-				input("Entrée pour le coup suivant")
-				clear()
-				self.get_coup_adverse()
-				print("Grille de suivi l'adversaire : ")
-				print()
-				self.adversaire.grille_suivi.affiche()
-				self.adversaire.affiche_messages()
-				print()
-				input("Entrée pour le coup suivant")
-				
-		if self.joueur.grille_suivi.fini():
-			print("Vous avez gagné en %d coups" % self.joueur.essais)
-		else :
-			print("L'adversaire a gagné en %d coups" % self.adversaire.essais)
-		
-#
-#----------------------------------------------------------------------------------------------------------------
-#
-if __name__ == "__main__" :
-
-	joueur = Joueur("Toto")
-	ordi = Ordi()
-	partie = Partie(joueur, ordi)
-	quit()
-	
-	grille = GrilleJoueur()
-	grille.init_bateaux_alea()
-	ordi = Ordi()
-	ordi.grille_adverse = grille
-	ordi.resolution()

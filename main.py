@@ -13,14 +13,19 @@
 # Version 0.1.0
 #
 
-from bn_utiles import *
-from bn_grille import *
-from bn_joueur import *
+#~ from bn_utiles import *
+#~ from bn_grille import *
+#~ from bn_joueur import *
 from bn_interface import *
+from bn_console import *
+
+
+
+
 
 if __name__== '__main__' :
 	"""Programme principal"""
-
+quit()
 #
 #----------------------------------------------------------------------------------------------------------------
 #
