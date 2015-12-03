@@ -1,4 +1,15 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
+#
+# Module bn_console
+#
+# Interface de jeu en mode console
+#
+# Auteurs : Frédéric Muller et Lionel Reboul
+#
+# Licence CC BY-NC-SA
+#
+# Version 0.1.0
+#
 
 import os
 import matplotlib.pyplot as plt
@@ -23,10 +34,20 @@ def info(*args):
 	"""Affiche les infos de débug"""
 	print(*args)
 
+def fusionne(chaine1, chaine2):
+	"""Fusionne deux grille pour l'affichage"""
+	lignes1 = chaine1.split('\n')
+	lignes2 = chaine2.split('\n')
+	
+	chaine = ""
+	for k in range(len(lignes1)-1):
+		chaine += lignes1[k]+'  '+u'\u2503'+'  '+lignes2[k]+'\n'
+	
+	return chaine
 
 # Caractères graphqiues (pour faire la grille)
 # --------------------------------------------
-# http://www.unicode.org/charts/
+# http://www.unicode.org/charts/ : Box Drawing (U2500.pdf)
 # Traits
 CAR_H=u'\u2500'		# Trait Horizontal
 CAR_V=u'\u2502'		# Trait Vertical
@@ -52,32 +73,36 @@ CAR_MANQ = u'\u25EF'
 class GrilleC(Grille) :
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
 		Grille.__init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2])
-	
+		
+		# Chaine de caractère pour affichage de la grille
+		self.chaine = ""
+		
 	#
 	# Affichage en console ---------------------------------------------
 	#
-	def affiche(self):
-		"""Affiche la grille avec des caractère graphiques"""
+	def make_chaine(self):
+		"""Affiche la grille avec des caractères graphiques"""
+		self.chaine = ""
 		# Ligne du haut
-		print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
+		self.chaine += '    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD+'\n'
 		
 		# Ligne des lettres des colonnes
-		print('    '+CAR_V, end='')
+		self.chaine += '    '+CAR_V
 		for i in range(self.xmax):
 			if i!=self.xmax-1 :
-				print(' '+chr(i+65)+' ', end=CAR_V)
-				#~ print(' '+str(i)+' ', end=CAR_V)
+				self.chaine += ' '+chr(i+65)+' '+CAR_V
+				#~ chaine += ' '+str(i)+' '+CAR_V
 			else :
-				print(' '+chr(i+65)+' '+CAR_V)
-				#~ print(' '+str(i)+' '+CAR_V)
+				self.chaine += ' '+chr(i+65)+' '+CAR_V+'\n'
+				#~ chaine += ' '+str(i)+' '+CAR_V+'\n'
 				
 		#Ligne sous les lettres
-		print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+		self.chaine += CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
 		
 		# Lignes suivantes
 		for j in range(self.ymax):
 			# 1ère colonne (chiffres des lignes)
-			chaine = CAR_V+' '+str(j)+' '+CAR_V
+			chaine_tmp = CAR_V+' '+str(j)+' '+CAR_V
 			
 			# Cases suivantes
 			for i in range(self.xmax):
@@ -87,17 +112,22 @@ class GrilleC(Grille) :
 					symbole = CAR_MANQ
 				else :
 					symbole = ' '
-				chaine += ' '+symbole+' '+CAR_V
-			print(chaine)
+				chaine_tmp += ' '+symbole+' '+CAR_V
+			self.chaine += chaine_tmp+'\n'
 			
 			# Sépartion lignes intermédiaires
 			if j!=self.ymax-1 :
-				print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+				self.chaine += CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
 				
 			# Dernière ligne
 			else :
-				print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
-
+				self.chaine += CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD+'\n'
+				
+	def affiche(self):
+		self.make_chaine()
+		print(self.chaine)
+		#~ print(fusionne(self.chaine, self.chaine))
+	
 class GrilleJoueurC(GrilleC, GrilleJoueur):
 	"""La grille sur laquelle chaque joueur place ses bateaux"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
@@ -125,7 +155,7 @@ class JoueurC(Joueur):
 	
 	def joue_coup(self):
 		"""Joue un coup sur une case"""
-		case = input('Coups (Entrée pour un coup aléatoire): ')
+		case = input('Coups (Entrée pour un coup aléatoire) : ')
 		if case == '' :
 			self.tire_aleatoire()
 		else :
@@ -168,7 +198,6 @@ class OrdiC(JoueurC, Ordi):
 		Ordi.__init__(self, nom)
 		JoueurC.__init__(self, nom)
 		
-	
 	def resolution(self, affiche=True):
 		"""Lance la résolution de la grille par l'ordinateur"""
 		# affiche : affichage ou non des informations (pour les tests)
@@ -420,22 +449,23 @@ class main_console(object):
 		print("Il est conseillé de passer en mode plein écran (F11)")
 		enter_to_continue()
 		clear()
-		print("""Choix du jeu :
---------------
+		print("""╔════════════════╗
+║ Choix du jeu : ║ 
+╚════════════════╝
   S : Jeu en solo sur une grille aléatoire
   O : Résolution d'une grille par l'ordinateur
   J : Jeu contre l'ordinateur
   T : Test des performances de l'algorithme de résolution
   Q : Quitter
 	  """)
-		choix = input("--> [s|o|j|t|[Q]] ")
+		choix = input("Votre choix [s|o|j|t|[Q]] : ")
 		
 		if choix.lower() == 's' :
 			self.jeu_solo()
 			
 		elif choix.lower() == 't' :
 			clear()
-			n = int(input("Nombre de répétitions : "))
+			n = int(input("Nombre de répétitions de l'algorithme : "))
 			self.test_algo(n)
 			
 		elif choix.lower() == 'o' :
