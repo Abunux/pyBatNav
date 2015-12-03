@@ -38,7 +38,7 @@ def info(*args):
 	print(*args)
 
 def enter_to_continue():
-	input("Appuyéez sur Entrée pour continuer")
+	input("Appuyez sur Entrée pour continuer")
 
 def signe(x):
 	"""Retourne le signe de x"""

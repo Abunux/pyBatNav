@@ -29,8 +29,6 @@ def surface_probas(n=1000, grille = GrilleSuivi()):
 	#~ ax.w_xaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
 	#~ ax.set_axis_off()
 
-	
-	
 	#~ grille.etat[(2,3)] = -1 # Petite variation sur la grille
 	(case, pmax) = grille.case_max(n)
 	ax.text(case[0],case[1],pmax,"Pmax=%.3f en %s" % (pmax, alpha(case)), ha="center")
@@ -48,4 +46,4 @@ def surface_probas(n=1000, grille = GrilleSuivi()):
 	plt.show()
 
 if __name__ == "__main__" :
-	surface_probas(n=1000)
+	surface_probas(n=100000)

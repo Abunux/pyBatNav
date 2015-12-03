@@ -1,3 +1,5 @@
+#!/bin/usr/python3
+
 import os
 import matplotlib.pyplot as plt
 import numpy as np
@@ -99,7 +101,8 @@ class GrilleC(Grille) :
 class GrilleJoueurC(GrilleC, GrilleJoueur):
 	"""La grille sur laquelle chaque joueur place ses bateaux"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
-		Grille.__init__(self, xmax, ymax, taille_bateaux)
+		GrilleJoueur.__init__(self, xmax, ymax, taille_bateaux)
+		GrilleC.__init__(self, xmax, ymax, taille_bateaux)
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -107,7 +110,8 @@ class GrilleJoueurC(GrilleC, GrilleJoueur):
 class GrilleSuiviC(GrilleC, GrilleSuivi):
 	"""La grille de suivi des coups joués"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
-		Grille.__init__(self, xmax, ymax, taille_bateaux)
+		GrilleSuivi.__init__(self, xmax, ymax, taille_bateaux)
+		GrilleC.__init__(self, xmax, ymax, taille_bateaux)
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -167,7 +171,7 @@ class OrdiC(JoueurC, Ordi):
 	
 	def resolution(self, affiche=True):
 		"""Lance la résolution de la grille par l'ordinateur"""
-		# affiche : affichage ou non des informations
+		# affiche : affichage ou non des informations (pour les tests)
 		
 		# Lancement du chrono
 		start = time()
@@ -192,11 +196,6 @@ class OrdiC(JoueurC, Ordi):
 			
 		self.messages.append("Partie terminée en %d coups" % self.essais)
 		self.affiche_messages(affiche=affiche)
-		
-		if affiche :
-			info("Grille de l'adversaire :")
-			self.grille_adverse.affiche()
-			info("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
 		
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
@@ -310,7 +309,9 @@ class main_console(object):
 	"""Programme principal en mode console"""
 	def __init__(self):
 		self.launch_menu()
-
+	#
+	# Modes de jeu -----------------------------------------------------
+	#
 	def jeu_ordi(self, affiche=True):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
@@ -346,7 +347,7 @@ class main_console(object):
 		temps_total = 0
 		liste_essais = []
 		for k in range(n):
-			(essais,temps) = self.jeu_ordi(affiche=False)
+			(essais, temps) = self.jeu_ordi(affiche=False)
 			temps_total += temps
 			liste_essais.append(essais)
 		
@@ -386,40 +387,48 @@ class main_console(object):
 		plt.show()
 		
 		return liste_essais
-		
+	
+	#
+	# Menu de lancement ------------------------------------------------
+	#
 	def launch_menu(self):
 		"""Menu de lancement """
 		clear()
 		# http://patorjk.com/software/taag/
-		print("""
-    ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗
-    ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝
-    ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗  
-    ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝  
-    ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗
-    ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝
-
-        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗
-        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝
-        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗  
-        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝  
-        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗
-        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝
-                                                   
-
+		print("""╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
+║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
+║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
+║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
+║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
+║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
+║                                                                  ║
+║       ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗        ║
+║       ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝        ║
+║       ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗          ║
+║       ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝          ║
+║       ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗        ║
+║       ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝        ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
 """)
-		#~ print("| Bataille navalle |")
-		#~ print("--------------------")
-		print("(Il est conseillé de passer en mode plein écran)")
+		print("Projet de formation ISN 2015/2016 de l'académie de Lyon")
+		print("   Auteurs : F.Muller et L.Reboul")
+		print("   Licence Creative Common CC BY-NC-SA")
 		print()
+		print("Il est conseillé de passer en mode plein écran (F11)")
+		enter_to_continue()
+		clear()
 		print("""Choix du jeu :
 --------------
-  S : Solo
-  O : Ordi 
+  S : Jeu en solo sur une grille aléatoire
+  O : Résolution d'une grille par l'ordinateur
   J : Jeu contre l'ordinateur
-  T : Test algo
+  T : Test des performances de l'algorithme de résolution
+  Q : Quitter
 	  """)
-		choix = input("--> [S|O|T|[J]] ")
+		choix = input("--> [s|o|j|t|[Q]] ")
 		
 		if choix.lower() == 's' :
 			self.jeu_solo()
@@ -432,8 +441,13 @@ class main_console(object):
 		elif choix.lower() == 'o' :
 			self.jeu_ordi()
 			
-		else :
+		elif choix.lower() == 'j' :
 			self.jeu_contre_ordi()
+			
+		else :
+			info()
+			info("Au revoir...")
+			quit()
 
 
 if __name__ == "__main__" :

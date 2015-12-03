@@ -1,3 +1,5 @@
+#!/bin/usr/python3
+
 #
 # Projet de bataille navale
 # dans le cadre de la formation ISN
@@ -13,6 +15,8 @@
 # Version 0.1.0
 #
 
+import argparse
+
 #~ from bn_utiles import *
 #~ from bn_grille import *
 #~ from bn_joueur import *
@@ -25,7 +29,10 @@ from bn_console import *
 
 if __name__== '__main__' :
 	"""Programme principal"""
-quit()
+
+	parser = parser = argparse.ArgumentParser(description='Jeu de bataille navale')
+
+	quit()
 #
 #----------------------------------------------------------------------------------------------------------------
 #
