@@ -18,6 +18,28 @@ import numpy as np
 from bn_grille import *
 from bn_joueur import *
 
+# Caractères graphiques (pour faire la grille)
+# --------------------------------------------
+# http://www.unicode.org/charts/ --> Box Drawing (U2500.pdf)
+# Traits
+CAR_H = u'\u2500'		# Trait Horizontal
+CAR_V = u'\u2502'		# Trait Vertical
+# Coins
+CAR_CHG = u'\u250C'		# Coin Haut Gauche
+CAR_CHD = u'\u2510'		# Coin Haut Droite
+CAR_CBG = u'\u2514'		# Coin Bas Gauche
+CAR_CBD = u'\u2518'		# Coin Bas Droite
+# T
+CAR_TH = u'\u252C'		# T Haut
+CAR_TB = u'\u2534'		# T Bas
+CAR_TG = u'\u251C'		# T Gauche
+CAR_TD = u'\u2524'		# T Droite
+# +
+CAR_CX = u'\u253C'		# Croix centrale
+# Touché / Manqué
+CAR_TOUCH = u'\u2716'
+CAR_MANQ = u'\u25EF'
+
 #
 # Fonctions utiles ----------------------------------------------------------------------------------------------
 #
@@ -40,7 +62,7 @@ def fusionne(chaine1, chaine2):
 	lignes2 = chaine2.split('\n')	
 	chaine = ""
 	for k in range(len(lignes1)-1):
-		chaine += lignes1[k]+'  '+u'\u2503'+'  '+lignes2[k]+'\n'	
+		chaine += lignes1[k] + '  ' + u'\u2503' + '  ' + lignes2[k] + '\n'
 	return chaine
 
 def centre(chaine, longueur):
@@ -49,29 +71,6 @@ def centre(chaine, longueur):
 	l = longueur
 	return ' '*((l-c)//2)+chaine+' '*((l-c)//2+(l-c)%2)+'\n'
 
-
-
-# Caractères graphqiues (pour faire la grille)
-# --------------------------------------------
-# http://www.unicode.org/charts/ : Box Drawing (U2500.pdf)
-# Traits
-CAR_H=u'\u2500'		# Trait Horizontal
-CAR_V=u'\u2502'		# Trait Vertical
-# Coins
-CAR_CHG=u'\u250C'	# Coin Haut Gauche
-CAR_CHD=u'\u2510'	# Coin Haut Droite
-CAR_CBG=u'\u2514'	# Coin Bas Gauche
-CAR_CBD=u'\u2518'	# Coin Bas Droite
-# T
-CAR_TH=u'\u252C'	# T Haut
-CAR_TB=u'\u2534'	# T Bas
-CAR_TG=u'\u251C'	# T Gauche
-CAR_TD=u'\u2524'	# T Droite
-# +
-CAR_CX=u'\u253C'	# Croix centrale
-# Touché / Manqué
-CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
-CAR_MANQ = u'\u25EF'
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -89,13 +88,14 @@ class GrilleC(Grille) :
 	def make_chaine(self):
 		"""Affiche la grille avec des caractères graphiques"""
 		self.chaine = ""
+		
 		# Ligne du haut
 		self.chaine += '    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD+'\n'
 		
 		# Ligne des lettres des colonnes
 		self.chaine += '    '+CAR_V
 		for i in range(self.xmax):
-			if i!=self.xmax-1 :
+			if i != self.xmax-1 :
 				self.chaine += ' '+chr(i+65)+' '+CAR_V
 				#~ chaine += ' '+str(i)+' '+CAR_V
 			else :
@@ -122,7 +122,7 @@ class GrilleC(Grille) :
 			self.chaine += chaine_tmp+'\n'
 			
 			# Sépartion lignes intermédiaires
-			if j!=self.ymax-1 :
+			if j != self.ymax-1 :
 				self.chaine += CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
 				
 			# Dernière ligne
@@ -132,10 +132,10 @@ class GrilleC(Grille) :
 		return self.chaine
 		
 	def affiche(self):
+		"""Affiche une grille"""
 		self.make_chaine()
 		print(self.chaine)
-		#~ print(fusionne(self.chaine, self.chaine))
-	
+
 class GrilleJoueurC(GrilleC, GrilleJoueur):
 	"""La grille sur laquelle chaque joueur place ses bateaux"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
@@ -160,7 +160,16 @@ class JoueurC(Joueur):
 		self.grille_joueur = GrilleJoueurC()
 		self.grille_adverse = GrilleJoueurC()
 		self.grille_suivi = GrilleSuiviC()
-	
+		
+		# Largeur de la zone d'affichage de la grille
+		self.long_affiche = 5 + 4*self.grille_suivi.xmax
+		# Création de la boîte d'affichage du nom
+		self.chaine_nom = ''
+		lnom = len(self.nom)
+		self.chaine_nom += centre('╔'  + '═'*(lnom+2) +  '╗', self.long_affiche)
+		self.chaine_nom += centre('║ ' +   self.nom   + ' ║', self.long_affiche)
+		self.chaine_nom += centre('╚'  + '═'*(lnom+2) +  '╝', self.long_affiche)
+		
 	def joue_coup(self):
 		"""Joue un coup sur une case"""
 		ok = False
@@ -259,7 +268,7 @@ class PartieC(Partie):
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
 		info("Placement du bateau de taille %d" % taille)
-		case = input("Case de départ (entrée pour un bateau aléatoire) : ")
+		case = input("Case de départ (Entrée pour un bateau aléatoire) : ")
 		try :
 			case = coord(case)
 		except :
@@ -270,10 +279,10 @@ class PartieC(Partie):
 			info()
 			return False
 		info("Direction :")
-		info("H : Haut")
-		info("B : Bas")
-		info("D : Droite")
-		info("G : Gauche")
+		info("  H : Haut")
+		info("  B : Bas")
+		info("  D : Droite")
+		info("  G : Gauche")
 		d = input("Direction : ")
 		if d.upper() == 'H' :
 			direction = BN_HAUT
@@ -299,76 +308,36 @@ class PartieC(Partie):
 			while not self.add_bateau_joueur(taille):
 				print("Le bateau de taille %d ne convient pas" % taille)
 				print()
+		for case in self.joueur.grille_joueur.etat :
+			if self.joueur.grille_joueur.etat[case] == -1 :
+				self.joueur.grille_joueur.etat[case] = 0 
 	
 	#
 	# Lancement de la partie -------------------------------------------
 	#
-	def lance_partie0(self):
-		"""Partie à deux joueurs"""
-		self.place_bateaux_joueur()
-		self.get_bateaux_adverse()
-		self.adversaire.grille_adverse = self.joueur.grille_joueur
-		
-		clear()
-		print("Votre grille de jeu :")
-		print()
-		self.joueur.grille_joueur.affiche()
-		print()
-		input("Entrée pour commencer la partie")
-		
-		while not self.joueur.grille_suivi.fini() and not self.adversaire.grille_suivi.fini() :
-			clear()
-			print("Votre grille de suivi :")
-			print()
-			self.joueur.grille_suivi.affiche()
-			self.joueur.joue_coup()
-			clear()
-			print()
-			print()
-			self.joueur.grille_suivi.affiche()
-			self.joueur.affiche_messages()
-			print()
-
-			if not self.adversaire.grille_suivi.fini() :
-				input("Entrée pour le coup suivant")
-				clear()
-				self.get_coup_adverse()
-				print("Grille de suivi l'adversaire : ")
-				print()
-				self.adversaire.grille_suivi.affiche()
-				self.adversaire.affiche_messages()
-				print()
-				input("Entrée pour le coup suivant")
-				
-		if self.joueur.grille_suivi.fini():
-			print("Vous avez gagné en %d coups" % self.joueur.essais)
-		else :
-			print("L'adversaire a gagné en %d coups" % self.adversaire.essais)
-	
 	def affiche_grilles(self):
+		"""Affiche les deux grilles cote à cote, avec les noms des joueurs"""
 		clear()
-		grille1 = centre(self.joueur.nom, 5+4*self.joueur.grille_suivi.xmax)
+		grille1 = self.joueur.chaine_nom
 		grille1 += self.joueur.grille_suivi.make_chaine()
-		grille2 = centre(self.adversaire.nom, 5+4*self.adversaire.grille_suivi.xmax)
+		grille2 = self.adversaire.chaine_nom
 		grille2 += self.adversaire.grille_suivi.make_chaine()
 		print(fusionne(grille1, grille2))
 	
 	def lance_partie(self):
 		"""Partie à deux joueurs"""
+		# Placement des bateaux
 		self.place_bateaux_joueur()
 		self.get_bateaux_adverse()
 		self.adversaire.grille_adverse = self.joueur.grille_joueur
-		
 		clear()
 		print("Votre grille de jeu :")
 		print()
-		for case in self.joueur.grille_joueur.etat :
-			if self.joueur.grille_joueur.etat[case] == -1 :
-				self.joueur.grille_joueur.etat[case] = 0 
 		self.joueur.grille_joueur.affiche()
 		print()
 		enter_to_continue()
 		
+		# Début de la partie
 		while not self.joueur.grille_suivi.fini() and not self.adversaire.grille_suivi.fini() :
 			clear()
 			self.affiche_grilles()
@@ -387,7 +356,8 @@ class PartieC(Partie):
 			if not self.adversaire.grille_suivi.fini() :
 				print()
 				enter_to_continue()
-
+				
+		# Fin de la partie
 		print()
 		if self.joueur.grille_suivi.fini():
 			print("Vous avez gagné en %d coups" % self.joueur.essais)
@@ -399,7 +369,7 @@ class PartieC(Partie):
 #----------------------------------------------------------------------------------------------------------------
 #
 
-class main_console(object):
+class MainConsole(object):
 	"""Programme principal en mode console"""
 	def __init__(self):
 		self.launch_menu()
@@ -509,6 +479,7 @@ class main_console(object):
 """)
 		print("Projet de formation ISN 2015/2016 de l'académie de Lyon")
 		print("   Auteurs : F.Muller et L.Reboul")
+		print("   Code du projet : https://github.com/Abunux/pyBatNav")
 		print("   Licence Creative Common CC BY-NC-SA")
 		print()
 		print("Il est conseillé de passer en mode plein écran (F11)")
@@ -517,13 +488,14 @@ class main_console(object):
 		print("""╔════════════════╗
 ║ Choix du jeu : ║ 
 ╚════════════════╝
+
   S : Jeu en solo sur une grille aléatoire
   O : Résolution d'une grille par l'ordinateur
   J : Jeu contre l'ordinateur
   T : Test des performances de l'algorithme de résolution
   Q : Quitter
 	  """)
-		choix = input("Votre choix [s|o|j|t|[Q]] : ")
+		choix = input("Votre choix (s|o|j|t|[Q]) : ")
 		
 		if choix.lower() == 's' :
 			self.jeu_solo()
@@ -546,4 +518,4 @@ class main_console(object):
 
 
 if __name__ == "__main__" :
-	app = main_console()
+	app = MainConsole()

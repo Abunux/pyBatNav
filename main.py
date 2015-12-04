@@ -1,18 +1,34 @@
 #!/usr/bin/python3
 
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║                                                                  ║
+# ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
+# ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
+# ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
+# ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
+# ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
+# ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
+# ║                                                                  ║
+# ║       ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗        ║
+# ║       ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝        ║
+# ║       ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗          ║
+# ║       ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝          ║
+# ║       ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗        ║
+# ║       ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝        ║
+# ║                                                                  ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
 #
-# Projet de bataille navale
-# dans le cadre de la formation ISN 2015/2016
-# de l'académie de Lyon
+# Projet dans le cadre de la formation ISN 2015/2016 de l'académie de Lyon
 #
 # Programme principal
 #
 # Auteurs : Frédéric Muller et Lionel Reboul
-#
-# Licence CC BY-NC-SA
+# Code du projet : https://github.com/Abunux/pyBatNav
+# Licence Creative Common CC BY-NC-SA
 #
 # Projet démarré le 14/11/2015
-# Dernière màj : 03/12/2015
+# Dernière màj : 04/12/2015
 # Version 0.1.0
 #
 
@@ -25,15 +41,15 @@ if __name__== '__main__' :
 	"""Programme principal"""
 	
 	# Récupération des arguments en ligne de commande
-	parser = parser = argparse.ArgumentParser(description='Jeu de bataille navale')
+	parser = argparse.ArgumentParser(description='Jeu de bataille navale')
 	parser.add_argument('--interface', '-i', action="store", dest="interface", help="Choix de l'interface : console ou tkinter", default="console")
 	
 	options = parser.parse_args()
 	
 	# Lancement de l'interface
-	if options.interface == "console" :
+	if options.interface.lower() == "console" :
 		app = main_console()
-	elif options.interface == "tkinter" :
+	elif options.interface.lower() == "tkinter" :
 		print("Interface tkinter à implémenter")
 
 
