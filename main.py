@@ -48,7 +48,7 @@ if __name__== '__main__' :
 	
 	# Lancement de l'interface
 	if options.interface.lower() == "console" :
-		app = main_console()
+		app = MainConsole()
 	elif options.interface.lower() == "tkinter" :
 		print("Interface tkinter à implémenter")
 
