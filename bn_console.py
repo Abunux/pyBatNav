@@ -18,27 +18,54 @@ import numpy as np
 from bn_grille import *
 from bn_joueur import *
 
+# --------------------------------------------
 # Caractères graphiques (pour faire la grille)
 # --------------------------------------------
 # http://www.unicode.org/charts/ --> Box Drawing (U2500.pdf)
+
+# Caractères simples pour la grille
+# ---------------------------------
 # Traits
-CAR_H = u'\u2500'		# Trait Horizontal
-CAR_V = u'\u2502'		# Trait Vertical
+CAR_H = u'\u2500'		# Trait Horizontal : ─
+CAR_V = u'\u2502'		# Trait Vertical : │
 # Coins
-CAR_CHG = u'\u250C'		# Coin Haut Gauche
-CAR_CHD = u'\u2510'		# Coin Haut Droite
-CAR_CBG = u'\u2514'		# Coin Bas Gauche
-CAR_CBD = u'\u2518'		# Coin Bas Droite
+CAR_CHG = u'\u250C'		# Coin Haut Gauche : ┌
+CAR_CHD = u'\u2510'		# Coin Haut Droite : ┐
+CAR_CBG = u'\u2514'		# Coin Bas Gauche : └
+CAR_CBD = u'\u2518'		# Coin Bas Droite : ┘
 # T
-CAR_TH = u'\u252C'		# T Haut
-CAR_TB = u'\u2534'		# T Bas
-CAR_TG = u'\u251C'		# T Gauche
-CAR_TD = u'\u2524'		# T Droite
+CAR_TH = u'\u252C'		# T Haut : ┬
+CAR_TB = u'\u2534'		# T Bas : ┴
+CAR_TG = u'\u251C'		# T Gauche : ├
+CAR_TD = u'\u2524'		# T Droite : ┤
 # +
-CAR_CX = u'\u253C'		# Croix centrale
+CAR_CX = u'\u253C'		# Croix Centrale : ┼
+
+# Caractères en gras pour les bateaux
+# -----------------------------------
+# Traits
+CAR_GH = u'\u2501'		# Trait Gras Horizontal : ━
+CAR_GV = u'\u2503'		# Trait Gras Vertical : ┃
+# T
+CAR_GTB = u'\u2537'		# T Gras Bas : ┷
+CAR_GTD = u'\u2528'		# T Gras Droite : ┨
+# Coins
+CAR_GCBG = u'\u251B'	# Coin Gras Bas Gauche : ┛
+# +
+CAR_GCXHG = u'\u2546'	# Croix Gras Haut Gauche : ╆
+CAR_GCXHD = u'\u2545'	# Croix Gras Haut Droite : ╅
+CAR_GCXBG = u'\u2544'	# Croix Gras Bas Gauche : ╄
+CAR_GCXBD = u'\u2543'	# Croix Gras Bas Droite : ╃
+CAR_GCX = u'\u254B'		# Croix Gras Centrale : ╋
+CAR_GCXH = u'\u253F'	# Croix Gras Horizontal : ┿
+CAR_GCXV = u'\u2542'	# Croix Gras Vertical : ╂
+
+
+
 # Touché / Manqué
-CAR_TOUCH = u'\u2716'
-CAR_MANQ = u'\u25EF'
+# ---------------
+CAR_TOUCH = u'\u2716' 	# Touché : ✖
+CAR_MANQ = u'\u25EF' 	# Manqué : ◯
 
 #
 # Fonctions utiles ----------------------------------------------------------------------------------------------
@@ -86,7 +113,7 @@ class GrilleC(Grille) :
 	# Affichage en console ---------------------------------------------
 	#
 	def make_chaine(self):
-		"""Affiche la grille avec des caractères graphiques"""
+		"""Crée la grille avec des caractères graphiques"""
 		self.chaine = ""
 		
 		# Ligne du haut
@@ -131,6 +158,78 @@ class GrilleC(Grille) :
 		
 		return self.chaine
 		
+	def make_chaine2(self):
+		"""Crée la grille avec des caractères graphiques"""
+		# Tentative d'entourer les cases contenant nos bateaux en gras
+		# En cours de construction.... (hyper pas évident !!!)		
+		#~ ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
+		#~ │ 4 │   │   │   │   │   │   │   │   │   │   │
+		#~ ├───┼───┼───┼───╆━━━╅───┼───┼───┼───┼───┼───┤
+		#~ │ 5 │   │   │   ┃ ✖ ┃   │   │   │   │   │   │
+		#~ ├───┼───┼───┼───╂───╂───┼───┼───╆━━━╅───┼───┤
+		#~ │ 6 │   │   │   ┃ ✖ ┃   │   │   ┃   ┃   │   │
+		#~ ├───┼───┼───┼───╄━━━╋━━━┿━━━╅───╂───╂───┼───┤
+		#~ │ 7 │   │   │   │   ┃   │   ┃   ┃ ✖ ┃   │   │
+		#~ ├───┼───┼───┼───┼───╄━━━┿━━━╃───╂───╂───┼───┤
+		#~ │ 8 │   │   │   │   │   │   │   ┃   ┃   │   │
+		#~ ├───┼───┼───┼───┼───┼───┼───┼───╄━━━╃───┼───┤
+		#~ │ 9 │   │   │   │   │   │   │   │   │   │   │
+		#~ └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+		
+		self.chaine = ""
+		
+		# Ligne du haut
+		self.chaine += '    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD+'\n'
+		
+		# Ligne des lettres des colonnes
+		self.chaine += '    '+CAR_V
+		for i in range(self.xmax):
+			if i != self.xmax-1 :
+				self.chaine += ' '+chr(i+65)+' '+CAR_V
+				#~ chaine += ' '+str(i)+' '+CAR_V
+			else :
+				self.chaine += ' '+chr(i+65)+' '+CAR_V+'\n'
+				#~ chaine += ' '+str(i)+' '+CAR_V+'\n'
+				
+		#Ligne sous les lettres
+		#~ self.chaine += CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
+		self.chaine += CAR_CHG + CAR_H*3
+		for i in range(self.xmax-1):
+			if self.etat[(i,0)] == 1 :
+				if (i==0 or self.etat[(i-1,0)] != 1) :
+					self.chaine += CAR_GCXHG + CAR_GH*3
+				elif (0< i < self.xmax-1) and (self.etat[(i-1,0)] == 1 or self.etat[(i+1,0)] == 1) :
+					self.chaine += CAR_GCH + CAR_GH*3
+			
+			
+		
+		# Lignes suivantes
+		for j in range(self.ymax):
+			# 1ère colonne (chiffres des lignes)
+			chaine_tmp = CAR_V+' '+str(j)+' '+CAR_V
+			
+			# Cases suivantes
+			for i in range(self.xmax):
+				if self.etat[(i,j)] == 1 :
+					symbole = CAR_TOUCH
+				elif self.etat[(i,j)] == -1 :
+					symbole = CAR_MANQ
+				else :
+					symbole = ' '
+				chaine_tmp += ' '+symbole+' '+CAR_V
+			self.chaine += chaine_tmp+'\n'
+			
+			# Sépartion lignes intermédiaires
+			if j != self.ymax-1 :
+				self.chaine += CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
+				
+			# Dernière ligne
+			else :
+				self.chaine += CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD+'\n'
+		
+		return self.chaine
+		
+		
 	def affiche(self):
 		"""Affiche une grille"""
 		self.make_chaine()
@@ -174,7 +273,7 @@ class JoueurC(Joueur):
 		"""Joue un coup sur une case"""
 		ok = False
 		while not ok :
-			case = input('<%s> Coups (Entrée pour un coup aléatoire) : ' % self.nom)
+			case = input('<%s> Coup (Entrée pour un coup aléatoire) : ' % self.nom)
 			if case == '' :
 				self.tire_aleatoire()
 				ok = True
@@ -373,6 +472,7 @@ class MainConsole(object):
 	"""Programme principal en mode console"""
 	def __init__(self):
 		self.launch_menu()
+
 	#
 	# Modes de jeu -----------------------------------------------------
 	#
@@ -422,12 +522,6 @@ class MainConsole(object):
 		for k in range(len(distrib)) :
 			distrib[k] *= 1/n
 		
-		# Sauvegarde de cette liste dans un fichier texte
-		stats_file = open("distrib_HAL_%d.txt" % n, "w")
-		for k in range(len(distrib)) :
-			stats_file.write(str(distrib[k])+'\n')
-		stats_file.close()
-		
 		# Résultats de la simulation
 		mini = min(liste_essais)
 		maxi = max(liste_essais)
@@ -442,6 +536,13 @@ class MainConsole(object):
 		print()
 		print("Temps moyen par partie : %.5f secondes" % (temps_total/n))
 		
+		# --> L'idée c'est de voir quelle loi de proba suit le nombre d'essais
+		# et de calculer des indicateurs statistiques
+		# Sauvegarde de cette liste dans un fichier texte
+		stats_file = open("distrib_HAL_%d.txt" % n, "w")
+		for k in range(len(distrib)) :
+			stats_file.write(str(distrib[k])+'\n')
+		stats_file.close()
 		# Création de l'histogramme
 		plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
 		plt.xlabel("Nombre de coups")
@@ -468,12 +569,12 @@ class MainConsole(object):
 ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
 ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
 ║                                                                  ║
-║       ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗        ║
-║       ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝        ║
-║       ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗          ║
-║       ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝          ║
-║       ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗        ║
-║       ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝        ║
+║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
+║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
+║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
+║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
+║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
+║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
 ║                                                                  ║
 ╚══════════════════════════════════════════════════════════════════╝
 """)
