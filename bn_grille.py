@@ -308,7 +308,12 @@ class Grille(object):
 	
 	def init_bateaux_alea(self):
 		"""Initialise une grille avec des bateaux aléatoires"""
-		for taille in self.taille_bateaux[::-1] :
+		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
+		tmp_tailles_bateaux = self.taille_bateaux[:]
+		rand.shuffle(tmp_tailles_bateaux)
+		#~ for taille in self.taille_bateaux : # Du plus grand au plus petit
+		#~ for taille in self.taille_bateaux[::-1] : # Du plus petit au plus grand
+		for taille in tmp_tailles_bateaux : # Ordre aléatoire
 			self.add_bateau_alea(taille)
 	
 	# 

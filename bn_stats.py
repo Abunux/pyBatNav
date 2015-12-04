@@ -46,4 +46,6 @@ def surface_probas(n=1000, grille = GrilleSuivi()):
 	plt.show()
 
 if __name__ == "__main__" :
-	surface_probas(n=100000)
+	#~ taille_bateaux=[2,3,3,4,5]
+	#~ surface_probas(n=100000, grille=GrilleSuivi(taille_bateaux=taille_bateaux))
+	surface_probas(n=10000)

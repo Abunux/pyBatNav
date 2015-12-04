@@ -35,15 +35,21 @@ def info(*args):
 	print(*args)
 
 def fusionne(chaine1, chaine2):
-	"""Fusionne deux grille pour l'affichage"""
+	"""Fusionne deux grilles pour l'affichage"""
 	lignes1 = chaine1.split('\n')
-	lignes2 = chaine2.split('\n')
-	
+	lignes2 = chaine2.split('\n')	
 	chaine = ""
 	for k in range(len(lignes1)-1):
-		chaine += lignes1[k]+'  '+u'\u2503'+'  '+lignes2[k]+'\n'
-	
+		chaine += lignes1[k]+'  '+u'\u2503'+'  '+lignes2[k]+'\n'	
 	return chaine
+
+def centre(chaine, longueur):
+	"""Centre la chaine sur la longueur"""
+	c = len(chaine)
+	l = longueur
+	return ' '*((l-c)//2)+chaine+' '*((l-c)//2+(l-c)%2)+'\n'
+
+
 
 # Caractères graphqiues (pour faire la grille)
 # --------------------------------------------
@@ -122,7 +128,9 @@ class GrilleC(Grille) :
 			# Dernière ligne
 			else :
 				self.chaine += CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD+'\n'
-				
+		
+		return self.chaine
+		
 	def affiche(self):
 		self.make_chaine()
 		print(self.chaine)
@@ -155,15 +163,23 @@ class JoueurC(Joueur):
 	
 	def joue_coup(self):
 		"""Joue un coup sur une case"""
-		case = input('Coups (Entrée pour un coup aléatoire) : ')
-		if case == '' :
-			self.tire_aleatoire()
-		else :
-			try :
-				self.tire(coord(case))
-			except :
-				self.messages.append("%s : Coup invalide" % case)
-				self.joue_coup()
+		ok = False
+		while not ok :
+			case = input('<%s> Coups (Entrée pour un coup aléatoire) : ' % self.nom)
+			if case == '' :
+				self.tire_aleatoire()
+				ok = True
+			else :
+				try :
+					tmp_cases_jouees = self.cases_jouees[:]
+					self.tire(coord(case))
+					if coord(case) in tmp_cases_jouees :
+						self.affiche_messages()
+					else :
+						ok = True
+				except :
+					self.messages.append("%s : Coup invalide" % case)
+					self.affiche_messages()
 		#~ self.affiche_messages()
 	
 	#
@@ -287,7 +303,7 @@ class PartieC(Partie):
 	#
 	# Lancement de la partie -------------------------------------------
 	#
-	def lance_partie(self):
+	def lance_partie0(self):
 		"""Partie à deux joueurs"""
 		self.place_bateaux_joueur()
 		self.get_bateaux_adverse()
@@ -328,6 +344,55 @@ class PartieC(Partie):
 			print("Vous avez gagné en %d coups" % self.joueur.essais)
 		else :
 			print("L'adversaire a gagné en %d coups" % self.adversaire.essais)
+	
+	def affiche_grilles(self):
+		clear()
+		grille1 = centre(self.joueur.nom, 5+4*self.joueur.grille_suivi.xmax)
+		grille1 += self.joueur.grille_suivi.make_chaine()
+		grille2 = centre(self.adversaire.nom, 5+4*self.adversaire.grille_suivi.xmax)
+		grille2 += self.adversaire.grille_suivi.make_chaine()
+		print(fusionne(grille1, grille2))
+	
+	def lance_partie(self):
+		"""Partie à deux joueurs"""
+		self.place_bateaux_joueur()
+		self.get_bateaux_adverse()
+		self.adversaire.grille_adverse = self.joueur.grille_joueur
+		
+		clear()
+		print("Votre grille de jeu :")
+		print()
+		for case in self.joueur.grille_joueur.etat :
+			if self.joueur.grille_joueur.etat[case] == -1 :
+				self.joueur.grille_joueur.etat[case] = 0 
+		self.joueur.grille_joueur.affiche()
+		print()
+		enter_to_continue()
+		
+		while not self.joueur.grille_suivi.fini() and not self.adversaire.grille_suivi.fini() :
+			clear()
+			self.affiche_grilles()
+
+			self.joueur.joue_coup()
+			self.affiche_grilles()
+			self.joueur.affiche_messages()
+			print()
+
+			if not self.adversaire.grille_suivi.fini() :
+				enter_to_continue()
+				clear()
+				self.get_coup_adverse()
+				self.affiche_grilles()
+				self.adversaire.affiche_messages()
+			if not self.adversaire.grille_suivi.fini() :
+				print()
+				enter_to_continue()
+
+		print()
+		if self.joueur.grille_suivi.fini():
+			print("Vous avez gagné en %d coups" % self.joueur.essais)
+		else :
+			print("%s a gagné en %d coups" % (self.adversaire.nom, self.adversaire.essais))
 
 
 #
