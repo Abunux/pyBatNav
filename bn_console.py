@@ -49,6 +49,11 @@ CAR_GV = u'\u2503'		# Trait Gras Vertical : ┃
 # T
 CAR_GTB = u'\u2537'		# T Gras Bas : ┷
 CAR_GTD = u'\u2528'		# T Gras Droite : ┨
+CAR_GTDH = u'\u252A'	# T Droite Haut : ┪
+CAR_GTDB = u'\u2529'	# T Droite Bas : ┩
+CAR_GTBG = u'\u253A'	# T Bas Gauche : ┺
+CAR_GTBD = u'\u2539'	# T Bas Droite : ┹
+
 # Coins
 CAR_GCBG = u'\u251B'	# Coin Gras Bas Gauche : ┛
 # +
@@ -161,7 +166,7 @@ class GrilleC(Grille) :
 	def make_chaine2(self):
 		"""Crée la grille avec des caractères graphiques"""
 		# Tentative d'entourer les cases contenant nos bateaux en gras
-		# En cours de construction.... (hyper pas évident !!!)		
+		# En cours de construction.... (hyper pas évident !!!)
 		#~ ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
 		#~ │ 4 │   │   │   │   │   │   │   │   │   │   │
 		#~ ├───┼───┼───┼───╆━━━╅───┼───┼───┼───┼───┼───┤
@@ -170,11 +175,11 @@ class GrilleC(Grille) :
 		#~ │ 6 │   │   │   ┃ ✖ ┃   │   │   ┃   ┃   │   │
 		#~ ├───┼───┼───┼───╄━━━╋━━━┿━━━╅───╂───╂───┼───┤
 		#~ │ 7 │   │   │   │   ┃   │   ┃   ┃ ✖ ┃   │   │
-		#~ ├───┼───┼───┼───┼───╄━━━┿━━━╃───╂───╂───┼───┤
-		#~ │ 8 │   │   │   │   │   │   │   ┃   ┃   │   │
-		#~ ├───┼───┼───┼───┼───┼───┼───┼───╄━━━╃───┼───┤
-		#~ │ 9 │   │   │   │   │   │   │   │   │   │   │
-		#~ └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+		#~ ├───┼───┼───┼───┼───╄━━━┿━━━╃───╂───╂───╆━━━┪
+		#~ │ 8 │   │   │   │   │   │   │   ┃   ┃   ┃   ┃
+		#~ ├───┼───┼───┼───┼───┼───┼───┼───╄━━━╃───╂───┨
+		#~ │ 9 │   │   │   │   │   │   │   │   │   ┃   ┃
+		#~ └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┺━━━┛
 		
 		self.chaine = ""
 		
