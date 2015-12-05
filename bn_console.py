@@ -123,25 +123,25 @@ class GrilleC(Grille) :
 		self.chaine = ""
 		
 		# Ligne du haut
-		self.chaine += '    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD+'\n'
+		self.chaine += '    ' + CAR_CHG + (CAR_H*3+CAR_TH)*(self.xmax-1) + CAR_H*3 + CAR_CHD + '\n'
 		
 		# Ligne des lettres des colonnes
-		self.chaine += '    '+CAR_V
+		self.chaine += '    ' + CAR_V
 		for i in range(self.xmax):
 			if i != self.xmax-1 :
-				self.chaine += ' '+chr(i+65)+' '+CAR_V
-				#~ chaine += ' '+str(i)+' '+CAR_V
+				self.chaine += ' ' + chr(i+65) + ' ' + CAR_V
+				#~ chaine += ' ' + str(i) + ' ' + CAR_V
 			else :
-				self.chaine += ' '+chr(i+65)+' '+CAR_V+'\n'
-				#~ chaine += ' '+str(i)+' '+CAR_V+'\n'
+				self.chaine += ' ' + chr(i+65) + ' ' + CAR_V + '\n'
+				#~ chaine += ' ' + str(i) + ' ' + CAR_V + '\n'
 				
 		#Ligne sous les lettres
-		self.chaine += CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
+		self.chaine += CAR_CHG + (CAR_H*3+CAR_CX)*self.xmax + CAR_H*3 + CAR_TD + '\n'
 		
 		# Lignes suivantes
 		for j in range(self.ymax):
 			# 1ère colonne (chiffres des lignes)
-			chaine_tmp = CAR_V+' '+str(j)+' '+CAR_V
+			chaine_tmp = CAR_V + ' ' + str(j) + ' ' + CAR_V
 			
 			# Cases suivantes
 			for i in range(self.xmax):
@@ -151,16 +151,16 @@ class GrilleC(Grille) :
 					symbole = CAR_MANQ
 				else :
 					symbole = ' '
-				chaine_tmp += ' '+symbole+' '+CAR_V
-			self.chaine += chaine_tmp+'\n'
+				chaine_tmp += ' ' + symbole + ' ' + CAR_V
+			self.chaine += chaine_tmp + '\n'
 			
 			# Sépartion lignes intermédiaires
 			if j != self.ymax-1 :
-				self.chaine += CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
+				self.chaine += CAR_TG + (CAR_H*3+CAR_CX)*self.xmax + CAR_H*3 + CAR_TD + '\n'
 				
 			# Dernière ligne
 			else :
-				self.chaine += CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD+'\n'
+				self.chaine += CAR_CBG + (CAR_H*3+CAR_TB)*self.xmax + CAR_H*3 + CAR_CBD + '\n'
 		
 		return self.chaine
 		
@@ -225,23 +225,24 @@ class GrilleC(Grille) :
 			chaine += CAR_GTDH
 		else :
 			chaine += CAR_TD
-		chaine +='\n'
+		chaine += '\n'
 		
 		# Lignes suivantes
 		for j in range(grille.ymax):
 			# 1ère colonne (chiffres des lignes)
-			chaine += CAR_V+' '+str(j)+' '
+			chaine += CAR_V + ' ' + str(j) + ' '
 			
 			# Cases suivantes
 			for i in range(grille.xmax):
 				# Symbole est l'état de la case dans la grille de suivi
 				if self.etat[(i,j)] == 1 :
-					symbole = ' '+CAR_TOUCH+' '
+					symbole = ' ' + CAR_TOUCH + ' '
 				elif self.etat[(i,j)] == -1 :
-					symbole = ' '+CAR_MANQ+' '
+					symbole = ' ' + CAR_MANQ + ' '
 				else :
 					symbole = '   '
-				
+					
+				# Création de la ligne
 				if grille.etat[(i,j)] == 1 :
 					if (i == 0 or grille.etat[(i-1, j)] != 1) :
 						chaine += CAR_GV + symbole
@@ -252,8 +253,8 @@ class GrilleC(Grille) :
 						chaine += CAR_GV + symbole
 					else :
 						chaine += CAR_V + symbole
-
-			if grille.etat[(grille.xmax-1, j)] == 1 :
+			i = grille.xmax-1
+			if grille.etat[(i, j)] == 1 :
 				chaine += CAR_GV+'\n'
 			else :
 				chaine += CAR_V+'\n'
@@ -305,7 +306,6 @@ class GrilleC(Grille) :
 										chaine += CAR_GCXHD + CAR_H*3
 									else :
 										chaine += CAR_CX + CAR_H*3
-				
 				i = grille.xmax-1
 				if grille.etat[(i,j)] == 1 :
 					if grille.etat[(i,j+1)] == 1 :
@@ -344,7 +344,7 @@ class GrilleC(Grille) :
 					chaine += CAR_GCBD
 				else :
 					chaine += CAR_CBD
-				chaine +='\n'
+				chaine += '\n'
 
 		return chaine
 		
