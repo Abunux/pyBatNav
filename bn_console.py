@@ -12,6 +12,7 @@
 #
 
 import os
+from math import *
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -569,15 +570,15 @@ class PartieC(Partie):
 			self.joueur.affiche_messages()
 			print()
 
-			if not self.adversaire.grille_suivi.fini() :
+			if not self.joueur.grille_suivi.fini() :
 				enter_to_continue()
 				clear()
 				self.get_coup_adverse()
 				self.affiche_grilles()
 				self.adversaire.affiche_messages()
-			if not self.adversaire.grille_suivi.fini() :
-				print()
-				enter_to_continue()
+				if not self.adversaire.grille_suivi.fini() :
+					print()
+					enter_to_continue()
 				
 		# Fin de la partie
 		print()
@@ -649,13 +650,19 @@ class MainConsole(object):
 		mini = min(liste_essais)
 		maxi = max(liste_essais)
 		moyenne = sum(liste_essais)/n
-		
+		# Variance :
+		v = 0
+		for k in range(n):
+			v += (liste_essais[k]-moyenne)**2
+		v *= 1/n
+		sigma = sqrt(v) 
 		print()
 		print("Résultats de la simulation :")
 		print()
-		print("Nombre de coups moyen : %.2f coups" % moyenne)
 		print("Nombre de coups minimum : %.2f coups" % mini)
 		print("Nombre de coups maximum : %.2f coups" % maxi)
+		print("Nombre de coups moyen : %.2f coups" % moyenne)
+		print("Écart type : %.2f" % sigma)
 		print()
 		print("Temps moyen par partie : %.5f secondes" % (temps_total/n))
 		
