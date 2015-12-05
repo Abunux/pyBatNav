@@ -640,13 +640,15 @@ class MainConsole(object):
 			(essais, temps) = self.jeu_ordi(affiche=False)
 			temps_total += temps
 			liste_essais.append(essais)
+			if (k+1) % (n/10) == 0 :
+				print("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*temps_total/(k+1)))
 		
 		# Création de la liste de distribution de fréquences
 		distrib = [0]*100
 		for e in liste_essais :
 				distrib[e] += 1
-		for k in range(len(distrib)) :
-			distrib[k] *= 1/n
+		#~ for k in range(len(distrib)) :
+			#~ distrib[k] *= 1/n
 		
 		# Résultats de la simulation
 		mini = min(liste_essais)
@@ -690,6 +692,8 @@ class MainConsole(object):
 	#
 	def launch_menu(self):
 		"""Menu de lancement """
+		defaut = self.jeu_contre_ordi
+		
 		clear()
 		# http://patorjk.com/software/taag/
 		print("""╔══════════════════════════════════════════════════════════════════╗
@@ -722,13 +726,13 @@ class MainConsole(object):
 ║ Choix du jeu : ║ 
 ╚════════════════╝
 
+  J : Jeu contre l'ordinateur
   S : Jeu en solo sur une grille aléatoire
   O : Résolution d'une grille par l'ordinateur
-  J : Jeu contre l'ordinateur
   T : Test des performances de l'algorithme de résolution
   Q : Quitter
 	  """)
-		choix = input("Votre choix (s|o|j|t|[Q]) : ")
+		choix = input("Votre choix ([J]|s|o|t|q) : ")
 		
 		if choix.lower() == 's' :
 			self.jeu_solo()
@@ -744,11 +748,14 @@ class MainConsole(object):
 		elif choix.lower() == 'j' :
 			self.jeu_contre_ordi()
 			
-		else :
+		elif choix.lower() == 'q' :
 			info()
 			info("Au revoir...")
 			quit()
-
+		
+		# Par défaut
+		else :
+			defaut()
 
 if __name__ == "__main__" :
 	app = MainConsole()
