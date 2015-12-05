@@ -102,9 +102,18 @@ def centre(chaine, longueur):
 	"""Centre la chaine sur la longueur"""
 	c = len(chaine)
 	l = longueur
-	return ' '*((l-c)//2)+chaine+' '*((l-c)//2+(l-c)%2)+'\n'
+	return ' '*((l-c)//2) + chaine + ' '*((l-c)//2+(l-c)%2) + '\n'
 
-
+def boite(texte, prefixe ='', larg_fen = 100):
+	"""Affiche chaque ligne de texte précédée d'un préfixe
+	dans une boîte de largeur larg_fen"""
+	chaine = ""
+	chaine += '╔' + '═'*larg_fen + '╗' + '\n'
+	for ligne in texte.split('\n') :
+		chaine += "║ %s%s" % (prefixe, ligne) + ' '*(larg_fen-(len(ligne)+len(prefixe)+1)) + '║' + '\n'
+	chaine += '╚' + '═'*larg_fen + '╝' + '\n'
+	return chaine
+	
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -112,7 +121,7 @@ class GrilleC(Grille) :
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
 		Grille.__init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2])
 		
-		# Chaine de caractère pour affichage de la grille
+		# Chaine de caractères pour affichage de la grille
 		self.chaine = ""
 		
 	#
@@ -349,11 +358,11 @@ class GrilleC(Grille) :
 	def affiche(self):
 		"""Affiche une grille"""
 		self.make_chaine()
-		print(self.chaine)
+		info(self.chaine)
 		
 	def affiche_adverse(self, grille=None):
 		"""Affiche la grille de suivi de l'adversaire en entourant nos propres bateaux"""
-		print(self.make_chaine_adverse(grille))
+		info(self.make_chaine_adverse(grille))
 		
 
 class GrilleJoueurC(GrilleC, GrilleJoueur):
@@ -391,20 +400,14 @@ class JoueurC(Joueur):
 		self.chaine_nom += centre('╚'  + '═'*(lnom+2) +  '╝', self.long_affiche)
 	
 	def affiche_messages(self):
-		larg_fen = 93
-		print('╔' + '═'*larg_fen + '╗')
-		while self.messages :
-			message = self.messages.pop(0)
-			lm = len(message)
-			ln = len(self.nom)
-			print("║ <%s> : %s" % (self.nom, message) + ' '*(larg_fen-(lm+ln+6)) + '║')
-		print('╚' + '═'*larg_fen + '╝')
+		info(boite('\n'.join(self.messages), prefixe="<%s> " % self.nom))
+		self.messages = []
 	
 	def joue_coup(self):
 		"""Joue un coup sur une case"""
 		ok = False
 		while not ok :
-			print()
+			info()
 			case = input('<%s> Coup (Entrée pour un coup aléatoire) : ' % self.nom)
 			if case == '' :
 				self.tire_aleatoire()
@@ -535,12 +538,12 @@ class PartieC(Partie):
 		"""Place tous les bateaux du joueur"""
 		for taille in self.joueur.grille_joueur.taille_bateaux :
 			clear()
-			print("Placement de vos bateaux :")
-			print()
+			info("Placement de vos bateaux :")
+			info()
 			self.joueur.grille_joueur.affiche_adverse()
 			while not self.add_bateau_joueur(taille):
-				print("Le bateau de taille %d ne convient pas" % taille)
-				print()
+				info("Le bateau de taille %d ne convient pas" % taille)
+				info()
 		for case in self.joueur.grille_joueur.etat :
 			if self.joueur.grille_joueur.etat[case] == -1 :
 				self.joueur.grille_joueur.etat[case] = 0 
@@ -558,7 +561,7 @@ class PartieC(Partie):
 			grille1 += self.joueur.grille_suivi.make_chaine()
 		grille2 = self.adversaire.chaine_nom
 		grille2 += self.adversaire.grille_suivi.make_chaine_adverse(self.joueur.grille_joueur)
-		print(fusionne(grille1, grille2))
+		info(fusionne(grille1, grille2))
 	
 	def lance_partie(self):
 		"""Partie à deux joueurs"""
@@ -567,16 +570,18 @@ class PartieC(Partie):
 		self.get_bateaux_adverse()
 		self.adversaire.grille_adverse = self.joueur.grille_joueur
 		clear()
-		print("Votre grille de jeu :")
-		print()
+		info("Votre grille de jeu :")
+		info()
 		self.joueur.grille_joueur.affiche_adverse()
-		print()
+		info()
+		
+		# Détermination du joueur qui commence
 		joueur_en_cours = rand.randint(0,1) 
 		if  joueur_en_cours == 0 :
-			print("Vous commencez")
+			info("Vous commencez")
 		else :
-			print("%s commence" % self.adversaire.nom)
-		print()
+			info("%s commence" % self.adversaire.nom)
+		info()
 		enter_to_continue()
 		
 		# Début de la partie
@@ -590,7 +595,7 @@ class PartieC(Partie):
 				self.joueur.joue_coup()
 				self.affiche_grilles()
 				self.joueur.affiche_messages()
-				print()
+				#~ info()
 				enter_to_continue()
 			
 			# L'adversaire joue
@@ -599,7 +604,7 @@ class PartieC(Partie):
 				self.get_coup_adverse()
 				self.affiche_grilles()
 				self.adversaire.affiche_messages()
-				print()
+				#~ info()
 				enter_to_continue()
 			
 			# Changement de joueur
@@ -608,11 +613,11 @@ class PartieC(Partie):
 		# Fin de la partie
 		clear()
 		self.affiche_grilles(fin=True)
-		#~ print()
+		info()
 		if self.joueur.grille_suivi.fini():
-			print("Vous avez gagné en %d coups" % self.joueur.essais)
+			info(boite("Bravo !! Vous avez gagné en %d coups" % self.joueur.essais))
 		else :
-			print("%s a gagné en %d coups" % (self.adversaire.nom, self.adversaire.essais))
+			info(boite("%s a gagné en %d coups" % (self.adversaire.nom, self.adversaire.essais)))
 
 
 #
@@ -666,7 +671,7 @@ class MainConsole(object):
 			temps_total += temps
 			liste_essais.append(essais)
 			if (k+1) % (n/10) == 0 :
-				print("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*temps_total/(k+1)))
+				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*temps_total/(k+1)))
 		
 		# Création de la liste de distribution de fréquences
 		distrib = [0]*100
@@ -685,15 +690,15 @@ class MainConsole(object):
 			v += (liste_essais[k]-moyenne)**2
 		v *= 1/n
 		sigma = sqrt(v) 
-		print()
-		print("Résultats de la simulation :")
-		print()
-		print("Nombre de coups minimum : %.2f coups" % mini)
-		print("Nombre de coups maximum : %.2f coups" % maxi)
-		print("Nombre de coups moyen : %.2f coups" % moyenne)
-		print("Écart type : %.2f" % sigma)
-		print()
-		print("Temps moyen par partie : %.5f secondes" % (temps_total/n))
+		info()
+		info("Résultats de la simulation :")
+		info()
+		info("Nombre de coups minimum : %.2f coups" % mini)
+		info("Nombre de coups maximum : %.2f coups" % maxi)
+		info("Nombre de coups moyen : %.2f coups" % moyenne)
+		info("Écart type : %.2f" % sigma)
+		info()
+		info("Temps moyen par partie : %.5f secondes" % (temps_total/n))
 		
 		# --> L'idée c'est de voir quelle loi de proba suit le nombre d'essais
 		# et de calculer des indicateurs statistiques
@@ -721,7 +726,7 @@ class MainConsole(object):
 		
 		clear()
 		# http://patorjk.com/software/taag/
-		print("""╔══════════════════════════════════════════════════════════════════╗
+		info("""╔══════════════════════════════════════════════════════════════════╗
 ║                                                                  ║
 ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
 ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
@@ -739,15 +744,15 @@ class MainConsole(object):
 ║                                                                  ║
 ╚══════════════════════════════════════════════════════════════════╝
 """)
-		print("Projet de formation ISN 2015/2016 de l'académie de Lyon")
-		print("   Auteurs : F.Muller et L.Reboul")
-		print("   Code du projet : https://github.com/Abunux/pyBatNav")
-		print("   Licence Creative Common CC BY-NC-SA")
-		print()
-		print("Il est conseillé de passer en mode plein écran (F11)")
+		info("Projet de formation ISN 2015/2016 de l'académie de Lyon")
+		info("   Auteurs : F.Muller et L.Reboul")
+		info("   Code du projet : https://github.com/Abunux/pyBatNav")
+		info("   Licence Creative Common CC BY-NC-SA")
+		info()
+		info("Il est conseillé de passer en mode plein écran (F11)")
 		enter_to_continue()
 		clear()
-		print("""╔════════════════╗
+		info("""╔════════════════╗
 ║ Choix du jeu : ║ 
 ╚════════════════╝
 
