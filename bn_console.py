@@ -164,9 +164,8 @@ class GrilleC(Grille) :
 		return self.chaine
 		
 	def make_chaine_adverse(self, grille=None):
-		"""Crée la grille avec des caractères graphiques"""
-		# Entourer les cases contenant nos bateaux en gras
-
+		"""Crée la grille avec des caractères graphiques
+		en entourant en gras nos bateaux"""
 		#~ ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
 		#~ │ 4 │   │   │   │   │   │   │   │   │   │   │
 		#~ ├───┼───┼───┼───╆━━━╅───┼───┼───┼───┼───┼───┤
@@ -181,25 +180,26 @@ class GrilleC(Grille) :
 		#~ │ 9 │   │   │   │   │   │   │   │   │   ┃   ┃
 		#~ └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┺━━━┛
 		
+		# grille est la grille du joueur, celle pour laquelle on entoure les bateaux en gras
 		if not grille :
 			grille = self
 		
 		chaine = ""
 		
 		# Ligne du haut
-		chaine += '    '+CAR_CHG+(CAR_H*3+CAR_TH)*(grille.xmax-1)+CAR_H*3+CAR_CHD+'\n'
+		chaine += '    ' + CAR_CHG + (CAR_H*3+CAR_TH)*(grille.xmax-1) + CAR_H*3 + CAR_CHD + '\n'
 		
 		# Ligne des lettres des colonnes
 		chaine += '    '+CAR_V
 		for i in range(grille.xmax):
 			if i != grille.xmax-1 :
-				chaine += ' '+chr(i+65)+' '+CAR_V
+				chaine += ' ' + chr(i+65) + ' ' + CAR_V
 				#~ chaine += ' '+str(i)+' '+CAR_V
 			else :
-				chaine += ' '+chr(i+65)+' '+CAR_V+'\n'
+				chaine += ' ' + chr(i+65) + ' ' + CAR_V + '\n'
 				#~ chaine += ' '+str(i)+' '+CAR_V+'\n'
 				
-		#Ligne sous les lettres (à cause du coin en haut à gauche)
+		# Ligne sous les lettres (à cause du coin en haut à gauche)
 		j = 0
 		chaine += CAR_CHG + CAR_H*3
 		for i in range(grille.xmax) :
@@ -317,6 +317,7 @@ class GrilleC(Grille) :
 					else :
 						chaine += CAR_TD
 				chaine += '\n'
+				
 			# Dernière ligne
 			else :
 				chaine += CAR_CBG + CAR_H*3
@@ -343,8 +344,7 @@ class GrilleC(Grille) :
 				else :
 					chaine += CAR_CBD
 				chaine +='\n'
-					
-							 
+
 		return chaine
 		
 		
@@ -354,7 +354,7 @@ class GrilleC(Grille) :
 		print(self.chaine)
 		
 	def affiche_adverse(self, grille=None):
-		"""Affiche la grille de suivi de l'adversaire"""
+		"""Affiche la grille de suivi de l'adversaire en entourant nos propres bateaux"""
 		print(self.make_chaine_adverse(grille))
 		
 
