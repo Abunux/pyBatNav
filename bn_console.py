@@ -86,8 +86,11 @@ def clear():
 	del c 
 
 def info(*args):
-	"""Affiche les infos de débug"""
+	"""Affiche les infos à l'écran"""
 	print(*args)
+	
+def enter_to_continue():
+	input("Appuyez sur Entrée pour continuer ")
 
 def fusionne(chaine1, chaine2):
 	"""Fusionne deux grilles pour l'affichage"""
@@ -107,9 +110,12 @@ def centre(chaine, longueur):
 def boite(texte, prefixe ='', larg_fen = 100):
 	"""Affiche chaque ligne de texte précédée d'un préfixe
 	dans une boîte de largeur larg_fen"""
+	lignes = texte.split('\n')
+	if larg_fen == 0 :
+		larg_fen = max([len(l) for l in lignes])+2	
 	chaine = ""
 	chaine += '╔' + '═'*larg_fen + '╗' + '\n'
-	for ligne in texte.split('\n') :
+	for ligne in lignes :
 		chaine += "║ %s%s" % (prefixe, ligne) + ' '*(larg_fen-(len(ligne)+len(prefixe)+1)) + '║' + '\n'
 	chaine += '╚' + '═'*larg_fen + '╝' + '\n'
 	return chaine
@@ -398,16 +404,16 @@ class JoueurC(Joueur):
 		self.chaine_nom += centre('╔'  + '═'*(lnom+2) +  '╗', self.long_affiche)
 		self.chaine_nom += centre('║ ' +   self.nom   + ' ║', self.long_affiche)
 		self.chaine_nom += centre('╚'  + '═'*(lnom+2) +  '╝', self.long_affiche)
-	
-	def affiche_messages(self):
-		info(boite('\n'.join(self.messages), prefixe="<%s> " % self.nom))
-		self.messages = []
-	
+
+	def affiche_messages(self, affiche=True):
+		if affiche :
+			info(boite('\n'.join(self.messages), prefixe="<%s> " % self.nom))
+			self.messages = []
+		
 	def joue_coup(self):
 		"""Joue un coup sur une case"""
 		ok = False
 		while not ok :
-			info()
 			case = input('<%s> Coup (Entrée pour un coup aléatoire) : ' % self.nom)
 			if case == '' :
 				self.tire_aleatoire()
@@ -463,7 +469,7 @@ class OrdiC(JoueurC, Ordi):
 		
 		# Lancement du chrono
 		start = time()
-		
+		self.messages.append("C'est parti !!!")
 		# C'est parti !!!
 		while not self.grille_suivi.fini():
 			if affiche :
@@ -538,8 +544,8 @@ class PartieC(Partie):
 		"""Place tous les bateaux du joueur"""
 		for taille in self.joueur.grille_joueur.taille_bateaux :
 			clear()
-			info("Placement de vos bateaux :")
-			info()
+			info(boite("Placement de vos bateaux :", larg_fen=0))
+			#~ info()
 			self.joueur.grille_joueur.affiche_adverse()
 			while not self.add_bateau_joueur(taille):
 				info("Le bateau de taille %d ne convient pas" % taille)
@@ -570,8 +576,8 @@ class PartieC(Partie):
 		self.get_bateaux_adverse()
 		self.adversaire.grille_adverse = self.joueur.grille_joueur
 		clear()
-		info("Votre grille de jeu :")
-		info()
+		info(boite("Votre grille de jeu :", larg_fen=0))
+		#~ info()
 		self.joueur.grille_joueur.affiche_adverse()
 		info()
 		
@@ -595,7 +601,6 @@ class PartieC(Partie):
 				self.joueur.joue_coup()
 				self.affiche_grilles()
 				self.joueur.affiche_messages()
-				#~ info()
 				enter_to_continue()
 			
 			# L'adversaire joue
@@ -604,7 +609,6 @@ class PartieC(Partie):
 				self.get_coup_adverse()
 				self.affiche_grilles()
 				self.adversaire.affiche_messages()
-				#~ info()
 				enter_to_continue()
 			
 			# Changement de joueur
@@ -745,18 +749,15 @@ class MainConsole(object):
 ╚══════════════════════════════════════════════════════════════════╝
 """)
 		info("Projet de formation ISN 2015/2016 de l'académie de Lyon")
-		info("   Auteurs : F.Muller et L.Reboul")
+		info("   Auteurs : Frédéric Muller et Lionel Reboul")
 		info("   Code du projet : https://github.com/Abunux/pyBatNav")
 		info("   Licence Creative Common CC BY-NC-SA")
 		info()
-		info("Il est conseillé de passer en mode plein écran (F11)")
+		info("\033[1mVeuillez passer en mode plein écran (F11)\033[0m")
 		enter_to_continue()
 		clear()
-		info("""╔════════════════╗
-║ Choix du jeu : ║ 
-╚════════════════╝
-
-  J : Jeu contre l'ordinateur
+		info(boite("Choix du jeu :", larg_fen=0))
+		info("""  J : Jeu contre l'ordinateur
   S : Jeu en solo sur une grille aléatoire
   O : Résolution d'une grille par l'ordinateur
   T : Test des performances de l'algorithme de résolution
