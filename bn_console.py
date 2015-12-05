@@ -92,10 +92,10 @@ def info(*args):
 def fusionne(chaine1, chaine2):
 	"""Fusionne deux grilles pour l'affichage"""
 	lignes1 = chaine1.split('\n')
-	lignes2 = chaine2.split('\n')	
+	lignes2 = chaine2.split('\n')
 	chaine = ""
 	for k in range(len(lignes1)-1):
-		chaine += lignes1[k] + '  ' + u'\u2503' + '  ' + lignes2[k] + '\n'
+		chaine += lignes1[k] + '  ' + CAR_GV + '  ' + lignes2[k] + '\n'
 	return chaine
 
 def centre(chaine, longueur):
@@ -527,6 +527,8 @@ class PartieC(Partie):
 		"""Place tous les bateaux du joueur"""
 		for taille in self.joueur.grille_joueur.taille_bateaux :
 			clear()
+			print("Placement de vos bateaux :")
+			print()
 			self.joueur.grille_joueur.affiche_adverse()
 			while not self.add_bateau_joueur(taille):
 				print("Le bateau de taille %d ne convient pas" % taille)
