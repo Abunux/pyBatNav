@@ -55,7 +55,7 @@ CAR_GTBG = u'\u253A'	# T Bas Gauche : ┺
 CAR_GTBD = u'\u2539'	# T Bas Droite : ┹
 
 # Coins
-CAR_GCBG = u'\u251B'	# Coin Gras Bas Gauche : ┛
+CAR_GCBD = u'\u251B'	# Coin Gras Bas Gauche : ┛
 # +
 CAR_GCXHG = u'\u2546'	# Croix Gras Haut Gauche : ╆
 CAR_GCXHD = u'\u2545'	# Croix Gras Haut Droite : ╅
@@ -163,7 +163,7 @@ class GrilleC(Grille) :
 		
 		return self.chaine
 		
-	def make_chaine2(self):
+	def make_chaine_adverse(self, grille=None):
 		"""Crée la grille avec des caractères graphiques"""
 		# Tentative d'entourer les cases contenant nos bateaux en gras
 		# En cours de construction.... (hyper pas évident !!!)
@@ -181,64 +181,203 @@ class GrilleC(Grille) :
 		#~ │ 9 │   │   │   │   │   │   │   │   │   ┃   ┃
 		#~ └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┺━━━┛
 		
-		self.chaine = ""
+		if not grille :
+			grille = self
+		
+		chaine = ""
 		
 		# Ligne du haut
-		self.chaine += '    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD+'\n'
+		chaine += '    '+CAR_CHG+(CAR_H*3+CAR_TH)*(grille.xmax-1)+CAR_H*3+CAR_CHD+'\n'
 		
 		# Ligne des lettres des colonnes
-		self.chaine += '    '+CAR_V
-		for i in range(self.xmax):
-			if i != self.xmax-1 :
-				self.chaine += ' '+chr(i+65)+' '+CAR_V
+		chaine += '    '+CAR_V
+		for i in range(grille.xmax):
+			if i != grille.xmax-1 :
+				chaine += ' '+chr(i+65)+' '+CAR_V
 				#~ chaine += ' '+str(i)+' '+CAR_V
 			else :
-				self.chaine += ' '+chr(i+65)+' '+CAR_V+'\n'
+				chaine += ' '+chr(i+65)+' '+CAR_V+'\n'
 				#~ chaine += ' '+str(i)+' '+CAR_V+'\n'
 				
-		#Ligne sous les lettres
-		#~ self.chaine += CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
-		self.chaine += CAR_CHG + CAR_H*3
-		for i in range(self.xmax-1):
-			if self.etat[(i,0)] == 1 :
-				if (i==0 or self.etat[(i-1,0)] != 1) :
-					self.chaine += CAR_GCXHG + CAR_GH*3
-				elif (0< i < self.xmax-1) and (self.etat[(i-1,0)] == 1 or self.etat[(i+1,0)] == 1) :
-					self.chaine += CAR_GCH + CAR_GH*3
-			
+		#Ligne sous les lettres (à cause du coin en haut à gauche)
+		j = 0
+		chaine += CAR_CHG + CAR_H*3
+		for i in range(grille.xmax) :
+			if i == 0 :
+				if grille.etat[(i,j)] == 1 :
+					chaine += CAR_GCXHG + CAR_GH*3
+				else :
+					chaine += CAR_CX + CAR_H*3
+			else :
+				if grille.etat[(i,j)] == 1 :
+					if grille.etat[(i-1, j)] == 1 :
+						chaine += CAR_GCXH + CAR_GH*3
+					else :
+						chaine += CAR_GCXHG + CAR_GH*3
+				else :
+					if grille.etat[(i-1, j)] == 1 :
+						chaine += CAR_GCXHD + CAR_H*3
+					else :
+						chaine += CAR_CX + CAR_H*3
+		i = grille.xmax-1
+		if grille.etat[(i,j)] == 1 :
+			chaine += CAR_GTDH
+		else :
+			chaine += CAR_TD
+		chaine +='\n'
+		#~ for i in range(grille.xmax):
+			#~ if grille.etat[(i,0)] == 1 :
+				#~ if (i == 0 or grille.etat[(i-1, 0)] != 1) :
+					#~ chaine += CAR_GCXHG + CAR_GH*3
+				#~ elif (0 < i < grille.xmax-1) and (grille.etat[(i-1, 0)] == 1 or grille.etat[(i+1, 0)] == 1) :
+					#~ chaine += CAR_GCXH + CAR_GH*3
+			#~ else :
+				#~ if (i>0 and grille.etat[(i-1, 0)] == 1) :
+					#~ chaine += CAR_GCXHD + CAR_H*3
+				#~ else :
+					#~ chaine += CAR_CX + CAR_H*3
+		#~ if grille.etat[(grille.xmax-1, 0)] == 1 :
+			#~ if grille.etat[(grille.xmax-2, 0)] == 1 :
+				#~ chaine += CAR_GCXH + CAR_GH*3 + CAR_GTDH
+		#~ else :
+			#~ chaine += CAR_CX + CAR_H*3 + CAR_TD
+		#~ chaine += '\n'	
 			
 		
 		# Lignes suivantes
-		for j in range(self.ymax):
+		for j in range(grille.ymax):
 			# 1ère colonne (chiffres des lignes)
-			chaine_tmp = CAR_V+' '+str(j)+' '+CAR_V
+			chaine += CAR_V+' '+str(j)+' '
 			
 			# Cases suivantes
-			for i in range(self.xmax):
+			for i in range(grille.xmax):
+				# Symbole est l'état de la case dans la grille de suivi
+				# Sera mis à jour en temps voulu (easy)
 				if self.etat[(i,j)] == 1 :
-					symbole = CAR_TOUCH
+					symbole = ' '+CAR_TOUCH+' '
 				elif self.etat[(i,j)] == -1 :
-					symbole = CAR_MANQ
+					symbole = ' '+CAR_MANQ+' '
 				else :
-					symbole = ' '
-				chaine_tmp += ' '+symbole+' '+CAR_V
-			self.chaine += chaine_tmp+'\n'
+					symbole = '   '
+				
+				if grille.etat[(i,j)] == 1 :
+					if (i == 0 or grille.etat[(i-1, j)] != 1) :
+						chaine += CAR_GV + symbole
+					elif (grille.etat[(i-1, j)] == 1) or ((i < grille.xmax-1) and grille.etat[(i+1, j)] == 1) :
+						chaine += CAR_V + symbole
+				else :
+					if (i > 0 and grille.etat[(i-1, j)] == 1) :
+						chaine += CAR_GV + symbole
+					else :
+						chaine += CAR_V + symbole
+
+			if grille.etat[(grille.xmax-1, j)] == 1 :
+				chaine += CAR_GV+'\n'
+			else :
+				chaine += CAR_V+'\n'
+
 			
 			# Sépartion lignes intermédiaires
-			if j != self.ymax-1 :
-				self.chaine += CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD+'\n'
+			if j != grille.ymax-1 :
+				chaine += CAR_TG + CAR_H*3
+				for i in range(grille.xmax):
+					if i == 0 :
+						if grille.etat[(i, j)] == 1 :
+							if grille.etat[(i, j+1)] == 1 :
+								chaine += CAR_GCXV + CAR_H*3
+							else :
+								chaine += CAR_GCXBG + CAR_GH*3
+						else :
+							if grille.etat[(i, j+1)] == 1 :
+								chaine += CAR_GCXHG + CAR_GH*3
+							else :
+								chaine += CAR_CX + CAR_H*3
+					else :
+						if grille.etat[(i, j)] == 1 :
+							if grille.etat[(i, j+1)] == 1 :
+								chaine += CAR_GCXV + CAR_H*3
+							else :
+								if grille.etat[(i-1, j)] == 1 :
+									chaine += CAR_GCXH + CAR_GH*3
+								else :
+									if grille.etat[(i-1, j+1)] == 1 :
+										chaine += CAR_GCX + CAR_GH*3
+									else :
+										chaine += CAR_GCXBG + CAR_GH*3
+						else :
+							if grille.etat[(i, j+1)] == 1 :
+								if grille.etat[(i-1, j+1)] == 1 :
+									chaine += CAR_GCXH + CAR_GH*3
+								else :
+									if grille.etat[(i-1, j)] == 1 :
+										chaine += CAR_GCX + CAR_GH*3
+									else :
+										chaine += CAR_GCXHG + CAR_GH*3
+							else :
+								if grille.etat[(i-1, j)] == 1 :
+									if grille.etat[(i-1, j+1)] == 1 :
+										chaine += CAR_GCXV + CAR_H*3
+									else :
+										chaine += CAR_GCXBD + CAR_H*3
+								else :
+									if grille.etat[(i-1, j+1)] == 1 :
+										chaine += CAR_GCXHD + CAR_H*3
+									else :
+										chaine += CAR_CX + CAR_H*3
 				
+				i = grille.xmax-1
+				if grille.etat[(i,j)] == 1 :
+					if grille.etat[(i,j+1)] == 1 :
+						chaine += CAR_GTD
+					else :
+						chaine += CAR_GTDB
+				else :
+					if grille.etat[(i,j+1)] == 1 :
+						chaine += CAR_GTDH
+					else :
+						chaine += CAR_TD
+				chaine += '\n'
 			# Dernière ligne
 			else :
-				self.chaine += CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD+'\n'
-		
-		return self.chaine
+				#~ chaine += CAR_CBG+(CAR_H*3+CAR_TB)*grille.xmax+CAR_H*3+CAR_CBD+'\n'
+				chaine += CAR_CBG + CAR_H*3
+				for i in range(grille.xmax) :
+					if i == 0 :
+						if grille.etat[(i,j)] == 1 :
+							chaine += CAR_GTBG + CAR_GH*3
+						else :
+							chaine += CAR_TB + CAR_H*3
+					else :
+						if grille.etat[(i,j)] == 1 :
+							if grille.etat[(i-1, j)] == 1 :
+								chaine += CAR_GTB + CAR_GH*3
+							else :
+								chaine += CAR_GTBG + CAR_GH*3
+						else :
+							if grille.etat[(i-1, j)] == 1 :
+								chaine += CAR_GTBD + CAR_H*3
+							else :
+								chaine += CAR_TB + CAR_H*3
+				i = grille.xmax-1
+				if grille.etat[(i,j)] == 1 :
+					chaine += CAR_GCBD
+				else :
+					chaine += CAR_CBD
+				chaine +='\n'
+					
+							 
+		return chaine
 		
 		
 	def affiche(self):
 		"""Affiche une grille"""
 		self.make_chaine()
 		print(self.chaine)
+		
+	def affiche_adverse(self, grille=None):
+		"""Affiche la grille de suivi de l'adversaire"""
+		print(self.make_chaine_adverse(grille))
+		
 
 class GrilleJoueurC(GrilleC, GrilleJoueur):
 	"""La grille sur laquelle chaque joueur place ses bateaux"""
@@ -425,7 +564,7 @@ class PartieC(Partie):
 		grille1 = self.joueur.chaine_nom
 		grille1 += self.joueur.grille_suivi.make_chaine()
 		grille2 = self.adversaire.chaine_nom
-		grille2 += self.adversaire.grille_suivi.make_chaine()
+		grille2 += self.adversaire.grille_suivi.make_chaine_adverse(self.joueur.grille_joueur)
 		print(fusionne(grille1, grille2))
 	
 	def lance_partie(self):
@@ -437,7 +576,7 @@ class PartieC(Partie):
 		clear()
 		print("Votre grille de jeu :")
 		print()
-		self.joueur.grille_joueur.affiche()
+		self.joueur.grille_joueur.affiche_adverse()
 		print()
 		enter_to_continue()
 		
