@@ -222,10 +222,9 @@ class GrilleC(Grille) :
 						chaine += CAR_CX + CAR_H*3
 		i = grille.xmax-1
 		if grille.etat[(i,j)] == 1 :
-			chaine += CAR_GTDH
+			chaine += CAR_GTDH + '\n'
 		else :
-			chaine += CAR_TD
-		chaine += '\n'
+			chaine += CAR_TD + '\n'
 		
 		# Lignes suivantes
 		for j in range(grille.ymax):
@@ -255,9 +254,9 @@ class GrilleC(Grille) :
 						chaine += CAR_V + symbole
 			i = grille.xmax-1
 			if grille.etat[(i, j)] == 1 :
-				chaine += CAR_GV+'\n'
+				chaine += CAR_GV + '\n'
 			else :
-				chaine += CAR_V+'\n'
+				chaine += CAR_V + '\n'
 			
 			# Sépartion lignes intermédiaires
 			if j != grille.ymax-1 :
@@ -309,15 +308,14 @@ class GrilleC(Grille) :
 				i = grille.xmax-1
 				if grille.etat[(i,j)] == 1 :
 					if grille.etat[(i,j+1)] == 1 :
-						chaine += CAR_GTD
+						chaine += CAR_GTD + '\n'
 					else :
-						chaine += CAR_GTDB
+						chaine += CAR_GTDB + '\n'
 				else :
 					if grille.etat[(i,j+1)] == 1 :
-						chaine += CAR_GTDH
+						chaine += CAR_GTDH + '\n'
 					else :
-						chaine += CAR_TD
-				chaine += '\n'
+						chaine += CAR_TD + '\n'
 				
 			# Dernière ligne
 			else :
@@ -341,10 +339,9 @@ class GrilleC(Grille) :
 								chaine += CAR_TB + CAR_H*3
 				i = grille.xmax-1
 				if grille.etat[(i,j)] == 1 :
-					chaine += CAR_GCBD
+					chaine += CAR_GCBD + '\n'
 				else :
-					chaine += CAR_CBD
-				chaine += '\n'
+					chaine += CAR_CBD + '\n'
 
 		return chaine
 		
@@ -392,11 +389,22 @@ class JoueurC(Joueur):
 		self.chaine_nom += centre('╔'  + '═'*(lnom+2) +  '╗', self.long_affiche)
 		self.chaine_nom += centre('║ ' +   self.nom   + ' ║', self.long_affiche)
 		self.chaine_nom += centre('╚'  + '═'*(lnom+2) +  '╝', self.long_affiche)
-		
+	
+	def affiche_messages(self):
+		larg_fen = 93
+		print('╔' + '═'*larg_fen + '╗')
+		while self.messages :
+			message = self.messages.pop(0)
+			lm = len(message)
+			ln = len(self.nom)
+			print("║ <%s> : %s" % (self.nom, message) + ' '*(larg_fen-(lm+ln+6)) + '║')
+		print('╚' + '═'*larg_fen + '╝')
+	
 	def joue_coup(self):
 		"""Joue un coup sur une case"""
 		ok = False
 		while not ok :
+			print()
 			case = input('<%s> Coup (Entrée pour un coup aléatoire) : ' % self.nom)
 			if case == '' :
 				self.tire_aleatoire()
@@ -540,11 +548,14 @@ class PartieC(Partie):
 	#
 	# Lancement de la partie -------------------------------------------
 	#
-	def affiche_grilles(self):
+	def affiche_grilles(self, fin=False):
 		"""Affiche les deux grilles cote à cote, avec les noms des joueurs"""
 		clear()
 		grille1 = self.joueur.chaine_nom
-		grille1 += self.joueur.grille_suivi.make_chaine()
+		if fin :
+			grille1 += self.joueur.grille_suivi.make_chaine_adverse(self.adversaire.grille_joueur)
+		else :
+			grille1 += self.joueur.grille_suivi.make_chaine()
 		grille2 = self.adversaire.chaine_nom
 		grille2 += self.adversaire.grille_suivi.make_chaine_adverse(self.joueur.grille_joueur)
 		print(fusionne(grille1, grille2))
@@ -560,30 +571,44 @@ class PartieC(Partie):
 		print()
 		self.joueur.grille_joueur.affiche_adverse()
 		print()
+		joueur_en_cours = rand.randint(0,1) 
+		if  joueur_en_cours == 0 :
+			print("Vous commencez")
+		else :
+			print("%s commence" % self.adversaire.nom)
+		print()
 		enter_to_continue()
 		
 		# Début de la partie
+		nb_coups = 0
 		while not self.joueur.grille_suivi.fini() and not self.adversaire.grille_suivi.fini() :
-			clear()
-			self.affiche_grilles()
-
-			self.joueur.joue_coup()
-			self.affiche_grilles()
-			self.joueur.affiche_messages()
-			print()
-
-			if not self.joueur.grille_suivi.fini() :
+			nb_coups += 1
+			# Le joueur joue
+			if joueur_en_cours == 0 and not self.adversaire.grille_suivi.fini():
+				clear()
+				self.affiche_grilles()
+				self.joueur.joue_coup()
+				self.affiche_grilles()
+				self.joueur.affiche_messages()
+				print()
 				enter_to_continue()
+			
+			# L'adversaire joue
+			else :
 				clear()
 				self.get_coup_adverse()
 				self.affiche_grilles()
 				self.adversaire.affiche_messages()
-				if not self.adversaire.grille_suivi.fini() :
-					print()
-					enter_to_continue()
+				print()
+				enter_to_continue()
+			
+			# Changement de joueur
+			joueur_en_cours = (joueur_en_cours + 1)%2
 				
 		# Fin de la partie
-		print()
+		clear()
+		self.affiche_grilles(fin=True)
+		#~ print()
 		if self.joueur.grille_suivi.fini():
 			print("Vous avez gagné en %d coups" % self.joueur.essais)
 		else :
