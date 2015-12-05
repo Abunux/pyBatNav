@@ -466,7 +466,7 @@ class OrdiC(JoueurC, Ordi):
 		Ordi.__init__(self, nom)
 		JoueurC.__init__(self, nom)
 		
-	def resolution(self, affiche=True):
+	def resolution(self, affiche=True, grille=None):
 		"""Lance la résolution de la grille par l'ordinateur"""
 		# affiche : affichage ou non des informations (pour les tests)
 		
@@ -477,7 +477,7 @@ class OrdiC(JoueurC, Ordi):
 		while not self.grille_suivi.fini():
 			if affiche :
 				clear()
-				self.grille_suivi.affiche()
+				self.grille_suivi.affiche_adverse(grille)
 			
 			self.affiche_messages(affiche=affiche)
 			
@@ -489,7 +489,7 @@ class OrdiC(JoueurC, Ordi):
 		# Fin de la partie
 		if affiche :
 			clear()
-			self.grille_suivi.affiche()
+			self.grille_suivi.affiche_adverse(grille)
 			
 		self.messages.append("Partie terminée en %d coups" % self.essais)
 		self.affiche_messages(affiche=affiche)
@@ -547,7 +547,7 @@ class PartieC(Partie):
 		"""Place tous les bateaux du joueur"""
 		for taille in self.joueur.grille_joueur.taille_bateaux :
 			clear()
-			self.joueur.grille_joueur.affiche()
+			self.joueur.grille_joueur.affiche_adverse()
 			while not self.add_bateau_joueur(taille):
 				print("Le bateau de taille %d ne convient pas" % taille)
 				print()
@@ -628,7 +628,7 @@ class MainConsole(object):
 		ordi = OrdiC()
 		ordi.grille_adverse = grille
 		
-		temps = ordi.resolution(affiche=affiche)
+		temps = ordi.resolution(affiche=affiche, grille=grille)
 		return (ordi.essais, temps) # Pour les tests de performance
 
 
