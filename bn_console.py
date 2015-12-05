@@ -165,8 +165,8 @@ class GrilleC(Grille) :
 		
 	def make_chaine_adverse(self, grille=None):
 		"""Crée la grille avec des caractères graphiques"""
-		# Tentative d'entourer les cases contenant nos bateaux en gras
-		# En cours de construction.... (hyper pas évident !!!)
+		# Entourer les cases contenant nos bateaux en gras
+
 		#~ ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
 		#~ │ 4 │   │   │   │   │   │   │   │   │   │   │
 		#~ ├───┼───┼───┼───╆━━━╅───┼───┼───┼───┼───┼───┤
@@ -225,24 +225,6 @@ class GrilleC(Grille) :
 		else :
 			chaine += CAR_TD
 		chaine +='\n'
-		#~ for i in range(grille.xmax):
-			#~ if grille.etat[(i,0)] == 1 :
-				#~ if (i == 0 or grille.etat[(i-1, 0)] != 1) :
-					#~ chaine += CAR_GCXHG + CAR_GH*3
-				#~ elif (0 < i < grille.xmax-1) and (grille.etat[(i-1, 0)] == 1 or grille.etat[(i+1, 0)] == 1) :
-					#~ chaine += CAR_GCXH + CAR_GH*3
-			#~ else :
-				#~ if (i>0 and grille.etat[(i-1, 0)] == 1) :
-					#~ chaine += CAR_GCXHD + CAR_H*3
-				#~ else :
-					#~ chaine += CAR_CX + CAR_H*3
-		#~ if grille.etat[(grille.xmax-1, 0)] == 1 :
-			#~ if grille.etat[(grille.xmax-2, 0)] == 1 :
-				#~ chaine += CAR_GCXH + CAR_GH*3 + CAR_GTDH
-		#~ else :
-			#~ chaine += CAR_CX + CAR_H*3 + CAR_TD
-		#~ chaine += '\n'	
-			
 		
 		# Lignes suivantes
 		for j in range(grille.ymax):
@@ -252,7 +234,6 @@ class GrilleC(Grille) :
 			# Cases suivantes
 			for i in range(grille.xmax):
 				# Symbole est l'état de la case dans la grille de suivi
-				# Sera mis à jour en temps voulu (easy)
 				if self.etat[(i,j)] == 1 :
 					symbole = ' '+CAR_TOUCH+' '
 				elif self.etat[(i,j)] == -1 :
@@ -275,7 +256,6 @@ class GrilleC(Grille) :
 				chaine += CAR_GV+'\n'
 			else :
 				chaine += CAR_V+'\n'
-
 			
 			# Sépartion lignes intermédiaires
 			if j != grille.ymax-1 :
@@ -339,7 +319,6 @@ class GrilleC(Grille) :
 				chaine += '\n'
 			# Dernière ligne
 			else :
-				#~ chaine += CAR_CBG+(CAR_H*3+CAR_TB)*grille.xmax+CAR_H*3+CAR_CBD+'\n'
 				chaine += CAR_CBG + CAR_H*3
 				for i in range(grille.xmax) :
 					if i == 0 :
