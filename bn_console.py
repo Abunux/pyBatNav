@@ -112,12 +112,12 @@ def boite(texte, prefixe ='', larg_fen = 100):
 	dans une boîte de largeur larg_fen"""
 	lignes = texte.split('\n')
 	if larg_fen == 0 :
-		larg_fen = max([len(l) for l in lignes])+2	
+		larg_fen = max([len(l) for l in lignes])+2
 	chaine = ""
 	chaine += '╔' + '═'*larg_fen + '╗' + '\n'
 	for ligne in lignes :
 		chaine += "║ %s%s" % (prefixe, ligne) + ' '*(larg_fen-(len(ligne)+len(prefixe)+1)) + '║' + '\n'
-	chaine += '╚' + '═'*larg_fen + '╝' + '\n'
+	chaine += '╚' + '═'*larg_fen + '╝'
 	return chaine
 	
 #
@@ -584,10 +584,10 @@ class PartieC(Partie):
 		# Détermination du joueur qui commence
 		joueur_en_cours = rand.randint(0,1) 
 		if  joueur_en_cours == 0 :
-			info("Vous commencez")
+			info(boite("Vous allez commencer", larg_fen=0))
 		else :
-			info("%s commence" % self.adversaire.nom)
-		info()
+			info(boite("%s va commencer" % self.adversaire.nom, larg_fen=0))
+		#~ info()
 		enter_to_continue()
 		
 		# Début de la partie
@@ -729,6 +729,14 @@ class MainConsole(object):
 		defaut = self.jeu_contre_ordi
 		
 		clear()
+		info("""
+╔═══════════════════════════════════════════╗
+║ \033[1mVeuillez passer en mode plein écran (F11)\033[0m ║
+╚═══════════════════════════════════════════╝
+		""")
+		enter_to_continue()
+		clear()
+		
 		# http://patorjk.com/software/taag/
 		info("""╔══════════════════════════════════════════════════════════════════╗
 ║                                                                  ║
@@ -753,7 +761,6 @@ class MainConsole(object):
 		info("   Code du projet : https://github.com/Abunux/pyBatNav")
 		info("   Licence Creative Common CC BY-NC-SA")
 		info()
-		info("\033[1mVeuillez passer en mode plein écran (F11)\033[0m")
 		enter_to_continue()
 		clear()
 		info(boite("Choix du jeu :", larg_fen=0))
