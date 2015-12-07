@@ -735,14 +735,31 @@ class MainConsole(object):
 		clear()
 		info("""
 ╔═══════════════════════════════════════════╗
-║ \033[1mPour une expérience de jeu optimale,\033[0m      ║
-║ \033[1mveuillez passer en mode plein écran (F11)\033[0m ║
-║ \033[1met régler les couleurs du terminal\033[0m        ║
-║ \033[1men noir sur fond blanc\033[0m                    ║
+║ Pour une affichage du jeu optimale,       ║
+║ veuillez passer en mode plein écran (F11) ║
+║ et régler les couleurs du terminal        ║
+║ en écriture noire sur fond blanc.         ║
 ╚═══════════════════════════════════════════╝
 		""")
 		enter_to_continue()
 		clear()
+		
+		# source : http://www.chris.com/ascii/index.php?art=transportation/nautical
+		info(r"""
+                                     |__
+                                     |\/
+                                     ---
+                                     / | [
+                              !      | |||
+                            _/|     _/|-++'
+                        +  +--|    |--|--|_ |-
+                     { /|__|  |/\__|  |--- |||__/
+                    +---------------___[}-_===_.'____                 /\
+                ____`-' ||___-{]_| _[}-  |     |_[___\==--            \/   _
+ __..._____--==/___]_|__|_____________________________[___\==--____,------' .7
+|                                                                     BB-61/
+ \_________________________________________________________________________|
+ """)
 		
 		# http://patorjk.com/software/taag/
 		info("""╔══════════════════════════════════════════════════════════════════╗
