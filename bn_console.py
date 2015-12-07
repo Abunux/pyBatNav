@@ -557,16 +557,20 @@ class PartieC(Partie):
 	#
 	# Lancement de la partie -------------------------------------------
 	#
-	def affiche_grilles(self, fin=False):
+	def affiche_grilles(self, fin=False, cheat=False):
 		"""Affiche les deux grilles cote à cote, avec les noms des joueurs"""
 		clear()
 		grille1 = self.joueur.chaine_nom
-		if fin :
+		# Pour l'affichage en fin de partie on affiche en gras les bateaux de l'adversaire
+		# cheat permet de tricher en affichant les bateaux de l'adversaire (pour les tests)
+		if fin or cheat :
 			grille1 += self.joueur.grille_suivi.make_chaine_adverse(self.adversaire.grille_joueur)
 		else :
 			grille1 += self.joueur.grille_suivi.make_chaine()
+			
 		grille2 = self.adversaire.chaine_nom
 		grille2 += self.adversaire.grille_suivi.make_chaine_adverse(self.joueur.grille_joueur)
+		
 		info(fusionne(grille1, grille2))
 	
 	def lance_partie(self):
@@ -731,7 +735,10 @@ class MainConsole(object):
 		clear()
 		info("""
 ╔═══════════════════════════════════════════╗
-║ \033[1mVeuillez passer en mode plein écran (F11)\033[0m ║
+║ \033[1mPour une expérience de jeu optimale,\033[0m      ║
+║ \033[1mveuillez passer en mode plein écran (F11)\033[0m ║
+║ \033[1met régler les couleurs du terminal\033[0m        ║
+║ \033[1men noir sur fond blanc\033[0m                    ║
 ╚═══════════════════════════════════════════╝
 		""")
 		enter_to_continue()
@@ -756,10 +763,10 @@ class MainConsole(object):
 ║                                                                  ║
 ╚══════════════════════════════════════════════════════════════════╝
 """)
-		info("Projet de formation ISN 2015/2016 de l'académie de Lyon")
-		info("   Auteurs : Frédéric Muller et Lionel Reboul")
-		info("   Code du projet : https://github.com/Abunux/pyBatNav")
-		info("   Licence Creative Common CC BY-NC-SA")
+		info("   Projet de formation ISN 2015/2016 de l'académie de Lyon")
+		info("      Auteurs : Frédéric Muller et Lionel Reboul")
+		info("      Code du projet : https://github.com/Abunux/pyBatNav")
+		info("      Licence Creative Common CC BY-NC-SA")
 		info()
 		enter_to_continue()
 		clear()

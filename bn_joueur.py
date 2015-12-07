@@ -251,9 +251,9 @@ class Ordi(Joueur):
 		# On regarde s'il y a assez de place dans cette direction pour le plus petit bateau
 		if self.grille_suivi.get_max_space(case_face, direction) < self.grille_suivi.taille_min-1 :
 			if direction == BN_HORIZONTAL :
-				self.messages.append("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_courante)))
+				self.messages.append("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 			else :
-				self.messages.append("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_courante)))
+				self.messages.append("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 			self.rem_queue(case_face)
 	
 	def pop_queue(self):
