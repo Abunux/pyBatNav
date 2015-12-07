@@ -28,7 +28,7 @@
 # Licence Creative Common CC BY-NC-SA
 #
 # Projet démarré le 14/11/2015
-# Dernière màj : 05/12/2015
+# Dernière màj : 07/12/2015
 # Version 0.1.0
 #
 
