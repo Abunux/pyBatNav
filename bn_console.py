@@ -735,7 +735,7 @@ class MainConsole(object):
 		clear()
 		info("""
 ╔═══════════════════════════════════════════╗
-║ Pour une affichage du jeu optimale,       ║
+║ Pour un affichage du jeu optimal,         ║
 ║ veuillez passer en mode plein écran (F11) ║
 ║ et régler les couleurs du terminal        ║
 ║ en écriture noire sur fond blanc.         ║

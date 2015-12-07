@@ -145,7 +145,7 @@ class Grille(object):
 	# Calculs de probabilités ------------------------------------------
 	# Marche pas !!!...
 	#
-	def case_max(self, n=1000):
+	def case_max(self, n=1000, ordre='croissant'):
 		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
 		Retourne la case la plus probable en essayant différents arrangements des bateaux restants
 		Marche pas... (pb dans Grille.make_bateau_alea(), fait une boucle infinie)"""
@@ -162,7 +162,7 @@ class Grille(object):
 			# On utilise une grille tempoaraire, copiée à partir de la grille_suivi courante
 			grille_tmp = self.copie_grille_tmp()
 			# Arrangement aléatoire de bateaux
-			grille_tmp.init_bateaux_alea()
+			grille_tmp.init_bateaux_alea(ordre=ordre)
 			for case in grille_tmp.etat :
 				if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
 					self.probas[case] += 1
@@ -306,15 +306,26 @@ class Grille(object):
 			valide = self.test_bateau(bateau)
 		self.add_bateau(bateau)
 	
-	def init_bateaux_alea(self):
+	def init_bateaux_alea(self, ordre='croissant'):
 		"""Initialise une grille avec des bateaux aléatoires"""
 		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
 		tmp_tailles_bateaux = self.taille_bateaux[:]
-		rand.shuffle(tmp_tailles_bateaux)
-		#~ for taille in self.taille_bateaux : # Du plus grand au plus petit
-		#~ for taille in self.taille_bateaux[::-1] : # Du plus petit au plus grand
-		for taille in tmp_tailles_bateaux : # Ordre aléatoire
+		if ordre == 'random' :
+			rand.shuffle(tmp_tailles_bateaux)
+		elif ordre == 'croissant' :
+			tmp_tailles_bateaux.sort()
+		elif ordre == 'decroissant' :
+			tmp_tailles_bateaux.sort()
+			tmp_tailles_bateaux = tmp_tailles_bateaux[::-1]
+			
+		for taille in tmp_tailles_bateaux :
 			self.add_bateau_alea(taille)
+			
+		#~ rand.shuffle(tmp_tailles_bateaux)
+		#~ for taille in tmp_taille_bateaux.sort() : # Du plus grand au plus petit
+		#~ for taille in tmp_taille_bateaux.sort()[::-1] : # Du plus petit au plus grand
+		#~ for taille in tmp_tailles_bateaux : # Ordre aléatoire
+			#~ self.add_bateau_alea(taille)
 	
 	# 
 	# Fin de partie ----------------------------------------------------

@@ -42,7 +42,7 @@ if __name__== '__main__' :
 	
 	# Récupération des arguments en ligne de commande
 	parser = argparse.ArgumentParser(description='Jeu de bataille navale')
-	parser.add_argument('--interface', '-i', action="store", dest="interface", help="Choix de l'interface : console ou tkinter", default="console")
+	parser.add_argument('--interface', '-i', action="store", dest="interface", help="Choix de l'interface : 'console' ou 'tkinter'", default="console")
 	
 	options = parser.parse_args()
 	
