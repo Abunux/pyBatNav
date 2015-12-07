@@ -544,7 +544,7 @@ class PartieC(Partie):
 		"""Place tous les bateaux du joueur"""
 		for taille in self.joueur.grille_joueur.taille_bateaux :
 			clear()
-			info(boite("Placement de vos bateaux :", larg_fen=0))
+			info(boite("Placement de vos bateaux", larg_fen=0))
 			#~ info()
 			self.joueur.grille_joueur.affiche_adverse()
 			while not self.add_bateau_joueur(taille):
@@ -580,10 +580,8 @@ class PartieC(Partie):
 		self.get_bateaux_adverse()
 		self.adversaire.grille_adverse = self.joueur.grille_joueur
 		clear()
-		info(boite("Votre grille de jeu :", larg_fen=0))
-		#~ info()
+		info(boite("Votre grille de jeu", larg_fen=0))
 		self.joueur.grille_joueur.affiche_adverse()
-		info()
 		
 		# Détermination du joueur qui commence
 		joueur_en_cours = rand.randint(0,1) 
@@ -591,7 +589,7 @@ class PartieC(Partie):
 			info(boite("Vous allez commencer", larg_fen=0))
 		else :
 			info(boite("%s va commencer" % self.adversaire.nom, larg_fen=0))
-		#~ info()
+		info()
 		enter_to_continue()
 		
 		# Début de la partie
@@ -699,7 +697,7 @@ class MainConsole(object):
 		v *= 1/n
 		sigma = sqrt(v) 
 		info()
-		info("Résultats de la simulation :")
+		info(boite("Résultats de la simulation", larg_fen=0))
 		info()
 		info("Nombre de coups minimum : %.2f coups" % mini)
 		info("Nombre de coups maximum : %.2f coups" % maxi)
@@ -733,14 +731,11 @@ class MainConsole(object):
 		defaut = self.jeu_contre_ordi
 		
 		clear()
-		info("""
-╔═══════════════════════════════════════════╗
-║ Pour un affichage du jeu optimal,         ║
-║ veuillez passer en mode plein écran (F11) ║
-║ et régler les couleurs du terminal        ║
-║ en écriture noire sur fond blanc.         ║
-╚═══════════════════════════════════════════╝
-		""")
+		info(boite("""Pour un affichage du jeu optimal,
+veuillez passer en mode plein écran (F11)
+et régler les couleurs du terminal
+en écriture noire sur fond blanc.""", larg_fen=0))
+		info()
 		enter_to_continue()
 		clear()
 		
@@ -787,7 +782,7 @@ class MainConsole(object):
 		info()
 		enter_to_continue()
 		clear()
-		info(boite("Choix du jeu :", larg_fen=0))
+		info(boite("Choix du jeu", larg_fen=0))
 		info("""  J : Jeu contre l'ordinateur
   S : Jeu en solo sur une grille aléatoire
   O : Résolution d'une grille par l'ordinateur

@@ -205,6 +205,7 @@ class Ordi(Joueur):
 			self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 					
 		# On mélange la file d'attente pour ne pas que l'algo soit prévisible
+		# --> À améliorer avec les calculs de probas
 		self.shuffle_queue()
 		
 		self.affiche_queue()
