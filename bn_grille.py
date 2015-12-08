@@ -309,16 +309,16 @@ class Grille(object):
 	def init_bateaux_alea(self, ordre='croissant'):
 		"""Initialise une grille avec des bateaux aléatoires"""
 		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
-		tmp_tailles_bateaux = self.taille_bateaux[:]
+		tmp_taille_bateaux = self.taille_bateaux[:]
 		if ordre == 'random' :
-			rand.shuffle(tmp_tailles_bateaux)
+			rand.shuffle(tmp_taille_bateaux)
 		elif ordre == 'croissant' :
-			tmp_tailles_bateaux.sort()
+			tmp_taille_bateaux.sort()
 		elif ordre == 'decroissant' :
-			tmp_tailles_bateaux.sort()
-			tmp_tailles_bateaux = tmp_tailles_bateaux[::-1]
+			tmp_taille_bateaux.sort()
+			tmp_taille_bateaux = tmp_taille_bateaux[::-1]
 			
-		for taille in tmp_tailles_bateaux :
+		for taille in tmp_taille_bateaux :
 			self.add_bateau_alea(taille)
 			
 		#~ rand.shuffle(tmp_tailles_bateaux)

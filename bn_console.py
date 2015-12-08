@@ -125,7 +125,7 @@ def boite(texte, prefixe ='', larg_fen = 100):
 #
 class GrilleC(Grille) :
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
-		Grille.__init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2])
+		Grille.__init__(self, xmax, ymax, taille_bateaux = taille_bateaux)
 		
 		# Chaine de caractères pour affichage de la grille
 		self.chaine = ""
@@ -638,13 +638,15 @@ class MainConsole(object):
 	#
 	# Modes de jeu -----------------------------------------------------
 	#
-	def jeu_ordi(self, affiche=True):
+	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
-		grille = GrilleJoueurC()
+		grille = GrilleJoueurC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		grille.init_bateaux_alea()
 		ordi = OrdiC()
 		ordi.grille_adverse = grille
+		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
+		ordi.grille_suivi.reinit()
 		
 		temps = ordi.resolution(affiche=affiche, grille=grille)
 		return (ordi.essais, temps) # Pour les tests de performance
@@ -667,20 +669,20 @@ class MainConsole(object):
 		partie = PartieC(joueur, ordi)
 
 
-	def test_algo(self, n=1000):
+	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
 		"""Test l'ago de l'ordinateur en faisant n parties"""
 		# Lancement de la simulation
 		temps_total = 0
 		liste_essais = []
 		for k in range(n):
-			(essais, temps) = self.jeu_ordi(affiche=False)
+			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 			temps_total += temps
 			liste_essais.append(essais)
 			if (k+1) % (n/10) == 0 :
 				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*temps_total/(k+1)))
 		
 		# Création de la liste de distribution de fréquences
-		distrib = [0]*100
+		distrib = [0]*(xmax*ymax)
 		for e in liste_essais :
 				distrib[e] += 1
 		#~ for k in range(len(distrib)) :
@@ -690,6 +692,15 @@ class MainConsole(object):
 		mini = min(liste_essais)
 		maxi = max(liste_essais)
 		moyenne = sum(liste_essais)/n
+		liste_essais_sorted = liste_essais[:]
+		liste_essais_sorted.sort()
+		if n % 2 != 0 :
+			mediane = liste_essais_sorted[(n+1)//2-1]
+		else :
+			mediane = (liste_essais_sorted[n//2-1]+liste_essais_sorted[n//2])/2
+		q1 = liste_essais_sorted[ceil(n/4)-1]
+		q3 = liste_essais_sorted[ceil(3*n/4)-1]
+		
 		# Variance :
 		v = 0
 		for k in range(n):
@@ -699,17 +710,26 @@ class MainConsole(object):
 		info()
 		info(boite("Résultats de la simulation", larg_fen=0))
 		info()
-		info("Nombre de coups minimum : %.2f coups" % mini)
-		info("Nombre de coups maximum : %.2f coups" % maxi)
-		info("Nombre de coups moyen : %.2f coups" % moyenne)
-		info("Écart type : %.2f" % sigma)
+		info("Dimensions de la grille : %d*%d" % (xmax , ymax))
+		info("Liste des bateaux : %s" % str(taille_bateaux))
+		info("Nombre de parties : %d" % n)
+		info()
+		info("Min : %d" % mini)
+		info("Q1  : %d" % q1)
+		info("Méd : %.1f" % mediane)
+		info("Q3  : %d" % q3)
+		info("Max : %d" % maxi)
+		info()
+		info("Moyenne : %.2f" % moyenne)
+		info("Sigma   : %.2f" % sigma)
+		
 		info()
 		info("Temps moyen par partie : %.5f secondes" % (temps_total/n))
 		
 		# --> L'idée c'est de voir quelle loi de proba suit le nombre d'essais
 		# et de calculer des indicateurs statistiques
 		# Sauvegarde de cette liste dans un fichier texte
-		stats_file = open("distrib_HAL_%d.txt" % n, "w")
+		stats_file = open("distrib_HAL_(n=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, xmax, ymax,str(taille_bateaux)), "w")
 		for k in range(len(distrib)) :
 			stats_file.write(str(distrib[k])+'\n')
 		stats_file.close()
@@ -722,6 +742,38 @@ class MainConsole(object):
 		plt.show()
 		
 		return liste_essais
+	
+	def launch_test_algo(self):
+		"""Lancement de la procédure de test de l'algorithme de résolution"""
+		clear()
+		xmax = ymax = 10
+		taille_bateaux = [5, 4, 3, 3, 2]
+		# Paramètres des parties à simuler
+		info("Paramètres par défaut : xmax=%d, ymax=%d, bateaux=%s\n" % (xmax, ymax, taille_bateaux))
+		rep = input("Voulez-vous changer ces paramètres ? [o|[N]] ")
+		if rep.lower()=='o' :
+			ok = False
+			while not ok :
+				try :
+					xmax = int(input("xmax : "))
+					ymax = int(input("ymax : "))
+					tb = input("Bateaux (séparés par un espace) : ")
+					taille_bateaux = [int(t) for t in tb.split(' ')]
+					ok = True
+				except :
+					info("Saisie invalide\n")
+					ok = False
+		# Nombre de répétitions
+		ok = False
+		while not ok :
+			try :
+				n = int(input("Nombre de parties : "))
+				ok = True
+			except :
+				info("Saisie invalide\n")
+				ok = False
+		# Lancement du test
+		self.test_algo(n, xmax, ymax, taille_bateaux)
 	
 	#
 	# Menu de lancement ------------------------------------------------
@@ -795,9 +847,10 @@ en écriture noire sur fond blanc.""", larg_fen=0))
 			self.jeu_solo()
 			
 		elif choix.lower() == 't' :
-			clear()
-			n = int(input("Nombre de répétitions de l'algorithme : "))
-			self.test_algo(n)
+			self.launch_test_algo()
+			#~ clear()
+			#~ n = int(input("Nombre de répétitions de l'algorithme : "))
+			#~ self.test_algo(n)
 			
 		elif choix.lower() == 'o' :
 			self.jeu_ordi()
