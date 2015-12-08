@@ -320,12 +320,7 @@ class Grille(object):
 			
 		for taille in tmp_taille_bateaux :
 			self.add_bateau_alea(taille)
-			
-		#~ rand.shuffle(tmp_tailles_bateaux)
-		#~ for taille in tmp_taille_bateaux.sort() : # Du plus grand au plus petit
-		#~ for taille in tmp_taille_bateaux.sort()[::-1] : # Du plus petit au plus grand
-		#~ for taille in tmp_tailles_bateaux : # Ordre aléatoire
-			#~ self.add_bateau_alea(taille)
+
 	
 	# 
 	# Fin de partie ----------------------------------------------------

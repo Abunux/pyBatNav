@@ -78,12 +78,10 @@ CAR_MANQ = u'\u25EF' 	# Manqué : ◯
 #
 def clear():
 	"""Efface la console"""
-	# http://stackoverflow.com/questions/2084508/clear-terminal-in-python
-	if (os.name == 'nt'):    
-		c = os.system('cls')
+	if (os.name == 'nt'):  
+		os.system('cls')
 	else:
-		c = os.system('clear')
-	del c 
+		os.system('clear') 
 
 def info(*args):
 	"""Affiche les infos à l'écran"""
@@ -138,7 +136,7 @@ class GrilleC(Grille) :
 		self.chaine = ""
 		
 		# Ligne du haut
-		self.chaine += '    ' + CAR_CHG + (CAR_H*3+CAR_TH)*(self.xmax-1) + CAR_H*3 + CAR_CHD + '\n'
+		self.chaine += '    ' + CAR_CHG + (CAR_H*3 + CAR_TH)*(self.xmax-1) + CAR_H*3 + CAR_CHD + '\n'
 		
 		# Ligne des lettres des colonnes
 		self.chaine += '    ' + CAR_V
@@ -203,7 +201,7 @@ class GrilleC(Grille) :
 		chaine = ""
 		
 		# Ligne du haut
-		chaine += '    ' + CAR_CHG + (CAR_H*3+CAR_TH)*(grille.xmax-1) + CAR_H*3 + CAR_CHD + '\n'
+		chaine += '    ' + CAR_CHG + (CAR_H*3 + CAR_TH)*(grille.xmax-1) + CAR_H*3 + CAR_CHD + '\n'
 		
 		# Ligne des lettres des colonnes
 		chaine += '    '+CAR_V
@@ -537,6 +535,7 @@ class PartieC(Partie):
 		except :
 			info("Saisie invalide")
 			info()
+			self.add_bateau_joueur()
 			return False
 		return self.joueur.add_bateau(taille, case, direction)
 		
@@ -787,11 +786,11 @@ class MainConsole(object):
 		
 		clear()
 		info(boite("""
-Pour un affichage du jeu optimal, veuillez passer
-en mode plein écran (F11),régler les couleurs du 
-terminal en écriture noire sur fond blanc et, si
-besoin, diminuer la taille de la police (pour une
-résolution de 1024x768, une taille 12 convient).
+ Pour un affichage du jeu optimal, veuillez passer 
+ en mode plein écran (F11),régler les couleurs du  
+ terminal en écriture noire sur fond blanc et, si 
+ besoin, diminuer la taille de la police (pour une 
+ résolution de 1024x768, une taille 12 convient). 
 """, larg_fen=0))
 		info()
 		enter_to_continue()
@@ -838,40 +837,39 @@ résolution de 1024x768, une taille 12 convient).
  \_________________________________________________________________________|
  """)
 		info()
-		enter_to_continue()
-		clear()
-		info(boite("Choix du jeu", larg_fen=0))
-		info("""  J : Jeu contre l'ordinateur
+		
+		while True :
+			enter_to_continue()
+			clear()
+			info(boite("Choix du jeu", larg_fen=0))
+			info("""  J : Jeu contre l'ordinateur
   S : Jeu en solo sur une grille aléatoire
   O : Résolution d'une grille par l'ordinateur
   T : Test des performances de l'algorithme de résolution
   Q : Quitter
 	  """)
-		choix = input("Votre choix ([J]|s|o|t|q) : ")
-		
-		if choix.lower() == 's' :
-			self.jeu_solo()
+			choix = input("Votre choix ([J]|s|o|t|q) : ")
 			
-		elif choix.lower() == 't' :
-			self.launch_test_algo()
-			#~ clear()
-			#~ n = int(input("Nombre de répétitions de l'algorithme : "))
-			#~ self.test_algo(n)
+			if choix.lower() == 's' :
+				self.jeu_solo()
+				
+			elif choix.lower() == 't' :
+				self.launch_test_algo()
+				
+			elif choix.lower() == 'o' :
+				self.jeu_ordi()
+				
+			elif choix.lower() == 'j' :
+				self.jeu_contre_ordi()
+				
+			elif choix.lower() == 'q' :
+				info()
+				info("Au revoir...")
+				quit()
 			
-		elif choix.lower() == 'o' :
-			self.jeu_ordi()
-			
-		elif choix.lower() == 'j' :
-			self.jeu_contre_ordi()
-			
-		elif choix.lower() == 'q' :
-			info()
-			info("Au revoir...")
-			quit()
-		
-		# Par défaut
-		else :
-			defaut()
+			# Par défaut
+			else :
+				defaut()
 
 if __name__ == "__main__" :
 	app = MainConsole()
