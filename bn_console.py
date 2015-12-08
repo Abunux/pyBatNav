@@ -107,7 +107,7 @@ def centre(chaine, longueur):
 	l = longueur
 	return ' '*((l-c)//2) + chaine + ' '*((l-c)//2+(l-c)%2) + '\n'
 
-def boite(texte, prefixe ='', larg_fen = 100):
+def boite(texte, prefixe ='', larg_fen = 98):
 	"""Affiche chaque ligne de texte précédée d'un préfixe
 	dans une boîte de largeur larg_fen"""
 	lignes = texte.split('\n')
@@ -786,13 +786,40 @@ class MainConsole(object):
 		defaut = self.jeu_contre_ordi
 		
 		clear()
-		info(boite("""Pour un affichage du jeu optimal,
-veuillez passer en mode plein écran (F11)
-et régler les couleurs du terminal
-en écriture noire sur fond blanc.""", larg_fen=0))
+		info(boite("""
+Pour un affichage du jeu optimal, veuillez passer
+en mode plein écran (F11),régler les couleurs du 
+terminal en écriture noire sur fond blanc et, si
+besoin, diminuer la taille de la police (pour une
+résolution de 1024x768, une taille 12 convient).
+""", larg_fen=0))
 		info()
 		enter_to_continue()
 		clear()
+		
+		# source : http://patorjk.com/software/taag/
+		info("""     ╔══════════════════════════════════════════════════════════════════╗
+     ║                                                                  ║
+     ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
+     ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
+     ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
+     ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
+     ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
+     ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
+     ║                                                                  ║
+     ║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
+     ║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
+     ║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
+     ║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
+     ║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
+     ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
+     ║                                                                  ║
+     ╚══════════════════════════════════════════════════════════════════╝
+""")
+		info("             Projet de formation ISN 2015/2016 de l'académie de Lyon")
+		info("                Auteurs : Frédéric Muller et Lionel Reboul")
+		info("                Code du projet : https://github.com/Abunux/pyBatNav")
+		info("                Licence Creative Common CC BY-NC-SA")
 		
 		# source : http://www.chris.com/ascii/index.php?art=transportation/nautical
 		info(r"""
@@ -810,30 +837,6 @@ en écriture noire sur fond blanc.""", larg_fen=0))
 |                                                                     BB-61/
  \_________________________________________________________________________|
  """)
-		
-		# http://patorjk.com/software/taag/
-		info("""╔══════════════════════════════════════════════════════════════════╗
-║                                                                  ║
-║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
-║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
-║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
-║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
-║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
-║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
-║                                                                  ║
-║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
-║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
-║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
-║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
-║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
-║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
-║                                                                  ║
-╚══════════════════════════════════════════════════════════════════╝
-""")
-		info("   Projet de formation ISN 2015/2016 de l'académie de Lyon")
-		info("      Auteurs : Frédéric Muller et Lionel Reboul")
-		info("      Code du projet : https://github.com/Abunux/pyBatNav")
-		info("      Licence Creative Common CC BY-NC-SA")
 		info()
 		enter_to_continue()
 		clear()
