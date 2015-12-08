@@ -306,7 +306,7 @@ class Grille(object):
 			valide = self.test_bateau(bateau)
 		self.add_bateau(bateau)
 	
-	def init_bateaux_alea(self, ordre='croissant'):
+	def init_bateaux_alea(self, ordre='random'):
 		"""Initialise une grille avec des bateaux aléatoires"""
 		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
 		tmp_taille_bateaux = self.taille_bateaux[:]
