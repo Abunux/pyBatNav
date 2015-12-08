@@ -692,6 +692,7 @@ class MainConsole(object):
 		mini = min(liste_essais)
 		maxi = max(liste_essais)
 		moyenne = sum(liste_essais)/n
+		mode = distrib.index(max(distrib))
 		liste_essais_sorted = liste_essais[:]
 		liste_essais_sorted.sort()
 		if n % 2 != 0 :
@@ -719,6 +720,8 @@ class MainConsole(object):
 		info("Méd : %.1f" % mediane)
 		info("Q3  : %d" % q3)
 		info("Max : %d" % maxi)
+		info()
+		info("Mode : %d" % mode)
 		info()
 		info("Moyenne : %.2f" % moyenne)
 		info("Sigma   : %.2f" % sigma)
