@@ -30,7 +30,10 @@ def surface_probas(n=1000, grille = GrilleSuivi()):
 	#~ ax.set_axis_off()
 
 	#~ grille.etat[(2,3)] = -1 # Petite variation sur la grille
-	(case, pmax) = grille.case_max(n, ordre='random')
+	start = time()
+	(case, pmax) = grille.case_max(n, ordre='decroissant')
+	print("Temps : %.5f secondes" % (time()-start))
+	
 	ax.text(case[0],case[1],pmax,"Pmax=%.3f en %s" % (pmax, alpha(case)), ha="center")
 	ax.set_title("Échantillon de taile %d" % n)
 	x = y = np.arange(0, 10, 1)

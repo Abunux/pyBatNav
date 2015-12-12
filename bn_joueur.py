@@ -116,7 +116,7 @@ class Joueur(object):
 #----------------------------------------------------------------------------------------------------------------
 #
 class Ordi(Joueur):
-	def __init__(self, nom='HAL'):
+	def __init__(self, nom='HAL', nb_echantillons=100):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
 		
@@ -125,6 +125,8 @@ class Ordi(Joueur):
 		
 		# Variables pour la résolution :
 		# ------------------------------
+		# Nombre d'échantillons pour les calculs de probas
+		self.nb_echantillons = nb_echantillons
 		# File d'attente
 		self.queue = []
 		# Liste des case touchées sur un bateau
@@ -155,11 +157,13 @@ class Ordi(Joueur):
 	#
 	def make_case_aleatoire(self):
 		"""Choisi une case aléatoire"""
-		#~ (case_max, pmax) = self.grille_suivi.case_max()
-		#~ self.case_courante = case_max
-		#~ self.messages.append("Je tire la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
-		self.case_courante = self.case_aleatoire()
-		self.messages.append("Je tire au hasard sur la case %s" % alpha(self.case_courante))
+		#~ if len(self.grille_suivi.vides) <= 0.5*self.grille_suivi.xmax*self.grille_suivi.ymax :
+		(case_max, pmax) = self.grille_suivi.case_max(nb_echantillons=self.nb_echantillons)
+		self.case_courante = case_max
+		self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
+		#~ else :
+			#~ self.case_courante = self.case_aleatoire()
+			#~ self.messages.append("Je tire au hasard sur la case %s" % alpha(self.case_courante))
 	
 	#
 	# Tire sur une case ------------------------------------------------

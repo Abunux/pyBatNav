@@ -457,8 +457,8 @@ class JoueurC(Joueur):
 #----------------------------------------------------------------------------------------------------------------
 #
 class OrdiC(JoueurC, Ordi):
-	def __init__(self, nom='HAL'):
-		Ordi.__init__(self, nom)
+	def __init__(self, nom='HAL', nb_echantillons=100):
+		Ordi.__init__(self, nom, nb_echantillons)
 		JoueurC.__init__(self, nom)
 		
 	def resolution(self, affiche=True, grille=None):
@@ -541,7 +541,7 @@ class PartieC(Partie):
 		
 	def place_bateaux_joueur(self):
 		"""Place tous les bateaux du joueur"""
-		for taille in self.joueur.grille_joueur.taille_bateaux :
+		for taille in self.joueur.grille_joueur.taille_bateaux[::-1] :
 			clear()
 			info(boite("Placement de vos bateaux", larg_fen=0))
 			#~ info()
@@ -613,7 +613,7 @@ class PartieC(Partie):
 				enter_to_continue()
 			
 			# Changement de joueur
-			joueur_en_cours = (joueur_en_cours + 1)%2
+			joueur_en_cours = (joueur_en_cours + 1) % 2
 				
 		# Fin de la partie
 		clear()
@@ -637,12 +637,12 @@ class MainConsole(object):
 	#
 	# Modes de jeu -----------------------------------------------------
 	#
-	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
+	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], nb_echantillons=100):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
 		grille = GrilleJoueurC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		grille.init_bateaux_alea()
-		ordi = OrdiC()
+		ordi = OrdiC(nb_echantillons=nb_echantillons)
 		ordi.grille_adverse = grille
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		ordi.grille_suivi.reinit()
@@ -668,17 +668,18 @@ class MainConsole(object):
 		partie = PartieC(joueur, ordi)
 
 
-	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
+	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], nb_echantillons=100):
 		"""Test l'ago de l'ordinateur en faisant n parties"""
 		# Lancement de la simulation
-		temps_total = 0
+		start = time()
+		temps_resolution = 0
 		liste_essais = []
 		for k in range(n):
-			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
-			temps_total += temps
+			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, nb_echantillons=nb_echantillons)
+			temps_resolution += temps
 			liste_essais.append(essais)
 			if (k+1) % (n/10) == 0 :
-				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*temps_total/(k+1)))
+				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
 		
 		# Création de la liste de distribution de fréquences
 		distrib = [0]*(xmax*ymax)
@@ -714,6 +715,8 @@ class MainConsole(object):
 		info("Liste des bateaux : %s" % str(taille_bateaux))
 		info("Nombre de parties : %d" % n)
 		info()
+		info("Taille des échantillons pour les calculs de probas : %d" % nb_echantillons)
+		info()
 		info("Min : %d" % mini)
 		info("Q1  : %d" % q1)
 		info("Méd : %.1f" % mediane)
@@ -726,12 +729,13 @@ class MainConsole(object):
 		info("Sigma   : %.2f" % sigma)
 		
 		info()
-		info("Temps moyen par partie : %.5f secondes" % (temps_total/n))
+		info("Temps moyen par partie : %.5f secondes" % (temps_resolution/n))
+		info("Temps total            : %.2f secondes" % (time()-start))
 		
 		# --> L'idée c'est de voir quelle loi de proba suit le nombre d'essais
 		# et de calculer des indicateurs statistiques
 		# Sauvegarde de cette liste dans un fichier texte
-		stats_file = open("distrib_HAL_(n=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, xmax, ymax,str(taille_bateaux)), "w")
+		stats_file = open("distrib_HAL_(n=%d,nb_echantillons=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, nb_echantillons, xmax, ymax,str(taille_bateaux)), "w")
 		for k in range(len(distrib)) :
 			stats_file.write(str(distrib[k])+'\n')
 		stats_file.close()
@@ -765,6 +769,12 @@ class MainConsole(object):
 				except :
 					info("Saisie invalide\n")
 					ok = False
+		# Taille des échantillons
+		try :
+			nb_echantillons = int(input("Taille des échantillons pour les probas : "))
+		except :
+			info("Par défaut, échantillons de taille 100\n")
+			nb_echantillons = 100
 		# Nombre de répétitions
 		ok = False
 		while not ok :
@@ -775,7 +785,7 @@ class MainConsole(object):
 				info("Saisie invalide\n")
 				ok = False
 		# Lancement du test
-		self.test_algo(n, xmax, ymax, taille_bateaux)
+		self.test_algo(n, xmax, ymax, taille_bateaux,nb_echantillons)
 	
 	#
 	# Menu de lancement ------------------------------------------------
