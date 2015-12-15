@@ -145,6 +145,33 @@ class Grille(object):
 	#
 	# Calculs de probabilités ------------------------------------------
 	#
+	def get_possibles(self):
+		"""Crée la liste des bateaux possibles sur chaque case"""
+		self.update_vides()
+		# Liste des bateaux et sens possibles sur chaque case
+		self.possibles_case = {}
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				self.possibles_case[(i,j)] = []
+		# Récupère les éléments une seule fois de self.taille_bateaux
+		tmp_taille_bateaux = list(set(self.taille_bateaux))
+		tmp_taille_bateaux.sort()
+		for case in self.vides :
+			for taille in tmp_taille_bateaux[::-1] :
+				for direction in [BN_DROITE, BN_BAS] :
+					if self.get_max_space(case, direction=direction, sens=0) >= taille :
+							self.possibles_case[case].append((taille, direction))
+		# Liste des cases et sens possibles pour chaque bateau
+		self.possibles = {}
+		for taille in tmp_taille_bateaux :
+			self.possibles[taille] = []
+		for case in self.possibles_case :
+			for placement in self.possibles_case[case]:
+				self.possibles[placement[0]].append((case, placement[1]))
+		for taille in self.taille_bateaux :
+			self.possibles[taille].sort()
+	
+	
 	def case_max(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
 		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
 		Retourne la case la plus probable en essayant différents arrangements des bateaux restants"""
@@ -154,7 +181,7 @@ class Grille(object):
 		self.probas = {}
 		for i in range(self.xmax):
 			for j in range(self.ymax):
-				self.probas[(i,j)]=0
+				self.probas[(i,j)] = 0
 		
 		# On crée différents arrangements aléatoires de bateaux
 		for k in range(nb_echantillons):
@@ -196,19 +223,14 @@ class Grille(object):
 	#
 	# Gestion des espaces impossibles ----------------------------------
 	#
-	def get_max_space(self, case, direction=BN_ALLDIR):
+	def get_max_space(self, case, direction=BN_ALLDIR, sens=1):
 		"""Renvoie la plus grande place possible sur cette case dans une direction"""		
+		# sens = 0 : ne compte qu'à droite ou en bas (pour l'IA)
+		# car BN_DROITE=BN_HORIZONTAL et BN_BAS=BN_VERTICAL, donc obligé de spécifier
 		if direction == BN_ALLDIR:
 			return max(self.get_max_space(case, BN_HORIZONTAL), self.get_max_space(case, BN_VERTICAL))
 		
 		m = 1
-		# Comptage des cases libres à gauche ou en haut
-		x = case[0]
-		y = case[1]
-		while self.test_case((x-direction[0], y-direction[1])):
-			m += 1
-			x -= direction[0]
-			y -= direction[1]
 		# Comptage des cases libres à droite ou en bas
 		x = case[0]
 		y = case[1]
@@ -216,6 +238,14 @@ class Grille(object):
 			m += 1
 			x += direction[0]
 			y += direction[1]
+		if sens == 1 :
+			# Comptage des cases libres à gauche ou en haut
+			x = case[0]
+			y = case[1]
+			while self.test_case((x-direction[0], y-direction[1])):
+				m += 1
+				x -= direction[0]
+				y -= direction[1]
 		return m
 		
 	def elimine_cases(self):
@@ -335,7 +365,23 @@ class Grille(object):
 		while not valide:
 			bateau = self.make_bateau_alea(taille)
 			valide = self.test_bateau(bateau)
-		
+	
+	def init_bateaux_alea_test(self, ordre='random'):
+		ok = False
+		nb_bateaux = 0
+		while nb_bateaux < len(self.taille_bateaux) :
+			nb_bateaux = 0
+			gtmp = self.copie_grille_tmp()
+			for taille in self.taille_bateaux :
+				gtmp.get_possibles()
+				if not gtmp.possibles[taille] :
+					break
+				else :
+					(case, direction) = rand.choice(gtmp.possibles[taille])
+					gtmp.add_bateau(Bateau(taille, case, direction))
+					nb_bateaux += 1
+		self.etat = gtmp.etat
+	
 	def init_bateaux_alea(self, ordre='random'):
 		"""Initialise une grille avec des bateaux aléatoires"""
 		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
@@ -452,11 +498,11 @@ class Grille(object):
 		print('    '+CAR_V, end='')
 		for i in range(self.xmax):
 			if i!=self.xmax-1 :
-				print(' '+chr(i+65)+' ', end=CAR_V)
-				#~ print(' '+str(i)+' ', end=CAR_V)
+				#~ print(' '+chr(i+65)+' ', end=CAR_V)
+				print(' '+str(i)+' ', end=CAR_V)
 			else :
-				print(' '+chr(i+65)+' '+CAR_V)
-				#~ print(' '+str(i)+' '+CAR_V)
+				#~ print(' '+chr(i+65)+' '+CAR_V)
+				print(' '+str(i)+' '+CAR_V)
 				
 		#Ligne sous les lettres
 		print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
@@ -509,12 +555,35 @@ class GrilleSuivi(GrilleJoueur):
 #----------------------------------------------------------------------------------------------------------------
 #
 if __name__ == "__main__" :
-	# Essai de calcul de probabilité pour chaque case de contenir un bateau
 	grille = GrilleSuivi()
-	#~ grille.init_bateaux_alea0()
+	#~ grille.get_possibles()
+	#~ input()
+	#~ for taille in grille.possibles :
+		#~ print("Taille %d :" % taille)
+		#~ print("-----------")
+		#~ i=1
+		#~ for pos in grille.possibles[taille] :
+			#~ print(i,pos[0], pos[1])
+			#~ i+=1
+		#~ print() 
+	#~ for case in grille.vides :
+		#~ print(case,grille.possibles[case])
+	#~ quit()
+	# Essai de calcul de probabilité pour chaque case de contenir un bateau
+	#~ grille = GrilleSuivi()
+	#~ for i in range(7):
+		#~ for j in range(10):
+			#~ grille.etat[(i,j)]=-1
+		#~ 
+	#~ start = time()
+	#~ grille.init_bateaux_alea()
+	#~ print(time()-start)
+	#~ grille.affiche()
 	#~ 
 	#~ quit()
-	n = int(input("Taille de l'échantillon : "))
+	#~ n = int(input("Taille de l'échantillon : "))
 	print()
-	grille.case_max(n, affiche=True)
+	start = time()
+	grille.case_max(100)
+	print(time()-start)
 	

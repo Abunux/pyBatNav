@@ -457,7 +457,7 @@ class JoueurC(Joueur):
 #----------------------------------------------------------------------------------------------------------------
 #
 class OrdiC(JoueurC, Ordi):
-	def __init__(self, nom='HAL', nb_echantillons=100):
+	def __init__(self, nom='HAL', nb_echantillons=10000):
 		Ordi.__init__(self, nom, nb_echantillons)
 		JoueurC.__init__(self, nom)
 		
@@ -743,7 +743,7 @@ class MainConsole(object):
 		plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
 		plt.xlabel("Nombre de coups")
 		plt.ylabel("Fréquence de parties")
-		plt.title("Résolution par l'ordinateur sur %d parties" % n)
+		plt.title("Résolution par l'ordinateur sur %d parties\n Taille des échantilons de proba : %d" % (n, nb_echantillons))
 		plt.grid(True)
 		plt.show()
 		
