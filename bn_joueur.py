@@ -159,7 +159,8 @@ class Ordi(Joueur):
 		"""Choisi une case aléatoire"""
 		#~ if len(self.grille_suivi.vides) <= 0.8*self.grille_suivi.xmax*self.grille_suivi.ymax :
 		start = time()
-		(case_max, pmax) = self.grille_suivi.case_max(nb_echantillons=self.nb_echantillons)
+		#~ (case_max, pmax) = self.grille_suivi.case_max_echantillons(nb_echantillons=self.nb_echantillons)
+		(case_max, pmax) = self.grille_suivi.case_max()
 		self.case_courante = case_max
 		self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f, t=%.4f s)" % (alpha(self.case_courante), pmax, time()-start))
 		#~ else :

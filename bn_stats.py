@@ -10,7 +10,7 @@ from matplotlib import cm
 # Intégration de matplotlib dans tkinter : 
 # http://matplotlib.org/examples/user_interfaces/embedding_in_tk.html
 
-def surface_probas(n=1000, grille = GrilleSuivi()):
+def surface_probas(grille = GrilleSuivi()):
 	fig = plt.figure()
 	ax = fig.add_subplot(111, projection='3d')
 	ax.view_init(elev=24., azim=106)
@@ -31,11 +31,11 @@ def surface_probas(n=1000, grille = GrilleSuivi()):
 
 	#~ grille.etat[(2,3)] = -1 # Petite variation sur la grille
 	start = time()
-	(case, pmax) = grille.case_max(n, ordre='decroissant')
+	(case, pmax) = grille.case_max()
 	print("Temps : %.5f secondes" % (time()-start))
 	
 	ax.text(case[0],case[1],pmax,"Pmax=%.3f en %s" % (pmax, alpha(case)), ha="center")
-	ax.set_title("Échantillon de taile %d" % n)
+	#~ ax.set_title("Échantillon de taile %d" % n)
 	x = y = np.arange(0, 10, 1)
 	X, Y = np.meshgrid(x, y)
 	zs = np.array([grille.probas[(i,j)] for i,j in zip(np.ravel(X), np.ravel(Y))])
@@ -57,4 +57,4 @@ if __name__ == "__main__" :
 			#~ grille.etat[(i,j)]=-1
 	#~ for k in range(20):
 		#~ grille.etat[(rand.randrange(0, grille.xmax), rand.randrange(0, grille.ymax))] = -1
-	surface_probas(n=10000, grille=grille)
+	surface_probas(grille=grille)

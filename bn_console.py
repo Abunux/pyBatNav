@@ -729,6 +729,7 @@ class MainConsole(object):
 		info("Sigma   : %.2f" % sigma)
 		
 		info()
+		tmoy = temps_resolution/n
 		info("Temps moyen par partie : %.5f secondes" % (temps_resolution/n))
 		info("Temps total            : %.2f secondes" % (time()-start))
 		
@@ -740,16 +741,43 @@ class MainConsole(object):
 		for k in range(len(distrib)) :
 			stats_file.write(str(distrib[k])+'\n')
 		stats_file.close()
+		
+		# Figure statistique 
+		# ------------------
 		# Création de l'histogramme
 		plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
+		# Création du diagramme en boite
+		plt.ylim(ymin=0)
+		ymin, ymax = plt.ylim()
+		xmin, xmax = plt.xlim()
+		yboite = (ymin+ymax)/2
+		lboite = (ymax-ymin)/10
+		lbornes = (ymax-ymin)/20
+		plt.text(xmin+(xmax-xmin)*0.8, ymin+(ymax-ymin)*0.95, 
+					r"$n=%d$" % n + '\n' + r"$\bar x=%.2f$" % moyenne + '\n' + "$\sigma=%.2f$" % sigma + '\n' + r"$Mode=%d$" % mode + '\n' + r"$t_{moy}=%.4f s$" % tmoy, 
+					horizontalalignment='left', verticalalignment='top', bbox={'facecolor':'red', 'alpha':0.8, 'pad':10} )
+		plt.hlines(yboite-lboite, q1, q3, linewidths=2)
+		plt.hlines(yboite+lboite, q1, q3, linewidths=2)
+		plt.vlines(q1, yboite-lboite, yboite+lboite, linewidths=2)
+		plt.vlines(mediane, yboite-lboite, yboite+lboite, linewidths=2)
+		plt.vlines(q3, yboite-lboite, yboite+lboite, linewidths=2)
+		plt.text(q1, yboite-lboite, r"$%d$" % q1, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
+		plt.text(mediane, yboite-lboite, r"$%d$" % mediane, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
+		plt.text(q3, yboite-lboite, r"$%d$" % q3, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
+		plt.hlines(yboite, mini, q1, linewidths=2)
+		plt.hlines(yboite, q3, maxi, linewidths=2)
+		plt.vlines(mini, yboite-lbornes, yboite+lbornes, linewidths=2)
+		plt.vlines(maxi, yboite-lbornes, yboite+lbornes, linewidths=2)
+		plt.text(mini, yboite-lbornes, r"$%d$" % mini, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
+		plt.text(maxi, yboite-lbornes, r"$%d$" % maxi, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
+		# Mise en forme et affichage du graphique
 		plt.xlabel("Nombre de coups")
 		plt.ylabel("Fréquence de parties")
-		#~ plt.title("Résolution par l'ordinateur sur %d parties\n Taille des échantilons de proba : %d" % (n, nb_echantillons))
 		plt.title("Résolution par l'ordinateur sur %d parties\n" % n)
 		plt.grid(True)
 		plt.show()
 		
-		return liste_essais
+		return liste_essais # Pour tests futurs
 	
 	def launch_test_algo(self):
 		"""Lancement de la procédure de test de l'algorithme de résolution"""

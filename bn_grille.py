@@ -228,7 +228,7 @@ class Grille(object):
 		# Retourne la case la plus probable et sa proba
 		return (case_max, pmax)
 
-	def case_max(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
+	def case_max(self, affiche=False):
 		"""Détermine la case qui a la probabilité maximale de toucher
 		Reagrde pour chaque case le nombre de bateaux possibles sur cette case"""
 		
