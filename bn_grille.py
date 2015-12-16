@@ -196,12 +196,12 @@ class Grille(object):
 			self.probas[case] *= 1/len(self.vides)
 		
 		# Détermination de la case la plus probable
-		case_max = (0,0)
-		pmax = 0
+		self.case_proba = (0,0)
+		self.pmax = 0
 		for case in self.probas :
-			if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
-				pmax = self.probas[case]
-				case_max = case
+			if self.probas[case] > self.pmax :#and (case[0]+case[1])%2 == 0:
+				self.pmax = self.probas[case]
+				self.case_proba = case
 		
 		# Affichages pour les tests
 		if affiche :
@@ -212,11 +212,11 @@ class Grille(object):
 			
 			print()
 			print("Temps : %.4f secondes" % (time()-start))
-			print("Case max :", case_max)
-			print("Proba max : %.5f" % pmax)
+			print("Case max :", self.case_proba)
+			print("Proba max : %.5f" % self.pmax)
 		
 		# Retourne la case la plus probable et sa proba
-		return (case_max, pmax)
+		return (self.case_proba, self.pmax)
 	
 	def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
 		"""Essai de calcul des probabilité de cases touchée sur chaque case restante

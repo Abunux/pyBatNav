@@ -241,6 +241,8 @@ class Ordi(Joueur):
 		if self.grille_suivi.test_case(nv_case):
 			self.add_queue(nv_case)
 		
+		self.shuffle_queue()
+		
 		self.affiche_queue()
 		
 		# Mise à jour de la liste des cases touchées sur ce bateau
@@ -270,8 +272,10 @@ class Ordi(Joueur):
 	
 	def shuffle_queue(self):
 		"""Mélange les cases de la file d'attente"""
-		rand.shuffle(self.queue)
-		self.messages.append("Je mélange ma file d'attente")
+		# --> Mettre la file dans l'ordre décroissant des probas (sachant qu'on vient de toucher la case self.courante)
+		if len(self.queue)>1 :
+			rand.shuffle(self.queue)
+			self.messages.append("Je mélange ma file d'attente")
 		
 	def vide_queue(self):
 		"""Vide la file d'attente"""
