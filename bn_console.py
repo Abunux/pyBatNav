@@ -681,14 +681,12 @@ class MainConsole(object):
 			if (k+1) % (n/10) == 0 :
 				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
 		
-		# Création de la liste de distribution de fréquences
+		# Création de la liste de distribution des effectifs
 		distrib = [0]*(xmax*ymax)
 		for e in liste_essais :
 				distrib[e] += 1
-		#~ for k in range(len(distrib)) :
-			#~ distrib[k] *= 1/n
 		
-		# Résultats de la simulation
+		# Indicateurs statistiques
 		mini = min(liste_essais)
 		maxi = max(liste_essais)
 		moyenne = sum(liste_essais)/n
@@ -701,13 +699,12 @@ class MainConsole(object):
 			mediane = (liste_essais_sorted[n//2-1]+liste_essais_sorted[n//2])/2
 		q1 = liste_essais_sorted[ceil(n/4)-1]
 		q3 = liste_essais_sorted[ceil(3*n/4)-1]
-		
-		# Variance :
-		v = 0
+		variance = 0
 		for k in range(n):
-			v += (liste_essais[k]-moyenne)**2
-		v *= 1/n
-		sigma = sqrt(v) 
+			variance += (liste_essais[k]-moyenne)**2
+		variance *= 1/n
+		sigma = sqrt(variance) 
+		
 		info()
 		info(boite("Résultats de la simulation", larg_fen=0))
 		info()
@@ -733,48 +730,59 @@ class MainConsole(object):
 		info("Temps moyen par partie : %.5f secondes" % (temps_resolution/n))
 		info("Temps total            : %.2f secondes" % (time()-start))
 		
+		filename = "distrib_HAL_NEW_(n=%d,xmax=%d,ymax=%d,bateaux=%s)" % (n, xmax, ymax,str(taille_bateaux))
 		# --> L'idée c'est de voir quelle loi de proba suit le nombre d'essais
 		# et de calculer des indicateurs statistiques
 		# Sauvegarde de cette liste dans un fichier texte
 		#~ stats_file = open("distrib_HAL_NEW_(n=%d,nb_echantillons=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, nb_echantillons, xmax, ymax,str(taille_bateaux)), "w")
-		stats_file = open("distrib_HAL_NEW_(n=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, xmax, ymax,str(taille_bateaux)), "w")
+		stats_file = open(filename + ".txt", "w")
 		for k in range(len(distrib)) :
 			stats_file.write(str(distrib[k])+'\n')
 		stats_file.close()
 		
 		# Figure statistique 
 		# ------------------
+		fig = plt.figure()
 		# Création de l'histogramme
 		plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
+		plt.text(mode, 0, r"$%d$" % mode, horizontalalignment='center', verticalalignment='bottom', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
 		# Création du diagramme en boite
 		plt.ylim(ymin=0)
-		ymin, ymax = plt.ylim()
-		xmin, xmax = plt.xlim()
-		yboite = (ymin+ymax)/2
-		lboite = (ymax-ymin)/10
-		lbornes = (ymax-ymin)/20
-		plt.text(xmin+(xmax-xmin)*0.8, ymin+(ymax-ymin)*0.95, 
-					r"$n=%d$" % n + '\n' + r"$\bar x=%.2f$" % moyenne + '\n' + "$\sigma=%.2f$" % sigma + '\n' + r"$Mode=%d$" % mode + '\n' + r"$t_{moy}=%.4f s$" % tmoy, 
-					horizontalalignment='left', verticalalignment='top', bbox={'facecolor':'red', 'alpha':0.8, 'pad':10} )
-		plt.hlines(yboite-lboite, q1, q3, linewidths=2)
-		plt.hlines(yboite+lboite, q1, q3, linewidths=2)
-		plt.vlines(q1, yboite-lboite, yboite+lboite, linewidths=2)
-		plt.vlines(mediane, yboite-lboite, yboite+lboite, linewidths=2)
-		plt.vlines(q3, yboite-lboite, yboite+lboite, linewidths=2)
-		plt.text(q1, yboite-lboite, r"$%d$" % q1, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
-		plt.text(mediane, yboite-lboite, r"$%d$" % mediane, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
-		plt.text(q3, yboite-lboite, r"$%d$" % q3, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
+		gymin, gymax = plt.ylim()
+		gxmin, gxmax = plt.xlim()
+		yboite = (gymin+gymax)/2		# Position verticale de la boite
+		hboite = (gymax-gymin)/10		# Hauteur de la boite
+		hbornes = (gymax-gymin)/30	# Hauteur des taquets en xmin et xmax
+		   # Q1, Med et Q3
+		plt.hlines(yboite-hboite, q1, q3, linewidths=2)
+		plt.hlines(yboite+hboite, q1, q3, linewidths=2)
+		plt.vlines(q1, yboite-hboite, yboite+hboite, linewidths=2)
+		plt.vlines(mediane, yboite-hboite, yboite+hboite, linewidths=2)
+		plt.vlines(q3, yboite-hboite, yboite+hboite, linewidths=2)
+		plt.text(q1, yboite, r"$%d$" % q1, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		plt.text(mediane, yboite, r"$%d$" % mediane, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		plt.text(q3, yboite, r"$%d$" % q3, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		#~ plt.text((q1+q3)/2, yboite-hboite, r"$Q_3-Q_1=%d$" % (q3-q1), horizontalalignment='center', verticalalignment='bottom', bbox={'facecolor':'white', 'alpha':1, 'pad':0} )
+		   # Xmin et Xmax
 		plt.hlines(yboite, mini, q1, linewidths=2)
 		plt.hlines(yboite, q3, maxi, linewidths=2)
-		plt.vlines(mini, yboite-lbornes, yboite+lbornes, linewidths=2)
-		plt.vlines(maxi, yboite-lbornes, yboite+lbornes, linewidths=2)
-		plt.text(mini, yboite-lbornes, r"$%d$" % mini, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
-		plt.text(maxi, yboite-lbornes, r"$%d$" % maxi, horizontalalignment='center', verticalalignment='top', bbox={'facecolor':'red', 'alpha':1, 'pad':0} )
+		plt.vlines(mini, yboite-hbornes, yboite+hbornes, linewidths=2)
+		plt.vlines(maxi, yboite-hbornes, yboite+hbornes, linewidths=2)
+		plt.text(mini, yboite, r"$%d$" % mini, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		plt.text(maxi, yboite, r"$%d$" % maxi, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		
+		# Texte de résumé statistique
+		plt.text(gxmin+(gxmax-gxmin)*0.05, gymin+(gymax-gymin)*0.95, 
+					r"$\bar x=%.2f$" % moyenne + '\n' + "$\sigma=%.2f$" % sigma + '\n\n' + r"$t_{moy}=%.1f\,ms$" % (1000*tmoy), 
+					horizontalalignment='left', verticalalignment='top', fontsize=15, bbox={'facecolor':'white', 'alpha':1, 'pad':15} )
+		
 		# Mise en forme et affichage du graphique
 		plt.xlabel("Nombre de coups")
 		plt.ylabel("Fréquence de parties")
-		plt.title("Résolution par l'ordinateur sur %d parties\n" % n)
+		#~ plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d, Bateaux : %s\nTemps moyen par partie : %.5f secondes" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux]), tmoy))
+		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d, Bateaux : %s" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
 		plt.grid(True)
+		plt.savefig(filename + ".png", dpi=fig.dpi)
 		plt.show()
 		
 		return liste_essais # Pour tests futurs
@@ -799,13 +807,7 @@ class MainConsole(object):
 				except :
 					info("Saisie invalide\n")
 					ok = False
-		# Taille des échantillons
-		#~ try :
-			#~ nb_echantillons = int(input("Taille des échantillons pour les probas : "))
-		#~ except :
-			#~ info("Par défaut, échantillons de taille 100\n")
-			#~ nb_echantillons = 100
-		# Nombre de répétitions
+
 		ok = False
 		while not ok :
 			try :
