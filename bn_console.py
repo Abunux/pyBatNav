@@ -779,8 +779,7 @@ class MainConsole(object):
 		# Mise en forme et affichage du graphique
 		plt.xlabel("Nombre de coups")
 		plt.ylabel("Fréquence de parties")
-		#~ plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d, Bateaux : %s\nTemps moyen par partie : %.5f secondes" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux]), tmoy))
-		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d, Bateaux : %s" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
+		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d , Bateaux : %s" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
 		plt.grid(True)
 		plt.savefig(filename + ".png", dpi=fig.dpi)
 		plt.show()
