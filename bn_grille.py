@@ -223,7 +223,7 @@ class Grille(object):
 		# --> Sera appelé dans Ordi.shuffle_queue() pour trier la file quand on touche
 		# --> Pas au point mais ça va passer et on devrait gagner quelques coups ^_^
 		
-		# On marque temporairement la case comme vide
+		# On marque temporairement la case comme vide pour pouvoir tester si on peut y placer des bateaux
 		self.etat[case_touchee] = 0
 		
 		self.get_possibles()
