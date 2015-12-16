@@ -218,6 +218,31 @@ class Grille(object):
 		# Retourne la case la plus probable et sa proba
 		return (self.case_proba, self.pmax)
 	
+	def case_max_touchee(self, case_touchee):
+		"""Retourne les probas de chaque case adjacentes à case (qui vient d'être touchée)"""
+		# --> Sera appelé dans Ordi.shuffle_queue() pour trier la file quand on touche
+		# --> Pas au point mais ça va passer et on devrait gagner quelques coups ^_^
+		
+		# On marque temporairement la case comme vide
+		self.etat[case_touchee] = 0
+		
+		self.get_possibles()
+		probas = {}
+		for c in self.adjacent(case_touchee) :
+			probas[c] = 0
+			
+		for taille in self.taille_bateaux :
+			for (case, direction) in self.possibles[taille] :
+				for k in range(taille) :
+					if case[0]+k*direction[0] == case_touchee[0] and case[1]==case_touchee[1]:
+						print(case, taille, direction)
+						probas[(case_touchee[0]-1, case_touchee[1])] += 1
+		
+		# On remet la case comme touchée
+		self.etat[case] = 1
+		
+		return probas
+		
 	def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
 		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
 		Retourne la case la plus probable en essayant différents arrangements des bateaux restants"""
@@ -569,6 +594,9 @@ class GrilleSuivi(GrilleJoueur):
 #
 if __name__ == "__main__" :
 	grille = GrilleSuivi()
+	grille.etat[(1,2)]=1
+	grille.etat[(3,2)]=0
+	print(grille.case_max_touchee((1,2)))
 	#~ for i in range(7):
 		#~ for j in range(10):
 			#~ grille.etat[(i,j)]=-1
@@ -597,8 +625,8 @@ if __name__ == "__main__" :
 	#~ 
 	#~ quit()
 	#~ n = int(input("Taille de l'échantillon : "))
-	print()
-	start = time()
-	grille.case_max(100)
-	print(time()-start)
+	#~ print()
+	#~ start = time()
+	#~ grille.case_max(100)
+	#~ print(time()-start)
 	

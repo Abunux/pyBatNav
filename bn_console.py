@@ -747,12 +747,13 @@ class MainConsole(object):
 		plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
 		plt.text(mode, 0, r"$%d$" % mode, horizontalalignment='center', verticalalignment='bottom', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
 		# Création du diagramme en boite
+		  # Dimensions de la grille et des objets graphiques
 		plt.ylim(ymin=0)
 		gymin, gymax = plt.ylim()
 		gxmin, gxmax = plt.xlim()
 		yboite = (gymin+gymax)/2		# Position verticale de la boite
 		hboite = (gymax-gymin)/10		# Hauteur de la boite
-		hbornes = (gymax-gymin)/30	# Hauteur des taquets en xmin et xmax
+		hbornes = (gymax-gymin)/30		# Hauteur des taquets en xmin et xmax
 		   # Q1, Med et Q3
 		plt.hlines(yboite-hboite, q1, q3, linewidths=2)
 		plt.hlines(yboite+hboite, q1, q3, linewidths=2)
