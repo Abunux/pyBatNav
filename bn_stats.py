@@ -51,4 +51,10 @@ def surface_probas(n=1000, grille = GrilleSuivi()):
 if __name__ == "__main__" :
 	#~ taille_bateaux=[2,3,3,4,5]
 	#~ surface_probas(n=100000, grille=GrilleSuivi(taille_bateaux=taille_bateaux))
-	surface_probas(n=10000)
+	grille=GrilleSuivi()
+	#~ for i in range(7):
+		#~ for j in range(10):
+			#~ grille.etat[(i,j)]=-1
+	#~ for k in range(20):
+		#~ grille.etat[(rand.randrange(0, grille.xmax), rand.randrange(0, grille.ymax))] = -1
+	surface_probas(n=10000, grille=grille)

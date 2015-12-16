@@ -147,20 +147,28 @@ class Grille(object):
 	#
 	def get_possibles(self):
 		"""Crée la liste des bateaux possibles sur chaque case"""
+		# --> Il reste quelques fonctions de tri qui ne sont pas utiles pour la suite, mais c'est juste pour l'affichage des tests
 		self.update_vides()
 		# Liste des bateaux et sens possibles sur chaque case
 		self.possibles_case = {}
 		for i in range(self.xmax):
 			for j in range(self.ymax):
 				self.possibles_case[(i,j)] = []
-		# Récupère les éléments une seule fois de self.taille_bateaux
-		tmp_taille_bateaux = list(set(self.taille_bateaux))
-		tmp_taille_bateaux.sort()
+		# Récupère les éléments une seule fois de self.taille_bateaux, triés en ordre décroissant
+		tmp_taille_bateaux = sorted(list(set(self.taille_bateaux)), reverse=True)
+		#~ tmp_taille_bateaux.sort()
+		#~ for case in self.vides :
+			#~ for taille in tmp_taille_bateaux :#[::-1] :
+				#~ for direction in [BN_DROITE, BN_BAS] :
+					#~ if self.get_max_space(case, direction=direction, sens=0) >= taille :
+							#~ self.possibles_case[case].append((taille, direction))
+							
+		# Regarde pour chaque case vide la taille maxi d'un bateau dans chaque direction
 		for case in self.vides :
-			for taille in tmp_taille_bateaux[::-1] :
-				for direction in [BN_DROITE, BN_BAS] :
-					if self.get_max_space(case, direction=direction, sens=0) >= taille :
-							self.possibles_case[case].append((taille, direction))
+			for direction in [BN_DROITE, BN_BAS] :
+				tmax = self.get_max_space(case, direction=direction, sens=0)
+				self.possibles_case[case] += [(taille, direction) for taille in tmp_taille_bateaux if taille <= tmax]
+				
 		# Liste des cases et sens possibles pour chaque bateau
 		self.possibles = {}
 		for taille in tmp_taille_bateaux :
@@ -172,7 +180,7 @@ class Grille(object):
 			self.possibles[taille].sort()
 	
 	
-	def case_max(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
+	def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
 		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
 		Retourne la case la plus probable en essayant différents arrangements des bateaux restants"""
 		start=time()
@@ -212,7 +220,51 @@ class Grille(object):
 				print("%.4f"%self.probas[(self.xmax-1,j)])
 			
 			print()
-			print("Échantillon de taille %d" % n)
+			print("Échantillon de taille %d" % nb_echantillons)
+			print("Temps : %.4f secondes" % (time()-start))
+			print("Case max :", case_max)
+			print("Proba max : %.5f" % pmax)
+		
+		# Retourne la case la plus probable et sa proba
+		return (case_max, pmax)
+
+	def case_max(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
+		"""Détermine la case qui a la probabilité maximale de toucher
+		Reagrde pour chaque case le nombre de bateaux possibles sur cette case"""
+		
+		# Dico contenant les probas de chaque case
+		self.probas = {}
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				self.probas[(i,j)] = 0
+		
+		self.get_possibles()
+		
+		for taille in self.taille_bateaux :
+			for (case, direction) in self.possibles[taille] :
+				for k in range(taille) :
+					self.probas[(case[0]+k*direction[0], case[1]+k*direction[1])] += 1
+		
+		# Calcul des probas
+		for case in self.probas :
+			self.probas[case] *= 1/len(self.vides)
+		
+		# Détermination de la case la plus probable
+		case_max = (0,0)
+		pmax = 0
+		for case in self.probas :
+			if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
+				pmax = self.probas[case]
+				case_max = case
+		
+		# Affichages pour les tests
+		if affiche :
+			for j in range(self.ymax):
+				for i in range(self.xmax-1):
+					print("%.4f"%(self.probas[(i,j)]), end=' ')
+				print("%.4f"%self.probas[(self.xmax-1,j)])
+			
+			print()
 			print("Temps : %.4f secondes" % (time()-start))
 			print("Case max :", case_max)
 			print("Proba max : %.5f" % pmax)
@@ -556,6 +608,9 @@ class GrilleSuivi(GrilleJoueur):
 #
 if __name__ == "__main__" :
 	grille = GrilleSuivi()
+	#~ for i in range(7):
+		#~ for j in range(10):
+			#~ grille.etat[(i,j)]=-1
 	#~ grille.get_possibles()
 	#~ input()
 	#~ for taille in grille.possibles :
@@ -567,18 +622,17 @@ if __name__ == "__main__" :
 			#~ i+=1
 		#~ print() 
 	#~ for case in grille.vides :
-		#~ print(case,grille.possibles[case])
+		#~ print(case,grille.possibles_case[case])
 	#~ quit()
 	# Essai de calcul de probabilité pour chaque case de contenir un bateau
 	#~ grille = GrilleSuivi()
-	#~ for i in range(7):
-		#~ for j in range(10):
-			#~ grille.etat[(i,j)]=-1
+
 		#~ 
 	#~ start = time()
 	#~ grille.init_bateaux_alea()
 	#~ print(time()-start)
 	#~ grille.affiche()
+	#~ quit()
 	#~ 
 	#~ quit()
 	#~ n = int(input("Taille de l'échantillon : "))

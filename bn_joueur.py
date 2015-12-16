@@ -158,9 +158,10 @@ class Ordi(Joueur):
 	def make_case_aleatoire(self):
 		"""Choisi une case aléatoire"""
 		#~ if len(self.grille_suivi.vides) <= 0.8*self.grille_suivi.xmax*self.grille_suivi.ymax :
+		start = time()
 		(case_max, pmax) = self.grille_suivi.case_max(nb_echantillons=self.nb_echantillons)
 		self.case_courante = case_max
-		self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
+		self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f, t=%.4f s)" % (alpha(self.case_courante), pmax, time()-start))
 		#~ else :
 			#~ self.case_courante = self.case_aleatoire()
 			#~ self.messages.append("Je tire au hasard sur la case %s" % alpha(self.case_courante))

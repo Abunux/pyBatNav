@@ -714,8 +714,8 @@ class MainConsole(object):
 		info("Dimensions de la grille : %d*%d" % (xmax , ymax))
 		info("Liste des bateaux : %s" % str(taille_bateaux))
 		info("Nombre de parties : %d" % n)
-		info()
-		info("Taille des échantillons pour les calculs de probas : %d" % nb_echantillons)
+		#~ info()
+		#~ info("Taille des échantillons pour les calculs de probas : %d" % nb_echantillons)
 		info()
 		info("Min : %d" % mini)
 		info("Q1  : %d" % q1)
@@ -735,7 +735,8 @@ class MainConsole(object):
 		# --> L'idée c'est de voir quelle loi de proba suit le nombre d'essais
 		# et de calculer des indicateurs statistiques
 		# Sauvegarde de cette liste dans un fichier texte
-		stats_file = open("distrib_HAL_(n=%d,nb_echantillons=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, nb_echantillons, xmax, ymax,str(taille_bateaux)), "w")
+		#~ stats_file = open("distrib_HAL_NEW_(n=%d,nb_echantillons=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, nb_echantillons, xmax, ymax,str(taille_bateaux)), "w")
+		stats_file = open("distrib_HAL_NEW_(n=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, xmax, ymax,str(taille_bateaux)), "w")
 		for k in range(len(distrib)) :
 			stats_file.write(str(distrib[k])+'\n')
 		stats_file.close()
@@ -743,7 +744,8 @@ class MainConsole(object):
 		plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
 		plt.xlabel("Nombre de coups")
 		plt.ylabel("Fréquence de parties")
-		plt.title("Résolution par l'ordinateur sur %d parties\n Taille des échantilons de proba : %d" % (n, nb_echantillons))
+		#~ plt.title("Résolution par l'ordinateur sur %d parties\n Taille des échantilons de proba : %d" % (n, nb_echantillons))
+		plt.title("Résolution par l'ordinateur sur %d parties\n" % n)
 		plt.grid(True)
 		plt.show()
 		
@@ -770,11 +772,11 @@ class MainConsole(object):
 					info("Saisie invalide\n")
 					ok = False
 		# Taille des échantillons
-		try :
-			nb_echantillons = int(input("Taille des échantillons pour les probas : "))
-		except :
-			info("Par défaut, échantillons de taille 100\n")
-			nb_echantillons = 100
+		#~ try :
+			#~ nb_echantillons = int(input("Taille des échantillons pour les probas : "))
+		#~ except :
+			#~ info("Par défaut, échantillons de taille 100\n")
+			#~ nb_echantillons = 100
 		# Nombre de répétitions
 		ok = False
 		while not ok :
@@ -785,7 +787,8 @@ class MainConsole(object):
 				info("Saisie invalide\n")
 				ok = False
 		# Lancement du test
-		self.test_algo(n, xmax, ymax, taille_bateaux,nb_echantillons)
+		#~ self.test_algo(n, xmax, ymax, taille_bateaux,nb_echantillons)
+		self.test_algo(n, xmax, ymax, taille_bateaux)
 	
 	#
 	# Menu de lancement ------------------------------------------------
