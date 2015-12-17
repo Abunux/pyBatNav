@@ -241,7 +241,7 @@ class Ordi(Joueur):
 		if self.grille_suivi.test_case(nv_case):
 			self.add_queue(nv_case)
 		
-		self.shuffle_queue()
+		#~ self.shuffle_queue()
 		
 		self.affiche_queue()
 		
@@ -272,9 +272,17 @@ class Ordi(Joueur):
 	
 	def shuffle_queue(self):
 		"""Mélange les cases de la file d'attente"""
-		# --> Mettre la file dans l'ordre décroissant des probas (sachant qu'on vient de toucher la case self.courante)
+		# --> Mettre la file dans l'ordre décroissant des probas (sachant qu'on vient de toucher la case self.case_touchee)
 		if len(self.queue)>1 :
 			rand.shuffle(self.queue)
+			
+			probas = self.grille_suivi.case_max_touchee(self.case_touchee)
+			queue_tmp = []
+			for p in probas :
+				if p[0] in self.queue :
+					queue_tmp.append(p[0])
+			self.queue = queue_tmp[:]
+			
 			self.messages.append("Je mélange ma file d'attente")
 		
 	def vide_queue(self):

@@ -221,7 +221,7 @@ class Grille(object):
 	def case_max_touchee(self, case_touchee):
 		"""Retourne les probas de chaque case adjacentes à case (qui vient d'être touchée)"""
 		# --> Sera appelé dans Ordi.shuffle_queue() pour trier la file quand on touche
-		# --> Pas au point mais ça va passer et on devrait gagner quelques coups ^_^
+		# --> Code à améliorer (trop bordélique)
 		
 		# On marque temporairement la case comme vide pour pouvoir tester si on peut y placer des bateaux
 		self.etat[case_touchee] = 0
@@ -232,16 +232,42 @@ class Grille(object):
 			probas[c] = 0
 			
 		for taille in self.taille_bateaux :
-			for (case, direction) in self.possibles[taille] :
-				for k in range(taille) :
-					if case[0]+k*direction[0] == case_touchee[0] and case[1]==case_touchee[1]:
-						print(case, taille, direction)
-						probas[(case_touchee[0]-1, case_touchee[1])] += 1
+			# Bateaux horizontaux possibles
+			direction = (1,0)
+				# Bateau qui se termine sur case_touchee
+			if case_touchee[0]-(taille-1)*direction[0] >= 0 and \
+				((case_touchee[0]-(taille-1)*direction[0], case_touchee[1]), direction) in self.possibles[taille]:
+					probas[(case_touchee[0]-1, case_touchee[1])] += 1
+				# Bateaux à cheval strictement sur case_touchee
+			for k in range(1, taille-1) :
+				if case_touchee[0]-k*direction[0] >= 0 and \
+					((case_touchee[0]-k*direction[0], case_touchee[1]), direction) in self.possibles[taille]:
+					probas[(case_touchee[0]-1, case_touchee[1])] += 1
+					probas[(case_touchee[0]+1, case_touchee[1])] += 1
+				# Bateau qui démarre sur case_touchee
+			if ((case_touchee[0], case_touchee[1]), direction) in self.possibles[taille]:
+					probas[(case_touchee[0]+1, case_touchee[1])] += 1
+			#Bateaux verticaux possibles (idem)
+			direction = (0,1)
+			if case_touchee[1]-(taille-1)*direction[1] >= 0 and \
+				((case_touchee[0], case_touchee[1]-(taille-1)*direction[1]), direction) in self.possibles[taille]:
+					probas[(case_touchee[0], case_touchee[1]-1)] += 1
+			for k in range(1, taille-1) :
+				if case_touchee[1]-k*direction[1] >= 0 and \
+					((case_touchee[0], case_touchee[1]-k*direction[1]), direction) in self.possibles[taille]:
+					probas[(case_touchee[0], case_touchee[1]-1)] += 1
+					probas[(case_touchee[0], case_touchee[1]+1)] += 1
+			if ((case_touchee[0], case_touchee[1]), direction) in self.possibles[taille]:
+					probas[(case_touchee[0], case_touchee[1]+1)] += 1
 		
+		
+
 		# On remet la case comme touchée
-		self.etat[case] = 1
+		self.etat[case_touchee] = 1
 		
-		return probas
+		#~Retour des probas (en fait juste le nombre de bateaux possibles)
+		probas_liste = [(case, probas[case]) for case in probas]
+		return sorted(probas_liste, key=lambda proba: proba[1], reverse = True)
 		
 	def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
 		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
@@ -595,12 +621,13 @@ class GrilleSuivi(GrilleJoueur):
 if __name__ == "__main__" :
 	grille = GrilleSuivi()
 	grille.etat[(1,2)]=1
-	grille.etat[(3,2)]=0
+	grille.etat[(3,2)]=-1
 	print(grille.case_max_touchee((1,2)))
 	#~ for i in range(7):
 		#~ for j in range(10):
 			#~ grille.etat[(i,j)]=-1
-	#~ grille.get_possibles()
+	#~ grille.get_possibles()?
+	#~ print(grille.possibles)
 	#~ input()
 	#~ for taille in grille.possibles :
 		#~ print("Taille %d :" % taille)
