@@ -283,7 +283,8 @@ class Ordi(Joueur):
 					queue_tmp.append(p[0])
 			self.queue = queue_tmp[:]
 			
-			self.messages.append("Je mélange ma file d'attente")
+			#~ self.messages.append("Je mélange ma file d'attente")
+			self.messages.append("J'ordonne ma file d'attente en fonctions des possibilités")
 		
 	def vide_queue(self):
 		"""Vide la file d'attente"""
