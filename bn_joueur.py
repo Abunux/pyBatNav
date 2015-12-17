@@ -59,9 +59,7 @@ class Joueur(object):
 			
 	def tire(self, case):
 		"""Tire sur la case (x,y)
-		Renvoie un tuple (booléen, string)
-		où booléen = True si la case est touchée, False si non touché ou case invalide
-		et la string est un message à afficher"""
+		Renvoie True si la case est touchée, False si non touché ou case invalide"""
 		# Coup invalide
 		if case in self.cases_jouees :
 			self.messages.append("%s : Déjà joué" % alpha(case))
@@ -116,7 +114,7 @@ class Joueur(object):
 #----------------------------------------------------------------------------------------------------------------
 #
 class Ordi(Joueur):
-	def __init__(self, nom='HAL', nb_echantillons=10000):
+	def __init__(self, nom='HAL'):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
 		
@@ -125,8 +123,6 @@ class Ordi(Joueur):
 		
 		# Variables pour la résolution :
 		# ------------------------------
-		# Nombre d'échantillons pour les calculs de probas
-		self.nb_echantillons = nb_echantillons
 		# File d'attente
 		self.queue = []
 		# Liste des case touchées sur un bateau
@@ -157,15 +153,10 @@ class Ordi(Joueur):
 	#
 	def make_case_aleatoire(self):
 		"""Choisi une case aléatoire"""
-		#~ if len(self.grille_suivi.vides) <= 0.8*self.grille_suivi.xmax*self.grille_suivi.ymax :
 		start = time()
-		#~ (case_max, pmax) = self.grille_suivi.case_max_echantillons(nb_echantillons=self.nb_echantillons)
 		(case_max, pmax) = self.grille_suivi.case_max()
 		self.case_courante = case_max
 		self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f, t=%.4f s)" % (alpha(self.case_courante), pmax, time()-start))
-		#~ else :
-			#~ self.case_courante = self.case_aleatoire()
-			#~ self.messages.append("Je tire au hasard sur la case %s" % alpha(self.case_courante))
 	
 	#
 	# Tire sur une case ------------------------------------------------
@@ -210,8 +201,7 @@ class Ordi(Joueur):
 		else :
 			self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 					
-		# On mélange la file d'attente pour ne pas que l'algo soit prévisible
-		# --> À améliorer avec les calculs de probas
+		# On mélange la file d'attente en fonction des probas
 		self.shuffle_queue()
 		
 		self.affiche_queue()
@@ -240,8 +230,6 @@ class Ordi(Joueur):
 		nv_case = (self.case_courante[0] + direction[0]*signe(self.case_courante[0]-self.case_touchee[0]) , self.case_courante[1] + direction[1]*signe(self.case_courante[1]-self.case_touchee[1]))
 		if self.grille_suivi.test_case(nv_case):
 			self.add_queue(nv_case)
-		
-		#~ self.shuffle_queue()
 		
 		self.affiche_queue()
 		
@@ -272,7 +260,7 @@ class Ordi(Joueur):
 	
 	def shuffle_queue(self):
 		"""Mélange les cases de la file d'attente"""
-		# --> Mettre la file dans l'ordre décroissant des probas (sachant qu'on vient de toucher la case self.case_touchee)
+		# Mettre la file dans l'ordre décroissant des probas (sachant qu'on vient de toucher la case self.case_touchee)
 		if len(self.queue)>1 :
 			rand.shuffle(self.queue)
 			

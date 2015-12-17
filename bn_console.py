@@ -457,8 +457,8 @@ class JoueurC(Joueur):
 #----------------------------------------------------------------------------------------------------------------
 #
 class OrdiC(JoueurC, Ordi):
-	def __init__(self, nom='HAL', nb_echantillons=10000):
-		Ordi.__init__(self, nom, nb_echantillons)
+	def __init__(self, nom='HAL'):
+		Ordi.__init__(self, nom)
 		JoueurC.__init__(self, nom)
 		
 	def resolution(self, affiche=True, grille=None):
@@ -637,12 +637,12 @@ class MainConsole(object):
 	#
 	# Modes de jeu -----------------------------------------------------
 	#
-	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], nb_echantillons=100):
+	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
 		grille = GrilleJoueurC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		grille.init_bateaux_alea()
-		ordi = OrdiC(nb_echantillons=nb_echantillons)
+		ordi = OrdiC()
 		ordi.grille_adverse = grille
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		ordi.grille_suivi.reinit()
@@ -668,14 +668,14 @@ class MainConsole(object):
 		partie = PartieC(joueur, ordi)
 
 
-	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], nb_echantillons=100):
+	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
 		"""Test l'ago de l'ordinateur en faisant n parties"""
 		# Lancement de la simulation
 		start = time()
 		temps_resolution = 0
 		liste_essais = []
 		for k in range(n):
-			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, nb_echantillons=nb_echantillons)
+			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 			temps_resolution += temps
 			liste_essais.append(essais)
 			if (k+1) % (n/10) == 0 :
@@ -711,8 +711,6 @@ class MainConsole(object):
 		info("Dimensions de la grille : %d*%d" % (xmax , ymax))
 		info("Liste des bateaux : %s" % str(taille_bateaux))
 		info("Nombre de parties : %d" % n)
-		#~ info()
-		#~ info("Taille des échantillons pour les calculs de probas : %d" % nb_echantillons)
 		info()
 		info("Min : %d" % mini)
 		info("Q1  : %d" % q1)
@@ -817,7 +815,6 @@ class MainConsole(object):
 				info("Saisie invalide\n")
 				ok = False
 		# Lancement du test
-		#~ self.test_algo(n, xmax, ymax, taille_bateaux,nb_echantillons)
 		self.test_algo(n, xmax, ymax, taille_bateaux)
 	
 	#
