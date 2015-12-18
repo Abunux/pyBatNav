@@ -250,7 +250,7 @@ class Grille(object):
 			
 		for taille in self.taille_bateaux :
 			# Bateaux horizontaux possibles
-			direction = (1,0)
+			direction = (1, 0)
 				# Bateau qui se termine sur case_touchee
 				# On ajoute 1 à sa case à gauche
 			if case_touchee[0]-(taille-1)*direction[0] >= 0 and \
@@ -269,7 +269,7 @@ class Grille(object):
 					probas[(case_touchee[0]+1, case_touchee[1])] += 1
 					
 			# Bateaux verticaux possibles
-			direction = (0,1)
+			direction = (0, 1)
 				# Bateau qui se termine sur case_touchee
 				# On ajoute 1 à sa case au-dessus
 			if case_touchee[1]-(taille-1)*direction[1] >= 0 and \

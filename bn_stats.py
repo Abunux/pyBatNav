@@ -10,6 +10,63 @@ from matplotlib import cm
 # Intégration de matplotlib dans tkinter : 
 # http://matplotlib.org/examples/user_interfaces/embedding_in_tk.html
 
+
+#~ class Stats(object):
+	#~ def __init__(self, liste_essais=None, filename=""):
+		#~ if liste_essais :
+			#~ self.liste_essais = liste_essais
+		#~ elif filename :
+			#~ self.filename = filename
+			#~ self.recup_distrib(f 
+		#~ self.liste_essais_sorted = sorted(liste_essais)
+		#~ 
+		#~ # Création de la liste de distribution des effectifs
+		#~ distrib = [0]*(xmax*ymax+1)
+		#~ for e in liste_essais :
+				#~ distrib[e] += 1
+		
+		
+		
+def recup_distrib(filename):
+	result = []
+	with open(filename, "r") as file_distrib:
+		for k in file_distrib :
+			result.append(int(k[:-1]))
+	return result
+	 
+def moyenne(distrib) :
+	s = 0
+	for k in range(len(distrib)) :
+		s += k*distrib[k]
+	return s/sum(distrib)
+
+def sigma(distrib) :
+	m = moyenne(distrib)
+	v = 0
+	for k in range(len(distrib)) :
+		v += distrib[k]*(k-m)**2
+	v *= 1/sum(distrib)
+	return sqrt(v)
+
+
+
+
+# https://fr.wikipedia.org/wiki/Loi_normale_asym%C3%A9trique
+def gamma(distrib):
+	m = moyenne(distrib)
+	s = sigma(distrib)
+	g = 0
+	for k in range(len(distrib)) :
+		g += distrib[k]*((k-m)/s)**3
+	return g/sum(distrib)
+
+def delta(distrib):
+	g = abs(gamma(distrib))
+	return sqrt(pi/2)*(g**(1/3))/sqrt(g**(2/3)+((4-pi)/2)**(2/3))
+
+
+
+
 def surface_probas(grille = GrilleSuivi()):
 	fig = plt.figure()
 	ax = fig.add_subplot(111, projection='3d')

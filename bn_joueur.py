@@ -153,10 +153,9 @@ class Ordi(Joueur):
 	#
 	def make_case_aleatoire(self):
 		"""Choisi une case aléatoire"""
-		start = time()
 		(case_max, pmax) = self.grille_suivi.case_max()
 		self.case_courante = case_max
-		self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f, t=%.4f s)" % (alpha(self.case_courante), pmax, time()-start))
+		self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
 	
 	#
 	# Tire sur une case ------------------------------------------------
@@ -204,7 +203,7 @@ class Ordi(Joueur):
 		# On mélange la file d'attente en fonction des probas
 		self.shuffle_queue()
 		
-		self.affiche_queue()
+		#~ self.affiche_queue()
 	
 	def update_queue_touche(self):
 		"""Met à jour la file d'attente en enlevant le cases qui ne sont pas dans la bonne direction après avoir touché une 2ème fois"""
@@ -263,16 +262,17 @@ class Ordi(Joueur):
 		# Mettre la file dans l'ordre décroissant des probas (sachant qu'on vient de toucher la case self.case_touchee)
 		if len(self.queue)>1 :
 			rand.shuffle(self.queue)
-			
+			self.messages.append("J'ordonne ma file d'attente en fonction des possibilités :")
 			probas = self.grille_suivi.case_max_touchee(self.case_touchee)
 			queue_tmp = []
+			chaine = ""
 			for p in probas :
 				if p[0] in self.queue :
 					queue_tmp.append(p[0])
+					chaine += "%s : %d , " %(alpha(p[0]), p[1])
 			self.queue = queue_tmp[:]
-			
-			#~ self.messages.append("Je mélange ma file d'attente")
-			self.messages.append("J'ordonne ma file d'attente en fonctions des possibilités")
+
+			self.messages.append(chaine[:-3])
 		
 	def vide_queue(self):
 		"""Vide la file d'attente"""

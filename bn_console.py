@@ -682,7 +682,7 @@ class MainConsole(object):
 				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
 		
 		# Création de la liste de distribution des effectifs
-		distrib = [0]*(xmax*ymax)
+		distrib = [0]*(xmax*ymax+1)
 		for e in liste_essais :
 				distrib[e] += 1
 		
@@ -732,7 +732,6 @@ class MainConsole(object):
 		# --> L'idée c'est de voir quelle loi de proba suit le nombre d'essais
 		# et de calculer des indicateurs statistiques
 		# Sauvegarde de cette liste dans un fichier texte
-		#~ stats_file = open("distrib_HAL_NEW_(n=%d,nb_echantillons=%d,xmax=%d,ymax=%d,bateaux=%s).txt" % (n, nb_echantillons, xmax, ymax,str(taille_bateaux)), "w")
 		stats_file = open(filename + ".txt", "w")
 		for k in range(len(distrib)) :
 			stats_file.write(str(distrib[k])+'\n')
