@@ -209,8 +209,8 @@ class Grille(object):
 					self.probas[(case[0]+k*direction[0], case[1]+k*direction[1])] += 1
 		
 		# Calcul des probas
-		for case in self.probas :
-			self.probas[case] *= 1/len(self.vides)
+		#~ for case in self.probas :
+			#~ self.probas[case] *= 1/len(self.vides)
 		
 		# Détermination de la case la plus probable
 		self.case_proba = (0,0)

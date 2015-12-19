@@ -74,7 +74,7 @@ def surface_probas(grille = GrilleSuivi()):
 
 	ax.set_xlabel('X')
 	ax.set_ylabel('Y')
-	ax.set_zlabel('Probabilités', rotation=180)
+	ax.set_zlabel('Possibilités', rotation=180)
 	labels = [chr(65+i) for i in range(10)]
 	ax.set_xticklabels(labels)
 	ax.invert_xaxis()
@@ -91,7 +91,7 @@ def surface_probas(grille = GrilleSuivi()):
 	(case, pmax) = grille.case_max()
 	print("Temps : %.5f secondes" % (time()-start))
 	
-	ax.text(case[0],case[1],pmax,"Pmax=%.3f en %s" % (pmax, alpha(case)), ha="center")
+	ax.text(case[0],case[1],pmax,"Max=%d en %s" % (pmax, alpha(case)), ha="center")
 	#~ ax.set_title("Échantillon de taile %d" % n)
 	x = y = np.arange(0, 10, 1)
 	X, Y = np.meshgrid(x, y)
