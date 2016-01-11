@@ -1,0 +1,592 @@
+\documentclass[a4paper,12pt,fleqn]{book}
+
+% ---------------------------------------------------------------------------
+%				Packages
+% ---------------------------------------------------------------------------
+
+% texdoc <nom_package> pour avoir des infos
+\usepackage{etex}
+
+\usepackage[utf8]{inputenc}						% Encodage français
+\usepackage[frenchb]{babel}						% Mise en forme française
+\usepackage[T1]{fontenc}						% Encodage caractères français
+
+\usepackage{fourier}							% Différents symboles et polices
+\usepackage[scaled=0.875]{helvet}				% Font générale
+\usepackage{courier}							% Font télétype
+\renewcommand{\ttdefault}{lmtt}					% Font télétype
+\usepackage{frcursive}							% Ecriture manuscrite type écolier
+\usepackage{calligra}							% Ecriture manuscrite classieuse
+\usepackage{verbatim}							% Commentaires
+
+\usepackage{amsfonts,amsmath,amssymb}			% Symboles maths
+\usepackage{bm}									% Symboles maths en gras \bm{}
+\usepackage{amstext}							% Texte en mode math de taille adaptée
+\usepackage{amsopn}								% \DeclareMathOperator
+\usepackage{mathrsfs}							% Symboles maths
+\usepackage{mathtools}							% Symboles maths
+\usepackage{theorem}							% Mise en forme des théorèmes
+
+\usepackage{textcomp}							% Symboles
+\usepackage{pifont}								% Symboles "ding"
+\usepackage{wasysym}							% Symboles (smiley et logos)
+\usepackage{epsdice}							% Symboles (faces d'un dé)
+\usepackage[normalem]{ulem}						% Fioritures de texte (barré, etc...)
+\usepackage{cancel}								% Barrer du texte (simplifier termes)
+\usepackage{fancybox}							% Boîtes
+
+\usepackage{tabularx}							% Tableaux évolués
+\usepackage{diagbox}							% Cases en diagonale
+%~ \usepackage{tabls}							% Espaces dans les tableaux (conflit avec bclogo)
+\usepackage{multirow}							% Fusionner les lignes d'un tableau
+\usepackage{enumerate}							% Enumérations personnalisées
+\usepackage{multicol}							% Environnement multicolonnes
+\usepackage{fancyhdr}							% En-têtes et pieds de page
+%~ \usepackage[np]{numprint}					% Mise en forme des nombres
+
+\usepackage[usenames, dvipsnames]{xcolor}		% Couleurs
+\usepackage{graphicx}							% Insérer des images
+\usepackage{pgf, tikz, tkz-tab, tkz-fct}		% Graphiques avec Tikz
+\usetikzlibrary{arrows}
+\usetikzlibrary{snakes}
+\usepackage{alterqcm}							% QCM
+\usepackage{circuitikz}							% Circuit éléctriques
+\usepackage[tikz]{bclogo}						% Boites à logo
+
+\usepackage{titlesec}							% Mise en forme des titres de sections
+\usepackage{lastpage}							% Dernière page : \pageref{LastPage}
+
+\usepackage{ifthen}								% Programmation conditions
+\usepackage{multido}							% Boucles
+\usepackage{calc}								% Calculs
+
+% ---------------------------------------------------------------------------
+%				Macros simples (caractères)
+% ---------------------------------------------------------------------------
+
+\newcommand{\euro}{\eurologo{}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\D}{\ensuremath{\mathbb{D}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\e}{\text{e}}
+\renewcommand{\i}{\text{i}}
+\newcommand{\s}{\ensuremath{\mathcal{S}}}
+\newcommand{\sol}[1]{\mathcal{S}=\left\lbrace #1 \right\rbrace}
+\newcommand{\ou}{\mbox{ ou }}
+\newcommand{\et}{\mbox{ et }}
+\newcommand{\si}{\mbox{ si }}
+\newcommand{\Df}{\ensuremath{\mathcal{D}_f}}
+\newcommand{\Cf}{\ensuremath{\mathcal{C}_f}}
+\newcommand{\Dg}{\ensuremath{\mathcal{D}_g}}
+\newcommand{\Cg}{\ensuremath{\mathcal{C}_g}}
+
+\renewcommand{\P}{\ensuremath{\text{P}}}
+\newcommand{\card}{\text{card}}
+\newcommand{\E}{\text{E}}
+\newcommand{\V}{\text{V}}
+
+\newcommand{\FI}{\textbf{F.I.}}
+
+\newcommand{\eq}{\ \Leftrightarrow\ } % ou \iff
+\newcommand{\implique}{\Rightarrow}
+\newcommand{\pheq}{\phantom{\eq}}
+\newcommand{\egdef}{\stackrel{\textit{déf}}{=}}
+
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\le}{\leqslant}
+\newcommand{\supeg}{\geqslant}
+\newcommand{\infeg}{\leqslant}
+
+\newcommand{\lacco}{\left\lbrace}
+\newcommand{\racco}{\right\rbrace}
+\newcommand{\labs}{\left|}
+\newcommand{\rabs}{\right|}
+
+\newcommand{\inclus}{\subset}
+\newcommand{\ninclus}{\not\subset}
+\newcommand{\union}{\cup}
+\newcommand{\inter}{\cap}
+
+\newcommand{\non}[1]{\text{non(}#1\text{)}}
+
+\newcommand{\dx}{~\text{d}x}
+\newcommand{\dt}{~\text{d}t}
+
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\abs}[1]{|#1|}
+
+\newcommand{\pinf}{+\infty}
+\newcommand{\minf}{-\infty}
+\newcommand{\pminf}{\pm\infty}
+
+\newcommand{\para}{\ /\!\!/\ }
+
+\newcommand{\comb}[2]{\text{C}_{#1}^{#2}}
+
+\newcommand{\vect}[1]{\mathchoice
+	{\overrightarrow{\displaystyle\mathstrut#1\,\,}}
+	{\overrightarrow{\textstyle\mathstrut#1\,\,}}
+	{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}
+	{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+\def\Oij{$\left(\text{O},~\vect{i},~\vect{j}\right)$}
+\def\Oijk{$\left(\text{O},~\vect{i},~ \vect{j},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O},~\vect{u},~\vect{v}\right)$}
+
+\newcommand{\vu}{\vect{u}}
+\newcommand{\vv}{\vect{v}}
+\newcommand{\vw}{\vect{w}}
+\newcommand{\vn}{\vect{n}}
+
+\newcommand{\veccol}[3]{\left(\begin{array}{c}
+{#1}\\{#2}\\{#3}
+\end{array}\right)}
+
+\definecolor{gris}{gray}{0.85}
+\newcommand{\surl}[1]{\colorbox{gris}{\textbf{#1}}}
+
+\renewcommand{\emph}{\textbf}
+
+\newcommand{\saut}{\ \\}
+\newcommand{\lignesep}{\vspace*{5pt}\hrule\vspace*{5pt}}
+
+\newcommand{\fct}[5]{
+	\begin{array}[t]{r ccl}
+	{#1}\ : \ &{#2}&\longrightarrow&{#3}\\
+	&{#4}&\longmapsto&{#5}
+	\end{array}}
+
+\newcommand{\encadre}[1]{\fbox{\begin{minipage}{\textwidth}
+#1
+\end{minipage}}}
+
+%\newcommand{\boite}[1]{\fbox{\Huge\phantom{A}\hspace*{#1}}}
+\newcommand{\boite}[1]{\fbox{\rule[-0.2cm]{0pt}{0.6cm}\hspace*{#1}}}
+
+
+\newcommand{\suit}{\begin{tikzpicture}
+\draw[color=white](-0.4em,0em)--(-0.25em,0em);
+\draw ((-0.25em,-0.15em)--(0.07em,0.18em);
+\draw (0.07em,0.18em) arc (135:0:0.25em);
+\draw (0.5em,0em) arc (-180:-45:0.25em);
+\draw (0.93em,-0.18em)--(1.36em,0.25em);
+\draw (1.01em,0.25em)--(1.36em,0.25em)--(1.36em,-0.1em);
+\draw[color=white](1.40em,0em)--(1.55em,0em);
+\end{tikzpicture}}
+
+
+%\newcommand{\suit}{\hookrightarrow}
+
+% Commande programmation Casio
+
+\newcommand{\touche}[1]{\fbox{\texttt{#1}}}
+
+\newcommand{\toucheF}[2]{
+$\underset{\text{\scriptsize F#2}}{\touche{#1}}$
+}
+
+\newcommand{\sto}{\ensuremath{\rightarrow}}
+
+%\newcommand{\toucheFF}[2]{\begin{tabular}[t]{c}
+%\touche{#1}\\
+%{\scriptsize F#2}
+%\end{tabular}}
+
+\newcommand{\suiv}{$\vartriangleright$} % Menu suivant
+
+\newcommand{\rl}{\begin{tikzpicture}[scale=0.7] % Retour à la ligne de la Casio
+\draw[color=white] (0,0)--(0,0);
+\draw [<-] (0.2em,0.2em)--(1em,0.2em)--(1em,0.8em);
+\end{tikzpicture}}
+
+\newcommand{\disp}{\begin{tikzpicture}[scale=0.7] % Triangle de la Casio
+\draw[color=white] (0,0)--(0,0);
+\fill (0.2em,0em)--(0.8em,0em)--(0.8em,0.8em)--(0.2em,0em);
+\draw[color=white] (1em,1em)--(1em,1em);
+\end{tikzpicture}}
+
+\newcommand{\vers}{$\rightarrow$}
+
+\newcommand{\enonce}{\textbf{Énoncé :}}
+\newcommand{\solution}{\textbf{Solution :}}
+\newcommand{\tq}{~,~}
+
+\newcommand{\xmin}{x_{\text{min}}}
+\newcommand{\xmax}{x_{\text{max}}}
+
+% -------------------- Symboles : -------------------------------------------
+
+\newcommand{\happy}{\smiley}
+\newcommand{\sad}{\frownie}
+
+\newcommand{\attention}{\danger}
+\newcommand{\piege}{\bomb}
+\newcommand{\interdit}{\noway}
+
+\newcommand{\facede}[1]{\epsdice{#1}}
+
+\newcommand{\hand}{\text{\ding{43}}}
+\newcommand{\victory}{\text{\ding{44}}}
+
+\newcommand{\trefle}{\text{\ding{168}}}
+\newcommand{\carreau}{\text{\ding{169}}}
+\newcommand{\coeur}{\text{\ding{170}}}
+\newcommand{\pique}{\text{\ding{171}}}
+
+\newcommand{\checkbox}{\text{\ding{114}}}
+\newcommand{\checkedbox}{\text{\mbox{\ding{114}\hspace{-.7em}\raisebox{.2ex}[1ex]{\ding{51}}}}}
+
+\newcommand{\scisors}{\ding{34}}
+\newcommand{\couperici}{\scisors\dotfill\textit{\small{couper ici}}\dotfill\scisors}
+
+% ---------------------------------------------------------------------------
+% 				Environnements 
+% ---------------------------------------------------------------------------
+
+% ------------------------ Théorèmes ----------------------------------------
+
+\theorembodyfont{\normalfont} \theoremstyle{break}
+
+
+
+%\newcommand{\Ex}{\noindent\textbf{Exemple : }}
+\newcommand{\Rappel}{\noindent\textbf{Rappel : }}
+
+% ------------------------ Python --------------------------------------------
+
+\newcounter{cptspace}
+\newcommand{\tab}[1]{
+	\setcounter{cptspace}{#1}
+	\whiledo{\value{cptspace}>0}{
+		\hspace*{0em}\hspace*{0em}
+		\addtocounter{cptspace}{-1}}}
+
+\newcommand{\prompt}{{>}{>}{>}\ }
+
+\newenvironment{python}
+	{\par\ttfamily\small\vspace{0.2cm}
+	\setbox0=\hbox\bgroup
+	\begin{minipage}{\textwidth}
+	\vspace{0.2cm}
+%	\begin{tabbing}
+	}
+	{\vspace{0.2cm}
+%	\end{tabbing}
+	\end{minipage}
+	\egroup
+    \fbox{\box0}
+	\par\rmfamily\normalsize\vspace{0.2cm}\noindent
+	}
+
+\newenvironment{algo1}
+	{\begin{center}\begin{tabular}{|>{\texttt\bgroup}l<{\egroup}|}
+	\hline}
+	{\hline
+	\end{tabular}\end{center}
+	}
+
+%\newenvironment{python}
+%	{\par\ttfamily\small\vspace{0.2cm}
+%	\begin{bclogo}[couleurBord=black, arrondi = 0.1, logo={}, barre = none]{Code python :}
+%%	\begin{minipage}{\textwidth}
+%%	\vspace{0.2cm}
+%	}
+%	{%\vspace{0.2cm}
+%%	\end{minipage}
+%	\end{bclogo}
+%	\par\rmfamily\normalsize\vspace{0.2cm}\noindent
+%	}
+
+\newcommand{\pyth}[1]{\texttt{#1}}
+
+% -------------------------- Boites bclogo -----------------------------------
+\newenvironment{warning}
+	{\begin{bclogo}[couleurBord=black, arrondi = 0.1, logo = \bcattention]}%{\Large\attention}]}
+	{\end{bclogo}}
+	
+\newenvironment{forbidden}
+	{\begin{bclogo}[couleurBord=black, arrondi = 0.1, logo = \bcinterdit]}%{\Large\interdit}]}
+	{\end{bclogo}}
+
+% ---------------------------------------------------------------------------
+% 				Raccoucis clavier
+% ---------------------------------------------------------------------------
+
+\newcommand{\fctsurI}[3]{
+	Soit $#1$ la fonction définie sur $#3$ par $$#1(x)=#2$$}
+	
+\newcommand{\hp}{Hors programme de TSTI2D}
+
+% ---------------------------------------------------------------------------
+%				Macros évoluées
+% ---------------------------------------------------------------------------
+
+% ----------------- \tournerpage --------------------------------------------
+% Indique de tourner la page en bas de page
+%
+\def\tournerpage{\vfill%
+	\begin{flushright}	
+		\textbf{Tourner la page }$\mathbf{\rightarrow}$
+	\end{flushright}
+	\newpage}
+
+% ------------------ Exercices : \exo et \pb --------------------------------
+% Crée un exo (ou un pb) valant #1 points (si #1=0 alors correction)
+% Les exos sont numérotés automatiquement
+% 
+\newcounter{numexo}
+\setcounter{numexo}{0}
+
+\newcommand\exo[1]{\addtocounter{numexo}{1}\par\vspace{1cm}\textbf{\textsc{Exercice \thenumexo}}%
+	\ifthenelse{\equal{#1}{0}}{}{ \hfill \textbf{#1 points}}\medskip\par}
+	
+\newcommand\pb[1]{\par\vspace{1cm}\textbf{\textsc{Problème}}%
+	\ifthenelse{\equal{#1}{0}}{}{\hfill \textbf{#1 points}}\medskip\par}
+
+% ------------------ Cartouche : \makecartouche -------------------------------
+% {Titre}{{Classe}{Durée}{Calculatrice autorisée}{Ligne pour le nom}
+
+\newcommand{\makecartoucheDsNOM}[4]{
+	\ifthenelse{\boolean{#4}}{\newcommand{\calculatrice}{est }}{\newcommand{\calculatrice}{\textbf{n'est pas }}}
+	\begin{center}\begin{tabular}{|p{.82\linewidth}|p{.15\linewidth}|}
+	\hline
+	#3 & \multicolumn{1}{r|}{#2}\\
+	%~ \multicolumn{2}{|l|}{#3}\\
+	% ----- Nom Prénom ----
+	\hline
+%	\textbf{\textsc{Nom - Prénom :}} & \textbf{\textsc{Classe :}}\\
+	\multicolumn{2}{|l|}{\textbf{\textsc{Nom - Prénom :}}}\\
+	\multicolumn{2}{|l|}{}\\
+	\multicolumn{2}{|l|}{}\\
+	% ---------------------
+	\hline
+	\multicolumn{2}{|c|}{}\\
+	\multicolumn{2}{|c|}{\textbf{\LARGE{#1}}}\\
+	\multicolumn{2}{|c|}{}\\
+	\hline
+	\multicolumn{2}{|c|}{\textit{La calculatrice \calculatrice autorisée. Aucun autre document n'est autorisé.}} \\
+	\hline
+	\end{tabular}\end{center}
+}
+
+\newcommand{\makecartoucheDsPASNOM}[4]{
+	\ifthenelse{\boolean{#4}}{\newcommand{\calculatrice}{est }}{\newcommand{\calculatrice}{\textbf{n'est pas }}}
+	\begin{center}\begin{tabular}{|p{.82\linewidth}|p{.15\linewidth}|}
+	\hline
+	#3 & \multicolumn{1}{r|}{#2}\\
+	\hline
+	\multicolumn{2}{|c|}{}\\
+	\multicolumn{2}{|c|}{\textbf{\LARGE{#1}}}\\
+	\multicolumn{2}{|c|}{}\\
+	\hline
+	\multicolumn{2}{|c|}{\textit{La calculatrice \calculatrice autorisée. Aucun autre document n'est autorisé.}} \\
+	\hline
+	\end{tabular}\end{center}
+}
+
+\newcommand{\makecartoucheDS}[5]{\ifthenelse{\boolean{#5}}{\makecartoucheDsNOM{#1}{#2}{#3}{#4}}{\makecartoucheDsPASNOM{#1}{#2}{#3}{#4}}}
+
+\newcommand{\makecartoucheCours}[2]{
+	\begin{center}\begin{tabular}{|p{.82\linewidth}|p{.15\linewidth}|}
+	\hline
+	 & \multicolumn{1}{r|}{#2}\\
+	\hline
+	\multicolumn{2}{|c|}{}\\
+	\multicolumn{2}{|c|}{\textbf{\LARGE{#1}}}\\
+	\multicolumn{2}{|c|}{}\\
+	\hline
+	\end{tabular}\end{center}
+}
+
+
+% --------------------------------- Pages de cahier ------------------------------
+
+% --------------------- \cahierseyes ---------------------------------------------
+% Crée une page de cahier réglures seyes (8mm et interlignes) de #1 lignes
+%
+
+% Périmé
+\newcounter{dimcahierX}
+\setcounter{dimcahierX}{16}
+\newcounter{dimcahiersY}
+\newcommand\cahierseyes[1]{
+	\vspace*{-1cm}
+	\setcounter{dimcahiersY}{#1*\real{-0.8}}
+	\begin{center}
+	\begin{tikzpicture}
+		\tkzInit[xmin=0,xmax=\thedimcahierX,ymin=\thedimcahiersY,ymax=0]
+		\tkzGrid[xstep=0.8, ystep=0.8,sub, subxstep=0.8, subystep=0.2]
+	\end{tikzpicture}
+	\end{center}
+}
+
+% Bon
+\newcounter{DimcahierX}
+\setcounter{DimcahierX}{16}
+\newcounter{DimcahierY}
+\newcommand\Cahierseyes[1]{
+%	\vspace*{-0.8cm}
+	\setcounter{DimcahierY}{#1}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw[xstep=0.8cm, ystep=0.2cm, color=lightgray] (0,0) grid (\theDimcahierX, 0.8*\theDimcahierY);
+	\draw[xstep=0.8cm, ystep=0.8cm, color=gray] (0,0) grid (\theDimcahierX, 0.8*\theDimcahierY);
+	\end{tikzpicture}
+	\end{center}
+}
+
+
+% --------------------- \cahierpetca ---------------------------------------------
+% Crée une page de cahier petits carreaux (5mm) de #1 lignes
+%
+
+%Périmé
+\newcounter{dimcahierpcY}
+\newcommand\cahierpetca[1]{
+	\setcounter{dimcahierpcY}{#1*\real{0.5}}
+	\vspace*{-1cm}
+	\begin{center}
+	\begin{tikzpicture}
+		\tkzInit[xmin=0,xmax=\thedimcahierX,ymin=0,ymax=\thedimcahierpcY]
+		\tkzGrid[xstep=0.5, ystep=0.5]
+	\end{tikzpicture}
+	\end{center}
+}
+
+%Bon
+\newcounter{DimcahierpcY}
+\newcommand\Cahierpetca[1]{
+	\setcounter{DimcahierpcY}{#1}
+	%\vspace*{-1cm}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw[xstep=0.5cm, ystep=0.5cm, color=gray] (0,0) grid (\theDimcahierX, 0.5*\theDimcahierpcY);
+	\end{tikzpicture}
+	\end{center}
+}
+
+
+
+% --------------------- \cahierligne ---------------------------------------------
+% Crée une page de cahier avec juste des lignes (10mm) de #1 lignes
+%
+\newcounter{dimcahierlY}
+\newcounter{miX}
+\setcounter{miX}{\thedimcahierX*\real{0.5}}
+\newcommand\cahierligne[1]{
+	\setcounter{dimcahierlY}{#1-1}
+	\begin{center}
+	\begin{tikzpicture}
+		\tkzInit[xmin=0,xmax=\thedimcahierX,ymin=0,ymax=#1]
+		\foreach \k in {0,1,...,\thedimcahierlY}
+		{\draw[color=gray] (0,\k)--(16,\k);}
+		\draw[color=lightgray] (\themiX,0)--(\themiX,#1);
+	\end{tikzpicture}
+	\end{center}
+}
+
+% --------------------- \cahier ---------------------------------------------
+% Par défaut, réglures seyes
+%
+\newcommand\cahier[1]{\Cahierseyes{#1}}
+
+% --------------------- \papiermilli ----------------------------------------
+% Crée une feuille de papier millimétré de dimensions x=#1 par y=#2
+%
+\newcommand\papiermilli[2]{
+	\begin{center}
+	\begin{tikzpicture}
+		\tkzInit[xmin=0,xmax=#1,ymin=0,ymax=#2]
+		\tkzGrid[color=lightgray,xstep=1, ystep=1,sub, subxstep=0.1, subystep=0.1]
+		\tkzGrid[color=gray,xstep=1, ystep=1,sub, subxstep=0.5, subystep=0.5]
+		\tkzGrid[color=darkgray,xstep=5, ystep=5]
+	\end{tikzpicture}
+	\end{center}
+}
+% --------------------- \systlin ----------------------------------------
+% Système linéaire 2*2
+% Paramètres : a, ±b, c, a', ±b', c'
+%
+\newcommand{\systlin}[6]{
+$\left\lbrace
+\begin{array}{r @{x~} l @{y~=~} l l}
+#1&#2&#3&(L_1)\\
+#4&#5&#6&(L_2)
+\end{array}
+\right.$
+}
+
+
+% ---------------------------------------------------------------------------
+%				Formatage
+% ---------------------------------------------------------------------------
+
+% --------------------- Chapitres -------------------------------------------
+\addto\captionsfrench{\renewcommand{\chaptername}{~Chapitre}}
+
+\titleformat{\chapter}[frame]
+	{\vspace*{-2cm}\titleline[r]{}\normalfont}
+	{\filright\texttt\LARGE{~\chaptername~\thechapter~}}
+	{5pt}
+	{\Huge\bfseries\scshape\filcenter}
+	{}
+	
+%~ \titleformat{\chapter}[display]
+%~ {\normalfont\Large\filcenter}
+%~ {\titlerule[1pt]%
+ %~ \vspace{1pt}%
+ %~ \titlerule
+ %~ \vspace{1pc}%
+ %~ \LARGE{\chaptertitlename} \thechapter}
+%~ {1pc}
+%~ {\titlerule
+ %~ \vspace{1pc}%
+ %~ \Huge\bfseries}
+
+% --------------------  Divisions logiques ----------------------------------
+
+\setcounter{secnumdepth}{3} \setcounter{tocdepth}{3}
+\renewcommand{\thepart}{Partie \arabic{part}}
+\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+
+% -------------------- Numérotations des questions et puces -----------------
+
+%\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+%\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+%\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+%\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+%\renewcommand{\labelenumiii}{\textbullet}
+
+\AtBeginDocument{\renewcommand{\labelitemi}{\textbullet}}
+\AtBeginDocument{\renewcommand{\labelitemii}{\textbullet}}
+
+
+% % -------------------- Mise en page --------------------------------------- 
+
+\usepackage[francais]{layout}
+%\usepackage[a4paper]{geometry}
+
+
+% % -------------------- Réglages divers------------------------------------- 
+
+\everymath{\displaystyle\everymath{}}		% Toutes les équations en mode \displaystyle
+\DecimalMathComma							% Virgule comme séparateur décimal
+\frenchspacing								% Espaces français
+\setlength{\parindent}{0pt}					% Pas d'indentation de paragraphes
+
+\colorlet{gris1}{black!20}
+\colorlet{gris2}{black!30}
+
+% ----------------------------------------------------------------------------
+
+% =============================================================================
+% 								FIN PREAMBULE
+% =============================================================================

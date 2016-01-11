@@ -1,0 +1,47 @@
+\input{./macros/preambule_macros}
+\input{./macros/preambule_book}
+
+\lfoot[\thepage]{}
+\cfoot{\textsc{Bataille navale}}
+\rfoot[]{\thepage}
+
+
+\begin{document}
+
+\title{\fbox{\Huge{\textsc{Bataille navale}}}\\ \medskip \medskip \large{Projet de validation ISN 2016\\de l'académie de Lyon}}
+%\author{\textsc{Frédéric Muller\\Lionel Reboul}}
+\author{\textsc{Frédéric Muller} - \texttt{maths.muller@gmail.com}\\ \textsc{Lionel Reboul}\\ \\
+   }
+\date{13 mars 2016}
+%\date{\vfill \flushleft \textit{Description}}
+
+\maketitle
+
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\setcounter{tocdepth}{1}
+\tableofcontents
+\thispagestyle{fancy}
+
+%\chapter{Présentation du projet}
+\input{./chapitres/chap_presentation}
+
+%\chapter{Noyau du programme}
+\input{./chapitres/chap_noyau}
+
+%\chapter{Affichage console}
+\input{./chapitres/chap_console}
+
+%\chapter{Interface graphique}
+\input{./chapitres/chap_gui}
+
+%\chapter{Guide des modules utilisés}
+\input{./chapitres/chap_modules}
+
+%\chapter{Point de vue pédagogique}
+\input{./chapitres/chap_pedagogique}
+
+%\chapter{Conclusion}
+\input{./chapitres/chap_conclusion}
+
+\end{document}

@@ -1,0 +1,15 @@
+\select@language {french}
+\select@language {french}
+\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation du projet}{5}
+\contentsline {section}{\numberline {1}Le jeu de la bataille navale}{5}
+\contentsline {section}{\numberline {2}Objectifs du projet}{5}
+\contentsline {chapter}{\numberline {2}Noyau du programme}{7}
+\contentsline {section}{\numberline {1}Le module bn\_grille.py}{7}
+\contentsline {section}{\numberline {2}Le module bn\_joueur.py}{7}
+\contentsline {section}{\numberline {3}Algorithme de r\IeC {\'e}solution}{7}
+\contentsline {section}{\numberline {4}Autres modules du projet}{7}
+\contentsline {chapter}{\numberline {3}Affichage console}{9}
+\contentsline {chapter}{\numberline {4}Interface graphique}{11}
+\contentsline {chapter}{\numberline {5}Guide des modules utilis\IeC {\'e}s}{13}
+\contentsline {chapter}{\numberline {6}Point de vue p\IeC {\'e}dagogique}{15}
+\contentsline {chapter}{\numberline {7}Conclusion}{17}

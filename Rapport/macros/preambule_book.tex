@@ -1,0 +1,40 @@
+
+% -------------------- Cours --------------------
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi)}
+\renewcommand{\theenumii}{\alph{enumii}}
+\renewcommand{\labelenumii}{\theenumii)}
+\renewcommand{\labelenumiii}{\textbullet}
+
+\setlength{\textwidth}{156truemm}  %largeur de texte
+\setlength{\textheight}{220truemm} %longueur de texte
+\setlength{\topmargin}{-0.8cm} %début de text
+\setlength{\oddsidemargin}{2truemm}
+\setlength{\evensidemargin}{2truemm}
+\setlength{\baselineskip}{.2cm} 
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\bsc{\chaptername~\thechapter{} : #1}}{}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand \footrulewidth{.2pt}
+\lhead[\textsl{\leftmark}]{}%{\textsl{\rightmark}}
+\rhead[]{\textsl{\leftmark}}
+%\lfoot{\texttt{maths.muller@gmail.com}}
+%\cfoot{\textsc{}}
+%\rfoot{\thepage/\pageref{LastPage}}
+
+\newtheorem{Th}{Théorème}[chapter]
+\newtheorem{Dem}{Démonstration}[chapter]
+\newtheorem{DemBac}{Démonstration (démo Bac)}[chapter]
+\newtheorem{Exmp}{Exemple}[chapter]
+\newtheorem{Rem}{Remarque}[chapter]
+\newtheorem{Def}{Définition}[chapter]
+\newtheorem{Nota}{Notations}[chapter]
+\newtheorem{Prop}{Propriété}[chapter]
+\newtheorem{Exo}{Exercice}[chapter]
+\newtheorem{App}{Application}[chapter]
+\newtheorem{Cons}{Conséquence}[chapter]
+\newtheorem{Ex}{Exemple}[chapter]
+\newtheorem{Algo}{Algorithme}[chapter]
+\newtheorem{Lemme}{Lemme}[chapter]
