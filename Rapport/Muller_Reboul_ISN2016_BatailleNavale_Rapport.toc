@@ -3,11 +3,14 @@
 \contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation du projet}{5}
 \contentsline {section}{\numberline {1}Le jeu de la bataille navale}{5}
 \contentsline {section}{\numberline {2}Objectifs du projet}{5}
+\contentsline {section}{\numberline {3}Liste des modules du projet}{6}
 \contentsline {chapter}{\numberline {2}Noyau du programme}{7}
 \contentsline {section}{\numberline {1}Le module bn\_grille.py}{7}
-\contentsline {section}{\numberline {2}Le module bn\_joueur.py}{7}
-\contentsline {section}{\numberline {3}Algorithme de r\IeC {\'e}solution}{7}
-\contentsline {section}{\numberline {4}Autres modules du projet}{7}
+\contentsline {subsection}{\numberline {1.1}La classe Bateau}{7}
+\contentsline {subsection}{\numberline {1.2}La classe Grille}{7}
+\contentsline {section}{\numberline {2}Le module bn\_joueur.py}{8}
+\contentsline {section}{\numberline {3}Algorithme de r\IeC {\'e}solution}{8}
+\contentsline {section}{\numberline {4}Autres modules du projet}{8}
 \contentsline {chapter}{\numberline {3}Affichage console}{9}
 \contentsline {chapter}{\numberline {4}Interface graphique}{11}
 \contentsline {chapter}{\numberline {5}Guide des modules utilis\IeC {\'e}s}{13}

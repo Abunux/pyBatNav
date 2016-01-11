@@ -1,6 +1,41 @@
 \chapter{Présentation du projet}
 
 \section{Le jeu de la bataille navale}
+Le jeu de la bataille navale est un jeu qui se joue à deux joueurs.\\
+Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, chacun son tour, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{}. Nous avons pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre l'algorithme de résolution un petit peu plus intéressant.\\
+Les bateaux peuvent être placés horizontalement ou verticalement et deux bateaux ne peuvent pas se trouver sur des cases adjacentes.
+
+Les règles retenues dans ce projet sont les règles du jeu original, mais elles peuvent être facilement modifiées, à savoir que la grille est un carré 10 cases de côté et la composition de la flotte est la suivante :
+\begin{itemize}
+\item Un bateau de 5 cases
+\item Un bateau de 4 cases
+\item Deux bateaux de 3 cases
+\item Un bateau de 2 cases
+\end{itemize}
+
+
+
+Notons tout de suite quelques implications stratégiques de ces règles qui seront utilisées dans l'algorithme de résolution :
+\begin{itemize}
+\item Le plus petit bateau étant de taille 2, il suffit de ne tirer que sur une cases sur 2 (imaginez les cases noires d'un damier) lors de la recherche d'un bateau.
+\item Une fois qu'un bateau a été coulé (soit parce que c'est le plus grand de la liste, soit parce que les cases adjacentes à ses extrémités ont été manquées), on peut éliminer de la recherche toutes ses cases adjacentes.
+\end{itemize}
 
 \section{Objectifs du projet}
+Nos objectifs ont été les suivants :
+\begin{itemize}
+\item Définir une structure de données pour modéliser la grille de jeu, ainsi que les joueurs.
+\item Implémenter un algorithme de résolution par l'ordinateur qui soit le plus performant possible (en nombre de coups ainsi qu'en temps de résolution d'un grille)et en faire une étude statistique complète.
+\item Avoir une interface permettant de jouer contre l'ordinateur. Cette interface a été réalisée d'un part en mode console avec un affichage grâce à des caractères graphiques (en unicode) et, d'autre part, avec le module tkinter. 
 
+\section{Liste des modules du projet}
+Afin de faciliter les développement et la maintenance du projet, celui-ci a été décomposé en un certain nombre de modules :
+\begin{itemize}
+\item \texttt{main.py} : le programme principal. Il permet, via un argument \texttt{--interface} en ligne de commande de choisir l'interface de jeu (\texttt{console} ou \texttt{tkinter}).
+\item \texttt{bn\_utiles.py} : contient quelques fonctions utiles ainsi que les constantes du projet.
+\item \texttt{bn\_grille.py} : gère la grille et les bateaux.
+\item \texttt{bn\_joueur.py} : gère les joueurs et implémente l'algorithme de résolution.
+\item \texttt{bn\_console.py} : toute l'interface en mode console, et l'étude statistique de l'algorithme de résolution.
+\end{itemize}
+
+\end{itemize}
