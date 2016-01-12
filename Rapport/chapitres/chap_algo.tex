@@ -6,11 +6,11 @@ L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)
 \subsection{Phase de tir en aveugle}
 Lors de cette phase, l'algorithme va tirer sur la case qui peut contenir le plus de bateau comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle}.
 
-C'est la méthode la plus efficace que nous ayons trouvé. Néanmoins nous avons fait d'autres essais avec d'autres méthodes mais celles-ci étaient beaucoup moins performantes, que ce soit aussi bien en nombre de coup pour la résolution qu'en temps :
+C'est la méthode la plus efficace que nous ayons trouvée. Néanmoins nous avons fait d'autres essais avec d'autres méthodes mais celles-ci étaient beaucoup moins performantes, que ce soit aussi bien en nombre de coups pour la résolution, qu'en temps :
 \begin{itemize}
 \item La première méthode consiste à tout simplement tirer au hasard sur une case vide.
 \item On peut raffiner la méthode précédente en ne tirant que sur une case sur deux (le plus petit bateau étant de taille 2, chaque bateau tombe obligatoirement sur une case noire du damier).
-\item Nous avons aussi essayé de déterminer la case la plus probable en créant un échantillon d'un certain nombre $n$ de répartitions aléatoires des bateaux restant sur le grille et en comptant, pour chaque case, le nombre de bateaux la contenant. Les performances en nombre d'essais étaient satisfaisantes, mais le temps de calcul beaucoup trop élevé. Voici un petit tableau récapitulatif de quelques essais avec différents paramètres :
+\item Nous avons aussi essayé de déterminer la case la plus probable en créant un échantillon d'un certain nombre $n$ de répartitions aléatoires des bateaux restant sur le grille et en comptant, pour chaque case, le nombre de bateaux la contenant. Les performances en nombre d'essais étaient satisfaisantes, mais le temps de calcul beaucoup trop élevé. Voici un tableau récapitulatif de quelques essais avec différents paramètres :
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
@@ -102,7 +102,11 @@ Une fois que la direction du bateau est déterminée, à chaque fois qu'on touch
 Enfin on s'arrête lorsque la file d'attente est vide (on a manqué les deux extrémités) ou lorsque la taille du bateau touché est égale à la plus grande taille du bateau sur la grille et, dans ce cas, on vide la file d'attente. La méthode \texttt{Ordi.liste\_touches} permet de garder la trace des cases touchées sur ce bateau et d'en déterminer le nombre de cases.
 
 Au prochain tour, on sait qu'un bateau vient d'être coulé lorsque la file d'attente est vide et \texttt{Ordi.liste\_touches} ne l'est pas. Dans ce cas on marque ses cases adjacentes comme impossibles, on l'enlève de la liste des bateaux à chercher et on vide \texttt{Ordi.liste\_touches}.
-\subsection{Algorithme complet}
+%\subsection{Algorithme complet}
 
 \section{Étude statistique}
- 
+Des tests de l'algorithme de résolution sur $n=1\,000\,000$ de parties donnent le résultat suivants, obtenus avec les modules \texttt{numpy} et \texttt{matplotlib} :
+
+\begin{center}
+\fbox{\includegraphics[scale=0.8]{./media/distrib_1000000.png}}
+\end{center}

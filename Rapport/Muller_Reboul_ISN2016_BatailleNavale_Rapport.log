@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  12 JAN 2016 18:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  12 JAN 2016 19:58
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1568,9 +1568,9 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 10.5pt on input line 120.
 
-Overfull \hbox (5.28261pt too wide) in paragraph at lines 222--223
-\T1/futs/m/n/12 teaux. Les mé-thodes \T1/lmtt/m/n/12 Grille.get_taille_max(self
-) \T1/futs/m/n/12 et \T1/lmtt/m/n/12 Grille.get_taille_min(self)
+Overfull \hbox (4.60515pt too wide) in paragraph at lines 221--222
+\T1/lmtt/m/n/12 sorted(probas_liste, key=lambda proba: proba[1], reverse = True
+) \T1/futs/m/n/12 et que l'on
  []
 
 
@@ -1580,20 +1580,26 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [10]
-Overfull \hbox (40.06673pt too wide) in paragraph at lines 225--226
+Overfull \hbox (5.28261pt too wide) in paragraph at lines 224--225
+\T1/futs/m/n/12 teaux. Les mé-thodes \T1/lmtt/m/n/12 Grille.get_taille_max(self
+) \T1/futs/m/n/12 et \T1/lmtt/m/n/12 Grille.get_taille_min(self)
+ []
+
+
+Overfull \hbox (40.06673pt too wide) in paragraph at lines 227--228
 \T1/futs/m/n/12 tance de la classe \T1/lmtt/m/n/12 Bateau\T1/futs/m/n/12 ) aprè
 s avoir testé sa va-li-dité via la mé-thode \T1/lmtt/m/n/12 Grille.test_bateau(
 self,
  []
 
 
-Overfull \hbox (12.94418pt too wide) in paragraph at lines 227--228
+Overfull \hbox (12.94418pt too wide) in paragraph at lines 229--230
 []\T1/futs/m/n/12 Pour ini-tia-li-ser une flotte aléa-toire, c'est la mé-thode 
 \T1/lmtt/m/n/12 Grille.init_bateaux_alea(self)
  []
 
 )
-Overfull \hbox (3.27377pt too wide) in paragraph at lines 248--34
+Overfull \hbox (3.27377pt too wide) in paragraph at lines 250--34
 []\T1/futs/m/n/12 L'attribut \T1/lmtt/m/n/12 Grille.somme_taille\T1/futs/m/n/12
  , ini-tia-lisé dès le dé-part avec la classe \T1/lmtt/m/n/12 Grille\T1/futs/m/
 n/12 , contient
@@ -1617,6 +1623,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 ~Chapitre 3.
+
+Overfull \hbox (19.96945pt too wide) in paragraph at lines 3--4
+[]\T1/futs/m/n/12 La ges-tion des joueurs et du dé-rou-le-ment de la par-tie se
+ font dans le mo-dule \T1/lmtt/m/n/12 bn_joueur.py
+ []
+
 ) (./chapitres/chap_algo.tex [13]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1642,9 +1654,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [16]
-Overfull \hbox (40.53526pt too wide) in paragraph at lines 104--105
+Overfull \hbox (40.53526pt too wide) in paragraph at lines 104--106
 \T1/futs/m/n/12 comme im-pos-sibles, on l'en-lève de la liste des ba-teaux à ch
 er-cher et on vide \T1/lmtt/m/n/12 Ordi.liste_touches\T1/futs/m/n/12 . 
+ []
+
+<./media/distrib_1000000.png, id=80, 578.16pt x 433.62pt>
+File: ./media/distrib_1000000.png Graphic file (type png)
+
+<use ./media/distrib_1000000.png>
+Package pdftex.def Info: ./media/distrib_1000000.png used on input line 111.
+(pdftex.def)             Requested size: 462.52863pt x 346.89647pt.
+
+Overfull \hbox (25.46562pt too wide) in paragraph at lines 111--112
+ [] 
  []
 
 ) (./chapitres/chap_console.tex
@@ -1654,7 +1677,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17]
+[17 <./media/distrib_1000000.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1713,10 +1736,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 AED: lastpage setting LastPage
 [27] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 23967 strings out of 493304
- 470208 string characters out of 6139871
+ 23974 strings out of 493304
+ 470366 string characters out of 6139871
  664487 words of memory out of 5000000
- 26687 multiletter control sequences out of 15000+600000
+ 26691 multiletter control sequences out of 15000+600000
  154470 words of font info for 145 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  51i,12n,71p,690b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1730,10 +1753,10 @@ opia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (27 pages, 1
-29396 bytes).
+62017 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
+ 147 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 words of extra memory for PDF output out of 10000 (max. 10000000)
 

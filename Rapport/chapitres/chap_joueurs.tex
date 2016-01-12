@@ -1,2 +1,21 @@
 \chapter{Gestion des joueurs et de la partie}
 
+La gestion des joueurs et du déroulement de la partie se font dans le module \texttt{bn\_joueur.py} mais les classes \texttt{Joueur} et \texttt{Partie} sont très minimales et seront largement héritées dans la suite (que ce soit par la classe \texttt{Ordi} qui implémente l'algorithme de résolution, que pour les différentes interfaces (console et graphique)).
+
+\section{La classe Joueur}
+Lors de son initialisation, on peut donner un nom au joueur et on initialise sa grille de jeu (\texttt{Joueur.grille\_joueur}), la grille de l'adversaire (\texttt{Joueur.grille\_adverse}) ainsi que sa grille de suivi des coups (\texttt{Joueur.grille\_suivi}).
+
+On en profite aussi pour initialiser quelques variables d'état comme la liste des coups déjà joués et le nombre de coups joués.
+
+La méthode principale de cette classe est \texttt{Joueur.tire(self, case)} qui permet de tirer sur une case et d'avoir en retour le résultat du coup (y compris si le coup n'est pas valide).
+
+Notons l'attribut \texttt{Joueur.messages} qui est une liste contenant différents messages d'information (comme par exemple "A2 : Touché", ou encore les messages indiquant comment l'algorithme résout la grille). Lors de l'affichage des messages, il suffit de vider cette liste grâce à des \texttt{pop(0)} successifs en affichant chaque élément pour avoir un suivi.
+
+\section{La classe Partie}
+Ici encore, un squelette et des méthodes très générales pour une classe qui sera héritée dans les interfaces.
+
+Elle se contente de définir l'adversaire (notons l'instruction \begin{center}
+\texttt{isinstance(self.adversaire, Ordi)}
+\end{center} qui permet de savoir que ce dernier est l'ordinateur), de placer les bateaux du joueur et de récupérer les paramètres de l'adversaire (sa grille et le coup qu'il vient de jouer).
+
+À la base nous voulions faire un mode de jeu en réseau et c'est ici que ce serait trouvées les instructions de communication.
