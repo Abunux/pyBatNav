@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  12 JAN 2016 07:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  12 JAN 2016 12:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1527,18 +1527,29 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [8]
-Overfull \hbox (3.72664pt too wide) in paragraph at lines 75--77
+Overfull \hbox (3.72664pt too wide) in paragraph at lines 74--76
 \T1/futs/m/n/12 Par exemple : \T1/lmtt/m/n/12 {5:[((0,0), (1,0)), ((0,0), (0,1)
 ), ((1,0), (1,0)),...],
  []
 
 
-Overfull \hbox (5.4464pt too wide) in paragraph at lines 88--89
+Overfull \hbox (5.4464pt too wide) in paragraph at lines 87--88
 \T1/futs/m/n/12 teaux, ainsi que le nombre de ba-teaux qu'elle contient. L'al-g
 o-rithme est très simple : d'abord
  []
 
-) (./chapitres/chap_joueurs.tex
+
+Overfull \hbox (52.03932pt too wide) in paragraph at lines 90--91
+\T1/futs/m/n/12 sant du nombre de ba-teaux pos-sibles. C'est le rôle de la mé-t
+hode \T1/lmtt/m/n/12 Grille.case_max_touchee(self,
+ []
+
+
+Overfull \hbox (19.3282pt too wide) in paragraph at lines 92--94
+\T1/futs/m/n/12 ment la même chose). Pour chaque taille de ba-teau à cou-ler po
+s-sible conte-nant \T1/lmtt/m/n/12 case_touchee
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1546,17 +1557,56 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9]
+LaTeX Font Info:    Try loading font information for T1+phv on input line 118.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
+File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
+)
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 118.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.5pt on input line 118.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 10.5pt on input line 120.
+
+Overfull \hbox (5.28261pt too wide) in paragraph at lines 222--223
+\T1/futs/m/n/12 teaux. Les mé-thodes \T1/lmtt/m/n/12 Grille.get_taille_max(self
+) \T1/futs/m/n/12 et \T1/lmtt/m/n/12 Grille.get_taille_min(self)
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10
+[10]
+Overfull \hbox (40.06673pt too wide) in paragraph at lines 225--226
+\T1/futs/m/n/12 tance de la classe \T1/lmtt/m/n/12 Bateau\T1/futs/m/n/12 ) aprè
+s avoir testé sa va-li-dité via la mé-thode \T1/lmtt/m/n/12 Grille.test_bateau(
+self,
+ []
 
-]
-~Chapitre 3.
-) (./chapitres/chap_algo.tex) (./chapitres/chap_console.tex [11]
+
+Overfull \hbox (12.94418pt too wide) in paragraph at lines 227--228
+[]\T1/futs/m/n/12 Pour ini-tia-li-ser une flotte aléa-toire, c'est la mé-thode 
+\T1/lmtt/m/n/12 Grille.init_bateaux_alea(self)
+ []
+
+)
+Overfull \hbox (3.27377pt too wide) in paragraph at lines 248--34
+[]\T1/futs/m/n/12 L'attribut \T1/lmtt/m/n/12 Grille.somme_taille\T1/futs/m/n/12
+ , ini-tia-lisé dès le dé-part avec la classe \T1/lmtt/m/n/12 Grille\T1/futs/m/
+n/12 , contient
+ []
+
+(./chapitres/chap_joueurs.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1566,8 +1616,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [12
 
 ]
-~Chapitre 4.
-) (./chapitres/chap_gui.tex [13]
+~Chapitre 3.
+) (./chapitres/chap_algo.tex [13]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1577,19 +1627,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [14
 
 ]
-~Chapitre 5.
-) (./chapitres/chap_modules.tex [15]
+~Chapitre 4.
+
+Overfull \hbox (8.68042pt too wide) in paragraph at lines 9--10
+\T1/futs/m/n/12 d'autres es-sais avec d'autres mé-thodes mais celles-ci étaient
+ beau-coup moins per-for-mantes,
+ []
+
+) (./chapitres/chap_console.tex [15]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16
+[16]
+~Chapitre 5.
+) (./chapitres/chap_gui.tex [17
 
 ]
-~Chapitre 6.
-) (./chapitres/chap_pedagogique.tex [17]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1599,8 +1655,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [18
 
 ]
-~Chapitre 7.
-) (./chapitres/chap_conclusion.tex [19]
+~Chapitre 6.
+) (./chapitres/chap_modules.tex [19]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1610,18 +1666,40 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [20
 
 ]
+~Chapitre 7.
+) (./chapitres/chap_pedagogique.tex [21]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[22
+
+]
 ~Chapitre 8.
+) (./chapitres/chap_conclusion.tex [23]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[24
+
+]
+~Chapitre 9.
 ) 
 AED: lastpage setting LastPage
-[21] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) ) 
+[25] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 23855 strings out of 493304
- 468209 string characters out of 6139871
- 654454 words of memory out of 5000000
- 26582 multiletter control sequences out of 15000+600000
- 148850 words of font info for 141 fonts, out of 8000000 for 9000
+ 23967 strings out of 493304
+ 470208 string characters out of 6139871
+ 664487 words of memory out of 5000000
+ 26687 multiletter control sequences out of 15000+600000
+ 154470 words of font info for 145 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 51i,11n,71p,689b,619s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,11n,71p,690b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/
 texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
 ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb
@@ -1629,12 +1707,13 @@ ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb
 ist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/ut
 opia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a
-.pfb>
-Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (21 pages, 1
-07595 bytes).
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (25 pages, 1
+24377 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 71 compressed objects within 1 object stream
+ 138 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -371,7 +371,7 @@ class Grille(object):
 				return False
 		return True
 		
-	def make_bateau_alea(self, taille):
+	def make_bateau_alea0(self, taille):
 		"""Crée un bateau aléatoire (pas forcément valide)"""
 		(x,y) = rand.choice(self.vides)
 		dir_possibles = []
@@ -387,7 +387,7 @@ class Grille(object):
 		bateau = Bateau(taille, (x,y), sens)
 		return bateau
 		
-	def add_bateau_alea(self, taille, nb_essais_max=20):
+	def add_bateau_alea0(self, taille, nb_essais_max=20):
 		"""Ajoute un bateau aléatoire (valide)"""
 		# Essaie de placer un bateau aléatoire nb_essais_max fois
 		# et quitte s'il n'y arrive pas, pour éviter une situation de blocage
@@ -403,7 +403,7 @@ class Grille(object):
 		else :
 			return False
 	
-	def add_bateau(self,bateau):
+	def add_bateau(self, bateau):
 		"""Ajoute un bateau dans la grille et met à jour les états des cases adjacentes"""
 		if self.test_bateau(bateau):
 			for case in bateau.cases :

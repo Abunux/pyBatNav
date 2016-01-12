@@ -1,0 +1,41 @@
+\chapter{Algorithme de résolution}
+
+\section{Description de l'algorithme}
+L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)} du module \texttt{bn\_joueur.py} (qui hérite donc de la classe \texttt{Joueur}. Il fonctionne en deux temps : dans un premier temps une phase de tir en aveugle et, une fois qu'une case a été touchée, une phase de tir ciblé jusqu'à ce que le bateau soit coulé.
+
+\subsection{Phase de tir en aveugle}
+Lors de cette phase, l'algorithme va tirer sur la case qui peut contenir le plus de bateau comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle}.
+
+C'est la méthode la plus efficace que nous ayons trouvé. Néanmoins nous avons fait d'autres essais avec d'autres méthodes mais celles-ci étaient beaucoup moins performantes, que ce soit aussi bien en nombre de coup pour la résolution qu'en temps :
+\begin{itemize}
+\item La première méthode consiste à tout simplement tirer au hasard sur une case vide.
+\item On peut raffiner la méthode précédente en ne tirant que sur une case sur deux (le plus petit bateau étant de taille 2, chaque bateau tombe obligatoirement sur une case noire du damier).
+\item Nous avons aussi essayé de déterminer la case la plus probable en créant un échantillon d'un certain nombre $n$ de répartitions aléatoires des bateaux restant sur le grille et en comptant, pour chaque case, le nombre de bateaux la contenant. Les performances en nombre d'essais étaient satisfaisantes, mais le temps de calcul beaucoup trop élevé. Voici un petit tableau récapitulatif de quelques essais avec différents paramètres :
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Taille des échantillons & 100 & 1\,000 & 10\,000 & 100\,000\\
+\hline
+Nombre de parties & 10\,000 & 10\,000 & 1\,000 & 100\\
+\hline
+Nombre de coups moyens & 43,68 & 43,30 & 42,72 & 42,63\\
+\hline
+Temps moyen par partie (en secondes) & 0,38 & 3,6 & 36,2 & 380\\
+\hline 
+\end{tabular}\\
+Temps mesurés sur un processeur Intel Core i7 4800-MQ à 2,7 GHz
+\end{center}
+
+Au final, le temps de résolution étant linéaire en $n$ pour des performances négligeables, cette approche a été abandonnée.
+
+\item Enfin, une dernière approche consisterait à déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre astronomique de configurations, cette approche est irréalisable que ce soit en temps de calcul qu'en utilisation mémoire. 
+
+\end{itemize}  
+
+\subsection{Phase de tir ciblé}
+
+\subsection{Algorithme complet}
+
+\section{Étude statistique}
+ 
