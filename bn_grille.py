@@ -371,37 +371,7 @@ class Grille(object):
 				return False
 		return True
 		
-	def make_bateau_alea0(self, taille):
-		"""Crée un bateau aléatoire (pas forcément valide)"""
-		(x,y) = rand.choice(self.vides)
-		dir_possibles = []
-		if x >= taille-1 :
-			dir_possibles.append(BN_GAUCHE)
-		if x <= self.xmax - taille :
-			dir_possibles.append(BN_DROITE)
-		if y >= taille-1 :
-			dir_possibles.append(BN_HAUT)
-		if y <= self.ymax - taille :
-			dir_possibles.append(BN_BAS)
-		sens = rand.choice(dir_possibles)
-		bateau = Bateau(taille, (x,y), sens)
-		return bateau
-		
-	def add_bateau_alea0(self, taille, nb_essais_max=20):
-		"""Ajoute un bateau aléatoire (valide)"""
-		# Essaie de placer un bateau aléatoire nb_essais_max fois
-		# et quitte s'il n'y arrive pas, pour éviter une situation de blocage
-		valide = False
-		nb_essais = 0
-		while not valide and nb_essais < nb_essais_max:
-			nb_essais += 1
-			bateau = self.make_bateau_alea(taille)
-			valide = self.test_bateau(bateau)
-		if valide :
-			self.add_bateau(bateau)
-			return True
-		else :
-			return False
+	
 	
 	def add_bateau(self, bateau):
 		"""Ajoute un bateau dans la grille et met à jour les états des cases adjacentes"""
@@ -445,6 +415,7 @@ class Grille(object):
 	def affiche(self):
 		"""Affiche la grille"""
 		# Méthode à surcharger suivant l'interface
+		# --> À virer d'ici (juste temporaire pour tests)
 		pass
 		CAR_H=u'\u2500'		# Trait Horizontal
 		CAR_V=u'\u2502'		# Trait Vertical
@@ -508,7 +479,44 @@ class Grille(object):
 	# Poubelle 
 	# Méthodes plus utilisées (backup)
 	# --------------------------------
-	
+	#~ 
+	# --> Les deux méthodes suivantes sont appelées à disparaître
+	# --> Mais je les laisse pour des raisons temporaires de compatibilité
+	# --> Elles sont utilisées dans le placement aléatoire de bateaux du joueur
+	# --> Mais à terme il faudra une option pour placer directement tous les bateaux
+	# --> de manière aléatoire d'un coup avec init_bateaux_alea(self)
+	def make_bateau_alea(self, taille):
+		"""Crée un bateau aléatoire (pas forcément valide)"""
+		(x,y) = rand.choice(self.vides)
+		dir_possibles = []
+		if x >= taille-1 :
+			dir_possibles.append(BN_GAUCHE)
+		if x <= self.xmax - taille :
+			dir_possibles.append(BN_DROITE)
+		if y >= taille-1 :
+			dir_possibles.append(BN_HAUT)
+		if y <= self.ymax - taille :
+			dir_possibles.append(BN_BAS)
+		sens = rand.choice(dir_possibles)
+		bateau = Bateau(taille, (x,y), sens)
+		return bateau
+		
+	def add_bateau_alea(self, taille, nb_essais_max=20):
+		"""Ajoute un bateau aléatoire (valide)"""
+		# Essaie de placer un bateau aléatoire nb_essais_max fois
+		# et quitte s'il n'y arrive pas, pour éviter une situation de blocage
+		valide = False
+		nb_essais = 0
+		while not valide and nb_essais < nb_essais_max:
+			nb_essais += 1
+			bateau = self.make_bateau_alea(taille)
+			valide = self.test_bateau(bateau)
+		if valide :
+			self.add_bateau(bateau)
+			return True
+		else :
+			return False
+	#~ 
 		#~ 
 	#~ def make_bateau_alea_bak(self, taille):
 		#~ """Crée un bateau aléatoire (valide)"""

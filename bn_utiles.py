@@ -10,8 +10,6 @@
 # Version 0.1.0
 #
 
-import os
-
 #
 # Constantes ----------------------------------------------------------------------------------------------------
 #
@@ -24,21 +22,6 @@ BN_ALLDIR = (1,1)
 #
 # Fonctions utiles ----------------------------------------------------------------------------------------------
 #
-def clear():
-	"""Efface la console"""
-	# http://stackoverflow.com/questions/2084508/clear-terminal-in-python
-	if (os.name == 'nt'):    
-		c = os.system('cls')
-	else:
-		c = os.system('clear')
-	del c 
-
-def info(*args):
-	"""Affiche les infos de débug"""
-	print(*args)
-
-def enter_to_continue():
-	input("Appuyez sur Entrée pour continuer")
 
 def signe(x):
 	"""Retourne le signe de x"""

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  12 JAN 2016 19:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  12 JAN 2016 21:58
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1653,23 +1653,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16]
-Overfull \hbox (40.53526pt too wide) in paragraph at lines 104--106
-\T1/futs/m/n/12 comme im-pos-sibles, on l'en-lève de la liste des ba-teaux à ch
-er-cher et on vide \T1/lmtt/m/n/12 Ordi.liste_touches\T1/futs/m/n/12 . 
- []
-
-<./media/distrib_1000000.png, id=80, 578.16pt x 433.62pt>
+[16] <./media/distrib_1000000.png, id=80, 578.16pt x 433.62pt>
 File: ./media/distrib_1000000.png Graphic file (type png)
 
 <use ./media/distrib_1000000.png>
-Package pdftex.def Info: ./media/distrib_1000000.png used on input line 111.
-(pdftex.def)             Requested size: 462.52863pt x 346.89647pt.
-
-Overfull \hbox (25.46562pt too wide) in paragraph at lines 111--112
- [] 
- []
-
+Package pdftex.def Info: ./media/distrib_1000000.png used on input line 116.
+(pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 ) (./chapitres/chap_console.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1688,18 +1677,33 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 ~Chapitre 5.
-) (./chapitres/chap_gui.tex [19]
+
+Overfull \hbox (17.45668pt too wide) in paragraph at lines 6--7
+\T1/futs/m/n/12 cha-cun des ca-rac-tères uti-li-sés est sto-cké dans une consta
+nte (par exemple \T1/lmtt/m/n/12 CAR_CX=u'\u253C'
+ []
+
+
+Overfull \hbox (1.20267pt too wide) in paragraph at lines 17--18
+[]\T1/futs/m/n/12 La fonc-tion \T1/lmtt/m/n/12 boite(texte, prefixe, longueur) 
+\T1/futs/m/n/12 per-met d'en-ca-drer le texte dans une
+ []
+
+[19]) (./chapitres/chap_gui.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[20
+[20]
 
-]
-~Chapitre 6.
-) (./chapitres/chap_modules.tex [21]
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[21]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1709,8 +1713,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [22
 
 ]
-~Chapitre 7.
-) (./chapitres/chap_pedagogique.tex [23]
+~Chapitre 6.
+) (./chapitres/chap_modules.tex [23]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1720,8 +1724,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [24
 
 ]
-~Chapitre 8.
-) (./chapitres/chap_conclusion.tex [25]
+~Chapitre 7.
+) (./chapitres/chap_pedagogique.tex [25]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1731,18 +1735,29 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [26
 
 ]
+~Chapitre 8.
+) (./chapitres/chap_conclusion.tex [27]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[28
+
+]
 ~Chapitre 9.
 ) 
 AED: lastpage setting LastPage
-[27] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) ) 
+[29] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 23974 strings out of 493304
- 470366 string characters out of 6139871
- 664487 words of memory out of 5000000
- 26691 multiletter control sequences out of 15000+600000
- 154470 words of font info for 145 fonts, out of 8000000 for 9000
+ 23979 strings out of 493304
+ 470426 string characters out of 6139871
+ 664509 words of memory out of 5000000
+ 26694 multiletter control sequences out of 15000+600000
+ 158587 words of font info for 147 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 51i,12n,71p,690b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,12n,71p,890b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/
 texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
 ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb
@@ -1752,11 +1767,11 @@ pe1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/ut
 opia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (27 pages, 1
-62017 bytes).
+Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (29 pages, 1
+74824 bytes).
 PDF statistics:
- 147 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
+ 153 PDF objects out of 1000 (max. 8388607)
+ 95 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  114 words of extra memory for PDF output out of 10000 (max. 10000000)
 
