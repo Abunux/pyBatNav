@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  12 JAN 2016 12:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  12 JAN 2016 18:15
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1634,7 +1634,7 @@ Overfull \hbox (8.68042pt too wide) in paragraph at lines 9--10
  beau-coup moins per-for-mantes,
  []
 
-) (./chapitres/chap_console.tex [15]
+[15]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1642,10 +1642,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [16]
-~Chapitre 5.
-) (./chapitres/chap_gui.tex [17
+Overfull \hbox (40.53526pt too wide) in paragraph at lines 104--105
+\T1/futs/m/n/12 comme im-pos-sibles, on l'en-lève de la liste des ba-teaux à ch
+er-cher et on vide \T1/lmtt/m/n/12 Ordi.liste_touches\T1/futs/m/n/12 . 
+ []
 
-]
+) (./chapitres/chap_console.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[17]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1655,8 +1664,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [18
 
 ]
-~Chapitre 6.
-) (./chapitres/chap_modules.tex [19]
+~Chapitre 5.
+) (./chapitres/chap_gui.tex [19]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1666,8 +1675,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [20
 
 ]
-~Chapitre 7.
-) (./chapitres/chap_pedagogique.tex [21]
+~Chapitre 6.
+) (./chapitres/chap_modules.tex [21]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1677,8 +1686,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [22
 
 ]
-~Chapitre 8.
-) (./chapitres/chap_conclusion.tex [23]
+~Chapitre 7.
+) (./chapitres/chap_pedagogique.tex [23]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1688,10 +1697,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [24
 
 ]
+~Chapitre 8.
+) (./chapitres/chap_conclusion.tex [25]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[26
+
+]
 ~Chapitre 9.
 ) 
 AED: lastpage setting LastPage
-[25] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) ) 
+[27] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) ) 
 Here is how much of TeX's memory you used:
  23967 strings out of 493304
  470208 string characters out of 6139871
@@ -1699,7 +1719,7 @@ Here is how much of TeX's memory you used:
  26687 multiletter control sequences out of 15000+600000
  154470 words of font info for 145 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 51i,11n,71p,690b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,12n,71p,690b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/
 texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
 ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb
@@ -1709,11 +1729,11 @@ pe1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/ut
 opia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (25 pages, 1
-24377 bytes).
+Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (27 pages, 1
+29396 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
+ 144 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  109 words of extra memory for PDF output out of 10000 (max. 10000000)
 
