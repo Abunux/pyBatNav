@@ -309,7 +309,7 @@ class Grille(object):
 			return max(self.get_max_space(case, BN_HORIZONTAL), self.get_max_space(case, BN_VERTICAL))
 		
 		m = 1
-		# Comptage des cases libres à droite ou en bas
+		# Comptage des cases libres dans un seul sens
 		x = case[0]
 		y = case[1]
 		while self.test_case((x+direction[0], y+direction[1])):
@@ -317,7 +317,7 @@ class Grille(object):
 			x += direction[0]
 			y += direction[1]
 		if sens == 1 :
-			# Comptage des cases libres à gauche ou en haut
+			# Comptage des cases libres sur toute une direction
 			x = case[0]
 			y = case[1]
 			while self.test_case((x-direction[0], y-direction[1])):

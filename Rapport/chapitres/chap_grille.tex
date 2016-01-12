@@ -1,0 +1,79 @@
+\chapter{Gestion de la grille}
+
+La gestion de la grille et des bateaux est effectuée dans le module \texttt{bn\_grille.py}.
+
+\section{La classe Bateau}
+Cette classe, très minimaliste, définit un bateau par sa case de départ, sa taille et sa direction. Elle permet de récupérer :
+\begin{itemize}
+\item sa case de fin,
+\item la liste de ses cases occupées,
+\item la liste de ses cases adjacentes.
+\end{itemize}
+
+\section{La classe Grille}
+\subsection{Présentation}
+Cette classe est l'une des principales du projet. 
+Elle permet de mémoriser l'état de chaque case de la grille et d'effectuer des opérations comme :
+\begin{itemize}
+\item Gérer la liste des bateaux de la flotte : placer un bateau à une position donnée ou aléatoirement, placer une flotte aléatoire, supprimer un bateau coulé, ou encore garder la trace du plus grand bateau restant à couler.
+\item Déterminer le nombre de cases vides autour d'une case donnée, dans chacune des directions.
+\item Déterminer la liste, et le nombre, de bateaux possibles sur chaque case.
+\item Déterminer lorsque la grille est terminée.
+\end{itemize}
+Beaucoup de ces fonctions seront utilisées par l'algorithme de résolution.
+
+Afin de pouvoir faire évoluer les règles, elle prend les paramètres suivants lors de son initialisation :
+\begin{itemize}
+\item \texttt{xmax} et \texttt{ymax} : les dimensions de la grille
+\item \texttt{taille\_bateau} : la liste des bateaux
+\end{itemize}
+
+Dans la mesure ou la grille a deux utilisations différentes (la grille du joueur et la grille de suivi des coups), nous avons d'abord décidé de créer deux classes héritées de \texttt{Grille} lors de la conception du projet, \texttt{GrilleJoueur(Grille)} et \texttt{GrilleSuivi(Grille)}, afin de distinguer leurs méthodes spécifiques. Après coup nous nous sommes rendu compte que cela n'apportait pas d'avantage significatif en terme de qualité de code donc nous ne les utiliseront pas, mais elles sont encore présentes dans notre code pour une évolution future du projet.
+
+\subsection{État de la grille}
+
+L'attribut \texttt{Grille.etat} fournit l'état de la grille. C'est un dictionnaire indexé par les tuples \texttt{(0,0)}, \texttt{(0,1)},... , \texttt{(9,9)}, dans lesquels la première coordonnée correspond à la colonne de la case et la deuxième à sa ligne.\\
+L'état d'un case peut être :
+\begin{itemize}
+\item $0$ : case non jouée
+\item $1$ : case touchée
+\item $-1$ : case manquée ou impossible
+\end{itemize}
+L'intérêt d'utiliser un dictionnaire plutôt qu'une double liste tient au fait que les appels sont plus simples et plus naturels et, surtout, que l'utilisation d'une table de hachage permet la recherche d'un élément en $O(1)$.  
+
+La méthode \texttt{Grille.test\_case(self, case)} permet de déterminer si une case est valide et vide, et \texttt{Grille.is\_touche(self, case)} indique si une case donnée contient ou non un bateau.
+
+Notons également l'utilisation de l'attribut \texttt{Grille.vides} qui est la liste des cases vides.
+
+Bien entendu, cette classe contient des fonctions de mise à jour jour de l'état de la grille (liste des cases vides, tailles des plus petits et plus grand bateaux restants).
+
+Enfin, la méthode \texttt{Grille.adjacent(self, case)} renvoie la liste de cases adjacentes à une case donnée.
+
+\subsection{Gestion des espaces vides}
+La méthodes \texttt{Grille.get\_max\_space(self, case, direction, sens)} renvoie le nombre de cases vides dans une direction donnée. Grâce aux constantes de direction, un seul calcul est nécessaire pour englober tous les cas. L'algorithme est le suivant :
+
+\begin{algo1}
+0\sto m\\
+case[0]\sto x\\
+case[1]\sto y\\
+Tant que la case (x+direction[0], y+direction[1]) est vide :\\
+\tab{1} m+1\sto m\\
+\tab{1} x+1\sto x\\
+\tab{1} y+1\sto x\\
+Retourner m\\
+\end{algo1}
+
+Enfin, si le paramètre \texttt{sens=1}, la détermination se fait dans les deux sens (espace libre horizontal ou vertical).
+
+La méthode \texttt{Grille.elimine\_petites(self)} parcourt toutes les cases vides et élimine celles dans lesquelles le plus petit bateau ne peut pas rentrer en mettant leur état à \texttt{-1}.
+
+\subsection{Liste de bateaux possibles sur chaque case}
+La méthode \texttt{Grille.get\_possibles(self)} renvoie d'une part la liste des bateaux possibles sur chaque case (ainsi que leur direction) et, d'autre part, la liste des positions (et directions) possibles pour chaque bateau. Pour ce faire on procède en deux temps :
+\begin{itemize}
+\item Dans un premier temps, on parcours la liste des cases vides et pour chacune de ces cases on détermine, pour chaque bateau et chaque direction (droite et bas) s'il rentre. Cela fournit le dictionnaire \texttt{Grille.possibles\_cases} indexé par les cases et dont les éléments sont une liste de tuples de la forme \texttt{(taille, direction)}.\\
+Par exemple : \texttt{\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
+\item Dans un deuxième temps, on "retourne" ce dictionnaire pour obtenir le dictionnaire \texttt{Grille.possibles} indexé par les tailles des bateaux et dont les éléments sont une liste de tuples de la forme \texttt{(case, direction)}.\\
+Par exemple : \texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...\}}
+\end{itemize}
+
+
