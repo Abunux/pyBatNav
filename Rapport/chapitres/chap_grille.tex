@@ -76,4 +76,16 @@ Par exemple : \texttt{\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
 Par exemple : \texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...\}}
 \end{itemize}
 
+Cette méthode va nous servir à faire deux choses :
+\begin{itemize}
+\item Placer les bateaux aléatoirement grâce au dictionnaire \texttt{Grille.possibles}
+\item Déterminer la case optimale dans l'algorithme de résolution
+\end{itemize}
 
+\subsection{Nombre de possibilités sur chaque case}
+L'une des parties importantes de l'algorithme de résolution consiste en la détermination de la case dans laquelle rentrent le plus de bateaux. Cette question intervient lors de la phase de tirs en aveugle et lorsqu'on a touché une première case et qu'on doit tester ses cases adjacentes (phase de tir ciblé).
+\subsubsection{Optimisation de la phase de tir en aveugle}
+La méthode \texttt{Grille.case\_max(self)} renvoie la case vide contenant le plus de bateaux, ainsi que le nombre de bateaux qu'elle contient. L'algorithme est très simple : d'abord on crée un dictionnaire \texttt{Grille.probas} indexé par les cases et contenant le nombre de bateaux possibles grâce à \texttt{Grille.possibles}. Ensuite il ne reste plus qu'à renvoyer celle qui en contient le plus.
+
+\subsubsection{Optimisation de la phase de tir ciblé}
+Cette optimisation est un petit peu plus délicate. Une fois qu'une case a été touché, l'algorithme va tester ses 4 (au maximum) cases adjacentes.

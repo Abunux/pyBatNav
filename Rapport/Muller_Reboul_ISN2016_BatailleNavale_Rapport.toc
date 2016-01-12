@@ -12,6 +12,9 @@
 \contentsline {subsection}{\numberline {2.2}\IeC {\'E}tat de la grille}{8}
 \contentsline {subsection}{\numberline {2.3}Gestion des espaces vides}{8}
 \contentsline {subsection}{\numberline {2.4}Liste de bateaux possibles sur chaque case}{9}
+\contentsline {subsection}{\numberline {2.5}Nombre de possibilit\IeC {\'e}s sur chaque case}{9}
+\contentsline {subsubsection}{\numberline {2.5.1}Optimisation de la phase de tir en aveugle}{9}
+\contentsline {subsubsection}{\numberline {2.5.2}Optimisation de la phase de tir cibl\IeC {\'e}}{9}
 \contentsline {chapter}{\numberline {3}Gestion des joueurs et de la partie}{11}
 \contentsline {chapter}{\numberline {4}Affichage console}{13}
 \contentsline {chapter}{\numberline {5}Interface graphique}{15}
