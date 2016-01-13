@@ -121,8 +121,8 @@ Imaginons que, sur une grille vierge, on vienne de toucher la case de coordonné
 \draw (3.5, -0.5) node{\textsf{X}};
 \draw (4.5, -0.5) node{\textsf{X}};
 \end{tikzpicture}\\
-La case $(4,0)$ est augmentée de 1
-\end{center}
+\textit{La case $(4,0)$ est augmentée de 1
+}\end{center}
 
 \item Le bateau est à cheval sur la case $(5,0)$ (2 possibilités) :
 \begin{center}
@@ -145,8 +145,8 @@ La case $(4,0)$ est augmentée de 1
 \draw (3.5, -0.5) node{\textsf{X}};
 \draw (4.5, -0.5) node{\textsf{X}};
 \end{tikzpicture}\\
-Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
-\end{center}
+\textit{Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
+}\end{center}
 
 \begin{center}
 
@@ -168,8 +168,8 @@ Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
 \draw (7.5, -0.5) node{\textsf{X}};
 \draw (4.5, -0.5) node{\textsf{X}};
 \end{tikzpicture}\\
-Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
-\end{center}
+\textit{Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
+}\end{center}
 
 \item Le bateau rentre à droite de la case $(5,0)$ :
 
@@ -192,8 +192,8 @@ Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
 \draw (7.5, -0.5) node{\textsf{X}};
 \draw (8.5, -0.5) node{\textsf{X}};
 \end{tikzpicture}\\
-La case $(6,0)$ est augmentée de 1
-\end{center}
+\textit{La case $(6,0)$ est augmentée de 1
+}\end{center}
 \end{enumerate} 
 Au final, la case $(4,0)$ admet 3 bateaux horizontaux de taille 4 et idem pour la case $(6,0)$.
 
@@ -223,7 +223,7 @@ Une fois que le compte des bateaux possibles a été effectué sur chacune de ca
 \subsection{Gestion de la flotte}
 Le classe \texttt{Grille} contient toutes les méthodes nécessaires pour gérer la flotte de bateaux. Les méthodes \texttt{Grille.get\_taille\_max(self)} et \texttt{Grille.get\_taille\_min(self)} mettent à jour respectivement la taille maximum et la taille minimum des bateaux restant à trouver. La méthode \texttt{Grille.rem\_bateau(self, taille)} permet de supprimer de la liste \texttt{Grille.taille\_bateaux} un bateau coulé.
 
-\subsection{Ajout d'un bateau}
+\subsubsection{Ajout d'un bateau}
 La méthode \texttt{Grille.add\_bateau(self, bateau)} permet d'ajouter un bateau (instance de la classe \texttt{Bateau}) après avoir testé sa validité via la méthode \texttt{Grille.test\_bateau(self, bateau)}, et marque ses cases adjacentes comme impossibles.
 
 Pour initialiser une flotte aléatoire, c'est la méthode \texttt{Grille.init\_bateaux\_alea(self)} dont l'algorithme est le suivant :
@@ -233,7 +233,7 @@ Pour initialiser une flotte aléatoire, c'est la méthode \texttt{Grille.init\_b
 Tant que nb\_bateaux < nombre de bateaux à placer :\\
 \tab{1} 0\sto nb\_bateaux\\
 \tab{1} On crée une copie temporaire de la grille dans gtmp\\
-\tab{1} Pour chaque bateau à placer :\\
+\tab{1} Pour chaque taille de bateau à placer :\\
 \tab{2} On récupère les positions possibles pour ce bateau dans gtmp\\
 \tab{2} Si aucune possibilité :\\
 \tab{3} On casse la boucle et on recommence tout\\
@@ -243,7 +243,7 @@ Tant que nb\_bateaux < nombre de bateaux à placer :\\
 \tab{4} (parmi celles possibles)\\
 \tab{3} On ajoute la bateau à gtmp\\
 \tab{3} nb\_bateaux+1\sto nb\_bateaux\\
-Enfin on copie l'etat de gtmp dans notre grille \\
+Enfin on copie l'état de gtmp dans notre grille \\
 \end{algo1}
 
 \subsection{Fin de la partie}

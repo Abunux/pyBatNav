@@ -161,8 +161,8 @@ class Ordi(Joueur):
 	#
 	def make_case_aleatoire(self):
 		"""Choisi une case aléatoire"""
-		#~ (case_max, pmax) = self.grille_suivi.case_max()
-		(case_max, pmax) = self.grille_suivi.case_max_echantillons()
+		(case_max, pmax) = self.grille_suivi.case_max()
+		#~ (case_max, pmax) = self.grille_suivi.case_max_echantillons()
 		self.case_courante = case_max
 		self.messages.append("Je tire sur la case %s qui est la plus probable (%d bateaux possibles)" % (alpha(self.case_courante), pmax))
 	

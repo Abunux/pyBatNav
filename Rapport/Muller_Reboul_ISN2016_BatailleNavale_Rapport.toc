@@ -18,8 +18,8 @@
 \contentsline {subsubsection}{\numberline {2.5.1}Optimisation de la phase de tir en aveugle}{11}
 \contentsline {subsubsection}{\numberline {2.5.2}Optimisation de la phase de tir cibl\IeC {\'e}}{11}
 \contentsline {subsection}{\numberline {2.6}Gestion de la flotte}{13}
-\contentsline {subsection}{\numberline {2.7}Ajout d'un bateau}{13}
-\contentsline {subsection}{\numberline {2.8}Fin de la partie}{13}
+\contentsline {subsubsection}{\numberline {2.6.1}Ajout d'un bateau}{13}
+\contentsline {subsection}{\numberline {2.7}Fin de la partie}{13}
 \contentsline {chapter}{\numberline {4}Gestion des joueurs et de la partie}{15}
 \contentsline {section}{\numberline {1}La classe Joueur}{15}
 \contentsline {section}{\numberline {2}La classe Partie}{15}
@@ -47,3 +47,4 @@
 \contentsline {chapter}{\numberline {7}Interface graphique}{25}
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{27}
 \contentsline {chapter}{\numberline {9}Conclusion}{29}
+\contentsline {chapter}{\numberline {A}L'algorithme en action}{33}

@@ -492,6 +492,42 @@ class OrdiC(JoueurC, Ordi):
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
 
+	def resolution2(self, affiche=True, grille=None):
+		"""Lance la résolution de la grille par l'ordinateur"""
+		# affiche : affichage ou non des informations (pour les tests)
+		
+		# Lancement du chrono
+		start = time()
+		self.messages.append("C'est parti !!!")
+		# C'est parti !!!
+		while not self.grille_suivi.fini():
+			if affiche :
+				#~ clear()
+				print(r"{\scriptsize")
+				print(r"\begin{verbatim}")
+				self.grille_suivi.affiche_adverse(grille)
+			
+			self.affiche_messages(affiche=affiche)
+			print(r"\end{verbatim}}")
+			print(r"\hrule")
+			print()
+			self.coup_suivant()
+			
+			#~ if affiche :
+				#~ input()
+			
+		# Fin de la partie
+		if affiche :
+			#~ clear()
+			print(r"{\scriptsize")
+			print(r"\begin{verbatim}")
+			self.grille_suivi.affiche_adverse(grille)
+			
+		self.messages.append("Partie terminée en %d coups" % self.essais)
+		self.affiche_messages(affiche=affiche)
+		print(r"\end{verbatim}}\hrule")
+		# On renvoie de temps de résolution de la grille pour les tests de performance
+		return time()-start
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -647,7 +683,7 @@ class MainConsole(object):
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		ordi.grille_suivi.reinit()
 		
-		temps = ordi.resolution(affiche=affiche, grille=grille)
+		temps = ordi.resolution2(affiche=affiche, grille=grille)
 		return (ordi.essais, temps) # Pour les tests de performance
 
 
