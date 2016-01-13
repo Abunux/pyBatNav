@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  13 JAN 2016 06:49
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  13 JAN 2016 12:06
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1501,7 +1501,7 @@ Overfull \hbox (7.43687pt too wide) in paragraph at lines 27--28
 e de jeu, ainsi que les joueurs. 
  []
 
-[5]) (./chapitres/chap_grille.tex
+[5]) (./chapitres/chap_utiles.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1510,11 +1510,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [6]
 ~Chapitre 2.
-LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 14.
-[7
+) (./chapitres/chap_grille.tex [7
 
 ]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8
+
+]
+~Chapitre 3.
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 14.
+[9]
 Overfull \hbox (0.37125pt too wide) in paragraph at lines 50--51
 []\T1/futs/m/n/12 Enfin, la mé-thode \T1/lmtt/m/n/12 Grille.adjacent(self, case
 ) \T1/futs/m/n/12 ren-voie la liste de cases ad-ja-centes
@@ -1526,7 +1537,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8]
+[10]
 Overfull \hbox (3.72664pt too wide) in paragraph at lines 74--76
 \T1/futs/m/n/12 Par exemple : \T1/lmtt/m/n/12 {5:[((0,0), (1,0)), ((0,0), (0,1)
 ), ((1,0), (1,0)),...],
@@ -1556,7 +1567,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9]
+[11]
 LaTeX Font Info:    Try loading font information for T1+phv on input line 118.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
@@ -1579,7 +1590,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10]
+[12]
 Overfull \hbox (5.28261pt too wide) in paragraph at lines 224--225
 \T1/futs/m/n/12 teaux. Les mé-thodes \T1/lmtt/m/n/12 Grille.get_taille_max(self
 ) \T1/futs/m/n/12 et \T1/lmtt/m/n/12 Grille.get_taille_min(self)
@@ -1612,24 +1623,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[12
-
-]
-~Chapitre 3.
-
-Overfull \hbox (19.96945pt too wide) in paragraph at lines 3--4
-[]\T1/futs/m/n/12 La ges-tion des joueurs et du dé-rou-le-ment de la par-tie se
- font dans le mo-dule \T1/lmtt/m/n/12 bn_joueur.py
- []
-
-) (./chapitres/chap_algo.tex [13]
+[13]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1641,30 +1635,40 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 ~Chapitre 4.
 
-Overfull \hbox (43.39647pt too wide) in paragraph at lines 4--5
-\T1/lmtt/m/n/12 bn_joueur.py \T1/futs/m/n/12 (qui hé-rite donc de la classe \T1
-/lmtt/m/n/12 Joueur\T1/futs/m/n/12 ), dans la mé-thode \T1/lmtt/m/n/12 Ordi.cou
-p_suivant(self)\T1/futs/m/n/12 . 
+Overfull \hbox (19.96945pt too wide) in paragraph at lines 3--4
+[]\T1/futs/m/n/12 La ges-tion des joueurs et du dé-rou-le-ment de la par-tie se
+ font dans le mo-dule \T1/lmtt/m/n/12 bn_joueur.py
  []
 
-
-Overfull \hbox (8.68042pt too wide) in paragraph at lines 11--12
-\T1/futs/m/n/12 d'autres es-sais avec d'autres mé-thodes mais celles-ci étaient
- beau-coup moins per-for-mantes,
- []
-
-[15]
+) (./chapitres/chap_algo.tex [15]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16] <./media/distrib_1000000.png, id=80, 578.16pt x 433.62pt>
+[16
+
+]
+~Chapitre 5.
+
+Overfull \hbox (8.68042pt too wide) in paragraph at lines 10--11
+\T1/futs/m/n/12 d'autres es-sais avec d'autres mé-thodes mais celles-ci étaient
+ beau-coup moins per-for-mantes,
+ []
+
+[17]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[18] <./media/distrib_1000000.png, id=86, 578.16pt x 433.62pt>
 File: ./media/distrib_1000000.png Graphic file (type png)
 
 <use ./media/distrib_1000000.png>
-Package pdftex.def Info: ./media/distrib_1000000.png used on input line 118.
+Package pdftex.def Info: ./media/distrib_1000000.png used on input line 117.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 ) (./chapitres/chap_console.tex
 
@@ -1673,42 +1677,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17 <./media/distrib_1000000.png>]
+[19 <./media/distrib_1000000.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18]
-~Chapitre 5.
+[20
 
-Overfull \hbox (17.45668pt too wide) in paragraph at lines 6--7
+]
+~Chapitre 6.
+
+Overfull \hbox (17.45668pt too wide) in paragraph at lines 8--9
 \T1/futs/m/n/12 cha-cun des ca-rac-tères uti-li-sés est sto-cké dans une consta
 nte (par exemple \T1/lmtt/m/n/12 CAR_CX=u'\u253C'
  []
 
 
-Overfull \hbox (1.20267pt too wide) in paragraph at lines 17--18
+Overfull \hbox (1.20267pt too wide) in paragraph at lines 19--20
 []\T1/futs/m/n/12 La fonc-tion \T1/lmtt/m/n/12 boite(texte, prefixe, longueur) 
 \T1/futs/m/n/12 per-met d'en-ca-drer le texte dans une
  []
-
-[19
-
-]) (./chapitres/chap_gui.tex
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[20]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
 
 [21]
 
@@ -1717,11 +1707,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[22
+[22]) (./chapitres/chap_gui.tex
 
-]
-~Chapitre 6.
-) (./chapitres/chap_modules.tex [23]
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[23]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1759,12 +1752,12 @@ AED: lastpage setting LastPage
 [29] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) ) 
 Here is how much of TeX's memory you used:
  23979 strings out of 493304
- 470426 string characters out of 6139871
- 664508 words of memory out of 5000000
+ 470423 string characters out of 6139871
+ 664511 words of memory out of 5000000
  26694 multiletter control sequences out of 15000+600000
  158587 words of font info for 147 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 51i,11n,71p,890b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,12n,71p,890b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/
 texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
 ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb
@@ -1775,7 +1768,7 @@ opia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (29 pages, 1
-75140 bytes).
+78526 bytes).
 PDF statistics:
  153 PDF objects out of 1000 (max. 8388607)
  95 compressed objects within 1 object stream

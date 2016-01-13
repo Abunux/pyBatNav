@@ -4,41 +4,46 @@
 \contentsline {section}{\numberline {1}Le jeu de la bataille navale}{5}
 \contentsline {section}{\numberline {2}Objectifs du projet}{5}
 \contentsline {section}{\numberline {3}Liste des modules du projet}{6}
-\contentsline {section}{\numberline {4}Constantes de direction}{6}
-\contentsline {chapter}{\numberline {2}Gestion de la grille}{7}
-\contentsline {section}{\numberline {1}La classe Bateau}{7}
-\contentsline {section}{\numberline {2}La classe Grille}{7}
-\contentsline {subsection}{\numberline {2.1}Pr\IeC {\'e}sentation}{7}
-\contentsline {subsection}{\numberline {2.2}\IeC {\'E}tat de la grille}{8}
-\contentsline {subsection}{\numberline {2.3}Gestion des espaces vides}{8}
-\contentsline {subsection}{\numberline {2.4}Liste de bateaux possibles sur chaque case}{9}
-\contentsline {subsection}{\numberline {2.5}Nombre de possibilit\IeC {\'e}s sur chaque case}{9}
-\contentsline {subsubsection}{\numberline {2.5.1}Optimisation de la phase de tir en aveugle}{9}
-\contentsline {subsubsection}{\numberline {2.5.2}Optimisation de la phase de tir cibl\IeC {\'e}}{9}
-\contentsline {subsection}{\numberline {2.6}Gestion de la flotte}{11}
-\contentsline {subsection}{\numberline {2.7}Ajout d'un bateau}{11}
-\contentsline {subsection}{\numberline {2.8}Fin de la partie}{11}
-\contentsline {chapter}{\numberline {3}Gestion des joueurs et de la partie}{13}
-\contentsline {section}{\numberline {1}La classe Joueur}{13}
-\contentsline {section}{\numberline {2}La classe Partie}{13}
-\contentsline {chapter}{\numberline {4}Algorithme de r\IeC {\'e}solution}{15}
-\contentsline {section}{\numberline {1}Description de l'algorithme}{15}
-\contentsline {subsection}{\numberline {1.1}Phase de tir en aveugle}{15}
-\contentsline {subsection}{\numberline {1.2}Phase de tir cibl\IeC {\'e}}{16}
-\contentsline {subsubsection}{\numberline {1.2.1}Premier tir}{16}
-\contentsline {subsubsection}{\numberline {1.2.2}Deuxi\IeC {\`e}me tir}{16}
-\contentsline {subsubsection}{\numberline {1.2.3}Tirs suivants}{17}
-\contentsline {section}{\numberline {2}\IeC {\'E}tude statistique}{17}
-\contentsline {chapter}{\numberline {5}Affichage console}{19}
-\contentsline {section}{\numberline {1}Pr\IeC {\'e}liminaires}{19}
-\contentsline {subsection}{\numberline {1.1}Constantes graphiques}{19}
-\contentsline {subsection}{\numberline {1.2}Effacer le terminal}{19}
-\contentsline {subsection}{\numberline {1.3}Fusion des deux grilles}{19}
-\contentsline {subsection}{\numberline {1.4}Autres fonctions d'affichage}{19}
-\contentsline {section}{\numberline {2}Affichage des grilles}{20}
-\contentsline {subsection}{\numberline {2.1}Affichage simple de la grille}{20}
-\contentsline {subsection}{\numberline {2.2}Affichage de la grille avec ses propres bateaux surlign\IeC {\'e}s}{20}
-\contentsline {chapter}{\numberline {6}Interface graphique}{23}
-\contentsline {chapter}{\numberline {7}Guide des modules utilis\IeC {\'e}s}{25}
+\contentsline {chapter}{\numberline {2}Quelques fonctions utiles}{7}
+\contentsline {section}{\numberline {1}Constantes de direction}{7}
+\contentsline {section}{\numberline {2}Param\IeC {\`e}tres en ligne de commande}{7}
+\contentsline {chapter}{\numberline {3}Gestion de la grille}{9}
+\contentsline {section}{\numberline {1}La classe Bateau}{9}
+\contentsline {section}{\numberline {2}La classe Grille}{9}
+\contentsline {subsection}{\numberline {2.1}Pr\IeC {\'e}sentation}{9}
+\contentsline {subsection}{\numberline {2.2}\IeC {\'E}tat de la grille}{10}
+\contentsline {subsection}{\numberline {2.3}Gestion des espaces vides}{10}
+\contentsline {subsection}{\numberline {2.4}Liste de bateaux possibles sur chaque case}{11}
+\contentsline {subsection}{\numberline {2.5}Nombre de possibilit\IeC {\'e}s sur chaque case}{11}
+\contentsline {subsubsection}{\numberline {2.5.1}Optimisation de la phase de tir en aveugle}{11}
+\contentsline {subsubsection}{\numberline {2.5.2}Optimisation de la phase de tir cibl\IeC {\'e}}{11}
+\contentsline {subsection}{\numberline {2.6}Gestion de la flotte}{13}
+\contentsline {subsection}{\numberline {2.7}Ajout d'un bateau}{13}
+\contentsline {subsection}{\numberline {2.8}Fin de la partie}{13}
+\contentsline {chapter}{\numberline {4}Gestion des joueurs et de la partie}{15}
+\contentsline {section}{\numberline {1}La classe Joueur}{15}
+\contentsline {section}{\numberline {2}La classe Partie}{15}
+\contentsline {chapter}{\numberline {5}Algorithme de r\IeC {\'e}solution}{17}
+\contentsline {section}{\numberline {1}Description de l'algorithme}{17}
+\contentsline {subsection}{\numberline {1.1}Phase de tir en aveugle}{17}
+\contentsline {subsection}{\numberline {1.2}Phase de tir cibl\IeC {\'e}}{18}
+\contentsline {subsubsection}{\numberline {1.2.1}Premier tir}{18}
+\contentsline {subsubsection}{\numberline {1.2.2}Deuxi\IeC {\`e}me tir}{18}
+\contentsline {subsubsection}{\numberline {1.2.3}Tirs suivants}{19}
+\contentsline {section}{\numberline {2}\IeC {\'E}tude statistique}{19}
+\contentsline {chapter}{\numberline {6}Affichage console}{21}
+\contentsline {section}{\numberline {1}Pr\IeC {\'e}liminaires}{21}
+\contentsline {subsection}{\numberline {1.1}Constantes graphiques}{21}
+\contentsline {subsection}{\numberline {1.2}Effacer le terminal}{21}
+\contentsline {subsection}{\numberline {1.3}Fusion des deux grilles}{21}
+\contentsline {subsection}{\numberline {1.4}Autres fonctions d'affichage}{21}
+\contentsline {section}{\numberline {2}Affichage des grilles}{22}
+\contentsline {subsection}{\numberline {2.1}Affichage simple de la grille}{22}
+\contentsline {subsection}{\numberline {2.2}Affichage de la grille avec ses propres bateaux surlign\IeC {\'e}s}{22}
+\contentsline {section}{\numberline {3}Modes de jeu}{23}
+\contentsline {subsection}{\numberline {3.1}Jeu solo}{23}
+\contentsline {subsection}{\numberline {3.2}R\IeC {\'e}solution d'un grille par l'ordinateur}{23}
+\contentsline {subsection}{\numberline {3.3}Jeu contre l'ordinateur}{23}
+\contentsline {chapter}{\numberline {7}Interface graphique}{25}
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{27}
 \contentsline {chapter}{\numberline {9}Conclusion}{29}
