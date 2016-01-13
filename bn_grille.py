@@ -415,65 +415,7 @@ class Grille(object):
 	def affiche(self):
 		"""Affiche la grille"""
 		# Méthode à surcharger suivant l'interface
-		# --> À virer d'ici (juste temporaire pour tests)
 		pass
-		CAR_H=u'\u2500'		# Trait Horizontal
-		CAR_V=u'\u2502'		# Trait Vertical
-		# Coins
-		CAR_CHG=u'\u250C'	# Coin Haut Gauche
-		CAR_CHD=u'\u2510'	# Coin Haut Droite
-		CAR_CBG=u'\u2514'	# Coin Bas Gauche
-		CAR_CBD=u'\u2518'	# Coin Bas Droite
-		# T
-		CAR_TH=u'\u252C'	# T Haut
-		CAR_TB=u'\u2534'	# T Bas
-		CAR_TG=u'\u251C'	# T Gauche
-		CAR_TD=u'\u2524'	# T Droite
-		# +
-		CAR_CX=u'\u253C'	# Croix centrale
-		# Touché / Manqué
-		CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
-		CAR_MANQ = u'\u25EF'
-
-		# Ligne du haut
-		print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
-		
-		# Ligne des lettres des colonnes
-		print('    '+CAR_V, end='')
-		for i in range(self.xmax):
-			if i!=self.xmax-1 :
-				#~ print(' '+chr(i+65)+' ', end=CAR_V)
-				print(' '+str(i)+' ', end=CAR_V)
-			else :
-				#~ print(' '+chr(i+65)+' '+CAR_V)
-				print(' '+str(i)+' '+CAR_V)
-				
-		#Ligne sous les lettres
-		print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-		
-		# Lignes suivantes
-		for j in range(self.ymax):
-			# 1ère colonne (chiffres des lignes)
-			chaine = CAR_V+' '+str(j)+' '+CAR_V
-			
-			# Cases suivantes
-			for i in range(self.xmax):
-				if self.etat[(i,j)] == 1 :
-					symbole = CAR_TOUCH
-				elif self.etat[(i,j)] == -1 :
-					symbole = CAR_MANQ
-				else :
-					symbole = ' '
-				chaine += ' '+symbole+' '+CAR_V
-			print(chaine)
-			
-			# Sépartion lignes intermédiaires
-			if j!=self.ymax-1 :
-				print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-				
-			# Dernière ligne
-			else :
-				print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
 				
 	# --------------------------------
 	# Poubelle 
@@ -564,69 +506,129 @@ class Grille(object):
 #~ 
 		#~ self.etat = gtmp.etat
 			#~ 
-	#~ def init_bateaux_alea_bak(self, ordre='random'):
-		#~ """Initialise une grille avec des bateaux aléatoires"""
-		#~ # L'odre dans lequel on place les bateaux a une influence sur les probas !!!
-		#~ tmp_taille_bateaux = self.taille_bateaux[:]
-		#~ if ordre == 'random' :
-			#~ rand.shuffle(tmp_taille_bateaux)
-		#~ elif ordre == 'croissant' :
-			#~ tmp_taille_bateaux.sort()
-		#~ elif ordre == 'decroissant' :
-			#~ tmp_taille_bateaux.sort()
-			#~ tmp_taille_bateaux = tmp_taille_bateaux[::-1]
-		#~ 
-		#~ for taille in tmp_taille_bateaux :
-			#~ self.add_bateau_alea(taille)
+	def init_bateaux_alea_bak(self, ordre='random'):
+		"""Initialise une grille avec des bateaux aléatoires"""
+		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
+		tmp_taille_bateaux = self.taille_bateaux[:]
+		if ordre == 'random' :
+			rand.shuffle(tmp_taille_bateaux)
+		elif ordre == 'croissant' :
+			tmp_taille_bateaux.sort()
+		elif ordre == 'decroissant' :
+			tmp_taille_bateaux.sort()
+			tmp_taille_bateaux = tmp_taille_bateaux[::-1]
+		
+		for taille in tmp_taille_bateaux :
+			self.add_bateau_alea(taille)
 			#~ 
-	#~ def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
-		#~ """Essai de calcul des probabilité de cases touchée sur chaque case restante
-		#~ Retourne la case la plus probable en essayant différents arrangements des bateaux restants"""
-		#~ start=time()
+	def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
+		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
+		Retourne la case la plus probable en essayant différents arrangements des bateaux restants"""
+		start=time()
+		
+		# Dictionnaire contenant les probas de chaque case
+		self.probas = {}
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				self.probas[(i,j)] = 0
+		
+		# On crée différents arrangements aléatoires de bateaux
+		for k in range(nb_echantillons):
+			# On utilise une grille temporaire, copiée à partir de la grille_suivi courante
+			grille_tmp = self.copie_grille_tmp()
+			# Arrangement aléatoire de bateaux et récupération des cases occupées
+			grille_tmp.init_bateaux_alea_bak(ordre=ordre)
+			for case in grille_tmp.etat :
+				if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
+					self.probas[case] += 1
+		# Calcul des probas
+		for case in self.probas :
+			self.probas[case] *= 1/nb_echantillons
+		
+		# Détermination de la case la plus probable
+		case_max = (0,0)
+		pmax = 0
+		for case in self.probas :
+			if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
+				pmax = self.probas[case]
+				case_max = case
+		
+		# Affichages pour les tests
+		if affiche :
+			for j in range(self.ymax):
+				for i in range(self.xmax-1):
+					print("%.4f"%(self.probas[(i,j)]), end=' ')
+				print("%.4f"%self.probas[(self.xmax-1,j)])
+			
+			print()
+			print("Échantillon de taille %d" % nb_echantillons)
+			print("Temps : %.4f secondes" % (time()-start))
+			print("Case max :", case_max)
+			print("Proba max : %.5f" % pmax)
+		
+		# Retourne la case la plus probable et sa proba
+		return (case_max, pmax)
+		
+	#~ def affiche(self):
+		#~ """Affiche la grille"""
+		#~ # Méthode à surcharger suivant l'interface
+		#~ # --> À virer d'ici (juste temporaire pour tests)
+		#~ pass
+		#~ CAR_H=u'\u2500'		# Trait Horizontal
+		#~ CAR_V=u'\u2502'		# Trait Vertical
+		#~ # Coins
+		#~ CAR_CHG=u'\u250C'	# Coin Haut Gauche
+		#~ CAR_CHD=u'\u2510'	# Coin Haut Droite
+		#~ CAR_CBG=u'\u2514'	# Coin Bas Gauche
+		#~ CAR_CBD=u'\u2518'	# Coin Bas Droite
+		#~ # T
+		#~ CAR_TH=u'\u252C'	# T Haut
+		#~ CAR_TB=u'\u2534'	# T Bas
+		#~ CAR_TG=u'\u251C'	# T Gauche
+		#~ CAR_TD=u'\u2524'	# T Droite
+		#~ # +
+		#~ CAR_CX=u'\u253C'	# Croix centrale
+		#~ # Touché / Manqué
+		#~ CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
+		#~ CAR_MANQ = u'\u25EF'
+#~ 
+		#~ # Ligne du haut
+		#~ print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
 		#~ 
-		#~ # Dictionnaire contenant les probas de chaque case
-		#~ self.probas = {}
+		#~ # Ligne des lettres des colonnes
+		#~ print('    '+CAR_V, end='')
 		#~ for i in range(self.xmax):
-			#~ for j in range(self.ymax):
-				#~ self.probas[(i,j)] = 0
+			#~ if i!=self.xmax-1 :
+				#~ print(' '+str(i)+' ', end=CAR_V)
+			#~ else :
+				#~ print(' '+str(i)+' '+CAR_V)
+				#~ 
+		#~ #Ligne sous les lettres
+		#~ print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
 		#~ 
-		#~ # On crée différents arrangements aléatoires de bateaux
-		#~ for k in range(nb_echantillons):
-			#~ # On utilise une grille temporaire, copiée à partir de la grille_suivi courante
-			#~ grille_tmp = self.copie_grille_tmp()
-			#~ # Arrangement aléatoire de bateaux et récupération des cases occupées
-			#~ grille_tmp.init_bateaux_alea(ordre=ordre)
-			#~ for case in grille_tmp.etat :
-				#~ if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
-					#~ self.probas[case] += 1
-		#~ # Calcul des probas
-		#~ for case in self.probas :
-			#~ self.probas[case] *= 1/nb_echantillons
-		#~ 
-		#~ # Détermination de la case la plus probable
-		#~ case_max = (0,0)
-		#~ pmax = 0
-		#~ for case in self.probas :
-			#~ if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
-				#~ pmax = self.probas[case]
-				#~ case_max = case
-		#~ 
-		#~ # Affichages pour les tests
-		#~ if affiche :
-			#~ for j in range(self.ymax):
-				#~ for i in range(self.xmax-1):
-					#~ print("%.4f"%(self.probas[(i,j)]), end=' ')
-				#~ print("%.4f"%self.probas[(self.xmax-1,j)])
+		#~ # Lignes suivantes
+		#~ for j in range(self.ymax):
+			#~ # 1ère colonne (chiffres des lignes)
+			#~ chaine = CAR_V+' '+str(j)+' '+CAR_V
 			#~ 
-			#~ print()
-			#~ print("Échantillon de taille %d" % nb_echantillons)
-			#~ print("Temps : %.4f secondes" % (time()-start))
-			#~ print("Case max :", case_max)
-			#~ print("Proba max : %.5f" % pmax)
-		#~ 
-		#~ # Retourne la case la plus probable et sa proba
-		#~ return (case_max, pmax)
-
+			#~ # Cases suivantes
+			#~ for i in range(self.xmax):
+				#~ if self.etat[(i,j)] == 1 :
+					#~ symbole = CAR_TOUCH
+				#~ elif self.etat[(i,j)] == -1 :
+					#~ symbole = CAR_MANQ
+				#~ else :
+					#~ symbole = ' '
+				#~ chaine += ' '+symbole+' '+CAR_V
+			#~ print(chaine)
+			#~ 
+			#~ # Sépartion lignes intermédiaires
+			#~ if j!=self.ymax-1 :
+				#~ print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+				#~ 
+			#~ # Dernière ligne
+			#~ else :
+				#~ print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # Les deux clases suivantes, héritées de Grille ont pour rôle de distinguer les fonctions spécifiques à chaque type de grille

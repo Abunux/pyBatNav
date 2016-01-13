@@ -1,7 +1,9 @@
 \chapter{Algorithme de résolution}
 
 \section{Description de l'algorithme}
-L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)} du module \texttt{bn\_joueur.py} (qui hérite donc de la classe \texttt{Joueur}). Il fonctionne en deux temps : dans un premier temps une phase de tir en aveugle et, une fois qu'une case a été touchée, une phase de tir ciblé jusqu'à ce que le bateau soit coulé.
+L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)} du module \texttt{bn\_joueur.py} (qui hérite donc de la classe \texttt{Joueur}), dans la méthode \texttt{Ordi.coup\_suivant(self)}.
+
+Il fonctionne en deux temps : dans un premier temps une phase de tir en aveugle et, une fois qu'une case a été touchée, une phase de tir ciblé jusqu'à ce que le bateau soit coulé.
 
 \subsection{Phase de tir en aveugle}
 Lors de cette phase, l'algorithme va tirer sur la case qui peut contenir le plus de bateau comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle}.

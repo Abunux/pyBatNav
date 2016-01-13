@@ -114,9 +114,17 @@ class Joueur(object):
 #----------------------------------------------------------------------------------------------------------------
 #
 class Ordi(Joueur):
-	def __init__(self, nom='HAL'):
+	def __init__(self, nom='HAL', level=4):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
+		
+		# Niveau de l'ordinateur (type d'algo de résolution) :
+		# --> À implémenter dans la suite
+		# level=1 : Tous les coups aléatoires
+		# level=2 : Aveugle aléatoire cases noires, ciblé simple
+		# level=3 : Aveugle échantillon, ciblé simple
+		# level=4 : Aveugle nb possibilités, ciblé nb possibilités 
+		self.level = level
 		
 		# Initialisation de sa grille
 		self.grille_joueur.init_bateaux_alea()
@@ -153,7 +161,8 @@ class Ordi(Joueur):
 	#
 	def make_case_aleatoire(self):
 		"""Choisi une case aléatoire"""
-		(case_max, pmax) = self.grille_suivi.case_max()
+		#~ (case_max, pmax) = self.grille_suivi.case_max()
+		(case_max, pmax) = self.grille_suivi.case_max_echantillons()
 		self.case_courante = case_max
 		self.messages.append("Je tire sur la case %s qui est la plus probable (%d bateaux possibles)" % (alpha(self.case_courante), pmax))
 	
