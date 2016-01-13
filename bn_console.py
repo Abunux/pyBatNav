@@ -683,7 +683,7 @@ class MainConsole(object):
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		ordi.grille_suivi.reinit()
 		
-		temps = ordi.resolution2(affiche=affiche, grille=grille)
+		temps = ordi.resolution(affiche=affiche, grille=grille)
 		return (ordi.essais, temps) # Pour les tests de performance
 
 
