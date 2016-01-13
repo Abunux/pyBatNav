@@ -494,7 +494,8 @@ class OrdiC(JoueurC, Ordi):
 
 	def resolution2(self, affiche=True, grille=None):
 		"""Lance la résolution de la grille par l'ordinateur"""
-		# affiche : affichage ou non des informations (pour les tests)
+		# --> Version avec affichage pour copier-coller dans le rapport en Latex
+		# --> À supprimer
 		
 		# Lancement du chrono
 		start = time()
