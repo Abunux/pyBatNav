@@ -1,0 +1,31 @@
+\chapter{Quelques fonctions utiles}
+
+\section{Constantes de direction}
+Les constantes suivantes, définies dans le module \texttt{bn\_utiles.py} indiquent les différentes directions, et sont utilisées dans tout le projet :
+\begin{itemize}
+\item \texttt{BN\_DROITE = (1, 0)}
+\item \texttt{BN\_GAUCHE = (-1, 0)}
+\item \texttt{BN\_BAS = (0, 1)}
+\item \texttt{BN\_HAUT = (0, -1)}
+\end{itemize}
+Ainsi que :
+\begin{itemize}
+\item \texttt{BN\_ALLDIR = (1, 1)} (toutes les direction)
+\item \texttt{BN\_HORIZONTAL = (1, 0)} (à gauche et à droite)
+\item \texttt{BN\_VERTICAL = (0, 1)} (en haut et en bas)
+\end{itemize}
+Elles permettent de rendre le code plus clair et plus compact.
+
+\section{Paramètres en ligne de commande}
+Le lancement du programme principal \texttt{main.py} admet un paramètre en ligne de commande. Ce paramètre est géré par le module \texttt{argparse} qui est bien utilise extrèmement pratique. La prototype est donc le suivant :
+
+\begin{verbatim}
+usage: main.py [-h] [--interface INTERFACE]
+
+Jeu de bataille navale
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --interface INTERFACE, -i INTERFACE
+                        Choix de l'interface : 'console' ou 'tkinter'
+\end{verbatim}
