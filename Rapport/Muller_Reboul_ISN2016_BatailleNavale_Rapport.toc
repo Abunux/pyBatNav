@@ -39,7 +39,7 @@
 \contentsline {subsection}{\numberline {1.4}Autres fonctions d'affichage}{21}
 \contentsline {section}{\numberline {2}Affichage des grilles}{22}
 \contentsline {subsection}{\numberline {2.1}Affichage simple de la grille}{22}
-\contentsline {subsection}{\numberline {2.2}Affichage de la grille avec ses propres bateaux surlign\IeC {\'e}s}{22}
+\contentsline {subsection}{\numberline {2.2}Affichage de la grille avec ses propres bateaux en gras}{22}
 \contentsline {section}{\numberline {3}Modes de jeu}{23}
 \contentsline {subsection}{\numberline {3.1}Jeu solo}{23}
 \contentsline {subsection}{\numberline {3.2}R\IeC {\'e}solution d'un grille par l'ordinateur}{23}
@@ -47,5 +47,5 @@
 \contentsline {chapter}{\numberline {7}Interface graphique}{25}
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{27}
 \contentsline {chapter}{\numberline {9}Conclusion}{29}
-\contentsline {chapter}{\numberline {A}L'algorithme en action}{33}
-\contentsline {chapter}{\numberline {B}Codes des caract\IeC {\`e}res graphiques}{71}
+\contentsline {chapter}{\numberline {A}Codes des caract\IeC {\`e}res graphiques}{33}
+\contentsline {chapter}{\numberline {B}L'algorithme en action}{35}

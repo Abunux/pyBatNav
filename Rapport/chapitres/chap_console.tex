@@ -5,7 +5,7 @@ L'idée de cette interface est de rendre hommage au style de jeu des années 80 
 
 \section{Préliminaires}
 \subsection{Constantes graphiques}
-Pour afficher les grilles nous utilisons des caractères graphiques en unicode (famille Box Drawing de codes U2500 à U257F). Ceux-ci donnent tous les outils afin de fabriquer des grilles, y compris avec des caractères gras. Pour des raisons de commodité, le code de chacun des caractères utilisés est stocké dans une constante (par exemple \texttt{CAR\_CX=u'\textbackslash u253C'} correspond à la croix centrale).
+Pour afficher les grilles nous utilisons des caractères graphiques en unicode (famille Box Drawing de codes U2500 à U257F). Ceux-ci donnent tous les outils afin de fabriquer des grilles, y compris avec des caractères gras. Pour des raisons de commodité, le code de chacun des caractères utilisés est stocké dans une constante (par exemple \texttt{CAR\_CX=u'\textbackslash u253C'} correspond à la croix centrale). La lise des codes caractères utilisés est donnée en annexe \ref{annexe_codescar} page \pageref{annexe_codescar}.
 
 \subsection{Effacer le terminal}
 Le module \texttt{os} permet d'une part d'accéder à la version du système d'exploitation avec \texttt{os.name} et, d'autre part, de lancer des commandes système avec \texttt{os.system(commande)}. La combinaison de ces deux commandes permet facilement de pouvoir effacer l'écran en utilisant la commande \texttt{cls} sous Windows et \texttt{clear} sous Linux.
@@ -24,13 +24,13 @@ Notons enfin qu'afin de pouvoir réutiliser le code de ce module dans d'autres c
 La classe \texttt{GrilleC(Grille)} hérite de la classe \texttt{Grille} en ajoutant uniquement les fonctions d'affichage.
 
 \subsection{Affichage simple de la grille}
-La méthode \texttt{GrilleC.make\_chaine(self)} crée la chaîne de caractères de la grille simple. 
+La méthode \texttt{GrilleC.make\_chaine(self)} crée la chaîne de caractères de la grille simple. En plus des coins, chaque case utilise 3 caractère horizontaux (ce qui permet de centrer un symbole) et 1 caractère vertical.
 
-Pour cet affichage, on crée les lignes les unes après les autres en marquant les cases suivant les valeurs de \texttt{Grille.etat}. La seule subtilité provient des premières et de la dernière ligne (à cause des coins).
+Pour cet affichage, on crée les lignes les unes après les autres (dans deux boucles impbriquées) en marquant les cases suivant les valeurs de \texttt{Grille.etat}. La seule subtilité provient des deux premières et de la dernière ligne (à cause des coins).
 
 
-\subsection{Affichage de la grille avec ses propres bateaux surlignés}
-Cette partie est beaucoup plus délicate. L'idée est d'afficher une grille en entourant ses propres bateaux et en marquant les coups joués par l'adversaire (sa grille de suivi). C'est le rôle de la fonction \texttt{GrilleC.make\_chaine\_adverse(self, grille)}, où \texttt{grille} est soit sa propre grille de jeu, soit celle de l'adversaire si on veut tricher (pour les tests bien sûr...) ou en fin de partie, si on a perdu, pour avoir la solution. Par convention, comme \texttt{grille} est une grille de jeu, nous allons noter dans les explications les seuls états possibles par $1$ si la case est occupée par un bateau et $0$ sinon (en fait on ne test que si \texttt{grille.etat[case]==1} ou si \texttt{grille.etat[case]!=1}).
+\subsection{Affichage de la grille avec ses propres bateaux en gras}
+Cette partie est beaucoup plus délicate. L'idée est d'afficher une grille en entourant ses propres bateaux et en marquant les coups joués par l'adversaire (sa grille de suivi). C'est le rôle de la fonction \texttt{GrilleC.make\_chaine\_adverse(self, grille)}, où \texttt{grille} est soit sa propre grille de jeu, soit celle de l'adversaire si on veut tricher (pour les tests bien sûr...) ou en fin de partie, si on a perdu, pour avoir la solution. Par convention, comme \texttt{grille} est une grille de jeu, nous allons noter dans les explications les seuls états possibles par $1$ si la case est occupée par un bateau et $0$ sinon (ou si la case est hors grille).
 
 Les contraintes que nous nous fixons sont les suivantes :
 \begin{itemize}
@@ -39,9 +39,50 @@ Les contraintes que nous nous fixons sont les suivantes :
 \item Lorsque deux bateaux se touchent par un coin, il faut bien sûr que ces coins soit en gras (soit une croix en gras)
 \end{itemize}
 
-Le bord des cases de la grille se fera sur la ligne du bas (hormis la première ligne) et sur la droite (hormis pour la première colonne). Le cas de la dernière ligne horizontale et de la dernière ligne verticale se fera à part.
 
-Pour savoir la configuration d'une case on va donc devoir tester, outre cette dernière, sa case à droite et sa case en dessous (pour savoir si on commence un bateau, si on le termine, si on est dedans ou encore s'il n'y a pas de bateau dans ce secteur) ainsi que sa case en dessous à droite (pour savoir s'il n'y a pas deux bateaux qui se touchent sur un coin).
+Le bord des cases de la grille se fera sur la ligne du bas (hormis la première ligne sous les lettres) et sur la séparation verticale de gauche (hormis pour la dernière colonne). Le cas de la dernière ligne horizontale et de la dernière ligne verticale se fera à part à cause du coin.
+
+\begin{enumerate}
+\item Première ligne, sous les lettres des colonnes : pour chaque case de la ligne $0$ on va tester son état, ainsi que l'état de la case de gauche (pour savoir si on est en début ou en fin de bateau, ou au milieu d'un bateau). On obtient les configurations suivantes (la case testée est celle de droite) :
+
+\begin{verbatim}
+───┼───  ━━━┿━━━   ━━━╅─── ───╆━━━
+ 0   0    1   1     1   0   0   1
+\end{verbatim}
+
+
+\item Lignes suivantes, jusqu'à l'avant dernière : ici c'est plus délicat car il faut tester, en plus de celle de gauche, la case en-dessous et celle en-dessous à gauche pour obtenir les configuration suivantes (la case testée est celle en haut à droite) :
+
+\begin{verbatim}
+ 1 │ 1    0 ┃ 1    0 ┃ 1    0 ┃ 1
+   ┿━━━     ╄━━━     ╋━━━     ╂───
+ 0   0    0   0    1   0    0   1
+  
+ 
+ 1 ┃ 0    1 ┃ 0    1 ┃ 0    0 │ 0    0 │ 0    0 │ 0    0 │ 0
+   ╃───     ╂───     ╋━━━     ┿━━━     ┼───     ╅───     ╆━━━
+ 0   0    1   0    0   1    1   1    0   0    1   0    0   1
+\end{verbatim}
+
+\item Enfin, pour la dernière colonne va juste tester la case en-dessous, et pour la dernière ligne, on va juste tester celle de gauche. Pour la case tout en bas à droite il faudra juste finir en mettant un coin.
+
+\begin{verbatim}
+ 0 │      0 │      1 ┃      1 ┃  
+   ┤        ┪        ┨        ┩
+ 0        1        1        0
+ 
+ 1   1    1 ┃ 0    0   1    0 │ 0
+   ┷━━━     ┹───     ┺━━━     ┴───
+
+ 1 ┃      0 │
+   ┛        ┘
+\end{verbatim}
+\end{enumerate}
+
+Le résultat est visible dans l'annexe \ref{annexe_algo_action}, page \pageref{annexe_algo_action}.
+
+
+
 
 
 \section{Modes de jeu}
