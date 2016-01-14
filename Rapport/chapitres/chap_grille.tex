@@ -3,11 +3,11 @@
 La gestion de la grille et des bateaux est effectuée dans le module \texttt{bn\_grille.py}.
 
 \section{La classe Bateau}
-Cette classe, très minimaliste, définit un bateau par sa case de départ, sa taille et sa direction. Elle permet de récupérer :
+Cette classe, très minimaliste, définit un bateau par sa case de départ \texttt{Bateau.start}, sa taille \texttt{Bateau.taille} et sa direction \texttt{Bateau.sens}. Elle permet de récupérer :
 \begin{itemize}
-\item sa case de fin,
-\item la liste de ses cases occupées,
-\item la liste de ses cases adjacentes.
+\item sa case de fin \texttt{Bateau.end}
+\item la liste de ses cases occupées \texttt{Bateau.cases}
+\item la liste de ses cases adjacentes \texttt{Bateau.cases\_adj}
 \end{itemize}
 
 \section{La classe Grille}
@@ -40,7 +40,7 @@ L'état d'un case peut être :
 \item $1$ : case touchée
 \item $-1$ : case manquée ou impossible
 \end{itemize}
-L'intérêt d'utiliser un dictionnaire plutôt qu'une double liste tient au fait que les appels sont plus simples et plus naturels et, surtout, que l'utilisation d'une table de hachage permet la recherche d'un élément en $O(1)$.  
+L'intérêt d'utiliser un dictionnaire plutôt qu'une liste double tient au fait que les appels sont plus simples et plus naturels et, surtout, que l'utilisation d'une table de hachage permet la recherche d'un élément en $O(1)$.  
 
 La méthode \texttt{Grille.test\_case(self, case)} permet de déterminer si une case est valide et vide, et \texttt{Grille.is\_touche(self, case)} indique si une case donnée contient ou non un bateau.
 
@@ -53,10 +53,12 @@ Enfin, la méthode \texttt{Grille.adjacent(self, case)} renvoie la liste de case
 \subsection{Gestion des espaces vides}
 La méthodes \texttt{Grille.get\_max\_space(self, case, direction, sens)} renvoie le nombre de cases vides dans une direction donnée. Grâce aux constantes de direction, un seul calcul est nécessaire pour englober tous les cas. L'algorithme est le suivant :
 \begin{algo1}
+direction[0]\sto dh\\
+direction[1]\sto dv\\
 0\sto m\\
 case[0]\sto x\\
 case[1]\sto y\\
-Tant que la case (x+direction[0], y+direction[1]) est vide :\\
+Tant que la case (x+dh, y+dv) est vide et dans la grille :\\
 \tab{1} m+1\sto m\\
 \tab{1} x+1\sto x\\
 \tab{1} y+1\sto x\\
@@ -83,7 +85,7 @@ Cette méthode va nous servir à faire deux choses :
 \end{itemize}
 
 \subsection{Nombre de possibilités sur chaque case}
-L'une des parties importantes de l'algorithme de résolution consiste en la détermination de la case dans laquelle rentrent le plus de bateaux. Cette question intervient lors de la phase de tirs en aveugle et lorsqu'on a touché une première case et qu'on doit tester ses cases adjacentes (phase de tir ciblé).
+L'une des parties importantes de l'algorithme de résolution consiste en la détermination de la case dans laquelle rentrent le plus de bateaux. Cette question intervient lors de la phase de tirs en aveugle et, lorsqu'on a touché une première case, qu'on doit tester ses cases adjacentes (phase de tir ciblé).
 \subsubsection{Optimisation de la phase de tir en aveugle}\label{opti_aveugle}
 La méthode \texttt{Grille.case\_max(self)} renvoie la case vide contenant le plus de bateaux, ainsi que le nombre de bateaux qu'elle contient. L'algorithme est très simple : d'abord on crée un dictionnaire \texttt{Grille.probas} indexé par les cases et contenant le nombre de bateaux possibles grâce à \texttt{Grille.possibles}. Ensuite il ne reste plus qu'à renvoyer celle qui en contient le plus.
 

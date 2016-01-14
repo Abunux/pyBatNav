@@ -6,8 +6,9 @@
 \contentsline {section}{\numberline {3}Liste des modules du projet}{6}
 \contentsline {section}{\numberline {4}\IeC {\`A} propos de ce rapport}{6}
 \contentsline {chapter}{\numberline {2}Quelques fonctions utiles}{7}
-\contentsline {section}{\numberline {1}Constantes de direction}{7}
-\contentsline {section}{\numberline {2}Param\IeC {\`e}tres en ligne de commande}{7}
+\contentsline {section}{\numberline {1}Coordonn\IeC {\'e}es des cases}{7}
+\contentsline {section}{\numberline {2}Constantes de direction}{7}
+\contentsline {section}{\numberline {3}Param\IeC {\`e}tres en ligne de commande}{7}
 \contentsline {chapter}{\numberline {3}Gestion de la grille}{9}
 \contentsline {section}{\numberline {1}La classe Bateau}{9}
 \contentsline {section}{\numberline {2}La classe Grille}{9}
@@ -38,13 +39,14 @@
 \contentsline {subsection}{\numberline {1.1}Constantes graphiques}{23}
 \contentsline {subsection}{\numberline {1.2}Effacer le terminal}{23}
 \contentsline {subsection}{\numberline {1.3}Fusion des deux grilles}{23}
-\contentsline {subsection}{\numberline {1.4}Autres fonctions d'affichage}{23}
+\contentsline {subsection}{\numberline {1.4}Autres fonctions d'affichage}{24}
 \contentsline {section}{\numberline {2}Affichage des grilles}{24}
 \contentsline {subsection}{\numberline {2.1}Affichage simple de la grille}{24}
 \contentsline {subsection}{\numberline {2.2}Affichage de la grille avec ses propres bateaux en gras}{24}
-\contentsline {section}{\numberline {3}Modes de jeu}{25}
+\contentsline {section}{\numberline {3}Modes de jeu}{26}
 \contentsline {chapter}{\numberline {7}Interface graphique}{27}
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{29}
 \contentsline {chapter}{\numberline {9}Conclusion}{31}
-\contentsline {chapter}{\numberline {A}Codes des caract\IeC {\`e}res graphiques}{35}
-\contentsline {chapter}{\numberline {B}L'algorithme en action}{37}
+\contentsline {chapter}{\numberline {A}\IeC {\'E}tude statistique de l'algorithme}{35}
+\contentsline {chapter}{\numberline {B}Codes des caract\IeC {\`e}res graphiques}{37}
+\contentsline {chapter}{\numberline {C}L'algorithme en action}{39}

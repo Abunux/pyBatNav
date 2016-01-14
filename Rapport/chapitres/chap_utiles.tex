@@ -1,5 +1,10 @@
 \chapter{Quelques fonctions utiles}
 
+\section{Coordonnées des cases}
+Les cases de la grille sont codées par des tuples $(x,y)$, où $x$ est la colonne et $y$ la ligne. Aussi nous utilisons la fonction \texttt{alpha(case)} qui, à partir des coordonnées, retourne sa représentation naturelle (par exemple \texttt{'B4'}) et \texttt{coord(case\_alpha)} qui réalise l'opération réciproque.
+
+Ces deux fonctions utilisent le code ASCII.
+
 \section{Constantes de direction}
 Les constantes suivantes, définies dans le module \texttt{bn\_utiles.py} indiquent les différentes directions, et sont utilisées dans tout le projet :
 \begin{itemize}
@@ -17,7 +22,7 @@ Ainsi que :
 Elles permettent de rendre le code plus clair et plus compact.
 
 \section{Paramètres en ligne de commande}
-Le lancement du programme principal \texttt{main.py} admet un paramètre en ligne de commande. Ce paramètre est géré par le module \texttt{argparse} qui est très pratique. La prototype est donc le suivant :
+Le lancement du programme principal \texttt{main.py} admet un paramètre en ligne de commande. Ce paramètre est géré par le module \texttt{argparse} qui est très pratique. La prototype est le suivant :
 
 \begin{verbatim}
 usage: main.py [-h] [--interface INTERFACE]

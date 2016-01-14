@@ -5,13 +5,15 @@ L'idée de cette interface est de rendre hommage au style de jeu des années 80 
 
 \section{Préliminaires}
 \subsection{Constantes graphiques}
-Pour afficher les grilles nous utilisons des caractères graphiques en unicode (famille Box Drawing de codes U2500 à U257F). Ceux-ci donnent tous les outils afin de fabriquer des grilles, y compris avec des caractères gras. Pour des raisons de commodité, le code de chacun des caractères utilisés est stocké dans une constante (par exemple \texttt{CAR\_CX=u'\textbackslash u253C'} correspond à la croix centrale). La lise des codes caractères utilisés est donnée en annexe \ref{annexe_codescar} page \pageref{annexe_codescar}.
+Pour afficher les grilles nous utilisons des caractères graphiques en unicode (famille Box Drawing de codes U2500 à U257F). Ceux-ci donnent tous les outils afin de fabriquer des grilles, y compris avec des caractères gras. Pour des raisons de commodité, le code de chacun des caractères utilisés est stocké dans une constante (par exemple \texttt{CAR\_CX=u'\textbackslash u253C'} correspond à la croix centrale). La liste complète des codes des caractères utilisés est donnée en annexe \ref{annexe_codescar} page \pageref{annexe_codescar}.
 
 \subsection{Effacer le terminal}
 Le module \texttt{os} permet d'une part d'accéder à la version du système d'exploitation avec \texttt{os.name} et, d'autre part, de lancer des commandes système avec \texttt{os.system(commande)}. La combinaison de ces deux commandes permet facilement de pouvoir effacer l'écran en utilisant la commande \texttt{cls} sous Windows et \texttt{clear} sous Linux.
 
 \subsection{Fusion des deux grilles}
 Lors d'une partie contre un adversaire, il faut pouvoir afficher côte à côte la grille de suivi du joueur ainsi que sa propre grille avec, au fur et à mesure, les coups joués par l'adversaire. Afin de réaliser cette opération nous utilisons la fonction \texttt{fusion(chaine1, chaine2)}. Celle-ci prend en entrée deux chaînes de caractères et retourne la chaîne fusionnée de la façon suivante : chaque chaîne est convertie en liste en prenant comme séparateur le caractère de retour de ligne \texttt{'\textbackslash n'} grâce à la méthode \texttt{String.join('\textbackslash n')}. Ensuite, en prenant les éléments à tour de rôle les éléments de chacune des listes et en insérant un caractère de trait vertical entre les deux on crée la chaîne fusionnée. 
+
+Le résultat peut être vu plus bas en page \pageref{deux_joueurs}.
 
 \subsection{Autres fonctions d'affichage}
 La fonction \texttt{centre(chaine, longueur)} centre la chaîne sur un espace de longueur donnée en insérant le nombre d'espaces nécessaires. Cette fonction sera utilisée pour l'affichage des noms des joueurs.
@@ -40,7 +42,7 @@ Les contraintes que nous nous fixons sont les suivantes :
 \end{itemize}
 
 
-Le bord des cases de la grille se fera sur la ligne du bas et sur la séparation verticale de gauche. Le cas de la ligne horizontal juste sous les lettre sera fait à part, ainsi que la dernière ligne horizontale et la dernière ligne verticale (à cause du bord).
+Le bord de chaque case de la grille se fera sur la ligne du bas, la séparation verticale de gauche et le coin en bas à gauche. Le cas de la ligne horizontal juste sous les lettre sera fait à part, ainsi que la dernière ligne horizontale et la dernière ligne verticale de la grille (à cause du bord).
 
 \begin{enumerate}
 \item Première ligne, sous les lettres des colonnes : pour chaque case de la ligne $0$ on va tester son état, ainsi que l'état de la case de gauche (pour savoir si on est en début ou en fin de bateau, ou au milieu d'un bateau). On obtient les configurations suivantes (la case testée est celle de droite) :
@@ -79,16 +81,56 @@ Le bord des cases de la grille se fera sur la ligne du bas et sur la séparation
 \end{verbatim}
 \end{enumerate}
 
-Le résultat est visible dans l'annexe \ref{annexe_algo_action}, page \pageref{annexe_algo_action}.
+Au final, cela permet de construire toute la grille, dans tous les cas de figure possibles. Le résultat est visible sur la grille de droite ci-dessous.
 
 
 
 
-
+\newpage
 \section{Modes de jeu}
-L'interface console propose 3 modes de jeu :
+Après un écran d'introduction et un menu sommaire, le programme propose 3 modes de jeu :
 \begin{enumerate}
-\item Jeu en solo sur une grille aléatoire
-\item Résolution d'une grille aléatoire par l'ordinateur
-\item Jeu contre l'ordinateur (suivant l'algorithme vu en page \pageref{alogo_jeu})
+\item Jeu en solo sur une grille aléatoire.
+\item Résolution d'une grille aléatoire par l'ordinateur, avec mise en évidence des bateaux qu'il doit trouver (voir annexe \ref{annexe_algo_action} page \pageref{annexe_algo_action})
+\item Jeu contre l'ordinateur (suivant l'algorithme vu en page \pageref{alogo_jeu}).
+
+L'affichage sera alors le suivant :
+
+\label{deux_joueurs}{\scriptsize
+\begin{verbatim}
+                  ╔══════╗                     ┃                     ╔═════╗                   
+                  ║ Toto ║                     ┃                     ║ HAL ║                   
+                  ╚══════╝                     ┃                     ╚═════╝                   
+    ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐  ┃      ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+    │ A │ B │ C │ D │ E │ F │ G │ H │ I │ J │  ┃      │ A │ B │ C │ D │ E │ F │ G │ H │ I │ J │
+┌───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ┌───╆━━━┿━━━┿━━━┿━━━┿━━━╅───┼───┼───┼───┼───┤
+│ 0 │   │   │   │   │   │   │   │   │   │   │  ┃  │ 0 ┃   │   │   │   │   ┃ ◯ │   │   │   │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───╄━━━┿━━━┿━━━┿━━━┿━━━╃───┼───┼───┼───┼───┤
+│ 1 │   │   │ ◯ │   │   │   │   │   │   │   │  ┃  │ 1 │   │   │   │   │ ◯ │   │   │   │   │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
+│ 2 │   │   │ ✖ │   │   │   │   │   │   │   │  ┃  │ 2 │   │   │   │ ◯ │   │   │ ◯ │   │ ◯ │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───┼───┼───┼───┼───┼───┼───╆━━━╅───┼───┼───┤
+│ 3 │   │   │ ✖ │   │   │   │   │   │   │ ✖ │  ┃  │ 3 │   │   │ ◯ │   │   │   ┃ ✖ ┃   │   │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───┼───┼───┼───┼───┼───┼───╂───╂───┼───┼───┤
+│ 4 │ ◯ │   │ ✖ │   │   │   │   │   │   │   │  ┃  │ 4 │   │   │   │   │   │   ┃ ✖ ┃   │   │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───┼───┼───┼───┼───┼───┼───╂───╂───┼───┼───┤
+│ 5 │   │   │ ◯ │   │   │ ◯ │   │   │   │   │  ┃  │ 5 │   │   │   │   │   │   ┃ ✖ ┃   │   │ ◯ │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───┼───╆━━━┿━━━┿━━━┿━━━╅───╄━━━╃───┼───┼───┤
+│ 6 │   │   │   │   │   │   │   │   │   │   │  ┃  │ 6 │   ┃   │   │   │   ┃   │   │ ◯ │   │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───┼───╄━━━┿━━━┿━━━┿━━━╃───┼───┼───┼───┼───┤
+│ 7 │   │   │   │ ◯ │   │ ◯ │   │   │   │   │  ┃  │ 7 │   │   │   │   │   │   │   │   │ ◯ │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───╆━━━┿━━━╅───┼───┼───╆━━━┿━━━┿━━━╅───┼───┤
+│ 8 │ ◯ │   │   │   │   │   │   │   │   │   │  ┃  │ 8 ┃   │   ┃   │   │   ┃   │   │   ┃   │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ├───╄━━━┿━━━╃───┼───┼───╄━━━┿━━━┿━━━╃───┼───┤
+│ 9 │   │   │   │   │   │   │   │   │   │   │  ┃  │ 9 │   │   │   │   │   │   │   │   │   │   │
+└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘  ┃  └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+
+<Toto> Coup (Entrée pour un coup aléatoire) : 
+\end{verbatim}
+}
+\normalsize
+
 \end{enumerate}
+
+
+Notons que chaque fois qu'une case est demandée au joueur, le programme teste la validité de sa réponse (chaîne qui n'est pas une case, case hors grille ou encore une case déjà jouée).
