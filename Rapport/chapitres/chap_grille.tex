@@ -20,13 +20,14 @@ Elle permet de mémoriser l'état de chaque case de la grille et d'effectuer des
 \item Déterminer la liste, et le nombre, de bateaux possibles sur chaque case.
 \item Déterminer lorsque la grille est terminée.
 \end{itemize}
-Beaucoup de ces fonctions seront utilisées par l'algorithme de résolution.
+Beaucoup de ces fonctionnalités seront utilisées par l'algorithme de résolution.
 
 Afin de pouvoir faire évoluer les règles, elle prend les paramètres suivants lors de son initialisation :
 \begin{itemize}
 \item \texttt{xmax} et \texttt{ymax} : les dimensions de la grille
 \item \texttt{taille\_bateaux} : la liste des bateaux
 \end{itemize}
+\medskip
 
 Dans la mesure où la grille a deux utilisations différentes (la grille du joueur et la grille de suivi des coups), nous avons d'abord décidé de créer deux classes héritées de \texttt{Grille} lors de la conception du projet, \texttt{GrilleJoueur(Grille)} et \texttt{GrilleSuivi(Grille)}, afin de distinguer leurs méthodes spécifiques. Après coup nous nous sommes rendu compte que cela n'apportait pas d'avantage significatif en terme de qualité de code donc nous ne les utiliseront pas, mais elles sont encore présentes dans notre code pour une évolution future du projet.
 
@@ -87,9 +88,9 @@ L'une des parties importantes de l'algorithme de résolution consiste en la dét
 La méthode \texttt{Grille.case\_max(self)} renvoie la case vide contenant le plus de bateaux, ainsi que le nombre de bateaux qu'elle contient. L'algorithme est très simple : d'abord on crée un dictionnaire \texttt{Grille.probas} indexé par les cases et contenant le nombre de bateaux possibles grâce à \texttt{Grille.possibles}. Ensuite il ne reste plus qu'à renvoyer celle qui en contient le plus.
 
 \subsubsection{Optimisation de la phase de tir ciblé}\label{opti_touche}
-Cette optimisation est un petit peu plus délicate. Une fois qu'une case a été touchée, l'algorithme va tester ses 4 (au maximum) cases adjacentes et les mettre en ordre décroissant du nombre de bateaux possibles. C'est le rôle de la méthode \texttt{Grille.case\_max\_touchee(self, case\_touchee)}. 
+Cette optimisation est un petit peu plus délicate. Une fois qu'une case a été touchée, l'algorithme va tester ses 4 (au maximum) cases adjacentes et les ranger en ordre décroissant du nombre de bateaux possibles. C'est le rôle de la méthode \texttt{Grille.case\_max\_touchee(self, case\_touchee)}. 
 
-Notons \texttt{(x, y)} les coordonnées de \texttt{case\_touchee} et intéressons nous au nombre de bateaux possibles sur les cases adjacentes horizontales (pour les verticales, c'est exactement la même chose). Pour chaque taille de bateau à couler possible contenant \texttt{case\_touchee} il faudra distinguer trois cas :
+Notons \texttt{(x, y)} les coordonnées de la case touchée et intéressons nous au nombre de bateaux possibles sur les cases adjacentes horizontales (pour les verticales, c'est exactement la même chose). Pour chaque taille de bateau à couler possible contenant \texttt{case\_touchee} il faudra distinguer trois cas :
 \begin{enumerate}
 \item Le bateau est à gauche de \texttt{case\_touchee} et se termine sur cette case. Dans ce cas on augmente de 1 le nombre de possibilités de la case à gauche \texttt{(x-1, y)}
 \item Le bateau est à cheval sur \texttt{case\_touchee}. Dans ce cas on augmente de 1 le nombre de possibilités de la case à gauche \texttt{(x-1, y)} et de celle à droite \texttt{(x+1, y)}
@@ -144,11 +145,13 @@ Imaginons que, sur une grille vierge, on vienne de toucher la case de coordonné
 \draw (6.5, -0.5) node{\textsf{X}};
 \draw (3.5, -0.5) node{\textsf{X}};
 \draw (4.5, -0.5) node{\textsf{X}};
-\end{tikzpicture}\\
-\textit{Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
-}\end{center}
+\end{tikzpicture}
+%\textit{Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
+%}\end{center}
+%
+%\begin{center}
 
-\begin{center}
+\medskip
 
 \begin{tikzpicture}
 \draw (0,1)--(10,1);
@@ -168,7 +171,7 @@ Imaginons que, sur une grille vierge, on vienne de toucher la case de coordonné
 \draw (7.5, -0.5) node{\textsf{X}};
 \draw (4.5, -0.5) node{\textsf{X}};
 \end{tikzpicture}\\
-\textit{Les cases $(4,0)$ et $(6,0)$ sont augmentées de 1
+\textit{Les cases $(4,0)$ et $(6,0)$ sont augmentées de 2
 }\end{center}
 
 \item Le bateau rentre à droite de la case $(5,0)$ :
@@ -226,7 +229,9 @@ Le classe \texttt{Grille} contient toutes les méthodes nécessaires pour gérer
 \subsubsection{Ajout d'un bateau}
 La méthode \texttt{Grille.add\_bateau(self, bateau)} permet d'ajouter un bateau (instance de la classe \texttt{Bateau}) après avoir testé sa validité via la méthode \texttt{Grille.test\_bateau(self, bateau)}, et marque ses cases adjacentes comme impossibles.
 
-Pour initialiser une flotte aléatoire, c'est la méthode \texttt{Grille.init\_bateaux\_alea(self)} dont l'algorithme est le suivant :
+\medskip
+
+Pour initialiser une flotte aléatoire, on utilise la méthode \texttt{Grille.init\_bateaux\_alea(self)} dont l'algorithme est le suivant :
 
 \begin{algo1}
 0\sto nb\_bateaux\\

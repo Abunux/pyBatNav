@@ -7,7 +7,7 @@ L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)
 Il fonctionne en deux temps : dans un premier temps une phase de tir en aveugle et, une fois qu'une case a été touchée, une phase de tir ciblé jusqu'à ce que le bateau soit coulé.
 
 \subsection{Phase de tir en aveugle}
-Lors de cette phase, l'algorithme va tirer sur la case qui peut contenir le plus de bateau comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle} avec la méthode \texttt{Ordi.make\_case\_aleatoire(self)}.
+Lors de cette phase, l'algorithme va tirer sur la case qui peut contenir le plus de bateau comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle} (page \pageref{opti_aveugle}) avec la méthode \texttt{Ordi.make\_case\_aleatoire(self)}.
 
 C'est la méthode la plus efficace que nous ayons trouvée. Néanmoins nous avons fait d'autres essais avec d'autres méthodes mais celles-ci étaient beaucoup moins performantes, que ce soit aussi bien en nombre de coups pour la résolution, qu'en temps :
 \begin{itemize}
@@ -47,7 +47,7 @@ Lors de cette phase on va également, avant chaque coup, éliminer les cases dan
 \subsubsection{Premier tir}
 Lors du premier tir touché après la phase de tir en aveugle, on va garder une trace de la case touchée dans l'attribut \texttt{Ordi.case\_touchee} et on va fabriquer une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser à partir des cases adjacentes à la case touchée.
 
-L'algorithme va également vérifier si le plus petit bateau ne peut pas rentre dans une direction. Imaginons, par exemple, que le plus petit bateau restant soit de taille 3 et qu'on vienne de toucher la case $(3,0)$ dans la configuration suivante :
+L'algorithme va également vérifier si le plus petit bateau ne peut pas rentrer dans une direction. Imaginons, par exemple, que le plus petit bateau restant soit de taille 3 et qu'on vienne de toucher la case $(3,0)$ dans la configuration suivante :
 
 \begin{center}
 \begin{tikzpicture}
@@ -73,13 +73,13 @@ L'algorithme va également vérifier si le plus petit bateau ne peut pas rentre 
 \end{tikzpicture}\\
 \textit{Le bateau de taille 3 ne rentre pas verticalement}
 \end{center}
-Il ne sert alors à rien de mettre la case $(3,0)$ dans la file d'attente car le plus petit bateau de taille 3 ne peut pas rentre verticalement en $(3,0)$.
+Il ne sert alors à rien de mettre la case $(3,0)$ dans la file d'attente car le plus petit bateau de taille 3 ne peut pas rentrer verticalement en $(3,0)$.
 
 La construction de la liste des cases adjacentes possibles est effectuée par la méthode \texttt{Ordi.add\_adjacentes\_premiere(self)}.
 
 \medskip
 
- Enfin on va classer la file d'attente en ordre décroissant de nombre de bateaux possibles comme vu au chapitre \ref{chap_grille}, section \ref{opti_touche} avec la méthode \texttt{Ordi.shuffle\_queue(self)}.
+ Enfin, on va classer la file d'attente en ordre décroissant de nombre de bateaux possibles comme vu au chapitre \ref{chap_grille}, section \ref{opti_touche} (page \pageref{opti_touche}) avec la méthode \texttt{Ordi.shuffle\_queue(self)}.
 
 \medskip
 

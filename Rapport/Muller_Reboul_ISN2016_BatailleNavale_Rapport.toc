@@ -48,3 +48,4 @@
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{27}
 \contentsline {chapter}{\numberline {9}Conclusion}{29}
 \contentsline {chapter}{\numberline {A}L'algorithme en action}{33}
+\contentsline {chapter}{\numberline {B}Codes des caract\IeC {\`e}res graphiques}{71}

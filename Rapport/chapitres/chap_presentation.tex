@@ -2,7 +2,7 @@
 
 \section{Le jeu de la bataille navale}
 Le jeu de la bataille navale est un jeu qui se joue à deux joueurs.\\
-Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, chacun son tour, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{}. Nous avons pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre l'algorithme de résolution un petit peu plus intéressant.\\
+Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, à tour de rôle, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{}. Nous avons pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre l'algorithme de résolution un petit peu plus intéressant.\\
 Les bateaux peuvent être placés horizontalement ou verticalement et deux bateaux ne peuvent pas se trouver sur des cases adjacentes.
 
 Les règles retenues dans ce projet sont les règles du jeu original, mais elles peuvent être facilement modifiées, à savoir que la grille est un carré 10 cases de côté et la composition de la flotte est la suivante :
@@ -32,7 +32,7 @@ Nos objectifs ont été les suivants :
 \section{Liste des modules du projet}
 Afin de faciliter les développement et la maintenance du projet, celui-ci a été décomposé en un certain nombre de modules :
 \begin{itemize}
-\item \texttt{main.py} : le programme principal. Il permet, via un argument \texttt{--interface} en ligne de commande de choisir l'interface de jeu (\texttt{console} ou \texttt{tkinter}).
+\item \texttt{main.py} : le programme principal. Il permet, via un argument \texttt{-\.-interface} en ligne de commande de choisir l'interface de jeu (\texttt{console} ou \texttt{tkinter}).
 \item \texttt{bn\_utiles.py} : contient quelques fonctions utiles ainsi que les constantes du projet.
 \item \texttt{bn\_grille.py} : gère la grille et les bateaux.
 \item \texttt{bn\_joueur.py} : gère les joueurs et implémente l'algorithme de résolution.
