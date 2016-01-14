@@ -331,11 +331,11 @@ class Ordi(Joueur):
 				self.rem_bateau()
 				# Mise à jour des cases adjacentes au bateau coulé (cases impossibles)
 				self.elimine_adjacentes()
+				# Réinitialisation des cases touchées
+				self.liste_touches = []
 				
 			# Élimination des cases dans lesquelles le plus petit bateau restant ne peut pas rentrer
 			self.elimine_petites()
-			# Réinitialisation des cases touchées
-			self.liste_touches = []
 			
 			# Choisit sur une case aléatoire 
 			self.make_case_aleatoire()

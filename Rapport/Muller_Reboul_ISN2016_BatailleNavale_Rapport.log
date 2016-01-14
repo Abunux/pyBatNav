@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  14 JAN 2016 16:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  14 JAN 2016 19:15
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1754,6 +1754,12 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 \c@Algo=\count300
 \c@Lemme=\count301
 )
+(/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
+Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
+\tab@position=\count302
+\tab@size=\count303
+\listing@line=\count304
+)
 (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux)
 \openout1 = `Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux'.
 
@@ -1814,19 +1820,19 @@ Package frenchb.ldf Warning: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)                 on input line 8.
 
 LaTeX Info: Redefining \up on input line 8.
-\c@lstlisting=\count302
+\c@lstlisting=\count305
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count303
+\scratchcounter=\count306
 \scratchdimen=\dimen271
 \scratchbox=\box79
-\nofMPsegments=\count304
-\nofMParguments=\count305
+\nofMPsegments=\count307
+\nofMParguments=\count308
 \everyMPshowfont=\toks55
-\MPscratchCnt=\count306
+\MPscratchCnt=\count309
 \MPscratchDim=\dimen272
-\MPnumerator=\count307
-\makeMPintoPDFobject=\count308
+\MPnumerator=\count310
+\makeMPintoPDFobject=\count311
 \everyMPtoPDFconversion=\toks56
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -1859,45 +1865,45 @@ Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             http://www.ctan.org/tex-archive/ 
 (lastpage)             install/macros/latex/contrib/pageslts.tds.zip
 (lastpage)             ! on input line 8.
-LaTeX Font Info:    Try loading font information for FML+futmi on input line 18
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 22
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmlfutmi.fd
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 18.
+(Font)              scaled to size 13.24796pt on input line 22.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 18.
+(Font)              scaled to size 9.19998pt on input line 22.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 18.
+(Font)              scaled to size 7.35999pt on input line 22.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 18.
+(Font)              scaled to size 13.24796pt on input line 22.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 18.
+(Font)              scaled to size 9.19998pt on input line 22.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 18.
-LaTeX Font Info:    Try loading font information for U+msa on input line 18.
+(Font)              scaled to size 7.35999pt on input line 22.
+LaTeX Font Info:    Try loading font information for U+msa on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 18.
+LaTeX Font Info:    Try loading font information for U+msb on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 18.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 18.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 18.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 22.
 
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1909,9 +1915,9 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 ]
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 23.
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 27.
 LaTeX Font Info:    Font shape `T1/futs/bx/sc' in size <24.88> not available
-(Font)              Font shape `T1/futs/b/sc' tried instead on input line 23.
+(Font)              Font shape `T1/futs/b/sc' tried instead on input line 27.
  (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.toc
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <12> not available
 (Font)              Font shape `T1/futs/b/n' tried instead on input line 3.
@@ -2072,7 +2078,7 @@ thode \T1/lmtt/m/n/12 Grille.init_bateaux_alea(self)
  []
 
 )
-Overfull \hbox (3.27377pt too wide) in paragraph at lines 257--34
+Overfull \hbox (3.27377pt too wide) in paragraph at lines 257--38
 []\T1/futs/m/n/12 L'attribut \T1/lmtt/m/n/12 Grille.somme_taille\T1/futs/m/n/12
  , ini-tia-lisé dès le dé-part avec la classe \T1/lmtt/m/n/12 Grille\T1/futs/m/
 n/12 , contient
@@ -2112,7 +2118,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [16]
 ~Chapitre 5.
 
-Overfull \hbox (8.68042pt too wide) in paragraph at lines 12--13
+Overfull \hbox (8.68042pt too wide) in paragraph at lines 13--14
 \T1/futs/m/n/12 d'autres es-sais avec d'autres mé-thodes mais celles-ci étaient
  beau-coup moins per-for-mantes,
  []
@@ -2120,7 +2126,13 @@ Overfull \hbox (8.68042pt too wide) in paragraph at lines 12--13
 [17
 
 ]
-Overfull \hbox (51.98923pt too wide) in paragraph at lines 82--83
+Overfull \hbox (10.945pt too wide) in paragraph at lines 50--51
+[]\T1/futs/m/n/12 Lors du pre-mier tir tou-ché après la phase de tir en aveugle
+, l'at-tri-but \T1/lmtt/m/n/12 Ordi.case_touchee
+ []
+
+
+Overfull \hbox (51.98923pt too wide) in paragraph at lines 84--85
 \T1/futs/m/n/12 sibles comme vu au cha-pitre 3[], sec-tion 2.5.2[] (page 11[]) 
 avec la mé-thode \T1/lmtt/m/n/12 Ordi.shuffle_queue(self)\T1/futs/m/n/12 . 
  []
@@ -2139,7 +2151,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [19]
-Overfull \hbox (32.06224pt too wide) in paragraph at lines 153--185
+Overfull \hbox (19.71223pt too wide) in paragraph at lines 153--188
  [] 
  []
 
@@ -2153,7 +2165,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 File: ./media/distrib_1000000.png Graphic file (type png)
 
 <use ./media/distrib_1000000.png>
-Package pdftex.def Info: ./media/distrib_1000000.png used on input line 193.
+Package pdftex.def Info: ./media/distrib_1000000.png used on input line 196.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 ) (./chapitres/chap_console.tex
 
@@ -2673,13 +2685,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ### simple group (level 1) entered at line 2 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25518 strings out of 493304
- 490380 string characters out of 6139871
- 763673 words of memory out of 5000000
- 28188 multiletter control sequences out of 15000+600000
+ 25563 strings out of 493304
+ 491090 string characters out of 6139871
+ 765673 words of memory out of 5000000
+ 28229 multiletter control sequences out of 15000+600000
  159947 words of font info for 152 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 51i,11n,71p,884b,1367s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,11n,71p,870b,1367s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/tex
 mf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
 base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-m
@@ -2691,7 +2703,7 @@ are/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (75 pages, 4
-88872 bytes).
+90065 bytes).
 PDF statistics:
  313 PDF objects out of 1000 (max. 8388607)
  206 compressed objects within 3 object streams

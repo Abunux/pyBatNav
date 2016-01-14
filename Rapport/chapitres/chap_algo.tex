@@ -6,6 +6,7 @@ Un exemple de résolution pas à pas est donné dans l'annexe \ref{annexe_algo_a
 L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)} du module \texttt{bn\_joueur.py}, dans la méthode \texttt{Ordi.coup\_suivant(self)}.\\
 Il fonctionne en deux temps : dans un premier temps une phase de tir en aveugle et, une fois qu'une case a été touchée, une phase de tir ciblé jusqu'à ce que le bateau soit coulé.
 
+L'attribut \texttt{Ordi.case\_courante} contient la case qui est entrain d'être jouée.
 \subsection{Phase de tir en aveugle}
 Lors de cette phase, l'algorithme va tirer sur la case qui peut contenir le plus de bateau comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle} (page \pageref{opti_aveugle}). Cette phase est gérée par la méthode \texttt{Ordi.make\_case\_aleatoire(self)}.
 
@@ -44,8 +45,9 @@ Au final, le temps de résolution étant linéaire en $n$ pour des gains de perf
 Lors de cette phase on va également, avant chaque coup, éliminer les cases dans lesquelles le plus petit bateau restant à trouver ne rentre pas.
 
 \subsection{Phase de tir ciblé}
+Lors de cette phase, on va utiliser une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser. On va également garder la trace des cases touchées sur ce bateau dans la liste \texttt{Ordi.liste\_touches}, ainsi que la première case touchée dans \texttt{Ordi.case\_touchee}.
 \subsubsection{Premier tir}
-Lors du premier tir touché après la phase de tir en aveugle, on va garder une trace de la case touchée dans l'attribut \texttt{Ordi.case\_touchee} et on va fabriquer une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser à partir des cases adjacentes à la case touchée.
+Lors du premier tir touché après la phase de tir en aveugle, l'attribut \texttt{Ordi.case\_touchee} reçoit la case courante qui sera également ajoutée à \texttt{Ordi.liste\_touches}. Puis on va remplir la file d'attente avec les cases adjacentes à la case touchée.
 
 L'algorithme va également vérifier si le plus petit bateau ne peut pas rentrer dans une direction. Imaginons, par exemple, que le plus petit bateau restant soit de taille 3 et qu'on vienne de toucher la case $(3,0)$ dans la configuration suivante :
 
@@ -81,17 +83,13 @@ La construction de la liste des cases adjacentes possibles est effectuée par la
 
  Enfin, on va classer la file d'attente en ordre décroissant de nombre de bateaux possibles comme vu au chapitre \ref{chap_grille}, section \ref{opti_touche} (page \pageref{opti_touche}) avec la méthode \texttt{Ordi.shuffle\_queue(self)}.
 
-\medskip
-
-On va également créer une liste \texttt{Ordi.liste\_touches} qui va garder la trace des cases touchées sur ce bateau.
-
 \subsubsection{Deuxième tir}
 Lors du deuxième tir (c'est à dire sur la première case de la file d'attente), on peut soit toucher, soit manquer.
 \begin{itemize}
-\item Si on touche alors, grâce à la méthode \texttt{Ordi.update\_queue\_touche(self)}, on détermine la direction du bateau (horizontal ou vertical)  et on enlève les cases de la file d'attente qui ne sont pas dans la bonne direction. On ajoute enfin les 2 cases aux extrémités de la configuration créée à la file d'attente et on met à jour la liste \texttt{Ordi.liste\_touches}. 
+\item Si on touche alors, grâce à la méthode \texttt{Ordi.update\_queue\_touche(self)}, on détermine la direction du bateau (horizontal ou vertical) en comparant les coordonnées de \texttt{Ordi.case\_courante} et \texttt{Ordi.case\_touchee} et on enlève les cases de la file d'attente qui ne sont pas dans la bonne direction. On ajoute enfin la case à l'extrémité de la configuration créée à la file d'attente et on met à jour la liste \texttt{Ordi.liste\_touches}. 
 \item Si on manque, alors on a peut-être bloqué une direction.\\
-La méthode \texttt{Ordi.update\_queue\_manque(self)} se charge de cette vérification et élimine la case en face de la case jouée si besoin de la file d'attente.
-Regardons un exemple. Imaginons que le plus petit bateau à trouver soit de taille 4 et que la première case touchée soit la case $(3,0)$. Nous venons de manquer la case $(4,0)$. Alors le bateau e taille 4 ne rentre plus horizontalement et on peut éliminer la case $(2,0)$ :
+La méthode \texttt{Ordi.update\_queue\_manque(self)} se charge de cette vérification et élimine la case en face de la case jouée si besoin de la file d'attente.\\
+Regardons un exemple. Imaginons que le plus petit bateau à trouver soit de taille 4 et que la première case touchée soit la case $(3,0)$. Nous venons de manquer la case $(4,0)$. Alors le bateau de taille 4 ne rentre plus horizontalement et on peut éliminer la case $(2,0)$ :
 
 \begin{center}
 \begin{tikzpicture}
@@ -109,7 +107,7 @@ Regardons un exemple. Imaginons que le plus petit bateau à trouver soit de tail
 
 \draw (3.5, -0.5) node{\textbf{\textsf{X}}};
 
-\draw (5.5, -0.5) node{\textsf{O}};
+%\draw (5.5, -0.5) node{\textsf{O}};
 \draw (0.5, -0.5) node{\textsf{O}};
 \end{tikzpicture}\\
 \textit{À ce niveau, le bateau de taille 4 rentre horizontalement.}
@@ -131,21 +129,23 @@ Regardons un exemple. Imaginons que le plus petit bateau à trouver soit de tail
 
 \draw (3.5, -0.5) node{\textbf{\textsf{X}}};
 
-\draw (5.5, -0.5) node{\textsf{O}};
+%\draw (5.5, -0.5) node{\textsf{O}};
 \draw (4.5, -0.5) node{\textsf{O}};
 \draw (0.5, -0.5) node{\textsf{O}};
 \end{tikzpicture}\\
 \textit{Après ce coup, le bateau de taille 4 ne rentre plus horizontalement et on peut éliminer la case $(2,0)$.}
 \end{center}
-  
+Pour ce faire, on détermine la direction dans laquelle on vient de tirer en comparant les coordonnées de \texttt{Ordi.case\_courante} et \texttt{Ordi.case\_touchee} et on regarde si le plus petit bateau rentre dans la direction en face.
+
 \end{itemize}   
 
 \subsubsection{Tirs suivants}
 Une fois que la direction du bateau est déterminée, à chaque fois qu'on touche une case, on ajoute à la file d'attente sa case adjacente dans la bonne direction.
 
-Enfin on s'arrête lorsque la file d'attente est vide (on a manqué les deux extrémités) ou lorsque la taille du bateau touché est égale à la plus grande taille du bateau sur la grille et, dans ce cas, on vide la file d'attente. La méthode \texttt{Ordi.liste\_touches} permet de garder la trace des cases touchées sur ce bateau et d'en déterminer le nombre de cases.
+Enfin on s'arrête lorsque la file d'attente est vide (on a manqué les deux extrémités) ou lorsque la taille du bateau touché est égale à la plus grande taille du bateau sur la grille avec \texttt{Ordi.test\_plus\_grand(self)} et, dans ce cas, on vide la file d'attente. 
+%La méthode \texttt{Ordi.liste\_touches} permet de garder la trace des cases touchées sur ce bateau et d'en déterminer le nombre de cases.
 
-Au prochain tour, on sait qu'un bateau vient d'être coulé lorsque la file d'attente est vide et \texttt{Ordi.liste\_touches} ne l'est pas. Dans ce cas on marque ses cases adjacentes comme impossibles et on l'enlève de la liste des bateaux à chercher.
+Au prochain tour, on sait qu'un bateau vient d'être coulé lorsque la file d'attente est vide et \texttt{Ordi.liste\_touches} ne l'est pas. Dans ce cas on marque ses cases adjacentes comme impossibles et on l'enlève de la liste des bateaux à chercher. On n'a plus alors qu'à repartir dans une phase de tir en aveugle.
 \newpage
 \subsection{Algorithme complet}
 Voici l'algorithme complet de la résolution :
@@ -157,28 +157,31 @@ None\sto case\_courante\\
 None\sto case\_touchee\\
 Tant que le grille n'est pas résolue :\\
 \tab{1}Si la file d'attente est vide :\\
-\tab{2}Si liste\_touchee n'est pas vide :\\
-\tab{3}On enlève le bateau de taille len(liste\_touchee)\\
+\tab{2}Si liste\_touches n'est pas vide :\\
+\tab{3}On enlève le bateau de taille len(liste\_touches)\\
 \tab{3}On élimine ses cases adjacentes\\
+\tab{3}On vide liste\_touches\\
 \tab{2}On élimine les zones trop petites\\
-\tab{2}On vide liste\_touchee\\
 \tab{2}case\_courante reçoit une case en aveugle\\
 \tab{1}Sinon :\\
 \tab{2}case\_courante reçoit le premier élément de la file d'attente\\
 \tab{2}On enlève cette case de la file d'attente\\
 \tab{1}On tire sur case\_courante\\
 \tab{1}Si on a touché :\\
-\tab{2}Si liste\_touches est vide\\
+\tab{2}Si liste\_touches est vide :\\
 \tab{3}On ajoute case\_courante dans liste\_touches\\
 \tab{3}case\_touchee\sto case\_courante\\
-\tab{3}On ajoute les cases adjacentes dans la file d'attente\\
+\tab{3}On ajoute ses cases adjacentes dans la file d'attente\\
 \tab{4}(en testant également les directions impossibles éventuelles)\\
 \tab{2}Sinon :\\
-\tab{3}On détecte la direction du bateau et on met à jour la file d'attente\\
+\tab{3}Si len(liste\_touches) == 1 :\\
+\tab{4}On détecte la direction du bateau\\
+\tab{3}On met à jour la file d'attente\\
+\tab{4}(avec la case adjacente à case\_courante dans la bonne direction)\\
 \tab{2}Si le bateau touché est le plus grand restant :\\
 \tab{3}On vide la file d'attente\\
 \tab{1}Sinon :\\
-\tab{2}S'il y a un unique élément dans liste\_touches:\\
+\tab{2}Si len(liste\_touches) == 1 :\\
 \tab{3}On met à jour la file d'attente\\
 \tab{4}(on élimine éventuellement la case en face de case\_touchee)\\
 On affiche le nombre de coups\\
@@ -187,7 +190,7 @@ On affiche le nombre de coups\\
 \newpage
 
 \section{Étude statistique}
-Des tests de l'algorithme de résolution sur $n=1\,000\,000$ de parties donnent les résultats suivants, obtenus avec les modules \texttt{numpy} et \texttt{matplotlib} :
+Un test de l'algorithme de résolution sur $n=1\,000\,000$ de parties donnent les résultats suivants, obtenus avec les modules \texttt{numpy} et \texttt{matplotlib} :
 
 \begin{center}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_1000000.png}}

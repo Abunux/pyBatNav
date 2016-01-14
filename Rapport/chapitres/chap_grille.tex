@@ -34,10 +34,10 @@ Dans la mesure où la grille a deux utilisations différentes (la grille du joue
 \subsection{État de la grille}
 
 L'attribut \texttt{Grille.etat} fournit l'état de la grille. C'est un dictionnaire indexé par les tuples \texttt{(0,0)}, \texttt{(0,1)},... , \texttt{(9,9)}, dans lesquels la première coordonnée correspond à la colonne de la case et la deuxième à sa ligne.\\
-L'état d'un case peut être :
+L'état d'une case peut être :
 \begin{itemize}
-\item $0$ : case non jouée
-\item $1$ : case touchée
+\item $0$ : case vide
+\item $1$ : case touchée (ou contenant un bateau)
 \item $-1$ : case manquée ou impossible
 \end{itemize}
 L'intérêt d'utiliser un dictionnaire plutôt qu'une liste double tient au fait que les appels sont plus simples et plus naturels et, surtout, que l'utilisation d'une table de hachage permet la recherche d'un élément en $O(1)$.  
@@ -46,7 +46,7 @@ La méthode \texttt{Grille.test\_case(self, case)} permet de déterminer si une 
 
 Notons également l'utilisation de l'attribut \texttt{Grille.vides} qui est la liste des cases vides.
 
-Bien entendu, cette classe contient des fonctions de mise à jour jour de l'état de la grille (liste des cases vides, tailles des plus petits et plus grand bateaux restants).
+Bien entendu, cette classe contient des fonctions de mise à jour jour de l'état de la grille (liste des cases vides, tailles du plus petit et du plus grand bateau restant).
 
 Enfin, la méthode \texttt{Grille.adjacent(self, case)} renvoie la liste de cases adjacentes à une case donnée.
 
@@ -58,10 +58,10 @@ direction[1]\sto dv\\
 0\sto m\\
 case[0]\sto x\\
 case[1]\sto y\\
-Tant que la case (x+dh, y+dv) est vide et dans la grille :\\
+Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
 \tab{1} m+1\sto m\\
 \tab{1} x+1\sto x\\
-\tab{1} y+1\sto x\\
+\tab{1} y+1\sto y\\
 Retourner m\\
 \end{algo1}
 
@@ -223,7 +223,7 @@ Si la case $(3,0)$ avait été jouée et manquée nous aurions obtenu 1 bateau h
 \end{tikzpicture}\\
 \end{center}
 
-Une fois que le compte des bateaux possibles a été effectué sur chacune de cases adjacentes, on crée une liste \texttt{probas\_liste} contenant des tuples de la forme \texttt{(case, probas[case])} que l'on ordonne en ordre décroissant de possibilités grâce à l'instruction \texttt{sorted(probas\_liste, key=lambda proba: proba[1], reverse = True)} et que l'on retourne.
+Une fois que le compte des bateaux possibles a été effectué sur chacune des cases adjacentes, on crée une liste \texttt{probas\_liste} contenant des tuples de la forme \texttt{(case, probas[case])} que l'on ordonne en ordre décroissant de possibilités grâce à l'instruction \texttt{sorted(probas\_liste, key=lambda proba: proba[1], reverse = True)} et que l'on retourne.
 
 \subsection{Gestion de la flotte}
 Le classe \texttt{Grille} contient toutes les méthodes nécessaires pour gérer la flotte de bateaux. Les méthodes \texttt{Grille.get\_taille\_max(self)} et \texttt{Grille.get\_taille\_min(self)} mettent à jour respectivement la taille maximum et la taille minimum des bateaux restant à trouver. La méthode \texttt{Grille.rem\_bateau(self, taille)} permet de supprimer de la liste \texttt{Grille.taille\_bateaux} un bateau coulé.
@@ -248,7 +248,7 @@ Tant que nb\_bateaux < nombre de bateaux à placer :\\
 \tab{2} Sinon :\\
 \tab{3} On choisit une position et une direction au hasard\\
 \tab{4} (parmi celles possibles)\\
-\tab{3} On ajoute la bateau à gtmp\\
+\tab{3} On ajoute le bateau à gtmp\\
 \tab{3} nb\_bateaux+1\sto nb\_bateaux\\
 Enfin on copie l'état de gtmp dans notre grille \\
 \end{algo1}
