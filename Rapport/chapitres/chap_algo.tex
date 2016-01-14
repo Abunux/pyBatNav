@@ -75,7 +75,7 @@ L'algorithme va également vérifier si le plus petit bateau ne peut pas rentrer
 \end{tikzpicture}\\
 \textit{Le bateau de taille 3 ne rentre pas verticalement}
 \end{center}
-Il ne sert alors à rien de mettre la case $(3,0)$ dans la file d'attente car le plus petit bateau de taille 3 ne peut pas rentrer verticalement en $(3,0)$.
+Il ne sert alors à rien de mettre la case $(3,1)$ dans la file d'attente car le plus petit bateau de taille 3 ne peut pas rentrer verticalement en $(3,0)$.
 
 La construction de la liste des cases adjacentes possibles est effectuée par la méthode \texttt{Ordi.add\_adjacentes\_premiere(self)}.
 
@@ -153,13 +153,11 @@ Voici l'algorithme complet de la résolution :
 \begin{algo1}
 La file d'attente est une liste vide\\
 liste\_touches est une liste vide\\
-None\sto case\_courante\\
-None\sto case\_touchee\\
 Tant que le grille n'est pas résolue :\\
 \tab{1}Si la file d'attente est vide :\\
 \tab{2}Si liste\_touches n'est pas vide :\\
 \tab{3}On enlève le bateau de taille len(liste\_touches)\\
-\tab{3}On élimine ses cases adjacentes\\
+\tab{3}On élimine les cases adjacentes à celles de liste\_touches\\
 \tab{3}On vide liste\_touches\\
 \tab{2}On élimine les zones trop petites\\
 \tab{2}case\_courante reçoit une case en aveugle\\
@@ -190,7 +188,7 @@ On affiche le nombre de coups\\
 \newpage
 
 \section{Étude statistique}
-Un test de l'algorithme de résolution sur $n=1\,000\,000$ de parties donnent les résultats suivants, obtenus avec les modules \texttt{numpy} et \texttt{matplotlib} :
+Un test de l'algorithme de résolution sur $n=1\,000\,000$ de parties donne les résultats suivants, obtenus avec les modules \texttt{numpy} et \texttt{matplotlib} :
 
 \begin{center}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_1000000.png}}

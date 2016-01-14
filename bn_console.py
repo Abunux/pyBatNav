@@ -56,7 +56,7 @@ CAR_GTBG = u'\u253A'	# T Bas Gauche : ┺
 CAR_GTBD = u'\u2539'	# T Bas Droite : ┹
 
 # Coins
-CAR_GCBD = u'\u251B'	# Coin Gras Bas Gauche : ┛
+CAR_GCBD = u'\u251B'	# Coin Gras Bas Droite : ┛
 # +
 CAR_GCXHG = u'\u2546'	# Croix Gras Haut Gauche : ╆
 CAR_GCXHD = u'\u2545'	# Croix Gras Haut Droite : ╅
@@ -213,7 +213,7 @@ class GrilleC(Grille) :
 				chaine += ' ' + chr(i+65) + ' ' + CAR_V + '\n'
 				#~ chaine += ' '+str(i)+' '+CAR_V+'\n'
 				
-		# Ligne sous les lettres (à cause du coin en haut à gauche)
+		# Ligne sous les lettres
 		j = 0
 		chaine += CAR_CHG + CAR_H*3
 		for i in range(grille.xmax) :
