@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  14 JAN 2016 08:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  14 JAN 2016 08:26
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2591,11 +2591,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[68]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1339.
-
-) (./chapitres/annexe_codescar.tex
+[68]) (./chapitres/annexe_codescar.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2622,14 +2618,9 @@ Overfull \hbox (221.34625pt too wide) in paragraph at lines 3--4
 
 ) 
 AED: lastpage setting LastPage
-[71] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux)
+[71] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) )
+(\end occurred inside a group at level 36)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
-(\end occurred inside a group at level 37)
-
-### simple group (level 37) entered at line 1306 ({)
 ### simple group (level 36) entered at line 1273 ({)
 ### simple group (level 35) entered at line 1238 ({)
 ### simple group (level 34) entered at line 1202 ({)
@@ -2674,7 +2665,7 @@ Here is how much of TeX's memory you used:
  28185 multiletter control sequences out of 15000+600000
  159641 words of font info for 151 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 51i,11n,71p,884b,1397s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,11n,71p,884b,1369s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/tex
 mf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
 base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-m
