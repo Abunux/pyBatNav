@@ -643,7 +643,7 @@ class GrilleJoueur(Grille):
 #
 #----------------------------------------------------------------------------------------------------------------
 #
-class GrilleSuivi(GrilleJoueur):
+class GrilleSuivi(Grille):
 	"""La grille de suivi des coups joués"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
 		Grille.__init__(self, xmax, ymax, taille_bateaux)

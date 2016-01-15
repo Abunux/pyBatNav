@@ -1,16 +1,17 @@
-#
-# Module bn_joueurs
-#
-# Implémente les classes :
-#	- Joueur : la classe de base des joueurs
-#	- Ordinateur : dérivée de Joueur, pour résoudre une grille automatiquement
-# 
-# Auteurs : Frédéric Muller et Lionel Reboul
-#
-# Licence CC BY-NC-SA
-#
-# Version 0.1.0
-#
+
+"""Module bn_joueurs
+
+Implémente les classes :
+	- Joueur : la classe de base des joueurs
+	- Ordinateur : dérivée de Joueur, 
+		pour résoudre une grille automatiquement
+ 
+Auteurs : Frédéric Muller et Lionel Reboul
+
+Licence CC BY-NC-SA
+
+Version 0.1.0"""
+
 
 from time import time
 
@@ -59,7 +60,8 @@ class Joueur(object):
 			
 	def tire(self, case):
 		"""Tire sur la case (x,y)
-		Renvoie True si la case est touchée, False si non touché ou case invalide"""
+		Renvoie True si la case est touchée, 
+		False si non touché ou case invalide"""
 		# Coup invalide
 		if case in self.cases_jouees :
 			self.messages.append("%s : Déjà joué" % alpha(case))

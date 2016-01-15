@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  15 JAN 2016 10:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  15 JAN 2016 13:42
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1933,30 +1933,21 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 (Font)              scaled to size 8.27998pt on input line 4.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
 (Font)              scaled to size 6.43999pt on input line 4.
-)
-\tf@toc=\write5
-\openout5 = `Muller_Reboul_ISN2016_BatailleNavale_Rapport.toc'.
-
-
-(./chapitres/chap_presentation.tex
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
 
 [3
 
-]
+])
+\tf@toc=\write5
+\openout5 = `Muller_Reboul_ISN2016_BatailleNavale_Rapport.toc'.
+
+ (./chapitres/chap_presentation.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4
-
-]
+[4]
 ~Chapitre 1.
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/futs/b/n' tried instead on input line 3.
@@ -1969,7 +1960,9 @@ Overfull \hbox (7.43687pt too wide) in paragraph at lines 28--29
 e de jeu, ainsi que les joueurs. 
  []
 
-[5]) (./chapitres/chap_utiles.tex
+[5
+
+]) (./chapitres/chap_utiles.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2259,7 +2252,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ] [33] [34] (./chapitres/annexe_stats.tex
 Annexe A.
-) (./chapitres/annexe_codescar.tex [35
+) (./chapitres/annexe_docstring.tex [35
 
 ]
 
@@ -2272,7 +2265,70 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 Annexe B.
-[37]) (./chapitres/annexe_algo.tex
+runsystem(pydoc3 bn_grille.Bateau > ./docstrings/bn_grille.Bateau)...executed.
+
+File: ./docstrings/bn_grille.Bateau  (verbatim)
+
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 8--8
+[] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
+-------------[] 
+ []
+
+runsystem(pydoc3 bn_grille.Grille > ./docstrings/bn_grille.Grille)...executed.
+
+File: ./docstrings/bn_grille.Grille  (verbatim)
+[37]
+Overfull \hbox (74.83727pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |      Ajoute un bateau dans la grille et met à jour les éta
+ts des cases adjacentes[] 
+ []
+
+
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |      Regarde pour chaque case le nombre de bateaux possibl
+es sur cette case[] 
+ []
+
+
+Overfull \hbox (105.71228pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |  case_max_echantillons(self, nb_echantillons=1000, ordre='
+decroissant', affiche=False)[] 
+ []
+
+
+Overfull \hbox (56.31226pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |      Essai de calcul des probabilité de cases touchée sur 
+chaque case restante[] 
+ []
+
+
+Overfull \hbox (161.28731pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |      Retourne la case la plus probable en essayant différe
+nts arrangements des bateaux restants[] 
+ []
+
+
+Overfull \hbox (93.36227pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |      Retourne les probas de chaque case adjacentes à case 
+(qui vient d'être touchée)[] 
+ []
+
+
+Overfull \hbox (62.48726pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |      Élimine les cases dans lesquelles le plus petit batea
+u ne peut pas rentrer[] 
+ []
+
+
+Overfull \hbox (43.96225pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |      Renvoie la plus grande place possible sur cette case 
+dans une direction[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2280,11 +2336,156 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [38]
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 12--12
+[] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
+-------------[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[39]
+runsystem(pydoc3 bn_joueur.Joueur > ./docstrings/bn_joueur.Joueur)...executed.
+
+File: ./docstrings/bn_joueur.Joueur  (verbatim)
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[40]
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 17--17
+[] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
+-------------[] 
+ []
+
+runsystem(pydoc3 bn_joueur.Ordi > ./docstrings/bn_joueur.Ordi)...executed.
+
+File: ./docstrings/bn_joueur.Ordi  (verbatim)
+
+Overfull \hbox (278.61237pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |  #--------------------------------------------------------
+--------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (87.18727pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |      Ajoute les cases adjacentes possibles à la premiere c
+ase touchée dans la queue[] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[41]
+Overfull \hbox (62.48726pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |      Élimine les cases dans lesquelles le plus petit batea
+u ne peut pas rentrer[] 
+ []
+
+
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |      Lance la résolution de la grille par l'ordinateur, au
+cun affichage[] 
+ []
+
+
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |      Renvoie True si on a touché autant de cases que le pl
+us grand bateau[] 
+ []
+
+
+Overfull \hbox (235.38734pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |      Met à jour la file d'attente en éliminant une directi
+on impossible, après avoir manqué la case en face[] 
+ []
+
+
+Overfull \hbox (358.8874pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |      Met à jour la file d'attente en enlevant le cases qui
+ ne sont pas dans la bonne direction après avoir touché une 2ème fois[] 
+ []
+
+
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
+-------------[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[42]
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 21--21
+[] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
+-------------[] 
+ []
+
+runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
+
+File: ./docstrings/bn_joueur.Partie  (verbatim)
+
+Overfull \hbox (321.81638pt too wide) in paragraph at lines 25--25
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f562
+b01aef0>, adversaire=<bn_joueur.Ordi object at 0x7f562b0268d0>)[] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[43]
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 25--25
+[] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
+-------------[] 
+ []
+
+) (./chapitres/annexe_codescar.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[44]
 Annexe C.
+[45
+
+]) (./chapitres/annexe_algo.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[46]
+Annexe D.
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 31.
 
-[39
+[47
 
 ]
 
@@ -2296,7 +2497,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[40]
+[48]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 97.
 
@@ -2306,7 +2507,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[41]
+[49]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 140.
 
@@ -2316,7 +2517,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[42]
+[50]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 178.
 
@@ -2326,7 +2527,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[43]
+[51]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 213.
 
@@ -2336,7 +2537,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[44]
+[52]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 248.
 
@@ -2346,7 +2547,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[45]
+[53]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 285.
 
@@ -2356,7 +2557,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[46]
+[54]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 331.
 
@@ -2366,7 +2567,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[47]
+[55]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 364.
 
@@ -2376,7 +2577,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[48]
+[56]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 397.
 
@@ -2386,7 +2587,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[49]
+[57]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 430.
 
@@ -2396,7 +2597,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[50]
+[58]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 463.
 
@@ -2406,7 +2607,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[51]
+[59]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 496.
 
@@ -2416,7 +2617,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[52]
+[60]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 539.
 
@@ -2426,7 +2627,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[53]
+[61]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 572.
 
@@ -2436,7 +2637,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[54]
+[62]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 605.
 
@@ -2446,7 +2647,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[55]
+[63]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 641.
 
@@ -2456,7 +2657,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[56]
+[64]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 674.
 
@@ -2466,7 +2667,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[57]
+[65]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 707.
 
@@ -2476,7 +2677,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[58]
+[66]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 745.
 
@@ -2486,7 +2687,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[59]
+[67]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 778.
 
@@ -2496,7 +2697,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[60]
+[68]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 819.
 
@@ -2506,7 +2707,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[61]
+[69]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 852.
 
@@ -2516,7 +2717,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[62]
+[70]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 889.
 
@@ -2526,7 +2727,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[63]
+[71]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 924.
 
@@ -2536,7 +2737,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[64]
+[72]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 957.
 
@@ -2546,7 +2747,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[65]
+[73]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 994.
 
@@ -2556,7 +2757,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[66]
+[74]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1035.
 
@@ -2566,7 +2767,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[67]
+[75]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1072.
 
@@ -2576,7 +2777,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[68]
+[76]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1105.
 
@@ -2586,7 +2787,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[69]
+[77]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1138.
 
@@ -2596,7 +2797,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[70]
+[78]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1199.
 
@@ -2606,7 +2807,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[71]
+[79]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1235.
 
@@ -2616,7 +2817,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[72]
+[80]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1270.
 
@@ -2626,7 +2827,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[73]
+[81]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 1303.
 
@@ -2636,7 +2837,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[74]) 
+[82]) 
 AED: lastpage setting LastPage
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2644,7 +2845,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[75] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) )
+[83] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (\end occurred inside a group at level 36)
 
 ### simple group (level 36) entered at line 1273 ({)
@@ -2685,10 +2890,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ### simple group (level 1) entered at line 2 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25565 strings out of 493304
- 491118 string characters out of 6139871
+ 25581 strings out of 493304
+ 491430 string characters out of 6139871
  765673 words of memory out of 5000000
- 28231 multiletter control sequences out of 15000+600000
+ 28236 multiletter control sequences out of 15000+600000
  159947 words of font info for 152 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  51i,11n,71p,870b,1367s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2702,11 +2907,11 @@ pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (75 pages, 4
-90062 bytes).
+Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (83 pages, 5
+00326 bytes).
 PDF statistics:
- 313 PDF objects out of 1000 (max. 8388607)
- 206 compressed objects within 3 object streams
+ 338 PDF objects out of 1000 (max. 8388607)
+ 223 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  114 words of extra memory for PDF output out of 10000 (max. 10000000)
 

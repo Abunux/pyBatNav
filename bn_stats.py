@@ -40,13 +40,24 @@ class Stats(object):
 		
 		self.tmoy = tmoy
 		self.param_grille = param_grille
-		
+	
+	#
+	# Chargement et sauvegarde des données (pour analyse future)--------
+	#
 	def load_data(self) :
 		self.data = []
-		with open(self.filename+".txt","r") as distfile:
-			for v in distfile:
+		with open(self.filename+".txt","r") as datafile:
+			for v in datafile:
 				self.data.append(int(v))
 	
+	def save_data(self):
+		with open(self.filename + ".txt", "w") as datafile :
+			for k in range(len(self.data)) :
+				datafile.write(str(self.data[k])+'\n')
+		
+	#
+	# Récupération des paramètres statistiques basiques ----------------
+	#
 	def get_all_stats(self) :
 		self.get_effectif()
 		self.get_mini()
@@ -65,6 +76,7 @@ class Stats(object):
 		print("Mode : %d" % self.mode)
 		print("Moyenne : %.2f" % self.moyenne)
 		print("Sigma : %.2f" % self.sigma)
+	
 	def get_effectif(self) :
 		self.effectif = sum(self.data)
 	
@@ -112,7 +124,10 @@ class Stats(object):
 		variance = total/n
 		self.sigma = sqrt(variance)
 	
-	def histogramme(self):
+	#
+	# Création de l'histogramme ----------------------------------------
+	#
+	def histogramme(self, save=False):
 		"""Crée la représentation graphique des données avec :
 			- Une histogramme des fréquences
 			- Un diagramme en boîte à moustache
@@ -175,7 +190,8 @@ class Stats(object):
 		plt.ylabel("Fréquence de parties")
 		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d , Bateaux : %s" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
 		plt.grid(True)
-		#~ plt.savefig(self.filename + ".png", dpi=fig.dpi)
+		if save :
+			plt.savefig(self.filename + ".png", dpi=fig.dpi)
 		plt.show()
 	
 s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])")
