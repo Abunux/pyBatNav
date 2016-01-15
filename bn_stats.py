@@ -1,5 +1,7 @@
 from bn_grille import *
 
+from math import *
+
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -11,45 +13,181 @@ from matplotlib import cm
 # http://matplotlib.org/examples/user_interfaces/embedding_in_tk.html
 
 
-#~ class Stats(object):
-	#~ def __init__(self, liste_essais=None, filename=""):
-		#~ if liste_essais :
-			#~ self.liste_essais = liste_essais
-		#~ elif filename :
-			#~ self.filename = filename
-			#~ self.recup_distrib(f 
-		#~ self.liste_essais_sorted = sorted(liste_essais)
-		#~ 
-		#~ # Création de la liste de distribution des effectifs
-		#~ distrib = [0]*(xmax*ymax+1)
-		#~ for e in liste_essais :
-				#~ distrib[e] += 1
+class Stats(object):
+	"""Implémente les fonctions statistiques"""
+	def __init__(self, data=None, filename="", tmoy=0, param_grille={'xmax':10, 'ymax':10, 'taille_bateaux':[5, 4, 3, 3, 2]}):
+		# data est une liste d'effectifs : data[43] = nombre de parties à 43 coups
+		# filename le nom du fichier où sont stockées les données
+		# tmoy : temps moyen par partie de la simulation
+		# param_grille : paramètres de la grille
+		if data :
+			self.data = data
+		elif filename :
+			self.filename = filename
+			self.load_data()
+		else :
+			return
 		
+		self.get_all_stats()
 		
+		self.freq=[]
+		for d in self.data :
+			self.freq.append(d/self.effectif)
 		
-def recup_distrib(filename):
-	result = []
-	with open(filename, "r") as file_distrib:
-		for k in file_distrib :
-			result.append(int(k[:-1]))
-	return result
-	 
-def moyenne(distrib) :
-	s = 0
-	for k in range(len(distrib)) :
-		s += k*distrib[k]
-	return s/sum(distrib)
+		# filename pour sauver les données
+		if filename : 
+			self.filename = filename
+		else :
+			self.filename = "Distrib_"+str(self.effectif)
+		
+		self.tmoy = tmoy
+		self.param_grille = param_grille
+		
+	def load_data(self) :
+		self.data = []
+		with open(self.filename+".txt","r") as distfile:
+			for v in distfile:
+				self.data.append(int(v))
+	
+	def get_all_stats(self) :
+		self.get_effectif()
+		self.get_mini()
+		self.get_maxi()
+		self.get_quartiles()
+		self.get_mode()
+		self.get_moyenne()
+		self.get_sigma()
+	
+	def resume_stat(self) :
+		print("Mini : %d" % self.mini)
+		print("Q1 : %d" % self.quartiles[0])
+		print("Med : %d" % self.quartiles[1])
+		print("Q3 : %d" % self.quartiles[2])
+		print("Maxi : %d" % self.maxi)
+		print("Mode : %d" % self.mode)
+		print("Moyenne : %.2f" % self.moyenne)
+		print("Sigma : %.2f" % self.sigma)
+	def get_effectif(self) :
+		self.effectif = sum(self.data)
+	
+	def get_mini(self):
+		k = 0
+		while self.data[k] == 0 and k < len(self.data):
+			k += 1
+		self.mini = k
+	
+	def get_maxi(self):
+		k = len(self.data)-1
+		while self.data[k] == 0 and k >= 0:
+			k -= 1
+		self.maxi = k
+	
+	def get_quartiles(self):
+		n = self.effectif
+		indexes = [ceil(n/4), ceil(n/2), ceil(3*n/4)]
+		cumules = [self.data[0]]
+		for k in range(1,len(self.data)):
+			cumules.append(cumules[k-1]+self.data[k])
+		quartiles = [0, 0, 0]
+		for k in range(len(cumules)):
+			for i in range(3):
+				if cumules[k]>=indexes[i] and cumules[k-1]<indexes[i] :
+					quartiles[i] = k
+		self.quartiles = quartiles
+		
+	def get_mode(self):
+		self.mode = self.data.index(max(self.data))
+	
+	def get_moyenne(self):
+		n = self.effectif
+		total = 0
+		for k in range(len(self.data)):
+			total += self.data[k]*k
+		self.moyenne = total/n
+	
+	def get_sigma(self):
+		n = self.effectif
+		m = self.moyenne
+		total = 0
+		for k in range(len(self.data)):
+			total += self.data[k]*(k-m)**2
+		variance = total/n
+		self.sigma = sqrt(variance)
+	
+	def histogramme(self):
+		n = self.effectif
+		mini = self.mini
+		maxi = self.maxi
+		mode = self.mode
+		q1 = self.quartiles[0]
+		mediane = self.quartiles[1]
+		q3 = self.quartiles[2]
+		moyenne = self.moyenne
+		sigma = self.sigma
+		tmoy = self.tmoy
+		xmax = self.param_grille['xmax']
+		ymax = self.param_grille['ymax']
+		taille_bateaux = self.param_grille['taille_bateaux']
+		# Figure statistique 
+		# ------------------
+		fig = plt.figure()
+		# Création de l'histogramme
+		#~ plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
+		for k in range(self.mini, self.maxi+1):
+			plt.bar(k-0.5, self.freq[k], width=1, bottom=0, color='g', alpha=0.75) 
+		plt.text(mode, 0, r"$%d$" % mode, horizontalalignment='center', verticalalignment='bottom', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		# Création du diagramme en boite
+		  # Dimensions de la grille et des objets graphiques
+		plt.ylim(ymin=0)
+		gymin, gymax = plt.ylim()
+		gxmin, gxmax = plt.xlim()
+		yboite = (gymin+gymax)/2		# Position verticale de la boite
+		hboite = (gymax-gymin)/10		# Hauteur de la boite
+		hbornes = (gymax-gymin)/30		# Hauteur des taquets en xmin et xmax
+		   # Q1, Med et Q3
+		plt.hlines(yboite-hboite, q1, q3, linewidths=2)
+		plt.hlines(yboite+hboite, q1, q3, linewidths=2)
+		plt.vlines(q1, yboite-hboite, yboite+hboite, linewidths=2)
+		plt.vlines(mediane, yboite-hboite, yboite+hboite, linewidths=2)
+		plt.vlines(q3, yboite-hboite, yboite+hboite, linewidths=2)
+		plt.text(q1, yboite, r"$%d$" % q1, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		plt.text(mediane, yboite, r"$%d$" % mediane, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		plt.text(q3, yboite, r"$%d$" % q3, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		#~ plt.text((q1+q3)/2, yboite-hboite, r"$Q_3-Q_1=%d$" % (q3-q1), horizontalalignment='center', verticalalignment='bottom', bbox={'facecolor':'white', 'alpha':1, 'pad':0} )
+		   # Xmin et Xmax
+		plt.hlines(yboite, mini, q1, linewidths=2)
+		plt.hlines(yboite, q3, maxi, linewidths=2)
+		plt.vlines(mini, yboite-hbornes, yboite+hbornes, linewidths=2)
+		plt.vlines(maxi, yboite-hbornes, yboite+hbornes, linewidths=2)
+		plt.text(mini, yboite, r"$%d$" % mini, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		plt.text(maxi, yboite, r"$%d$" % maxi, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		
+		# Texte de résumé statistique
+		plt.text(gxmin+(gxmax-gxmin)*0.05, gymin+(gymax-gymin)*0.95, 
+					r"$\bar x=%.2f$" % moyenne + '\n' + "$\sigma=%.2f$" % sigma + '\n\n' + r"$t_{moy}=%.1f\,ms$" % (1000*tmoy), 
+					horizontalalignment='left', verticalalignment='top', fontsize=15, bbox={'facecolor':'white', 'alpha':1, 'pad':15} )
+		
+		# Mise en forme et affichage du graphique
+		plt.xlabel("Nombre de coups")
+		plt.ylabel("Fréquence de parties")
+		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d , Bateaux : %s" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
+		plt.grid(True)
+		#~ plt.savefig(self.filename + ".png", dpi=fig.dpi)
+		plt.show()
+	
+s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])")
 
-def sigma(distrib) :
-	m = moyenne(distrib)
-	v = 0
-	for k in range(len(distrib)) :
-		v += distrib[k]*(k-m)**2
-	v *= 1/sum(distrib)
-	return sqrt(v)
+s.resume_stat()
+s.histogramme()
+quit()
 
 
 
+# -------------------------------------------------------------------------------------------
+#
+#			POUBELLE
+#
+# -------------------------------------------------------------------------------------------
 
 # https://fr.wikipedia.org/wiki/Loi_normale_asym%C3%A9trique
 def gamma(distrib):
