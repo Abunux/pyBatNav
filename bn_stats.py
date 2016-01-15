@@ -4,10 +4,8 @@ from math import *
 
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
 
-# http://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html
+
 
 # Intégration de matplotlib dans tkinter : 
 # http://matplotlib.org/examples/user_interfaces/embedding_in_tk.html
@@ -115,6 +113,11 @@ class Stats(object):
 		self.sigma = sqrt(variance)
 	
 	def histogramme(self):
+		"""Crée la représentation graphique des données avec :
+			- Une histogramme des fréquences
+			- Un diagramme en boîte à moustache
+			- Tous les indicateurs statistiques"""
+		
 		n = self.effectif
 		mini = self.mini
 		maxi = self.maxi
@@ -203,6 +206,10 @@ def delta(distrib):
 	return sqrt(pi/2)*(g**(1/3))/sqrt(g**(2/3)+((4-pi)/2)**(2/3))
 
 
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+
+# http://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html
 
 
 def surface_probas(grille = GrilleSuivi()):
