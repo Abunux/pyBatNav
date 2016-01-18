@@ -89,7 +89,9 @@ class Stats(object):
 		print("Med : %d" % self.quartiles[1])
 		print("Q3 : %d" % self.quartiles[2])
 		print("Maxi : %d" % self.maxi)
+		print()
 		print("Mode : %d" % self.mode)
+		print()
 		print("Moyenne : %.2f" % self.moyenne)
 		print("Sigma : %.2f" % self.sigma)
 	
@@ -153,7 +155,7 @@ class Stats(object):
 	#
 	def histogramme(self, save=False):
 		"""Crée la représentation graphique des données avec :
-			- Une histogramme des fréquences
+			- Un histogramme des fréquences
 			- Un diagramme en boîte à moustache
 			- Tous les indicateurs statistiques"""
 			
@@ -220,12 +222,13 @@ class Stats(object):
 		if save :
 			plt.savefig(self.filename + ".png", dpi=fig.dpi)
 		plt.show()
-	
-#~ s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])")
 
-#~ s.resume_stat()
-#~ s.histogramme()
-#~ quit()
+
+if __name__ == "__main__" :
+	s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])")
+
+	#~ s.resume_stat()
+	s.histogramme()
 
 
 
@@ -235,6 +238,7 @@ class Stats(object):
 #
 # -------------------------------------------------------------------------------------------
 
+# Loi normale asymétrique
 # https://fr.wikipedia.org/wiki/Loi_normale_asym%C3%A9trique
 def gamma(distrib):
 	m = moyenne(distrib)
@@ -247,6 +251,31 @@ def gamma(distrib):
 def delta(distrib):
 	g = abs(gamma(distrib))
 	return sqrt(pi/2)*(g**(1/3))/sqrt(g**(2/3)+((4-pi)/2)**(2/3))
+
+def norm_asym_param(distrib):
+	d = delta(distrib)
+	alpha = d/sqrt(1-d**2)
+	omega = s/sqrt(1-2*d**2/pi)
+	xi = m-omega*d*sqrt(2/pi)
+	return {"alpha":alpha, "omega":omega, "xi":xi}
+
+def phi(x):
+	return 1/sqrt(2*pi)*exp(-x**2/2)
+
+def Phi(x):
+	return 0.5*(1+erf(x/sqrt(2)))
+	
+def f(x, omega, xi, alpha):
+	return (2/omega)*phi((x-xi)/omega)*Phi(alpha*(x-xi)/omega)
+
+#~ x = np.arange(mini, maxi,0.01)
+
+#~ y = []
+#~ for k in range(len(x)):
+	#~ y.append(f(x[k],omega,xi,alpha))
+
+#~ plt.plot(x, distrib_n, color='g')
+#~ plt.plot(x,y, color='k')
 
 
 from mpl_toolkits.mplot3d import Axes3D

@@ -18,6 +18,7 @@ import numpy as np
 
 from bn_grille import *
 from bn_joueur import *
+from bn_stats import *
 
 # --------------------------------------------
 # Caractères graphiques (pour faire la grille)
@@ -497,43 +498,38 @@ class OrdiC(JoueurC, Ordi):
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
 
-	def resolution2(self, affiche=True, grille=None):
-		"""Lance la résolution de la grille par l'ordinateur"""
-		# --> Version avec affichage pour copier-coller dans le rapport en Latex
-		# --> À supprimer
-		
-		# Lancement du chrono
-		start = time()
-		self.messages.append("C'est parti !!!")
-		# C'est parti !!!
-		while not self.grille_suivi.fini():
-			if affiche :
-				#~ clear()
-				print(r"{\scriptsize")
-				print(r"\begin{verbatim}")
-				self.grille_suivi.affiche_adverse(grille)
-			
-			self.affiche_messages(affiche=affiche)
-			print(r"\end{verbatim}}")
-			print(r"\hrule")
-			print()
-			self.coup_suivant()
-			
+	#~ def resolution2(self, affiche=True, grille=None):
+		#~ """Lance la résolution de la grille par l'ordinateur"""
+		#~ # --> Version avec affichage pour copier-coller dans le rapport en Latex
+		#~ # --> À supprimer
+		#~ 
+		#~ # Lancement du chrono
+		#~ start = time()
+		#~ self.messages.append("C'est parti !!!")
+		#~ # C'est parti !!!
+		#~ while not self.grille_suivi.fini():
 			#~ if affiche :
-				#~ input()
-			
-		# Fin de la partie
-		if affiche :
-			#~ clear()
-			print(r"{\scriptsize")
-			print(r"\begin{verbatim}")
-			self.grille_suivi.affiche_adverse(grille)
-			
-		self.messages.append("Partie terminée en %d coups" % self.essais)
-		self.affiche_messages(affiche=affiche)
-		print(r"\end{verbatim}}\hrule")
-		# On renvoie de temps de résolution de la grille pour les tests de performance
-		return time()-start
+				#~ print(r"{\scriptsize")
+				#~ print(r"\begin{verbatim}")
+				#~ self.grille_suivi.affiche_adverse(grille)
+			#~ 
+			#~ self.affiche_messages(affiche=affiche)
+			#~ print(r"\end{verbatim}}")
+			#~ print(r"\hrule")
+			#~ print()
+			#~ self.coup_suivant()
+			#~ 
+		#~ # Fin de la partie
+		#~ if affiche :
+			#~ print(r"{\scriptsize")
+			#~ print(r"\begin{verbatim}")
+			#~ self.grille_suivi.affiche_adverse(grille)
+			#~ 
+		#~ self.messages.append("Partie terminée en %d coups" % self.essais)
+		#~ self.affiche_messages(affiche=affiche)
+		#~ print(r"\end{verbatim}}\hrule")
+		#~ # On renvoie de temps de résolution de la grille pour les tests de performance
+		#~ return time()-start
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -710,44 +706,23 @@ class MainConsole(object):
 		ordi = OrdiC()
 		partie = PartieC(joueur, ordi)
 
-
 	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
 		"""Test de l'agorithme de résolution sur n parties
 		et affichage des statistiques"""
 		# Lancement de la simulation
 		start = time()
 		temps_resolution = 0
-		liste_essais = []
+		distrib = [0]*(xmax*ymax+1)
 		for k in range(n):
 			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 			temps_resolution += temps
-			liste_essais.append(essais)
+			distrib[essais] += 1
 			if (k+1) % (n/10) == 0 :
 				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
 		
-		# Création de la liste de distribution des effectifs
-		distrib = [0]*(xmax*ymax+1)
-		for e in liste_essais :
-				distrib[e] += 1
-		
-		# Indicateurs statistiques
-		mini = min(liste_essais)
-		maxi = max(liste_essais)
-		moyenne = sum(liste_essais)/n
-		mode = distrib.index(max(distrib))
-		liste_essais_sorted = liste_essais[:]
-		liste_essais_sorted.sort()
-		if n % 2 != 0 :
-			mediane = liste_essais_sorted[(n+1)//2-1]
-		else :
-			mediane = (liste_essais_sorted[n//2-1]+liste_essais_sorted[n//2])/2
-		q1 = liste_essais_sorted[ceil(n/4)-1]
-		q3 = liste_essais_sorted[ceil(3*n/4)-1]
-		variance = 0
-		for k in range(n):
-			variance += (liste_essais[k]-moyenne)**2
-		variance *= 1/n
-		sigma = sqrt(variance) 
+		# Résultats de la simulation
+		tmoy = temps_resolution/n
+		stats = Stats(data=distrib, filename="distrib_HAL_"+str(n), tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux})
 		
 		info()
 		info(boite("Résultats de la simulation", larg_fen=0))
@@ -756,77 +731,16 @@ class MainConsole(object):
 		info("Liste des bateaux : %s" % str(taille_bateaux))
 		info("Nombre de parties : %d" % n)
 		info()
-		info("Min : %d" % mini)
-		info("Q1  : %d" % q1)
-		info("Méd : %.1f" % mediane)
-		info("Q3  : %d" % q3)
-		info("Max : %d" % maxi)
-		info()
-		info("Mode : %d" % mode)
-		info()
-		info("Moyenne : %.2f" % moyenne)
-		info("Sigma   : %.2f" % sigma)
-		
-		info()
-		tmoy = temps_resolution/n
+		stats.resume_stat()
+		info()	
 		info("Temps moyen par partie : %.5f secondes" % (temps_resolution/n))
 		info("Temps total            : %.2f secondes" % (time()-start))
 		
-		filename = "distrib_HAL_NEW_(n=%d,xmax=%d,ymax=%d,bateaux=%s)" % (n, xmax, ymax,str(taille_bateaux))
-		# --> L'idée c'est de voir quelle loi de proba suit le nombre d'essais
-		# et de calculer des indicateurs statistiques
-		# Sauvegarde de cette liste dans un fichier texte
-		stats_file = open(filename + ".txt", "w")
-		for k in range(len(distrib)) :
-			stats_file.write(str(distrib[k])+'\n')
-		stats_file.close()
+		stats.save_data()
 		
-		# Figure statistique 
-		# ------------------
-		fig = plt.figure()
-		# Création de l'histogramme
-		plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
-		plt.text(mode, 0, r"$%d$" % mode, horizontalalignment='center', verticalalignment='bottom', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
-		# Création du diagramme en boite
-		  # Dimensions de la grille et des objets graphiques
-		plt.ylim(ymin=0)
-		gymin, gymax = plt.ylim()
-		gxmin, gxmax = plt.xlim()
-		yboite = (gymin+gymax)/2		# Position verticale de la boite
-		hboite = (gymax-gymin)/10		# Hauteur de la boite
-		hbornes = (gymax-gymin)/30		# Hauteur des taquets en xmin et xmax
-		   # Q1, Med et Q3
-		plt.hlines(yboite-hboite, q1, q3, linewidths=2)
-		plt.hlines(yboite+hboite, q1, q3, linewidths=2)
-		plt.vlines(q1, yboite-hboite, yboite+hboite, linewidths=2)
-		plt.vlines(mediane, yboite-hboite, yboite+hboite, linewidths=2)
-		plt.vlines(q3, yboite-hboite, yboite+hboite, linewidths=2)
-		plt.text(q1, yboite, r"$%d$" % q1, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
-		plt.text(mediane, yboite, r"$%d$" % mediane, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
-		plt.text(q3, yboite, r"$%d$" % q3, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
-		#~ plt.text((q1+q3)/2, yboite-hboite, r"$Q_3-Q_1=%d$" % (q3-q1), horizontalalignment='center', verticalalignment='bottom', bbox={'facecolor':'white', 'alpha':1, 'pad':0} )
-		   # Xmin et Xmax
-		plt.hlines(yboite, mini, q1, linewidths=2)
-		plt.hlines(yboite, q3, maxi, linewidths=2)
-		plt.vlines(mini, yboite-hbornes, yboite+hbornes, linewidths=2)
-		plt.vlines(maxi, yboite-hbornes, yboite+hbornes, linewidths=2)
-		plt.text(mini, yboite, r"$%d$" % mini, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
-		plt.text(maxi, yboite, r"$%d$" % maxi, horizontalalignment='center', verticalalignment='center', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		stats.histogramme(save=True)
 		
-		# Texte de résumé statistique
-		plt.text(gxmin+(gxmax-gxmin)*0.05, gymin+(gymax-gymin)*0.95, 
-					r"$\bar x=%.2f$" % moyenne + '\n' + "$\sigma=%.2f$" % sigma + '\n\n' + r"$t_{moy}=%.1f\,ms$" % (1000*tmoy), 
-					horizontalalignment='left', verticalalignment='top', fontsize=15, bbox={'facecolor':'white', 'alpha':1, 'pad':15} )
-		
-		# Mise en forme et affichage du graphique
-		plt.xlabel("Nombre de coups")
-		plt.ylabel("Fréquence de parties")
-		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d , Bateaux : %s" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
-		plt.grid(True)
-		plt.savefig(filename + ".png", dpi=fig.dpi)
-		plt.show()
-		
-		return liste_essais # Pour tests futurs
+		return distrib # Pour tests futurs
 	
 	def launch_test_algo(self):
 		"""Lancement de la procédure de test

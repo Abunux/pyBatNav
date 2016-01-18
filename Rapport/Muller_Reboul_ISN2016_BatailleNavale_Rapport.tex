@@ -5,6 +5,9 @@
 \cfoot{\textsc{ISN 2016 - Bataille navale}}
 \rfoot[]{\thepage}
 \usepackage{moreverb}
+
+\renewcommand{\thepart}{}
+
 \begin{document}
 
 
@@ -61,8 +64,10 @@ L'ensemble du projet, ainsi que ce rapport, sont sous licence\\Creative Common B
 %\unichar{253C}
 
 %\lstinputlisting[language=Python]{../bnutiles.py}
+%\addtocontents{toc}{Annexes\par}
+\addtocontents{toc}{\protect\newpage}
+\part{Annexes}\label{annexes}
 
-\part*{Annexes}\label{annexes}
 
 
 %\begin{appendices}

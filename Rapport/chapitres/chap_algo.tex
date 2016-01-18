@@ -14,7 +14,7 @@ C'est la méthode la plus efficace que nous ayons trouvée. Néanmoins nous avon
 \begin{itemize}
 \item La première méthode consiste tout simplement à tirer au hasard sur une case vide.
 \item On peut raffiner la méthode précédente en ne tirant que sur une case sur deux (le plus petit bateau étant de taille 2, chaque bateau tombe obligatoirement sur une case noire du damier).
-\item Nous avons aussi essayé de déterminer la case la plus probable en créant un échantillon d'un certain nombre $n$ de répartitions aléatoires des bateaux restant sur le grille et en comptant, pour chaque case, le nombre de bateaux la contenant. Les performances en nombre d'essais étaient satisfaisantes, mais le temps de calcul beaucoup trop élevé. Voici un tableau récapitulatif de quelques essais avec différents paramètres :
+\item Nous avons aussi essayé de déterminer la case la plus probable en créant un échantillon d'un certain nombre $n$ de répartitions aléatoires des bateaux restants sur le grille et en comptant, pour chaque case, le nombre de bateaux la contenant. Les performances en nombre d'essais étaient satisfaisantes, mais le temps de calcul beaucoup trop élevé. Voici un tableau récapitulatif de quelques essais avec différents paramètres :
 
 \medskip
 
@@ -188,7 +188,10 @@ On affiche le nombre de coups\\
 \newpage
 
 \section{Étude statistique}
-Le module \texttt{bn\_stats.py} fournit, dans la classe \texttt{Stats}, les outils pour analyser statistiquement une distribution de valeurs (calculs des indicateurs statistiques classiques, représentation en histogramme et diagramme en boîte grâce aux modules \texttt{numpy} et \texttt{matplotlib}).\\
+Le module \texttt{bn\_stats.py} fournit, dans la classe \texttt{Stats}, les outils pour analyser statistiquement une distribution de valeurs (calculs des indicateurs statistiques classiques, représentation en histogramme et diagramme en boîte grâce aux modules \texttt{numpy} et \texttt{matplotlib}).
+
+Cette classe fournit également les outils pour sauvegarder et charger la liste des résultats bruts dans un fichier texte pour des analyses plus poussées futures.
+
 Un test de l'algorithme de résolution sur $n=1\,000\,000$ parties donne les résultats suivants :
 
 \begin{center}\label{histo_algo}

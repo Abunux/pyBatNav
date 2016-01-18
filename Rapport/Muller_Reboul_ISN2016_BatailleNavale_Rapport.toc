@@ -47,6 +47,8 @@
 \contentsline {chapter}{\numberline {7}Interface graphique}{27}
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{29}
 \contentsline {chapter}{\numberline {9}Conclusion}{31}
+\newpage 
+\contentsline {part}{\hspace {1em}Annexes}{33}
 \contentsline {chapter}{\numberline {A}\IeC {\'E}tude statistique de l'algorithme}{35}
 \contentsline {section}{\numberline {1}R\IeC {\'e}sultats de la simulation}{35}
 \contentsline {chapter}{\numberline {B}Codes des caract\IeC {\`e}res graphiques}{37}
@@ -62,7 +64,7 @@
 \contentsline {subsection}{\numberline {3.1}Classe GrilleC}{47}
 \contentsline {subsection}{\numberline {3.2}Classe JoueurC}{49}
 \contentsline {subsection}{\numberline {3.3}Classe OrdiC}{51}
-\contentsline {subsection}{\numberline {3.4}Classe PartieC}{54}
+\contentsline {subsection}{\numberline {3.4}Classe PartieC}{53}
 \contentsline {subsection}{\numberline {3.5}Classe MainConsole}{55}
 \contentsline {section}{\numberline {4}Module bn\_stats.py}{56}
 \contentsline {subsection}{\numberline {4.1}Classe Stats}{56}
