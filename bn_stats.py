@@ -159,7 +159,7 @@ class Stats(object):
 			- Un diagramme en boîte à moustache
 			- Tous les indicateurs statistiques"""
 			
-		# Récupération des indicteurs statistiques et des paramètres de la grille
+		# Récupération des indicateurs statistiques et des paramètres de la grille
 		n = self.effectif
 		mini = self.mini
 		maxi = self.maxi

@@ -7,29 +7,17 @@
 \usepackage{moreverb}
 
 \renewcommand{\thepart}{}
+\renewcommand{\partname}{aaa}
 
 \begin{document}
 
+\frontmatter
+\input{./chapitres/frontmatter}
 
-\title{\fbox{\Huge{\textsc{Bataille navale}}}\\ \medskip \medskip\medskip\medskip \large{\textsc{Projet de validation ISN 2016\\de l'académie de Lyon}}}
-\author{\textsc{Frédéric Muller} - \texttt{maths.muller@gmail.com}\\ \textsc{Lionel Reboul} - \texttt{reboul.lionel@free.fr}\\ \\ \medskip \medskip
-   }
-\date{\vfill
-13 mars 2016\\
-\medskip \medskip \medskip 
-Le code source \LaTeX\ de ce rapport est disponible sur la page du projet :\\
-\texttt{https://github.com/Abunux/pyBatNav}\\ \medskip
-L'ensemble du projet, ainsi que ce rapport, sont sous licence\\Creative Common BY-NC-SA}
-%\date{\vfill \flushleft \textit{Description}}
-
-\maketitle
-
-
-\clearpage{\pagestyle{empty}\cleardoublepage}
-\setcounter{tocdepth}{1}
-\tableofcontents
 \thispagestyle{fancy}
+\pagestyle{fancy}
 
+\mainmatter
 %\chapter{Présentation du projet}
 \input{./chapitres/chap_presentation}
 
@@ -65,10 +53,9 @@ L'ensemble du projet, ainsi que ce rapport, sont sous licence\\Creative Common B
 
 %\lstinputlisting[language=Python]{../bnutiles.py}
 %\addtocontents{toc}{Annexes\par}
+\part*{ANNEXES}\label{annexes}
 \addtocontents{toc}{\protect\newpage}
-\part{Annexes}\label{annexes}
-
-
+\addcontentsline{toc}{part}{Annexes}
 
 %\begin{appendices}
 \appendix

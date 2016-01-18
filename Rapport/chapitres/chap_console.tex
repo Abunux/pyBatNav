@@ -53,7 +53,7 @@ Le bord de chaque case de la grille se fera sur la ligne du bas, la séparation 
 \end{verbatim}
 
 
-\item Lignes suivantes, jusqu'à l'avant dernière : ici c'est plus délicat car il faut tester, en plus de celle de gauche (pour la séparation verticale), la case en-dessous (pour la séparation horizontale) et celle en-dessous à gauche (pour le coin) pour obtenir les configuration suivantes (la case testée est celle en haut à droite) :
+\item Lignes suivantes, jusqu'à l'avant dernière : ici c'est plus délicat car il faut tester, en plus de celle de gauche (pour la séparation verticale), la case en-dessous (pour la séparation horizontale) et celle en-dessous à gauche (pour le coin) pour obtenir les 11 configurations suivantes (la case testée est celle en haut à droite) :
 
 \begin{verbatim}
  1 │ 1    0 ┃ 1    0 ┃ 1    0 ┃ 1
@@ -65,6 +65,8 @@ Le bord de chaque case de la grille se fera sur la ligne du bas, la séparation 
    ╃───     ╂───     ╋━━━     ┿━━━     ┼───     ╅───     ╆━━━
  0   0    1   0    0   1    1   1    0   0    1   0    0   1
 \end{verbatim}
+
+Les 5 autres configurations de 4 cases restantes sont impossibles (bateaux collés par un côté).
 
 \item Enfin, pour la dernière colonne va juste tester la case en-dessous, et pour la dernière ligne, on va juste tester celle de gauche. Pour la case tout en bas à droite il faudra juste finir en mettant un coin.
 
