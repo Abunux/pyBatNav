@@ -1,12 +1,12 @@
 \chapter{Documentation des modules}
 
-Les documentations ci-dessous ont été obtenues automatiquement grâce à la commande \texttt{pydoc3 <module>} et sont générée par les docstrings à l'intérieur des chaque objet. 
+Les documentations ci-dessous ont été obtenues automatiquement grâce à la commande \texttt{pydoc3 <module.classe>} et sont générés par les docstrings à l'intérieur de chaque objet. 
 
 \section{Module bn\_grille.py}
 \subsection{Classe Bateau}
 \immediate\write18{pydoc3 bn_grille.Bateau > ./docstrings/bn_grille.Bateau}
 \verbatiminput{./docstrings/bn_grille.Bateau}
-
+\newpage
 \subsection{Classe Grille}
 \immediate\write18{pydoc3 bn_grille.Grille > ./docstrings/bn_grille.Grille}
 \verbatiminput{./docstrings/bn_grille.Grille}
@@ -23,3 +23,29 @@ Les documentations ci-dessous ont été obtenues automatiquement grâce à la co
 \subsection{Classe Partie}
 \immediate\write18{pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie}
 \verbatiminput{./docstrings/bn_joueur.Partie}
+
+\section{Module bn\_console.py}
+\subsection{Classe GrilleC}
+\immediate\write18{pydoc3 bn_console.GrilleC > ./docstrings/bn_console.GrilleC}
+\verbatiminput{./docstrings/bn_console.GrilleC}
+
+\subsection{Classe JoueurC}
+\immediate\write18{pydoc3 bn_console.JoueurC > ./docstrings/bn_console.JoueurC}
+\verbatiminput{./docstrings/bn_console.JoueurC}
+
+\subsection{Classe OrdiC}
+\immediate\write18{pydoc3 bn_console.OrdiC > ./docstrings/bn_console.OrdiC}
+\verbatiminput{./docstrings/bn_console.OrdiC}
+
+\subsection{Classe PartieC}
+\immediate\write18{pydoc3 bn_console.PartieC > ./docstrings/bn_console.PartieC}
+\verbatiminput{./docstrings/bn_console.PartieC}
+
+\subsection{Classe MainConsole}
+\immediate\write18{pydoc3 bn_console.MainConsole > ./docstrings/bn_console.MainConsole}
+\verbatiminput{./docstrings/bn_console.MainConsole}
+
+\section{Module bn\_stats.py}
+\subsection{Classe Stats}
+\immediate\write18{pydoc3 bn_stats.Stats > ./docstrings/bn_stats.Stats}
+\verbatiminput{./docstrings/bn_stats.Stats}

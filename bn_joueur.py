@@ -1,10 +1,10 @@
-
 """Module bn_joueurs
 
 Implémente les classes :
 	- Joueur : la classe de base des joueurs
 	- Ordinateur : dérivée de Joueur, 
 		pour résoudre une grille automatiquement
+	- Partie : déroulement d'une partie
  
 Auteurs : Frédéric Muller et Lionel Reboul
 
@@ -116,6 +116,7 @@ class Joueur(object):
 #----------------------------------------------------------------------------------------------------------------
 #
 class Ordi(Joueur):
+	"""Algorithme de résolution"""
 	def __init__(self, nom='HAL', level=4):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
@@ -162,7 +163,7 @@ class Ordi(Joueur):
 	# Tire aléatoire ---------------------------------------------------
 	#
 	def make_case_aleatoire(self):
-		"""Choisi une case aléatoire"""
+		"""Choisit une case aléatoire (suivant l'algorithme choisit)"""
 		(case_max, pmax) = self.grille_suivi.case_max()
 		#~ (case_max, pmax) = self.grille_suivi.case_max_echantillons()
 		self.case_courante = case_max
@@ -190,7 +191,8 @@ class Ordi(Joueur):
 			self.messages.append("J'enlève la case %s de la file d'attente" % alpha(case))
 			
 	def add_adjacentes_premiere(self):
-		"""Ajoute les cases adjacentes possibles à la premiere case touchée dans la queue"""
+		"""Ajoute les cases adjacentes possibles à 
+		la premiere case touchée dans la  file d'attente"""
 		# Récupération des cases adjacentes en fonction de la taille du plus petit bateau restant
 		adj = self.grille_suivi.adjacent(self.case_touchee)
 		self.grille_suivi.get_taille_min()
@@ -217,7 +219,9 @@ class Ordi(Joueur):
 		self.affiche_queue()
 	
 	def update_queue_touche(self):
-		"""Met à jour la file d'attente en enlevant le cases qui ne sont pas dans la bonne direction après avoir touché une 2ème fois"""
+		"""Met à jour la file d'attente en enlevant le cases 
+		qui ne sont pas dans la bonne direction après avoir
+		touché une 2ème fois"""
 		# Bateau horizontal :
 		if self.case_courante[1] == self.case_touchee[1] :
 			direction = BN_HORIZONTAL
@@ -247,7 +251,8 @@ class Ordi(Joueur):
 		self.liste_touches.append(self.case_courante)
 	
 	def update_queue_manque(self):
-		"""Met à jour la file d'attente en éliminant une direction impossible, après avoir manqué la case en face"""
+		"""Met à jour la file d'attente en éliminant une direction
+		impossible, après avoir manqué la case en face"""
 		# Écart entre la case touchee initiale et la case jouée
 		delta = (self.case_courante[0]-self.case_touchee[0], self.case_courante[1]-self.case_touchee[1])
 		# Direction dans laquelle on vient de jouer
@@ -269,7 +274,8 @@ class Ordi(Joueur):
 		self.messages.append("Je tire sur la case %s de la file d'attente" % alpha(self.case_courante))
 	
 	def shuffle_queue(self):
-		"""Mélange les cases de la file d'attente"""
+		"""Mélange les cases de la file d'attente en les triant
+		par ordre décroissant des bateaux possibles"""
 		# Mettre la file dans l'ordre décroissant des probas (sachant qu'on vient de toucher la case self.case_touchee)
 		if len(self.queue)>1 :
 			rand.shuffle(self.queue)
@@ -289,7 +295,8 @@ class Ordi(Joueur):
 		
 	
 	def test_plus_grand(self):
-		"""Renvoie True si on a touché autant de cases que le plus grand bateau"""
+		"""Renvoie True si on a touché autant de cases que 
+		le plus grand bateau restant"""
 		if len(self.liste_touches) == self.grille_suivi.taille_max :
 			self.messages.append("Bateau de taille %d coulé car c'est le plus grand restant" % self.grille_suivi.taille_max)
 			return True
@@ -315,7 +322,8 @@ class Ordi(Joueur):
 		self.grille_suivi.update()
 	
 	def elimine_petites(self):
-		"""Élimine les cases dans lesquelles le plus petit bateau ne peut pas rentrer"""
+		"""Élimine les cases dans lesquelles le plus petit bateau 
+		ne peut pas rentrer"""
 		cases_eliminees = self.grille_suivi.elimine_cases()
 		for c in cases_eliminees :
 			self.messages.append("J'élimine la cases %s : zone trop petite pour le plus petit bateau de taille %d" % (alpha(c), self.grille_suivi.taille_min))
@@ -324,7 +332,7 @@ class Ordi(Joueur):
 	# Résolution de la grille ------------------------------------------
 	#
 	def coup_suivant(self):
-		"""Fait jouer à l'ordi le coup suivant"""
+		"""Fait jouer à l'ordinateur le coup suivant"""
 		# Si la file d'attente est vide : soit on a tiré dans le vide au hasard, soit on vient de couler un bateau
 		if not self.queue :
 			# Si on vient de couler un bateau
@@ -376,7 +384,8 @@ class Ordi(Joueur):
 				self.update_queue_manque()
 	
 	def resolution(self):
-		"""Lance la résolution de la grille par l'ordinateur, aucun affichage"""
+		"""Lance la résolution de la grille par l'ordinateur"""
+		
 		# Méthode à surcharger suivant l'interface
 		
 		# Lancement du chrono
@@ -396,7 +405,7 @@ class Ordi(Joueur):
 #----------------------------------------------------------------------------------------------------------------
 #
 class Partie(object):
-	"""En cours de construction..."""
+	"""Gère le déroulement de la partie"""
 	def __init__(self, joueur=Joueur(), adversaire=Ordi()):
 		# Création des joueurs
 		self.joueur = joueur
@@ -435,6 +444,7 @@ class Partie(object):
 		self.joueur.grille_adverse = self.adversaire.grille_joueur
 		
 	def get_coup_adverse(self):
+		"""Récupère le coup de l'adversaire"""
 		if self.ordi :
 			self.adversaire.coup_suivant()
 		else :
@@ -444,7 +454,7 @@ class Partie(object):
 	# Lancement de la partie -------------------------------------------
 	#
 	def lance_partie(self):
-		"""Partie à deux joueurs"""
+		"""Lance une partie à deux joueurs"""
 		# Méthode à surcharger suivant l'interface
 		pass
 

@@ -48,13 +48,22 @@
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{29}
 \contentsline {chapter}{\numberline {9}Conclusion}{31}
 \contentsline {chapter}{\numberline {A}\IeC {\'E}tude statistique de l'algorithme}{35}
-\contentsline {chapter}{\numberline {B}Documentation des modules}{37}
-\contentsline {section}{\numberline {1}Module bn\_grille.py}{37}
-\contentsline {subsection}{\numberline {1.1}Classe Bateau}{37}
-\contentsline {subsection}{\numberline {1.2}Classe Grille}{37}
-\contentsline {section}{\numberline {2}Module bn\_joueur.py}{40}
-\contentsline {subsection}{\numberline {2.1}Classe Joueur}{40}
-\contentsline {subsection}{\numberline {2.2}Classe Ordi}{41}
-\contentsline {subsection}{\numberline {2.3}Classe Partie}{43}
-\contentsline {chapter}{\numberline {C}Codes des caract\IeC {\`e}res graphiques}{45}
-\contentsline {chapter}{\numberline {D}L'algorithme en action}{47}
+\contentsline {section}{\numberline {1}R\IeC {\'e}sultats de la simulation}{35}
+\contentsline {chapter}{\numberline {B}Codes des caract\IeC {\`e}res graphiques}{37}
+\contentsline {chapter}{\numberline {C}Documentation des modules}{39}
+\contentsline {section}{\numberline {1}Module bn\_grille.py}{39}
+\contentsline {subsection}{\numberline {1.1}Classe Bateau}{39}
+\contentsline {subsection}{\numberline {1.2}Classe Grille}{40}
+\contentsline {section}{\numberline {2}Module bn\_joueur.py}{42}
+\contentsline {subsection}{\numberline {2.1}Classe Joueur}{42}
+\contentsline {subsection}{\numberline {2.2}Classe Ordi}{43}
+\contentsline {subsection}{\numberline {2.3}Classe Partie}{46}
+\contentsline {section}{\numberline {3}Module bn\_console.py}{47}
+\contentsline {subsection}{\numberline {3.1}Classe GrilleC}{47}
+\contentsline {subsection}{\numberline {3.2}Classe JoueurC}{49}
+\contentsline {subsection}{\numberline {3.3}Classe OrdiC}{51}
+\contentsline {subsection}{\numberline {3.4}Classe PartieC}{54}
+\contentsline {subsection}{\numberline {3.5}Classe MainConsole}{55}
+\contentsline {section}{\numberline {4}Module bn\_stats.py}{56}
+\contentsline {subsection}{\numberline {4.1}Classe Stats}{56}
+\contentsline {chapter}{\numberline {D}L'algorithme en action}{59}

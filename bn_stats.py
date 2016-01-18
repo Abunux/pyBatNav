@@ -1,3 +1,15 @@
+"""Module bn_stats
+
+Implémente les classes :
+	- Stats : outils d'étude statistique
+ 
+Auteurs : Frédéric Muller et Lionel Reboul
+
+Licence CC BY-NC-SA
+
+Version 0.1.0"""
+
+
 from bn_grille import *
 
 from math import *
@@ -12,7 +24,7 @@ import matplotlib.pyplot as plt
 
 
 class Stats(object):
-	"""Implémente les fonctions statistiques"""
+	"""Implémente les outils d'étude statistique"""
 	def __init__(self, data=None, filename="", tmoy=0, param_grille={'xmax':10, 'ymax':10, 'taille_bateaux':[5, 4, 3, 3, 2]}):
 		# data est une liste d'effectifs : data[43] = nombre de parties à 43 coups
 		# filename le nom du fichier où sont stockées les données
@@ -45,12 +57,14 @@ class Stats(object):
 	# Chargement et sauvegarde des données (pour analyse future)--------
 	#
 	def load_data(self) :
+		"""Charge les données à partir d'un fichier texte"""
 		self.data = []
 		with open(self.filename+".txt","r") as datafile:
 			for v in datafile:
 				self.data.append(int(v))
 	
 	def save_data(self):
+		"""Sauvegarde les données à partir d'un fichier texte"""
 		with open(self.filename + ".txt", "w") as datafile :
 			for k in range(len(self.data)) :
 				datafile.write(str(self.data[k])+'\n')
@@ -59,6 +73,7 @@ class Stats(object):
 	# Récupération des paramètres statistiques basiques ----------------
 	#
 	def get_all_stats(self) :
+		"""Récupère tous les indicateurs statistiques"""
 		self.get_effectif()
 		self.get_mini()
 		self.get_maxi()
@@ -68,6 +83,7 @@ class Stats(object):
 		self.get_sigma()
 	
 	def resume_stat(self) :
+		"""Affiche un résumé statistique"""
 		print("Mini : %d" % self.mini)
 		print("Q1 : %d" % self.quartiles[0])
 		print("Med : %d" % self.quartiles[1])
@@ -78,21 +94,26 @@ class Stats(object):
 		print("Sigma : %.2f" % self.sigma)
 	
 	def get_effectif(self) :
+		"""Calcul de l'effectif total"""
 		self.effectif = sum(self.data)
 	
 	def get_mini(self):
+		"""Calcul du minimum"""
 		k = 0
 		while self.data[k] == 0 and k < len(self.data):
 			k += 1
 		self.mini = k
 	
 	def get_maxi(self):
+		"""Calcul du maximum""" 
 		k = len(self.data)-1
 		while self.data[k] == 0 and k >= 0:
 			k -= 1
 		self.maxi = k
 	
 	def get_quartiles(self):
+		"""Calcul des quartiles. Renvoie une liste [Q1, Med, Q3].
+		La médiane est définie comme le terme de rang ceil(n/2)""" 
 		n = self.effectif
 		indexes = [ceil(n/4), ceil(n/2), ceil(3*n/4)]
 		cumules = [self.data[0]]
@@ -106,9 +127,11 @@ class Stats(object):
 		self.quartiles = quartiles
 		
 	def get_mode(self):
+		"""Calcul du mode"""
 		self.mode = self.data.index(max(self.data))
 	
 	def get_moyenne(self):
+		"""Calcul de la moyenne"""
 		n = self.effectif
 		total = 0
 		for k in range(len(self.data)):
@@ -116,6 +139,7 @@ class Stats(object):
 		self.moyenne = total/n
 	
 	def get_sigma(self):
+		"""Calcul de l'écart-type"""
 		n = self.effectif
 		m = self.moyenne
 		total = 0
@@ -132,7 +156,8 @@ class Stats(object):
 			- Une histogramme des fréquences
 			- Un diagramme en boîte à moustache
 			- Tous les indicateurs statistiques"""
-		
+			
+		# Récupération des indicteurs statistiques et des paramètres de la grille
 		n = self.effectif
 		mini = self.mini
 		maxi = self.maxi
@@ -146,14 +171,16 @@ class Stats(object):
 		xmax = self.param_grille['xmax']
 		ymax = self.param_grille['ymax']
 		taille_bateaux = self.param_grille['taille_bateaux']
+		
 		# Figure statistique 
 		# ------------------
 		fig = plt.figure()
+		
 		# Création de l'histogramme
-		#~ plt.hist(liste_essais, bins=np.arange(mini-0.5, maxi+1.5, 1), normed=1, facecolor='g', alpha=0.75)
 		for k in range(self.mini, self.maxi+1):
 			plt.bar(k-0.5, self.freq[k], width=1, bottom=0, color='g', alpha=0.75) 
 		plt.text(mode, 0, r"$%d$" % mode, horizontalalignment='center', verticalalignment='bottom', bbox={'facecolor':'white', 'alpha':1, 'pad':2} )
+		
 		# Création du diagramme en boite
 		  # Dimensions de la grille et des objets graphiques
 		plt.ylim(ymin=0)
@@ -194,11 +221,11 @@ class Stats(object):
 			plt.savefig(self.filename + ".png", dpi=fig.dpi)
 		plt.show()
 	
-s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])")
+#~ s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])")
 
-s.resume_stat()
-s.histogramme()
-quit()
+#~ s.resume_stat()
+#~ s.histogramme()
+#~ quit()
 
 
 

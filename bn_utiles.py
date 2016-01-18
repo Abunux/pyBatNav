@@ -1,14 +1,14 @@
 #
-# Module bn_utiles
-#
-# Implémente les constantes et quelques fonctions utiles
-# 
-# Auteurs : Frédéric Muller et Lionel Reboul
-#
-# Licence CC BY-NC-SA
-#
-# Version 0.1.0
-#
+"""Module bn_utiles
+
+Implémente les constantes et quelques fonctions utiles
+
+Auteurs : Frédéric Muller et Lionel Reboul
+
+Licence CC BY-NC-SA
+
+Version 0.1.0"""
+
 
 #
 # Constantes ----------------------------------------------------------------------------------------------------

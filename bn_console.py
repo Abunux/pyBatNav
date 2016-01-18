@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-#
-# Module bn_console
-#
-# Interface de jeu en mode console
-#
-# Auteurs : Frédéric Muller et Lionel Reboul
-#
-# Licence CC BY-NC-SA
-#
-# Version 0.1.0
-#
+
+"""Module bn_console
+
+Interface de jeu en mode console
+
+Auteurs : Frédéric Muller et Lionel Reboul
+
+Licence CC BY-NC-SA
+
+Version 0.1.0"""
+
 
 import os
 from math import *
@@ -122,6 +122,7 @@ def boite(texte, prefixe ='', larg_fen = 98):
 #----------------------------------------------------------------------------------------------------------------
 #
 class GrilleC(Grille) :
+	"""Affichage de la grille en mode console"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
 		Grille.__init__(self, xmax, ymax, taille_bateaux = taille_bateaux)
 		
@@ -365,7 +366,8 @@ class GrilleC(Grille) :
 		info(self.chaine)
 		
 	def affiche_adverse(self, grille=None):
-		"""Affiche la grille de suivi de l'adversaire en entourant nos propres bateaux"""
+		"""Affiche la grille de suivi de l'adversaire 
+		en entourant nos propres bateaux"""
 		info(self.make_chaine_adverse(grille))
 		
 
@@ -388,6 +390,7 @@ class GrilleSuiviC(GrilleC, GrilleSuivi):
 #----------------------------------------------------------------------------------------------------------------
 #
 class JoueurC(Joueur):
+	"""Joueur en mode console"""
 	def __init__(self, nom='Joueur'):
 		Joueur.__init__(self, nom)
 		self.grille_joueur = GrilleJoueurC()
@@ -404,6 +407,7 @@ class JoueurC(Joueur):
 		self.chaine_nom += centre('╚'  + '═'*(lnom+2) +  '╝', self.long_affiche)
 
 	def affiche_messages(self, affiche=True):
+		"""Affiche les messages du joueur"""
 		if affiche :
 			info(boite('\n'.join(self.messages), prefixe="<%s> " % self.nom))
 			self.messages = []
@@ -457,6 +461,7 @@ class JoueurC(Joueur):
 #----------------------------------------------------------------------------------------------------------------
 #
 class OrdiC(JoueurC, Ordi):
+	"""Résoultion de la grille en mode console"""
 	def __init__(self, nom='HAL'):
 		Ordi.__init__(self, nom)
 		JoueurC.__init__(self, nom)
@@ -533,7 +538,7 @@ class OrdiC(JoueurC, Ordi):
 #----------------------------------------------------------------------------------------------------------------
 #
 class PartieC(Partie):
-	"""En cours de construction..."""
+	"""Partie à deux joueurs en mode console"""
 	def __init__(self, joueur=Joueur(), adversaire=Ordi()):
 		Partie.__init__(self, joueur, adversaire)
 		
@@ -594,7 +599,8 @@ class PartieC(Partie):
 	# Lancement de la partie -------------------------------------------
 	#
 	def affiche_grilles(self, fin=False, cheat=False):
-		"""Affiche les deux grilles cote à cote, avec les noms des joueurs"""
+		"""Affiche les deux grilles cote à cote, 
+		avec les noms des joueurs"""
 		clear()
 		grille1 = self.joueur.chaine_nom
 		# Pour l'affichage en fin de partie on affiche en gras les bateaux de l'adversaire
@@ -610,7 +616,7 @@ class PartieC(Partie):
 		info(fusionne(grille1, grille2))
 	
 	def lance_partie(self):
-		"""Partie à deux joueurs"""
+		"""Lance une partie à deux joueurs"""
 		# Placement des bateaux
 		self.place_bateaux_joueur()
 		self.get_bateaux_adverse()
@@ -699,14 +705,15 @@ class MainConsole(object):
 
 
 	def jeu_contre_ordi(self):
-		"""Partie en duel contre l'ordi"""
+		"""Partie en duel contre l'ordinateur"""
 		joueur = JoueurC("Toto")
 		ordi = OrdiC()
 		partie = PartieC(joueur, ordi)
 
 
 	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
-		"""Test l'ago de l'ordinateur en faisant n parties"""
+		"""Test de l'agorithme de résolution sur n parties
+		et affichage des statistiques"""
 		# Lancement de la simulation
 		start = time()
 		temps_resolution = 0
@@ -822,7 +829,8 @@ class MainConsole(object):
 		return liste_essais # Pour tests futurs
 	
 	def launch_test_algo(self):
-		"""Lancement de la procédure de test de l'algorithme de résolution"""
+		"""Lancement de la procédure de test
+		de l'algorithme de résolution"""
 		clear()
 		xmax = ymax = 10
 		taille_bateaux = [5, 4, 3, 3, 2]

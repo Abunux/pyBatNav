@@ -1,18 +1,16 @@
-#
-# Module bn_grille
-#
-# Implémente les classes :
-#	- Bateau : modélise un bateau
-#	- Grille : classe de base pour une grille
-#		- GrilleJoueur : dérivée de Grille, la grille où on place ses bateaux
-#		- GrilleSuivi : dérivée de Grille, la grille de suivi des coups
-# 
-# Auteurs : Frédéric Muller et Lionel Reboul
-#
-# Licence CC BY-NC-SA
-#
-# Version 0.1.0
-#
+"""Module bn_grille
+
+Implémente les classes :
+	- Bateau : modélise un bateau
+	- Grille : classe de base pour une grille
+		- GrilleJoueur : dérivée de Grille, la grille où on place ses bateaux
+		- GrilleSuivi : dérivée de Grille, la grille de suivi des coups
+ 
+Auteurs : Frédéric Muller et Lionel Reboul
+
+Licence CC BY-NC-SA
+
+Version 0.1.0"""
 
 import random as rand
 from time import time
@@ -134,7 +132,7 @@ class Grille(object):
 		return adj
 	
 	def copie_grille_tmp(self):
-		"""Crée une copie temporaire e la grille"""
+		"""Crée une copie temporaire de la grille"""
 		grille_tmp = Grille()
 		for case in self.etat :
 			grille_tmp.etat[case] = self.etat[case]
@@ -192,8 +190,8 @@ class Grille(object):
 			
 	
 	def case_max(self, affiche=False):
-		"""Détermine la case qui a la probabilité maximale de toucher
-		Regarde pour chaque case le nombre de bateaux possibles sur cette case"""
+		"""Détermine la case qui contient le plus de bateaux et
+		regardant sur chaque case le nombre de bateaux possibles"""
 		
 		# Dictionnaire contenant les probas de chaque case
 		self.probas = {}
@@ -236,7 +234,8 @@ class Grille(object):
 		return (self.case_proba, self.pmax)
 	
 	def case_max_touchee(self, case_touchee):
-		"""Retourne les probas de chaque case adjacentes à case (qui vient d'être touchée)"""
+		"""Retourne le nombre de bateaux possibles
+		sur chaque case adjacentes à case (qui vient d'être touchée)"""
 		# --> Sera appelé dans Ordi.shuffle_queue() pour trier la file quand on touche
 		# --> Code à améliorer (trop bordélique)
 		
@@ -302,7 +301,8 @@ class Grille(object):
 	# Gestion des espaces impossibles ----------------------------------
 	#
 	def get_max_space(self, case, direction=BN_ALLDIR, sens=1):
-		"""Renvoie la plus grande place possible sur cette case dans une direction"""		
+		"""Renvoie la plus grande place possible sur cette case 
+		dans une direction"""
 		# sens = 0 : ne compte qu'à droite ou en bas (pour l'IA)
 		# car BN_DROITE=BN_HORIZONTAL et BN_BAS=BN_VERTICAL, donc obligé de spécifier
 		if direction == BN_ALLDIR:
@@ -327,7 +327,8 @@ class Grille(object):
 		return m
 		
 	def elimine_cases(self):
-		"""Élimine les cases dans lesquelles le plus petit bateau ne peut pas rentrer"""
+		"""Élimine les cases dans lesquelles
+		le plus petit bateau ne peut pas rentrer"""
 		self.get_taille_min()
 		self.update_vides()
 		cases_eliminees = []
@@ -374,7 +375,8 @@ class Grille(object):
 	
 	
 	def add_bateau(self, bateau):
-		"""Ajoute un bateau dans la grille et met à jour les états des cases adjacentes"""
+		"""Ajoute un bateau dans la grille
+		et met à jour les états des cases adjacentes"""
 		if self.test_bateau(bateau):
 			for case in bateau.cases :
 				self.etat[case] = 1
@@ -521,9 +523,10 @@ class Grille(object):
 		for taille in tmp_taille_bateaux :
 			self.add_bateau_alea(taille)
 			#~ 
-	def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant', affiche=False):
-		"""Essai de calcul des probabilité de cases touchée sur chaque case restante
-		Retourne la case la plus probable en essayant différents arrangements des bateaux restants"""
+	def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant'):
+		"""Calcul des probabilités sur chaque case vide de contenir
+		un bateau. Retourne la case la plus probable en essayant 
+		différents arrangements des bateaux restants"""
 		start=time()
 		
 		# Dictionnaire contenant les probas de chaque case
@@ -552,19 +555,6 @@ class Grille(object):
 			if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
 				pmax = self.probas[case]
 				case_max = case
-		
-		# Affichages pour les tests
-		if affiche :
-			for j in range(self.ymax):
-				for i in range(self.xmax-1):
-					print("%.4f"%(self.probas[(i,j)]), end=' ')
-				print("%.4f"%self.probas[(self.xmax-1,j)])
-			
-			print()
-			print("Échantillon de taille %d" % nb_echantillons)
-			print("Temps : %.4f secondes" % (time()-start))
-			print("Case max :", case_max)
-			print("Proba max : %.5f" % pmax)
 		
 		# Retourne la case la plus probable et sa proba
 		return (case_max, pmax)
