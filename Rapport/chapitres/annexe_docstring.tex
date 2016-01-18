@@ -1,6 +1,10 @@
 \chapter{Documentation des modules}
 
-Les documentations ci-dessous ont été obtenues automatiquement grâce à la commande \texttt{pydoc3 <module.classe>} et sont générés par les docstrings à l'intérieur de chaque objet. 
+Les documentations ci-dessous ont été obtenues automatiquement grâce à la commande \texttt{pydoc3 <module.Classe>} et sont générés par les docstrings à l'intérieur de chaque objet. Leur intégration automatique en \LaTeX se fait avec :\\
+\begin{verbatim}
+\immediate\write18{pydoc3 module.Classe > ./docstrings/module.Classe}
+\verbatiminput{./docstrings/module.Classe}
+\end{verbatim}
 
 \section{Module bn\_grille.py}
 \subsection{Classe Bateau}

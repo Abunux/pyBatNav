@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  18 JAN 2016 12:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  18 JAN 2016 15:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2287,15 +2287,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 Annexe C.
 
 Overfull \hbox (4.82674pt too wide) in paragraph at lines 3--4
-\T1/futs/m/n/12 mande \T1/lmtt/m/n/12 pydoc3 <module.classe> \T1/futs/m/n/12 et
+\T1/futs/m/n/12 mande \T1/lmtt/m/n/12 pydoc3 <module.Classe> \T1/futs/m/n/12 et
  sont gé-né-rés par les docs-trings à l'in-té-rieur de chaque
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
  []
 
 runsystem(pydoc3 bn_grille.Bateau > ./docstrings/bn_grille.Bateau)...executed.
 
 File: ./docstrings/bn_grille.Bateau  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 8--8
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 12--12
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2307,7 +2312,7 @@ runsystem(pydoc3 bn_grille.Grille > ./docstrings/bn_grille.Grille)...executed.
 
 File: ./docstrings/bn_grille.Grille  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 12--12
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 16--16
 [] \T1/lmtt/m/n/12 |  case_max_echantillons(self, nb_echantillons=1000, ordre='
 decroissant')[] 
  []
@@ -2333,7 +2338,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [41]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 12--12
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 16--16
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2348,7 +2353,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [42]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 17--17
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 21--21
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2373,13 +2378,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [44]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 21--21
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 25--25
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 21--21
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 25--25
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2399,13 +2404,13 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (321.83038pt too wide) in paragraph at lines 25--25
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f8ba
-a465f28>, adversaire=<bn_joueur.Ordi object at 0x7f8baa4718d0>)[] 
+Overfull \hbox (321.81638pt too wide) in paragraph at lines 29--29
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f886
+8ed5198>, adversaire=<bn_joueur.Ordi object at 0x7f8868ed5b00>)[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 25--25
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 29--29
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2421,7 +2426,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [46]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 30--30
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 34--34
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2433,7 +2438,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [47]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 30--30
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 34--34
 [] \T1/lmtt/m/n/12 |  case_max_echantillons(self, nb_echantillons=1000, ordre='
 decroissant')[] 
  []
@@ -2449,7 +2454,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [48]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 30--30
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 34--34
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2465,13 +2470,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [49]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 34--34
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 38--38
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 34--34
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 38--38
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2490,13 +2495,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [50]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 38--38
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 38--38
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2522,13 +2527,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [52]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 38--38
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 38--38
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2544,19 +2549,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [53]
-Overfull \hbox (321.83038pt too wide) in paragraph at lines 42--42
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f845
-da90c18>, adversaire=<bn_joueur.Ordi object at 0x7f845740bf28>)[] 
+Overfull \hbox (321.83739pt too wide) in paragraph at lines 46--46
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f180
+5f0be48>, adversaire=<bn_joueur.Ordi object at 0x7f17fc777400>)[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 46--46
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 46--46
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2576,19 +2581,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [54]
-Overfull \hbox (62.48726pt too wide) in paragraph at lines 46--46
+Overfull \hbox (62.48726pt too wide) in paragraph at lines 50--50
 [] \T1/lmtt/m/n/12 |  jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bat
 eaux=[5, 4, 3, 3, 2])[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 46--46
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 50--50
 [] \T1/lmtt/m/n/12 |  test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=
 [5, 4, 3, 3, 2])[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 46--46
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 50--50
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2607,9 +2612,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [55]
-Overfull \hbox (321.83739pt too wide) in paragraph at lines 51--51
+Overfull \hbox (321.83739pt too wide) in paragraph at lines 55--55
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'xmax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'ymax': 10})[] 
+le={'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10})[] 
  []
 
 
@@ -2619,7 +2624,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [56]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 51--51
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 55--55
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3063,7 +3068,7 @@ texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (95 pages, 5
-18727 bytes).
+18809 bytes).
 PDF statistics:
  380 PDF objects out of 1000 (max. 8388607)
  252 compressed objects within 3 object streams
