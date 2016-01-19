@@ -706,7 +706,7 @@ class MainConsole(object):
 		ordi = OrdiC()
 		partie = PartieC(joueur, ordi)
 
-	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
+	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], level=4):
 		"""Test de l'agorithme de résolution sur n parties
 		et affichage des statistiques"""
 		# Lancement de la simulation
@@ -714,7 +714,7 @@ class MainConsole(object):
 		temps_resolution = 0
 		distrib = [0]*(xmax*ymax+1)
 		for k in range(n):
-			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
+			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, level=level)
 			temps_resolution += temps
 			distrib[essais] += 1
 			if (k+1) % (n/10) == 0 :
@@ -722,7 +722,7 @@ class MainConsole(object):
 		
 		# Résultats de la simulation
 		tmoy = temps_resolution/n
-		stats = Stats(data=distrib, filename="distrib_HAL_"+str(n), tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux})
+		stats = Stats(data=distrib, filename="distrib_HAL_lv%d_n=%d" % (level, n), tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, level=level)
 		
 		info()
 		info(boite("Résultats de la simulation", larg_fen=0))
@@ -763,7 +763,20 @@ class MainConsole(object):
 				except :
 					info("Saisie invalide\n")
 					ok = False
-
+		
+		ok = False
+		while not ok :
+			try :
+				level = input("Niveau de l'algorithme (1 à 5) : ")
+				if level not in '12345' :
+					level = 5
+				else : 
+					level = int(level)
+				ok = True
+			except :
+					info("Saisie invalide\n")
+					ok = False
+		
 		ok = False
 		while not ok :
 			try :
@@ -773,7 +786,7 @@ class MainConsole(object):
 				info("Saisie invalide\n")
 				ok = False
 		# Lancement du test
-		self.test_algo(n, xmax, ymax, taille_bateaux)
+		self.test_algo(n, xmax, ymax, taille_bateaux, level)
 	
 	#
 	# Menu de lancement ------------------------------------------------

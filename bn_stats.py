@@ -52,6 +52,7 @@ class Stats(object):
 		
 		self.tmoy = tmoy
 		self.param_grille = param_grille
+		self.level = level
 	
 	#
 	# Chargement et sauvegarde des données (pour analyse future)--------
@@ -173,6 +174,7 @@ class Stats(object):
 		xmax = self.param_grille['xmax']
 		ymax = self.param_grille['ymax']
 		taille_bateaux = self.param_grille['taille_bateaux']
+		level = self.level
 		
 		# Figure statistique 
 		# ------------------
@@ -217,7 +219,7 @@ class Stats(object):
 		# Mise en forme et affichage du graphique
 		plt.xlabel("Nombre de coups")
 		plt.ylabel("Fréquence de parties")
-		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d , Bateaux : %s\nlevel=%d" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux]), level))
+		plt.title("Résolution par l'ordinateur sur n=%d parties\nlevel=%d, Xmax=%d , Ymax=%d , Bateaux : %s" % (n, level, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
 		plt.grid(True)
 		if save :
 			plt.savefig(self.filename + ".png", dpi=fig.dpi)
