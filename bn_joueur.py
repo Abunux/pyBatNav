@@ -174,7 +174,7 @@ class Ordi(Joueur):
 		elif self.level==4 :
 			(case_max, pmax) = self.grille_suivi.case_max_echantillons()
 			self.case_courante = case_max
-			self.messages.append("Je tire sur la case %s qui est la plus probable (p=.4f)" % (alpha(self.case_courante), pmax))
+			self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
 		else :
 			(case_max, pmax) = self.grille_suivi.case_max()
 			self.case_courante = case_max

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  19 JAN 2016 12:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  19 JAN 2016 13:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2143,6 +2143,11 @@ Overfull \hbox (30.17937pt too wide) in paragraph at lines 58--59
 [13
 
 ]
+Overfull \hbox (57.94998pt too wide) in paragraph at lines 113--114
+\T1/futs/m/n/12 Le cal-cul est ef-fec-tué dans la mé-thode \T1/lmtt/m/n/12 Gril
+le.case_max_echantillons(self, nb_echantillons,
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -3060,7 +3065,7 @@ st/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
 etic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (97 pages, 5
-36722 bytes).
+36723 bytes).
 PDF statistics:
  389 PDF objects out of 1000 (max. 8388607)
  257 compressed objects within 3 object streams

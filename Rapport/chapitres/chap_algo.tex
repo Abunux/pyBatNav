@@ -110,7 +110,7 @@ Temps moyen par partie (en secondes) & 0,38 & 3,6 & 36,2 & 380\\
 
 \medskip
 
-Au final, le temps de résolution étant linéaire en $n$ pour des gains de performances négligeables, cette approche a été abandonnée, mais est toujours présente dans le code  dans la méthode \texttt{Grille.case\_max\_proba(self, nb\_echantillons, ordre)}.
+Au final, le temps de résolution est linéaire en $n$ pour des gains de performances négligeables.\\ Le calcul est effectué dans la méthode \texttt{Grille.case\_max\_echantillons(self, nb\_echantillons, ordre)} du module \texttt{bn\_grille.py}.
 
 \subsubsection{Méthode par énumération de tous les cas}
 
