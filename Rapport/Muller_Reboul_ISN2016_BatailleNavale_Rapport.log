@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  19 JAN 2016 19:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  19 JAN 2016 20:47
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2289,8 +2289,6 @@ ux mo-dules \T1/lmtt/m/n/12 numpy \T1/futs/m/n/12 et \T1/lmtt/m/n/12 matplotlib
 \T1/futs/m/n/12 ). 
  []
 
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 5.
 [31
 
 ]) (./chapitres/annexe_codescar.tex
@@ -3046,29 +3044,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ### simple group (level 1) entered at line 2 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25604 strings out of 493304
- 491894 string characters out of 6139871
+ 25601 strings out of 493304
+ 491850 string characters out of 6139871
  765673 words of memory out of 5000000
- 28247 multiletter control sequences out of 15000+600000
- 159903 words of font info for 152 fonts, out of 8000000 for 9000
+ 28245 multiletter control sequences out of 15000+600000
+ 159585 words of font info for 151 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  51i,11n,71p,870b,1367s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/tex
 mf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
 base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-m
 lit.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-ms.pf
-b></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
-etic/uhvr8a.pfb>
+b></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/ty
+pe1/public/lm/lmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia
+/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (97 pages, 5
-36783 bytes).
+13843 bytes).
 PDF statistics:
- 389 PDF objects out of 1000 (max. 8388607)
- 257 compressed objects within 3 object streams
+ 385 PDF objects out of 1000 (max. 8388607)
+ 254 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  119 words of extra memory for PDF output out of 10000 (max. 10000000)
 

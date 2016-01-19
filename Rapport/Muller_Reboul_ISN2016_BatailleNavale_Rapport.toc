@@ -54,7 +54,7 @@
 \newpage 
 \contentsline {part}{Annexes}{31}
 \contentsline {chapter}{\numberline {A}\IeC {\'E}tude statistique des l'algorithmes}{31}
-\contentsline {section}{\numberline {1}\texttt {Ordi.level=5}}{31}
+\contentsline {section}{\numberline {1}Niveau 5}{31}
 \contentsline {chapter}{\numberline {B}Codes des caract\IeC {\`e}res graphiques}{33}
 \contentsline {chapter}{\numberline {C}Documentation des modules}{35}
 \contentsline {section}{\numberline {1}Module bn\_grille.py}{35}
