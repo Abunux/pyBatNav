@@ -119,7 +119,7 @@ On peut essayer de déterminer tous les arrangements de bateaux possibles sur la
 \subsubsection{Méthodes par comptage}
 Dans cette méthode, on va compter pour chaque case le nombre de bateaux possibles et tirer sur celle qui en contient le plus, comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle} (page \pageref{opti_aveugle}).
 
-Cette méthode est très efficace aussi bien en nombre de coups pour la résolution, qu'en temps de calcul, et c'est celle qui a été retenue. 
+Cette méthode est très efficace aussi bien en nombre de coups pour la résolution, qu'en temps de calcul, et c'est celle qui a été retenue par défaut. 
 
 \subsection{Phase de tir ciblé}
 Lors de cette phase, on va utiliser une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser. On va également garder la trace des cases touchées sur ce bateau dans la liste \texttt{Ordi.liste\_touches}, ainsi que la première case touchée dans \texttt{Ordi.case\_touchee}.

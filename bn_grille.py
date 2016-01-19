@@ -511,7 +511,7 @@ class Grille(object):
 			#~ 
 	def init_bateaux_alea_bak(self, ordre='random'):
 		"""Initialise une grille avec des bateaux aléatoires"""
-		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
+		# L'ordre dans lequel on place les bateaux a une influence sur les probas !!!
 		tmp_taille_bateaux = self.taille_bateaux[:]
 		if ordre == 'random' :
 			rand.shuffle(tmp_taille_bateaux)
