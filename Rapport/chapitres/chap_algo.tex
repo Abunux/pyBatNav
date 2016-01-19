@@ -55,13 +55,13 @@ L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)
 
 Il fonctionne en deux temps : dans un premier temps une phase de tir en aveugle et, une fois qu'une case a été touchée, une phase de tir ciblé jusqu'à ce que le bateau soit coulé.
 
-Différents algorithmes de résolution sont implémentés et choisis avec l'attribut \texttt{Ordi.level} :
+Différents algorithmes de résolution sont implémentés et choisis avec l'attribut \texttt{Ordi.niveau} :
 \begin{itemize}
-\item \texttt{Ordi.level=1} : Uniquement des tirs aléatoires en aveugle et pas de tirs ciblés.
-\item \texttt{Ordi.level=2} : Tirs aléatoires et phase de tirs ciblés.
-\item \texttt{Ordi.level=3} : Tirs aléatoires sur les cases noires  et phase de tirs ciblés.
-\item \texttt{Ordi.level=4} : Détermination de la case optimale par des échantillons et phase de tirs ciblés.
-\item \texttt{Ordi.level=5} : Détermination de la case optimale par le nombre de bateaux possibles et phase de tirs ciblés.
+\item \texttt{Ordi.niveau=1} : Uniquement des tirs aléatoires en aveugle et pas de tirs ciblés.
+\item \texttt{Ordi.niveau=2} : Tirs aléatoires et phase de tirs ciblés.
+\item \texttt{Ordi.niveau=3} : Tirs aléatoires sur les cases noires  et phase de tirs ciblés.
+\item \texttt{Ordi.niveau=4} : Détermination de la case optimale par des échantillons et phase de tirs ciblés.
+\item \texttt{Ordi.niveau=5} : Détermination de la case optimale par le nombre de bateaux possibles et phase de tirs ciblés.
 \end{itemize}
 
 Une étude statistique de chacun de ces algorithmes est donnée en annexe \ref{annexe_stats}, page \pageref{annexe_stats}.
@@ -237,7 +237,7 @@ Tant que le grille n'est pas résolue :\\
 \tab{3}On élimine les cases adjacentes à celles de liste\_touches\\
 \tab{3}On vide liste\_touches\\
 \tab{2}On élimine les zones trop petites\\
-\tab{2}case\_courante reçoit une case en aveugle\\
+\tab{2}case\_courante reçoit une case en aveugle (suivant le niveau)\\
 \tab{1}Sinon :\\
 \tab{2}case\_courante reçoit le premier élément de la file d'attente\\
 \tab{2}On enlève cette case de la file d'attente\\

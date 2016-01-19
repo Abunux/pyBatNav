@@ -117,18 +117,18 @@ class Joueur(object):
 #
 class Ordi(Joueur):
 	"""Algorithme de résolution"""
-	def __init__(self, nom='HAL', level=5):
+	def __init__(self, nom='HAL', niveau=5):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
 		
 		# Niveau de l'ordinateur (type d'algo de résolution) :
 		# --> À implémenter dans la suite
-		# level=1 : Tous les coups aléatoires
-		# level=2 : Aveugle aléatoire, ciblé 
-		# level=3 : Aveugle aléatoire cases noires, ciblé
-		# level=4 : Aveugle échantillons, ciblé
-		# level=5 : Aveugle nb possibilités, ciblé 
-		self.level = level
+		# niveau=1 : Tous les coups aléatoires
+		# niveau=2 : Aveugle aléatoire, ciblé 
+		# niveau=3 : Aveugle aléatoire cases noires, ciblé
+		# niveau=4 : Aveugle échantillons, ciblé
+		# niveau=5 : Aveugle nb possibilités, ciblé 
+		self.niveau = niveau
 		
 		# Initialisation de sa grille
 		self.grille_joueur.init_bateaux_alea()
@@ -164,14 +164,14 @@ class Ordi(Joueur):
 	# Tire aléatoire ---------------------------------------------------
 	#
 	def make_case_aleatoire(self):
-		"""Choisit une case aléatoire (suivant l'algorithme choisit)"""
-		if self.level==1 or self.level==2 :
+		"""Choisit une case aléatoire (suivant l'algorithme choisi)"""
+		if self.niveau==1 or self.niveau==2 :
 			self.case_courante = rand.choice(self.grille_suivi.vides)
 			self.messages.append("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
-		elif self.level==3 :
+		elif self.niveau==3 :
 			self.case_courante = rand.choice([(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0])
 			self.messages.append("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
-		elif self.level==4 :
+		elif self.niveau==4 :
 			(case_max, pmax) = self.grille_suivi.case_max_echantillons()
 			self.case_courante = case_max
 			self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
@@ -344,7 +344,7 @@ class Ordi(Joueur):
 	def coup_suivant(self):
 		"""Fait jouer à l'ordinateur le coup suivant"""
 		# Si la file d'attente est vide : soit on a tiré dans le vide au hasard, soit on vient de couler un bateau
-		if not self.queue or self.level == 1 :
+		if not self.queue or self.niveau == 1 :
 			# Si on vient de couler un bateau
 			if self.liste_touches :
 				# On l'enlève de la liste des bateaux à couler
@@ -355,7 +355,7 @@ class Ordi(Joueur):
 				self.liste_touches = []
 				
 			# Élimination des cases dans lesquelles le plus petit bateau restant ne peut pas rentrer
-			if self.level != 1 :
+			if self.niveau != 1 :
 				self.elimine_petites()
 			
 			# Choisit sur une case aléatoire 
@@ -368,7 +368,7 @@ class Ordi(Joueur):
 		# Tire sur la case choisie
 		resultat = self.tire_case_courante()
 		
-		if self.level != 1 :
+		if self.niveau != 1 :
 			# Si on touche
 			if resultat :
 				# Si c'est la 1ère case du bateau, on remplit la file d'attente avec ses 4 cases adjacentes possibles
