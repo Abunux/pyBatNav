@@ -219,7 +219,7 @@ class Ordi(Joueur):
 		self.affiche_queue()
 	
 	def update_queue_touche(self):
-		"""Met à jour la file d'attente en enlevant le cases 
+		"""Met à jour la file d'attente en enlevant les cases 
 		qui ne sont pas dans la bonne direction après avoir
 		touché une 2ème fois"""
 		# Bateau horizontal :

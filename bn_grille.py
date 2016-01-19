@@ -385,6 +385,7 @@ class Grille(object):
 					self.etat[case] = -1
 	
 	def init_bateaux_alea(self, ordre='random'):
+		"""Initialise une grille avec des bateaux aléatoires"""
 		ok = False
 		nb_bateaux = 0
 		while nb_bateaux < len(self.taille_bateaux) :
@@ -415,8 +416,8 @@ class Grille(object):
 	# Affichage --------------------------------------------------------
 	#
 	def affiche(self):
-		"""Affiche la grille"""
-		# Méthode à surcharger suivant l'interface
+		"""Affiche la grille
+		Méthode à surcharger suivant l'interface"""
 		pass
 				
 	# --------------------------------
