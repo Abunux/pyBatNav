@@ -498,38 +498,37 @@ class OrdiC(JoueurC, Ordi):
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
 
-	#~ def resolution2(self, affiche=True, grille=None):
-		#~ """Lance la résolution de la grille par l'ordinateur"""
-		#~ # --> Version avec affichage pour copier-coller dans le rapport en Latex
-		#~ # --> À supprimer
-		#~ 
-		#~ # Lancement du chrono
-		#~ start = time()
-		#~ self.messages.append("C'est parti !!!")
-		#~ # C'est parti !!!
-		#~ while not self.grille_suivi.fini():
-			#~ if affiche :
-				#~ print(r"{\scriptsize")
-				#~ print(r"\begin{verbatim}")
-				#~ self.grille_suivi.affiche_adverse(grille)
-			#~ 
-			#~ self.affiche_messages(affiche=affiche)
-			#~ print(r"\end{verbatim}}")
-			#~ print(r"\hrule")
-			#~ print()
-			#~ self.coup_suivant()
-			#~ 
-		#~ # Fin de la partie
-		#~ if affiche :
-			#~ print(r"{\scriptsize")
-			#~ print(r"\begin{verbatim}")
-			#~ self.grille_suivi.affiche_adverse(grille)
-			#~ 
-		#~ self.messages.append("Partie terminée en %d coups" % self.essais)
-		#~ self.affiche_messages(affiche=affiche)
-		#~ print(r"\end{verbatim}}\hrule")
-		#~ # On renvoie de temps de résolution de la grille pour les tests de performance
-		#~ return time()-start
+	def resolution_latex(self, affiche=True, grille=None):
+		"""Lance la résolution de la grille par l'ordinateur
+		avec affichage en LaTeX pour copier-coller dans le rapport"""
+		
+		# Lancement du chrono
+		start = time()
+		self.messages.append("C'est parti !!!")
+		# C'est parti !!!
+		while not self.grille_suivi.fini():
+			if affiche :
+				print(r"{\scriptsize")
+				print(r"\begin{verbatim}")
+				self.grille_suivi.affiche_adverse(grille)
+			
+			self.affiche_messages(affiche=affiche)
+			print(r"\end{verbatim}}")
+			print(r"\hrule")
+			print()
+			self.coup_suivant()
+			
+		# Fin de la partie
+		if affiche :
+			print(r"{\scriptsize")
+			print(r"\begin{verbatim}")
+			self.grille_suivi.affiche_adverse(grille)
+			
+		self.messages.append("Partie terminée en %d coups" % self.essais)
+		self.affiche_messages(affiche=affiche)
+		print(r"\end{verbatim}}\hrule")
+		# On renvoie de temps de résolution de la grille pour les tests de performance
+		return time()-start
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -676,11 +675,28 @@ class MainConsole(object):
 	#
 	# Modes de jeu -----------------------------------------------------
 	#
-	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=4):
+	def get_niveau(self):
+		"""Demande le niveau de l'ordinateur"""
+		ok = False
+		while not ok :
+			try :
+				niveau = input("Niveau de l'algorithme (1 à 5) : ")
+				if niveau not in '12345' :
+					niveau = 5
+				else : 
+					niveau = int(niveau)
+				ok = True
+			except :
+					info("Saisie invalide\n")
+					ok = False
+		return niveau
+	
+	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
 		grille = GrilleJoueurC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		grille.init_bateaux_alea()
+		niveau = self.get_niveau()
 		ordi = OrdiC(niveau=niveau)
 		ordi.grille_adverse = grille
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
@@ -703,7 +719,8 @@ class MainConsole(object):
 	def jeu_contre_ordi(self):
 		"""Partie en duel contre l'ordinateur"""
 		joueur = JoueurC("Toto")
-		ordi = OrdiC()
+		niveau = self.get_niveau()
+		ordi = OrdiC(niveau=niveau)
 		partie = PartieC(joueur, ordi)
 
 	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=4):
@@ -767,18 +784,7 @@ class MainConsole(object):
 					info("Saisie invalide\n")
 					ok = False
 		
-		ok = False
-		while not ok :
-			try :
-				niveau = input("Niveau de l'algorithme (1 à 5) : ")
-				if niveau not in '12345' :
-					niveau = 5
-				else : 
-					niveau = int(niveau)
-				ok = True
-			except :
-					info("Saisie invalide\n")
-					ok = False
+		niveau = self.get_niveau()
 		
 		ok = False
 		while not ok :

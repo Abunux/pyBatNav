@@ -68,7 +68,13 @@ class Stats(object):
 		"""Sauvegarde les données à partir d'un fichier texte"""
 		with open(self.filename + ".txt", "w") as datafile :
 			for k in range(len(self.data)) :
-				datafile.write(str(self.data[k])+'\n')
+				datafile.write(str(self.data[k]) + '\n')
+		
+		# Sauvegarde en LaTex :
+		with open(self.filename + ".tex", "w") as datafile :
+			for k in range(len(self.data)) :
+				datafile.write(str(k) + " & " + str(self.data[k]) + r'\\' + '\n')
+				datafile.write(r"\hline" + '\n')
 		
 	#
 	# Récupération des paramètres statistiques basiques ----------------
