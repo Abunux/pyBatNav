@@ -454,7 +454,7 @@ class Grille(object):
 		nb_essais = 0
 		while not valide and nb_essais < nb_essais_max:
 			nb_essais += 1
-			bateau = self.make_bateau_alea(taille)
+			bateau = self.make_bateau_alea_bak(taille)
 			valide = self.test_bateau(bateau)
 		if valide :
 			self.add_bateau(bateau)
@@ -463,20 +463,20 @@ class Grille(object):
 			return False
 	#~ 
 		#~ 
-	#~ def make_bateau_alea_bak(self, taille):
-		#~ """Crée un bateau aléatoire (valide)"""
-		#~ self.update_vides()
-		#~ grille_tmp = self.copie_grille_tmp()
-		#~ 
-		#~ dir_possibles = []
-		#~ while not dir_possibles :
-			#~ (x,y) = rand.choice(self.vides)
-			#~ for sens in [BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS] :
-				#~ if grille_tmp.test_bateau(Bateau(taille, (x,y), sens)):
-					#~ dir_possibles.append(sens)
-		#~ sens = rand.choice(dir_possibles)
-		#~ bateau = Bateau(taille, (x,y), sens)
-		#~ return bateau
+	def make_bateau_alea_bak(self, taille):
+		"""Crée un bateau aléatoire (valide)"""
+		self.update_vides()
+		grille_tmp = self.copie_grille_tmp()
+		
+		dir_possibles = []
+		while not dir_possibles :
+			(x,y) = rand.choice(self.vides)
+			for sens in [BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS] :
+				if grille_tmp.test_bateau(Bateau(taille, (x,y), sens)):
+					dir_possibles.append(sens)
+		sens = rand.choice(dir_possibles)
+		bateau = Bateau(taille, (x,y), sens)
+		return bateau
 	#~ 
 	
 			#~ 

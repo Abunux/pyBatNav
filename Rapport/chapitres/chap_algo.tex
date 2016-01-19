@@ -3,10 +3,14 @@ Un exemple de résolution pas à pas est donné dans l'annexe \ref{annexe_algo_a
 \section{Description de l'algorithme}
 
 
+% -----------------------------------------------------------------------
+\begin{comment}
 L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)} du module \texttt{bn\_joueur.py}, dans la méthode \texttt{Ordi.coup\_suivant(self)}.\\
 Il fonctionne en deux temps : dans un premier temps une phase de tir en aveugle et, une fois qu'une case a été touchée, une phase de tir ciblé jusqu'à ce que le bateau soit coulé.
 
 L'attribut \texttt{Ordi.case\_courante} contient la case qui est entrain d'être jouée.
+
+
 \subsection{Phase de tir en aveugle}
 Lors de cette phase, l'algorithme va tirer sur la case qui peut contenir le plus de bateau comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle} (page \pageref{opti_aveugle}). Cette phase est gérée par la méthode \texttt{Ordi.make\_case\_aleatoire(self)}.
 
@@ -43,6 +47,79 @@ Au final, le temps de résolution étant linéaire en $n$ pour des gains de perf
 \end{itemize}  
 
 Lors de cette phase on va également, avant chaque coup, éliminer les cases dans lesquelles le plus petit bateau restant à trouver ne rentre pas.
+\end{comment}
+% -----------------------------------------------------------------------
+
+
+L'algorithme de résolution est implémenté dans la classe \texttt{Ordi(Joueur)} du module \texttt{bn\_joueur.py}, dans la méthode \texttt{Ordi.coup\_suivant(self)}. L'attribut \texttt{Ordi.case\_courante} contient la case qui est entrain d'être jouée.
+
+Il fonctionne en deux temps : dans un premier temps une phase de tir en aveugle et, une fois qu'une case a été touchée, une phase de tir ciblé jusqu'à ce que le bateau soit coulé.
+
+Différents algorithmes de résolution sont implémentés et choisis avec l'attribut \texttt{Ordi.level} :
+\begin{itemize}
+\item \texttt{Ordi.level=1} : Uniquement des tirs aléatoires en aveugle et pas de tirs ciblés.
+\item \texttt{Ordi.level=2} : Tirs aléatoires et phase de tirs ciblés.
+\item \texttt{Ordi.level=3} : Tirs aléatoires sur les cases noires  et phase de tirs ciblés.
+\item \texttt{Ordi.level=4} : Détermination de la case optimale par des échantillons et phase de tirs ciblés.
+\item \texttt{Ordi.level=5} : Détermination de la case optimale par le nombre de bateaux possibles et phase de tirs ciblés.
+\end{itemize}
+
+Une étude statistique de chacun de ces algorithmes est donnée en annexe \ref{annexe_stats}, page \pageref{annexe_stats}.
+
+
+
+
+
+\subsection{Phase de tir en aveugle}
+Lors de cette phase, l'algorithme va commencer par éliminer les zones dans lesquelles le plus petit bateau restant ne peut pas rentrer, puis choisir une case aléatoire parmi les cases vides. Le choix de cette case va, en grande partie, déterminer les performances de l'algorithme.
+
+\subsubsection{Méthode naïve}
+La méthode la plus naïve est de choisir une case de manière uniforme dans la liste des cases vides avec l'instruction \texttt{random.choice(liste)}.
+
+Cette méthode est celle qui peut être attendue d'un élève (qui peut se contenter de ça pour l'ensemble de son algorithme de résolution) et la seule qui permette de résoudre la grille uniquement en faisant des tirs en aveugle.
+
+\subsubsection{Méthode des cases noires}
+Dans la mesure où le plus petit bateau est de taille 2, si on imagine la grille comme un damier, un bateau recouvre obligatoirement une case noire. On peut donc se contenter de viser uniquement parmi ces cases.
+
+Une case $(x,y)$ est une case noire si, et seulement si, $(x+y)\%2==0$.
+
+\subsubsection{Méthode par échantillonnage}
+Dans la méthode suivante, on va essayer d'optimiser les tirs en aveugle en estimant la probabilité de chaque case de contenir un bateau.
+
+Pour ce faire, on va créer un échantillon de $n$ répartitions aléatoires de bateaux sur les cases vides restantes et on va compter, sur chaque le nombre de fois où elle a été occupée ce qui va nous donner une densité de probabilités pour chaque case. 
+
+Les performances en nombre d'essais sont satisfaisantes, mais le temps de calcul beaucoup trop élevé. Voici un tableau récapitulatif de quelques essais avec différents paramètres :
+
+\medskip
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Taille des échantillons & 100 & 1\,000 & 10\,000 & 100\,000\\
+\hline
+Nombre de parties & 10\,000 & 10\,000 & 1\,000 & 100\\
+\hline
+Nombre de coups moyens & 43,68 & 43,30 & 42,72 & 42,63\\
+\hline
+Temps moyen par partie (en secondes) & 0,38 & 3,6 & 36,2 & 380\\
+\hline 
+\end{tabular}\\
+\vspace*{0.1cm}
+\textit{Temps mesurés sur un processeur Intel Core i7 4800-MQ à 2,7 GHz}
+\end{center}
+
+\medskip
+
+Au final, le temps de résolution étant linéaire en $n$ pour des gains de performances négligeables, cette approche a été abandonnée, mais est toujours présente dans le code  dans la méthode \texttt{Grille.case\_max\_proba(self, nb\_echantillons, ordre)}.
+
+\subsubsection{Méthode par énumération de tous les cas}
+
+On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre astronomique de configurations, cette approche est irréalisable que ce soit en temps de calcul qu'en utilisation mémoire. 
+
+\subsubsection{Méthodes par comptage}
+Dans cette méthode, on va compter pour chaque case le nombre de bateaux possibles et tirer sur celle qui en contient le plus, comme vu au chapitre \ref{chap_grille}, section \ref{opti_aveugle} (page \pageref{opti_aveugle}).
+
+Cette méthode est très efficace aussi bien en nombre de coups pour la résolution, qu'en temps de calcul, et c'est celle qui a été retenue. 
 
 \subsection{Phase de tir ciblé}
 Lors de cette phase, on va utiliser une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser. On va également garder la trace des cases touchées sur ce bateau dans la liste \texttt{Ordi.liste\_touches}, ainsi que la première case touchée dans \texttt{Ordi.case\_touchee}.
@@ -81,7 +158,7 @@ La construction de la liste des cases adjacentes possibles est effectuée par la
 
 \medskip
 
- Enfin, on va classer la file d'attente en ordre décroissant de nombre de bateaux possibles comme vu au chapitre \ref{chap_grille}, section \ref{opti_touche} (page \pageref{opti_touche}) avec la méthode \texttt{Ordi.shuffle\_queue(self)}.
+ Enfin, pour l'optimisation de cette phase, on va classer la file d'attente en ordre décroissant de nombre de bateaux possibles comme vu au chapitre \ref{chap_grille}, section \ref{opti_touche} (page \pageref{opti_touche}) avec la méthode \texttt{Ordi.shuffle\_queue(self)}.
 
 \subsubsection{Deuxième tir}
 Lors du deuxième tir (c'est à dire sur la première case de la file d'attente), on peut soit toucher, soit manquer.

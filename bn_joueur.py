@@ -117,16 +117,17 @@ class Joueur(object):
 #
 class Ordi(Joueur):
 	"""Algorithme de résolution"""
-	def __init__(self, nom='HAL', level=4):
+	def __init__(self, nom='HAL', level=5):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
 		
 		# Niveau de l'ordinateur (type d'algo de résolution) :
 		# --> À implémenter dans la suite
 		# level=1 : Tous les coups aléatoires
-		# level=2 : Aveugle aléatoire cases noires, ciblé simple
-		# level=3 : Aveugle échantillon, ciblé simple
-		# level=4 : Aveugle nb possibilités, ciblé nb possibilités 
+		# level=2 : Aveugle aléatoire, ciblé 
+		# level=3 : Aveugle aléatoire cases noires, ciblé
+		# level=4 : Aveugle échantillons, ciblé
+		# level=5 : Aveugle nb possibilités, ciblé 
 		self.level = level
 		
 		# Initialisation de sa grille
@@ -164,10 +165,20 @@ class Ordi(Joueur):
 	#
 	def make_case_aleatoire(self):
 		"""Choisit une case aléatoire (suivant l'algorithme choisit)"""
-		(case_max, pmax) = self.grille_suivi.case_max()
-		#~ (case_max, pmax) = self.grille_suivi.case_max_echantillons()
-		self.case_courante = case_max
-		self.messages.append("Je tire sur la case %s qui est la plus probable (%d bateaux possibles)" % (alpha(self.case_courante), pmax))
+		if self.level==1 or self.level==2 :
+			self.case_courante = rand.choice(self.grille_suivi.vides)
+			self.messages.append("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
+		elif self.level==3 :
+			self.case_courante = rand.choice([(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0])
+			self.messages.append("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
+		elif self.level==4 :
+			(case_max, pmax) = self.grille_suivi.case_max_echantillons()
+			self.case_courante = case_max
+			self.messages.append("Je tire sur la case %s qui est la plus probable (p=.4f)" % (alpha(self.case_courante), pmax))
+		else :
+			(case_max, pmax) = self.grille_suivi.case_max()
+			self.case_courante = case_max
+			self.messages.append("Je tire sur la case %s qui est la plus probable (%d bateaux possibles)" % (alpha(self.case_courante), pmax))
 	
 	#
 	# Tire sur une case ------------------------------------------------
@@ -276,7 +287,6 @@ class Ordi(Joueur):
 	def shuffle_queue(self):
 		"""Mélange les cases de la file d'attente en les triant
 		par ordre décroissant des bateaux possibles"""
-		# Mettre la file dans l'ordre décroissant des probas (sachant qu'on vient de toucher la case self.case_touchee)
 		if len(self.queue)>1 :
 			rand.shuffle(self.queue)
 			self.messages.append("J'ordonne ma file d'attente en fonction des possibilités :")
@@ -334,7 +344,7 @@ class Ordi(Joueur):
 	def coup_suivant(self):
 		"""Fait jouer à l'ordinateur le coup suivant"""
 		# Si la file d'attente est vide : soit on a tiré dans le vide au hasard, soit on vient de couler un bateau
-		if not self.queue :
+		if not self.queue or self.level == 1 :
 			# Si on vient de couler un bateau
 			if self.liste_touches :
 				# On l'enlève de la liste des bateaux à couler
@@ -345,7 +355,8 @@ class Ordi(Joueur):
 				self.liste_touches = []
 				
 			# Élimination des cases dans lesquelles le plus petit bateau restant ne peut pas rentrer
-			self.elimine_petites()
+			if self.level != 1 :
+				self.elimine_petites()
 			
 			# Choisit sur une case aléatoire 
 			self.make_case_aleatoire()
@@ -356,32 +367,33 @@ class Ordi(Joueur):
 		
 		# Tire sur la case choisie
 		resultat = self.tire_case_courante()
+		
+		if self.level != 1 :
+			# Si on touche
+			if resultat :
+				# Si c'est la 1ère case du bateau, on remplit la file d'attente avec ses 4 cases adjacentes possibles
+				if not self.liste_touches :
+					self.liste_touches = [self.case_courante]
+					self.case_touchee = self.case_courante # 1ère case touchée du bateau
+					
+					# On ajoute les case adjacentes possibles à la case, en ordre aléatoire
+					self.add_adjacentes_premiere()
+					
+				# Sinon on détermine le sens du bateau et on met à jour la file d'attente avec ses cases adjacentes
+				# et on enlève celles qui ne sont pas dans la bonne direction
+				else :
+					self.update_queue_touche()
 
-		# Si on touche
-		if resultat :
-			# Si c'est la 1ère case du bateau, on remplit la file d'attente avec ses 4 cases adjacentes possibles
-			if not self.liste_touches :
-				self.liste_touches = [self.case_courante]
-				self.case_touchee = self.case_courante # 1ère case touchée du bateau
-				
-				# On ajoute les case adjacentes possibles à la case, en ordre aléatoire
-				self.add_adjacentes_premiere()
-				
-			# Sinon on détermine le sens du bateau et on met à jour la file d'attente avec ses cases adjacentes
-			# et on enlève celles qui ne sont pas dans la bonne direction
+				# Si la taille du bateau qu'on est entrain de couler est la taille max des bateaux sur la grille, on arrête
+				if self.test_plus_grand():
+					self.vide_queue()
+					
+			# Si on manque
 			else :
-				self.update_queue_touche()
-
-			# Si la taille du bateau qu'on est entrain de couler est la taille max des bateaux sur la grille, on arrête
-			if self.test_plus_grand():
-				self.vide_queue()
-				
-		# Si on manque
-		else :
-			if len(self.liste_touches) == 1 :
-				# Si on n'a touché qu'une case et qu'on vient de manquer (on vient donc de tirer sur une de ses cases adjacentes)
-				# On élimine alors la case dans la direction dans laquelle le plus petit bateau ne rentre pas (si c'est le cas)
-				self.update_queue_manque()
+				if len(self.liste_touches) == 1 :
+					# Si on n'a touché qu'une case et qu'on vient de manquer (on vient donc de tirer sur une de ses cases adjacentes)
+					# On élimine alors la case dans la direction dans laquelle le plus petit bateau ne rentre pas (si c'est le cas)
+					self.update_queue_manque()
 	
 	def resolution(self):
 		"""Lance la résolution de la grille par l'ordinateur"""

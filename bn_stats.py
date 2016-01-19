@@ -25,7 +25,7 @@ import matplotlib.pyplot as plt
 
 class Stats(object):
 	"""Implémente les outils d'étude statistique"""
-	def __init__(self, data=None, filename="", tmoy=0, param_grille={'xmax':10, 'ymax':10, 'taille_bateaux':[5, 4, 3, 3, 2]}):
+	def __init__(self, data=None, filename="", tmoy=0, param_grille={'xmax':10, 'ymax':10, 'taille_bateaux':[5, 4, 3, 3, 2]}, level=5):
 		# data est une liste d'effectifs : data[43] = nombre de parties à 43 coups
 		# filename le nom du fichier où sont stockées les données
 		# tmoy : temps moyen par partie de la simulation
@@ -217,7 +217,7 @@ class Stats(object):
 		# Mise en forme et affichage du graphique
 		plt.xlabel("Nombre de coups")
 		plt.ylabel("Fréquence de parties")
-		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d , Bateaux : %s" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
+		plt.title("Résolution par l'ordinateur sur n=%d parties\nXmax=%d , Ymax=%d , Bateaux : %s\nlevel=%d" % (n, xmax, ymax," ".join([str(t) for t in taille_bateaux]), level))
 		plt.grid(True)
 		if save :
 			plt.savefig(self.filename + ".png", dpi=fig.dpi)

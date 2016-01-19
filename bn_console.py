@@ -463,8 +463,8 @@ class JoueurC(Joueur):
 #
 class OrdiC(JoueurC, Ordi):
 	"""Résoultion de la grille en mode console"""
-	def __init__(self, nom='HAL'):
-		Ordi.__init__(self, nom)
+	def __init__(self, nom='HAL', level=4):
+		Ordi.__init__(self, nom, level)
 		JoueurC.__init__(self, nom)
 		
 	def resolution(self, affiche=True, grille=None):
@@ -676,12 +676,12 @@ class MainConsole(object):
 	#
 	# Modes de jeu -----------------------------------------------------
 	#
-	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
+	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], level=5):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
 		grille = GrilleJoueurC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		grille.init_bateaux_alea()
-		ordi = OrdiC()
+		ordi = OrdiC(level=level)
 		ordi.grille_adverse = grille
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		ordi.grille_suivi.reinit()
