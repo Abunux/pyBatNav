@@ -691,12 +691,11 @@ class MainConsole(object):
 					ok = False
 		return niveau
 	
-	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2]):
+	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=5):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
 		grille = GrilleJoueurC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		grille.init_bateaux_alea()
-		niveau = self.get_niveau()
 		ordi = OrdiC(niveau=niveau)
 		ordi.grille_adverse = grille
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
@@ -877,7 +876,8 @@ class MainConsole(object):
 				self.launch_test_algo()
 				
 			elif choix.lower() == 'o' :
-				self.jeu_ordi()
+				niveau = self.get_niveau()
+				self.jeu_ordi(niveau=niveau)
 				
 			elif choix.lower() == 'j' :
 				self.jeu_contre_ordi()

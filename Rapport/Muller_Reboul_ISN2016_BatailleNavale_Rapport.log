@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  19 JAN 2016 20:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  20 JAN 2016 08:24
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2415,9 +2415,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [41]
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (321.80937pt too wide) in paragraph at lines 29--29
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fc2f
-f68cef0>, adversaire=<bn_joueur.Ordi object at 0x7fc2ff698898>)[] 
+Overfull \hbox (321.81638pt too wide) in paragraph at lines 29--29
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f886
+8ed5198>, adversaire=<bn_joueur.Ordi object at 0x7f8868ed5b00>)[] 
  []
 
 
@@ -2549,9 +2549,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [49]
-Overfull \hbox (321.83038pt too wide) in paragraph at lines 46--46
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7faa3
-0d0fc18>, adversaire=<bn_joueur.Ordi object at 0x7faa2a68af28>)[] 
+Overfull \hbox (321.83739pt too wide) in paragraph at lines 46--46
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f180
+5f0be48>, adversaire=<bn_joueur.Ordi object at 0x7f17fc777400>)[] 
  []
 
 
@@ -2609,7 +2609,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [51]
 Overfull \hbox (321.83739pt too wide) in paragraph at lines 55--55
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'xmax': 10, 'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2]})[] 
+le={'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10})[] 
  []
 
 
@@ -3062,7 +3062,7 @@ pe1/public/lm/lmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia
 /texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (97 pages, 5
-13843 bytes).
+13529 bytes).
 PDF statistics:
  385 PDF objects out of 1000 (max. 8388607)
  254 compressed objects within 3 object streams

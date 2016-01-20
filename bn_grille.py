@@ -72,9 +72,6 @@ class Grille(object):
 		#	1  : Contient un bateau
 		#	-1 : Ne peut pas contenir de bateau, ou déjà joué et manqué
 		#	0  : Case vide
-		# Intérêts d'un dictionnaire par rapport à une liste double :
-		#	- Plus facile à manipuler
-		#	- Recherche plus efficace (table de hachage, donc recherche en O(1))
 		self.etat = {}
 		
 		# Liste des cases vides
@@ -148,7 +145,7 @@ class Grille(object):
 		# --> Il reste quelques fonctions de tri qui ne sont pas utiles pour la suite, mais c'est juste pour l'affichage des tests
 		self.update_vides()
 		
-		# Liste des bateaux et sens possibles sur chaque case
+		# Liste des bateaux et sens possibles démarrant sur chaque case
 		# Par ex {(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...}
 		self.possibles_case = {}
 		for i in range(self.xmax):
@@ -164,7 +161,7 @@ class Grille(object):
 				tmax = self.get_max_space(case, direction=direction, sens=0)
 				self.possibles_case[case] += [(taille, direction) for taille in tmp_taille_bateaux if taille <= tmax]
 
-		# Liste des cases et sens possibles pour chaque bateau
+		# Liste des cases de départ et sens possibles pour chaque bateau
 		# Par ex : {5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...}
 		self.possibles = {}
 		for taille in tmp_taille_bateaux :
@@ -205,10 +202,6 @@ class Grille(object):
 			for (case, direction) in self.possibles[taille] :
 				for k in range(taille) :
 					self.probas[(case[0]+k*direction[0], case[1]+k*direction[1])] += 1
-		
-		# Calcul des probas
-		#~ for case in self.probas :
-			#~ self.probas[case] *= 1/len(self.vides)
 		
 		# Détermination de la case la plus probable
 		self.case_proba = (0,0)
@@ -293,10 +286,6 @@ class Grille(object):
 		probas_liste = [(case, probas[case]) for case in probas]
 		return sorted(probas_liste, key=lambda proba: proba[1], reverse = True)
 		
-	
-
-	
-
 	#
 	# Gestion des espaces impossibles ----------------------------------
 	#
@@ -497,31 +486,9 @@ class Grille(object):
 			#~ bateau = self.make_bateau_alea(taille)
 			#~ valide = self.test_bateau(bateau)
 	#~ 
-	#~ def init_bateaux_alea(self, ordre='random'):
-		#~ """Initialise une grille avec des bateaux aléatoires"""
-		#~ # L'odre dans lequel on place les bateaux a une influence sur les probas !!!
-		#~ tmp_taille_bateaux = self.taille_bateaux[:]
-		#~ if ordre == 'random' :
-			#~ rand.shuffle(tmp_taille_bateaux)
-		#~ elif ordre == 'croissant' :
-			#~ tmp_taille_bateaux.sort()
-		#~ elif ordre == 'decroissant' :
-			#~ tmp_taille_bateaux.sort()
-			#~ tmp_taille_bateaux = tmp_taille_bateaux[::-1]
-			#~ 
-		#~ ok = False
-		#~ while not ok :
-			#~ ok = True
-			#~ gtmp = self.copie_grille_tmp()
-			#~ for taille in tmp_taille_bateaux :
-				#~ valide = gtmp.add_bateau_alea(taille)
-				#~ ok = ok and valide
-#~ 
-		#~ self.etat = gtmp.etat
-			#~ 
 	def init_bateaux_alea_bak(self, ordre='random'):
 		"""Initialise une grille avec des bateaux aléatoires"""
-		# L'ordre dans lequel on place les bateaux a une influence sur les probas !!!
+		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
 		tmp_taille_bateaux = self.taille_bateaux[:]
 		if ordre == 'random' :
 			rand.shuffle(tmp_taille_bateaux)
@@ -530,11 +497,34 @@ class Grille(object):
 		elif ordre == 'decroissant' :
 			tmp_taille_bateaux.sort()
 			tmp_taille_bateaux = tmp_taille_bateaux[::-1]
+			
+		ok = False
+		while not ok :
+			ok = True
+			gtmp = self.copie_grille_tmp()
+			for taille in tmp_taille_bateaux :
+				valide = gtmp.add_bateau_alea(taille)
+				ok = ok and valide
+#~ 
+		self.etat = gtmp.etat
 		
-		for taille in tmp_taille_bateaux :
-			self.add_bateau_alea(taille)
 			#~ 
-	def case_max_echantillons(self, nb_echantillons=1000, ordre='decroissant'):
+	#~ def init_bateaux_alea_bak(self, ordre='random'):
+		#~ """Initialise une grille avec des bateaux aléatoires"""
+		#~ # L'ordre dans lequel on place les bateaux a une influence sur les probas !!!
+		#~ tmp_taille_bateaux = self.taille_bateaux[:]
+		#~ if ordre == 'random' :
+			#~ rand.shuffle(tmp_taille_bateaux)
+		#~ elif ordre == 'croissant' :
+			#~ tmp_taille_bateaux.sort()
+		#~ elif ordre == 'decroissant' :
+			#~ tmp_taille_bateaux.sort()
+			#~ tmp_taille_bateaux = tmp_taille_bateaux[::-1]
+		#~ 
+		#~ for taille in tmp_taille_bateaux :
+			#~ self.add_bateau_alea(taille)
+			#~ 
+	def case_max_echantillons(self, nb_echantillons=100, ordre='decroissant'):
 		"""Calcul des probabilités sur chaque case vide de contenir
 		un bateau. Retourne la case la plus probable en essayant 
 		différents arrangements des bateaux restants"""
@@ -551,7 +541,7 @@ class Grille(object):
 			# On utilise une grille temporaire, copiée à partir de la grille_suivi courante
 			grille_tmp = self.copie_grille_tmp()
 			# Arrangement aléatoire de bateaux et récupération des cases occupées
-			grille_tmp.init_bateaux_alea_bak(ordre=ordre)
+			grille_tmp.init_bateaux_alea(ordre=ordre)
 			for case in grille_tmp.etat :
 				if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
 					self.probas[case] += 1
@@ -654,13 +644,13 @@ class GrilleSuivi(Grille):
 #
 if __name__ == "__main__" :
 	grille = GrilleSuivi()
-	grille.etat[(1,2)]=1
-	grille.etat[(3,2)]=-1
-	print(grille.case_max_touchee((1,2)))
+	#~ grille.etat[(1,2)]=1
+	#~ grille.etat[(3,2)]=-1
+	#~ print(grille.case_max_touchee((1,2)))
 	#~ for i in range(7):
 		#~ for j in range(10):
 			#~ grille.etat[(i,j)]=-1
-	#~ grille.get_possibles()?
+	#~ grille.get_possibles()
 	#~ print(grille.possibles)
 	#~ input()
 	#~ for taille in grille.possibles :
