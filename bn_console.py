@@ -734,7 +734,8 @@ class MainConsole(object):
 			temps_resolution += temps
 			distrib[essais] += 1
 			if k==0 :
-				info("Temps total estimé : %.2f secondes (CTRL+C pour annuler la simulation)" % (n*(time()-start)))
+				info("Temps pour la 1ère partie : %.2f seconde" % (time()-start))
+				info("Temps total estimé : %.2f secondes (CTRL+C pour annuler la simulation)" % ((n-1)*(time()-start)))
 			if (k+1) % (n/10) == 0 :
 				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
 		
