@@ -3,13 +3,24 @@ Le module \texttt{bn\_stats.py} fournit, dans la classe \texttt{Stats}, les outi
 
 Cette classe fournit également les outils pour sauvegarder et charger la liste des résultats bruts dans un fichier texte pour des analyses plus poussées futures.
 
+Chaque graphique fait apparaître, outre l'histogramme de distribution des fréquences, les indicateurs suivants :
+\begin{itemize}
+\item moyenne et écart-type,
+\item minimum, $Q_1$, médiane, $Q_3$ et maximum dans le diagramme en boîte,
+\item le mode, noté à la base de la barre correspondante,
+\item le temps moyen de résolution.
+\end{itemize}
+
+\medskip
+
 La méthode de test est la suivante : on crée une liste \texttt{distrib} de longueur \texttt{xmax*ymax+1} qui est initialisée avec des valeurs nulles.\\
-On répète $n$ fois la résolution sur une grille aléatoire, chaque fois différente et, en notant $k$ le nombre de coups de la résolution, on augmente \texttt{distrib[k]} de 1.
+On répète $n$ fois la résolution sur une grille aléatoire, chaque fois différente et, en notant $k$ le nombre de coups de la résolution, on incrémente \texttt{distrib[k]} de 1.
 
-Le calcul du temps se fait en lançant un chronomètre grâce à la fonction \texttt{time()} du module \texttt{time}, qui renvoie le nombre de seconde écoulées depuis epoch (le 1\up{er} janvier 1970). Donc en sauvegardant cette valeur au début de la simulation dans une variable \texttt{start} et en calculant \texttt{time()-start} à la fin de la simulation, on obtient le temps total écoulé.\\
-Afin de chronométrer uniquement le temps de résolution (et non de la création de la grille), ce chronomètre est mis à jour uniquement lors de la résolution effective.
+\medskip
 
-Tous les temps ont été mesuré sur un ordinateur disposant d'un processeur Intel i7-4800-MQ cadencé à 2,7 GHz et de 16 Go de mémoire vive, en mode monoprocesseur.
+Le calcul du temps se fait en lançant un chronomètre grâce à la fonction \texttt{time()} du module \texttt{time}, qui renvoie le nombre de seconde écoulées depuis epoch (le 1\up{er} janvier 1970). Donc en sauvegardant cette valeur au début de la simulation dans une variable \texttt{start} et en calculant \texttt{time()-start} à la fin de la simulation, on obtient le temps total écoulé. Afin de chronométrer uniquement le temps de résolution (et non de la création de la grille), ce chronomètre est mis à jour uniquement lors de la résolution effective.
+
+Tous les temps ont été mesurés sur un ordinateur disposant d'un processeur Intel i7-4800-MQ cadencé à 2,7 GHz et de 16 Go de mémoire vive, en mode monoprocesseur.
 
 \vfill 
 \begin{flushright}
@@ -18,10 +29,10 @@ Résultats à partir de la page suivante $\rightarrow$
 \newpage
 \section{Niveau 1}
 Dans ce niveau tous les tirs sont aléatoires uniformément sur les cases vides, et il n'y a pas de phase de tirs ciblés.\\
-On obtient les résultats suivants sur un échantillon de $n=10\,000$ parties :
+On obtient les résultats suivants sur un échantillon de $n=100\,000$ parties :
 
 \begin{center}\label{histo_algo}
-\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=1_n=10000.png}}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=1_n=100000.png}}
 \end{center}
 
 Comme on pouvait s'y attendre, les résultats sont catastrophiques. Par contre la résolution est quasi immédiate (3 ms par partie en moyenne)
@@ -29,17 +40,33 @@ Comme on pouvait s'y attendre, les résultats sont catastrophiques. Par contre l
 \section{Niveau 2}
 Au niveau 2, la phase de tirs en aveugle est aléatoire uniformément sur les cases vide, mais on ajoute la phase de tirs ciblés lorsqu'on touche un bateau.
 
-Les résultats sur $n=10\,000$ parties sont les suivants :
+Les résultats sur $n=100\,000$ parties sont les suivants :
 
- \begin{center}\label{histo_algo}
-\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=2_n=10000.png}}
+\begin{center}\label{histo_algo}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=2_n=100000.png}}
 \end{center}
 
-On note une nette amélioration du fait de la gestion de la phase de tirs ciblés. La forme de la courbe de distribution est d'ailleurs totalement différente de la précédente.\\
-Par contre la résolutions prend quasiment 10 fois plus de temps.
+Le fait de gérer la phase de tirs ciblés change radicalement les résultats. La forme de la courbe de distribution est d'ailleurs totalement différente de la précédente.\\
+Par contre la résolutions prend 6 fois plus de temps.
+\newpage
+\section{Niveau 3}
+Au niveau 3, la phase de tirs en aveugle est encore aléatoire mais uniquement sur les cases noires.
+
+Les résultats sur $n=100\,000$ parties sont les suivants :
+
+\begin{center}\label{histo_algo}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=3_n=100000.png}}
+\end{center}
+
+On note une amélioration significative des performances, sans pour autant sacrifier en temps de résolution, au contraire puisqu'il faut moins de coups en aveugle pour finir la grille. Les résultats sont également plus homogènes ($\sigma=6,05$ au lieu de $8,41$ précédemment).
+
+\newpage
+\section{Niveau 4}
+
 \newpage
 \section{Niveau 5}
 Les résultats obtenues sur un échantillon de $n=1\,000\,000$ parties sont les suivants :
+\begin{comment}
 \begin{center}
 \begin{tabular}[t]{|c|l|}
 \hline
@@ -144,7 +171,7 @@ Nombre de coups & Effectifs\\
 \hline
 \end{tabular}
 \end{center}
-
+\end{comment}
 \begin{center}\label{histo_algo}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_1000000.png}}
 \end{center}

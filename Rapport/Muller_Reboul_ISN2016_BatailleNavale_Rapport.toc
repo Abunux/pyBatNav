@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {1}Le jeu de la bataille navale}{1}
 \contentsline {section}{\numberline {2}Objectifs du projet}{1}
 \contentsline {section}{\numberline {3}Liste des modules du projet}{2}
-\contentsline {section}{\numberline {4}\IeC {\`A} propos de ce rapport et des annexes}{2}
+\contentsline {section}{\numberline {4}\IeC {\`A} propos des annexes}{2}
 \contentsline {chapter}{\numberline {2}Quelques fonctions utiles}{3}
 \contentsline {section}{\numberline {1}Coordonn\IeC {\'e}es des cases}{3}
 \contentsline {section}{\numberline {2}Constantes de direction}{3}
@@ -34,7 +34,11 @@
 \contentsline {subsubsection}{\numberline {1.2.3}M\IeC {\'e}thode par \IeC {\'e}num\IeC {\'e}ration de tous les cas}{12}
 \contentsline {section}{\numberline {2}Phase de tir cibl\IeC {\'e}}{12}
 \contentsline {subsection}{\numberline {2.1}Premier tir}{13}
-\contentsline {subsection}{\numberline {2.2}Deuxi\IeC {\`e}me tir}{15}
+\contentsline {subsubsection}{\numberline {2.1.1}Cr\IeC {\'e}ation de la liste des cases adjacentes}{13}
+\contentsline {subsubsection}{\numberline {2.1.2}Optimisation de la file d'attente}{13}
+\contentsline {subsection}{\numberline {2.2}Deuxi\IeC {\`e}me tir}{14}
+\contentsline {subsubsection}{\numberline {2.2.1}Deuxi\IeC {\`e}me tir touch\IeC {\'e}}{15}
+\contentsline {subsubsection}{\numberline {2.2.2}Deuxi\IeC {\`e}me tir manqu\IeC {\'e}}{15}
 \contentsline {subsection}{\numberline {2.3}Tirs suivants}{15}
 \contentsline {chapter}{\numberline {6}Affichage console}{17}
 \contentsline {section}{\numberline {1}Pr\IeC {\'e}liminaires}{17}
@@ -51,18 +55,20 @@
 \contentsline {chapter}{\numberline {9}Conclusion}{25}
 \newpage 
 \contentsline {part}{Annexes}{29}
-\contentsline {chapter}{\numberline {A}Liste des algorithmes int\IeC {\'e}ressants}{29}
+\contentsline {chapter}{\numberline {A}Algorithmes int\IeC {\'e}ressants}{29}
 \contentsline {section}{\numberline {1}Gestion de la grille}{29}
 \contentsline {subsection}{\numberline {1.1}D\IeC {\'e}termination des espaces vides}{29}
 \contentsline {subsection}{\numberline {1.2}Cr\IeC {\'e}ation d'un flotte al\IeC {\'e}atoire}{29}
 \contentsline {subsection}{\numberline {1.3}D\IeC {\'e}termination des probabilit\IeC {\'e}s par \IeC {\'e}chantillonnage}{30}
 \contentsline {subsection}{\numberline {1.4}D\IeC {\'e}termination du nombre de bateaux possibles sur chaque case}{30}
-\contentsline {section}{\numberline {2}Gestion de la partie}{31}
+\contentsline {section}{\numberline {2}D\IeC {\'e}roulement de la partie}{31}
 \contentsline {section}{\numberline {3}Algorithme de r\IeC {\'e}solution}{32}
 \contentsline {chapter}{\numberline {B}\IeC {\'E}tude statistique des algorithmes de r\IeC {\'e}solution}{33}
 \contentsline {section}{\numberline {1}Niveau 1}{34}
 \contentsline {section}{\numberline {2}Niveau 2}{35}
-\contentsline {section}{\numberline {3}Niveau 5}{36}
+\contentsline {section}{\numberline {3}Niveau 3}{36}
+\contentsline {section}{\numberline {4}Niveau 4}{37}
+\contentsline {section}{\numberline {5}Niveau 5}{38}
 \contentsline {chapter}{\numberline {C}Codes des caract\IeC {\`e}res graphiques}{39}
 \contentsline {chapter}{\numberline {D}Documentation des modules}{41}
 \contentsline {section}{\numberline {1}Module bn\_grille.py}{41}

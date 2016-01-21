@@ -389,6 +389,7 @@ class Grille(object):
 				else :
 					(case, direction) = rand.choice(gtmp.possibles[taille])
 					gtmp.add_bateau(Bateau(taille, case, direction))
+					gtmp.rem_bateau(taille)
 					nb_bateaux += 1
 		self.etat = gtmp.etat
 
@@ -406,11 +407,21 @@ class Grille(object):
 	#
 	# Affichage --------------------------------------------------------
 	#
-	def affiche(self):
-		"""Affiche la grille
-		Méthode à surcharger suivant l'interface"""
-		pass
+	#~ def affiche(self):
+		#~ """Affiche la grille
+		#~ Méthode à surcharger suivant l'interface"""
+		#~ pass
 				
+				
+	
+	#
+	# Tests
+	#
+	
+	def make_all(self):
+		self.get_possibles()
+		
+	
 	# --------------------------------
 	# Poubelle 
 	# Méthodes plus utilisées (backup)
@@ -562,66 +573,66 @@ class Grille(object):
 		# Retourne la case la plus probable et sa proba
 		return (case_max, pmax)
 		
-	#~ def affiche(self):
-		#~ """Affiche la grille"""
-		#~ # Méthode à surcharger suivant l'interface
-		#~ # --> À virer d'ici (juste temporaire pour tests)
-		#~ pass
-		#~ CAR_H=u'\u2500'		# Trait Horizontal
-		#~ CAR_V=u'\u2502'		# Trait Vertical
-		#~ # Coins
-		#~ CAR_CHG=u'\u250C'	# Coin Haut Gauche
-		#~ CAR_CHD=u'\u2510'	# Coin Haut Droite
-		#~ CAR_CBG=u'\u2514'	# Coin Bas Gauche
-		#~ CAR_CBD=u'\u2518'	# Coin Bas Droite
-		#~ # T
-		#~ CAR_TH=u'\u252C'	# T Haut
-		#~ CAR_TB=u'\u2534'	# T Bas
-		#~ CAR_TG=u'\u251C'	# T Gauche
-		#~ CAR_TD=u'\u2524'	# T Droite
-		#~ # +
-		#~ CAR_CX=u'\u253C'	# Croix centrale
-		#~ # Touché / Manqué
-		#~ CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
-		#~ CAR_MANQ = u'\u25EF'
-#~ 
-		#~ # Ligne du haut
-		#~ print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
-		#~ 
-		#~ # Ligne des lettres des colonnes
-		#~ print('    '+CAR_V, end='')
-		#~ for i in range(self.xmax):
-			#~ if i!=self.xmax-1 :
-				#~ print(' '+str(i)+' ', end=CAR_V)
-			#~ else :
-				#~ print(' '+str(i)+' '+CAR_V)
-				#~ 
-		#~ #Ligne sous les lettres
-		#~ print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-		#~ 
-		#~ # Lignes suivantes
-		#~ for j in range(self.ymax):
-			#~ # 1ère colonne (chiffres des lignes)
-			#~ chaine = CAR_V+' '+str(j)+' '+CAR_V
-			#~ 
-			#~ # Cases suivantes
-			#~ for i in range(self.xmax):
-				#~ if self.etat[(i,j)] == 1 :
-					#~ symbole = CAR_TOUCH
-				#~ elif self.etat[(i,j)] == -1 :
-					#~ symbole = CAR_MANQ
-				#~ else :
-					#~ symbole = ' '
-				#~ chaine += ' '+symbole+' '+CAR_V
-			#~ print(chaine)
-			#~ 
-			#~ # Sépartion lignes intermédiaires
-			#~ if j!=self.ymax-1 :
-				#~ print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-				#~ 
-			#~ # Dernière ligne
-			#~ else :
-				#~ print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
+	def affiche(self):
+		"""Affiche la grille"""
+		# Méthode à surcharger suivant l'interface
+		# --> À virer d'ici (juste temporaire pour tests)
+		pass
+		CAR_H=u'\u2500'		# Trait Horizontal
+		CAR_V=u'\u2502'		# Trait Vertical
+		# Coins
+		CAR_CHG=u'\u250C'	# Coin Haut Gauche
+		CAR_CHD=u'\u2510'	# Coin Haut Droite
+		CAR_CBG=u'\u2514'	# Coin Bas Gauche
+		CAR_CBD=u'\u2518'	# Coin Bas Droite
+		# T
+		CAR_TH=u'\u252C'	# T Haut
+		CAR_TB=u'\u2534'	# T Bas
+		CAR_TG=u'\u251C'	# T Gauche
+		CAR_TD=u'\u2524'	# T Droite
+		# +
+		CAR_CX=u'\u253C'	# Croix centrale
+		# Touché / Manqué
+		CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
+		CAR_MANQ = u'\u25EF'
+
+		# Ligne du haut
+		print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
+		
+		# Ligne des lettres des colonnes
+		print('    '+CAR_V, end='')
+		for i in range(self.xmax):
+			if i!=self.xmax-1 :
+				print(' '+str(i)+' ', end=CAR_V)
+			else :
+				print(' '+str(i)+' '+CAR_V)
+				
+		#Ligne sous les lettres
+		print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+		
+		# Lignes suivantes
+		for j in range(self.ymax):
+			# 1ère colonne (chiffres des lignes)
+			chaine = CAR_V+' '+str(j)+' '+CAR_V
+			
+			# Cases suivantes
+			for i in range(self.xmax):
+				if self.etat[(i,j)] == 1 :
+					symbole = CAR_TOUCH
+				elif self.etat[(i,j)] == -1 :
+					symbole = CAR_MANQ
+				else :
+					symbole = ' '
+				chaine += ' '+symbole+' '+CAR_V
+			print(chaine)
+			
+			# Sépartion lignes intermédiaires
+			if j!=self.ymax-1 :
+				print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+				
+			# Dernière ligne
+			else :
+				print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # Les deux clases suivantes, héritées de Grille ont pour rôle de distinguer les fonctions spécifiques à chaque type de grille
@@ -652,17 +663,21 @@ if __name__ == "__main__" :
 	#~ for i in range(7):
 		#~ for j in range(10):
 			#~ grille.etat[(i,j)]=-1
-	#~ grille.get_possibles()
+	start = time() 
+	grille.get_possibles()
+	#~ grille.init_bateaux_alea()
+	print(time()-start)
+	#~ quit()
 	#~ print(grille.possibles)
 	#~ input()
-	#~ for taille in grille.possibles :
-		#~ print("Taille %d :" % taille)
-		#~ print("-----------")
-		#~ i=1
-		#~ for pos in grille.possibles[taille] :
-			#~ print(i,pos[0], pos[1])
-			#~ i+=1
-		#~ print() 
+	for taille in grille.possibles :
+		print("Taille %d :" % taille)
+		print("-----------")
+		i=1
+		for pos in grille.possibles[taille] :
+			print(i,pos[0], pos[1])
+			i+=1
+		print() 
 	#~ for case in grille.vides :
 		#~ print(case,grille.possibles_case[case])
 	#~ quit()

@@ -5,15 +5,14 @@ La gestion de la grille et des bateaux est effectuée dans le module \texttt{bn\
 \section{La classe Bateau}
 Cette classe, très minimaliste, définit un bateau par sa case de départ \texttt{Bateau.start}, sa taille \texttt{Bateau.taille} et sa direction \texttt{Bateau.sens}. Elle permet de récupérer :
 \begin{itemize}
-\item sa case de fin \texttt{Bateau.end}
-\item la liste de ses cases occupées \texttt{Bateau.cases}
-\item la liste de ses cases adjacentes \texttt{Bateau.cases\_adj}
+\item sa case de fin \texttt{Bateau.end},
+\item la liste de ses cases occupées \texttt{Bateau.cases},
+\item la liste de ses cases adjacentes \texttt{Bateau.cases\_adj}.
 \end{itemize}
 
 \section{La classe Grille}
 \subsection{Présentation}
-Cette classe est au c\oe ur du projet. \\
-Elle permet de mémoriser l'état de chaque case de la grille et d'effectuer des opérations comme :
+Cette classe est au c\oe ur du projet. Elle permet de mémoriser l'état de chaque case de la grille et d'effectuer des opérations comme :
 \begin{itemize}
 \item Gérer la liste des bateaux de la flotte : placer un bateau à une position donnée ou aléatoirement, placer une flotte aléatoire, supprimer un bateau coulé, ou encore garder la trace du plus grand bateau restant à couler.
 \item Déterminer le nombre de cases vides autour d'une case donnée, dans chacune des directions.
@@ -21,6 +20,8 @@ Elle permet de mémoriser l'état de chaque case de la grille et d'effectuer des
 \item Déterminer lorsque la grille est terminée.
 \end{itemize}
 Beaucoup de ces fonctionnalités seront utilisées par l'algorithme de résolution.
+
+\medskip
 
 Afin de pouvoir faire évoluer les règles, elle prend les paramètres suivants lors de son initialisation :
 \begin{itemize}
@@ -42,11 +43,19 @@ L'état d'une case peut être :
 \end{itemize}
 %L'intérêt d'utiliser un dictionnaire plutôt qu'une liste double tient au fait que les appels sont plus simples et plus naturels et, surtout, que l'utilisation d'une table de hachage permet la recherche d'un élément en $O(1)$.  
 
+\medskip
+
 La méthode \texttt{Grille.test\_case(self, case)} permet de déterminer si une case est valide et vide, et \texttt{Grille.is\_touche(self, case)} indique si une case donnée contient ou non un bateau.
+
+\medskip
 
 Notons également l'utilisation de l'attribut \texttt{Grille.vides} qui est la liste des cases vides.
 
+\medskip
+
 Bien entendu, cette classe contient des fonctions de mise à jour jour de l'état de la grille (liste des cases vides, tailles du plus petit et du plus grand bateau restant).
+
+\medskip
 
 Enfin, la méthode \texttt{Grille.adjacent(self, case)} renvoie la liste de cases adjacentes à une case donnée.
 
@@ -67,6 +76,8 @@ La méthodes \texttt{Grille.get\_max\_space(self, case, direction, sens)} renvoi
 
 Si le paramètre \texttt{sens=1}, la détermination se fait dans les deux sens (espace libre total horizontal ou vertical).
 
+\medskip
+
 La méthode \texttt{Grille.elimine\_petites(self)} parcourt toutes les cases vides et élimine celles dans lesquelles le plus petit bateau ne peut pas rentrer en mettant leur état à \texttt{-1}.
 
 \subsection{Liste de bateaux possibles sur chaque case}
@@ -77,6 +88,8 @@ Par exemple : \texttt{\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
 \item Dans un deuxième temps, on "retourne" ce dictionnaire pour obtenir le dictionnaire \texttt{Grille.possibles} indexé par les tailles des bateaux et dont les éléments sont une liste de tuples de la forme \texttt{(case, direction)}.\\
 Par exemple : \texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...\}}
 \end{itemize}
+
+\medskip
 
 Cette méthode va nous servir à faire deux choses :
 \begin{itemize}
