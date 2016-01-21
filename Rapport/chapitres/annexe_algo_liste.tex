@@ -1,0 +1,132 @@
+\chapter{Liste des algorithmes intéressants}
+
+\section{Gestion de la grille}
+
+\subsection{Détermination des espaces vides}\label{get_max_space}
+\texttt{Grille.get\_max\_space(self, case, direction, sens)} :
+\begin{algo1}
+direction[0]\sto dh\\
+direction[1]\sto dv\\
+0\sto m\\
+case[0]\sto x\\
+case[1]\sto y\\
+Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
+\tab{1} m+1\sto m\\
+\tab{1} x+dh\sto x\\
+\tab{1} y+dv\sto y\\
+Retourner m\\
+\end{algo1}
+
+\subsection{Création d'un flotte aléatoire}\label{init_alea}
+\texttt{Grille.init\_alea(self)} :
+\begin{algo1}
+0\sto nb\_bateaux\\
+Tant que nb\_bateaux < nombre de bateaux à placer :\\
+\tab{1} 0\sto nb\_bateaux\\
+\tab{1} On crée une copie temporaire de la grille dans gtmp\\
+\tab{1} Pour chaque taille de bateau à placer :\\
+\tab{2} On récupère les positions possibles pour ce bateau dans gtmp\\
+\tab{2} Si aucune possibilité :\\
+\tab{3} On casse la boucle et on recommence tout\\
+\tab{4} (pour éviter une situation de blocage)\\
+\tab{2} Sinon :\\
+\tab{3} On choisit une position et une direction au hasard\\
+\tab{4} (parmi celles possibles)\\
+\tab{3} On ajoute le bateau à gtmp\\
+\tab{3} nb\_bateaux+1\sto nb\_bateaux\\
+Enfin on copie l'état de gtmp dans notre grille \\
+\end{algo1}
+
+\subsection{Détermination des probabilités par échantillonnage}\label{case_max_echantillons}
+\texttt{Grille.case\_max\_echantillons(self, nb\_echantillons)} :
+\begin{algo1}
+probas est un dictionnaire indexé sur les cases\\
+Pour chaque case, 0\sto probas[case]\\
+On répète nb\_echantillons fois :\\
+\tab{1}grille\_tmp reçoit une copie temporaire de la grille du suivi\\
+\tab{1}On crée une flotte aléatoire sur grille\_tmp\\
+\tab{1}Pour chaque case vide dans la grille de suivi originale :\\
+\tab{2}Si la case contient un bateau dans grille\_tmp :\\
+\tab{3}probas[case]+1\sto probas[case]\\
+Pour chaque case, probas[case]/nb\_echantillons\sto probas[case]\\
+case\_max est la case qui a la plus grande probabilité pmax\\
+On retourne (case\_max, pmax)\\
+\end{algo1}
+
+\subsection{Détermination du nombre de bateaux possibles sur chaque case}\label{case_max}
+\texttt{Grille.case\_max(self)} :
+\begin{algo1}
+probas est un dictionnaire indexé sur les cases\\
+Pour chaque case, 0\sto probas[case]\\
+On récupère la liste des bateaux possibles sur chaque case\\
+\tab{1} (dans le dictionnaire possibles)\\
+Pour chaque taille de bateau restant :\\
+\tab{1}Pour chaque (case, direction) permettant de démarrer le bateau :\\
+\tab{2}La probabilité de chaque case occupée par le bateau est augmentée de 1\\
+case\_max est la case qui a le plus de possibilités pmax\\
+On retourne (case\_max, pmax)\\
+\end{algo1}
+
+\newpage
+\section{Gestion de la partie}
+
+Le déroulement d'une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur porte le numéro $0$ et son adversaire le numéro $1$) :
+
+\begin{algo1}\label{algo_partie}
+Placement des bateaux du joueur\\
+Récupération des bateaux de l'adversaire\\
+Aléa(0,1)\sto joueur\_en\_cours (celui qui commence)\\
+0\sto nb\_coups\\
+Tant qu'aucun joueur n'a fini :\\
+\tab{1}nb\_coups+1\sto nb\_coups\\
+\tab{1}Si joueur\_en\_cours == 0 et l'adversaire n'a pas fini :\\
+\tab{2}Le joueur joue un coup\\
+\tab{2}Mise à jour de l'affichage des grilles\\
+\tab{2}Affichage des messages du joueur (résultat du coup)\\
+\tab{1}Sinon :\\
+\tab{2}Récupération du coup de l'adversaire\\
+\tab{2}Mise à jour de l'affichage des grilles\\
+\tab{2}Affichage des messages de l'adversaire\\
+\tab{1}(joueur\_en\_cours+1)\%2\sto joueur\_en\_cours (changement de joueur)\\
+Affichage des grilles avec la solution\\
+Affichage du gagnant\\
+\end{algo1}
+
+\newpage
+\section{Algorithme de résolution}\label{algo_resolution}
+Voici l'algorithme complet de résolution de la grille par l'ordinateur :
+
+\begin{algo1}
+La file d'attente est une liste vide\\
+liste\_touches est une liste vide\\
+Tant que le grille n'est pas résolue :\\
+\tab{1}Si la file d'attente est vide :\\
+\tab{2}Si liste\_touches n'est pas vide :\\
+\tab{3}On enlève le bateau de taille len(liste\_touches)\\
+\tab{3}On élimine les cases adjacentes à celles de liste\_touches\\
+\tab{3}On vide liste\_touches\\
+\tab{2}On élimine les zones trop petites\\
+\tab{2}case\_courante reçoit une case en aveugle (suivant le niveau)\\
+\tab{1}Sinon :\\
+\tab{2}case\_courante reçoit le premier élément de la file d'attente\\
+\tab{2}On enlève cette case de la file d'attente\\
+\tab{1}On tire sur case\_courante\\
+\tab{1}Si on a touché :\\
+\tab{2}Si liste\_touches est vide :\\
+\tab{3}On ajoute case\_courante dans liste\_touches\\
+\tab{3}case\_courante\sto case\_touchee\\
+\tab{3}On ajoute ses cases adjacentes dans la file d'attente\\
+\tab{4}(en testant également les directions impossibles éventuelles)\\
+\tab{2}Sinon :\\
+\tab{3}Si len(liste\_touches) == 1 :\\
+\tab{4}On détecte la direction du bateau\\
+\tab{3}On met à jour la file d'attente\\
+\tab{4}(avec la case adjacente à case\_courante dans la bonne direction)\\
+\tab{2}Si le bateau touché est le plus grand restant :\\
+\tab{3}On vide la file d'attente\\
+\tab{1}Sinon :\\
+\tab{2}Si len(liste\_touches) == 1 :\\
+\tab{3}On met à jour la file d'attente\\
+\tab{4}(on élimine éventuellement la case en face de case\_touchee)\\
+On affiche le nombre de coups\\
+\end{algo1}

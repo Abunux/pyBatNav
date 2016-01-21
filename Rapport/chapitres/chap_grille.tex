@@ -51,28 +51,28 @@ Bien entendu, cette classe contient des fonctions de mise à jour jour de l'éta
 Enfin, la méthode \texttt{Grille.adjacent(self, case)} renvoie la liste de cases adjacentes à une case donnée.
 
 \subsection{Gestion des espaces vides}
-La méthodes \texttt{Grille.get\_max\_space(self, case, direction, sens)} renvoie le nombre de cases vides dans une direction donnée. Grâce aux constantes de direction, un seul calcul est nécessaire pour englober tous les cas. L'algorithme est le suivant :
-\begin{algo1}
-direction[0]\sto dh\\
-direction[1]\sto dv\\
-0\sto m\\
-case[0]\sto x\\
-case[1]\sto y\\
-Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
-\tab{1} m+1\sto m\\
-\tab{1} x+dh\sto x\\
-\tab{1} y+dv\sto y\\
-Retourner m\\
-\end{algo1}
+La méthodes \texttt{Grille.get\_max\_space(self, case, direction, sens)} renvoie le nombre de cases vides dans une direction donnée. Grâce aux constantes de direction, un seul calcul est nécessaire pour englober tous les cas (horizontal et vertical). L'algorithme est donné en page \pageref{get_max_space}.
+%\begin{algo1}
+%direction[0]\sto dh\\
+%direction[1]\sto dv\\
+%0\sto m\\
+%case[0]\sto x\\
+%case[1]\sto y\\
+%Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
+%\tab{1} m+1\sto m\\
+%\tab{1} x+dh\sto x\\
+%\tab{1} y+dv\sto y\\
+%Retourner m\\
+%\end{algo1}
 
-Enfin, si le paramètre \texttt{sens=1}, la détermination se fait dans les deux sens (espace libre total horizontal ou vertical).
+Si le paramètre \texttt{sens=1}, la détermination se fait dans les deux sens (espace libre total horizontal ou vertical).
 
 La méthode \texttt{Grille.elimine\_petites(self)} parcourt toutes les cases vides et élimine celles dans lesquelles le plus petit bateau ne peut pas rentrer en mettant leur état à \texttt{-1}.
 
 \subsection{Liste de bateaux possibles sur chaque case}
 La méthode \texttt{Grille.get\_possibles(self)} renvoie d'une part la liste des bateaux possibles sur chaque case (ainsi que leur direction) et, d'autre part, la liste des positions (et directions) possibles pour chaque bateau. Pour ce faire on procède en deux temps :
 \begin{itemize}
-\item Dans un premier temps, on parcours la liste des cases vides et pour chacune de ces cases on détermine, pour chaque bateau et chaque direction (droite et bas) s'il rentre. Cela fournit le dictionnaire \texttt{Grille.possibles\_cases} indexé par les cases et dont les éléments sont une liste de tuples de la forme \texttt{(taille, direction)}.\\
+\item Dans un premier temps, on parcours la liste des cases vides et pour chacune de ces cases on détermine, pour chaque bateau et chaque direction (droite et bas), s'il peut démarrer sur cette case. Cela fournit le dictionnaire \texttt{Grille.possibles\_cases} indexé par les cases et dont les éléments sont une liste de tuples de la forme \texttt{(taille, direction)}.\\
 Par exemple : \texttt{\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
 \item Dans un deuxième temps, on "retourne" ce dictionnaire pour obtenir le dictionnaire \texttt{Grille.possibles} indexé par les tailles des bateaux et dont les éléments sont une liste de tuples de la forme \texttt{(case, direction)}.\\
 Par exemple : \texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...\}}
@@ -80,10 +80,12 @@ Par exemple : \texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 
 
 Cette méthode va nous servir à faire deux choses :
 \begin{itemize}
-\item Placer les bateaux aléatoirement grâce au dictionnaire \texttt{Grille.possibles}
-\item Déterminer la case optimale dans l'algorithme de résolution
+\item Créer une flotte aléatoire grâce au dictionnaire \texttt{Grille.possibles}, dans la méthode \texttt{Grille.init\_bateaux\_alea(self)}.
+\item Déterminer la case optimale dans l'algorithme de résolution au niveau 5.
 \end{itemize}
 
+% -------------------------------------------------------------
+\begin{comment}
 \subsection{Nombre de possibilités sur chaque case}
 L'une des parties importantes de l'algorithme de résolution consiste en la détermination de la case dans laquelle rentrent le plus de bateaux. Cette question intervient lors de la phase de tirs en aveugle et, lorsqu'on a touché une première case, qu'on doit tester ses cases adjacentes (phase de tir ciblé).
 \subsubsection{Optimisation de la phase de tir en aveugle}\label{opti_aveugle}
@@ -225,33 +227,36 @@ Si la case $(3,0)$ avait été jouée et manquée nous aurions obtenu 1 bateau h
 
 Une fois que le compte des bateaux possibles a été effectué sur chacune des cases adjacentes, on crée une liste \texttt{probas\_liste} contenant des tuples de la forme \texttt{(case, probas[case])} que l'on ordonne en ordre décroissant de possibilités grâce à l'instruction \texttt{sorted(probas\_liste, key=lambda proba: proba[1], reverse = True)} et que l'on retourne.
 
+\end{comment}
+% -------------------------------------------------------------
+
+
 \subsection{Gestion de la flotte}
 Le classe \texttt{Grille} contient toutes les méthodes nécessaires pour gérer la flotte de bateaux. Les méthodes \texttt{Grille.get\_taille\_max(self)} et \texttt{Grille.get\_taille\_min(self)} mettent à jour respectivement la taille maximum et la taille minimum des bateaux restant à trouver. La méthode \texttt{Grille.rem\_bateau(self, taille)} permet de supprimer de la liste \texttt{Grille.taille\_bateaux} un bateau coulé.
 
 \subsubsection{Ajout d'un bateau}
 La méthode \texttt{Grille.add\_bateau(self, bateau)} permet d'ajouter un bateau (instance de la classe \texttt{Bateau}) après avoir testé sa validité via la méthode \texttt{Grille.test\_bateau(self, bateau)}, et marque ses cases adjacentes comme impossibles.
 
-\medskip
+\subsubsection{Création d'un flotte aléatoire}
+Pour créer une flotte aléatoire, on utilise la méthode \texttt{Grille.init\_bateaux\_alea(self)} dont l'algorithme est donné en page \pageref{init_alea}.
 
-Pour initialiser une flotte aléatoire, on utilise la méthode \texttt{Grille.init\_bateaux\_alea(self)} dont l'algorithme est le suivant :
-
-\begin{algo1}
-0\sto nb\_bateaux\\
-Tant que nb\_bateaux < nombre de bateaux à placer :\\
-\tab{1} 0\sto nb\_bateaux\\
-\tab{1} On crée une copie temporaire de la grille dans gtmp\\
-\tab{1} Pour chaque taille de bateau à placer :\\
-\tab{2} On récupère les positions possibles pour ce bateau dans gtmp\\
-\tab{2} Si aucune possibilité :\\
-\tab{3} On casse la boucle et on recommence tout\\
-\tab{4} (pour éviter une situation de blocage)\\
-\tab{2} Sinon :\\
-\tab{3} On choisit une position et une direction au hasard\\
-\tab{4} (parmi celles possibles)\\
-\tab{3} On ajoute le bateau à gtmp\\
-\tab{3} nb\_bateaux+1\sto nb\_bateaux\\
-Enfin on copie l'état de gtmp dans notre grille \\
-\end{algo1}
+%\begin{algo1}
+%0\sto nb\_bateaux\\
+%Tant que nb\_bateaux < nombre de bateaux à placer :\\
+%\tab{1} 0\sto nb\_bateaux\\
+%\tab{1} On crée une copie temporaire de la grille dans gtmp\\
+%\tab{1} Pour chaque taille de bateau à placer :\\
+%\tab{2} On récupère les positions possibles pour ce bateau dans gtmp\\
+%\tab{2} Si aucune possibilité :\\
+%\tab{3} On casse la boucle et on recommence tout\\
+%\tab{4} (pour éviter une situation de blocage)\\
+%\tab{2} Sinon :\\
+%\tab{3} On choisit une position et une direction au hasard\\
+%\tab{4} (parmi celles possibles)\\
+%\tab{3} On ajoute le bateau à gtmp\\
+%\tab{3} nb\_bateaux+1\sto nb\_bateaux\\
+%Enfin on copie l'état de gtmp dans notre grille \\
+%\end{algo1}
 
 \subsection{Fin de la partie}
 L'attribut \texttt{Grille.somme\_taille}, initialisé dès le départ avec la classe \texttt{Grille}, contient le nombre total de cases à toucher. La méthode \texttt{Grille.fini(self)} compare donc ce nombre avec le nombre de cases touchée dans \texttt{Grille.etat} pour déterminer si la grille a été résolue.

@@ -24,26 +24,29 @@ Notons l'instruction \texttt{isinstance(self.adversaire, Ordi)} qui permet de sa
 
 À la base nous voulions faire un mode de jeu en réseau et c'est ici que se seraient trouvées les instructions de communication.
 
-\newpage
+\medskip
 
-Le déroulement d'une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur porte le numéro $0$ et son adversaire le numéro $1$) :
+L'algorithme décrivant le déroulement de la partie est donné en page \pageref{algo_partie}.
+%\newpage
 
-\begin{algo1}\label{algo_partie}
-Placement des bateaux du joueur\\
-Récupération des bateaux de l'adversaire\\
-Aléa(0,1)\sto joueur\_en\_cours (celui qui commence)\\
-0\sto nb\_coups\\
-Tant qu'aucun joueur n'a fini :\\
-\tab{1}nb\_coups+1\sto nb\_coups\\
-\tab{1}Si joueur\_en\_cours == 0 et l'adversaire n'a pas fini :\\
-\tab{2}Le joueur joue un coup\\
-\tab{2}Mise à jour de l'affichage des grilles\\
-\tab{2}Affichage des messages du joueur (résultat du coup)\\
-\tab{1}Sinon :\\
-\tab{2}Récupération du coup de l'adversaire\\
-\tab{2}Mise à jour de l'affichage des grilles\\
-\tab{2}Affichage des messages de l'adversaire\\
-\tab{1}(joueur\_en\_cours+1)\%2\sto joueur\_en\_cours (changement de joueur)\\
-Affichage des grilles avec la solution\\
-Affichage du gagnant\\
-\end{algo1}
+%Le déroulement d'une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur porte le numéro $0$ et son adversaire le numéro $1$) :
+%
+%\begin{algo1}\label{algo_partie}
+%Placement des bateaux du joueur\\
+%Récupération des bateaux de l'adversaire\\
+%Aléa(0,1)\sto joueur\_en\_cours (celui qui commence)\\
+%0\sto nb\_coups\\
+%Tant qu'aucun joueur n'a fini :\\
+%\tab{1}nb\_coups+1\sto nb\_coups\\
+%\tab{1}Si joueur\_en\_cours == 0 et l'adversaire n'a pas fini :\\
+%\tab{2}Le joueur joue un coup\\
+%\tab{2}Mise à jour de l'affichage des grilles\\
+%\tab{2}Affichage des messages du joueur (résultat du coup)\\
+%\tab{1}Sinon :\\
+%\tab{2}Récupération du coup de l'adversaire\\
+%\tab{2}Mise à jour de l'affichage des grilles\\
+%\tab{2}Affichage des messages de l'adversaire\\
+%\tab{1}(joueur\_en\_cours+1)\%2\sto joueur\_en\_cours (changement de joueur)\\
+%Affichage des grilles avec la solution\\
+%Affichage du gagnant\\
+%\end{algo1}

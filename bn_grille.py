@@ -141,7 +141,9 @@ class Grille(object):
 	# Calculs de probabilités ------------------------------------------
 	#
 	def get_possibles(self, affiche=False):
-		"""Crée la liste des bateaux possibles sur chaque case"""
+		"""Crée la liste des bateaux possibles démarrant sur chaque case
+		ainsi que la liste des cases et directions possibles pour
+		chaque bateau"""
 		# --> Il reste quelques fonctions de tri qui ne sont pas utiles pour la suite, mais c'est juste pour l'affichage des tests
 		self.update_vides()
 		

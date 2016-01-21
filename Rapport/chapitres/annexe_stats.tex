@@ -1,4 +1,4 @@
-\chapter{Étude statistique des l'algorithmes}\label{annexe_stats}
+\chapter{Étude statistique des algorithmes de résolution}\label{annexe_stats}
 Le module \texttt{bn\_stats.py} fournit, dans la classe \texttt{Stats}, les outils pour analyser statistiquement une distribution de valeurs (calculs des indicateurs statistiques classiques, représentation en histogramme et diagramme en boîte grâce aux modules \texttt{numpy} et \texttt{matplotlib}).
 
 Cette classe fournit également les outils pour sauvegarder et charger la liste des résultats bruts dans un fichier texte pour des analyses plus poussées futures.
@@ -109,12 +109,8 @@ Nombre de coups & Effectifs\\
 \end{tabular}
 \end{center}
 
-\medskip
+\begin{center}\label{histo_algo}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_1000000.png}}
+\end{center}
 
-Les indicateurs statistiques calculés sont les suivants :
-\begin{itemize}
-\item $\xmin=21$ et $\xmax=66$
-\item $Q_1=38$ , $\text{Med}=42$, $Q_3=46$
-\item $\text{Mode}=41$
-\item $\conj x=42,06$ et $\sigma=6,17$
-\end{itemize}
+Notons les excellentes performances avec une moyenne de 42,06 coups pour un temps de résolution moyen de seulement 31,2 ms\footnote{Temps mesuré sur un processeur Intel Core i7 4800-MQ à 2,7 Ghz} par partie.
