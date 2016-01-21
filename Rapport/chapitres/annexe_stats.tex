@@ -2,6 +2,42 @@
 Le module \texttt{bn\_stats.py} fournit, dans la classe \texttt{Stats}, les outils pour analyser statistiquement une distribution de valeurs (calculs des indicateurs statistiques classiques, représentation en histogramme et diagramme en boîte grâce aux modules \texttt{numpy} et \texttt{matplotlib}).
 
 Cette classe fournit également les outils pour sauvegarder et charger la liste des résultats bruts dans un fichier texte pour des analyses plus poussées futures.
+
+La méthode de test est la suivante : on crée une liste \texttt{distrib} de longueur \texttt{xmax*ymax+1} qui est initialisée avec des valeurs nulles.\\
+On répète $n$ fois la résolution sur une grille aléatoire, chaque fois différente et, en notant $k$ le nombre de coups de la résolution, on augmente \texttt{distrib[k]} de 1.
+
+Le calcul du temps se fait en lançant un chronomètre grâce à la fonction \texttt{time()} du module \texttt{time}, qui renvoie le nombre de seconde écoulées depuis epoch (le 1\up{er} janvier 1970). Donc en sauvegardant cette valeur au début de la simulation dans une variable \texttt{start} et en calculant \texttt{time()-start} à la fin de la simulation, on obtient le temps total écoulé.\\
+Afin de chronométrer uniquement le temps de résolution (et non de la création de la grille), ce chronomètre est mis à jour uniquement lors de la résolution effective.
+
+Tous les temps ont été mesuré sur un ordinateur disposant d'un processeur Intel i7-4800-MQ cadencé à 2,7 GHz et de 16 Go de mémoire vive, en mode monoprocesseur.
+
+\vfill 
+\begin{flushright}
+Résultats à partir de la page suivante $\rightarrow$
+\end{flushright}
+\newpage
+\section{Niveau 1}
+Dans ce niveau tous les tirs sont aléatoires uniformément sur les cases vides, et il n'y a pas de phase de tirs ciblés.\\
+On obtient les résultats suivants sur un échantillon de $n=10\,000$ parties :
+
+\begin{center}\label{histo_algo}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=1_n=10000.png}}
+\end{center}
+
+Comme on pouvait s'y attendre, les résultats sont catastrophiques. Par contre la résolution est quasi immédiate (3 ms par partie en moyenne)
+\newpage
+\section{Niveau 2}
+Au niveau 2, la phase de tirs en aveugle est aléatoire uniformément sur les cases vide, mais on ajoute la phase de tirs ciblés lorsqu'on touche un bateau.
+
+Les résultats sur $n=10\,000$ parties sont les suivants :
+
+ \begin{center}\label{histo_algo}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=2_n=10000.png}}
+\end{center}
+
+On note une nette amélioration du fait de la gestion de la phase de tirs ciblés. La forme de la courbe de distribution est d'ailleurs totalement différente de la précédente.\\
+Par contre la résolutions prend quasiment 10 fois plus de temps.
+\newpage
 \section{Niveau 5}
 Les résultats obtenues sur un échantillon de $n=1\,000\,000$ parties sont les suivants :
 \begin{center}
