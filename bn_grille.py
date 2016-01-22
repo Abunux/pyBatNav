@@ -537,7 +537,7 @@ class Grille(object):
 		#~ for taille in tmp_taille_bateaux :
 			#~ self.add_bateau_alea(taille)
 			#~ 
-	def case_max_echantillons(self, nb_echantillons=100, ordre='decroissant'):
+	def case_max_echantillons(self, nb_echantillons=10, ordre='decroissant'):
 		"""Calcul des probabilités sur chaque case vide de contenir
 		un bateau. Retourne la case la plus probable en essayant 
 		différents arrangements des bateaux restants"""

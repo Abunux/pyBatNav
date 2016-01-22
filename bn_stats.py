@@ -25,7 +25,7 @@ import matplotlib.pyplot as plt
 
 class Stats(object):
 	"""Implémente les outils d'étude statistique"""
-	def __init__(self, data=None, filename="", tmoy=0, param_grille={'xmax':10, 'ymax':10, 'taille_bateaux':[5, 4, 3, 3, 2]}, niveau=5):
+	def __init__(self, data=None, filename="", tmoy=0, param_grille={'xmax':10, 'ymax':10, 'taille_bateaux':[5, 4, 3, 3, 2]}, niveau_str="5"):
 		# data est une liste d'effectifs : data[43] = nombre de parties à 43 coups
 		# filename le nom du fichier où sont stockées les données
 		# tmoy : temps moyen par partie de la simulation
@@ -52,7 +52,7 @@ class Stats(object):
 		
 		self.tmoy = tmoy
 		self.param_grille = param_grille
-		self.niveau = niveau
+		self.niveau_str = niveau_str
 	
 	#
 	# Chargement et sauvegarde des données (pour analyse future)--------
@@ -180,7 +180,7 @@ class Stats(object):
 		xmax = self.param_grille['xmax']
 		ymax = self.param_grille['ymax']
 		taille_bateaux = self.param_grille['taille_bateaux']
-		niveau = self.niveau
+		niveau_str = self.niveau_str
 		
 		# Figure statistique 
 		# ------------------
@@ -225,7 +225,7 @@ class Stats(object):
 		# Mise en forme et affichage du graphique
 		plt.xlabel("Nombre de coups")
 		plt.ylabel("Fréquence de parties")
-		plt.title("Résolution par l'ordinateur sur n=%d parties\nNiveau=%d, Xmax=%d , Ymax=%d , Bateaux : %s" % (n, niveau, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
+		plt.title("Résolution par l'ordinateur sur n=%d parties\nNiveau=%s, Xmax=%d , Ymax=%d , Bateaux : %s" % (n, niveau_str, xmax, ymax," ".join([str(t) for t in taille_bateaux])))
 		plt.grid(True)
 		if save :
 			plt.savefig(self.filename + ".png", dpi=fig.dpi)
@@ -233,10 +233,11 @@ class Stats(object):
 
 
 if __name__ == "__main__" :
-	s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])")
-
+	s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])", tmoy=0.0312)
+	s.filename="distrib_HAL_niveau=5_n=1000000"
+	s.save_data()
 	#~ s.resume_stat()
-	s.histogramme()
+	s.histogramme(save=True)
 
 
 

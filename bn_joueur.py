@@ -117,7 +117,7 @@ class Joueur(object):
 #
 class Ordi(Joueur):
 	"""Algorithme de résolution"""
-	def __init__(self, nom='HAL', niveau=5):
+	def __init__(self, nom='HAL', niveau=5, nb_echantillons=100):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
 		
@@ -129,6 +129,9 @@ class Ordi(Joueur):
 		# niveau=4 : Aveugle échantillons, ciblé
 		# niveau=5 : Aveugle nb possibilités, ciblé 
 		self.niveau = niveau
+		
+		#<Nombre d'échantillons pour le niveau 4
+		self.nb_echantillons = nb_echantillons
 		
 		# Initialisation de sa grille
 		self.grille_joueur.init_bateaux_alea()
@@ -172,7 +175,7 @@ class Ordi(Joueur):
 			self.case_courante = rand.choice([(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0])
 			self.messages.append("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
 		elif self.niveau==4 :
-			(case_max, pmax) = self.grille_suivi.case_max_echantillons()
+			(case_max, pmax) = self.grille_suivi.case_max_echantillons(nb_echantillons=self.nb_echantillons)
 			self.case_courante = case_max
 			self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
 		else :

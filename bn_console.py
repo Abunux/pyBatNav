@@ -13,6 +13,7 @@ Version 0.1.0"""
 
 import os
 from math import *
+from time import *
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -463,8 +464,8 @@ class JoueurC(Joueur):
 #
 class OrdiC(JoueurC, Ordi):
 	"""Résoultion de la grille en mode console"""
-	def __init__(self, nom='HAL', niveau=4):
-		Ordi.__init__(self, nom, niveau)
+	def __init__(self, nom='HAL', niveau=4, nb_echantillons=100):
+		Ordi.__init__(self, nom, niveau, nb_echantillons)
 		JoueurC.__init__(self, nom)
 		
 	def resolution(self, affiche=True, grille=None):
@@ -685,18 +686,33 @@ class MainConsole(object):
 					niveau = 5
 				else : 
 					niveau = int(niveau)
-				ok = True
+				ok = True				
 			except :
 					info("Saisie invalide\n")
 					ok = False
 		return niveau
 	
-	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=5):
+	def get_nb_echantillons(self, niveau):
+		"""Pour le niveau 4, demande la taille des échantillons"""
+		if niveau == 4 :
+			ok = False
+			while not ok :
+				try :
+					nb_echantillons = int(input("Taille des échantillons : "))
+					ok = True
+				except :
+					info("Saisie invalide\n")
+					ok = False
+			return nb_echantillons
+		else :
+			return 100 # Cette valeur n'a aucune importance
+	
+	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=5, nb_echantillons=100):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
 		grille = GrilleJoueurC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		grille.init_bateaux_alea()
-		ordi = OrdiC(niveau=niveau)
+		ordi = OrdiC(niveau=niveau, nb_echantillons=nb_echantillons)
 		ordi.grille_adverse = grille
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		ordi.grille_suivi.reinit()
@@ -719,10 +735,11 @@ class MainConsole(object):
 		"""Partie en duel contre l'ordinateur"""
 		joueur = JoueurC("Toto")
 		niveau = self.get_niveau()
-		ordi = OrdiC(niveau=niveau)
+		nb_echantillons = self.get_nb_echantillons(niveau)
+		ordi = OrdiC(niveau=niveau, nb_echantillons=nb_echantillons)
 		partie = PartieC(joueur, ordi)
 
-	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=4):
+	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=4, nb_echantillons=100):
 		"""Test de l'agorithme de résolution sur n parties
 		et affichage des statistiques"""
 		# Lancement de la simulation		
@@ -730,25 +747,36 @@ class MainConsole(object):
 		distrib = [0]*(xmax*ymax+1)
 		start = time()
 		for k in range(n):
-			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau)
+			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau, nb_echantillons=nb_echantillons)
 			temps_resolution += temps
 			distrib[essais] += 1
 			if k==0 :
-				info("Temps pour la 1ère partie : %.2f seconde" % (time()-start))
-				info("Temps total estimé : %.2f secondes (CTRL+C pour annuler la simulation)" % ((n-1)*(time()-start)))
+				info("Temps pour la 1ère simulation : %.2f seconde" % (time()-start))
+				t_estime = (n-1)*(time()-start)
+				info("Temps total estimé : %.2f secondes (%s) (CTRL+C pour annuler la simulation)" % (t_estime, strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_estime))))
+				#~ info("Temps total estimé : %.2f secondes (CTRL+C pour annuler la simulation)" % ((n-1)*(time()-start)))
 			if (k+1) % (n/10) == 0 :
-				info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
+				t_restant = (n-k-1)*(time()-start)/(k+1)
+				info("Avancement : %d%% (Temps restant estimé : %.2f secondes (%s))" % (100*(k+1)//n, t_estime,strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_estime)) ))
+				#~ info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
 		
 		# Résultats de la simulation
 		tmoy = temps_resolution/n
-		stats = Stats(data=distrib, filename="distrib_HAL_niveau=%d_n=%d" % (niveau, n), tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau=niveau)
+		if niveau != 4 :
+			filename = "distrib_HAL_niveau=%d_n=%d" % (niveau, n)
+			niveau_str = str(niveau)
+		else :
+			filename = "distrib_HAL_niveau=4(%d)_n=%d" % (nb_echantillons, n)
+			niveau_str = "4(%d)" % nb_echantillons
+		stats = Stats(data=distrib, filename=filename, tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau_str=niveau_str)
+		#~ stats = Stats(data=distrib, filename="distrib_HAL_niveau=%d_n=%d" % (niveau, n), tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau=niveau)
 		
 		info()
 		info(boite("Résultats de la simulation", larg_fen=0))
 		info()
 		info("Dimensions de la grille : %d*%d" % (xmax , ymax))
 		info("Liste des bateaux : %s" % str(taille_bateaux))
-		info("Niveau de l'algorithme : %d" % niveau)
+		info("Niveau de l'algorithme : %s" % niveau_str)
 		info("Nombre de parties : %d" % n)
 		info()
 		stats.resume_stat()
@@ -785,6 +813,7 @@ class MainConsole(object):
 					ok = False
 		
 		niveau = self.get_niveau()
+		nb_echantillons = self.get_nb_echantillons(niveau)
 		
 		ok = False
 		while not ok :
@@ -795,14 +824,15 @@ class MainConsole(object):
 				info("Saisie invalide\n")
 				ok = False
 		# Lancement du test
-		self.test_algo(n, xmax, ymax, taille_bateaux, niveau)
+		self.test_algo(n, xmax, ymax, taille_bateaux, niveau, nb_echantillons)
 	
 	#
 	# Menu de lancement ------------------------------------------------
 	#
 	def launch_menu(self):
 		"""Menu de lancement """
-		defaut = self.jeu_contre_ordi
+		defaut = self.launch_test_algo
+		#~ defaut = self.jeu_contre_ordi
 		
 		clear()
 		info(boite("""
@@ -878,6 +908,7 @@ class MainConsole(object):
 				
 			elif choix.lower() == 'o' :
 				niveau = self.get_niveau()
+				nb_echantillons = self.get_nb_echantillons(niveau)
 				self.jeu_ordi(niveau=niveau)
 				
 			elif choix.lower() == 'j' :

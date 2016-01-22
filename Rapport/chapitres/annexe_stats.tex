@@ -20,7 +20,9 @@ On répète $n$ fois la résolution sur une grille aléatoire, chaque fois diff�
 
 Le calcul du temps se fait en lançant un chronomètre grâce à la fonction \texttt{time()} du module \texttt{time}, qui renvoie le nombre de seconde écoulées depuis epoch (le 1\up{er} janvier 1970). Donc en sauvegardant cette valeur au début de la simulation dans une variable \texttt{start} et en calculant \texttt{time()-start} à la fin de la simulation, on obtient le temps total écoulé. Afin de chronométrer uniquement le temps de résolution (et non de la création de la grille), ce chronomètre est mis à jour uniquement lors de la résolution effective.
 
-Tous les temps ont été mesurés sur un ordinateur disposant d'un processeur Intel i7-4800-MQ cadencé à 2,7 GHz et de 16 Go de mémoire vive, en mode monoprocesseur.
+L'algorithme de test affiche une estimation du temps restant (ainsi que la date et l'heure de la fin de la simulation), ainsi que l'avancement par tranches de 10\%.
+
+Afin d'obtenir des résultats comparables, tous les temps ont été mesurés sur le même ordinateur disposant d'un processeur Intel i7-4800-MQ cadencé à 2,7 GHz en mode monoprocesseur, de 16 Go de mémoire vive et tournant sous un système Linux 64 bits (Xubuntu 14.04).
 
 \vfill 
 \begin{flushright}
@@ -31,7 +33,7 @@ Résultats à partir de la page suivante $\rightarrow$
 Dans ce niveau tous les tirs sont aléatoires uniformément sur les cases vides, et il n'y a pas de phase de tirs ciblés.\\
 On obtient les résultats suivants sur un échantillon de $n=100\,000$ parties :
 
-\begin{center}\label{histo_algo}
+\begin{center}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=1_n=100000.png}}
 \end{center}
 
@@ -42,7 +44,7 @@ Au niveau 2, la phase de tirs en aveugle est aléatoire uniformément sur les ca
 
 Les résultats sur $n=100\,000$ parties sont les suivants :
 
-\begin{center}\label{histo_algo}
+\begin{center}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=2_n=100000.png}}
 \end{center}
 
@@ -54,7 +56,7 @@ Au niveau 3, la phase de tirs en aveugle est encore aléatoire mais uniquement s
 
 Les résultats sur $n=100\,000$ parties sont les suivants :
 
-\begin{center}\label{histo_algo}
+\begin{center}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=3_n=100000.png}}
 \end{center}
 
@@ -62,7 +64,30 @@ On note une amélioration significative des performances, sans pour autant sacri
 
 \newpage
 \section{Niveau 4}
+Au niveau 4 la détermination de la case optimale durant la phase de tirs en aveugle se fait en regardant, à chaque coup, un échantillon de taille \texttt{nb\_echantillons} de distributions de bateau aléatoires.
 
+La valeur de \texttt{nb\_echantillons} va jouer sur les performances en nombre de coups (plus on fait d'échantillons et plus la distribution de probabilités obtenue est conforme à la vraie distribution de probabilité) mais aussi sur le temps de résolution. En effet ce dernier sera linéaire en \texttt{nb\_echantillons}.
+
+Vu le temps de calcul, les simulations suivantes portent sur un nombre plus faible de parties (la contrainte fixée est que le calcul ne doit pas durer plus d'une nuit).
+\subsection{Échantillons de taille \texttt{nb\_echantillons=10}}
+Avec des échantillons de taille 10 nous obtenons les résultats suivants sur $n=10\,000$ parties :
+
+\begin{center}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=4(10)_n=10000.png}}
+\end{center}
+
+Avec une taille modeste des échantillons, nous obtenons une nette amélioration des performances avec une moyenne de 44,31,  pour un temps moyen de 0,3 secondes par partie.
+ 
+\newpage
+\subsection{Échantillons de taille \texttt{nb\_echantillons=100}}
+Avec des échantillons de taille 100 nous obtenons les résultats suivants sur $n=10\,000$ parties :
+
+\begin{center}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=4(100)_n=10000.png}}
+\end{center}
+ 
+Les résultats sont très bons, avec une moyenne de 42,79 coups par partie, mais le temps de calcul commence à devenir long (presque 3 secondes par partie). 
+ 
 \newpage
 \section{Niveau 5}
 Les résultats obtenues sur un échantillon de $n=1\,000\,000$ parties sont les suivants :
@@ -172,8 +197,8 @@ Nombre de coups & Effectifs\\
 \end{tabular}
 \end{center}
 \end{comment}
-\begin{center}\label{histo_algo}
-\fbox{\includegraphics[scale=0.7]{./media/distrib_1000000.png}}
+\begin{center}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=5_n=1000000.png}}
 \end{center}
 
-Notons les excellentes performances avec une moyenne de 42,06 coups pour un temps de résolution moyen de seulement 31,2 ms\footnote{Temps mesuré sur un processeur Intel Core i7 4800-MQ à 2,7 Ghz} par partie.
+Notons les excellentes performances avec une moyenne de 42,06 coups pour un temps de résolution moyen de seulement 31,2 ms par partie.
