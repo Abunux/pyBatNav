@@ -138,6 +138,109 @@ class Grille(object):
 		return grille_tmp
 	
 	#
+	# Gestion des espaces impossibles ----------------------------------
+	#
+	def get_max_space(self, case, direction=BN_ALLDIR, sens=1):
+		"""Renvoie la plus grande place possible sur cette case 
+		dans une direction"""
+		# sens = 0 : ne compte qu'à droite ou en bas (pour l'IA)
+		# car BN_DROITE=BN_HORIZONTAL et BN_BAS=BN_VERTICAL, donc obligé de spécifier
+		if direction == BN_ALLDIR:
+			return max(self.get_max_space(case, BN_HORIZONTAL), self.get_max_space(case, BN_VERTICAL))
+		
+		m = 1
+		# Comptage des cases libres dans un seul sens
+		x = case[0]
+		y = case[1]
+		while self.test_case((x+direction[0], y+direction[1])):
+			m += 1
+			x += direction[0]
+			y += direction[1]
+		if sens == 1 :
+			# Comptage des cases libres sur toute une direction
+			x = case[0]
+			y = case[1]
+			while self.test_case((x-direction[0], y-direction[1])):
+				m += 1
+				x -= direction[0]
+				y -= direction[1]
+		return m
+		
+	def elimine_cases(self):
+		"""Élimine les cases dans lesquelles
+		le plus petit bateau ne peut pas rentrer"""
+		self.get_taille_min()
+		self.update_vides()
+		cases_eliminees = []
+		for case in self.vides :
+			if 0 < self.get_max_space(case) < self.taille_min :
+				self.etat[case] = -1
+				cases_eliminees.append(case)
+		self.update_vides()
+		return cases_eliminees
+
+	#
+	# Gestion des tailles des bateaux ----------------------------------
+	#
+	def get_taille_max(self):
+		"""Met à jour la taille du bateau le plus grand restant"""
+		if self.taille_bateaux :
+			self.taille_max = max(self.taille_bateaux)
+		else :
+			self.taille_max = 0
+	
+	def get_taille_min(self):
+		"""Met à jour la taille du bateau le plus petit restant"""
+		if self.taille_bateaux :
+			self.taille_min = min(self.taille_bateaux)
+		else :
+			self.taille_min = 0
+	
+	def rem_bateau(self, taille):
+		"""Enlève le bateau de taille taille de la liste"""
+		self.taille_bateaux.remove(taille)
+		self.get_taille_max()
+		self.get_taille_min()
+
+	#
+	# Gestion des bateaux sur la grille ------------------------------------
+	#
+	def test_bateau(self, bateau):
+		"""Test si le bateau est valide (rentre bien) dans la grille"""
+		for case in bateau.cases :
+			if not self.test_case(case):
+				return False
+		return True
+	
+	def add_bateau(self, bateau):
+		"""Ajoute un bateau dans la grille
+		et met à jour les états des cases adjacentes"""
+		if self.test_bateau(bateau):
+			for case in bateau.cases :
+				self.etat[case] = 1
+			for case in bateau.cases_adj:
+				if self.test_case(case):
+					self.etat[case] = -1
+	
+	def init_bateaux_alea(self):
+		"""Initialise une grille avec des bateaux aléatoires"""
+		ok = False
+		nb_bateaux = 0
+		while nb_bateaux < len(self.taille_bateaux) :
+			nb_bateaux = 0
+			gtmp = self.copie_grille_tmp()
+			for taille in self.taille_bateaux :
+				gtmp.get_possibles()
+				if not gtmp.possibles[taille] :
+					break
+				else :
+					(case, direction) = rand.choice(gtmp.possibles[taille])
+					gtmp.add_bateau(Bateau(taille, case, direction))
+					gtmp.rem_bateau(taille)
+					nb_bateaux += 1
+		self.etat = gtmp.etat
+		
+	#
 	# Calculs de probabilités ------------------------------------------
 	#
 	def case_max_echantillons(self, nb_echantillons=100, affiche=False):
@@ -235,7 +338,6 @@ class Grille(object):
 					print(i,pos[0], pos[1])
 					i+=1
 				print() 
-			
 	
 	def case_max(self, affiche=False):
 		"""Détermine la case qui contient le plus de bateaux et
@@ -337,113 +439,6 @@ class Grille(object):
 		probas_liste = [(case, probas[case]) for case in probas]
 		return sorted(probas_liste, key=lambda proba: proba[1], reverse = True)
 	
-	
-		
-	#
-	# Gestion des espaces impossibles ----------------------------------
-	#
-	def get_max_space(self, case, direction=BN_ALLDIR, sens=1):
-		"""Renvoie la plus grande place possible sur cette case 
-		dans une direction"""
-		# sens = 0 : ne compte qu'à droite ou en bas (pour l'IA)
-		# car BN_DROITE=BN_HORIZONTAL et BN_BAS=BN_VERTICAL, donc obligé de spécifier
-		if direction == BN_ALLDIR:
-			return max(self.get_max_space(case, BN_HORIZONTAL), self.get_max_space(case, BN_VERTICAL))
-		
-		m = 1
-		# Comptage des cases libres dans un seul sens
-		x = case[0]
-		y = case[1]
-		while self.test_case((x+direction[0], y+direction[1])):
-			m += 1
-			x += direction[0]
-			y += direction[1]
-		if sens == 1 :
-			# Comptage des cases libres sur toute une direction
-			x = case[0]
-			y = case[1]
-			while self.test_case((x-direction[0], y-direction[1])):
-				m += 1
-				x -= direction[0]
-				y -= direction[1]
-		return m
-		
-	def elimine_cases(self):
-		"""Élimine les cases dans lesquelles
-		le plus petit bateau ne peut pas rentrer"""
-		self.get_taille_min()
-		self.update_vides()
-		cases_eliminees = []
-		for case in self.vides :
-			if 0 < self.get_max_space(case) < self.taille_min :
-				self.etat[case] = -1
-				cases_eliminees.append(case)
-		self.update_vides()
-		return cases_eliminees
-
-	#
-	# Gestion des tailles des bateaux ----------------------------------
-	#
-	def get_taille_max(self):
-		"""Met à jour la taille du bateau le plus grand restant"""
-		if self.taille_bateaux :
-			self.taille_max = max(self.taille_bateaux)
-		else :
-			self.taille_max = 0
-	
-	def get_taille_min(self):
-		"""Met à jour la taille du bateau le plus petit restant"""
-		if self.taille_bateaux :
-			self.taille_min = min(self.taille_bateaux)
-		else :
-			self.taille_min = 0
-	
-	def rem_bateau(self, taille):
-		"""Enlève le bateau de taille taille de la liste"""
-		self.taille_bateaux.remove(taille)
-		self.get_taille_max()
-		self.get_taille_min()
-
-	#
-	# Gestion des bateaux sur la grille ------------------------------------
-	#
-	def test_bateau(self, bateau):
-		"""Test si le bateau est valide (rentre bien) dans la grille"""
-		for case in bateau.cases :
-			if not self.test_case(case):
-				return False
-		return True
-		
-	
-	
-	def add_bateau(self, bateau):
-		"""Ajoute un bateau dans la grille
-		et met à jour les états des cases adjacentes"""
-		if self.test_bateau(bateau):
-			for case in bateau.cases :
-				self.etat[case] = 1
-			for case in bateau.cases_adj:
-				if self.test_case(case):
-					self.etat[case] = -1
-	
-	def init_bateaux_alea(self):
-		"""Initialise une grille avec des bateaux aléatoires"""
-		ok = False
-		nb_bateaux = 0
-		while nb_bateaux < len(self.taille_bateaux) :
-			nb_bateaux = 0
-			gtmp = self.copie_grille_tmp()
-			for taille in self.taille_bateaux :
-				gtmp.get_possibles()
-				if not gtmp.possibles[taille] :
-					break
-				else :
-					(case, direction) = rand.choice(gtmp.possibles[taille])
-					gtmp.add_bateau(Bateau(taille, case, direction))
-					gtmp.rem_bateau(taille)
-					nb_bateaux += 1
-		self.etat = gtmp.etat
-
 	# 
 	# Fin de partie ----------------------------------------------------
 	#
