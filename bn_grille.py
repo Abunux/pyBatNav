@@ -140,6 +140,55 @@ class Grille(object):
 	#
 	# Calculs de probabilités ------------------------------------------
 	#
+	def case_max_echantillons(self, nb_echantillons=100, affiche=False):
+		"""Calcul des probabilités sur chaque case vide de contenir
+		un bateau. Retourne la case la plus probable en essayant 
+		différents arrangements des bateaux restants"""
+		start=time()
+		
+		# Dictionnaire contenant les probas de chaque case
+		self.probas = {}
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				self.probas[(i,j)] = 0
+		
+		# On crée différents arrangements aléatoires de bateaux
+		for k in range(nb_echantillons):
+			# On utilise une grille temporaire, copiée à partir de la grille_suivi courante
+			grille_tmp = self.copie_grille_tmp()
+			# Arrangement aléatoire de bateaux et récupération des cases occupées
+			grille_tmp.init_bateaux_alea()
+			for case in grille_tmp.etat :
+				if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
+					self.probas[case] += 1
+		# Calcul des probas
+		for case in self.probas :
+			self.probas[case] *= 1/nb_echantillons
+		
+		# Détermination de la case la plus probable
+		case_max = (0,0)
+		pmax = 0
+		for case in self.probas :
+			if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
+				pmax = self.probas[case]
+				case_max = case
+		
+		# Affichages pour les tests
+		if affiche :
+			for j in range(self.ymax):
+				for i in range(self.xmax-1):
+					print("%.4f"%(self.probas[(i,j)]), end=' ')
+				print("%.4f"%self.probas[(self.xmax-1,j)])
+			
+			print()
+			print("Échantillon de taille %d" % nb_echantillons)
+			print("Temps : %.4f secondes" % (time()-start))
+			print("Case max :", case_max)
+			print("Proba max : %.5f" % pmax)
+		
+		# Retourne la case la plus probable et sa proba
+		return (case_max, pmax)
+	
 	def get_possibles(self, affiche=False):
 		"""Crée la liste des bateaux possibles démarrant sur chaque case
 		ainsi que la liste des cases et directions possibles pour
@@ -287,6 +336,8 @@ class Grille(object):
 		# Retour des probas (en fait juste le nombre de bateaux possibles)
 		probas_liste = [(case, probas[case]) for case in probas]
 		return sorted(probas_liste, key=lambda proba: proba[1], reverse = True)
+	
+	
 		
 	#
 	# Gestion des espaces impossibles ----------------------------------
@@ -375,7 +426,7 @@ class Grille(object):
 				if self.test_case(case):
 					self.etat[case] = -1
 	
-	def init_bateaux_alea(self, ordre='random'):
+	def init_bateaux_alea(self):
 		"""Initialise une grille avec des bateaux aléatoires"""
 		ok = False
 		nb_bateaux = 0
@@ -537,41 +588,41 @@ class Grille(object):
 		#~ for taille in tmp_taille_bateaux :
 			#~ self.add_bateau_alea(taille)
 			#~ 
-	def case_max_echantillons(self, nb_echantillons=10, ordre='decroissant'):
-		"""Calcul des probabilités sur chaque case vide de contenir
-		un bateau. Retourne la case la plus probable en essayant 
-		différents arrangements des bateaux restants"""
-		start=time()
-		
-		# Dictionnaire contenant les probas de chaque case
-		self.probas = {}
-		for i in range(self.xmax):
-			for j in range(self.ymax):
-				self.probas[(i,j)] = 0
-		
-		# On crée différents arrangements aléatoires de bateaux
-		for k in range(nb_echantillons):
-			# On utilise une grille temporaire, copiée à partir de la grille_suivi courante
-			grille_tmp = self.copie_grille_tmp()
-			# Arrangement aléatoire de bateaux et récupération des cases occupées
-			grille_tmp.init_bateaux_alea(ordre=ordre)
-			for case in grille_tmp.etat :
-				if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
-					self.probas[case] += 1
-		# Calcul des probas
-		for case in self.probas :
-			self.probas[case] *= 1/nb_echantillons
-		
-		# Détermination de la case la plus probable
-		case_max = (0,0)
-		pmax = 0
-		for case in self.probas :
-			if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
-				pmax = self.probas[case]
-				case_max = case
-		
-		# Retourne la case la plus probable et sa proba
-		return (case_max, pmax)
+	#~ def case_max_echantillons(self, nb_echantillons=100):
+		#~ """Calcul des probabilités sur chaque case vide de contenir
+		#~ un bateau. Retourne la case la plus probable en essayant 
+		#~ différents arrangements des bateaux restants"""
+		#~ start=time()
+		#~ 
+		#~ # Dictionnaire contenant les probas de chaque case
+		#~ self.probas = {}
+		#~ for i in range(self.xmax):
+			#~ for j in range(self.ymax):
+				#~ self.probas[(i,j)] = 0
+		#~ 
+		#~ # On crée différents arrangements aléatoires de bateaux
+		#~ for k in range(nb_echantillons):
+			#~ # On utilise une grille temporaire, copiée à partir de la grille_suivi courante
+			#~ grille_tmp = self.copie_grille_tmp()
+			#~ # Arrangement aléatoire de bateaux et récupération des cases occupées
+			#~ grille_tmp.init_bateaux_alea()
+			#~ for case in grille_tmp.etat :
+				#~ if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
+					#~ self.probas[case] += 1
+		#~ # Calcul des probas
+		#~ for case in self.probas :
+			#~ self.probas[case] *= 1/nb_echantillons
+		#~ 
+		#~ # Détermination de la case la plus probable
+		#~ case_max = (0,0)
+		#~ pmax = 0
+		#~ for case in self.probas :
+			#~ if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
+				#~ pmax = self.probas[case]
+				#~ case_max = case
+		#~ 
+		#~ # Retourne la case la plus probable et sa proba
+		#~ return (case_max, pmax)
 		
 	def affiche(self):
 		"""Affiche la grille"""
@@ -657,27 +708,28 @@ class GrilleSuivi(Grille):
 #
 if __name__ == "__main__" :
 	grille = GrilleSuivi()
+	
 	#~ grille.etat[(1,2)]=1
 	#~ grille.etat[(3,2)]=-1
 	#~ print(grille.case_max_touchee((1,2)))
 	#~ for i in range(7):
 		#~ for j in range(10):
 			#~ grille.etat[(i,j)]=-1
-	start = time() 
-	grille.get_possibles()
+	#~ start = time() 
+	#~ grille.get_possibles()
 	#~ grille.init_bateaux_alea()
-	print(time()-start)
+	#~ print(time()-start)
 	#~ quit()
 	#~ print(grille.possibles)
 	#~ input()
-	for taille in grille.possibles :
-		print("Taille %d :" % taille)
-		print("-----------")
-		i=1
-		for pos in grille.possibles[taille] :
-			print(i,pos[0], pos[1])
-			i+=1
-		print() 
+	#~ for taille in grille.possibles :
+		#~ print("Taille %d :" % taille)
+		#~ print("-----------")
+		#~ i=1
+		#~ for pos in grille.possibles[taille] :
+			#~ print(i,pos[0], pos[1])
+			#~ i+=1
+		#~ print() 
 	#~ for case in grille.vides :
 		#~ print(case,grille.possibles_case[case])
 	#~ quit()
@@ -694,7 +746,7 @@ if __name__ == "__main__" :
 	#~ quit()
 	#~ n = int(input("Taille de l'échantillon : "))
 	#~ print()
-	#~ start = time()
-	#~ grille.case_max(100)
-	#~ print(time()-start)
+	start = time()
+	grille.case_max_echantillons(1000, affiche=True)
+	print(time()-start)
 	

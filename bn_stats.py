@@ -30,6 +30,8 @@ class Stats(object):
 		# filename le nom du fichier où sont stockées les données
 		# tmoy : temps moyen par partie de la simulation
 		# param_grille : paramètres de la grille
+		# niveau_str : le niveau de l'algorithme en chaine de caractères 
+		#		(pour le niveau 4 : "4(100)" pour 100 échantillons)
 		if data :
 			self.data = data
 		elif filename :
@@ -233,11 +235,10 @@ class Stats(object):
 
 
 if __name__ == "__main__" :
-	s = Stats(filename= "distrib_HAL_NEW_(n=1000000,xmax=10,ymax=10,bateaux=[5, 4, 3, 3, 2])", tmoy=0.0312)
-	s.filename="distrib_HAL_niveau=5_n=1000000"
-	s.save_data()
-	#~ s.resume_stat()
-	s.histogramme(save=True)
+	pass
+	#~ s = Stats(filename= "distrib_HAL_niveau=4(100)_n=10000", tmoy=2.8488, niveau_str="4(100)")
+	#~ s.save_data()
+	#~ s.histogramme(save=True)
 
 
 
@@ -314,7 +315,7 @@ def surface_probas(grille = GrilleSuivi()):
 
 	#~ grille.etat[(2,3)] = -1 # Petite variation sur la grille
 	start = time()
-	(case, pmax) = grille.case_max()
+	(case, pmax) = grille.case_max_echantillons(100, affiche=True)
 	print("Temps : %.5f secondes" % (time()-start))
 	
 	ax.text(case[0],case[1],pmax,"Max=%d en %s" % (pmax, alpha(case)), ha="center")
@@ -331,13 +332,17 @@ def surface_probas(grille = GrilleSuivi()):
 	fig.colorbar(surf, shrink=0.5, aspect=5)
 	plt.show()
 
-if __name__ == "__main__" :
+#~ if __name__ == "__main__" :
 	#~ taille_bateaux=[2,3,3,4,5]
 	#~ surface_probas(n=100000, grille=GrilleSuivi(taille_bateaux=taille_bateaux))
-	grille=GrilleSuivi()
+	#~ grille=GrilleSuivi()
 	#~ for i in range(7):
 		#~ for j in range(10):
 			#~ grille.etat[(i,j)]=-1
+	#~ cases=[(i,j) for i in range(grille.xmax) for j in range(grille.ymax)]
+	#~ rand.shuffle(cases)
+	
 	#~ for k in range(20):
 		#~ grille.etat[(rand.randrange(0, grille.xmax), rand.randrange(0, grille.ymax))] = -1
-	surface_probas(grille=grille)
+		#~ grille.etat[cases[k]]=-1
+	#~ surface_probas(grille=grille)

@@ -757,7 +757,7 @@ class MainConsole(object):
 				#~ info("Temps total estimé : %.2f secondes (CTRL+C pour annuler la simulation)" % ((n-1)*(time()-start)))
 			if (k+1) % (n/10) == 0 :
 				t_restant = (n-k-1)*(time()-start)/(k+1)
-				info("Avancement : %d%% (Temps restant estimé : %.2f secondes (%s))" % (100*(k+1)//n, t_estime,strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_estime)) ))
+				info("Avancement : %d%% (Temps restant estimé : %.2f secondes (%s))" % (100*(k+1)//n, t_restant,strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_restant)) ))
 				#~ info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
 		
 		# Résultats de la simulation
