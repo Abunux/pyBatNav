@@ -115,7 +115,7 @@ Bien que locale (on ne regarde pas la répartition de tous les bateaux ensemble 
 On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre astronomique de configurations, cette approche est irréalisable que ce soit en temps de calcul qu'en utilisation mémoire.
 
 \section{Phase de tir ciblé}
-Lors de cette phase, on va utiliser une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser. On va également garder la trace des cases touchées sur ce bateau dans la liste \texttt{Ordi.liste\_touches}, ainsi que la première case touchée dans \texttt{Ordi.case\_touchee}.
+Lors de cette phase, on va utiliser une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser. On va également garder la trace des cases touchées sur ce bateau dans la liste \texttt{Ordi.liste\_touches}, ainsi que sa première case touchée dans \texttt{Ordi.case\_touchee}.
 \subsection{Premier tir}
 \subsubsection{Création de la liste des cases adjacentes}
 Lors du premier tir touché après la phase de tir en aveugle, l'attribut \texttt{Ordi.case\_touchee} reçoit la case courante qui sera également ajoutée à \texttt{Ordi.liste\_touches}. Puis on va remplir la file d'attente avec les cases adjacentes à la case touchée.
@@ -346,12 +346,12 @@ Pour ce faire, on détermine la direction dans laquelle on vient de tirer en com
 
 
 \subsection{Tirs suivants}
-Une fois que la direction du bateau est déterminée, à chaque fois qu'on touche une case, on ajoute à la file d'attente sa case adjacente dans la bonne direction.
+Une fois que la direction du bateau est déterminée, à chaque fois qu'on touche une case, on ajoute à la file d'attente sa case adjacente dans la bonne direction si elle est vide.
 
 Enfin on s'arrête lorsque la file d'attente est vide (on a manqué les deux extrémités) ou lorsque la taille du bateau touché est égale à la plus grande taille du bateau sur la grille avec \texttt{Ordi.test\_plus\_grand(self)} et, dans ce cas, on vide la file d'attente. 
 %La méthode \texttt{Ordi.liste\_touches} permet de garder la trace des cases touchées sur ce bateau et d'en déterminer le nombre de cases.
 
-Au prochain tour, on sait qu'un bateau vient d'être coulé lorsque la file d'attente est vide et \texttt{Ordi.liste\_touches} ne l'est pas. Dans ce cas on marque ses cases adjacentes comme impossibles et on l'enlève de la liste des bateaux à chercher. On n'a plus alors qu'à repartir dans une phase de tir en aveugle.
+Au prochain tour, on sait qu'un bateau vient d'être coulé lorsque la file d'attente est vide et \texttt{Ordi.liste\_touches} ne l'est pas. Dans ce cas on marque ses cases adjacentes comme impossibles et on l'enlève de la liste des bateaux à chercher. On n'a plus alors qu'à repartir dans une phase de tir en aveugle jusqu'à ce qu'on ait terminé la grille.
 %\newpage
 %\section{Algorithme complet}
 %Voici l'algorithme complet de la résolution :

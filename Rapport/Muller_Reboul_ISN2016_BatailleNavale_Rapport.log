@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  22 JAN 2016 11:34
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  23 JAN 2016 10:05
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2299,12 +2299,6 @@ Overfull \hbox (0.68135pt too wide) in paragraph at lines 16--18
 lmtt/m/n/12 distrib \T1/futs/m/n/12 de lon-gueur \T1/lmtt/m/n/12 xmax*ymax+1
  []
 
-
-Overfull \hbox (0.90126pt too wide) in paragraph at lines 23--24
-[]\T1/futs/m/n/12 L'algorithme de test af-fiche une es-ti-ma-tion du temps res-
-tant (ainsi que la date et l'heure
- []
-
 [33
 
 ] <./media/distrib_HAL_niveau=1_n=100000.png, id=157, 578.16pt x 433.62pt>
@@ -2385,12 +2379,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [38 <./media/distrib_HAL_niveau=4(100)_n=10000.png>]
-<./media/distrib_HAL_niveau=5_n=1000000.png, id=185, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(1000)_n=1000.png, id=185, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=4(1000)_n=1000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=4(1000)_n=1000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=4(1000)_n=1000.png used on 
+input line 96.
+(pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[39 <./media/distrib_HAL_niveau=4(1000)_n=1000.png>]
+<./media/distrib_HAL_niveau=5_n=1000000.png, id=190, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=5_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=5_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=5_n=1000000.png used on inp
-ut line 201.
+ut line 214.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 )
 (./chapitres/annexe_codescar.tex
@@ -2400,18 +2409,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[39 <./media/distrib_HAL_niveau=5_n=1000000.png>]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[40
-
-]
+[40 <./media/distrib_HAL_niveau=5_n=1000000.png>]
 Annexe C.
-[41]) (./chapitres/annexe_docstring.tex
+[41
+
+]) (./chapitres/annexe_docstring.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2462,7 +2464,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [45]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 16--16
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 18--18
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2477,7 +2479,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [46]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 21--21
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 23--23
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2502,7 +2504,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [48]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 25--25
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 27--27
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2518,7 +2520,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [49]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 25--25
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 27--27
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2527,13 +2529,13 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (321.83739pt too wide) in paragraph at lines 29--29
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f8d3
-7830240>, adversaire=<bn_joueur.Ordi object at 0x7f8d37830ef0>)[] 
+Overfull \hbox (321.83739pt too wide) in paragraph at lines 31--31
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f3ca
+bb80278>, adversaire=<bn_joueur.Ordi object at 0x7f3cabb80be0>)[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 29--29
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 31--31
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2550,7 +2552,7 @@ ed.
 
 File: ./docstrings/bn_console.GrilleC  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 34--34
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 36--36
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2572,7 +2574,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [52]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 34--34
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 36--36
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2593,7 +2595,7 @@ ed.
 
 File: ./docstrings/bn_console.JoueurC  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 38--38
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 40--40
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2605,7 +2607,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [54]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 38--38
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 40--40
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2614,19 +2616,19 @@ runsystem(pydoc3 bn_console.OrdiC > ./docstrings/bn_console.OrdiC)...executed.
 
 File: ./docstrings/bn_console.OrdiC  (verbatim)
 
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 44--44
+[] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
+-------------[] 
+ []
+
+
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
 [55]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
-[] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
--------------[] 
- []
-
-
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 44--44
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2642,7 +2644,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [56]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 44--44
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2658,7 +2660,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [57]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 42--42
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 44--44
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2668,9 +2670,9 @@ ed.
 
 File: ./docstrings/bn_console.PartieC  (verbatim)
 
-Overfull \hbox (321.80937pt too wide) in paragraph at lines 46--46
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f0e3
-96cbf98>, adversaire=<bn_joueur.Ordi object at 0x7f0e2ff376d8>)[] 
+Overfull \hbox (321.80937pt too wide) in paragraph at lines 48--48
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f601
+f401fd0>, adversaire=<bn_joueur.Ordi object at 0x7f6015c6c6a0>)[] 
  []
 
 
@@ -2680,13 +2682,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [58]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 46--46
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 48--48
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 46--46
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 48--48
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2696,7 +2698,7 @@ runsystem(pydoc3 bn_console.MainConsole > ./docstrings/bn_console.MainConsole).
 
 File: ./docstrings/bn_console.MainConsole  (verbatim)
 
-Overfull \hbox (253.91235pt too wide) in paragraph at lines 50--50
+Overfull \hbox (253.91235pt too wide) in paragraph at lines 52--52
 [] \T1/lmtt/m/n/12 |  jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bat
 eaux=[5, 4, 3, 3, 2], niveau=5, nb_echantillons=100)[] 
  []
@@ -2708,13 +2710,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [59]
-Overfull \hbox (223.03734pt too wide) in paragraph at lines 50--50
+Overfull \hbox (223.03734pt too wide) in paragraph at lines 52--52
 [] \T1/lmtt/m/n/12 |  test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=
 [5, 4, 3, 3, 2], niveau=4, nb_echantillons=100)[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 50--50
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 52--52
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2723,7 +2725,7 @@ runsystem(pydoc3 bn_stats.Stats > ./docstrings/bn_stats.Stats)...executed.
 
 File: ./docstrings/bn_stats.Stats  (verbatim)
 
-Overfull \hbox (420.63744pt too wide) in paragraph at lines 55--55
+Overfull \hbox (420.63744pt too wide) in paragraph at lines 57--57
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
 le={'xmax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'ymax': 10}, niveau_str='5')
 [] 
@@ -2736,7 +2738,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [60]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 55--55
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3123,7 +3125,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[99] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) )
+[99] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (\end occurred inside a group at level 36)
 
 ### simple group (level 36) entered at line 1275 ({)
@@ -3164,10 +3170,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ### simple group (level 1) entered at line 4 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25637 strings out of 493304
- 493247 string characters out of 6139871
+ 25642 strings out of 493304
+ 493483 string characters out of 6139871
  765673 words of memory out of 5000000
- 28271 multiletter control sequences out of 15000+600000
+ 28275 multiletter control sequences out of 15000+600000
  164125 words of font info for 153 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  51i,11n,71p,870b,1367s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3183,10 +3189,10 @@ st/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
 etic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (105 pages, 
-697325 bytes).
+730754 bytes).
 PDF statistics:
- 424 PDF objects out of 1000 (max. 8388607)
+ 426 PDF objects out of 1000 (max. 8388607)
  274 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 144 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

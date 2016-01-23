@@ -212,6 +212,53 @@ class Grille(object):
 				return False
 		return True
 	
+	def get_possibles(self, affiche=False):
+		"""Crée la liste des bateaux possibles démarrant sur chaque case
+		ainsi que la liste des cases et directions possibles pour
+		chaque bateau"""
+		# --> Il reste quelques fonctions de tri qui ne sont pas utiles pour la suite, mais c'est juste pour l'affichage des tests
+		self.update_vides()
+		
+		# Liste des bateaux et sens possibles démarrant sur chaque case
+		# Par ex {(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...}
+		self.possibles_case = {}
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				self.possibles_case[(i,j)] = []
+				
+		# Récupère les éléments une seule fois de self.taille_bateaux, triés en ordre décroissant
+		tmp_taille_bateaux = sorted(list(set(self.taille_bateaux)), reverse=True)
+		
+		# Regarde pour chaque case vide la taille maxi d'un bateau dans chaque direction
+		for case in self.vides :
+			for direction in [BN_DROITE, BN_BAS] :
+				tmax = self.get_max_space(case, direction=direction, sens=0)
+				self.possibles_case[case] += [(taille, direction) for taille in tmp_taille_bateaux if taille <= tmax]
+
+		# Liste des cases de départ et sens possibles pour chaque bateau
+		# Par ex : {5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...}
+		self.possibles = {}
+		for taille in tmp_taille_bateaux :
+			self.possibles[taille] = []
+		for case in self.possibles_case :
+			for placement in self.possibles_case[case]:
+				self.possibles[placement[0]].append((case, placement[1]))
+		for taille in self.taille_bateaux :
+			self.possibles[taille].sort()
+		
+		if affiche : # Pour les tests
+			for case in grille.vides :
+				print(case,grille.possibles_case[case])
+			print()
+			for taille in grille.possibles :
+				print("Taille %d :" % taille)
+				print("-----------")
+				i=1
+				for pos in grille.possibles[taille] :
+					print(i,pos[0], pos[1])
+					i+=1
+				print() 
+				
 	def add_bateau(self, bateau):
 		"""Ajoute un bateau dans la grille
 		et met à jour les états des cases adjacentes"""
@@ -224,7 +271,6 @@ class Grille(object):
 	
 	def init_bateaux_alea(self):
 		"""Initialise une grille avec des bateaux aléatoires"""
-		ok = False
 		nb_bateaux = 0
 		while nb_bateaux < len(self.taille_bateaux) :
 			nb_bateaux = 0
@@ -291,53 +337,6 @@ class Grille(object):
 		
 		# Retourne la case la plus probable et sa proba
 		return (case_max, pmax)
-	
-	def get_possibles(self, affiche=False):
-		"""Crée la liste des bateaux possibles démarrant sur chaque case
-		ainsi que la liste des cases et directions possibles pour
-		chaque bateau"""
-		# --> Il reste quelques fonctions de tri qui ne sont pas utiles pour la suite, mais c'est juste pour l'affichage des tests
-		self.update_vides()
-		
-		# Liste des bateaux et sens possibles démarrant sur chaque case
-		# Par ex {(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...}
-		self.possibles_case = {}
-		for i in range(self.xmax):
-			for j in range(self.ymax):
-				self.possibles_case[(i,j)] = []
-				
-		# Récupère les éléments une seule fois de self.taille_bateaux, triés en ordre décroissant
-		tmp_taille_bateaux = sorted(list(set(self.taille_bateaux)), reverse=True)
-		
-		# Regarde pour chaque case vide la taille maxi d'un bateau dans chaque direction
-		for case in self.vides :
-			for direction in [BN_DROITE, BN_BAS] :
-				tmax = self.get_max_space(case, direction=direction, sens=0)
-				self.possibles_case[case] += [(taille, direction) for taille in tmp_taille_bateaux if taille <= tmax]
-
-		# Liste des cases de départ et sens possibles pour chaque bateau
-		# Par ex : {5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...}
-		self.possibles = {}
-		for taille in tmp_taille_bateaux :
-			self.possibles[taille] = []
-		for case in self.possibles_case :
-			for placement in self.possibles_case[case]:
-				self.possibles[placement[0]].append((case, placement[1]))
-		for taille in self.taille_bateaux :
-			self.possibles[taille].sort()
-		
-		if affiche : # Pour les tests
-			for case in grille.vides :
-				print(case,grille.possibles_case[case])
-			print()
-			for taille in grille.possibles :
-				print("Taille %d :" % taille)
-				print("-----------")
-				i=1
-				for pos in grille.possibles[taille] :
-					print(i,pos[0], pos[1])
-					i+=1
-				print() 
 	
 	def case_max(self, affiche=False):
 		"""Détermine la case qui contient le plus de bateaux et
@@ -453,10 +452,10 @@ class Grille(object):
 	#
 	# Affichage --------------------------------------------------------
 	#
-	#~ def affiche(self):
-		#~ """Affiche la grille
-		#~ Méthode à surcharger suivant l'interface"""
-		#~ pass
+	def affiche(self):
+		"""Affiche la grille
+		Méthode à surcharger suivant l'interface"""
+		pass
 				
 				
 	
@@ -464,8 +463,8 @@ class Grille(object):
 	# Tests
 	#
 	
-	def make_all(self):
-		self.get_possibles()
+	#~ def make_all(self):
+		#~ self.get_possibles()
 		
 	
 	# --------------------------------
@@ -478,7 +477,7 @@ class Grille(object):
 	# --> Elles sont utilisées dans le placement aléatoire de bateaux du joueur
 	# --> Mais à terme il faudra une option pour placer directement tous les bateaux
 	# --> de manière aléatoire d'un coup avec init_bateaux_alea(self)
-	def make_bateau_alea(self, taille):
+	def make_bateau_alea0(self, taille):
 		"""Crée un bateau aléatoire (pas forcément valide)"""
 		(x,y) = rand.choice(self.vides)
 		dir_possibles = []
@@ -494,7 +493,7 @@ class Grille(object):
 		bateau = Bateau(taille, (x,y), sens)
 		return bateau
 		
-	def add_bateau_alea(self, taille, nb_essais_max=20):
+	def add_bateau_alea0(self, taille, nb_essais_max=20):
 		"""Ajoute un bateau aléatoire (valide)"""
 		# Essaie de placer un bateau aléatoire nb_essais_max fois
 		# et quitte s'il n'y arrive pas, pour éviter une situation de blocage
@@ -619,66 +618,66 @@ class Grille(object):
 		#~ # Retourne la case la plus probable et sa proba
 		#~ return (case_max, pmax)
 		
-	def affiche(self):
-		"""Affiche la grille"""
-		# Méthode à surcharger suivant l'interface
-		# --> À virer d'ici (juste temporaire pour tests)
-		pass
-		CAR_H=u'\u2500'		# Trait Horizontal
-		CAR_V=u'\u2502'		# Trait Vertical
-		# Coins
-		CAR_CHG=u'\u250C'	# Coin Haut Gauche
-		CAR_CHD=u'\u2510'	# Coin Haut Droite
-		CAR_CBG=u'\u2514'	# Coin Bas Gauche
-		CAR_CBD=u'\u2518'	# Coin Bas Droite
-		# T
-		CAR_TH=u'\u252C'	# T Haut
-		CAR_TB=u'\u2534'	# T Bas
-		CAR_TG=u'\u251C'	# T Gauche
-		CAR_TD=u'\u2524'	# T Droite
-		# +
-		CAR_CX=u'\u253C'	# Croix centrale
-		# Touché / Manqué
-		CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
-		CAR_MANQ = u'\u25EF'
-
-		# Ligne du haut
-		print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
-		
-		# Ligne des lettres des colonnes
-		print('    '+CAR_V, end='')
-		for i in range(self.xmax):
-			if i!=self.xmax-1 :
-				print(' '+str(i)+' ', end=CAR_V)
-			else :
-				print(' '+str(i)+' '+CAR_V)
-				
-		#Ligne sous les lettres
-		print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-		
-		# Lignes suivantes
-		for j in range(self.ymax):
-			# 1ère colonne (chiffres des lignes)
-			chaine = CAR_V+' '+str(j)+' '+CAR_V
-			
-			# Cases suivantes
-			for i in range(self.xmax):
-				if self.etat[(i,j)] == 1 :
-					symbole = CAR_TOUCH
-				elif self.etat[(i,j)] == -1 :
-					symbole = CAR_MANQ
-				else :
-					symbole = ' '
-				chaine += ' '+symbole+' '+CAR_V
-			print(chaine)
-			
-			# Sépartion lignes intermédiaires
-			if j!=self.ymax-1 :
-				print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-				
-			# Dernière ligne
-			else :
-				print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
+	#~ def affiche(self):
+		#~ """Affiche la grille"""
+		#~ # Méthode à surcharger suivant l'interface
+		#~ # --> À virer d'ici (juste temporaire pour tests)
+		#~ pass
+		#~ CAR_H=u'\u2500'		# Trait Horizontal
+		#~ CAR_V=u'\u2502'		# Trait Vertical
+		#~ # Coins
+		#~ CAR_CHG=u'\u250C'	# Coin Haut Gauche
+		#~ CAR_CHD=u'\u2510'	# Coin Haut Droite
+		#~ CAR_CBG=u'\u2514'	# Coin Bas Gauche
+		#~ CAR_CBD=u'\u2518'	# Coin Bas Droite
+		#~ # T
+		#~ CAR_TH=u'\u252C'	# T Haut
+		#~ CAR_TB=u'\u2534'	# T Bas
+		#~ CAR_TG=u'\u251C'	# T Gauche
+		#~ CAR_TD=u'\u2524'	# T Droite
+		#~ # +
+		#~ CAR_CX=u'\u253C'	# Croix centrale
+		#~ # Touché / Manqué
+		#~ CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
+		#~ CAR_MANQ = u'\u25EF'
+#~ 
+		#~ # Ligne du haut
+		#~ print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
+		#~ 
+		#~ # Ligne des lettres des colonnes
+		#~ print('    '+CAR_V, end='')
+		#~ for i in range(self.xmax):
+			#~ if i!=self.xmax-1 :
+				#~ print(' '+str(i)+' ', end=CAR_V)
+			#~ else :
+				#~ print(' '+str(i)+' '+CAR_V)
+				#~ 
+		#~ #Ligne sous les lettres
+		#~ print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+		#~ 
+		#~ # Lignes suivantes
+		#~ for j in range(self.ymax):
+			#~ # 1ère colonne (chiffres des lignes)
+			#~ chaine = CAR_V+' '+str(j)+' '+CAR_V
+			#~ 
+			#~ # Cases suivantes
+			#~ for i in range(self.xmax):
+				#~ if self.etat[(i,j)] == 1 :
+					#~ symbole = CAR_TOUCH
+				#~ elif self.etat[(i,j)] == -1 :
+					#~ symbole = CAR_MANQ
+				#~ else :
+					#~ symbole = ' '
+				#~ chaine += ' '+symbole+' '+CAR_V
+			#~ print(chaine)
+			#~ 
+			#~ # Sépartion lignes intermédiaires
+			#~ if j!=self.ymax-1 :
+				#~ print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+				#~ 
+			#~ # Dernière ligne
+			#~ else :
+				#~ print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # Les deux clases suivantes, héritées de Grille ont pour rôle de distinguer les fonctions spécifiques à chaque type de grille

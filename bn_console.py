@@ -538,22 +538,18 @@ class PartieC(Partie):
 	def __init__(self, joueur=Joueur(), adversaire=Ordi()):
 		Partie.__init__(self, joueur, adversaire)
 		
-	#
-	# Gestion des bateaux du joueur ------------------------------------
-	#
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
 		info("Placement du bateau de taille %d" % taille)
-		case = input("Case de départ (Entrée pour un bateau aléatoire) : ")
+		
+		case = input("Case de départ : ")
 		try :
 			case = coord(case)
 		except :
-			if case == "" :
-				self.joueur.grille_joueur.add_bateau_alea(taille)
-				return True
 			info("Saisie invalide")
 			info()
 			return False
+			
 		info("Direction :")
 		info("  H : Haut")
 		info("  B : Bas")
@@ -568,29 +564,29 @@ class PartieC(Partie):
 			direction = BN_DROITE
 		elif d.upper() == 'G' :
 			direction = BN_GAUCHE
-		try :
-			bateau = Bateau(taille, case, direction)
-		except :
-			info("Saisie invalide")
-			info()
-			self.add_bateau_joueur()
-			return False
+		
+		bateau = Bateau(taille, case, direction)
+
 		return self.joueur.add_bateau(taille, case, direction)
 		
 	def place_bateaux_joueur(self):
 		"""Place tous les bateaux du joueur"""
-		for taille in self.joueur.grille_joueur.taille_bateaux[::-1] :
-			clear()
-			info(boite("Placement de vos bateaux", larg_fen=0))
-			#~ info()
-			self.joueur.grille_joueur.affiche_adverse()
-			while not self.add_bateau_joueur(taille):
-				info("Le bateau de taille %d ne convient pas" % taille)
-				info()
+		rep = input("Voulez-vous un placement aléatoire ([O]|n) ? ")
+		if rep.lower() == 'n' :
+			for taille in self.joueur.grille_joueur.taille_bateaux[::-1] :
+				clear()
+				info(boite("Placement de vos bateaux", larg_fen=0))
+				self.joueur.grille_joueur.affiche_adverse()
+				while not self.add_bateau_joueur(taille):
+					info("Le bateau de taille %d ne convient pas" % taille)
+					info()
+		else :
+			self.joueur.grille_joueur.init_bateaux_alea()
+		
 		for case in self.joueur.grille_joueur.etat :
 			if self.joueur.grille_joueur.etat[case] == -1 :
 				self.joueur.grille_joueur.etat[case] = 0 
-	
+
 	#
 	# Lancement de la partie -------------------------------------------
 	#
@@ -682,11 +678,11 @@ class MainConsole(object):
 		while not ok :
 			try :
 				niveau = input("Niveau de l'algorithme (1 à 5) : ")
-				if niveau not in '12345' :
+				if niveau not in '12345' or niveau == '':
 					niveau = 5
 				else : 
 					niveau = int(niveau)
-				ok = True				
+				ok = True
 			except :
 					info("Saisie invalide\n")
 					ok = False
@@ -745,15 +741,18 @@ class MainConsole(object):
 		# Lancement de la simulation		
 		temps_resolution = 0
 		distrib = [0]*(xmax*ymax+1)
+		info("Lancement de la simulation : %s" % (strftime("%d/%m/%Y %H:%M:%S",localtime(time()))))
 		start = time()
 		for k in range(n):
 			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau, nb_echantillons=nb_echantillons)
 			temps_resolution += temps
 			distrib[essais] += 1
+			# Affichage de l'avancement de la simulation
 			if k==0 :
 				info("Temps pour la 1ère simulation : %.2f seconde" % (time()-start))
 				t_estime = (n-1)*(time()-start)
-				info("Temps total estimé : %.2f secondes (%s) (CTRL+C pour annuler la simulation)" % (t_estime, strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_estime))))
+				info("Temps total estimé : %.2f secondes (%s)" % (t_estime, strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_estime))))
+				info("(CTRL+C pour annuler la simulation)")
 				#~ info("Temps total estimé : %.2f secondes (CTRL+C pour annuler la simulation)" % ((n-1)*(time()-start)))
 			if (k+1) % (n/10) == 0 :
 				t_restant = (n-k-1)*(time()-start)/(k+1)
