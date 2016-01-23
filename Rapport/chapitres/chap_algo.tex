@@ -107,12 +107,12 @@ La méthode \texttt{Grille.case\_max(self)} renvoie la case optimale, ainsi que 
 
 %L'algorithme est très simple : d'abord on crée un dictionnaire \texttt{Grille.probas} indexé par les cases et contenant le nombre de bateaux possibles grâce à \texttt{Grille.possibles}. Ensuite il ne reste plus qu'à renvoyer celle qui en contient le plus.
 
-Bien que locale (on ne regarde pas la répartition de tous les bateaux ensemble sur la grille), cette méthode est très efficace aussi bien en nombre de coups pour la résolution, qu'en temps de calcul, et c'est celle qui a été retenue par défaut. 
+Bien que locale (on ne regarde pas la répartition de tous les bateaux ensemble sur la grille), cette méthode est très efficace aussi bien en nombre de coups pour la résolution, qu'en temps de calcul.
 
 
 \subsubsection{Méthode par énumération de tous les cas}
 
-On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre astronomique de configurations, cette approche est irréalisable que ce soit en temps de calcul qu'en utilisation mémoire.
+On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre de configurations (de l'ordre de $100^5$ sur une grille vide), cette approche est irréalisable que ce soit en temps de calcul qu'en utilisation mémoire.
 
 \section{Phase de tir ciblé}
 Lors de cette phase, on va utiliser une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser. On va également garder la trace des cases touchées sur ce bateau dans la liste \texttt{Ordi.liste\_touches}, ainsi que sa première case touchée dans \texttt{Ordi.case\_touchee}.

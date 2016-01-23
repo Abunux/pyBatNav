@@ -102,6 +102,50 @@ Le gain en nombre de coups moyen par partie, s'il est présent, est très limit�
 
 
 \newpage
+\subsection{Conclusion sur le niveau 4}
+Comme on pouvait s'y attendre le temps de résolution est approximativement linéaire en \texttt{nb\_echantillons}.
+
+Les résultats en nombre de coups sont très corrects mais le coût en temps de calcul est rédhibitoire. Par ailleurs, il a été impossible de créer de grosses simulations avec un \texttt{nb\_echantillons} élevé ce qui biaise un peu les comparaisons.
+
+Voici un tableau récapitulatif des résultats obtenus :
+
+ \medskip
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Taille des échantillons pour l'algorithme & 10 & 100 &  1\,000 & 10\,000\\
+\hline
+Nombre de parties $n$ & 10\,000 & 10\,000 & 1\,000 & 100\\
+\hline
+Nombre de coups moyens $\conj x$ & 44,31 & 42,79 & 42,21 & \\
+\hline
+Écart-type\footnote{Vu la taille importante des échantillons nous prendrons $\sigma_\text{estimé}=\sigma_{échantillon}$}  $\sigma$ & 6,65 & 6,28 & 6,10 & \\
+\hline
+Temps moyen par partie (en secondes) & 0,32 & 2,8 & 26,6 & \\
+\hline 
+\end{tabular}\\
+\end{center}
+
+\medskip
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Taille des échantillons & Intervalle de confiance\footnote{Au seuil de 95\% : $\left[\conj x-1,96\frac{\sigma}{\sqrt{n}}~;~ \conj x+1,96\frac{\sigma}{\sqrt{n}}\right]$ } de $\conj x$ \\
+\hline
+10 & $[44,18~;~44,44]$\\
+\hline
+100 & $[42,63 ~;~42,88]$\\
+\hline
+1\,000 & $[41,83~;~42,59]$\\
+\hline
+10\,000& \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
 \section{Niveau 5}
 Les résultats obtenues sur un échantillon de $n=1\,000\,000$ parties sont les suivants :
 \begin{comment}

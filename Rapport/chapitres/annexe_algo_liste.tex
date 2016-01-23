@@ -5,17 +5,59 @@
 \subsection{Détermination des espaces vides}\label{get_max_space}
 \texttt{Grille.get\_max\_space(self, case, direction, sens)} :
 \begin{algo1}
+Si direction == TOUTES\_DIRECTIONS :\\
+\tab{1} On renvoie le maximum de get\_max\_space(case, HORIZONTAL, sens=1)\\
+\tab{2} et get\_max\_space(case, VERTICAL, sens=1)\\
 direction[0]\sto dh\\
 direction[1]\sto dv\\
-0\sto m\\
+1\sto m\\
 case[0]\sto x\\
 case[1]\sto y\\
 Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
-\tab{1} m+1\sto m\\
-\tab{1} x+dh\sto x\\
-\tab{1} y+dv\sto y\\
+\tab{1}m+1\sto m\\
+\tab{1}x+dh\sto x\\
+\tab{1}y+dv\sto y\\
+Si sens == 1 (on regarde dans l'autre sens):\\
+\tab{1}case[0]\sto x\\
+\tab{1}case[1]\sto y\\
+\tab{1}Tant que la case (x-dh, y-dv) est vide et est dans la grille :\\
+\tab{2}m+1\sto m\\
+\tab{2}x-dh\sto x\\
+\tab{2}y-dv\sto y\\
 Retourner m\\
 \end{algo1}
+
+Cet algorithme est très simple. Il se contente de compter dans chaque direction le nombre de cases vides et, éventuellement dans les deux sens.
+
+\newpage
+
+\subsection{Détermination des bateaux possibles démarrant sur chaque case}\label{get_possibles}
+\texttt{Grille.get\_possibles(self)} :
+\begin{algo1}
+On met à jour la liste des cases vides\\
+\# Récupération des bateaux possibles sur chaque case\\
+possibles\_case est un dictionnaire indexé par les cases\\
+Les éléments de possibles\_case sont des listes vides\\
+On récupère la liste unique des bateaux restants dans tmp\_taille\_bateaux\\
+Pour chaque case vide :\\
+\tab{1}Pour chaque direction dans [DROITE, BAS] :\\
+\tab{2}tmax est l'espace maximum dans direction\\
+\tab{2}On ajoute à possible\_case[case] les tuples (taille, direction)\\
+\tab{3}pour les tailles dans tmp\_taille\_bateaux, si taille <= tmax\\
+\ \\
+\# Récupération des position possibles pour chaque bateau\\
+possibles est un dictionnaire indexé par les tailles de bateaux\\
+Les éléments de possibles sont des listes vides\\
+Pour chaque case index dans possible\_case :\\
+\tab{1}Pour chaque couple (taille, direction) dans possible\_case[case] :\\
+\tab{2}On ajoute (taille, direction) à possibles[taille]\\ 
+\end{algo1}
+
+Cet algorithme est un des points clés du projet. Dans un premier temps on récupère la liste de tous les bateaux possibles démarrant sur chaque case, ainsi que leurs directions possibles.
+
+Dans un deuxième temps on récupère, pour chaque bateau, ses placements possibles. 
+
+\newpage
 
 \subsection{Création d'un flotte aléatoire}\label{init_alea}
 \texttt{Grille.init\_alea(self)} :
@@ -53,21 +95,26 @@ case\_max est la case qui a la plus grande probabilité pmax\\
 On retourne (case\_max, pmax)\\
 \end{algo1}
 
+\newpage
+
+
 \subsection{Détermination du nombre de bateaux possibles sur chaque case}\label{case_max}
 \texttt{Grille.case\_max(self)} :
 \begin{algo1}
 probas est un dictionnaire indexé sur les cases\\
 Pour chaque case, 0\sto probas[case]\\
-On récupère la liste des bateaux possibles sur chaque case\\
+On récupère la liste placements possibles pour chaque bateau\\
 \tab{1} (dans le dictionnaire possibles)\\
 Pour chaque taille de bateau restant :\\
-\tab{1}Pour chaque (case, direction) permettant de démarrer le bateau :\\
-\tab{2}La probabilité de chaque case occupée par le bateau est augmentée de 1\\
+\tab{1}Pour chaque (case, direction) dans possibles[taille] :\\
+\tab{2}\#La probabilité de chaque case occupée par le bateau est augmentée de 1\\
+\tab{2}Pour k allant de 0 à taille :\\
+\tab{3}probas[case+k*direction] est augmentée de 1\\
 case\_max est la case qui a le plus de possibilités pmax\\
 On retourne (case\_max, pmax)\\
 \end{algo1}
 
-\newpage
+
 \section{Déroulement de la partie}
 
 Une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur porte le numéro $0$ et son adversaire le numéro $1$) :

@@ -227,7 +227,8 @@ class Grille(object):
 				self.possibles_case[(i,j)] = []
 				
 		# Récupère les éléments une seule fois de self.taille_bateaux, triés en ordre décroissant
-		tmp_taille_bateaux = sorted(list(set(self.taille_bateaux)), reverse=True)
+		#~ tmp_taille_bateaux = sorted(list(set(self.taille_bateaux)), reverse=True)
+		tmp_taille_bateaux = list(set(self.taille_bateaux))
 		
 		# Regarde pour chaque case vide la taille maxi d'un bateau dans chaque direction
 		for case in self.vides :
@@ -243,8 +244,8 @@ class Grille(object):
 		for case in self.possibles_case :
 			for placement in self.possibles_case[case]:
 				self.possibles[placement[0]].append((case, placement[1]))
-		for taille in self.taille_bateaux :
-			self.possibles[taille].sort()
+		#~ for taille in self.taille_bateaux :
+			#~ self.possibles[taille].sort()
 		
 		if affiche : # Pour les tests
 			for case in grille.vides :
@@ -269,6 +270,34 @@ class Grille(object):
 				if self.test_case(case):
 					self.etat[case] = -1
 	
+	def add_bateau_alea(self, taille):
+		"""Ajoute un bateau aléatoire de taille donnée"""
+		self.get_possibles()
+		if not self.possibles[taille] :
+			return False
+		else :
+			(case, direction) = rand.choice(self.possibles[taille])
+			self.add_bateau(Bateau(taille, case, direction))
+			return True
+	
+	#~ def init_bateaux_alea0(self):
+		#~ # --> Nickel mais amélioré par la suite
+		#~ """Initialise une grille avec des bateaux aléatoires"""
+		#~ nb_bateaux = 0
+		#~ while nb_bateaux < len(self.taille_bateaux) :
+			#~ nb_bateaux = 0
+			#~ gtmp = self.copie_grille_tmp()
+			#~ for taille in self.taille_bateaux :
+				#~ gtmp.get_possibles()
+				#~ if not gtmp.possibles[taille] :
+					#~ break
+				#~ else :
+					#~ (case, direction) = rand.choice(gtmp.possibles[taille])
+					#~ gtmp.add_bateau(Bateau(taille, case, direction))
+					#~ gtmp.rem_bateau(taille)
+					#~ nb_bateaux += 1
+		#~ self.etat = gtmp.etat
+		
 	def init_bateaux_alea(self):
 		"""Initialise une grille avec des bateaux aléatoires"""
 		nb_bateaux = 0
@@ -276,12 +305,9 @@ class Grille(object):
 			nb_bateaux = 0
 			gtmp = self.copie_grille_tmp()
 			for taille in self.taille_bateaux :
-				gtmp.get_possibles()
-				if not gtmp.possibles[taille] :
+				if not gtmp.add_bateau_alea(taille) :
 					break
 				else :
-					(case, direction) = rand.choice(gtmp.possibles[taille])
-					gtmp.add_bateau(Bateau(taille, case, direction))
 					gtmp.rem_bateau(taille)
 					nb_bateaux += 1
 		self.etat = gtmp.etat
@@ -471,12 +497,6 @@ class Grille(object):
 	# Poubelle 
 	# Méthodes plus utilisées (backup)
 	# --------------------------------
-	#~ 
-	# --> Les deux méthodes suivantes sont appelées à disparaître
-	# --> Mais je les laisse pour des raisons temporaires de compatibilité
-	# --> Elles sont utilisées dans le placement aléatoire de bateaux du joueur
-	# --> Mais à terme il faudra une option pour placer directement tous les bateaux
-	# --> de manière aléatoire d'un coup avec init_bateaux_alea(self)
 	def make_bateau_alea0(self, taille):
 		"""Crée un bateau aléatoire (pas forcément valide)"""
 		(x,y) = rand.choice(self.vides)
