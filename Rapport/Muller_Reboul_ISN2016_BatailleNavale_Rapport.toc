@@ -58,37 +58,47 @@
 \contentsline {chapter}{\numberline {A}Algorithmes int\IeC {\'e}ressants}{29}
 \contentsline {section}{\numberline {1}Gestion de la grille}{29}
 \contentsline {subsection}{\numberline {1.1}D\IeC {\'e}termination des espaces vides}{29}
-\contentsline {subsection}{\numberline {1.2}D\IeC {\'e}termination des bateaux possibles d\IeC {\'e}marrant sur chaque case}{30}
-\contentsline {subsection}{\numberline {1.3}Cr\IeC {\'e}ation d'un flotte al\IeC {\'e}atoire}{31}
-\contentsline {subsection}{\numberline {1.4}D\IeC {\'e}termination des probabilit\IeC {\'e}s par \IeC {\'e}chantillonnage}{31}
-\contentsline {subsection}{\numberline {1.5}D\IeC {\'e}termination du nombre de bateaux possibles sur chaque case}{32}
-\contentsline {section}{\numberline {2}D\IeC {\'e}roulement de la partie}{32}
-\contentsline {section}{\numberline {3}Algorithme de r\IeC {\'e}solution}{33}
-\contentsline {chapter}{\numberline {B}\IeC {\'E}tude statistique des algorithmes de r\IeC {\'e}solution}{35}
-\contentsline {section}{\numberline {1}Niveau 1}{36}
-\contentsline {section}{\numberline {2}Niveau 2}{37}
-\contentsline {section}{\numberline {3}Niveau 3}{38}
-\contentsline {section}{\numberline {4}Niveau 4}{39}
-\contentsline {subsection}{\numberline {4.1}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=10}}{39}
-\contentsline {subsection}{\numberline {4.2}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=100}}{40}
-\contentsline {subsection}{\numberline {4.3}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=1\tmspace +\thinmuskip {.1667em}000}}{41}
-\contentsline {subsection}{\numberline {4.4}Conclusion sur le niveau 4}{42}
-\contentsline {section}{\numberline {5}Niveau 5}{43}
-\contentsline {chapter}{\numberline {C}Codes des caract\IeC {\`e}res graphiques}{45}
-\contentsline {chapter}{\numberline {D}Documentation des modules}{47}
-\contentsline {section}{\numberline {1}Module bn\_grille.py}{47}
-\contentsline {subsection}{\numberline {1.1}Classe Bateau}{47}
-\contentsline {subsection}{\numberline {1.2}Classe Grille}{48}
-\contentsline {section}{\numberline {2}Module bn\_joueur.py}{50}
-\contentsline {subsection}{\numberline {2.1}Classe Joueur}{50}
-\contentsline {subsection}{\numberline {2.2}Classe Ordi}{51}
-\contentsline {subsection}{\numberline {2.3}Classe Partie}{54}
-\contentsline {section}{\numberline {3}Module bn\_console.py}{55}
-\contentsline {subsection}{\numberline {3.1}Classe GrilleC}{55}
-\contentsline {subsection}{\numberline {3.2}Classe JoueurC}{58}
-\contentsline {subsection}{\numberline {3.3}Classe OrdiC}{59}
-\contentsline {subsection}{\numberline {3.4}Classe PartieC}{62}
-\contentsline {subsection}{\numberline {3.5}Classe MainConsole}{63}
-\contentsline {section}{\numberline {4}Module bn\_stats.py}{64}
-\contentsline {subsection}{\numberline {4.1}Classe Stats}{64}
-\contentsline {chapter}{\numberline {E}L'algorithme en action}{67}
+\contentsline {subsection}{\numberline {1.2}D\IeC {\'e}termination des bateaux possibles d\IeC {\'e}marrant sur chaque case et des placements possibles de chaque bateaux}{30}
+\contentsline {subsection}{\numberline {1.3}Cr\IeC {\'e}ation de bateaux al\IeC {\'e}atoires}{31}
+\contentsline {subsubsection}{\numberline {1.3.1}Ajout d'un bateau al\IeC {\'e}atoire}{31}
+\contentsline {subsubsection}{\numberline {1.3.2}Cr\IeC {\'e}ation d'une flotte al\IeC {\'e}atoire}{31}
+\contentsline {section}{\numberline {2}Algorithme de r\IeC {\'e}solution}{32}
+\contentsline {subsection}{\numberline {2.1}Optimisation de la phase de tirs en aveugle}{32}
+\contentsline {subsubsection}{\numberline {2.1.1}D\IeC {\'e}termination des probabilit\IeC {\'e}s par \IeC {\'e}chantillonnage}{32}
+\contentsline {subsubsection}{\numberline {2.1.2}D\IeC {\'e}termination du nombre de bateaux possibles sur chaque case}{32}
+\contentsline {subsection}{\numberline {2.2}Gestion de la file d'attente}{33}
+\contentsline {subsubsection}{\numberline {2.2.1}Cr\IeC {\'e}ation de la file d'attente}{33}
+\contentsline {subsubsection}{\numberline {2.2.2}Optimisation de la file d'attente}{33}
+\contentsline {subsubsection}{\numberline {2.2.3}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup touch\IeC {\'e}}{33}
+\contentsline {subsubsection}{\numberline {2.2.4}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup manqu\IeC {\'e}}{33}
+\contentsline {subsection}{\numberline {2.3}Algorithme complet de r\IeC {\'e}solution}{33}
+\contentsline {section}{\numberline {3}D\IeC {\'e}roulement de la partie}{34}
+\contentsline {chapter}{\numberline {B}\IeC {\'E}tude statistique des algorithmes de r\IeC {\'e}solution}{37}
+\contentsline {section}{\numberline {1}Niveau 1}{38}
+\contentsline {section}{\numberline {2}Niveau 2}{39}
+\contentsline {section}{\numberline {3}Niveau 3}{40}
+\contentsline {section}{\numberline {4}Niveau 4}{41}
+\contentsline {subsection}{\numberline {4.1}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=10}}{41}
+\contentsline {subsection}{\numberline {4.2}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=100}}{42}
+\contentsline {subsection}{\numberline {4.3}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=1\tmspace +\thinmuskip {.1667em}000}}{43}
+\contentsline {subsection}{\numberline {4.4}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=1\tmspace +\thinmuskip {.1667em}000}}{44}
+\contentsline {subsection}{\numberline {4.5}Conclusion sur le niveau 4}{45}
+\contentsline {section}{\numberline {5}Niveau 5}{46}
+\contentsline {chapter}{\numberline {C}Codes des caract\IeC {\`e}res graphiques}{47}
+\contentsline {chapter}{\numberline {D}Documentation des modules}{49}
+\contentsline {section}{\numberline {1}Module bn\_grille.py}{49}
+\contentsline {subsection}{\numberline {1.1}Classe Bateau}{49}
+\contentsline {subsection}{\numberline {1.2}Classe Grille}{50}
+\contentsline {section}{\numberline {2}Module bn\_joueur.py}{52}
+\contentsline {subsection}{\numberline {2.1}Classe Joueur}{52}
+\contentsline {subsection}{\numberline {2.2}Classe Ordi}{53}
+\contentsline {subsection}{\numberline {2.3}Classe Partie}{56}
+\contentsline {section}{\numberline {3}Module bn\_console.py}{57}
+\contentsline {subsection}{\numberline {3.1}Classe GrilleC}{57}
+\contentsline {subsection}{\numberline {3.2}Classe JoueurC}{60}
+\contentsline {subsection}{\numberline {3.3}Classe OrdiC}{61}
+\contentsline {subsection}{\numberline {3.4}Classe PartieC}{64}
+\contentsline {subsection}{\numberline {3.5}Classe MainConsole}{65}
+\contentsline {section}{\numberline {4}Module bn\_stats.py}{66}
+\contentsline {subsection}{\numberline {4.1}Classe Stats}{66}
+\contentsline {chapter}{\numberline {E}L'algorithme en action}{69}

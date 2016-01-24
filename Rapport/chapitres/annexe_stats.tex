@@ -70,13 +70,13 @@ La valeur de \texttt{nb\_echantillons} va jouer sur les performances en nombre d
 
 Vu le temps de calcul, les simulations suivantes portent sur un nombre plus faible de parties (la contrainte fixée est que le calcul ne doit pas durer plus d'une nuit).
 \subsection{Échantillons de taille \texttt{nb\_echantillons=10}}
-Avec des échantillons de taille 10 nous obtenons les résultats suivants sur $n=10\,000$ parties :
+Avec des échantillons de taille 10 nous obtenons les résultats suivants sur $n=100\,000$ parties :
 
 \begin{center}
-\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=4(10)_n=10000.png}}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=4(10)_n=100000.png}}
 \end{center}
 
-Avec une taille modeste des échantillons, nous obtenons une nette amélioration des performances avec une moyenne de 44,31,  pour un temps moyen de 0,3 secondes par partie.
+Avec une taille modeste des échantillons, nous obtenons une nette amélioration des performances avec une moyenne de 44,29,  pour un temps moyen de 0,3 secondes par partie.
  
 \newpage
 \subsection{Échantillons de taille \texttt{nb\_echantillons=100}}
@@ -100,6 +100,16 @@ La forme de la distribution est moins régulière que les précédentes à cause
 
 Le gain en nombre de coups moyen par partie, s'il est présent, est très limité compte tenu de l'augmentation linéaire du temps de calcul. 
 
+\newpage
+\subsection{Échantillons de taille \texttt{nb\_echantillons=1\,000}}
+Juste pour essayer, voici une simulation sur $n=100$ partie :
+
+\begin{center}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=4(10000)_n=100.png}}
+\end{center}
+
+Les résultats sont très décevants. On n'a fait que $n=100$ parties ce qui explique peut-être cela mais on note même un régression ce qui est quand même étonnant. 
+
 
 \newpage
 \subsection{Conclusion sur le niveau 4}
@@ -116,13 +126,13 @@ Voici un tableau récapitulatif des résultats obtenus :
 \hline
 Taille des échantillons pour l'algorithme & 10 & 100 &  1\,000 & 10\,000\\
 \hline
-Nombre de parties $n$ & 10\,000 & 10\,000 & 1\,000 & 100\\
+Nombre de parties $n$ & 100\,000 & 10\,000 & 1\,000 & 100\\
 \hline
-Nombre de coups moyens $\conj x$ & 44,31 & 42,79 & 42,21 & \\
+Nombre de coups moyens $\conj x$ & 44,29 & 42,79 & 42,21 & 42,63\\
 \hline
-Écart-type\footnote{Vu la taille importante des échantillons nous prendrons $\sigma_\text{estimé}=\sigma_{échantillon}$}  $\sigma$ & 6,65 & 6,28 & 6,10 & \\
+Écart-type\footnote{Vu la taille importante des échantillons nous prendrons $\sigma_\text{estimé}=\sigma_{échantillon}$}  $\sigma$ & 6,62 & 6,28 & 6,10 & 5,89\\
 \hline
-Temps moyen par partie (en secondes) & 0,32 & 2,8 & 26,6 & \\
+Temps moyen par partie (en secondes) & 0,29 & 2,8 & 26,6 & 287\\
 \hline 
 \end{tabular}\\
 \end{center}
@@ -134,13 +144,13 @@ Temps moyen par partie (en secondes) & 0,32 & 2,8 & 26,6 & \\
 \hline
 Taille des échantillons & Intervalle de confiance\footnote{Au seuil de 95\% : $\left[\conj x-1,96\frac{\sigma}{\sqrt{n}}~;~ \conj x+1,96\frac{\sigma}{\sqrt{n}}\right]$ } de $\conj x$ \\
 \hline
-10 & $[44,18~;~44,44]$\\
+10 & $[44,25~;~44,33]$\\
 \hline
 100 & $[42,63 ~;~42,88]$\\
 \hline
 1\,000 & $[41,83~;~42,59]$\\
 \hline
-10\,000& \\
+10\,000& $[41,48~;~43,78]$\\
 \hline
 \end{tabular}
 \end{center}

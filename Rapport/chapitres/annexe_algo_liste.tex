@@ -1,6 +1,9 @@
 \chapter{Algorithmes intéressants}
+Dans cette partie, une description commentée des algorithmes clés du projet. Les algorithmes vraiment simples (comme par exemple tirer sur une case) ne sont pas mis.
 
+Le fait de rédiger cette partie a permis de prendre du recule sur ces algorithmes et de faire quelques améliorations (formaliser les choses est toujours bénéfique).
 \section{Gestion de la grille}
+
 
 \subsection{Détermination des espaces vides}\label{get_max_space}
 \texttt{Grille.get\_max\_space(self, case, direction, sens)} :
@@ -31,7 +34,7 @@ Cet algorithme est très simple. Il se contente de compter dans chaque direction
 
 \newpage
 
-\subsection{Détermination des bateaux possibles démarrant sur chaque case}\label{get_possibles}
+\subsection{Détermination des bateaux possibles démarrant sur chaque case et des placements possibles de chaque bateaux}\label{get_possibles}
 \texttt{Grille.get\_possibles(self)} :
 \begin{algo1}
 On met à jour la liste des cases vides\\
@@ -53,33 +56,82 @@ Pour chaque case index dans possible\_case :\\
 \tab{2}On ajoute (taille, direction) à possibles[taille]\\ 
 \end{algo1}
 
-Cet algorithme est un des points clés du projet. Dans un premier temps on récupère la liste de tous les bateaux possibles démarrant sur chaque case, ainsi que leurs directions possibles.
+Cet algorithme est un des points clés du projet. Dans un premier temps on récupère la liste de tous les bateaux possibles démarrant sur chaque case, ainsi que leurs directions possibles. Dans un deuxième temps on récupère, pour chaque bateau, ses placements possibles. 
 
-Dans un deuxième temps on récupère, pour chaque bateau, ses placements possibles. 
+Les dictionnaires créés ont cette allure :
+\begin{itemize}
+\item \texttt{possibles\_case=\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
+\item \texttt{possibles=\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...\}}
+\end{itemize}
+
+\medskip
+
+Afin d'éviter de répéter les mêmes calculs, la liste \texttt{taille\_bateaux} des bateaux restants sur la grille est transformée en une liste \texttt{tmp\_taille\_bateaux} qui ne contient que ses éléments uniques. Pour cela on la convertit en ensemble puis on revient à une liste avec l'instruction 
+\begin{center}
+\texttt{tmp\_taille\_bateaux = list(set(taille\_bateaux))}
+\end{center}
 
 \newpage
 
-\subsection{Création d'un flotte aléatoire}\label{init_alea}
+\subsection{Création de bateaux aléatoires}
+\subsubsection{Ajout d'un bateau aléatoire}\label{add_bateau_alea}
+\texttt{Grille.add\_bateau\_alea(self, taille)} :
+\begin{algo1}
+Récupérer les placements de départ possibles des bateaux\\
+\tab{1}(dans le dictionnaire possibles)\\
+Si possibles[taille] est vide :\\
+\tab{1}Retourner Faux\\
+Sinon :\\
+\tab{1}Choisir un tuple (case, direction) au hasard dans possibles[taille]\\
+\tab{1}Ajouter la bateau (taille, case, direction)\\
+\tab{1}Retourner Vrai\\ 
+\end{algo1}
+
+Si \texttt{possibles[taille]} est vide, cela signifie qu'on ne peu pas placer ce bateau et donc en renvoie Faux pour éviter une situation de blocage par la suite, sinon on renvoie Vrai pour indiquer que tout s'est bien passé.
+
+\subsubsection{Création d'une flotte aléatoire}\label{init_alea}
 \texttt{Grille.init\_alea(self)} :
 \begin{algo1}
 0\sto nb\_bateaux\\
 Tant que nb\_bateaux < nombre de bateaux à placer :\\
-\tab{1} 0\sto nb\_bateaux\\
-\tab{1} On crée une copie temporaire de la grille dans gtmp\\
-\tab{1} Pour chaque taille de bateau à placer :\\
-\tab{2} On récupère les positions possibles pour ce bateau dans gtmp\\
-\tab{2} Si aucune possibilité :\\
-\tab{3} On casse la boucle et on recommence tout\\
-\tab{4} (pour éviter une situation de blocage)\\
-\tab{2} Sinon :\\
-\tab{3} On choisit une position et une direction au hasard\\
-\tab{4} (parmi celles possibles)\\
-\tab{3} On ajoute le bateau à gtmp\\
-\tab{3} nb\_bateaux+1\sto nb\_bateaux\\
+\tab{1}0\sto nb\_bateaux\\
+\tab{1}On crée une copie temporaire de la grille dans gtmp\\
+\tab{1}Pour chaque taille de bateau à placer :\\
+\tab{2}On essaie de placer un bateau aléatoire de cette taille dans gtmp\\
+\tab{2}Si pas possible :\\
+\tab{3}On casse la boucle et on recommence tout\\
+\tab{4}(pour éviter une situation de blocage)\\
+\tab{2}Sinon :\\
+\tab{3}nb\_bateaux+1\sto nb\_bateaux\\
+\tab{3}On enlève taille de la liste des bateaux restants à placer\\
 Enfin on copie l'état de gtmp dans notre grille \\
 \end{algo1}
 
-\subsection{Détermination des probabilités par échantillonnage}\label{case_max_echantillons}
+Pour placer chaque bateau, on utilise la fonction précédente avec sa valeur de sortie (vrai ou faux) qui permet de savoir si le placement a été possible.
+
+%\begin{algo1}
+%0\sto nb\_bateaux\\
+%Tant que nb\_bateaux < nombre de bateaux à placer :\\
+%\tab{1} 0\sto nb\_bateaux\\
+%\tab{1} On crée une copie temporaire de la grille dans gtmp\\
+%\tab{1} Pour chaque taille de bateau à placer :\\
+%\tab{2} On récupère les positions possibles pour ce bateau dans gtmp\\
+%\tab{2} Si aucune possibilité :\\
+%\tab{3} On casse la boucle et on recommence tout\\
+%\tab{4} (pour éviter une situation de blocage)\\
+%\tab{2} Sinon :\\
+%\tab{3} On choisit une position et une direction au hasard\\
+%\tab{4} (parmi celles possibles)\\
+%\tab{3} On ajoute le bateau à gtmp\\
+%\tab{3} nb\_bateaux+1\sto nb\_bateaux\\
+%Enfin on copie l'état de gtmp dans notre grille \\
+%\end{algo1}
+
+\newpage
+\section{Algorithme de résolution}
+\subsection{Optimisation de la phase de tirs en aveugle}
+\subsubsection{Détermination des probabilités par échantillonnage}\label{case_max_echantillons}
+
 \texttt{Grille.case\_max\_echantillons(self, nb\_echantillons)} :
 \begin{algo1}
 probas est un dictionnaire indexé sur les cases\\
@@ -95,10 +147,10 @@ case\_max est la case qui a la plus grande probabilité pmax\\
 On retourne (case\_max, pmax)\\
 \end{algo1}
 
-\newpage
+C'est l'algorithme de niveau 4 qui crée une estimation de la distribution de probabilité avec des échantillons de flottes aléatoires. Aucune difficulté particulière n'est à signaler.
 
 
-\subsection{Détermination du nombre de bateaux possibles sur chaque case}\label{case_max}
+\subsubsection{Détermination du nombre de bateaux possibles sur chaque case}\label{case_max}
 \texttt{Grille.case\_max(self)} :
 \begin{algo1}
 probas est un dictionnaire indexé sur les cases\\
@@ -114,33 +166,56 @@ case\_max est la case qui a le plus de possibilités pmax\\
 On retourne (case\_max, pmax)\\
 \end{algo1}
 
+C'est l'algorithme de niveau 5 qui détermine, pour chaque case, le nombre de bateaux possibles.
 
-\section{Déroulement de la partie}
-
-Une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur porte le numéro $0$ et son adversaire le numéro $1$) :
-
-\begin{algo1}\label{algo_partie}
-Placement des bateaux du joueur\\
-Récupération des bateaux de l'adversaire\\
-Aléa(0,1)\sto joueur\_en\_cours (celui qui commence)\\
-0\sto nb\_coups\\
-Tant qu'aucun joueur n'a fini :\\
-\tab{1}nb\_coups+1\sto nb\_coups\\
-\tab{1}Si joueur\_en\_cours == 0 et l'adversaire n'a pas fini :\\
-\tab{2}Le joueur joue un coup\\
-\tab{2}Mise à jour de l'affichage des grilles\\
-\tab{2}Affichage des messages du joueur (résultat du coup)\\
-\tab{1}Sinon :\\
-\tab{2}Récupération du coup de l'adversaire\\
-\tab{2}Mise à jour de l'affichage des grilles\\
-\tab{2}Affichage des messages de l'adversaire\\
-\tab{1}(joueur\_en\_cours+1)\%2\sto joueur\_en\_cours (changement de joueur)\\
-Affichage des grilles avec la solution\\
-Affichage du gagnant\\
-\end{algo1}
+Dans la mesure où la liste \texttt{possibles[taille]} ne donne que les points de départ de chaque bateau, il est nécessaire de parcourir toutes ses cases occupée dans la dernière boucle. \texttt{case+k*direction} signifie \texttt{(case[0]+k*direction[0],case[1]+k*direction[1])}.
 
 \newpage
-\section{Algorithme de résolution}\label{algo_resolution}
+
+\subsection{Gestion de la file d'attente}
+\subsubsection{Création de la file d'attente}
+\texttt{Ordi.add\_adjacentes\_premiere(self)} :
+\begin{algo1}
+adjacent est la liste des cases vides adjacentes à case\_touchee\\
+taille\_min est la taille minimale des bateaux restants\\
+\#Test si le bateau rentre horizontalement\\
+Si l'espace maximum horizontal sur case touché >= taille\_min :\\
+\tab{1}Pour case dans adjacent :\\
+\tab{2}Si case[1]==case\_touchee[1] :\\
+\tab{3}Ajouter case à la file d'attente\\
+\#Test si le bateau rentre verticalement\\
+Si l'espace maximum vertical sur case touché >= taille\_min :\\
+\tab{1}Pour case dans adjacent :\\
+\tab{2}Si case[0]==case\_touchee[0] :\\
+\tab{3}Ajouter case à la file d'attente\\
+\end{algo1}
+
+Pas de grande difficulté sur celui-ci. On se contente de regarder si le plus petit bateau rentre dans chaque direction et on ajoute à la file d'attente les cases correspondantes.
+
+\subsubsection{Optimisation de la file d'attente}
+\texttt{Grille.case\_max\_touchee(self, case\_touchee)} :
+\begin{algo1}
+On marque temporairement case\_touchee comme vide\\ 
+On récupère la liste placements possibles pour chaque bateau\\
+\tab{1} (dans le dictionnaire possibles)\\
+probas est un dictionnaire indexé sur les cases\\
+Pour chaque case, 0\sto probas[case]\\
+Pour chaque taille de bateau restant :\\
+\end{algo1}
+
+\subsubsection{Mise à jour après le deuxième coup touché}
+\texttt{Ordi.update\_queue\_touche(self)} :
+\begin{algo1}
+Si case\_courante[1] == case\_touchee[1] :
+\tab{1}direction=(1,0)\\
+Sinon :\\
+\tab{1}direction=(0,1)\\
+\end{algo1}
+
+
+\subsubsection{Mise à jour après le deuxième coup manqué}
+
+\subsection{Algorithme complet de résolution}
 Voici l'algorithme complet de résolution de la grille par l'ordinateur :
 
 \begin{algo1}
@@ -177,3 +252,29 @@ Tant que le grille n'est pas résolue :\\
 \tab{4}(on élimine éventuellement la case en face de case\_touchee)\\
 On affiche le nombre de coups\\
 \end{algo1}
+
+
+\section{Déroulement de la partie}
+
+Une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur porte le numéro $0$ et son adversaire le numéro $1$) :
+
+\begin{algo1}\label{algo_partie}
+Placement des bateaux du joueur\\
+Récupération des bateaux de l'adversaire\\
+Aléa(0,1)\sto joueur\_en\_cours (celui qui commence)\\
+0\sto nb\_coups\\
+Tant qu'aucun joueur n'a fini :\\
+\tab{1}nb\_coups+1\sto nb\_coups\\
+\tab{1}Si joueur\_en\_cours == 0 et l'adversaire n'a pas fini :\\
+\tab{2}Le joueur joue un coup\\
+\tab{2}Mise à jour de l'affichage des grilles\\
+\tab{2}Affichage des messages du joueur (résultat du coup)\\
+\tab{1}Sinon :\\
+\tab{2}Récupération du coup de l'adversaire\\
+\tab{2}Mise à jour de l'affichage des grilles\\
+\tab{2}Affichage des messages de l'adversaire\\
+\tab{1}(joueur\_en\_cours+1)\%2\sto joueur\_en\_cours (changement de joueur)\\
+Affichage des grilles avec la solution\\
+Affichage du gagnant\\
+\end{algo1}
+
