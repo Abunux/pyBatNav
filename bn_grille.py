@@ -13,7 +13,7 @@ Licence CC BY-NC-SA
 Version 0.1.0"""
 
 import random as rand
-from time import time
+from time import *
 
 from bn_utiles import *
 
@@ -130,7 +130,7 @@ class Grille(object):
 	
 	def copie_grille_tmp(self):
 		"""Crée une copie temporaire de la grille"""
-		grille_tmp = Grille()
+		grille_tmp = Grille(xmax=self.xmax, ymax=self.ymax, taille_bateaux=self.taille_bateaux)
 		for case in self.etat :
 			grille_tmp.etat[case] = self.etat[case]
 		grille_tmp.taille_bateaux = self.taille_bateaux[:]
@@ -457,10 +457,10 @@ class Grille(object):
 	#
 	# Affichage --------------------------------------------------------
 	#
-	def affiche(self):
-		"""Affiche la grille
-		Méthode à surcharger suivant l'interface"""
-		pass
+	#~ def affiche(self):
+		#~ """Affiche la grille
+		#~ Méthode à surcharger suivant l'interface"""
+		#~ pass
 				
 				
 	
@@ -468,45 +468,92 @@ class Grille(object):
 	# Tests
 	#
 	
-	#~ def make_all(self):
-		#~ self.get_possibles()
+	# Essai pour déterminer tous les arrangements de bateaux possibles
+	
+	def case_max_all(self):
+		"""Détermination de la case optimale
+		par énumération de toutes les répartitions possibles
+		de bateaux"""
+		self.probas_all = {}
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				self.probas_all[(i,j)] = 0
 		
+		gtmp = self.copie_grille_tmp()
+		self.nb_repart = 0
+		global start_iter, n_iter
+		start_iter = time()
+		n_iter = 0
+		self.make_all(gtmp)
+		
+		# Détermination de la case la plus probable
+		case_max = (0,0)
+		pmax = 0
+		for case in self.probas_all :
+			if self.probas_all[case] > pmax :
+				pmax = self.probas_all[case]
+				case_max = case
+		
+		return (case_max, pmax)
+	
+	def make_all(self, gtmp):
+		"""Crée toutes les réaprtitions possibles de bateaux"""
+		global start_iter, n_iter
+		if len(gtmp.taille_bateaux) == 0 :
+			self.nb_repart += 1
+			#~ gtmp.affiche()
+			for case in self.probas_all :
+				if self.etat[case] == 0 and gtmp.etat[case] == 1 :
+					self.probas_all[case] +=1
+			return
+			
+		gtmp.get_possibles()
+		taille = gtmp.taille_bateaux[0]
+		for (case, direction) in gtmp.possibles[taille]:
+			n_iter += 1
+			if self.nb_repart % 10000 == 0 :
+				print(n_iter, time()-start_iter)
+			gtmp2 = gtmp.copie_grille_tmp()
+			gtmp2.add_bateau(Bateau(taille, case, direction))
+			gtmp2.rem_bateau(taille)
+			self.make_all(gtmp2)
+	
 	
 	# --------------------------------
 	# Poubelle 
 	# Méthodes plus utilisées (backup)
 	# --------------------------------
-	def make_bateau_alea0(self, taille):
-		"""Crée un bateau aléatoire (pas forcément valide)"""
-		(x,y) = rand.choice(self.vides)
-		dir_possibles = []
-		if x >= taille-1 :
-			dir_possibles.append(BN_GAUCHE)
-		if x <= self.xmax - taille :
-			dir_possibles.append(BN_DROITE)
-		if y >= taille-1 :
-			dir_possibles.append(BN_HAUT)
-		if y <= self.ymax - taille :
-			dir_possibles.append(BN_BAS)
-		sens = rand.choice(dir_possibles)
-		bateau = Bateau(taille, (x,y), sens)
-		return bateau
-		
-	def add_bateau_alea0(self, taille, nb_essais_max=20):
-		"""Ajoute un bateau aléatoire (valide)"""
-		# Essaie de placer un bateau aléatoire nb_essais_max fois
-		# et quitte s'il n'y arrive pas, pour éviter une situation de blocage
-		valide = False
-		nb_essais = 0
-		while not valide and nb_essais < nb_essais_max:
-			nb_essais += 1
-			bateau = self.make_bateau_alea_bak(taille)
-			valide = self.test_bateau(bateau)
-		if valide :
-			self.add_bateau(bateau)
-			return True
-		else :
-			return False
+	#~ def make_bateau_alea0(self, taille):
+		#~ """Crée un bateau aléatoire (pas forcément valide)"""
+		#~ (x,y) = rand.choice(self.vides)
+		#~ dir_possibles = []
+		#~ if x >= taille-1 :
+			#~ dir_possibles.append(BN_GAUCHE)
+		#~ if x <= self.xmax - taille :
+			#~ dir_possibles.append(BN_DROITE)
+		#~ if y >= taille-1 :
+			#~ dir_possibles.append(BN_HAUT)
+		#~ if y <= self.ymax - taille :
+			#~ dir_possibles.append(BN_BAS)
+		#~ sens = rand.choice(dir_possibles)
+		#~ bateau = Bateau(taille, (x,y), sens)
+		#~ return bateau
+		#~ 
+	#~ def add_bateau_alea0(self, taille, nb_essais_max=20):
+		#~ """Ajoute un bateau aléatoire (valide)"""
+		#~ # Essaie de placer un bateau aléatoire nb_essais_max fois
+		#~ # et quitte s'il n'y arrive pas, pour éviter une situation de blocage
+		#~ valide = False
+		#~ nb_essais = 0
+		#~ while not valide and nb_essais < nb_essais_max:
+			#~ nb_essais += 1
+			#~ bateau = self.make_bateau_alea_bak(taille)
+			#~ valide = self.test_bateau(bateau)
+		#~ if valide :
+			#~ self.add_bateau(bateau)
+			#~ return True
+		#~ else :
+			#~ return False
 	#~ 
 		#~ 
 	#~ def make_bateau_alea_bak(self, taille):
@@ -524,15 +571,15 @@ class Grille(object):
 		#~ bateau = Bateau(taille, (x,y), sens)
 		#~ return bateau
 		
-	def make_bateau_alea_bak(self, taille):
-		"""Crée un bateau aléatoire (pas forcément valide)"""
-		x = rand.randrange(0, self.xmax)
-		y = rand.randrange(0, self.ymax)
-		#~ #self.update_vides()
-		#~ #(x,y) = rand.choice(self.vides)
-		sens = rand.choice([BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS])
-		bateau = Bateau(taille, (x,y), sens)
-		return bateau
+	#~ def make_bateau_alea_bak(self, taille):
+		#~ """Crée un bateau aléatoire (pas forcément valide)"""
+		#~ x = rand.randrange(0, self.xmax)
+		#~ y = rand.randrange(0, self.ymax)
+		#self.update_vides()
+		#(x,y) = rand.choice(self.vides)
+		#~ sens = rand.choice([BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS])
+		#~ bateau = Bateau(taille, (x,y), sens)
+		#~ return bateau
 	#~ 
 	
 			#~ 
@@ -543,27 +590,27 @@ class Grille(object):
 			#~ bateau = self.make_bateau_alea(taille)
 			#~ valide = self.test_bateau(bateau)
 	#~ 
-	def init_bateaux_alea_bak(self, ordre='random'):
-		"""Initialise une grille avec des bateaux aléatoires"""
-		# L'odre dans lequel on place les bateaux a une influence sur les probas !!!
-		tmp_taille_bateaux = self.taille_bateaux[:]
-		if ordre == 'random' :
-			rand.shuffle(tmp_taille_bateaux)
-		elif ordre == 'croissant' :
-			tmp_taille_bateaux.sort()
-		elif ordre == 'decroissant' :
-			tmp_taille_bateaux.sort()
-			tmp_taille_bateaux = tmp_taille_bateaux[::-1]
-			
-		ok = False
-		while not ok :
-			ok = True
-			gtmp = self.copie_grille_tmp()
-			for taille in tmp_taille_bateaux :
-				valide = gtmp.add_bateau_alea(taille)
-				ok = ok and valide
-#~ 
-		self.etat = gtmp.etat
+	#~ def init_bateaux_alea_bak(self, ordre='random'):
+		#~ """Initialise une grille avec des bateaux aléatoires"""
+		#~ # L'odre dans lequel on place les bateaux a une influence sur les probas !!!
+		#~ tmp_taille_bateaux = self.taille_bateaux[:]
+		#~ if ordre == 'random' :
+			#~ rand.shuffle(tmp_taille_bateaux)
+		#~ elif ordre == 'croissant' :
+			#~ tmp_taille_bateaux.sort()
+		#~ elif ordre == 'decroissant' :
+			#~ tmp_taille_bateaux.sort()
+			#~ tmp_taille_bateaux = tmp_taille_bateaux[::-1]
+			#~ 
+		#~ ok = False
+		#~ while not ok :
+			#~ ok = True
+			#~ gtmp = self.copie_grille_tmp()
+			#~ for taille in tmp_taille_bateaux :
+				#~ valide = gtmp.add_bateau_alea(taille)
+				#~ ok = ok and valide
+
+		#~ self.etat = gtmp.etat
 		
 			#~ 
 	#~ def init_bateaux_alea_bak(self, ordre='random'):
@@ -677,66 +724,66 @@ class Grille(object):
 		#~ probas_liste = [(case, probas[case]) for case in probas]
 		#~ return sorted(probas_liste, key=lambda proba: proba[1], reverse = True)
 	
-	#~ def affiche(self):
-		#~ """Affiche la grille"""
-		#~ # Méthode à surcharger suivant l'interface
-		#~ # --> À virer d'ici (juste temporaire pour tests)
-		#~ pass
-		#~ CAR_H=u'\u2500'		# Trait Horizontal
-		#~ CAR_V=u'\u2502'		# Trait Vertical
-		#~ # Coins
-		#~ CAR_CHG=u'\u250C'	# Coin Haut Gauche
-		#~ CAR_CHD=u'\u2510'	# Coin Haut Droite
-		#~ CAR_CBG=u'\u2514'	# Coin Bas Gauche
-		#~ CAR_CBD=u'\u2518'	# Coin Bas Droite
-		#~ # T
-		#~ CAR_TH=u'\u252C'	# T Haut
-		#~ CAR_TB=u'\u2534'	# T Bas
-		#~ CAR_TG=u'\u251C'	# T Gauche
-		#~ CAR_TD=u'\u2524'	# T Droite
-		#~ # +
-		#~ CAR_CX=u'\u253C'	# Croix centrale
-		#~ # Touché / Manqué
-		#~ CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
-		#~ CAR_MANQ = u'\u25EF'
-#~ 
-		#~ # Ligne du haut
-		#~ print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
-		#~ 
-		#~ # Ligne des lettres des colonnes
-		#~ print('    '+CAR_V, end='')
-		#~ for i in range(self.xmax):
-			#~ if i!=self.xmax-1 :
-				#~ print(' '+str(i)+' ', end=CAR_V)
-			#~ else :
-				#~ print(' '+str(i)+' '+CAR_V)
-				#~ 
-		#~ #Ligne sous les lettres
-		#~ print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-		#~ 
-		#~ # Lignes suivantes
-		#~ for j in range(self.ymax):
-			#~ # 1ère colonne (chiffres des lignes)
-			#~ chaine = CAR_V+' '+str(j)+' '+CAR_V
-			#~ 
-			#~ # Cases suivantes
-			#~ for i in range(self.xmax):
-				#~ if self.etat[(i,j)] == 1 :
-					#~ symbole = CAR_TOUCH
-				#~ elif self.etat[(i,j)] == -1 :
-					#~ symbole = CAR_MANQ
-				#~ else :
-					#~ symbole = ' '
-				#~ chaine += ' '+symbole+' '+CAR_V
-			#~ print(chaine)
-			#~ 
-			#~ # Sépartion lignes intermédiaires
-			#~ if j!=self.ymax-1 :
-				#~ print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-				#~ 
-			#~ # Dernière ligne
-			#~ else :
-				#~ print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
+	def affiche(self):
+		"""Affiche la grille"""
+		# Méthode à surcharger suivant l'interface
+		# --> À virer d'ici (juste temporaire pour tests)
+		pass
+		CAR_H=u'\u2500'		# Trait Horizontal
+		CAR_V=u'\u2502'		# Trait Vertical
+		# Coins
+		CAR_CHG=u'\u250C'	# Coin Haut Gauche
+		CAR_CHD=u'\u2510'	# Coin Haut Droite
+		CAR_CBG=u'\u2514'	# Coin Bas Gauche
+		CAR_CBD=u'\u2518'	# Coin Bas Droite
+		# T
+		CAR_TH=u'\u252C'	# T Haut
+		CAR_TB=u'\u2534'	# T Bas
+		CAR_TG=u'\u251C'	# T Gauche
+		CAR_TD=u'\u2524'	# T Droite
+		# +
+		CAR_CX=u'\u253C'	# Croix centrale
+		# Touché / Manqué
+		CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
+		CAR_MANQ = u'\u25EF'
+
+		# Ligne du haut
+		print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
+		
+		# Ligne des lettres des colonnes
+		print('    '+CAR_V, end='')
+		for i in range(self.xmax):
+			if i!=self.xmax-1 :
+				print(' '+str(i)+' ', end=CAR_V)
+			else :
+				print(' '+str(i)+' '+CAR_V)
+				
+		#Ligne sous les lettres
+		print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+		
+		# Lignes suivantes
+		for j in range(self.ymax):
+			# 1ère colonne (chiffres des lignes)
+			chaine = CAR_V+' '+str(j)+' '+CAR_V
+			
+			# Cases suivantes
+			for i in range(self.xmax):
+				if self.etat[(i,j)] == 1 :
+					symbole = CAR_TOUCH
+				elif self.etat[(i,j)] == -1 :
+					symbole = CAR_MANQ
+				else :
+					symbole = ' '
+				chaine += ' '+symbole+' '+CAR_V
+			print(chaine)
+			
+			# Sépartion lignes intermédiaires
+			if j!=self.ymax-1 :
+				print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+				
+			# Dernière ligne
+			else :
+				print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # Les deux clases suivantes, héritées de Grille ont pour rôle de distinguer les fonctions spécifiques à chaque type de grille
@@ -760,10 +807,20 @@ class GrilleSuivi(Grille):
 #----------------------------------------------------------------------------------------------------------------
 #
 if __name__ == "__main__" :
-	grille = GrilleSuivi()
-	case=(4,8)
-	print(grille.case_max_touchee(case))
-	print(grille.case_max_touchee0(case))
+	grille = Grille(xmax=6, ymax=6,taille_bateaux=[2,2,2])
+	#~ grille = Grille(xmax=2, ymax=2,taille_bateaux=[2,2])
+	#~ grille = Grille()
+	start = time()
+	grille.case_max_all()
+	print(time()-start, grille.nb_repart)
+	for j in range(grille.ymax) :
+		for i in range(grille.xmax-1):
+			print(grille.probas_all[(i,j)], end=' ')
+		i = grille.xmax-1
+		print(grille.probas_all[(i,j)])
+	#~ case=(4,8)
+	#~ print(grille.case_max_touchee(case))
+	#~ print(grille.case_max_touchee0(case))
 	#~ grille.etat[(1,2)]=1
 	#~ grille.etat[(3,2)]=-1
 	#~ print(grille.case_max_touchee((1,2)))

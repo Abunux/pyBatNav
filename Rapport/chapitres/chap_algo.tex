@@ -17,9 +17,7 @@ Différents algorithmes de résolution sont implémentés et choisis avec l'attr
 \item \texttt{Ordi.niveau=5} : Détermination de la case optimale par le nombre de bateaux possibles et phase de tirs ciblés.
 \end{itemize}
 
-Une étude statistique de chacun de ces algorithmes est donnée en annexe \ref{annexe_stats}, page \pageref{annexe_stats} et un exemple de résolution pas à pas (avec le niveau 5) est donné dans l'annexe \ref{annexe_algo_action} en page \pageref{annexe_algo_action}.
-
-L'algorithme complet de résolution est donné en page \pageref{algo_resolution}.
+Une étude statistique de chacun de ces algorithmes est donnée en annexe \ref{annexe_stats}, page \pageref{annexe_stats} et un exemple de résolution pas à pas (avec le niveau 5) est donné dans l'annexe \ref{annexe_algo_action}, page \pageref{annexe_algo_action}. L'algorithme complet de résolution est donné en annexe \ref{algo_liste}, page \pageref{algo_resolution}.
 
 
 
@@ -44,7 +42,7 @@ Une case $(x,y)$ est une case noire si, et seulement si, $(x+y)\%2==0$.
 \subsubsection{Méthode par échantillonnage}
 Dans la méthode suivante, on va essayer d'optimiser les tirs en aveugle en estimant la probabilité de chaque case de contenir un bateau.
 
-Pour ce faire, on va créer un échantillon de $n$ répartitions aléatoires de bateaux sur les cases vides restantes et on va compter, sur chacune, le nombre de fois où elle a été occupée ce qui va nous donner une densité de probabilités pour chaque case. Cette partie est gérée par la méthodes \texttt{Grille.case\_max\_echantillons(self, nb\_echantillons)} dont l'algorithme est donné en page \pageref{case_max_echantillons}.
+Pour ce faire, on va créer un échantillon de $n$ répartitions aléatoires de bateaux sur les cases vides restantes et on va compter, sur chacune, le nombre de fois où elle a été occupée ce qui va nous donner une densité de probabilités pour chaque case. Cette partie est gérée par la méthodes \texttt{Grille.case\_max\_echantillons(self, nb\_echantillons)} dont l'algorithme est donné en annexe \ref{algo_liste}, page \pageref{case_max_echantillons}.
 
 %\begin{algo1}
 %probas est un dictionnaire indexé sur les cases\\
@@ -91,7 +89,7 @@ Au final, le temps de résolution est linéaire en $n$ pour des gains de perform
 \subsubsection{Méthodes par comptage}
 Dans cette méthode, on va compter pour chaque case le nombre de bateaux possibles contenant celle-ci et tirer sur celle qui en contient le plus.
 
-La méthode \texttt{Grille.case\_max(self)} renvoie la case optimale, ainsi que le nombre de bateaux qu'elle contient. L'algorithme est donné en page \pageref{case_max}.
+La méthode \texttt{Grille.case\_max(self)} renvoie la case optimale, ainsi que le nombre de bateaux qu'elle contient. L'algorithme est donné en annexe \ref{algo_liste}, page \pageref{case_max}.
 
 %\begin{algo1}
 %probas est un dictionnaire indexé sur les cases\\
@@ -107,12 +105,12 @@ La méthode \texttt{Grille.case\_max(self)} renvoie la case optimale, ainsi que 
 
 %L'algorithme est très simple : d'abord on crée un dictionnaire \texttt{Grille.probas} indexé par les cases et contenant le nombre de bateaux possibles grâce à \texttt{Grille.possibles}. Ensuite il ne reste plus qu'à renvoyer celle qui en contient le plus.
 
-Bien que locale (on ne regarde pas la répartition de tous les bateaux ensemble sur la grille), cette méthode est très efficace aussi bien en nombre de coups pour la résolution, qu'en temps de calcul.
+Bien que locale (on ne regarde pas la répartition de tous les bateaux ensemble sur la grille), cette méthode est très efficace.
 
 
 \subsubsection{Méthode par énumération de tous les cas}
 
-On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre de configurations (de l'ordre de $100^5$ sur une grille vide), cette approche est irréalisable que ce soit en temps de calcul qu'en utilisation mémoire.
+On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre de configurations, cette approche est inutilisable sur une grille standard. Elle est néanmoins implémentée dans la méthode \texttt{Grille.case\_max\_all(self)}.
 
 \section{Phase de tir ciblé}
 Lors de cette phase, on va utiliser une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser. On va également garder la trace des cases touchées sur ce bateau dans la liste \texttt{Ordi.liste\_touches}, ainsi que sa première case touchée dans \texttt{Ordi.case\_touchee}.
@@ -148,7 +146,7 @@ L'algorithme va également vérifier si le plus petit bateau ne peut pas rentrer
 \end{center}
 Il ne sert alors à rien de mettre la case $(3,1)$ dans la file d'attente car le plus petit bateau de taille 3 ne peut pas rentrer verticalement en $(3,0)$.
 
-La construction de la liste des cases adjacentes possibles est effectuée par la méthode \texttt{Ordi.add\_adjacentes\_premiere(self)}.
+La construction de la liste des cases adjacentes possibles est effectuée par la méthode \texttt{Ordi.add\_adjacentes\_premiere(self)} dont l'algorithme est donné en annexe \ref{algo_liste}, page \pageref{add_adjacentes_premiere}.
 
 \subsubsection{Optimisation de la file d'attente}
 
@@ -294,7 +292,7 @@ Une fois que le compte des bateaux possibles a été effectué sur chacune des c
 \subsection{Deuxième tir}
 Lors du deuxième tir (c'est à dire sur la première case de la file d'attente), on peut soit toucher, soit manquer.
 \subsubsection{Deuxième tir touché}
-Si on touche alors, grâce à la méthode \texttt{Ordi.update\_queue\_touche(self)}, on détermine la direction du bateau (horizontal ou vertical) en comparant les coordonnées de \texttt{Ordi.case\_courante} et \texttt{Ordi.case\_touchee} et on enlève les cases de la file d'attente qui ne sont pas dans la bonne direction. On ajoute enfin la case à l'extrémité de la configuration créée à la file d'attente et on met à jour la liste \texttt{Ordi.liste\_touches}. 
+Si on touche alors, grâce à la méthode \texttt{Ordi.update\_queue\_touche(self)}, on détermine la direction du bateau (horizontal ou vertical) en comparant les coordonnées de \texttt{Ordi.case\_courante} et \texttt{Ordi.case\_touchee} et on enlève les cases de la file d'attente qui ne sont pas dans la bonne direction. On ajoute enfin la case à l'extrémité de la configuration créée à la file d'attente et on met à jour la liste \texttt{Ordi.liste\_touches}. L'algorithme de cette partie est donné en annexe \ref{algo_liste}, page \pageref{update_queue_touche}.
 \subsubsection{Deuxième tir manqué}
 Si on manque, alors on a peut-être bloqué une direction.\\
 La méthode \texttt{Ordi.update\_queue\_manque(self)} se charge de cette vérification et élimine la case en face de la case jouée si besoin de la file d'attente.\\
@@ -344,7 +342,7 @@ Regardons un exemple. Imaginons que le plus petit bateau à trouver soit de tail
 \end{tikzpicture}\\
 \textit{Après ce coup, le bateau de taille 4 ne rentre plus horizontalement et on peut éliminer la case $(2,0)$.}
 \end{center}
-Pour ce faire, on détermine la direction dans laquelle on vient de tirer en comparant les coordonnées de \texttt{Ordi.case\_courante} et \texttt{Ordi.case\_touchee} et on regarde si le plus petit bateau rentre dans la direction en face.
+Pour ce faire, on détermine la direction dans laquelle on vient de tirer en comparant les coordonnées de \texttt{Ordi.case\_courante} et \texttt{Ordi.case\_touchee} et on regarde si le plus petit bateau rentre dans la direction en face. L'algorithme de cette partie est donné en annexe \ref{algo_liste}, page \pageref{update_queue_manque}.
 
 
 \subsection{Tirs suivants}

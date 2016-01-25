@@ -171,7 +171,33 @@ C'est l'algorithme de niveau 5 qui détermine, pour chaque case, le nombre de ba
 Dans la mesure où la liste \texttt{possibles[taille]} ne donne que les points de départ de chaque bateau, il est nécessaire de parcourir toutes ses cases occupée dans la dernière boucle. \texttt{case+k*direction} signifie \texttt{(case[0]+k*direction[0],case[1]+k*direction[1])}.
 
 \newpage
+\subsubsection{Énumération de tous les cas}
+\texttt{Grille.case\_max\_all(self)} :
+\begin{algo1}
+gtmp est une copie temporaire de la grille\\
+probas\_all est un dictionnaire indexé par les cases\\
+Pour chaque case, 0\sto probas\_all[case]\\
+Créer toutes les répartitions de bateaux sur gtmp\\
+Récupérer la case qui en contient le plus\\ 
+\end{algo1}
 
+\texttt{Grille.make\_all(self,gtmp)} :
+\begin{algo1}
+S'il n'y a plus de bateaux dans la liste de gtmp :\\
+\tab{1}Mettre à jour les probabilités avec les cases occupées sur gtmp\\
+\tab{1}Sortir de la fonction\\
+Récupérer les positions de bateaux possibles sur gtmp\\
+taille est la taille du premier bateau restant\\
+Pour (case, direction) dans possibles[taille] :\\
+\tab{1}gtmp2 est une copie temporaire de gtmp\\
+\tab{1}Ajouter le bateau (taille, case, direction) à gtmp2\\
+\tab{1}Enlever ce bateau de la liste de ceux de gtmp2\\
+\tab{1}Créer toutes les répartitions de bateaux sur gtmp2\\
+\end{algo1}
+
+Cet algorithme est récursif. On utilise une grille temporaire \texttt{gtmp} sur laquelle on va faire tous les arrangements possibles. Pour chaque placement possible d'un bateau, on crée une autre grille temporaire \texttt{gtmp2} sur laquelle on va recommencer à faire tous les arrangements possibles avec les bateaux restants.
+
+\newpage
 \subsection{Gestion de la file d'attente}
 \subsubsection{Création de la file d'attente}\label{add_adjacentes_premiere}
 \texttt{Ordi.add\_adjacentes\_premiere(self)} :
