@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  25 JAN 2016 15:53
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  25 JAN 2016 19:21
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2039,26 +2039,26 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-Overfull \hbox (5.28261pt too wide) in paragraph at lines 248--249
+Overfull \hbox (5.28261pt too wide) in paragraph at lines 250--251
 \T1/futs/m/n/12 teaux. Les mé-thodes \T1/lmtt/m/n/12 Grille.get_taille_max(self
 ) \T1/futs/m/n/12 et \T1/lmtt/m/n/12 Grille.get_taille_min(self)
  []
 
 
-Overfull \hbox (40.06673pt too wide) in paragraph at lines 251--252
+Overfull \hbox (40.06673pt too wide) in paragraph at lines 253--254
 \T1/futs/m/n/12 tance de la classe \T1/lmtt/m/n/12 Bateau\T1/futs/m/n/12 ) aprè
 s avoir testé sa va-li-dité via la mé-thode \T1/lmtt/m/n/12 Grille.test_bateau(
 self,
  []
 
 
-Overfull \hbox (14.30022pt too wide) in paragraph at lines 256--257
+Overfull \hbox (14.30022pt too wide) in paragraph at lines 258--259
 []\T1/futs/m/n/12 Pour créer une flotte aléa-toire, on uti-lise la mé-thode \T1
 /lmtt/m/n/12 Grille.init_bateaux_alea(self)
  []
 
 )
-Overfull \hbox (3.27377pt too wide) in paragraph at lines 277--29
+Overfull \hbox (3.27377pt too wide) in paragraph at lines 279--29
 []\T1/futs/m/n/12 L'attribut \T1/lmtt/m/n/12 Grille.somme_taille\T1/futs/m/n/12
  , ini-tia-lisé dès le dé-part avec la classe \T1/lmtt/m/n/12 Grille\T1/futs/m/
 n/12 , contient
@@ -2662,9 +2662,9 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (321.82338pt too wide) in paragraph at lines 31--31
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f67d
-28a1278>, adversaire=<bn_joueur.Ordi object at 0x7f67d28a1e48>)[] 
+Overfull \hbox (321.83739pt too wide) in paragraph at lines 31--31
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f85c
+3773278>, adversaire=<bn_joueur.Ordi object at 0x7f85c3773e80>)[] 
  []
 
 
@@ -2803,9 +2803,9 @@ ed.
 
 File: ./docstrings/bn_console.PartieC  (verbatim)
 
-Overfull \hbox (321.80937pt too wide) in paragraph at lines 48--48
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f92e
-3239fd0>, adversaire=<bn_joueur.Ordi object at 0x7f92d9aa45f8>)[] 
+Overfull \hbox (321.83038pt too wide) in paragraph at lines 48--48
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f8bc
+d53ffd0>, adversaire=<bn_joueur.Ordi object at 0x7f8bc3daa630>)[] 
  []
 
 
@@ -2860,7 +2860,7 @@ File: ./docstrings/bn_stats.Stats  (verbatim)
 
 Overfull \hbox (420.63744pt too wide) in paragraph at lines 57--57
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10}, niveau_str='5')
+le={'xmax': 10, 'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2]}, niveau_str='5')
 [] 
  []
 
@@ -3255,11 +3255,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[109] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
+[109] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) )
 (\end occurred inside a group at level 36)
 
 ### simple group (level 36) entered at line 1275 ({)
@@ -3320,7 +3316,7 @@ nts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/
 uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (115 pages, 
-786626 bytes).
+786720 bytes).
 PDF statistics:
  465 PDF objects out of 1000 (max. 8388607)
  300 compressed objects within 3 object streams
