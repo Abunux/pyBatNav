@@ -173,7 +173,7 @@ Dans la mesure où la liste \texttt{possibles[taille]} ne donne que les points d
 \newpage
 
 \subsection{Gestion de la file d'attente}
-\subsubsection{Création de la file d'attente}
+\subsubsection{Création de la file d'attente}\label{add_adjacentes_premiere}
 \texttt{Ordi.add\_adjacentes\_premiere(self)} :
 \begin{algo1}
 adjacent est la liste des cases vides adjacentes à case\_touchee\\
@@ -238,7 +238,7 @@ Le tri final de la liste se fait de la façon suivante : on commence par convert
 \end{center}
 
 \newpage
-\subsubsection{Mise à jour après le deuxième coup touché}
+\subsubsection{Mise à jour après le deuxième coup touché}\label{update_queue_touche}
 \texttt{Ordi.update\_queue\_touche(self)} :
 \begin{algo1}
 Si case\_courante[1] == case\_touchee[1] :\\
@@ -264,11 +264,37 @@ La liste \texttt{liste\_touches} permet de savoir combien de cases ont été tou
 \texttt{signe(x)} renvoie 1 si $x>0$ et $-1$ si $x<0$.\\
 \texttt{signe(case\_courante[i]-case\_touche[i])}, pour $i\in\{0,1\}$, permet de déterminer le sens dans lequel on vient de toucher la nouvelle case, ce qui permet d'ajouter la case en bout de configuration à la file d'attente (si elle est valide et vide).
 
+\newpage
+\subsubsection{Mise à jour après le deuxième coup manqué}\label{update_queue_manque}
+\texttt{Ordi.update\_queue\_manque(self)} :
 
-\subsubsection{Mise à jour après le deuxième coup manqué}
+\begin{algo1}
+taille\_min est la plus petite taille de bateau restant\\
+delta = \\
+\tab{1}(case\_courante[0]-case\_touchee[0],\\
+\tab{1}case\_courante[1]-case\_touchee[1])\\
+direction = \\
+\tab{1}(abs(case\_courante[0]-case\_touchee[0]),\\
+\tab{1}abs(case\_courante[1]-case\_touchee[1]))\\
+case\_face = \\
+\tab{1}(case\_touchee[0]-delta[0],\\
+\tab{1}case\_touchee[1]-delta[1])\\
+Si l'espace vide sur case\_face dans direction < taille\_min-1 :\\
+\tab{1}Enlever case\_face de la file d'attente\\
+\end{algo1}
+
+\begin{itemize}
+\item \texttt{delta} est l'écart entre la première case touchée du bateau et la case sur laquelle on vient de jouer
+\item \texttt{direction} est la direction dans laquelle on vient de jouer
+\item \texttt{case\_face} est la case en face de celle qu'on vient de jouer
+\end{itemize}
+
+\medskip
+
+Dans la mesure où il y a déjà eu une case touchée sur ce bateau, on teste s'il y a assez de place sur \texttt{case\_face} pour faire rentrer un bateau de taille \texttt{taille\_min}-1 dans la direction \texttt{direction}.
 
 \newpage
-\subsection{Algorithme complet de résolution}
+\subsection{Algorithme complet de résolution}\label{algo_resolution}
 Voici l'algorithme complet de résolution de la grille par l'ordinateur :
 
 \begin{algo1}
@@ -307,11 +333,11 @@ On affiche le nombre de coups\\
 \end{algo1}
 
 \newpage
-\section{Déroulement de la partie}
+\section{Déroulement de la partie}\label{algo_partie}
 
 Une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur porte le numéro $0$ et son adversaire le numéro $1$) :
 
-\begin{algo1}\label{algo_partie}
+\begin{algo1}
 Placement des bateaux du joueur\\
 Récupération des bateaux de l'adversaire\\
 Aléa(0,1)\sto joueur\_en\_cours (celui qui commence)\\

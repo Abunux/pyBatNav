@@ -70,9 +70,9 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Cr\IeC {\'e}ation de la file d'attente}{33}
 \contentsline {subsubsection}{\numberline {2.2.2}Optimisation de la file d'attente}{34}
 \contentsline {subsubsection}{\numberline {2.2.3}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup touch\IeC {\'e}}{35}
-\contentsline {subsubsection}{\numberline {2.2.4}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup manqu\IeC {\'e}}{35}
-\contentsline {subsection}{\numberline {2.3}Algorithme complet de r\IeC {\'e}solution}{36}
-\contentsline {section}{\numberline {3}D\IeC {\'e}roulement de la partie}{37}
+\contentsline {subsubsection}{\numberline {2.2.4}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup manqu\IeC {\'e}}{36}
+\contentsline {subsection}{\numberline {2.3}Algorithme complet de r\IeC {\'e}solution}{37}
+\contentsline {section}{\numberline {3}D\IeC {\'e}roulement de la partie}{38}
 \contentsline {chapter}{\numberline {B}\IeC {\'E}tude statistique des algorithmes de r\IeC {\'e}solution}{39}
 \contentsline {section}{\numberline {1}Niveau 1}{40}
 \contentsline {section}{\numberline {2}Niveau 2}{41}
