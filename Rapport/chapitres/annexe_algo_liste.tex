@@ -1,4 +1,4 @@
-\chapter{Algorithmes intéressants}
+\chapter{Algorithmes intéressants}\label{algo_liste}
 Dans cette partie, une description commentée des algorithmes clés du projet. Les algorithmes vraiment simples (comme par exemple tirer sur une case) ne sont pas mis.
 
 Le fait de rédiger cette partie a permis de prendre du recule sur ces algorithmes et de faire quelques améliorations (formaliser les choses est toujours bénéfique).
@@ -191,9 +191,11 @@ Si l'espace maximum vertical sur case touché >= taille\_min :\\
 \end{algo1}
 
 Pas de grande difficulté sur celui-ci. On se contente de regarder si le plus petit bateau rentre dans chaque direction et on ajoute à la file d'attente les cases correspondantes.
-
-\subsubsection{Optimisation de la file d'attente}
+\newpage
+\subsubsection{Optimisation de la file d'attente}\label{case_max_touchee}
 \texttt{Grille.case\_max\_touchee(self, case\_touchee)} :
+
+Pour des raisons de mise en page, notons \texttt{ct} la case touchée.
 \begin{algo1}
 On marque temporairement case\_touchee comme vide\\ 
 On récupère la liste placements possibles pour chaque bateau\\
@@ -201,20 +203,71 @@ On récupère la liste placements possibles pour chaque bateau\\
 probas est un dictionnaire indexé sur les cases\\
 Pour chaque case, 0\sto probas[case]\\
 Pour chaque taille de bateau restant :\\
+\tab{1}Pour chaque direction dans [HORIZONTAL, VERTICAL] :\\
+\tab{2}\#Bateau qui se termine sur case\_touchee\\
+\tab{2}Si ct[direction[1]]-(taille-1)*direction[direction[1]]>=0\\
+\tab{5}et ((ct[0]-(taille-1)*direction[0],\\ 
+\tab{7}ct[1]-(taille-1)*direction[1]), direction)\\
+\tab{7}est dans possibles :\\
+\tab{3}probas[(ct[0]-direction[0],ct[1]-direction[1])] += 1\\
+\tab{2}\#Bateau à cheval sur sur case\_touchee\\
+\tab{2}Pour k allant de 1 à taille-2 :\\
+\tab{3}Si ct[direction[1]]-k*direction[direction[1]]>=0\\
+\tab{6}et ((ct[0]-k*direction[0], ct[1]-k*direction[1]),\\
+\tab{6} direction) est dans possibles :\\
+\tab{4}probas[(ct[0]-direction[0],ct[1]-direction[1])] += 1\\
+\tab{4}probas[(ct[0]+direction[0],ct[1]+direction[1])] += 1\\
+\tab{2}\#Bateau qui démarre sur case\_touchee\\
+\tab{2}Si ((ct[0], ct[1]), direction) est dans possibles :\\
+\tab{3}probas[(ct[0]+direction[0],ct[1]+direction[1])] += 1\\
+On remet l'état de case\_touchee à touché\\
+On trie la liste probas dans l'ordre décroissant du nombre de possibilités\\
+On renvoie cette liste\\
 \end{algo1}
 
+Le fait de boucler sur les directions \texttt{HORIZONTAL} et \texttt{VERTICAL}, c'est-à-dire dans\texttt{[(1,0), (0,1)]} permet de condenser les calculs sur ces deux directions dans une seule boucle.\\
+\texttt{ct[direction[1]]} et \texttt{direction[direction[1]]} permettent d'obtenir respectivement \texttt{ct[0]} et \texttt{direction[0]} dans le cas horizontal, et \texttt{ct[1]} et \texttt{direction[1]} dans le cas vertical.
+
+Notons que dans cet algorithme on en s'intéresse qu'aux cases adjacentes à \texttt{case\_touchee}.
+
+\medskip
+
+Le tri final de la liste se fait de la façon suivante : on commence par convertir le dictionnaire \texttt{probas} en liste \texttt{probas\_liste}, puis un l'ordonne avec l'instruction
+\begin{center}
+\texttt{sorted(probas\_liste, key=lambda proba: proba[1], reverse = True)}
+\end{center}
+
+\newpage
 \subsubsection{Mise à jour après le deuxième coup touché}
 \texttt{Ordi.update\_queue\_touche(self)} :
 \begin{algo1}
-Si case\_courante[1] == case\_touchee[1] :
+Si case\_courante[1] == case\_touchee[1] :\\
 \tab{1}direction=(1,0)\\
 Sinon :\\
 \tab{1}direction=(0,1)\\
+Si on vient de découvrir la direction du bateau (len(liste\_touchee==1)):\\
+\tab{1}On affiche cette direction\\
+\tab{1}On enlève les cases \\
+\tab{3} (case\_touchee[0]-direction[1], case\_touchee[1]-direction[0])\\ 
+\tab{3}et (case\_touchee[0]-direction[1], case\_touchee[1]-direction[0])\\
+\tab{3}de la file d'attente\\
+nv\_case est la case\\
+\tab{2}(case\_courante[0] + direction[0]*signe(case\_courante[0]-case\_touchee[0]),\\
+\tab{2} case\_courante[1] + direction[0]*signe(case\_courante[1]-case\_touchee[1]))\\
+Si nv\_case est dans la grille et est vide :\\
+\tab{1}On ajoute nv\_case à la file d'attente\\
+On ajoute case\_courante à liste\_touches\\
 \end{algo1}
+
+La liste \texttt{liste\_touches} permet de savoir combien de cases ont été touchées sur ce bateau. Si c'est la deuxième, on met à jour les file d'attente avec les case dans la bonne direction.
+
+\texttt{signe(x)} renvoie 1 si $x>0$ et $-1$ si $x<0$.\\
+\texttt{signe(case\_courante[i]-case\_touche[i])}, pour $i\in\{0,1\}$, permet de déterminer le sens dans lequel on vient de toucher la nouvelle case, ce qui permet d'ajouter la case en bout de configuration à la file d'attente (si elle est valide et vide).
 
 
 \subsubsection{Mise à jour après le deuxième coup manqué}
 
+\newpage
 \subsection{Algorithme complet de résolution}
 Voici l'algorithme complet de résolution de la grille par l'ordinateur :
 
@@ -253,7 +306,7 @@ Tant que le grille n'est pas résolue :\\
 On affiche le nombre de coups\\
 \end{algo1}
 
-
+\newpage
 \section{Déroulement de la partie}
 
 Une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur porte le numéro $0$ et son adversaire le numéro $1$) :

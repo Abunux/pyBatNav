@@ -154,7 +154,9 @@ La construction de la liste des cases adjacentes possibles est effectuée par la
 
 Pour l'optimisation de cette phase, on va classer la file d'attente en ordre décroissant de nombre de bateaux possibles avec la méthode \texttt{Ordi.shuffle\_queue(self)}.
  
-Cette optimisation est un petit peu délicate. Une fois qu'une case a été touchée, l'algorithme va tester ses 4 (au maximum) cases adjacentes et les ranger en ordre décroissant du nombre de bateaux possibles. C'est le rôle de la méthode \texttt{Grille.case\_max\_touchee(self, case\_touchee)}. 
+Cette optimisation est un petit peu délicate. Une fois qu'une case a été touchée, l'algorithme va tester ses 4 (au maximum) cases adjacentes et les ranger en ordre décroissant du nombre de bateaux possibles. C'est le rôle de la méthode \texttt{Grille.case\_max\_touchee(self, case\_touchee)}, dont l'algorithme complet est donné en annexe \ref{algo_liste}, page \pageref{case_max_touchee}. 
+
+\medskip
 
 Notons \texttt{(x, y)} les coordonnées de la case touchée et intéressons nous au nombre de bateaux possibles sur les cases adjacentes horizontales (pour les verticales, c'est exactement la même chose). Pour chaque taille de bateau à couler possible contenant \texttt{case\_touchee} il faudra distinguer trois cas :
 \begin{enumerate}

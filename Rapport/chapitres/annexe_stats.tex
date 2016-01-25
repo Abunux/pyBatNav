@@ -86,7 +86,7 @@ Avec des échantillons de taille 100 nous obtenons les résultats suivants sur $
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=4(100)_n=10000.png}}
 \end{center}
  
-Les résultats sont très bons, avec une moyenne de 42,79 coups par partie, mais le temps de calcul commence à devenir long (presque 3 secondes par partie). 
+Les résultats sont très bons, avec une moyenne de 42,84 coups par partie, mais le temps de calcul commence à devenir long (2,5 secondes par partie). 
 
 \newpage
 \subsection{Échantillons de taille \texttt{nb\_echantillons=1\,000}}
@@ -117,6 +117,8 @@ Comme on pouvait s'y attendre le temps de résolution est approximativement lin�
 
 Les résultats en nombre de coups sont très corrects mais le coût en temps de calcul est rédhibitoire. Par ailleurs, il a été impossible de créer de grosses simulations avec un \texttt{nb\_echantillons} élevé ce qui biaise un peu les comparaisons.
 
+\medskip
+
 Voici un tableau récapitulatif des résultats obtenus :
 
  \medskip
@@ -124,15 +126,17 @@ Voici un tableau récapitulatif des résultats obtenus :
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
 \hline
+Numéro de la simulation & 1 & 2 & 3 & 4\\
+\hline
 Taille des échantillons pour l'algorithme & 10 & 100 &  1\,000 & 10\,000\\
 \hline
 Nombre de parties $n$ & 100\,000 & 10\,000 & 1\,000 & 100\\
 \hline
-Nombre de coups moyens $\conj x$ & 44,29 & 42,79 & 42,21 & 42,63\\
+Nombre de coups moyens $\conj x$ & 44,29 & 42,84 & 42,21 & 42,63\\
 \hline
-Écart-type\footnote{Vu la taille importante des échantillons nous prendrons $\sigma_\text{estimé}=\sigma_{échantillon}$}  $\sigma$ & 6,62 & 6,28 & 6,10 & 5,89\\
+Écart-type\footnote{Vu la taille importante des échantillons nous prendrons $\sigma_\text{estimé}=\sigma_{échantillon}$}  $\sigma$ & 6,62 & 6,24 & 6,10 & 5,89\\
 \hline
-Temps moyen par partie (en secondes) & 0,29 & 2,8 & 26,6 & 287\\
+Temps moyen par partie (en secondes) & 0,29 & 2,5 & 26,6 & 287\\
 \hline 
 \end{tabular}\\
 \end{center}
@@ -140,17 +144,17 @@ Temps moyen par partie (en secondes) & 0,29 & 2,8 & 26,6 & 287\\
 \medskip
 
 \begin{center}
-\begin{tabular}{|c|c|}
+\begin{tabular}{|l|l|c|}
 \hline
-Taille des échantillons & Intervalle de confiance\footnote{Au seuil de 95\% : $\left[\conj x-1,96\frac{\sigma}{\sqrt{n}}~;~ \conj x+1,96\frac{\sigma}{\sqrt{n}}\right]$ } de $\conj x$ \\
+\no & \texttt{nb\_echantillons} & Intervalle de confiance\footnote{Au seuil de 95\% : $\left[\conj x-1,96\frac{\sigma}{\sqrt{n}}~;~ \conj x+1,96\frac{\sigma}{\sqrt{n}}\right]$ } de $\mu$ \\
 \hline
-10 & $[44,25~;~44,33]$\\
+1 & 10 & $[44,25~;~44,33]$\\
 \hline
-100 & $[42,63 ~;~42,88]$\\
+2 & 100 & $[42,72 ~;~42,96]$\\
 \hline
-1\,000 & $[41,83~;~42,59]$\\
+3 & 1\,000 & $[41,83~;~42,59]$\\
 \hline
-10\,000& $[41,48~;~43,78]$\\
+4 & 10\,000& $[41,48~;~43,78]$\\
 \hline
 \end{tabular}
 \end{center}
@@ -158,112 +162,7 @@ Taille des échantillons & Intervalle de confiance\footnote{Au seuil de 95\% : $
 \newpage
 \section{Niveau 5}
 Les résultats obtenues sur un échantillon de $n=1\,000\,000$ parties sont les suivants :
-\begin{comment}
-\begin{center}
-\begin{tabular}[t]{|c|l|}
-\hline
-Nombre de coups & Effectifs\\
-\hline
-21 & 5\\
-\hline
-22 & 12\\
-\hline
-23 & 38\\
-\hline
-24 & 139\\
-\hline
-25 & 345\\
-\hline
-26 & 756\\
-\hline
-27 & 1635\\
-\hline
-28 & 3141\\
-\hline
-29 & 5188\\
-\hline
-30 & 8244\\
-\hline
-31 & 12579\\
-\hline
-32 & 17849\\
-\hline
-33 & 24091\\
-\hline
-34 & 30884\\
-\hline
-35 & 38162\\
-\hline
-36 & 45397\\
-\hline
-37 & 51988\\
-\hline
-38 & 57489\\
-\hline
-39 & 61778\\
-\hline
-40 & 64082\\
-\hline
-41 & 64215\\
-\hline
-42 & 62822\\
-\hline
-43 & 59966\\
-\hline
-\end{tabular}\hspace{0.5cm}
-\begin{tabular}[t]{|c|l|}
-\hline
-Nombre de coups & Effectifs\\
-\hline
-44 & 56471\\
-\hline
-45 & 51981\\
-\hline
-46 & 46666\\
-\hline
-47 & 41422\\
-\hline
-48 & 35961\\
-\hline
-49 & 31474\\
-\hline
-50 & 26963\\
-\hline
-51 & 22700\\
-\hline
-52 & 19270\\
-\hline
-53 & 15816\\
-\hline
-54 & 12374\\
-\hline
-55 & 9586\\
-\hline
-56 & 6861\\
-\hline
-57 & 4819\\
-\hline
-58 & 3020\\
-\hline
-59 & 1844\\
-\hline
-60 & 1062\\
-\hline
-61 & 521\\
-\hline
-62 & 241\\
-\hline
-63 & 101\\
-\hline
-64 & 28\\
-\hline
-65 & 10\\
-\hline
-66 & 4\\
-\hline
-\end{tabular}
-\end{center}
-\end{comment}
+
 \begin{center}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=5_n=1000000.png}}
 \end{center}
