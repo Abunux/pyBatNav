@@ -464,8 +464,8 @@ class JoueurC(Joueur):
 #
 class OrdiC(JoueurC, Ordi):
 	"""Résoultion de la grille en mode console"""
-	def __init__(self, nom='HAL', niveau=4, nb_echantillons=100):
-		Ordi.__init__(self, nom, niveau, nb_echantillons)
+	def __init__(self, nom='HAL', niveau=4, nb_echantillons=100, seuil=20):
+		Ordi.__init__(self, nom, niveau, nb_echantillons, seuil)
 		JoueurC.__init__(self, nom)
 		
 	def resolution(self, affiche=True, grille=None):
@@ -677,8 +677,8 @@ class MainConsole(object):
 		ok = False
 		while not ok :
 			try :
-				niveau = input("Niveau de l'algorithme (1 à 5) : ")
-				if niveau not in '12345' or niveau == '':
+				niveau = input("Niveau de l'algorithme (1 à 6) : ")
+				if niveau not in '123456' or niveau == '':
 					niveau = 5
 				else : 
 					niveau = int(niveau)
@@ -703,12 +703,27 @@ class MainConsole(object):
 		else :
 			return 100 # Cette valeur n'a aucune importance
 	
-	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=5, nb_echantillons=100):
+	def get_seuil(self, niveau):
+		"""Pour le niveau 6, demande le seuil"""
+		if niveau == 6 :
+			ok = False
+			while not ok :
+				try :
+					seuil = int(input("Seuil : "))
+					ok = True
+				except :
+					info("Saisie invalide\n")
+					ok = False
+			return seuil
+		else :
+			return 20 # Cette valeur n'a aucune importance
+	
+	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=5, nb_echantillons=100, seuil=20):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
 		grille = GrilleJoueurC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		grille.init_bateaux_alea()
-		ordi = OrdiC(niveau=niveau, nb_echantillons=nb_echantillons)
+		ordi = OrdiC(niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 		ordi.grille_adverse = grille
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		ordi.grille_suivi.reinit()
@@ -735,7 +750,7 @@ class MainConsole(object):
 		ordi = OrdiC(niveau=niveau, nb_echantillons=nb_echantillons)
 		partie = PartieC(joueur, ordi)
 
-	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=4, nb_echantillons=100):
+	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=4, nb_echantillons=100, seuil=20):
 		"""Test de l'agorithme de résolution sur n parties
 		et affichage des statistiques"""
 		# Lancement de la simulation		
@@ -744,7 +759,7 @@ class MainConsole(object):
 		info("Lancement de la simulation : %s" % (strftime("%d/%m/%Y %H:%M:%S",localtime(time()))))
 		start = time()
 		for k in range(n):
-			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau, nb_echantillons=nb_echantillons)
+			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 			temps_resolution += temps
 			distrib[essais] += 1
 			# Affichage de l'avancement de la simulation
@@ -813,6 +828,7 @@ class MainConsole(object):
 		
 		niveau = self.get_niveau()
 		nb_echantillons = self.get_nb_echantillons(niveau)
+		seuil = self.get_seuil(niveau)
 		
 		ok = False
 		while not ok :
@@ -823,7 +839,7 @@ class MainConsole(object):
 				info("Saisie invalide\n")
 				ok = False
 		# Lancement du test
-		self.test_algo(n, xmax, ymax, taille_bateaux, niveau, nb_echantillons)
+		self.test_algo(n, xmax, ymax, taille_bateaux, niveau, nb_echantillons, seuil)
 	
 	#
 	# Menu de lancement ------------------------------------------------
@@ -908,7 +924,8 @@ class MainConsole(object):
 			elif choix.lower() == 'o' :
 				niveau = self.get_niveau()
 				nb_echantillons = self.get_nb_echantillons(niveau)
-				self.jeu_ordi(niveau=niveau)
+				seuil = self.get_seuil(niveau)
+				self.jeu_ordi(niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 				
 			elif choix.lower() == 'j' :
 				self.jeu_contre_ordi()

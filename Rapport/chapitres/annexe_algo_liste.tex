@@ -87,7 +87,7 @@ Sinon :\\
 \tab{1}Retourner Vrai\\ 
 \end{algo1}
 
-Si \texttt{possibles[taille]} est vide, cela signifie qu'on ne peu pas placer ce bateau et donc en renvoie Faux pour éviter une situation de blocage par la suite, sinon on renvoie Vrai pour indiquer que tout s'est bien passé.
+Si \texttt{possibles[taille]} est vide, cela signifie qu'on ne peut pas placer ce bateau et donc en renvoie Faux pour éviter une situation de blocage par la suite, sinon on renvoie Vrai pour indiquer que tout s'est bien passé.
 
 \subsubsection{Création d'une flotte aléatoire}\label{init_alea}
 \texttt{Grille.init\_alea(self)} :
@@ -181,12 +181,13 @@ Créer toutes les répartitions de bateaux sur gtmp\\
 Récupérer la case qui en contient le plus\\ 
 \end{algo1}
 
-\texttt{Grille.make\_all(self,gtmp)} :
+\texttt{Grille.make\_all(self, gtmp)} :
 \begin{algo1}
+\# En entrée : une grille gtmp\\
 S'il n'y a plus de bateaux dans la liste de gtmp :\\
 \tab{1}Mettre à jour les probabilités avec les cases occupées sur gtmp\\
 \tab{1}Sortir de la fonction\\
-Récupérer les placements de bateaux possibles sur gtmp\\
+Récupérer les positions de bateaux possibles sur gtmp\\
 taille est la taille du premier bateau restant\\
 Pour (case, direction) dans possibles[taille] :\\
 \tab{1}gtmp2 est une copie temporaire de gtmp\\
@@ -197,7 +198,60 @@ Pour (case, direction) dans possibles[taille] :\\
 
 Cet algorithme est récursif. On utilise une grille temporaire \texttt{gtmp} sur laquelle on va faire tous les arrangements possibles. Pour chaque placement possible d'un bateau, on crée une autre grille temporaire \texttt{gtmp2} sur laquelle on va recommencer à faire tous les arrangements possibles avec les bateaux restants.
 
+\medskip
+
+Le problème de cet algorithme est qu'il est exponentiel. Avec une grille vide de $10\times 10$, on obtient les données suivantes :
+\begin{itemize}
+\item \texttt{taille\_bateaux=[5,4]} : $\approx 10^4$ répartitions, 0,8 secondes
+\item \texttt{taille\_bateaux=[5,4,3]} : $\approx 10^6$ répartitions, 72 secondes
+\item \texttt{taille\_bateaux=[5,4,3,2]} : $101\,286\,480$ répartitions, 6566 secondes
+\end{itemize}
+
+À chaque fois qu'on ajoute un bateau, le nombre de répartitions possibles, ainsi que le temps de calcul pour les déterminer, est multiplié par 100.
+
+Pour une liste de bateaux \texttt{taille\_bateaux=[5,4,3,3,2]} on s'attend donc à $10^{10}$ répartitions et un temps de calcul d'environ 8 jours !
+
+Certes, sur une grille vide, on pourrait jouer avec les symétries (et diviser le calcul par $2^8=256$) mais cette symétrie est tout de suite brisée dès qu'une case a été jouée.
+
+Même si cette méthode est inutilisable en tant que telle, elle peut être intéressante sur de petites grilles, ou avec peu de bateaux, et donc peut être utilisée en fin de partie.
+
+Pour information voici, sur la page suivante, le nombre de répartitions sur chaque case pour \texttt{taille\_bateaux=[5,4,3,2]} :
+
+
+\begin{landscape}
+\vspace*{4cm}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+&0&1&2&3&4&5&6&7&8&9\\
+\hline
+0 & 8138842 & 11060807 & 13598504 & 15286936 & 16111642 & 16111642 & 15286936 & 13598504 & 11060807 & 8138842\\
+\hline
+1 & 11060807 & 12059986 & 13448547 & 14238869 & 14511549 & 14511549 & 14238869 & 13448547 & 12059986 & 11060807\\
+\hline
+2 & 13598504 & 13448547 & 14505458 & 15088255 & 15244715 & 15244715 & 15088255 & 14505458 & 13448547 & 13598504\\
+\hline
+3 & 15286936 & 14238869 & 15088255 & 15542880 & 15653410 & 15653410 & 15542880 & 15088255 & 14238869 & 15286936\\
+\hline
+4 & 16111642 & 14511549 & 15244715 & 15653410 & 15769046 & 15769046 & 15653410 & 15244715 & 14511549 & 16111642\\
+\hline
+5 & 16111642 & 14511549 & 15244715 & 15653410 & 15769046 & 15769046 & 15653410 & 15244715 & 14511549 & 16111642\\
+\hline
+6 & 15286936 & 14238869 & 15088255 & 15542880 & 15653410 & 15653410 & 15542880 & 15088255 & 14238869 & 15286936\\
+\hline
+7 & 13598504 & 13448547 & 14505458 & 15088255 & 15244715 & 15244715 & 15088255 & 14505458 & 13448547 & 13598504\\
+\hline
+8 & 11060807 & 12059986 & 13448547 & 14238869 & 14511549 & 14511549 & 14238869 & 13448547 & 12059986 & 11060807\\
+\hline
+9 & 8138842 & 11060807 & 13598504 & 15286936 & 16111642 & 16111642 & 15286936 & 13598504 & 11060807 & 8138842\\
+\hline
+\end{tabular}\\
+\textit{Nombre de bateaux sur chaque case pour une grille vide avec \texttt{taille\_bateaux=[5,4,3,2]}}
+\end{center}
+\end{landscape}
+
 \newpage
+
 \subsection{Gestion de la file d'attente}
 \subsubsection{Création de la file d'attente}\label{add_adjacentes_premiere}
 \texttt{Ordi.add\_adjacentes\_premiere(self)} :

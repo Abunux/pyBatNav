@@ -117,7 +117,7 @@ class Joueur(object):
 #
 class Ordi(Joueur):
 	"""Algorithme de résolution"""
-	def __init__(self, nom='HAL', niveau=5, nb_echantillons=100):
+	def __init__(self, nom='HAL', niveau=5, nb_echantillons=100, seuil=20):
 		# Initialisation de la classe Joueur
 		Joueur.__init__(self, nom)
 		
@@ -130,8 +130,11 @@ class Ordi(Joueur):
 		# niveau=5 : Aveugle nb possibilités, ciblé 
 		self.niveau = niveau
 		
-		#<Nombre d'échantillons pour le niveau 4
+		# Nombre d'échantillons pour le niveau 4
 		self.nb_echantillons = nb_echantillons
+		
+		# Seuil à partir duquel on fait une recherche exhaustive (pour le niveau 6)
+		self.seuil = seuil
 		
 		# Initialisation de sa grille
 		self.grille_joueur.init_bateaux_alea()
@@ -179,12 +182,11 @@ class Ordi(Joueur):
 			self.case_courante = case_max
 			self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
 		else :
-			(case_max, pmax) = self.grille_suivi.case_max()
-			#~ if len(self.grille_suivi.vides) > 70 :
-				#~ (case_max, pmax) = self.grille_suivi.case_max()
-			#~ else :
-				#~ (case_max, pmax) = self.grille_suivi.case_max_all()
-				#~ self.messages.append("Je crée tous les arrangements possibles")
+			if self.niveau == 5 or len(self.grille_suivi.vides) > self.seuil :
+				(case_max, pmax) = self.grille_suivi.case_max()
+			else :
+				(case_max, pmax) = self.grille_suivi.case_max_all()
+				self.messages.append("Seuil %d atteint. Je crée tous les arrangements possibles" % self.seuil)
 			self.case_courante = case_max
 			self.messages.append("Je tire sur la case %s qui est la plus probable (%d bateaux possibles)" % (alpha(self.case_courante), pmax))
 	

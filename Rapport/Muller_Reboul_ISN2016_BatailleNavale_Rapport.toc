@@ -67,13 +67,13 @@
 \contentsline {subsubsection}{\numberline {2.1.1}D\IeC {\'e}termination des probabilit\IeC {\'e}s par \IeC {\'e}chantillonnage}{32}
 \contentsline {subsubsection}{\numberline {2.1.2}D\IeC {\'e}termination du nombre de bateaux possibles sur chaque case}{32}
 \contentsline {subsubsection}{\numberline {2.1.3}\IeC {\'E}num\IeC {\'e}ration de tous les cas}{33}
-\contentsline {subsection}{\numberline {2.2}Gestion de la file d'attente}{34}
-\contentsline {subsubsection}{\numberline {2.2.1}Cr\IeC {\'e}ation de la file d'attente}{34}
-\contentsline {subsubsection}{\numberline {2.2.2}Optimisation de la file d'attente}{35}
-\contentsline {subsubsection}{\numberline {2.2.3}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup touch\IeC {\'e}}{36}
-\contentsline {subsubsection}{\numberline {2.2.4}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup manqu\IeC {\'e}}{37}
-\contentsline {subsection}{\numberline {2.3}Algorithme complet de r\IeC {\'e}solution}{38}
-\contentsline {section}{\numberline {3}D\IeC {\'e}roulement de la partie}{39}
+\contentsline {subsection}{\numberline {2.2}Gestion de la file d'attente}{35}
+\contentsline {subsubsection}{\numberline {2.2.1}Cr\IeC {\'e}ation de la file d'attente}{35}
+\contentsline {subsubsection}{\numberline {2.2.2}Optimisation de la file d'attente}{36}
+\contentsline {subsubsection}{\numberline {2.2.3}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup touch\IeC {\'e}}{37}
+\contentsline {subsubsection}{\numberline {2.2.4}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup manqu\IeC {\'e}}{38}
+\contentsline {subsection}{\numberline {2.3}Algorithme complet de r\IeC {\'e}solution}{39}
+\contentsline {section}{\numberline {3}D\IeC {\'e}roulement de la partie}{40}
 \contentsline {chapter}{\numberline {B}\IeC {\'E}tude statistique des algorithmes de r\IeC {\'e}solution}{41}
 \contentsline {section}{\numberline {1}Niveau 1}{42}
 \contentsline {section}{\numberline {2}Niveau 2}{43}

@@ -497,7 +497,7 @@ class Grille(object):
 		return (case_max, pmax)
 	
 	def make_all(self, gtmp):
-		"""Crée toutes les réaprtitions possibles de bateaux"""
+		"""Crée toutes les répartitions possibles de bateaux"""
 		global start_iter, n_iter
 		if len(gtmp.taille_bateaux) == 0 :
 			self.nb_repart += 1
@@ -511,8 +511,8 @@ class Grille(object):
 		taille = gtmp.taille_bateaux[0]
 		for (case, direction) in gtmp.possibles[taille]:
 			n_iter += 1
-			if self.nb_repart % 10000 == 0 :
-				print(n_iter, time()-start_iter)
+			#~ if n_iter % 10000 == 0 :
+				#~ print(n_iter, time()-start_iter)
 			gtmp2 = gtmp.copie_grille_tmp()
 			gtmp2.add_bateau(Bateau(taille, case, direction))
 			gtmp2.rem_bateau(taille)
@@ -807,12 +807,23 @@ class GrilleSuivi(Grille):
 #----------------------------------------------------------------------------------------------------------------
 #
 if __name__ == "__main__" :
-	grille = Grille(xmax=6, ymax=6,taille_bateaux=[2,2,2])
+	#~ grille = Grille(xmax=6, ymax=6,taille_bateaux=[2,2,3])
+	#~ grille = Grille(xmax=3, ymax=3,taille_bateaux=[2,3])
+	grille = Grille(xmax=10, ymax=10,taille_bateaux=[5,4,3,2])
 	#~ grille = Grille(xmax=2, ymax=2,taille_bateaux=[2,2])
 	#~ grille = Grille()
+	launch_time = strftime("%d/%m/%Y %H:%M:%S",localtime(time()))
+	print(launch_time)
 	start = time()
 	grille.case_max_all()
-	print(time()-start, grille.nb_repart)
+	print()
+	print("Temps : %.2f seconde" % (time()-start))
+	print("Nombre d'itérations : %d " % n_iter)
+	print("Nombre de répartitions : %d " % grille.nb_repart)
+	print()
+	print("Début :", launch_time)
+	print("Fin :", strftime("%d/%m/%Y %H:%M:%S",localtime(time())))
+	print()
 	for j in range(grille.ymax) :
 		for i in range(grille.xmax-1):
 			print(grille.probas_all[(i,j)], end=' ')
