@@ -236,7 +236,8 @@ class Stats(object):
 
 if __name__ == "__main__" :
 	pass
-	#~ s = Stats(filename= "distrib_HAL_niveau=4(100)_n=10000", tmoy=2.8488, niveau_str="4(100)")
+	#~ s = Stats(filename= "distrib_HAL_niveau=6_n=10000", tmoy=1.441, niveau_str="6(60)")
+	#~ s.filename="distrib_HAL_niveau=6(60)_n=10000"
 	#~ s.save_data()
 	#~ s.histogramme(save=True)
 

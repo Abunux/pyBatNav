@@ -126,7 +126,7 @@ def boite(texte, prefixe ='', larg_fen = 98):
 class GrilleC(Grille) :
 	"""Affichage de la grille en mode console"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
-		Grille.__init__(self, xmax, ymax, taille_bateaux = taille_bateaux)
+		Grille.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		
 		# Chaine de caractères pour affichage de la grille
 		self.chaine = ""
@@ -376,8 +376,8 @@ class GrilleC(Grille) :
 class GrilleJoueurC(GrilleC, GrilleJoueur):
 	"""La grille sur laquelle chaque joueur place ses bateaux"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
-		GrilleJoueur.__init__(self, xmax, ymax, taille_bateaux)
-		GrilleC.__init__(self, xmax, ymax, taille_bateaux)
+		GrilleJoueur.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
+		GrilleC.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -385,8 +385,8 @@ class GrilleJoueurC(GrilleC, GrilleJoueur):
 class GrilleSuiviC(GrilleC, GrilleSuivi):
 	"""La grille de suivi des coups joués"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
-		GrilleSuivi.__init__(self, xmax, ymax, taille_bateaux)
-		GrilleC.__init__(self, xmax, ymax, taille_bateaux)
+		GrilleSuivi.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
+		GrilleC.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -394,7 +394,7 @@ class GrilleSuiviC(GrilleC, GrilleSuivi):
 class JoueurC(Joueur):
 	"""Joueur en mode console"""
 	def __init__(self, nom='Joueur'):
-		Joueur.__init__(self, nom)
+		Joueur.__init__(self, nom=nom)
 		self.grille_joueur = GrilleJoueurC()
 		self.grille_adverse = GrilleJoueurC()
 		self.grille_suivi = GrilleSuiviC()
@@ -465,7 +465,7 @@ class JoueurC(Joueur):
 class OrdiC(JoueurC, Ordi):
 	"""Résoultion de la grille en mode console"""
 	def __init__(self, nom='HAL', niveau=4, nb_echantillons=100, seuil=20):
-		Ordi.__init__(self, nom, niveau, nb_echantillons, seuil)
+		Ordi.__init__(self, nom=nom, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 		JoueurC.__init__(self, nom)
 		
 	def resolution(self, affiche=True, grille=None):
@@ -536,7 +536,7 @@ class OrdiC(JoueurC, Ordi):
 class PartieC(Partie):
 	"""Partie à deux joueurs en mode console"""
 	def __init__(self, joueur=Joueur(), adversaire=Ordi()):
-		Partie.__init__(self, joueur, adversaire)
+		Partie.__init__(self, joueur=joueur, adversaire=adversaire)
 		
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
@@ -753,7 +753,7 @@ class MainConsole(object):
 	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=4, nb_echantillons=100, seuil=20):
 		"""Test de l'agorithme de résolution sur n parties
 		et affichage des statistiques"""
-		# Lancement de la simulation		
+		# Lancement de la simulation
 		temps_resolution = 0
 		distrib = [0]*(xmax*ymax+1)
 		info("Lancement de la simulation : %s" % (strftime("%d/%m/%Y %H:%M:%S",localtime(time()))))
@@ -776,12 +776,21 @@ class MainConsole(object):
 		
 		# Résultats de la simulation
 		tmoy = temps_resolution/n
-		if niveau != 4 :
-			filename = "distrib_HAL_niveau=%d_n=%d" % (niveau, n)
-			niveau_str = str(niveau)
-		else :
-			filename = "distrib_HAL_niveau=4(%d)_n=%d" % (nb_echantillons, n)
+		#~ if niveau != 4 :
+			#~ filename = "distrib_HAL_niveau=%d_n=%d" % (niveau, n)
+			#~ niveau_str = str(niveau)
+		#~ else :
+			#~ filename = "distrib_HAL_niveau=4(%d)_n=%d" % (nb_echantillons, n)
+			#~ niveau_str = "4(%d)" % nb_echantillons
+		if niveau == 4 :
 			niveau_str = "4(%d)" % nb_echantillons
+		elif niveau == 6 :
+			niveau_str = "6(%d)" % seuil
+		else:
+			niveau_str = "4(%d)" % nb_echantillons
+		
+		filename = "distrib_HAL_niveau=%s_n=%d" % (niveau_str, n)
+
 		stats = Stats(data=distrib, filename=filename, tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau_str=niveau_str)
 		#~ stats = Stats(data=distrib, filename="distrib_HAL_niveau=%d_n=%d" % (niveau, n), tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau=niveau)
 		
@@ -839,7 +848,7 @@ class MainConsole(object):
 				info("Saisie invalide\n")
 				ok = False
 		# Lancement du test
-		self.test_algo(n, xmax, ymax, taille_bateaux, niveau, nb_echantillons, seuil)
+		self.test_algo(n=n, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 	
 	#
 	# Menu de lancement ------------------------------------------------

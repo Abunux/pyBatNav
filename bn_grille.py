@@ -107,17 +107,17 @@ class Grille(object):
 		self.get_taille_max()
 		self.get_taille_min()
 	
-	def is_touche(self, case):
-		"""Test si la case contient un bateau"""
-		return self.etat[case] == 1
-	
 	#
 	# Gestion des cases ------------------------------------------------
 	#
 	def test_case(self, case):
-		"""Test si une case est valide (dans la grille) et vide"""
+		"""Teste si une case est valide (dans la grille) et vide"""
 		return 0 <= case[0] < self.xmax and 0 <= case[1] < self.ymax and self.etat[case] == 0
 	
+	def is_touche(self, case):
+		"""Teste si la case contient un bateau"""
+		return self.etat[case] == 1
+		
 	def adjacent(self, case):
 		"""Retourne la liste des cases vides adjacentes à case
 		dans l'ordre : DROITE, GAUCHE, HAUT, BAS"""
@@ -279,24 +279,6 @@ class Grille(object):
 			(case, direction) = rand.choice(self.possibles[taille])
 			self.add_bateau(Bateau(taille, case, direction))
 			return True
-	
-	#~ def init_bateaux_alea0(self):
-		#~ # --> Nickel mais amélioré par la suite
-		#~ """Initialise une grille avec des bateaux aléatoires"""
-		#~ nb_bateaux = 0
-		#~ while nb_bateaux < len(self.taille_bateaux) :
-			#~ nb_bateaux = 0
-			#~ gtmp = self.copie_grille_tmp()
-			#~ for taille in self.taille_bateaux :
-				#~ gtmp.get_possibles()
-				#~ if not gtmp.possibles[taille] :
-					#~ break
-				#~ else :
-					#~ (case, direction) = rand.choice(gtmp.possibles[taille])
-					#~ gtmp.add_bateau(Bateau(taille, case, direction))
-					#~ gtmp.rem_bateau(taille)
-					#~ nb_bateaux += 1
-		#~ self.etat = gtmp.etat
 		
 	def init_bateaux_alea(self):
 		"""Initialise une grille avec des bateaux aléatoires"""
@@ -443,37 +425,9 @@ class Grille(object):
 		probas_liste = [(case, probas[case]) for case in probas]
 		return sorted(probas_liste, key=lambda proba: proba[1], reverse = True)
 	
-	# 
-	# Fin de partie ----------------------------------------------------
-	#
-	def fini(self):
-		"""Renvoie True si tous les bateaux ont été coulés"""
-		somme_touches = 0
-		for case in self.etat :
-			if self.etat[case] == 1 :
-				somme_touches += 1
-		return somme_touches == self.somme_tailles
-	
-	#
-	# Affichage --------------------------------------------------------
-	#
-	#~ def affiche(self):
-		#~ """Affiche la grille
-		#~ Méthode à surcharger suivant l'interface"""
-		#~ pass
-				
-				
-	
-	#
-	# Tests
-	#
-	
-	# Essai pour déterminer tous les arrangements de bateaux possibles
-	
 	def case_max_all(self):
-		"""Détermination de la case optimale
-		par énumération de toutes les répartitions possibles
-		de bateaux"""
+		"""Détermination de la case optimale par énumération de
+		toutes les répartitions possibles de bateaux"""
 		self.probas_all = {}
 		for i in range(self.xmax):
 			for j in range(self.ymax):
@@ -518,11 +472,49 @@ class Grille(object):
 			gtmp2.rem_bateau(taille)
 			self.make_all(gtmp2)
 	
+	# 
+	# Fin de partie ----------------------------------------------------
+	#
+	def fini(self):
+		"""Renvoie True si tous les bateaux ont été coulés"""
+		somme_touches = 0
+		for case in self.etat :
+			if self.etat[case] == 1 :
+				somme_touches += 1
+		return somme_touches == self.somme_tailles
 	
+	#
+	# Affichage --------------------------------------------------------
+	#
+	#~ def affiche(self):
+		#~ """Affiche la grille
+		#~ Méthode à surcharger suivant l'interface"""
+		#~ pass
+				
+				
+
 	# --------------------------------
 	# Poubelle 
 	# Méthodes plus utilisées (backup)
 	# --------------------------------
+	#~ def init_bateaux_alea0(self):
+		#~ # --> Nickel mais amélioré par la suite
+		#~ """Initialise une grille avec des bateaux aléatoires"""
+		#~ nb_bateaux = 0
+		#~ while nb_bateaux < len(self.taille_bateaux) :
+			#~ nb_bateaux = 0
+			#~ gtmp = self.copie_grille_tmp()
+			#~ for taille in self.taille_bateaux :
+				#~ gtmp.get_possibles()
+				#~ if not gtmp.possibles[taille] :
+					#~ break
+				#~ else :
+					#~ (case, direction) = rand.choice(gtmp.possibles[taille])
+					#~ gtmp.add_bateau(Bateau(taille, case, direction))
+					#~ gtmp.rem_bateau(taille)
+					#~ nb_bateaux += 1
+		#~ self.etat = gtmp.etat
+	
 	#~ def make_bateau_alea0(self, taille):
 		#~ """Crée un bateau aléatoire (pas forcément valide)"""
 		#~ (x,y) = rand.choice(self.vides)
