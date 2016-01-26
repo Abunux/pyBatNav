@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  25 JAN 2016 20:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  25 JAN 2016 20:56
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2677,9 +2677,9 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (321.80237pt too wide) in paragraph at lines 31--31
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f815
-2993f60>, adversaire=<bn_joueur.Ordi object at 0x7f815299fb00>)[] 
+Overfull \hbox (321.82338pt too wide) in paragraph at lines 31--31
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f590
+0133fd0>, adversaire=<bn_joueur.Ordi object at 0x7f5900140b70>)[] 
  []
 
 
@@ -2819,8 +2819,8 @@ ed.
 File: ./docstrings/bn_console.PartieC  (verbatim)
 
 Overfull \hbox (321.81638pt too wide) in paragraph at lines 48--48
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fb14
-5496cf8>, adversaire=<bn_joueur.Ordi object at 0x7fb13ee2a198>)[] 
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f4b6
+8f01d68>, adversaire=<bn_joueur.Ordi object at 0x7f4b62858208>)[] 
  []
 
 
@@ -2846,9 +2846,9 @@ runsystem(pydoc3 bn_console.MainConsole > ./docstrings/bn_console.MainConsole).
 
 File: ./docstrings/bn_console.MainConsole  (verbatim)
 
-Overfull \hbox (253.91235pt too wide) in paragraph at lines 52--52
+Overfull \hbox (315.66238pt too wide) in paragraph at lines 52--52
 [] \T1/lmtt/m/n/12 |  jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bat
-eaux=[5, 4, 3, 3, 2], niveau=5, nb_echantillons=100)[] 
+eaux=[5, 4, 3, 3, 2], niveau=5, nb_echantillons=100, seuil=20)[] 
  []
 
 
@@ -2858,9 +2858,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [69]
-Overfull \hbox (223.03734pt too wide) in paragraph at lines 52--52
+Overfull \hbox (284.78737pt too wide) in paragraph at lines 52--52
 [] \T1/lmtt/m/n/12 |  test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=
-[5, 4, 3, 3, 2], niveau=4, nb_echantillons=100)[] 
+[5, 4, 3, 3, 2], niveau=4, nb_echantillons=100, seuil=20)[] 
  []
 
 
@@ -2875,7 +2875,7 @@ File: ./docstrings/bn_stats.Stats  (verbatim)
 
 Overfull \hbox (420.63744pt too wide) in paragraph at lines 57--57
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'xmax': 10, 'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2]}, niveau_str='5')
+le={'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10}, niveau_str='5')
 [] 
  []
 
@@ -2891,28 +2891,31 @@ Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
 -------------[] 
  []
 
-) (./chapitres/annexe_algo.tex
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[71]
+[71]) (./chapitres/annexe_algo.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[72
-
-]
+[72]
 Annexe E.
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 33.
 
-[73]
+[73
+
+]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 66.
 
@@ -3331,7 +3334,7 @@ re/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts
 i8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (115 pages, 
-804143 bytes).
+804341 bytes).
 PDF statistics:
  470 PDF objects out of 1000 (max. 8388607)
  303 compressed objects within 4 object streams

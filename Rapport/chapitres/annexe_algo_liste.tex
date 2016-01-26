@@ -209,11 +209,11 @@ Le problème de cet algorithme est qu'il est exponentiel. Avec une grille vide d
 
 À chaque fois qu'on ajoute un bateau, le nombre de répartitions possibles, ainsi que le temps de calcul pour les déterminer, est multiplié par 100.
 
-Pour une liste de bateaux \texttt{taille\_bateaux=[5,4,3,3,2]} on s'attend donc à $10^{10}$ répartitions et un temps de calcul d'environ 8 jours !
+Pour une liste de bateaux \texttt{taille\_bateaux=[5,4,3,3,2]} on s'attend donc à $10^{10}$ répartitions et un temps de calcul d'environ 8 jours (pour un seul coup !).
 
 Certes, sur une grille vide, on pourrait jouer avec les symétries (et diviser le calcul par $2^8=256$) mais cette symétrie est tout de suite brisée dès qu'une case a été jouée.
 
-Même si cette méthode est inutilisable en tant que telle, elle peut être intéressante sur de petites grilles, ou avec peu de bateaux, et donc peut être utilisée en fin de partie.
+Même si cette méthode est inutilisable en tant que telle, elle peut être intéressante sur de petites grilles, ou avec peu de bateaux, et donc peut être utilisée en fin de partie. C'est le rôle du niveau 6 dans lequel on utilise cette méthode dès que le nombre de cases vides descend en-dessous d'un certain seuil.
 
 Pour information voici, sur la page suivante, le nombre de répartitions sur chaque case pour \texttt{taille\_bateaux=[5,4,3,2]} :
 
