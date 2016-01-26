@@ -67,7 +67,7 @@ class Stats(object):
 				self.data.append(int(v))
 	
 	def save_data(self):
-		"""Sauvegarde les données à partir d'un fichier texte"""
+		"""Sauvegarde les données dans un fichier texte"""
 		with open(self.filename + ".txt", "w") as datafile :
 			for k in range(len(self.data)) :
 				datafile.write(str(self.data[k]) + '\n')

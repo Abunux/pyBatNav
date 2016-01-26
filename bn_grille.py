@@ -212,11 +212,11 @@ class Grille(object):
 				return False
 		return True
 	
-	def get_possibles(self, affiche=False):
+	def get_possibles(self, affiche=False, tri=False):
 		"""Crée la liste des bateaux possibles démarrant sur chaque case
 		ainsi que la liste des cases et directions possibles pour
 		chaque bateau"""
-		# --> Il reste quelques fonctions de tri qui ne sont pas utiles pour la suite, mais c'est juste pour l'affichage des tests
+		# tri : Trie les listes, pour les tests (mais perd un peu de temps)
 		self.update_vides()
 		
 		# Liste des bateaux et sens possibles démarrant sur chaque case
@@ -227,8 +227,10 @@ class Grille(object):
 				self.possibles_case[(i,j)] = []
 				
 		# Récupère les éléments une seule fois de self.taille_bateaux, triés en ordre décroissant
-		#~ tmp_taille_bateaux = sorted(list(set(self.taille_bateaux)), reverse=True)
-		tmp_taille_bateaux = list(set(self.taille_bateaux))
+		if tri :
+			tmp_taille_bateaux = sorted(list(set(self.taille_bateaux)), reverse=True)
+		else :
+			tmp_taille_bateaux = list(set(self.taille_bateaux))
 		
 		# Regarde pour chaque case vide la taille maxi d'un bateau dans chaque direction
 		for case in self.vides :
@@ -244,8 +246,9 @@ class Grille(object):
 		for case in self.possibles_case :
 			for placement in self.possibles_case[case]:
 				self.possibles[placement[0]].append((case, placement[1]))
-		#~ for taille in self.taille_bateaux :
-			#~ self.possibles[taille].sort()
+		if tri :
+			for taille in self.taille_bateaux :
+				self.possibles[taille].sort()
 		
 		if affiche : # Pour les tests
 			for case in grille.vides :
@@ -425,7 +428,7 @@ class Grille(object):
 		probas_liste = [(case, probas[case]) for case in probas]
 		return sorted(probas_liste, key=lambda proba: proba[1], reverse = True)
 	
-	def case_max_all(self):
+	def case_max_all(self, affiche_all=False):
 		"""Détermination de la case optimale par énumération de
 		toutes les répartitions possibles de bateaux"""
 		self.probas_all = {}
@@ -438,7 +441,7 @@ class Grille(object):
 		global start_iter, n_iter
 		start_iter = time()
 		n_iter = 0
-		self.make_all(gtmp)
+		self.make_all(gtmp, affiche_all)
 		
 		# Détermination de la case la plus probable
 		case_max = (0,0)
@@ -450,18 +453,24 @@ class Grille(object):
 		
 		return (case_max, pmax)
 	
-	def make_all(self, gtmp):
+	def make_all(self, gtmp, affiche_all=False):
 		"""Crée toutes les répartitions possibles de bateaux"""
+		# affiche_all : affiche toutes les grilles pendant leur création
 		global start_iter, n_iter
 		if len(gtmp.taille_bateaux) == 0 :
 			self.nb_repart += 1
-			#~ gtmp.affiche()
+			if affiche_all :
+				gtmp.affiche()
 			for case in self.probas_all :
 				if self.etat[case] == 0 and gtmp.etat[case] == 1 :
 					self.probas_all[case] +=1
 			return
 			
-		gtmp.get_possibles()
+		if affiche_all :
+			gtmp.get_possibles(tri=True)
+		else :
+			gtmp.get_possibles()
+		
 		taille = gtmp.taille_bateaux[0]
 		for (case, direction) in gtmp.possibles[taille]:
 			n_iter += 1
@@ -470,7 +479,9 @@ class Grille(object):
 			gtmp2 = gtmp.copie_grille_tmp()
 			gtmp2.add_bateau(Bateau(taille, case, direction))
 			gtmp2.rem_bateau(taille)
-			self.make_all(gtmp2)
+			#~ if affiche_all :
+				#~ gtmp2.affiche()
+			self.make_all(gtmp2, affiche_all)
 	
 	# 
 	# Fin de partie ----------------------------------------------------
@@ -486,11 +497,69 @@ class Grille(object):
 	#
 	# Affichage --------------------------------------------------------
 	#
-	#~ def affiche(self):
-		#~ """Affiche la grille
-		#~ Méthode à surcharger suivant l'interface"""
-		#~ pass
+	
+	def affiche(self):
+		"""Affiche la grille"""
+		# Méthode à surcharger suivant l'interface
+		# mais laissée ici pour les tests
+		
+		CAR_H=u'\u2500'		# Trait Horizontal
+		CAR_V=u'\u2502'		# Trait Vertical
+		# Coins
+		CAR_CHG=u'\u250C'	# Coin Haut Gauche
+		CAR_CHD=u'\u2510'	# Coin Haut Droite
+		CAR_CBG=u'\u2514'	# Coin Bas Gauche
+		CAR_CBD=u'\u2518'	# Coin Bas Droite
+		# T
+		CAR_TH=u'\u252C'	# T Haut
+		CAR_TB=u'\u2534'	# T Bas
+		CAR_TG=u'\u251C'	# T Gauche
+		CAR_TD=u'\u2524'	# T Droite
+		# +
+		CAR_CX=u'\u253C'	# Croix centrale
+		# Touché / Manqué
+		CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
+		CAR_MANQ = u'\u25EF'
+
+		# Ligne du haut
+		print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
+		
+		# Ligne des lettres des colonnes
+		print('    '+CAR_V, end='')
+		for i in range(self.xmax):
+			if i!=self.xmax-1 :
+				print(' '+str(i)+' ', end=CAR_V)
+			else :
+				print(' '+str(i)+' '+CAR_V)
 				
+		#Ligne sous les lettres
+		print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+		
+		# Lignes suivantes
+		for j in range(self.ymax):
+			# 1ère colonne (chiffres des lignes)
+			chaine = CAR_V+' '+str(j)+' '+CAR_V
+			
+			# Cases suivantes
+			for i in range(self.xmax):
+				if self.etat[(i,j)] == 1 :
+					symbole = CAR_TOUCH
+				elif self.etat[(i,j)] == -1 :
+					symbole = CAR_MANQ
+				else :
+					symbole = ' '
+				chaine += ' '+symbole+' '+CAR_V
+			print(chaine)
+			
+			# Sépartion lignes intermédiaires
+			if j!=self.ymax-1 :
+				print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
+				
+			# Dernière ligne
+			else :
+				print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
+	
+
 				
 
 	# --------------------------------
@@ -716,66 +785,7 @@ class Grille(object):
 		#~ probas_liste = [(case, probas[case]) for case in probas]
 		#~ return sorted(probas_liste, key=lambda proba: proba[1], reverse = True)
 	
-	def affiche(self):
-		"""Affiche la grille"""
-		# Méthode à surcharger suivant l'interface
-		# --> À virer d'ici (juste temporaire pour tests)
-		pass
-		CAR_H=u'\u2500'		# Trait Horizontal
-		CAR_V=u'\u2502'		# Trait Vertical
-		# Coins
-		CAR_CHG=u'\u250C'	# Coin Haut Gauche
-		CAR_CHD=u'\u2510'	# Coin Haut Droite
-		CAR_CBG=u'\u2514'	# Coin Bas Gauche
-		CAR_CBD=u'\u2518'	# Coin Bas Droite
-		# T
-		CAR_TH=u'\u252C'	# T Haut
-		CAR_TB=u'\u2534'	# T Bas
-		CAR_TG=u'\u251C'	# T Gauche
-		CAR_TD=u'\u2524'	# T Droite
-		# +
-		CAR_CX=u'\u253C'	# Croix centrale
-		# Touché / Manqué
-		CAR_TOUCH = u'\u2716' # ou u'\u2737', u'\u3718'
-		CAR_MANQ = u'\u25EF'
-
-		# Ligne du haut
-		print('    '+CAR_CHG+(CAR_H*3+CAR_TH)*(self.xmax-1)+CAR_H*3+CAR_CHD)
-		
-		# Ligne des lettres des colonnes
-		print('    '+CAR_V, end='')
-		for i in range(self.xmax):
-			if i!=self.xmax-1 :
-				print(' '+str(i)+' ', end=CAR_V)
-			else :
-				print(' '+str(i)+' '+CAR_V)
-				
-		#Ligne sous les lettres
-		print(CAR_CHG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-		
-		# Lignes suivantes
-		for j in range(self.ymax):
-			# 1ère colonne (chiffres des lignes)
-			chaine = CAR_V+' '+str(j)+' '+CAR_V
-			
-			# Cases suivantes
-			for i in range(self.xmax):
-				if self.etat[(i,j)] == 1 :
-					symbole = CAR_TOUCH
-				elif self.etat[(i,j)] == -1 :
-					symbole = CAR_MANQ
-				else :
-					symbole = ' '
-				chaine += ' '+symbole+' '+CAR_V
-			print(chaine)
-			
-			# Sépartion lignes intermédiaires
-			if j!=self.ymax-1 :
-				print(CAR_TG+(CAR_H*3+CAR_CX)*self.xmax+CAR_H*3+CAR_TD)
-				
-			# Dernière ligne
-			else :
-				print(CAR_CBG+(CAR_H*3+CAR_TB)*self.xmax+CAR_H*3+CAR_CBD)
+	
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # Les deux clases suivantes, héritées de Grille ont pour rôle de distinguer les fonctions spécifiques à chaque type de grille
@@ -800,14 +810,19 @@ class GrilleSuivi(Grille):
 #
 if __name__ == "__main__" :
 	#~ grille = Grille(xmax=6, ymax=6,taille_bateaux=[2,2,3])
-	#~ grille = Grille(xmax=3, ymax=3,taille_bateaux=[2,3])
-	grille = Grille(xmax=10, ymax=10,taille_bateaux=[5,4,3,2])
+	#~ grille = Grille(xmax=4, ymax=4,taille_bateaux=[3,3])
+	grille = Grille(xmax=3, ymax=3,taille_bateaux=[2,3])
+	#~ grille = Grille(xmax=10, ymax=10,taille_bateaux=[5,4,3,2])
 	#~ grille = Grille(xmax=2, ymax=2,taille_bateaux=[2,2])
 	#~ grille = Grille()
+	
 	launch_time = strftime("%d/%m/%Y %H:%M:%S",localtime(time()))
 	print(launch_time)
 	start = time()
-	grille.case_max_all()
+	
+	#~ grille.case_max_all()
+	grille.case_max_all(affiche_all=True)
+	
 	print()
 	print("Temps : %.2f seconde" % (time()-start))
 	print("Nombre d'itérations : %d " % n_iter)
@@ -821,6 +836,12 @@ if __name__ == "__main__" :
 			print(grille.probas_all[(i,j)], end=' ')
 		i = grille.xmax-1
 		print(grille.probas_all[(i,j)])
+		
+		
+		
+		
+		
+		
 	#~ case=(4,8)
 	#~ print(grille.case_max_touchee(case))
 	#~ print(grille.case_max_touchee0(case))

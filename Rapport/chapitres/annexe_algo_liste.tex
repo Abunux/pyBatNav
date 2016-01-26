@@ -211,7 +211,7 @@ Le problème de cet algorithme est qu'il est exponentiel. Avec une grille vide d
 
 Pour une liste de bateaux \texttt{taille\_bateaux=[5,4,3,3,2]} on s'attend donc à $10^{10}$ répartitions et un temps de calcul d'environ 8 jours (pour un seul coup !).
 
-Certes, sur une grille vide, on pourrait jouer avec les symétries (et diviser le calcul par $2^8=256$) mais cette symétrie est tout de suite brisée dès qu'une case a été jouée.
+Certes, sur une grille vide, on pourrait jouer avec les symétries (et diviser le calcul par $8$) mais cette symétrie est tout de suite brisée dès qu'une case a été jouée.
 
 Même si cette méthode est inutilisable en tant que telle, elle peut être intéressante sur de petites grilles, ou avec peu de bateaux, et donc peut être utilisée en fin de partie. C'est le rôle du niveau 6 dans lequel on utilise cette méthode dès que le nombre de cases vides descend en-dessous d'un certain seuil.
 
@@ -245,7 +245,10 @@ Pour information voici, sur la page suivante, le nombre de répartitions sur cha
 \hline
 9 & 8138842 & 11060807 & 13598504 & 15286936 & 16111642 & 16111642 & 15286936 & 13598504 & 11060807 & 8138842\\
 \hline
-\end{tabular}\\
+\end{tabular}
+
+\medskip
+
 \textit{Nombre de bateaux sur chaque case pour une grille vide avec \texttt{taille\_bateaux=[5,4,3,2]}}
 \end{center}
 \end{landscape}
@@ -301,18 +304,18 @@ Pour chaque taille de bateau restant :\\
 \tab{2}Si ((ct[0], ct[1]), direction) est dans possibles :\\
 \tab{3}probas[(ct[0]+direction[0],ct[1]+direction[1])] += 1\\
 On remet l'état de case\_touchee à touché\\
-On trie la liste probas dans l'ordre décroissant du nombre de possibilités\\
+On trie probas dans l'ordre décroissant du nombre de possibilités\\
 On renvoie cette liste\\
 \end{algo1}
 
-Le fait de boucler sur les directions \texttt{HORIZONTAL} et \texttt{VERTICAL}, c'est-à-dire dans\texttt{[(1,0), (0,1)]} permet de condenser les calculs sur ces deux directions dans une seule boucle.\\
+Le fait de boucler sur les directions \texttt{HORIZONTAL} et \texttt{VERTICAL}, c'est-à-dire dans\texttt{[(1,0), (0,1)]}, permet de condenser les calculs sur ces deux directions dans une seule boucle.\\
 \texttt{ct[direction[1]]} et \texttt{direction[direction[1]]} permettent d'obtenir respectivement \texttt{ct[0]} et \texttt{direction[0]} dans le cas horizontal, et \texttt{ct[1]} et \texttt{direction[1]} dans le cas vertical.
 
 Notons que dans cet algorithme on en s'intéresse qu'aux cases adjacentes à \texttt{case\_touchee}.
 
 \medskip
 
-Le tri final de la liste se fait de la façon suivante : on commence par convertir le dictionnaire \texttt{probas} en liste \texttt{probas\_liste}, puis un l'ordonne avec l'instruction
+Le tri final de la liste se fait de la façon suivante : on commence par convertir le dictionnaire \texttt{probas} en une liste de tuple \texttt{(case, probas[case])} dans \texttt{probas\_liste}, puis un l'ordonne avec l'instruction
 \begin{center}
 \texttt{sorted(probas\_liste, key=lambda proba: proba[1], reverse = True)}
 \end{center}
