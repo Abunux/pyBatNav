@@ -1,7 +1,7 @@
-\chapter{Algorithmes intéressants}\label{algo_liste}
+\chapter{Étude des algorithmes clés}\label{algo_liste}
 Dans cette partie, une description commentée des algorithmes clés du projet. Les algorithmes vraiment simples (comme par exemple tirer sur une case) ne sont pas mis.
 
-Le fait de rédiger cette partie a permis de prendre du recule sur ces algorithmes et de faire quelques améliorations (formaliser les choses est toujours bénéfique).
+Le fait de rédiger cette partie a permis de prendre du recul sur ces algorithmes et de faire quelques améliorations (formaliser les choses est toujours bénéfique).
 \section{Gestion de la grille}
 
 
@@ -211,7 +211,7 @@ Le problème de cet algorithme est qu'il est exponentiel. Avec une grille vide d
 
 Pour une liste de bateaux \texttt{taille\_bateaux=[5,4,3,3,2]} on s'attend donc à $10^{10}$ répartitions et un temps de calcul d'environ 8 jours (pour un seul coup !).
 
-Certes, sur une grille vide, on pourrait jouer avec les symétries (et diviser le calcul par $8$) mais cette symétrie est tout de suite brisée dès qu'une case a été jouée.
+Certes, sur une grille vide, on pourrait jouer avec les symétries (et diviser le calcul par $8$) mais celles-ci sont tout de suite brisées dès qu'une case a été jouée.
 
 Même si cette méthode est inutilisable en tant que telle, elle peut être intéressante sur de petites grilles, ou avec peu de bateaux, et donc peut être utilisée en fin de partie. C'est le rôle du niveau 6 dans lequel on utilise cette méthode dès que le nombre de cases vides descend en-dessous d'un certain seuil.
 
@@ -261,19 +261,18 @@ Pour information voici, sur la page suivante, le nombre de répartitions sur cha
 \begin{algo1}
 adjacent est la liste des cases vides adjacentes à case\_touchee\\
 taille\_min est la taille minimale des bateaux restants\\
-\#Test si le bateau rentre horizontalement\\
-Si l'espace maximum horizontal sur case touché >= taille\_min :\\
-\tab{1}Pour case dans adjacent :\\
-\tab{2}Si case[1]==case\_touchee[1] :\\
-\tab{3}Ajouter case à la file d'attente\\
-\#Test si le bateau rentre verticalement\\
-Si l'espace maximum vertical sur case touché >= taille\_min :\\
-\tab{1}Pour case dans adjacent :\\
-\tab{2}Si case[0]==case\_touchee[0] :\\
-\tab{3}Ajouter case à la file d'attente\\
+Pour direction dans [HORIZONTAL, VERTICAL] :\\
+\tab{1}direction[0]\sto k\\
+\tab{1}Si l'espace maximum dans direction sur case touché >= taille\_min :\\
+\tab{2}Pour case dans adjacent :\\
+\tab{3}Si case[k]==case\_touchee[k] :\\
+\tab{4}Ajouter case à la file d'attente\\
+\tab{3}Sinon afficher que cette direction ne convient pas\\
 \end{algo1}
 
 Pas de grande difficulté sur celui-ci. On se contente de regarder si le plus petit bateau rentre dans chaque direction et on ajoute à la file d'attente les cases correspondantes.
+
+Les tests des deux directions sont regroupés dans une boucle afin de rendre le code plus compact.
 \newpage
 \subsubsection{Optimisation de la file d'attente}\label{case_max_touchee}
 \texttt{Grille.case\_max\_touchee(self, case\_touchee)} :
@@ -325,14 +324,14 @@ Le tri final de la liste se fait de la façon suivante : on commence par convert
 \texttt{Ordi.update\_queue\_touche(self)} :
 \begin{algo1}
 Si case\_courante[1] == case\_touchee[1] :\\
-\tab{1}direction=(1,0)\\
+\tab{1}direction=HORIZONTAL\\
 Sinon :\\
-\tab{1}direction=(0,1)\\
+\tab{1}direction=VERTICAL\\
 Si on vient de découvrir la direction du bateau (len(liste\_touchee==1)):\\
 \tab{1}On affiche cette direction\\
 \tab{1}On enlève les cases \\
 \tab{3} (case\_touchee[0]-direction[1], case\_touchee[1]-direction[0])\\ 
-\tab{3}et (case\_touchee[0]-direction[1], case\_touchee[1]-direction[0])\\
+\tab{3}et (case\_touchee[0]+direction[1], case\_touchee[1]+direction[0])\\
 \tab{3}de la file d'attente\\
 nv\_case est la case\\
 \tab{2}(case\_courante[0] + direction[0]*signe(case\_courante[0]-case\_touchee[0]),\\
@@ -355,13 +354,13 @@ La liste \texttt{liste\_touches} permet de savoir combien de cases ont été tou
 taille\_min est la plus petite taille de bateau restant\\
 delta = \\
 \tab{1}(case\_courante[0]-case\_touchee[0],\\
-\tab{1}case\_courante[1]-case\_touchee[1])\\
+\tab{1} case\_courante[1]-case\_touchee[1])\\
 direction = \\
 \tab{1}(abs(case\_courante[0]-case\_touchee[0]),\\
-\tab{1}abs(case\_courante[1]-case\_touchee[1]))\\
+\tab{1} abs(case\_courante[1]-case\_touchee[1]))\\
 case\_face = \\
 \tab{1}(case\_touchee[0]-delta[0],\\
-\tab{1}case\_touchee[1]-delta[1])\\
+\tab{1} case\_touchee[1]-delta[1])\\
 Si l'espace vide sur case\_face dans direction < taille\_min-1 :\\
 \tab{1}Enlever case\_face de la file d'attente\\
 \end{algo1}
@@ -384,25 +383,25 @@ Voici l'algorithme complet de résolution de la grille par l'ordinateur :
 La file d'attente est une liste vide\\
 liste\_touches est une liste vide\\
 Tant que le grille n'est pas résolue :\\
-\tab{1}Si la file d'attente est vide :\\
+\tab{1}Si la file d'attente est vide (tir en aveugle) :\\
 \tab{2}Si liste\_touches n'est pas vide :\\
 \tab{3}On enlève le bateau de taille len(liste\_touches)\\
 \tab{3}On élimine les cases adjacentes à celles de liste\_touches\\
 \tab{3}On vide liste\_touches\\
 \tab{2}On élimine les zones trop petites\\
 \tab{2}case\_courante reçoit une case en aveugle (suivant le niveau)\\
-\tab{1}Sinon :\\
+\tab{1}Sinon (tir ciblé) :\\
 \tab{2}case\_courante reçoit le premier élément de la file d'attente\\
 \tab{2}On enlève cette case de la file d'attente\\
 \tab{1}On tire sur case\_courante\\
 \tab{1}Si on a touché :\\
-\tab{2}Si liste\_touches est vide :\\
+\tab{2}Si liste\_touches est vide (1ère case du bateau) :\\
 \tab{3}On ajoute case\_courante dans liste\_touches\\
 \tab{3}case\_courante\sto case\_touchee\\
 \tab{3}On ajoute ses cases adjacentes dans la file d'attente\\
 \tab{4}(en testant également les directions impossibles éventuelles)\\
 \tab{2}Sinon :\\
-\tab{3}Si len(liste\_touches) == 1 :\\
+\tab{3}Si len(liste\_touches) == 1 (2éme case du bateau):\\
 \tab{4}On détecte la direction du bateau\\
 \tab{3}On met à jour la file d'attente\\
 \tab{4}(avec la case adjacente à case\_courante dans la bonne direction)\\
@@ -424,9 +423,9 @@ Une partie à deux joueurs se déroule selon l'algorithme suivant (le joueur por
 Placement des bateaux du joueur\\
 Récupération des bateaux de l'adversaire\\
 Aléa(0,1)\sto joueur\_en\_cours (celui qui commence)\\
-0\sto nb\_coups\\
+%0\sto nb\_coups\\
 Tant qu'aucun joueur n'a fini :\\
-\tab{1}nb\_coups+1\sto nb\_coups\\
+%\tab{1}nb\_coups+1\sto nb\_coups\\
 \tab{1}Si joueur\_en\_cours == 0 et l'adversaire n'a pas fini :\\
 \tab{2}Le joueur joue un coup\\
 \tab{2}Mise à jour de l'affichage des grilles\\

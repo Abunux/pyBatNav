@@ -11,7 +11,7 @@ La méthode principale de cette classe est \texttt{Joueur.tire(self, case)} qui 
 
 \medskip
 
-Notons l'attribut \texttt{Joueur.messages} qui est une liste contenant différents messages d'information (comme par exemple "A2 : Touché", ou encore les messages indiquant comment l'algorithme résout la grille). Lors de l'affichage des messages, il suffit de vider cette liste grâce à des \texttt{pop(0)} successifs en affichant chaque élément pour avoir un suivi.
+Notons l'attribut \texttt{Joueur.messages} qui est une liste contenant différents messages d'information (comme par exemple "A2 : Touché", ou encore les messages indiquant comment l'algorithme résout la grille). Lors de l'affichage des messages, il suffit de vider cette liste grâce à des \texttt{pop(0)} successifs dans la méthode \texttt{Joueur.affiche\_messages(self)} en affichant chaque élément pour avoir un suivi.
 
 \section{La classe Partie}
 Ici encore, un squelette et des méthodes très générales pour une classe qui sera héritée dans les interfaces.

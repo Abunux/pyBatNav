@@ -55,7 +55,7 @@
 \contentsline {chapter}{\numberline {9}Conclusion}{25}
 \newpage 
 \contentsline {part}{Annexes}{29}
-\contentsline {chapter}{\numberline {A}Algorithmes int\IeC {\'e}ressants}{29}
+\contentsline {chapter}{\numberline {A}\IeC {\'E}tude des algorithmes cl\IeC {\'e}s}{29}
 \contentsline {section}{\numberline {1}Gestion de la grille}{29}
 \contentsline {subsection}{\numberline {1.1}D\IeC {\'e}termination des espaces vides}{29}
 \contentsline {subsection}{\numberline {1.2}D\IeC {\'e}termination des bateaux possibles d\IeC {\'e}marrant sur chaque case et des placements possibles de chaque bateaux}{30}
