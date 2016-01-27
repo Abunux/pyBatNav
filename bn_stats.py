@@ -31,7 +31,8 @@ class Stats(object):
 		# tmoy : temps moyen par partie de la simulation
 		# param_grille : paramètres de la grille
 		# niveau_str : le niveau de l'algorithme en chaine de caractères 
-		#		(pour le niveau 4 : "4(100)" pour 100 échantillons)
+		#		(pour le niveau 4 : "4(100)" pour 100 échantillons,
+		#		 pour le niveau 6 : "6(60)" pour un seuil de 60)
 		if data :
 			self.data = data
 		elif filename :
@@ -124,7 +125,7 @@ class Stats(object):
 	
 	def get_quartiles(self):
 		"""Calcul des quartiles. Renvoie une liste [Q1, Med, Q3].
-		Q1 et Q2 sont les termes de rangs ceil(n/4) et ceil(3n/4)
+		Q1 et Q3 sont les termes de rangs ceil(n/4) et ceil(3n/4)
 		La médiane est définie comme le terme de rang ceil(n/2)""" 
 		n = self.effectif
 		indexes = [ceil(n/4), ceil(n/2), ceil(3*n/4)]

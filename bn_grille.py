@@ -808,8 +808,8 @@ class GrilleSuivi(Grille):
 if __name__ == "__main__" :
 	#~ grille = Grille(xmax=6, ymax=6,taille_bateaux=[2,2,3])
 	#~ grille = Grille(xmax=4, ymax=4,taille_bateaux=[3,3])
-	grille = Grille(xmax=3, ymax=3,taille_bateaux=[2,3])
-	#~ grille = Grille(xmax=10, ymax=10,taille_bateaux=[5,4,3,2])
+	#~ grille = Grille(xmax=3, ymax=3,taille_bateaux=[2,3])
+	grille = Grille(xmax=10, ymax=10,taille_bateaux=[5,4,3])
 	#~ grille = Grille(xmax=2, ymax=2,taille_bateaux=[2,2])
 	#~ grille = Grille()
 	
@@ -817,8 +817,8 @@ if __name__ == "__main__" :
 	print(launch_time)
 	start = time()
 	
-	#~ grille.case_max_all()
-	grille.case_max_all(affiche_all=True)
+	grille.case_max_all()
+	#~ grille.case_max_all(affiche_all=True)
 	
 	print()
 	print("Temps : %.2f seconde" % (time()-start))

@@ -204,10 +204,10 @@ Cet algorithme est récursif. On utilise une grille temporaire \texttt{gtmp} sur
 
 \medskip
 
-Le problème de cet algorithme est qu'il est exponentiel. Avec une grille vide de $10\times 10$, on obtient les données suivantes :
+Le problème de cet algorithme est qu'il est exponentiel. Avec une grille vide de $10\times 10$, on obtient les résultats suivants :
 \begin{itemize}
-\item \texttt{taille\_bateaux=[5,4]} : $\approx 10^4$ répartitions, 0,8 secondes
-\item \texttt{taille\_bateaux=[5,4,3]} : $\approx 10^6$ répartitions, 72 secondes
+\item \texttt{taille\_bateaux=[5,4]} : $11\,744$ répartitions, 0,8 secondes
+\item \texttt{taille\_bateaux=[5,4,3]} : $1\,064\,728$ répartitions, 70 secondes
 \item \texttt{taille\_bateaux=[5,4,3,2]} : $101\,286\,480$ répartitions, 6566 secondes
 \end{itemize}
 
@@ -217,7 +217,7 @@ Pour une liste de bateaux \texttt{taille\_bateaux=[5,4,3,3,2]} on s'attend donc 
 
 Certes, sur une grille vide, on pourrait jouer avec les symétries (et diviser le calcul par $8$) mais celles-ci sont tout de suite brisées dès qu'une case a été jouée.
 
-Même si cette méthode est inutilisable en tant que telle, elle peut être intéressante sur de petites grilles, ou avec peu de bateaux, et donc peut être utilisée en fin de partie. C'est le rôle du niveau 6 dans lequel on utilise cette méthode dès que le nombre de cases vides descend en-dessous d'un certain seuil.
+Même si cette méthode est inutilisable en tant que telle, elle peut être intéressante sur des petites grilles, ou avec peu de bateaux, et donc peut être utilisée en fin de partie. C'est le rôle du niveau 6 dans lequel on utilise cette méthode dès que le nombre de cases vides descend en-dessous d'un certain seuil.
 
 Pour information voici, sur la page suivante, le nombre de répartitions sur chaque case pour \texttt{taille\_bateaux=[5,4,3,2]} :
 

@@ -20,7 +20,7 @@ On répète $n$ fois la résolution sur une grille aléatoire, chaque fois diff�
 
 Le calcul du temps se fait en lançant un chronomètre grâce à la fonction \texttt{time()} du module \texttt{time}, qui renvoie le nombre de seconde écoulées depuis epoch (le 1\up{er} janvier 1970). Donc en sauvegardant cette valeur au début de la simulation dans une variable \texttt{start} et en calculant \texttt{time()-start} à la fin de la simulation, on obtient le temps total écoulé. Afin de chronométrer uniquement le temps de résolution (et non de la création de la grille), ce chronomètre est mis à jour uniquement lors de la résolution effective.
 
-L'algorithme de test affiche une estimation du temps restant (ainsi que de la date et l'heure de la fin de la simulation), ainsi que l'avancement par tranches de 10\%.
+L'algorithme de test affiche une estimation du temps restant (ainsi que de la date et l'heure de la fin de la simulation) basé sur le temps de la première résolution (donc très approximative), ainsi que l'avancement par tranches de 10\%.
 
 Afin d'obtenir des résultats comparables, tous les temps ont été mesurés sur le même ordinateur disposant d'un processeur Intel i7-4800-MQ cadencé à 2,7 GHz en mode monoprocesseur, de 16 Go de mémoire vive et tournant sous un système Linux 64 bits (Xubuntu 14.04).
 
@@ -167,7 +167,7 @@ Les résultats obtenues sur un échantillon de $n=1\,000\,000$ parties sont les 
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=5_n=1000000.png}}
 \end{center}
 
-Notons les excellentes performances avec une moyenne de 42,06 coups pour un temps de résolution moyen de seulement 31,2 ms par partie. 
+Les performances sont excellentes avec une moyenne de 42,06 coups pour un temps de résolution moyen de seulement 31,2 ms par partie. 
 
 \newpage
 \section{Niveau 6}
@@ -186,9 +186,32 @@ Pour l'instant, avec un seuil de 60, nous restons sur notre faim. Il n'y a aucun
 \newpage
 
 \subsection{Seuil égal à 70}
-Avec un seuil de 70, le temps de calcul est beaucoup trop long. Il peut arriver que parmi les 30 premières cases jouées, peu de bateaux aient été coulés ce qui rend le temps de calcul très aléatoire.
+Avec un seuil de 70, les résultats obtenues sur un échantillon de $n=1\,000$ parties sont les suivants :
+
+\begin{center}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=6(70)_n=1000.png}}
+\end{center}
+
+À notre grande surprise, la moyenne est un petit peu moins bonne alors qu'on aurait pu imaginer le contraire.
+
 \subsection{Conclusion}
-C'est un petit peu décevant. On aurait pu prévoir une amélioration du fait de regarder la grille de façon globale. Ce n'est malheureusement pas le cas. Le niveau 5 reste le meilleur.
+Comparons les intervalles de confiance à 95\% de $\mu$ pour les trois dernières simulations :
+
+\begin{center}
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\no & Niveau & $n$ &  $\conj x$ & $\sigma$ & Intervalle de confiance\\
+\hline
+1 & 5 & 1\,000\,000 & 42,06 & 6,15 & $[42,05~;~42,07]$ \\
+\hline
+2 & 6(60) & 10\,000 & 42,09 & 6,21 & $[41,97~;~42,21]$\\
+\hline
+3 & 6(70) & 1\,000 & 42,34 & 6,26 & $[41,95~;~42,73]$\\
+\hline
+\end{tabular}
+\end{center}
+
+C'est un petit peu décevant. On aurait pu prévoir une amélioration du fait de regarder la grille de façon globale. Ce n'est malheureusement pas le cas. Le niveau 5 reste définitivement le meilleur.
 
 \newpage
 
@@ -204,6 +227,10 @@ Après avoir testé ces différents algorithmes nous pouvons tirer les conclusio
 \item Le niveau 5 est de loin le meilleur. L'optimisation est somme toute assez simple pour des résultats qui sont les meilleurs de tous.
 \item Le niveau 6 est plus une preuve de concept qu'un algorithme réellement utile en pratique. Les temps de calcul sont pharamineux, ce qui oblige de ne l'utiliser qu'à partir d'un certain moment, et les résultats sont assez décevants par rapport au niveau 5, auquel il n'apporte en fait rien. Il serait toutefois intéressant de le tester (avec un seuil de 100, c'est-à-dire en n'utilisant jamais le niveau 5) en disposant d'une grande puissance de calcul (et de trouver un moyen de paralléliser ceux-ci).
 \end{itemize}
+
+\medskip
+
+En tout état de cause il semble qu'une moyenne de 42 coups par partie constitue une borne que l'on ne pourra pas franchir.
 
 %\medskip
 %

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  27 JAN 2016 19:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  27 JAN 2016 22:12
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1924,83 +1924,81 @@ Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             install/macros/latex/contrib/pageslts.tds.zip
 (lastpage)             ! on input line 12.
  (./chapitres/frontmatter.tex
-LaTeX Font Info:    Try loading font information for FML+futmi on input line 12
-.
+<./media/academie.jpg, id=20, 89.6148pt x 64.5612pt>
+File: ./media/academie.jpg Graphic file (type jpg)
 
+<use ./media/academie.jpg>
+Package pdftex.def Info: ./media/academie.jpg used on input line 15.
+(pdftex.def)             Requested size: 66.57674pt x 47.96663pt.
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <24.88> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 20.
+LaTeX Font Info:    Font shape `T1/futs/bx/sc' in size <24.88> not available
+(Font)              Font shape `T1/futs/b/sc' tried instead on input line 20.
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <17.28> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 21.
+LaTeX Font Info:    Font shape `T1/futs/bx/sc' in size <17.28> not available
+(Font)              Font shape `T1/futs/b/sc' tried instead on input line 21.
+ [1
+
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./media/academie.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
+
+ []
+
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 41
+.
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmlfutmi.fd
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 12.
+(Font)              scaled to size 11.03998pt on input line 41.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 12.
+(Font)              scaled to size 8.27998pt on input line 41.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 12.
+(Font)              scaled to size 6.43999pt on input line 41.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 12.
+(Font)              scaled to size 11.03998pt on input line 41.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 12.
+(Font)              scaled to size 8.27998pt on input line 41.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 12.
-LaTeX Font Info:    Try loading font information for U+msa on input line 12.
+(Font)              scaled to size 6.43999pt on input line 41.
+LaTeX Font Info:    Try loading font information for U+msa on input line 41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 12.
+LaTeX Font Info:    Try loading font information for U+msb on input line 41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 12.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 12.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
-) [1
+)
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 42.
 
-
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 15--16
-
- []
-
-LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 19.
-LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 19.
-LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 19.
-LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 19.
-LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 19.
-LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 19.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 20.
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<./media/CC-Logo.png, id=26, 88.33pt x 31.11626pt>
+<./media/CC-Logo.png, id=29, 88.33pt x 31.11626pt>
 File: ./media/CC-Logo.png Graphic file (type png)
  <use ./media/CC-Logo.png>
-Package pdftex.def Info: ./media/CC-Logo.png used on input line 23.
+Package pdftex.def Info: ./media/CC-Logo.png used on input line 45.
 (pdftex.def)             Requested size: 88.32977pt x 31.11617pt.
 
 [2 <./media/CC-Logo.png>] [3] [4
 
 
 ]
-LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 57.
-LaTeX Font Info:    Font shape `T1/futs/bx/sc' in size <24.88> not available
-(Font)              Font shape `T1/futs/b/sc' tried instead on input line 57.
-
 (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.toc
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <12> not available
 (Font)              Font shape `T1/futs/b/n' tried instead on input line 3.
@@ -2022,8 +2020,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [6] (./chapitres/chap_presentation.tex
 ~Chapitre 1.
-LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 3.
 LaTeX Font Info:    Try loading font information for TS1+futs on input line 9.
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/ts1futs.fd
 File: ts1futs.fd 2004/03/26 Fontinst v1.926 font definitions for TS1/futs.
@@ -2452,7 +2448,7 @@ lmtt/m/n/12 distrib \T1/futs/m/n/12 de lon-gueur \T1/lmtt/m/n/12 xmax*ymax+1
 
 [41
 
-] <./media/distrib_HAL_niveau=1_n=100000.png, id=183, 578.16pt x 433.62pt>
+] <./media/distrib_HAL_niveau=1_n=100000.png, id=184, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=1_n=100000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=1_n=100000.png>
@@ -2467,7 +2463,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [42 <./media/distrib_HAL_niveau=1_n=100000.png>]
-<./media/distrib_HAL_niveau=2_n=100000.png, id=188, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=2_n=100000.png, id=189, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=2_n=100000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=2_n=100000.png>
@@ -2482,7 +2478,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [43 <./media/distrib_HAL_niveau=2_n=100000.png>]
-<./media/distrib_HAL_niveau=3_n=100000.png, id=194, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=3_n=100000.png, id=195, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=3_n=100000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=3_n=100000.png>
@@ -2500,7 +2496,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 72.
 
-<./media/distrib_HAL_niveau=4(10)_n=100000.png, id=201, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(10)_n=100000.png, id=202, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=4(10)_n=100000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(10)_n=100000.png>
@@ -2515,7 +2511,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [45 <./media/distrib_HAL_niveau=4(10)_n=100000.png>]
-<./media/distrib_HAL_niveau=4(100)_n=10000.png, id=207, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(100)_n=10000.png, id=208, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=4(100)_n=10000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(100)_n=10000.png>
@@ -2530,7 +2526,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [46 <./media/distrib_HAL_niveau=4(100)_n=10000.png>]
-<./media/distrib_HAL_niveau=4(1000)_n=1000.png, id=212, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(1000)_n=1000.png, id=213, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=4(1000)_n=1000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(1000)_n=1000.png>
@@ -2545,7 +2541,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [47 <./media/distrib_HAL_niveau=4(1000)_n=1000.png>]
-<./media/distrib_HAL_niveau=4(10000)_n=100.png, id=217, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(10000)_n=100.png, id=218, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=4(10000)_n=100.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(10000)_n=100.png>
@@ -2561,9 +2557,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [48 <./media/distrib_HAL_niveau=4(10000)_n=100.png>]
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 9.19998pt on input line 137.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
 (Font)              scaled to size 6.99199pt on input line 137.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
 (Font)              scaled to size 5.51999pt on input line 137.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 9.19998pt on input line 137.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
 (Font)              scaled to size 6.99199pt on input line 137.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
@@ -2578,7 +2578,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[49] <./media/distrib_HAL_niveau=5_n=1000000.png, id=227, 578.16pt x 433.62pt>
+[49] <./media/distrib_HAL_niveau=5_n=1000000.png, id=228, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=5_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=5_n=1000000.png>
@@ -2598,7 +2598,7 @@ Overfull \hbox (1.27362pt too wide) in paragraph at lines 174--175
 ur à \T1/lmtt/m/n/12 seuil\T1/futs/m/n/12 , on pro-cède comme
  []
 
-<./media/distrib_HAL_niveau=6(60)_n=10000.png, id=232, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=6(60)_n=10000.png, id=233, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=6(60)_n=10000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=6(60)_n=10000.png>
@@ -2613,13 +2613,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [51 <./media/distrib_HAL_niveau=6(60)_n=10000.png>]
+<./media/distrib_HAL_niveau=6(70)_n=1000.png, id=238, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=6(70)_n=1000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=6(70)_n=1000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=6(70)_n=1000.png used on in
+put line 192.
+(pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[52]) (./chapitres/annexe_codescar.tex
+[52 <./media/distrib_HAL_niveau=6(70)_n=1000.png>])
+(./chapitres/annexe_codescar.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2753,9 +2762,9 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (321.82338pt too wide) in paragraph at lines 31--31
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fa00
-bee6f98>, adversaire=<bn_joueur.Ordi object at 0x7fa00bef3be0>)[] 
+Overfull \hbox (321.83739pt too wide) in paragraph at lines 31--31
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fdc0
+ca28fd0>, adversaire=<bn_joueur.Ordi object at 0x7fdc0ca35c18>)[] 
  []
 
 
@@ -2895,9 +2904,9 @@ ed.
 
 File: ./docstrings/bn_console.PartieC  (verbatim)
 
-Overfull \hbox (321.83038pt too wide) in paragraph at lines 48--48
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fbff
-d4cad30>, adversaire=<bn_joueur.Ordi object at 0x7fbff6e1e240>)[] 
+Overfull \hbox (321.83739pt too wide) in paragraph at lines 48--48
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f754
+deefd30>, adversaire=<bn_joueur.Ordi object at 0x7f7547843240>)[] 
  []
 
 
@@ -2952,7 +2961,7 @@ File: ./docstrings/bn_stats.Stats  (verbatim)
 
 Overfull \hbox (420.63744pt too wide) in paragraph at lines 57--57
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'taille_bateaux': [5, 4, 3, 3, 2], 'ymax': 10, 'xmax': 10}, niveau_str='5')
+le={'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10}, niveau_str='5')
 [] 
  []
 
@@ -3391,11 +3400,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ### simple group (level 1) entered at line 4 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 26306 strings out of 493304
- 504920 string characters out of 6139871
+ 26310 strings out of 493304
+ 505116 string characters out of 6139871
  776003 words of memory out of 5000000
- 28882 multiletter control sequences out of 15000+600000
- 195841 words of font info for 192 fonts, out of 8000000 for 9000
+ 28873 multiletter control sequences out of 15000+600000
+ 199605 words of font info for 184 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  51i,12n,71p,870b,1390s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/tex
@@ -3411,10 +3420,10 @@ re/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts
 i8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (119 pages, 
-843557 bytes).
+901304 bytes).
 PDF statistics:
- 484 PDF objects out of 1000 (max. 8388607)
+ 487 PDF objects out of 1000 (max. 8388607)
  311 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
- 159 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 
