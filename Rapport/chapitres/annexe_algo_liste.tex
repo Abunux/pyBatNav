@@ -71,6 +71,10 @@ Afin d'éviter de répéter les mêmes calculs, la liste \texttt{taille\_bateaux
 \texttt{tmp\_taille\_bateaux = list(set(taille\_bateaux))}
 \end{center}
 
+\medskip
+
+À des fin de tests, cette fonction accepte un argument \texttt{tri} qui, s'il est Vrai trie les résultats. Ce tri est uniquement nécessaire pour les tests et est mis à Faux par défaut (cela prend un petit peu plus de temps de trier à chaque fois).
+
 \newpage
 
 \subsection{Création de bateaux aléatoires}
@@ -223,27 +227,27 @@ Pour information voici, sur la page suivante, le nombre de répartitions sur cha
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-&0&1&2&3&4&5&6&7&8&9\\
+& \texttt{A} & \texttt{B} & \texttt{C} & \texttt{D} & \texttt{E} & \texttt{F} & \texttt{G} & \texttt{H} & \texttt{I} & \texttt{J} \\
 \hline
-0 & 8138842 & 11060807 & 13598504 & 15286936 & 16111642 & 16111642 & 15286936 & 13598504 & 11060807 & 8138842\\
+\texttt{0} & 8138842 & 11060807 & 13598504 & 15286936 & 16111642 & 16111642 & 15286936 & 13598504 & 11060807 & 8138842\\
 \hline
-1 & 11060807 & 12059986 & 13448547 & 14238869 & 14511549 & 14511549 & 14238869 & 13448547 & 12059986 & 11060807\\
+\texttt{1} & 11060807 & 12059986 & 13448547 & 14238869 & 14511549 & 14511549 & 14238869 & 13448547 & 12059986 & 11060807\\
 \hline
-2 & 13598504 & 13448547 & 14505458 & 15088255 & 15244715 & 15244715 & 15088255 & 14505458 & 13448547 & 13598504\\
+\texttt{2} & 13598504 & 13448547 & 14505458 & 15088255 & 15244715 & 15244715 & 15088255 & 14505458 & 13448547 & 13598504\\
 \hline
-3 & 15286936 & 14238869 & 15088255 & 15542880 & 15653410 & 15653410 & 15542880 & 15088255 & 14238869 & 15286936\\
+\texttt{3} & 15286936 & 14238869 & 15088255 & 15542880 & 15653410 & 15653410 & 15542880 & 15088255 & 14238869 & 15286936\\
 \hline
-4 & 16111642 & 14511549 & 15244715 & 15653410 & 15769046 & 15769046 & 15653410 & 15244715 & 14511549 & 16111642\\
+\texttt{4} & 16111642 & 14511549 & 15244715 & 15653410 & 15769046 & 15769046 & 15653410 & 15244715 & 14511549 & 16111642\\
 \hline
-5 & 16111642 & 14511549 & 15244715 & 15653410 & 15769046 & 15769046 & 15653410 & 15244715 & 14511549 & 16111642\\
+\texttt{5} & 16111642 & 14511549 & 15244715 & 15653410 & 15769046 & 15769046 & 15653410 & 15244715 & 14511549 & 16111642\\
 \hline
-6 & 15286936 & 14238869 & 15088255 & 15542880 & 15653410 & 15653410 & 15542880 & 15088255 & 14238869 & 15286936\\
+\texttt{6} & 15286936 & 14238869 & 15088255 & 15542880 & 15653410 & 15653410 & 15542880 & 15088255 & 14238869 & 15286936\\
 \hline
-7 & 13598504 & 13448547 & 14505458 & 15088255 & 15244715 & 15244715 & 15088255 & 14505458 & 13448547 & 13598504\\
+\texttt{7} & 13598504 & 13448547 & 14505458 & 15088255 & 15244715 & 15244715 & 15088255 & 14505458 & 13448547 & 13598504\\
 \hline
-8 & 11060807 & 12059986 & 13448547 & 14238869 & 14511549 & 14511549 & 14238869 & 13448547 & 12059986 & 11060807\\
+\texttt{8} & 11060807 & 12059986 & 13448547 & 14238869 & 14511549 & 14511549 & 14238869 & 13448547 & 12059986 & 11060807\\
 \hline
-9 & 8138842 & 11060807 & 13598504 & 15286936 & 16111642 & 16111642 & 15286936 & 13598504 & 11060807 & 8138842\\
+\texttt{9} & 8138842 & 11060807 & 13598504 & 15286936 & 16111642 & 16111642 & 15286936 & 13598504 & 11060807 & 8138842\\
 \hline
 \end{tabular}
 
@@ -404,7 +408,8 @@ Tant que le grille n'est pas résolue :\\
 \tab{3}Si len(liste\_touches) == 1 (2éme case du bateau):\\
 \tab{4}On détecte la direction du bateau\\
 \tab{3}On met à jour la file d'attente\\
-\tab{4}(avec la case adjacente à case\_courante dans la bonne direction)\\
+\tab{4}(avec la case adjacente à case\_courante dans la bonne direction\\
+\tab{4} si elle est vide)\\
 \tab{2}Si le bateau touché est le plus grand restant :\\
 \tab{3}On vide la file d'attente\\
 \tab{1}Sinon :\\

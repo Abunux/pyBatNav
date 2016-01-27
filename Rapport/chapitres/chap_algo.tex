@@ -14,8 +14,8 @@ Différents algorithmes de résolution sont implémentés et choisis avec l'attr
 \item \texttt{Ordi.niveau=2} : Tirs aléatoires et phase de tirs ciblés.
 \item \texttt{Ordi.niveau=3} : Tirs aléatoires sur les cases noires  et phase de tirs ciblés.
 \item \texttt{Ordi.niveau=4} : Détermination de la case optimale par des échantillons et phase de tirs ciblés.
-\item \texttt{Ordi.niveau=5} : Détermination de la case optimale par le nombre de bateaux possibles et phase de tirs ciblés.
-\item \texttt{Ordi.niveau=6} : Idem niveau 5, mais dès que le nombre de cases vides passe en-dessous de \texttt{Ordi.seuil}, l'algorithme énumère toutes les répartitions possibles.
+\item \texttt{Ordi.niveau=5} : Détermination de la case optimale par le nombre de bateaux possibles sur chaque case et phase de tirs ciblés.
+\item \texttt{Ordi.niveau=6} : Idem niveau 5, mais dès que le nombre de cases vides passe en-dessous de \texttt{Ordi.seuil}, l'algorithme énumère toutes les répartitions de bateaux possibles.
 \end{itemize}
 
 Une étude statistique de chacun de ces algorithmes est donnée en annexe \ref{annexe_stats}, page \pageref{annexe_stats} et un exemple de résolution pas à pas (avec le niveau 5) est donné dans l'annexe \ref{annexe_algo_action}, page \pageref{annexe_algo_action}. L'algorithme complet de résolution est donné en annexe \ref{algo_liste}, page \pageref{algo_resolution}.
@@ -86,6 +86,9 @@ Temps moyen par partie (en secondes) & 0,38 & 3,6 & 36,2 & 380\\
 Au final, le temps de résolution est linéaire en $n$ pour des gains de performances négligeables.\\ Le calcul est effectué dans la méthode \texttt{Grille.case\_max\_echantillons(self, nb\_echantillons, ordre)} du module \texttt{bn\_grille.py}.
 \end{comment}
  
+\subsubsection{Méthode par énumération de tous les cas}
+
+On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre de configurations, cette approche est inutilisable sur une grille standard. Elle est néanmoins implémentée dans la méthode \texttt{Grille.case\_max\_all(self)}.
 
 \subsubsection{Méthodes par comptage}
 Dans cette méthode, on va compter pour chaque case le nombre de bateaux possibles contenant celle-ci et tirer sur celle qui en contient le plus.
@@ -109,9 +112,7 @@ La méthode \texttt{Grille.case\_max(self)} renvoie la case optimale, ainsi que 
 Bien que locale (on ne regarde pas la répartition de tous les bateaux ensemble sur la grille), cette méthode est très efficace.
 
 
-\subsubsection{Méthode par énumération de tous les cas}
 
-On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre de configurations, cette approche est inutilisable sur une grille standard. Elle est néanmoins implémentée dans la méthode \texttt{Grille.case\_max\_all(self)}.
 
 \section{Phase de tir ciblé}
 Lors de cette phase, on va utiliser une file d'attente dans la liste \texttt{Ordi.queue} qui va contenir la liste des prochaines cases à viser. On va également garder la trace des cases touchées sur ce bateau dans la liste \texttt{Ordi.liste\_touches}, ainsi que sa première case touchée dans \texttt{Ordi.case\_touchee}.

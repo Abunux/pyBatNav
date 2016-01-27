@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  27 JAN 2016 07:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  27 JAN 2016 12:35
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2124,7 +2124,7 @@ Overfull \hbox (36.35437pt too wide) in paragraph at lines 11--12
  []
 
 [11]
-Overfull \hbox (10.945pt too wide) in paragraph at lines 120--121
+Overfull \hbox (10.945pt too wide) in paragraph at lines 121--122
 []\T1/futs/m/n/12 Lors du pre-mier tir tou-ché après la phase de tir en aveugle
 , l'at-tri-but \T1/lmtt/m/n/12 Ordi.case_touchee
  []
@@ -2136,24 +2136,24 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [12]
-LaTeX Font Info:    Try loading font information for T1+phv on input line 142.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 143.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 142.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 143.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.5pt on input line 142.
+(Font)              scaled to size 10.5pt on input line 143.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.5pt on input line 144.
+(Font)              scaled to size 10.5pt on input line 145.
 
-Overfull \hbox (13.77136pt too wide) in paragraph at lines 156--157
+Overfull \hbox (13.77136pt too wide) in paragraph at lines 157--158
 \T1/futs/m/n/12 nombre de ba-teaux pos-sibles. C'est le rôle de la mé-thode \T1
 /lmtt/m/n/12 Grille.case_max_touchee(self,
  []
 
 
-Overfull \hbox (19.3282pt too wide) in paragraph at lines 160--162
+Overfull \hbox (19.3282pt too wide) in paragraph at lines 161--163
 \T1/futs/m/n/12 ment la même chose). Pour chaque taille de ba-teau à cou-ler po
 s-sible conte-nant \T1/lmtt/m/n/12 case_touchee
  []
@@ -2165,7 +2165,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [13]
-Overfull \hbox (4.60515pt too wide) in paragraph at lines 291--292
+Overfull \hbox (4.60515pt too wide) in paragraph at lines 292--293
 \T1/lmtt/m/n/12 sorted(probas_liste, key=lambda proba: proba[1], reverse = True
 ) \T1/futs/m/n/12 et que l'on
  []
@@ -2224,7 +2224,13 @@ LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 110
 .
  (/usr/share/texmf/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) (./chapitres/chap_gui.tex
+)
+Overfull \hbox (2.42714pt too wide) in paragraph at lines 138--139
+[]\T1/futs/m/n/12 Tests sta-tis-tiques des al-go-rithmes de ré-so-lu-tion avec 
+choix des pa-ra-mètres de la grille. 
+ []
+
+) (./chapitres/chap_gui.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2288,12 +2294,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [30]
-Overfull \hbox (1.18723pt too wide) in paragraph at lines 79--88
+Overfull \hbox (1.18723pt too wide) in paragraph at lines 83--92
  [] 
  []
 
 
-Overfull \hbox (1.18723pt too wide) in paragraph at lines 94--108
+Overfull \hbox (1.18723pt too wide) in paragraph at lines 98--112
  [] 
  []
 
@@ -2304,12 +2310,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [31]
-Overfull \hbox (38.23724pt too wide) in paragraph at lines 155--167
+Overfull \hbox (38.23724pt too wide) in paragraph at lines 159--171
  [] 
  []
 
 
-Overfull \hbox (26.5737pt too wide) in paragraph at lines 171--172
+Overfull \hbox (26.5737pt too wide) in paragraph at lines 175--176
 \T1/futs/m/n/12 boucle. \T1/lmtt/m/n/12 case+k*direction \T1/futs/m/n/12 si-gni
 -fie \T1/lmtt/m/n/12 (case[0]+k*direction[0],case[1]+k*direction[1])\T1/futs/m/
 n/12 . 
@@ -2347,7 +2353,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [35
 
 ]
-Overfull \hbox (19.93346pt too wide) in paragraph at lines 313--314
+Overfull \hbox (19.93346pt too wide) in paragraph at lines 317--318
 []\T1/futs/m/n/12 Notons que dans cet al-go-rithme on en s'in-té-resse qu'aux c
 ases ad-ja-centes à \T1/lmtt/m/n/12 case_touchee\T1/futs/m/n/12 . 
  []
@@ -2359,7 +2365,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [36]
-Overfull \hbox (50.58725pt too wide) in paragraph at lines 325--342
+Overfull \hbox (50.58725pt too wide) in paragraph at lines 329--346
  [] 
  []
 
@@ -2377,7 +2383,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [38]
-Overfull \hbox (19.71223pt too wide) in paragraph at lines 382--415
+Overfull \hbox (13.53723pt too wide) in paragraph at lines 386--420
  [] 
  []
 
@@ -2700,8 +2706,8 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
 Overfull \hbox (321.82338pt too wide) in paragraph at lines 31--31
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f51c
-8aa6f98>, adversaire=<bn_joueur.Ordi object at 0x7f51c8ab3b70>)[] 
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f634
+42372e8>, adversaire=<bn_joueur.Ordi object at 0x7f6344237e80>)[] 
  []
 
 
@@ -2841,9 +2847,9 @@ ed.
 
 File: ./docstrings/bn_console.PartieC  (verbatim)
 
-Overfull \hbox (321.80237pt too wide) in paragraph at lines 48--48
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f766
-8ef3c88>, adversaire=<bn_joueur.Ordi object at 0x7f766284b160>)[] 
+Overfull \hbox (321.82338pt too wide) in paragraph at lines 48--48
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fbdc
+ae85f98>, adversaire=<bn_joueur.Ordi object at 0x7fbdc16f35f8>)[] 
  []
 
 
@@ -2898,7 +2904,7 @@ File: ./docstrings/bn_stats.Stats  (verbatim)
 
 Overfull \hbox (420.63744pt too wide) in paragraph at lines 57--57
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10, 'ymax': 10}, niveau_str='5')
+le={'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10}, niveau_str='5')
 [] 
  []
 
@@ -3293,11 +3299,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[111] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
+[111] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) )
 (\end occurred inside a group at level 36)
 
 ### simple group (level 36) entered at line 1275 ({)
@@ -3340,7 +3342,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Here is how much of TeX's memory you used:
  25790 strings out of 493304
  496155 string characters out of 6139871
- 766992 words of memory out of 5000000
+ 766993 words of memory out of 5000000
  28391 multiletter control sequences out of 15000+600000
  195841 words of font info for 192 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -3358,7 +3360,7 @@ re/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts
 i8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (117 pages, 
-841368 bytes).
+841943 bytes).
 PDF statistics:
  478 PDF objects out of 1000 (max. 8388607)
  307 compressed objects within 4 object streams

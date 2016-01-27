@@ -2,7 +2,7 @@
 
 \section{Le jeu de la bataille navale}
 Le jeu de la bataille navale est un jeu qui se joue à deux joueurs.\\
-Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, à tour de rôle, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{}. Nous avons pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre l'algorithme de résolution un petit peu plus intéressant.\\
+Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, à tour de rôle, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{} (on ne rejoue pas après avoir touché). Nous avons pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre l'algorithme de résolution un petit peu plus intéressant.\\
 Les bateaux peuvent être placés horizontalement ou verticalement et deux bateaux ne peuvent pas se trouver sur des cases adjacentes.
 
 Les paramètres de jeu retenus dans ce projet sont ceux du jeu original, mais ils peuvent être facilement modifiés, à savoir que la grille est un carré 10 cases de côté et la composition de la flotte est la suivante :
@@ -17,7 +17,7 @@ Les paramètres de jeu retenus dans ce projet sont ceux du jeu original, mais il
 
 Notons tout de suite quelques implications stratégiques de ces règles qui seront utilisées dans le projet :
 \begin{itemize}
-\item Le plus petit bateau étant de taille 2, il suffit de ne tirer que sur une cases sur 2 (imaginez les cases noires d'un damier) lors de la recherche d'un bateau.
+\item Le plus petit bateau étant de taille 2, il suffit de ne tirer que sur une cases sur deux (imaginez les cases noires d'un damier) lors de la recherche d'un bateau.
 \item Une fois qu'un bateau a été coulé (soit parce que c'est le plus grand de la liste, soit parce que les cases adjacentes à ses extrémités ont été manquées), on peut éliminer de la recherche toutes ses cases adjacentes.
 \item On peut tout à fait concevoir ce jeu comme un jeu à un seul joueur jouant sur une grille aléatoire.
 \end{itemize}
