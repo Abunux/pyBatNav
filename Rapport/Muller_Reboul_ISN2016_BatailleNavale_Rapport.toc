@@ -86,22 +86,25 @@
 \contentsline {subsection}{\numberline {4.5}Conclusion sur le niveau 4}{49}
 \contentsline {section}{\numberline {5}Niveau 5}{50}
 \contentsline {section}{\numberline {6}Niveau 6}{51}
-\contentsline {section}{\numberline {7}Conclusions}{52}
-\contentsline {chapter}{\numberline {C}Codes des caract\IeC {\`e}res graphiques}{53}
-\contentsline {chapter}{\numberline {D}Documentation des modules}{55}
-\contentsline {section}{\numberline {1}Module bn\_grille.py}{55}
-\contentsline {subsection}{\numberline {1.1}Classe Bateau}{55}
-\contentsline {subsection}{\numberline {1.2}Classe Grille}{56}
-\contentsline {section}{\numberline {2}Module bn\_joueur.py}{58}
-\contentsline {subsection}{\numberline {2.1}Classe Joueur}{58}
-\contentsline {subsection}{\numberline {2.2}Classe Ordi}{59}
-\contentsline {subsection}{\numberline {2.3}Classe Partie}{62}
-\contentsline {section}{\numberline {3}Module bn\_console.py}{63}
-\contentsline {subsection}{\numberline {3.1}Classe GrilleC}{63}
-\contentsline {subsection}{\numberline {3.2}Classe JoueurC}{66}
-\contentsline {subsection}{\numberline {3.3}Classe OrdiC}{67}
-\contentsline {subsection}{\numberline {3.4}Classe PartieC}{70}
-\contentsline {subsection}{\numberline {3.5}Classe MainConsole}{71}
-\contentsline {section}{\numberline {4}Module bn\_stats.py}{72}
-\contentsline {subsection}{\numberline {4.1}Classe Stats}{72}
-\contentsline {chapter}{\numberline {E}L'algorithme en action}{75}
+\contentsline {subsection}{\numberline {6.1}Seuil \IeC {\'e}gal \IeC {\`a} 60}{51}
+\contentsline {subsection}{\numberline {6.2}Seuil \IeC {\'e}gal \IeC {\`a} 70}{52}
+\contentsline {subsection}{\numberline {6.3}Conclusion}{52}
+\contentsline {section}{\numberline {7}Conclusions}{53}
+\contentsline {chapter}{\numberline {C}Codes des caract\IeC {\`e}res graphiques}{55}
+\contentsline {chapter}{\numberline {D}Documentation des modules}{57}
+\contentsline {section}{\numberline {1}Module bn\_grille.py}{57}
+\contentsline {subsection}{\numberline {1.1}Classe Bateau}{57}
+\contentsline {subsection}{\numberline {1.2}Classe Grille}{58}
+\contentsline {section}{\numberline {2}Module bn\_joueur.py}{60}
+\contentsline {subsection}{\numberline {2.1}Classe Joueur}{60}
+\contentsline {subsection}{\numberline {2.2}Classe Ordi}{61}
+\contentsline {subsection}{\numberline {2.3}Classe Partie}{64}
+\contentsline {section}{\numberline {3}Module bn\_console.py}{65}
+\contentsline {subsection}{\numberline {3.1}Classe GrilleC}{65}
+\contentsline {subsection}{\numberline {3.2}Classe JoueurC}{68}
+\contentsline {subsection}{\numberline {3.3}Classe OrdiC}{69}
+\contentsline {subsection}{\numberline {3.4}Classe PartieC}{72}
+\contentsline {subsection}{\numberline {3.5}Classe MainConsole}{73}
+\contentsline {section}{\numberline {4}Module bn\_stats.py}{74}
+\contentsline {subsection}{\numberline {4.1}Classe Stats}{74}
+\contentsline {chapter}{\numberline {E}L'algorithme en action}{77}

@@ -13,6 +13,13 @@ Version 0.1.0"""
 #
 # Constantes ----------------------------------------------------------------------------------------------------
 #
+DROITE = HORIZONTAL = (1, 0)
+GAUCHE = (-1, 0)
+BAS = VERTICAL = (0, 1)
+HAUT = (0, -1)
+TOUTES_DIR = (1,1)
+
+#--> À supprimer, uniquement là pour compatibilité
 BN_DROITE = BN_HORIZONTAL = (1, 0)
 BN_GAUCHE = (-1, 0)
 BN_BAS = BN_VERTICAL = (0, 1)

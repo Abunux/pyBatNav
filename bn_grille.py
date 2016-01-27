@@ -94,12 +94,10 @@ class Grille(object):
 				
 	def update_vides(self):
 		"""Met à jour la liste des cases vides"""
-		# --> À optimiser mais remove ne marche pas... (j'ai essayé)
 		self.vides = []
-		for i in range(self.xmax):
-			for j in range(self.ymax):
-				if self.etat[(i,j)] == 0 :
-					self.vides.append((i,j))
+		for case in self.etat :
+			if self.etat[case] == 0 :
+				self.vides.append(case)
 		
 	def update(self):
 		"""Met à jour les paramètres de la grille"""
@@ -122,8 +120,8 @@ class Grille(object):
 		"""Retourne la liste des cases vides adjacentes à case
 		dans l'ordre : DROITE, GAUCHE, HAUT, BAS"""
 		adj = []
-		for d in [BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS]:
-			case_adj = (case[0]+d[0] , case[1]+d[1])
+		for direction in [DROITE, GAUCHE, HAUT, BAS]:
+			case_adj = (case[0]+direction[0] , case[1]+direction[1])
 			if  self.test_case(case_adj):
 				adj.append(case_adj)
 		return adj
@@ -140,13 +138,13 @@ class Grille(object):
 	#
 	# Gestion des espaces impossibles ----------------------------------
 	#
-	def get_max_space(self, case, direction=BN_ALLDIR, sens=1):
+	def get_max_space(self, case, direction=TOUTES_DIR, sens=1):
 		"""Renvoie la plus grande place possible sur cette case 
 		dans une direction"""
 		# sens = 0 : ne compte qu'à droite ou en bas (pour l'IA)
-		# car BN_DROITE=BN_HORIZONTAL et BN_BAS=BN_VERTICAL, donc obligé de spécifier
-		if direction == BN_ALLDIR:
-			return max(self.get_max_space(case, BN_HORIZONTAL), self.get_max_space(case, BN_VERTICAL))
+		# car DROITE=HORIZONTAL et BAS=VERTICAL, donc obligé de spécifier
+		if direction == TOUTES_DIR:
+			return max(self.get_max_space(case, HORIZONTAL), self.get_max_space(case, VERTICAL))
 		
 		m = 1
 		# Comptage des cases libres dans un seul sens
@@ -226,7 +224,8 @@ class Grille(object):
 			for j in range(self.ymax):
 				self.possibles_case[(i,j)] = []
 				
-		# Récupère les éléments une seule fois de self.taille_bateaux, triés en ordre décroissant
+		# Récupère les éléments une seule fois de self.taille_bateaux, 
+		# triés en ordre décroissant si besoin
 		if tri :
 			tmp_taille_bateaux = sorted(list(set(self.taille_bateaux)), reverse=True)
 		else :
@@ -234,7 +233,7 @@ class Grille(object):
 		
 		# Regarde pour chaque case vide la taille maxi d'un bateau dans chaque direction
 		for case in self.vides :
-			for direction in [BN_DROITE, BN_BAS] :
+			for direction in [DROITE, BAS] :
 				tmax = self.get_max_space(case, direction=direction, sens=0)
 				self.possibles_case[case] += [(taille, direction) for taille in tmp_taille_bateaux if taille <= tmax]
 
@@ -288,10 +287,11 @@ class Grille(object):
 		nb_bateaux = 0
 		while nb_bateaux < len(self.taille_bateaux) :
 			nb_bateaux = 0
+			# Crée une grille temporaire sur laquelle on va essayer de placer les bateaux
 			gtmp = self.copie_grille_tmp()
 			for taille in self.taille_bateaux :
 				if not gtmp.add_bateau_alea(taille) :
-					break
+					break # On est bloqué
 				else :
 					gtmp.rem_bateau(taille)
 					nb_bateaux += 1
@@ -321,15 +321,12 @@ class Grille(object):
 			for case in grille_tmp.etat :
 				if self.etat[case] == 0 and grille_tmp.etat[case] == 1 :
 					self.probas[case] += 1
-		# Calcul des probas
-		for case in self.probas :
-			self.probas[case] *= 1/nb_echantillons
-		
+
 		# Détermination de la case la plus probable
 		case_max = (0,0)
 		pmax = 0
 		for case in self.probas :
-			if self.probas[case] > pmax :#and (case[0]+case[1])%2 == 0:
+			if self.probas[case] > pmax :
 				pmax = self.probas[case]
 				case_max = case
 		
@@ -370,7 +367,7 @@ class Grille(object):
 		self.case_proba = (0,0)
 		self.pmax = 0
 		for case in self.probas :
-			if self.probas[case] > self.pmax :#and (case[0]+case[1])%2 == 0:
+			if self.probas[case] > self.pmax :
 				self.pmax = self.probas[case]
 				self.case_proba = case
 		
@@ -403,21 +400,21 @@ class Grille(object):
 			probas[case] = 0
 			
 		for taille in self.taille_bateaux :
-			for direction in [BN_HORIZONTAL, BN_VERTICAL] :
-					# Bateau qui se termine sur case_touchee
-					# On ajoute 1 à sa case à gauche, ou au-dessus
+			for direction in [HORIZONTAL, VERTICAL] :
+				# Bateau qui se termine sur case_touchee
+				# On ajoute 1 à sa case à gauche, ou au-dessus
 				if case_touchee[direction[1]]-(taille-1)*direction[direction[1]] >= 0 and \
 					((case_touchee[0]-(taille-1)*direction[0], case_touchee[1]-(taille-1)*direction[1]), direction) in self.possibles[taille]:
 						probas[(case_touchee[0]-direction[0], case_touchee[1]-direction[1])] += 1
-					# Bateaux à cheval strictement sur case_touchee
-					# On ajoute 1 à gauche et à droite, ou au-desus et en-dessous
+				# Bateaux à cheval strictement sur case_touchee
+				# On ajoute 1 à gauche et à droite, ou au-desus et en-dessous
 				for k in range(1, taille-1) :
 					if case_touchee[direction[1]]-k*direction[direction[1]] >= 0 and \
 						((case_touchee[0]-k*direction[0], case_touchee[1]-k*direction[1]), direction) in self.possibles[taille]:
 						probas[(case_touchee[0]-direction[0], case_touchee[1]-direction[1])] += 1
 						probas[(case_touchee[0]+direction[0], case_touchee[1]+direction[1])] += 1
-					# Bateau qui démarre sur case_touchee
-					# On ajoute 1 à droite, ou en-dessous
+				# Bateau qui démarre sur case_touchee
+				# On ajoute 1 à droite, ou en-dessous
 				if ((case_touchee[0], case_touchee[1]), direction) in self.possibles[taille]:
 						probas[(case_touchee[0]+direction[0], case_touchee[1]+direction[1])] += 1
 
@@ -589,13 +586,13 @@ class Grille(object):
 		#~ (x,y) = rand.choice(self.vides)
 		#~ dir_possibles = []
 		#~ if x >= taille-1 :
-			#~ dir_possibles.append(BN_GAUCHE)
+			#~ dir_possibles.append(GAUCHE)
 		#~ if x <= self.xmax - taille :
-			#~ dir_possibles.append(BN_DROITE)
+			#~ dir_possibles.append(DROITE)
 		#~ if y >= taille-1 :
-			#~ dir_possibles.append(BN_HAUT)
+			#~ dir_possibles.append(HAUT)
 		#~ if y <= self.ymax - taille :
-			#~ dir_possibles.append(BN_BAS)
+			#~ dir_possibles.append(BAS)
 		#~ sens = rand.choice(dir_possibles)
 		#~ bateau = Bateau(taille, (x,y), sens)
 		#~ return bateau
@@ -625,7 +622,7 @@ class Grille(object):
 		#~ dir_possibles = []
 		#~ while not dir_possibles :
 			#~ (x,y) = rand.choice(self.vides)
-			#~ for sens in [BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS] :
+			#~ for sens in [DROITE, GAUCHE, HAUT, BAS] :
 				#~ if grille_tmp.test_bateau(Bateau(taille, (x,y), sens)):
 					#~ dir_possibles.append(sens)
 		#~ sens = rand.choice(dir_possibles)
@@ -638,7 +635,7 @@ class Grille(object):
 		#~ y = rand.randrange(0, self.ymax)
 		#self.update_vides()
 		#(x,y) = rand.choice(self.vides)
-		#~ sens = rand.choice([BN_DROITE, BN_GAUCHE, BN_HAUT, BN_BAS])
+		#~ sens = rand.choice([DROITE, GAUCHE, HAUT, BAS])
 		#~ bateau = Bateau(taille, (x,y), sens)
 		#~ return bateau
 	#~ 

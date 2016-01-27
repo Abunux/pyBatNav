@@ -222,9 +222,8 @@ Même si cette méthode est inutilisable en tant que telle, elle peut être int�
 Pour information voici, sur la page suivante, le nombre de répartitions sur chaque case pour \texttt{taille\_bateaux=[5,4,3,2]} :
 
 
-\begin{landscape}
-\vspace*{4cm}
 \begin{center}
+\begin{adjustbox}{angle=90}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 & \texttt{A} & \texttt{B} & \texttt{C} & \texttt{D} & \texttt{E} & \texttt{F} & \texttt{G} & \texttt{H} & \texttt{I} & \texttt{J} \\
@@ -249,13 +248,12 @@ Pour information voici, sur la page suivante, le nombre de répartitions sur cha
 \hline
 \texttt{9} & 8138842 & 11060807 & 13598504 & 15286936 & 16111642 & 16111642 & 15286936 & 13598504 & 11060807 & 8138842\\
 \hline
+\multicolumn{11}{c}{}\\
+\multicolumn{11}{c}{\textit{Nombre de bateaux sur chaque case pour une grille vide avec \texttt{taille\_bateaux=[5,4,3,2]}}}\\
+\multicolumn{11}{c}{\textit{à partir d'une liste exhaustive de toutes les répartitions possibles}}
 \end{tabular}
-
-\medskip
-
-\textit{Nombre de bateaux sur chaque case pour une grille vide avec \texttt{taille\_bateaux=[5,4,3,2]}}
+\end{adjustbox}
 \end{center}
-\end{landscape}
 
 \newpage
 
@@ -339,7 +337,7 @@ Si on vient de découvrir la direction du bateau (len(liste\_touchee==1)):\\
 \tab{3}de la file d'attente\\
 nv\_case est la case\\
 \tab{2}(case\_courante[0] + direction[0]*signe(case\_courante[0]-case\_touchee[0]),\\
-\tab{2} case\_courante[1] + direction[0]*signe(case\_courante[1]-case\_touchee[1]))\\
+\tab{2} case\_courante[1] + direction[1]*signe(case\_courante[1]-case\_touchee[1]))\\
 Si nv\_case est dans la grille et est vide :\\
 \tab{1}On ajoute nv\_case à la file d'attente\\
 On ajoute case\_courante à liste\_touches\\

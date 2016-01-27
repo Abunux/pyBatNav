@@ -127,7 +127,8 @@ class Ordi(Joueur):
 		# niveau=2 : Aveugle aléatoire, ciblé 
 		# niveau=3 : Aveugle aléatoire cases noires, ciblé
 		# niveau=4 : Aveugle échantillons, ciblé
-		# niveau=5 : Aveugle nb possibilités, ciblé 
+		# niveau=5 : Aveugle nb possibilités (local), ciblé 
+		# niveau=6 : Aveugle nb possibilités (global), ciblé 
 		self.niveau = niveau
 		
 		# Nombre d'échantillons pour le niveau 4
@@ -180,7 +181,7 @@ class Ordi(Joueur):
 		elif self.niveau==4 :
 			(case_max, pmax) = self.grille_suivi.case_max_echantillons(nb_echantillons=self.nb_echantillons)
 			self.case_courante = case_max
-			self.messages.append("Je tire sur la case %s qui est la plus probable (p=%.4f)" % (alpha(self.case_courante), pmax))
+			self.messages.append("Je tire sur la case %s qui est la plus probable (p=%d/%d)" % (alpha(self.case_courante), pmax,self.nb_echantillons))
 		else :
 			if self.niveau == 5 or len(self.grille_suivi.vides) > self.seuil :
 				(case_max, pmax) = self.grille_suivi.case_max()
@@ -218,43 +219,19 @@ class Ordi(Joueur):
 		adj = self.grille_suivi.adjacent(self.case_touchee)
 		self.grille_suivi.get_taille_min()
 		
-		for direction in [BN_HORIZONTAL, BN_VERTICAL] :
+		# Test des directions possibles
+		for direction in [HORIZONTAL, VERTICAL] :
 			k = direction[0]
 			if self.grille_suivi.get_max_space(self.case_touchee, direction=direction) >= self.grille_suivi.taille_min :
 				for c in adj :
 					if c[k] == self.case_touchee[k] :
 						self.add_queue(c)
 			else :
-				if direction == BN_HORIZONTAL :
+				if direction == HORIZONTAL :
 					self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 				else :
 					self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 				
-		
-		# On teste si le bateau rentre verticalement
-		#~ if self.grille_suivi.get_max_space(self.case_touchee, direction=BN_VERTICAL) >= self.grille_suivi.taille_min :
-			#~ for c in adj :
-				#~ if c[0] == self.case_touchee[0] :
-					#~ self.add_queue(c)
-		#~ else :
-			#~ self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
-			
-		#~ # On teste si le bateau rentre horizontalement
-		#~ if self.grille_suivi.get_max_space(self.case_touchee, direction=BN_HORIZONTAL) >= self.grille_suivi.taille_min :
-			#~ for c in adj :
-				#~ if c[1] == self.case_touchee[1] :
-					#~ self.add_queue(c)
-		#~ else :
-			#~ self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
-		#~ 
-		#~ # On teste si le bateau rentre verticalement
-		#~ if self.grille_suivi.get_max_space(self.case_touchee, direction=BN_VERTICAL) >= self.grille_suivi.taille_min :
-			#~ for c in adj :
-				#~ if c[0] == self.case_touchee[0] :
-					#~ self.add_queue(c)
-		#~ else :
-			#~ self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
-					
 		# On mélange la file d'attente en fonction des probas
 		self.shuffle_queue()
 		
@@ -266,14 +243,14 @@ class Ordi(Joueur):
 		touché une 2ème fois"""
 		# Bateau horizontal :
 		if self.case_courante[1] == self.case_touchee[1] :
-			direction = BN_HORIZONTAL
+			direction = HORIZONTAL
 		# Bateau vertical :
 		else :
-			direction = BN_VERTICAL
+			direction = VERTICAL
 		
 		# Si on vient de découvrir la direction, on l'affiche et on enlève de la file d'attente les cases qui ne sont pas dans la bonne direction
 		if len(self.liste_touches)==1 :
-			if direction == BN_HORIZONTAL :
+			if direction == HORIZONTAL :
 				self.messages.append("Le bateau touché est horizontal")
 			else :
 				self.messages.append("Le bateau touché est vertical")
@@ -304,7 +281,7 @@ class Ordi(Joueur):
 		
 		# On regarde s'il y a assez de place dans cette direction pour le plus petit bateau
 		if self.grille_suivi.get_max_space(case_face, direction) < self.grille_suivi.taille_min-1 :
-			if direction == BN_HORIZONTAL :
+			if direction == HORIZONTAL :
 				self.messages.append("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 			else :
 				self.messages.append("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))

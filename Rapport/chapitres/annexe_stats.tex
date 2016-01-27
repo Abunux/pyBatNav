@@ -24,10 +24,10 @@ L'algorithme de test affiche une estimation du temps restant (ainsi que de la da
 
 Afin d'obtenir des résultats comparables, tous les temps ont été mesurés sur le même ordinateur disposant d'un processeur Intel i7-4800-MQ cadencé à 2,7 GHz en mode monoprocesseur, de 16 Go de mémoire vive et tournant sous un système Linux 64 bits (Xubuntu 14.04).
 
-\vfill 
-\begin{flushright}
-Résultats à partir de la page suivante $\rightarrow$
-\end{flushright}
+%\vfill 
+%\begin{flushright}
+%Résultats à partir de la page suivante $\rightarrow$
+%\end{flushright}
 \newpage
 \section{Niveau 1}
 Dans ce niveau tous les tirs sont aléatoires uniformément sur les cases vides, et il n'y a pas de phase de tirs ciblés.\\
@@ -172,18 +172,27 @@ Notons les excellentes performances avec une moyenne de 42,06 coups pour un temp
 \newpage
 \section{Niveau 6}
 Au niveau 6, tant que le nombre de cases vides est inférieur à \texttt{seuil}, on procède comme au niveau 5 en regardant localement le nombre de bateaux possibles sur chaque case. Dès que le nombre de cases vides passe en-dessous de \texttt{seuil}, on crée la liste de tous les arrangements possibles de bateaux sur la grille (ce qui prend un temps conséquent, d'où l'obligation d'utiliser un seuil).
-
+\subsection{Seuil égal à 60}
 Avec un seuil de 60, les résultats obtenues sur un échantillon de $n=10\,000$ parties sont les suivants :
 
 \begin{center}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=6(60)_n=10000.png}}
 \end{center}
 
-C'est un petit peu décevant. On aurait pu prévoir une amélioration du fait de regarder la grille de façon globale. Ce n'est malheureusement pas le cas. Le niveau 5 reste le meilleur.
+Pour l'instant, avec un seuil de 60, nous restons sur notre faim. Il n'y a aucune amélioration par rapport au niveau 5.
 
-Avec un seuil de 70, le temps de calcul est beaucoup trop long. Il peut arriver que parmi les 30 premières cases touchées, peu de bateaux aient été coulés ce qui rend le temps de calcul très aléatoire.
+
 
 \newpage
+
+\subsection{Seuil égal à 70}
+Avec un seuil de 70, le temps de calcul est beaucoup trop long. Il peut arriver que parmi les 30 premières cases jouées, peu de bateaux aient été coulés ce qui rend le temps de calcul très aléatoire.
+\subsection{Conclusion}
+C'est un petit peu décevant. On aurait pu prévoir une amélioration du fait de regarder la grille de façon globale. Ce n'est malheureusement pas le cas. Le niveau 5 reste le meilleur.
+
+\newpage
+
+
 \section{Conclusions}
 
 Après avoir testé ces différents algorithmes nous pouvons tirer les conclusions suivantes :

@@ -50,7 +50,7 @@ class Stats(object):
 		if filename : 
 			self.filename = filename
 		else :
-			self.filename = "Distrib_"+str(self.effectif)
+			self.filename = "distrib_HAL_niveau=%s_n=%d" % (self.niveau_str, self.effectif)
 		
 		self.tmoy = tmoy
 		self.param_grille = param_grille
@@ -72,7 +72,7 @@ class Stats(object):
 			for k in range(len(self.data)) :
 				datafile.write(str(self.data[k]) + '\n')
 		
-		# Sauvegarde en LaTex :
+		# Sauvegarde dans un tableau en LaTeX :
 		with open(self.filename + ".tex", "w") as datafile :
 			for k in range(len(self.data)) :
 				datafile.write(str(k) + " & " + str(self.data[k]) + r'\\' + '\n')
@@ -124,6 +124,7 @@ class Stats(object):
 	
 	def get_quartiles(self):
 		"""Calcul des quartiles. Renvoie une liste [Q1, Med, Q3].
+		Q1 et Q2 sont les termes de rangs ceil(n/4) et ceil(3n/4)
 		La médiane est définie comme le terme de rang ceil(n/2)""" 
 		n = self.effectif
 		indexes = [ceil(n/4), ceil(n/2), ceil(3*n/4)]
@@ -162,7 +163,7 @@ class Stats(object):
 	#
 	# Création de l'histogramme ----------------------------------------
 	#
-	def histogramme(self, save=False):
+	def histogramme(self, show=True, save=True):
 		"""Crée la représentation graphique des données avec :
 			- Un histogramme des fréquences
 			- Un diagramme en boîte à moustache
@@ -231,7 +232,8 @@ class Stats(object):
 		plt.grid(True)
 		if save :
 			plt.savefig(self.filename + ".png", dpi=fig.dpi)
-		plt.show()
+		if show :
+			plt.show()
 
 
 if __name__ == "__main__" :

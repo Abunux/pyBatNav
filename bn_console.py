@@ -181,8 +181,8 @@ class GrilleC(Grille) :
 		return self.chaine
 		
 	def make_chaine_adverse(self, grille=None):
-		"""Crée la grille avec des caractères graphiques
-		en entourant en gras nos bateaux"""
+		"""Crée la grille avec des caractères graphiques en entourant
+		en gras les bateaux de la grille passée en paramètre"""
 		#~ ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
 		#~ │ 4 │   │   │   │   │   │   │   │   │   │   │
 		#~ ├───┼───┼───┼───╆━━━╅───┼───┼───┼───┼───┼───┤
@@ -557,13 +557,13 @@ class PartieC(Partie):
 		info("  G : Gauche")
 		d = input("Direction : ")
 		if d.upper() == 'H' :
-			direction = BN_HAUT
+			direction = HAUT
 		elif d.upper() == 'B' :
-			direction = BN_BAS
+			direction = BAS
 		elif d.upper() == 'D' :
-			direction = BN_DROITE
+			direction = DROITE
 		elif d.upper() == 'G' :
-			direction = BN_GAUCHE
+			direction = GAUCHE
 		
 		bateau = Bateau(taille, case, direction)
 
@@ -768,31 +768,21 @@ class MainConsole(object):
 				t_estime = (n-1)*(time()-start)
 				info("Temps total estimé : %.2f secondes (%s)" % (t_estime, strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_estime))))
 				info("(CTRL+C pour annuler la simulation)")
-				#~ info("Temps total estimé : %.2f secondes (CTRL+C pour annuler la simulation)" % ((n-1)*(time()-start)))
 			if (k+1) % (n/10) == 0 :
 				t_restant = (n-k-1)*(time()-start)/(k+1)
 				info("Avancement : %d%% (Temps restant estimé : %.2f secondes (%s))" % (100*(k+1)//n, t_restant,strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_restant)) ))
-				#~ info("Avancement : %d%% (Temps restant estimé : %.2f secondes)" % (100*(k+1)//n, (n-k-1)*(time()-start)/(k+1)))
 		
 		# Résultats de la simulation
 		tmoy = temps_resolution/n
-		#~ if niveau != 4 :
-			#~ filename = "distrib_HAL_niveau=%d_n=%d" % (niveau, n)
-			#~ niveau_str = str(niveau)
-		#~ else :
-			#~ filename = "distrib_HAL_niveau=4(%d)_n=%d" % (nb_echantillons, n)
-			#~ niveau_str = "4(%d)" % nb_echantillons
 		if niveau == 4 :
 			niveau_str = "4(%d)" % nb_echantillons
 		elif niveau == 6 :
 			niveau_str = "6(%d)" % seuil
 		else:
-			niveau_str = "4(%d)" % nb_echantillons
-		
+			niveau_str = "%d" % niveau
 		filename = "distrib_HAL_niveau=%s_n=%d" % (niveau_str, n)
 
 		stats = Stats(data=distrib, filename=filename, tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau_str=niveau_str)
-		#~ stats = Stats(data=distrib, filename="distrib_HAL_niveau=%d_n=%d" % (niveau, n), tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau=niveau)
 		
 		info()
 		info(boite("Résultats de la simulation", larg_fen=0))
@@ -893,7 +883,7 @@ class MainConsole(object):
 		info("                Auteurs : Frédéric Muller et Lionel Reboul")
 		info("                Code du projet : https://github.com/Abunux/pyBatNav")
 		info("                Licence Creative Common CC BY-NC-SA")
-		
+		info("                Projet démarré le 14/11/2015")
 		# source : http://www.chris.com/ascii/index.php?art=transportation/nautical
 		info(r"""
                                      |__
