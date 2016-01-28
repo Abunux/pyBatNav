@@ -88,7 +88,6 @@ class Joueur(object):
 	
 	def case_aleatoire(self):
 		"""Retourne une case aléatoire parmi les cases vides"""
-		#~ return self.grille_suivi.case_max()[0]
 		liste_cases = [(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]
 		if liste_cases :
 			return rand.choice(liste_cases)
@@ -122,7 +121,6 @@ class Ordi(Joueur):
 		Joueur.__init__(self, nom)
 		
 		# Niveau de l'ordinateur (type d'algo de résolution) :
-		# --> À implémenter dans la suite
 		# niveau=1 : Tous les coups aléatoires
 		# niveau=2 : Aveugle aléatoire, ciblé 
 		# niveau=3 : Aveugle aléatoire cases noires, ciblé

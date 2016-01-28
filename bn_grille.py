@@ -406,7 +406,7 @@ class Grille(object):
 				if case_touchee[direction[1]]-(taille-1)*direction[direction[1]] >= 0 and \
 					((case_touchee[0]-(taille-1)*direction[0], case_touchee[1]-(taille-1)*direction[1]), direction) in self.possibles[taille]:
 						probas[(case_touchee[0]-direction[0], case_touchee[1]-direction[1])] += 1
-				# Bateaux à cheval strictement sur case_touchee
+				# Bateau à cheval strictement sur case_touchee
 				# On ajoute 1 à gauche et à droite, ou au-desus et en-dessous
 				for k in range(1, taille-1) :
 					if case_touchee[direction[1]]-k*direction[direction[1]] >= 0 and \
