@@ -50,7 +50,7 @@ class Joueur(object):
 		# Méthode à surcharger suivant l'interface
 		if affiche :
 			while self.messages :
-				info("<%s> %s "%(self.nom, self.messages.pop(0)))
+				info("<%s> %s " % (self.nom, self.messages.pop(0)) )
 	
 	def add_bateau(self, taille, start, direction):
 		"""Ajoute un bateau sur la grille du joueur"""
@@ -126,7 +126,7 @@ class Joueur(object):
 		"""Enlève le dernier bateau coulé"""
 		self.grille_suivi.rem_bateau(taille)
 		self.messages.append("J'enlève le bateau de taille %d de la liste" % taille)
-		self.messages.append("Bateaux restant à couler : %s"%' '.join([str(t) for t in self.grille_suivi.taille_bateaux]))
+		self.messages.append("Bateaux restant à couler : %s" % ' '.join([str(t) for t in self.grille_suivi.taille_bateaux]))
 	
 	def elimine_adjacentes(self, cases):
 		"""Élimine les cases adjacents à un bateau coulé"""
@@ -139,7 +139,7 @@ class Joueur(object):
 	def check_coules(self):
 		"""Vérifie les bateaux coulés sur la grille
 		et les enlève de la liste des bateaux à chercher
-		en marquant elsurs case adjacentes comme impossibles"""
+		en marquant leurs case adjacentes comme impossibles"""
 		checked = [] # Liste temporaire des cases visitées
 		for case in sorted(self.cases_jouees[:]):
 			liste_touchees = []
@@ -160,28 +160,26 @@ class Joueur(object):
 				
 				# Récupération des cases du bateau
 				k = 0
-				while case[0]+k*direction[0]<self.grille_suivi.xmax and case[1]+k*direction[1]<self.grille_suivi.ymax \
+				while case[0]+k*direction[0] < self.grille_suivi.xmax and case[1]+k*direction[1] < self.grille_suivi.ymax \
 					and self.grille_suivi.etat[(case[0]+k*direction[0], case[1]+k*direction[1])] == 1 :
 						checked.append((case[0]+k*direction[0], case[1]+k*direction[1]))
 						liste_touchees.append((case[0]+k*direction[0], case[1]+k*direction[1]))
 						k += 1
 					
 				# Teste si on a coulé un bateau
-				print("k :", k)
-				print("case[direction[1]] :",case[direction[1]])
-				print("self.grille_suivi.dimensions[direction[1]] :", self.grille_suivi.dimensions[direction[1]])
-				if ((case[direction[1]]==0 or self.grille_suivi.etat[(case[0]-direction[0], case[1]-direction[1])] == -1) \
-					and (case[direction[1]]+k==self.grille_suivi.dimensions[direction[1]] or self.grille_suivi.etat[(case[0]+k*direction[0], case[1]+k*direction[1])] == -1 ))\
+				# Regarde si les extrémités du bateau sont en bord de grille ou manquées
+				# ou si le bateau est le plus grand restant
+				if ( (case[direction[1]] == 0 or self.grille_suivi.etat[(case[0]-direction[0], case[1]-direction[1])] == -1) \
+					and (case[direction[1]]+k == self.grille_suivi.dimensions[direction[1]] or self.grille_suivi.etat[(case[0]+k*direction[0], case[1]+k*direction[1])] == -1 ))\
 					or len(liste_touchees)==self.grille_suivi.taille_max :
 						self.messages.append("Je viens de couler le bateau de taille %d" % len(liste_touchees))
 						self.rem_bateau(len(liste_touchees))
 						self.elimine_adjacentes(liste_touchees)
 						self.cases_jouees += liste_touchees
 						self.checked += liste_touchees
-						#~ self.elimine_petites()
 	
 	def clean_grille(self):
-		pass
+		"""Élimine de la grille les cases impossibles"""
 		self.check_coules()
 		self.elimine_petites()
 		
