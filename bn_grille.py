@@ -67,6 +67,7 @@ class Grille(object):
 		# Dimensions de la grille
 		self.xmax = xmax
 		self.ymax = ymax
+		self.dimensions = (self.xmax, self.ymax)
 		
 		# État de chaque case : dictionnaire self.etat[case], où case = (i,j)
 		#	1  : Contient un bateau
@@ -174,6 +175,36 @@ class Grille(object):
 			if 0 < self.get_max_space(case) < self.taille_min :
 				self.etat[case] = -1
 				cases_eliminees.append(case)
+		self.update_vides()
+		return cases_eliminees
+		
+	def elimine_cases_joueur(self):
+		"""Élimine les cases dans lesquelles
+		le plus petit bateau ne peut pas rentrer
+		Version pour le joueur"""
+		# Dans la version pour le joueur on est obligé de marquer
+		# temporairement les cases déjà touchées comme vides.
+		# Ce problème n'apparaît pas dans la version pour l'algorithme
+		# de résolution car il gère une file d'attente (les cases
+		# touchées successives sont toujours adjacentes)
+		# Dans la mesure où ctte opértaion prend un petit peu de temps
+		# elle n'est implémentée que pour le joueur
+		self.get_taille_min()
+		self.update_vides()
+		cases_eliminees = []
+		# On marque temporairement les cases touchées comme vides
+		tmp_touchees = []
+		for case in self.etat :
+			if self.etat[case] == 1 :
+				tmp_touchees.append(case)
+				self.etat[case] = 0
+		for case in self.vides :
+			if 0 < self.get_max_space(case) < self.taille_min :
+				self.etat[case] = -1
+				cases_eliminees.append(case)
+		# On remet les case touchées à leur état d'origine
+		for case in tmp_touchees :
+			self.etat[case] = 1
 		self.update_vides()
 		return cases_eliminees
 

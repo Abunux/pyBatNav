@@ -438,14 +438,18 @@ class JoueurC(Joueur):
 	#
 	# Partie solo sur une grille aléatoire -----------------------------
 	#
-	def jeu_solo(self):
+	def jeu_solo(self, cheat=True):
 		"""Lance une partie solo sur une grille aléatoire"""
 		self.messages.append("Début de partie")
 		# Début de la partie
 		while not self.grille_suivi.fini():
 			# Affichages
 			clear()
-			self.grille_suivi.affiche()
+			if cheat :
+				self.grille_suivi.affiche_adverse(self.grille_adverse)
+			else :
+				self.grille_suivi.affiche()
+			
 			self.affiche_messages()
 			
 			# Joue un coup
@@ -453,11 +457,11 @@ class JoueurC(Joueur):
 			
 		# Fin de partie
 		clear()
-		self.grille_suivi.affiche()
+		self.grille_suivi.affiche_adverse(self.grille_adverse)
 		self.messages.append("Bravo !! Partie terminée en %d coups" % self.essais)
 		self.affiche_messages()
-		info("Grille de l'adversaire :")
-		self.grille_adverse.affiche()
+		#~ info("Grille de l'adversaire :")
+		#~ self.grille_adverse.affiche()
 		info("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -535,8 +539,9 @@ class OrdiC(JoueurC, Ordi):
 #
 class PartieC(Partie):
 	"""Partie à deux joueurs en mode console"""
-	def __init__(self, joueur=Joueur(), adversaire=Ordi()):
-		Partie.__init__(self, joueur=joueur, adversaire=adversaire)
+	def __init__(self, joueur=Joueur(), adversaire=Ordi(), cheat=False):
+		Partie.__init__(self, joueur=joueur, adversaire=adversaire, cheat=cheat)
+		
 		
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
@@ -571,7 +576,7 @@ class PartieC(Partie):
 		
 	def place_bateaux_joueur(self):
 		"""Place tous les bateaux du joueur"""
-		rep = input("Voulez-vous un placement aléatoire ([O]|n) ? ")
+		rep = input("Voulez-vous un placement aléatoire ([o]|n) ? ")
 		if rep.lower() == 'n' :
 			for taille in self.joueur.grille_joueur.taille_bateaux[::-1] :
 				clear()
@@ -590,14 +595,14 @@ class PartieC(Partie):
 	#
 	# Lancement de la partie -------------------------------------------
 	#
-	def affiche_grilles(self, fin=False, cheat=False):
+	def affiche_grilles(self, fin=False):
 		"""Affiche les deux grilles cote à cote, 
 		avec les noms des joueurs"""
 		clear()
 		grille1 = self.joueur.chaine_nom
-		# Pour l'affichage en fin de partie on affiche en gras les bateaux de l'adversaire
+		# En fin de partie on affiche en gras les bateaux de l'adversaire
 		# cheat permet de tricher en affichant les bateaux de l'adversaire (pour les tests)
-		if fin or cheat :
+		if fin or self.cheat :
 			grille1 += self.joueur.grille_suivi.make_chaine_adverse(self.adversaire.grille_joueur)
 		else :
 			grille1 += self.joueur.grille_suivi.make_chaine()
@@ -732,23 +737,23 @@ class MainConsole(object):
 		return (ordi.essais, temps) # Pour les tests de performance
 
 
-	def jeu_solo(self):
+	def jeu_solo(self, cheat=False):
 		"""Jeu solo sur une grille aléatoire"""
 		# Initialisation de la partie
 		grille = GrilleJoueurC()
 		grille.init_bateaux_alea()
 		joueur = JoueurC()
 		joueur.grille_adverse = grille
-		joueur.jeu_solo()
+		joueur.jeu_solo(cheat=cheat)
 
 
-	def jeu_contre_ordi(self):
+	def jeu_contre_ordi(self, cheat=False):
 		"""Partie en duel contre l'ordinateur"""
 		joueur = JoueurC("Toto")
 		niveau = self.get_niveau()
 		nb_echantillons = self.get_nb_echantillons(niveau)
 		ordi = OrdiC(niveau=niveau, nb_echantillons=nb_echantillons)
-		partie = PartieC(joueur, ordi)
+		partie = PartieC(joueur, ordi, cheat=cheat)
 
 	def test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=4, nb_echantillons=100, seuil=20):
 		"""Test de l'agorithme de résolution sur n parties
@@ -845,8 +850,9 @@ class MainConsole(object):
 	#
 	def launch_menu(self):
 		"""Menu de lancement """
-		defaut = self.launch_test_algo
-		#~ defaut = self.jeu_contre_ordi
+		#~ defaut = self.launch_test_algo
+		#~ defaut = self.jeu_contre_ordi*
+		defaut = self.jeu_solo
 		
 		clear()
 		info(boite("""
@@ -912,11 +918,15 @@ class MainConsole(object):
   T : Test des performances de l'algorithme de résolution
   Q : Quitter
 	  """)
-			choix = input("Votre choix ([J]|s|o|t|q) : ")
+			choix = input("Votre choix ([j]|s|o|t|q) : ")
 			
 			if choix.lower() == 's' :
-				self.jeu_solo()
-				
+				rep = input("Activer le mode triche (o|[n]) ? ")
+				if rep.lower() == 'o' :
+					self.jeu_solo(cheat=True)
+				else :
+					self.jeu_solo(cheat=False)
+					
 			elif choix.lower() == 't' :
 				self.launch_test_algo()
 				
@@ -927,7 +937,12 @@ class MainConsole(object):
 				self.jeu_ordi(niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 				
 			elif choix.lower() == 'j' :
-				self.jeu_contre_ordi()
+				rep = input("Activer le mode triche (o|[n]) ? ")
+				if rep.lower() == 'o' :
+					self.jeu_contre_ordi(cheat=True)
+				else :
+					self.jeu_contre_ordi(cheat=False)
+				
 				
 			elif choix.lower() == 'q' :
 				info()
