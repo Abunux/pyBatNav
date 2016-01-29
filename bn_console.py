@@ -431,7 +431,7 @@ class JoueurC(Joueur):
 					else :
 						ok = True
 				except :
-					self.messages.append("%s : Coup invalide" % case)
+					self.add_message("%s : Coup invalide" % case)
 					self.affiche_messages()
 		#~ self.affiche_messages()
 	
@@ -440,7 +440,7 @@ class JoueurC(Joueur):
 	#
 	def jeu_solo(self, cheat=True):
 		"""Lance une partie solo sur une grille aléatoire"""
-		self.messages.append("Début de partie")
+		self.add_message("Début de partie")
 		# Début de la partie
 		while not self.grille_suivi.fini():
 			# Affichages
@@ -458,7 +458,7 @@ class JoueurC(Joueur):
 		# Fin de partie
 		clear()
 		self.grille_suivi.affiche_adverse(self.grille_adverse)
-		self.messages.append("Bravo !! Partie terminée en %d coups" % self.essais)
+		self.add_message("Bravo !! Partie terminée en %d coups" % self.essais)
 		self.affiche_messages()
 		#~ info("Grille de l'adversaire :")
 		#~ self.grille_adverse.affiche()
@@ -478,7 +478,7 @@ class OrdiC(JoueurC, Ordi):
 		
 		# Lancement du chrono
 		start = time()
-		self.messages.append("C'est parti !!!")
+		self.add_message("C'est parti !!!")
 		# C'est parti !!!
 		while not self.grille_suivi.fini():
 			if affiche :
@@ -497,7 +497,7 @@ class OrdiC(JoueurC, Ordi):
 			clear()
 			self.grille_suivi.affiche_adverse(grille)
 			
-		self.messages.append("Partie terminée en %d coups" % self.essais)
+		self.add_message("Partie terminée en %d coups" % self.essais)
 		self.affiche_messages(affiche=affiche)
 		
 		# On renvoie de temps de résolution de la grille pour les tests de performance
@@ -509,7 +509,7 @@ class OrdiC(JoueurC, Ordi):
 		
 		# Lancement du chrono
 		start = time()
-		self.messages.append("C'est parti !!!")
+		self.add_message("C'est parti !!!")
 		# C'est parti !!!
 		while not self.grille_suivi.fini():
 			if affiche :
@@ -529,7 +529,7 @@ class OrdiC(JoueurC, Ordi):
 			print(r"\begin{verbatim}")
 			self.grille_suivi.affiche_adverse(grille)
 			
-		self.messages.append("Partie terminée en %d coups" % self.essais)
+		self.add_message("Partie terminée en %d coups" % self.essais)
 		self.affiche_messages(affiche=affiche)
 		print(r"\end{verbatim}}\hrule")
 		# On renvoie de temps de résolution de la grille pour les tests de performance

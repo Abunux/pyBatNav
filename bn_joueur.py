@@ -80,26 +80,27 @@ class Joueur(object):
 		False si non touché ou case invalide"""
 		# Coup invalide
 		if case in self.cases_jouees :
-			self.messages.append("%s : Déjà joué" % alpha(case))
+			self.add_message("%s : Déjà joué" % alpha(case))
 			return False
 		if not self.grille_suivi.test_case(case):
-			self.messages.append("%s : Coup hors grille ou déjà éliminé" % alpha(case))
+			self.add_message("%s : Coup hors grille ou déjà éliminé" % alpha(case))
 			return False
 			
 		# Coup valide
 		if self.grille_adverse.is_touche(case):
-			self.messages.append("%s : Touché" % alpha(case))
+			self.add_message("%s : Touché" % alpha(case))
 			resultat = True
 			self.grille_suivi.etat[case] = 1
 		else :
-			self.messages.append("%s : Manqué" % alpha(case))
+			self.add_message("%s : Manqué" % alpha(case))
 			resultat = False
 			self.grille_suivi.etat[case] = -1
 			
 		# Mise à jour des paramètres du joueur et de la grille
 		self.cases_jouees.append(case)
 		self.essais += 1
-		self.clean_grille()
+		if not isinstance(self, Ordi) :
+			self.clean_grille()
 		self.grille_suivi.update_vides()
 		
 		return resultat
@@ -130,14 +131,14 @@ class Joueur(object):
 		ne peut pas rentrer"""
 		cases_eliminees = self.grille_suivi.elimine_cases_joueur()
 		for c in cases_eliminees :
-			self.messages.append("J'élimine la cases %s : zone trop petite pour le plus petit bateau de taille %d" % (alpha(c), self.grille_suivi.taille_min))
+			self.add_message("J'élimine la cases %s : zone trop petite pour le plus petit bateau de taille %d" % (alpha(c), self.grille_suivi.taille_min))
 	
 	def rem_bateau(self, taille):
 		"""Enlève le dernier bateau coulé"""
 		self.grille_suivi.rem_bateau(taille)
-		self.messages.append("J'enlève le bateau de taille %d de la liste" % taille)
+		self.add_message("J'enlève le bateau de taille %d de la liste" % taille)
 		if len(self.grille_suivi.taille_bateaux) != 0 :
-			self.messages.append("Bateaux restant à couler : %s" % ' '.join([str(t) for t in self.grille_suivi.taille_bateaux]))
+			self.add_message("Bateaux restant à couler : %s" % ' '.join([str(t) for t in self.grille_suivi.taille_bateaux]))
 	
 	def elimine_adjacentes(self, cases):
 		"""Élimine les cases adjacents à un bateau coulé"""
@@ -186,7 +187,7 @@ class Joueur(object):
 				if ( (case[direction[1]] == 0 or self.grille_suivi.etat[(case[0]-direction[0], case[1]-direction[1])] == -1) \
 					and (case[direction[1]]+k == self.grille_suivi.dimensions[direction[1]] or self.grille_suivi.etat[(case[0]+k*direction[0], case[1]+k*direction[1])] == -1 ) )\
 					or len(liste_touchees)==self.grille_suivi.taille_max :
-						self.messages.append("Je viens de couler le bateau de taille %d" % len(liste_touchees))
+						self.add_message("Je viens de couler le bateau de taille %d" % len(liste_touchees))
 						self.rem_bateau(len(liste_touchees))
 						self.elimine_adjacentes(liste_touchees)
 						self.checked += liste_touchees
@@ -251,12 +252,12 @@ class Ordi(Joueur):
 	
 	def affiche_bateaux(self):
 		"""Affiche la liste des bateaux restant à couler"""
-		self.messages.append("Bateaux restant à couler : %s"%' '.join([str(t) for t in self.grille_suivi.taille_bateaux]))
+		self.add_message("Bateaux restant à couler : %s"%' '.join([str(t) for t in self.grille_suivi.taille_bateaux]))
 	
 	def affiche_queue(self):
 		"""Affiche le contenu de la file d'attente"""
 		if self.queue :
-			self.messages.append("File d'attente : %s"%' '.join([alpha(case) for case in self.queue])) 
+			self.add_message("File d'attente : %s"%' '.join([alpha(case) for case in self.queue])) 
 	
 	#
 	# Tire aléatoire ---------------------------------------------------
@@ -265,22 +266,22 @@ class Ordi(Joueur):
 		"""Choisit une case aléatoire (suivant l'algorithme choisi)"""
 		if self.niveau==1 or self.niveau==2 :
 			self.case_courante = rand.choice(self.grille_suivi.vides)
-			self.messages.append("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
+			self.add_message("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
 		elif self.niveau==3 :
 			self.case_courante = rand.choice([(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0])
-			self.messages.append("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
+			self.add_message("Je tire au hasard sur la case %s" % (alpha(self.case_courante)))
 		elif self.niveau==4 :
 			(case_max, pmax) = self.grille_suivi.case_max_echantillons(nb_echantillons=self.nb_echantillons)
 			self.case_courante = case_max
-			self.messages.append("Je tire sur la case %s qui est la plus probable (p=%d/%d)" % (alpha(self.case_courante), pmax,self.nb_echantillons))
+			self.add_message("Je tire sur la case %s qui est la plus probable (p=%d/%d)" % (alpha(self.case_courante), pmax,self.nb_echantillons))
 		else :
 			if self.niveau == 5 or len(self.grille_suivi.vides) > self.seuil :
 				(case_max, pmax) = self.grille_suivi.case_max()
 			else :
 				(case_max, pmax) = self.grille_suivi.case_max_all()
-				self.messages.append("Seuil %d atteint. Je crée tous les arrangements possibles" % self.seuil)
+				self.add_message("Seuil %d atteint. Je crée tous les arrangements possibles" % self.seuil)
 			self.case_courante = case_max
-			self.messages.append("Je tire sur la case %s qui est la plus probable (%d bateaux possibles)" % (alpha(self.case_courante), pmax))
+			self.add_message("Je tire sur la case %s qui est la plus probable (%d bateaux possibles)" % (alpha(self.case_courante), pmax))
 	
 	#
 	# Tire sur une case ------------------------------------------------
@@ -294,14 +295,14 @@ class Ordi(Joueur):
 	#
 	def add_queue(self, case):
 		"""Ajoute la case à la file d'attente"""
-		self.messages.append("J'ajoute la case %s à la file d'attente" % alpha(case))
+		self.add_message("J'ajoute la case %s à la file d'attente" % alpha(case))
 		self.queue.append(case)
 	
 	def rem_queue(self, case):
 		"""Enlève la case de la file d'attente"""
 		if case in self.queue :
 			self.queue.remove(case)
-			self.messages.append("J'enlève la case %s de la file d'attente" % alpha(case))
+			self.add_message("J'enlève la case %s de la file d'attente" % alpha(case))
 			
 	def add_adjacentes_premiere(self):
 		"""Ajoute les cases adjacentes possibles à 
@@ -319,9 +320,9 @@ class Ordi(Joueur):
 						self.add_queue(c)
 			else :
 				if direction == HORIZONTAL :
-					self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
+					self.add_message("Le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 				else :
-					self.messages.append("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
+					self.add_message("Le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 				
 		# On mélange la file d'attente en fonction des probas
 		self.shuffle_queue()
@@ -342,9 +343,9 @@ class Ordi(Joueur):
 		# Si on vient de découvrir la direction, on l'affiche et on enlève de la file d'attente les cases qui ne sont pas dans la bonne direction
 		if len(self.liste_touches)==1 :
 			if direction == HORIZONTAL :
-				self.messages.append("Le bateau touché est horizontal")
+				self.add_message("Le bateau touché est horizontal")
 			else :
-				self.messages.append("Le bateau touché est vertical")
+				self.add_message("Le bateau touché est vertical")
 			# On enlève de la file d'attente les cases qui ne sont pas dans la bonne direction
 			self.rem_queue((self.case_touchee[0]-direction[1], self.case_touchee[1]-direction[0]))
 			self.rem_queue((self.case_touchee[0]+direction[1], self.case_touchee[1]+direction[0]))
@@ -373,41 +374,41 @@ class Ordi(Joueur):
 		# On regarde s'il y a assez de place dans cette direction pour le plus petit bateau
 		if self.grille_suivi.get_max_space(case_face, direction) < self.grille_suivi.taille_min-1 :
 			if direction == HORIZONTAL :
-				self.messages.append("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
+				self.add_message("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas horizontalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 			else :
-				self.messages.append("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
+				self.add_message("Après ce coup, le plus petit bateau, de taille %d, ne rentre pas verticalement en case %s" % (self.grille_suivi.taille_min, alpha(self.case_touchee)))
 			self.rem_queue(case_face)
 	
 	def pop_queue(self):
 		"""Récupère, en l'enlevant, le premier élément de la queue"""
 		self.case_courante = self.queue.pop(0)
-		self.messages.append("Je tire sur la case %s de la file d'attente" % alpha(self.case_courante))
+		self.add_message("Je tire sur la case %s de la file d'attente" % alpha(self.case_courante))
 	
 	def shuffle_queue(self):
 		"""Mélange les cases de la file d'attente en les triant
 		par ordre décroissant des bateaux possibles"""
 		if len(self.queue)>1 :
 			rand.shuffle(self.queue)
-			self.messages.append("J'ordonne ma file d'attente en fonction des possibilités :")
+			self.add_message("J'ordonne ma file d'attente en fonction des possibilités :")
 			probas = self.grille_suivi.case_max_touchee(self.case_touchee)
 			queue_tmp = []
 			for p in probas :
 				if p[0] in self.queue :
 					queue_tmp.append(p[0])
-					self.messages.append("%s : %d bateaux possibles" %(alpha(p[0]), p[1]))
+					self.add_message("%s : %d bateaux possibles" %(alpha(p[0]), p[1]))
 			self.queue = queue_tmp[:]
 		
 	def vide_queue(self):
 		"""Vide la file d'attente"""
 		self.queue = []
-		self.messages.append("Je vide ma file d'attente")
+		self.add_message("Je vide ma file d'attente")
 		
 	
 	def test_plus_grand(self):
 		"""Renvoie True si on a touché autant de cases que 
 		le plus grand bateau restant"""
 		if len(self.liste_touches) == self.grille_suivi.taille_max :
-			self.messages.append("Bateau de taille %d coulé car c'est le plus grand restant" % self.grille_suivi.taille_max)
+			self.add_message("Bateau de taille %d coulé car c'est le plus grand restant" % self.grille_suivi.taille_max)
 			return True
 		else :
 			return False
@@ -418,7 +419,7 @@ class Ordi(Joueur):
 	def rem_bateau(self):
 		"""Enlève le dernier bateau coulé"""
 		self.grille_suivi.rem_bateau(len(self.liste_touches))
-		self.messages.append("Bateau de taille %d coulé ! Je l'enlève de la liste des bateaux à chercher" % len(self.liste_touches))
+		self.add_message("Bateau de taille %d coulé ! Je l'enlève de la liste des bateaux à chercher" % len(self.liste_touches))
 		self.affiche_bateaux()
 	
 	def elimine_adjacentes(self):
@@ -427,7 +428,7 @@ class Ordi(Joueur):
 			for case_impossible in self.grille_suivi.adjacent(case_touchee):
 				if self.grille_suivi.test_case(case_impossible):
 					self.grille_suivi.etat[case_impossible] = -1
-					self.messages.append("J'élimine la case adjacente %s" % alpha(case_impossible))
+					self.add_message("J'élimine la case adjacente %s" % alpha(case_impossible))
 		self.grille_suivi.update()
 	
 	def elimine_petites(self):
@@ -435,7 +436,7 @@ class Ordi(Joueur):
 		ne peut pas rentrer"""
 		cases_eliminees = self.grille_suivi.elimine_cases()
 		for c in cases_eliminees :
-			self.messages.append("J'élimine la cases %s : zone trop petite pour le plus petit bateau de taille %d" % (alpha(c), self.grille_suivi.taille_min))
+			self.add_message("J'élimine la cases %s : zone trop petite pour le plus petit bateau de taille %d" % (alpha(c), self.grille_suivi.taille_min))
 	
 	#
 	# Résolution de la grille ------------------------------------------
@@ -507,7 +508,7 @@ class Ordi(Joueur):
 			self.coup_suivant()
 			
 		# Fin de la partie
-		self.messages.append("Partie terminée en %d coups" % self.essais)
+		self.add_message("Partie terminée en %d coups" % self.essais)
 				
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
