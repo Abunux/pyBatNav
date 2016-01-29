@@ -152,13 +152,16 @@ class Joueur(object):
 		et les enlève de la liste des bateaux à chercher
 		en marquant leurs case adjacentes comme impossibles"""
 		checked = [] # Liste temporaire des cases visitées
+		# On parcourt les cases jouées de haut en bas et de gauche à droite
 		for case in sorted(self.cases_jouees[:]):
-			liste_touchees = []
+			liste_touchees = [] # Liste temporaire des cases touchées sur un bateau
+			# Si on tombe sur une case touchée
 			if self.grille_suivi.etat[case] == 1 :
-				# Détermination de la direction du bateau
-				case_isolee = True
+				# Si la case a déjà été visitée, on repart dans la boucle
 				if case in checked or case in self.checked :
 					continue
+				# Détermination de la direction du bateau
+				case_isolee = True
 				for d in [DROITE, BAS] :
 					if case[0]+d[0] >= self.grille_suivi.xmax or case[1]+d[1] >= self.grille_suivi.ymax :
 						continue
@@ -181,19 +184,17 @@ class Joueur(object):
 				# Regarde si les deux extrémités du bateau sont en bord de grille ou manquées,
 				# ou si le bateau est le plus grand restant
 				if ( (case[direction[1]] == 0 or self.grille_suivi.etat[(case[0]-direction[0], case[1]-direction[1])] == -1) \
-					and (case[direction[1]]+k == self.grille_suivi.dimensions[direction[1]] or self.grille_suivi.etat[(case[0]+k*direction[0], case[1]+k*direction[1])] == -1 ))\
+					and (case[direction[1]]+k == self.grille_suivi.dimensions[direction[1]] or self.grille_suivi.etat[(case[0]+k*direction[0], case[1]+k*direction[1])] == -1 ) )\
 					or len(liste_touchees)==self.grille_suivi.taille_max :
 						self.messages.append("Je viens de couler le bateau de taille %d" % len(liste_touchees))
 						self.rem_bateau(len(liste_touchees))
 						self.elimine_adjacentes(liste_touchees)
-						#~ self.cases_jouees += liste_touchees
 						self.checked += liste_touchees
 	
 	def clean_grille(self):
 		"""Élimine de la grille les cases impossibles"""
 		self.check_coules()
 		self.elimine_petites()
-		
 	
 	#
 	# Partie solo sur une grille aléatoire -----------------------------
@@ -523,6 +524,7 @@ class Partie(object):
 		# Test si le joueur 2 est l'ordi
 		self.ordi = isinstance(self.adversaire, Ordi) 
 		
+		# Si on veut tricher (afficher la grille de l'adversaire)
 		self.cheat = cheat
 		
 		# Lance la partie
