@@ -187,7 +187,7 @@ class Grille(object):
 		# Ce problème n'apparaît pas dans la version pour l'algorithme
 		# de résolution car il gère une file d'attente (les cases
 		# touchées successives sont toujours adjacentes)
-		# Dans la mesure où ctte opértaion prend un petit peu de temps
+		# Dans la mesure où cette opération prend un petit peu de temps
 		# elle n'est implémentée que pour le joueur
 		self.get_taille_min()
 		self.update_vides()

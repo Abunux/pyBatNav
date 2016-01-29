@@ -44,6 +44,13 @@ class Joueur(object):
 		
 		# Liste des cases occupées par des bateaux coulés
 		self.checked = []
+	
+	#
+	# Gestion des messages ---------------------------------------------
+	#
+	def add_message(self, texte) :
+		"""Ajoute le message texte à la file des messages"""
+		self.messages.append(texte)
 		
 	def affiche_messages(self, affiche=True):
 		"""Affiche la liste des messages"""
@@ -52,6 +59,9 @@ class Joueur(object):
 			while self.messages :
 				info("<%s> %s " % (self.nom, self.messages.pop(0)) )
 	
+	#
+	# Bateaux du joueur ------------------------------------------------
+	#
 	def add_bateau(self, taille, start, direction):
 		"""Ajoute un bateau sur la grille du joueur"""
 		bateau = Bateau(taille, start, direction)
@@ -60,7 +70,10 @@ class Joueur(object):
 			return True
 		else :
 			return False
-			
+	
+	#
+	# Gestion des tirs -------------------------------------------------
+	#
 	def tire(self, case):
 		"""Tire sur la case (x,y)
 		Renvoie True si la case est touchée, 
@@ -70,7 +83,7 @@ class Joueur(object):
 			self.messages.append("%s : Déjà joué" % alpha(case))
 			return False
 		if not self.grille_suivi.test_case(case):
-			self.messages.append("%s : Coup invalide ou déjà éliminé" % alpha(case))
+			self.messages.append("%s : Coup hors grille ou déjà éliminé" % alpha(case))
 			return False
 			
 		# Coup valide
@@ -82,24 +95,21 @@ class Joueur(object):
 			self.messages.append("%s : Manqué" % alpha(case))
 			resultat = False
 			self.grille_suivi.etat[case] = -1
-			#~ self.elimine_petites()
 			
 		# Mise à jour des paramètres du joueur et de la grille
-		
 		self.cases_jouees.append(case)
 		self.essais += 1
-		#~ try :
 		self.clean_grille()
-		#~ except :
-			#~ print("erreur")
 		self.grille_suivi.update_vides()
+		
 		return resultat
 	
 	def case_aleatoire(self):
-		"""Retourne une case aléatoire parmi les cases vides"""
-		liste_cases = [(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]
-		if liste_cases :
-			return rand.choice(liste_cases)
+		"""Retourne une case aléatoire parmi les cases vides
+		(tire sur les cases noires tant qu'il en reste)"""
+		cases_noires = [(i,j) for (i,j) in self.grille_suivi.vides if (i+j)%2==0]
+		if cases_noires :
+			return rand.choice(cases_noires)
 		else :
 			return rand.choice(self.grille_suivi.vides)
 	
@@ -113,7 +123,7 @@ class Joueur(object):
 		pass
 	
 	#
-	# Tests : nettoyage de la grille
+	# Nettoyage de la grille -------------------------------------------
 	#
 	def elimine_petites(self):
 		"""Élimine les cases dans lesquelles le plus petit bateau 
@@ -126,7 +136,8 @@ class Joueur(object):
 		"""Enlève le dernier bateau coulé"""
 		self.grille_suivi.rem_bateau(taille)
 		self.messages.append("J'enlève le bateau de taille %d de la liste" % taille)
-		self.messages.append("Bateaux restant à couler : %s" % ' '.join([str(t) for t in self.grille_suivi.taille_bateaux]))
+		if len(self.grille_suivi.taille_bateaux) != 0 :
+			self.messages.append("Bateaux restant à couler : %s" % ' '.join([str(t) for t in self.grille_suivi.taille_bateaux]))
 	
 	def elimine_adjacentes(self, cases):
 		"""Élimine les cases adjacents à un bateau coulé"""
@@ -167,7 +178,7 @@ class Joueur(object):
 						k += 1
 					
 				# Teste si on a coulé un bateau
-				# Regarde si les extrémités du bateau sont en bord de grille ou manquées
+				# Regarde si les deux extrémités du bateau sont en bord de grille ou manquées,
 				# ou si le bateau est le plus grand restant
 				if ( (case[direction[1]] == 0 or self.grille_suivi.etat[(case[0]-direction[0], case[1]-direction[1])] == -1) \
 					and (case[direction[1]]+k == self.grille_suivi.dimensions[direction[1]] or self.grille_suivi.etat[(case[0]+k*direction[0], case[1]+k*direction[1])] == -1 ))\
@@ -175,7 +186,7 @@ class Joueur(object):
 						self.messages.append("Je viens de couler le bateau de taille %d" % len(liste_touchees))
 						self.rem_bateau(len(liste_touchees))
 						self.elimine_adjacentes(liste_touchees)
-						self.cases_jouees += liste_touchees
+						#~ self.cases_jouees += liste_touchees
 						self.checked += liste_touchees
 	
 	def clean_grille(self):
@@ -560,15 +571,4 @@ class Partie(object):
 		pass
 
 if __name__ == "__main__" :
-	joueur = Joueur()
-	for i in range(4) :
-		joueur.grille_suivi.etat[(1,i+2)]=1
-		joueur.cases_jouees.append((1,i+2))
-	joueur.grille_suivi.etat[(1,1)]=-1
-	joueur.cases_jouees.append((1,1))
-	joueur.grille_suivi.etat[(1,6)]=-1
-	joueur.cases_jouees.append((1,6))
-	
-	joueur.grille_suivi.affiche()
-	joueur.check_coules()
-	joueur.grille_suivi.affiche()
+	pass
