@@ -43,7 +43,7 @@ class Joueur(object):
 		self.messages = []
 		
 		# Liste des cases occupées par des bateaux coulés
-		self.checked = []
+		self.coules = []
 	
 	#
 	# Gestion des messages ---------------------------------------------
@@ -159,7 +159,7 @@ class Joueur(object):
 			# Si on tombe sur une case touchée
 			if self.grille_suivi.etat[case] == 1 :
 				# Si la case a déjà été visitée, on repart dans la boucle
-				if case in checked or case in self.checked :
+				if case in checked or case in self.coules :
 					continue
 				# Détermination de la direction du bateau
 				case_isolee = True

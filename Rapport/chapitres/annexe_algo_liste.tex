@@ -132,6 +132,59 @@ Pour placer chaque bateau, on utilise la fonction précédente avec sa valeur de
 %\end{algo1}
 
 \newpage
+\section{Détermination des bateaux coulés}
+\texttt{Joueur.check\_coules(self)} :\\
+\texttt{xmax} et \texttt{ymax} sont les dimensions de la grille et \texttt{dimensions=(xmax, ymax)}.
+\begin{algo1}
+coules est une variable globale contenant\\
+\tab{1}la liste de case marquées comme coulées\\
+checked est une liste vide\\
+Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
+\tab{1}liste\_touchees est une liste vide\\
+\tab{1}Si case a été marquée comme touchee :\\
+\tab{2}Si case est dans checked ou dans coules :\\
+\tab{3}On continue la boucle (on ignore cette case)\\
+\tab{2}Vrai\sto case\_isolee\\
+\tab{2}Pour d dans [DROITE, BAS] :\\
+\tab{3}Si la case (case[0]+d[0],case[1]+d[1]) est hors de la grille :\\
+\tab{4}On continue la boucle\\
+\tab{3}Si la case (case[0]+d[0],case[1]+d[1]) est marquée touchée :\\
+\tab{4}d\sto direction\\
+\tab{4}Faux\sto case\_isolee\\
+\tab{4}On casse la boucle\\
+\tab{2}Si case\_isolee est Vraie :\\
+\tab{3}On continue la boucle (on ignore cette case)\\
+\tab{2}0\sto k\\
+\tab{2}Tant que case[0]+k*direction[0] < xmax et case[1]+k*direction[1] < ymax\\
+\tab{3}et (case[0]+k*direction[0],case[1]+k*direction[1]) est marquée touchée :\\
+\tab{4}On ajoute la case (case[0]+k*direction[0],case[1]+k*direction[1])\\
+\tab{5}aux listes checked et liste\_touchees\\
+\tab{4}k += 1\\
+\tab{2}Si (\\
+\tab{2}\ \ \ \ (case[direction[1]]== 0 \\
+\tab{2}\ \ \ \ \ \ ou (case[0]-direction[0], case[1]-direction[1]) est manquée)\\
+\tab{2}\ \ ou (case[direction[1]]+k== dimensions[direction[1] \\
+\tab{2}\ \ \ \ \ \ ou (case[0]+k*direction[0], case[1]+k*direction[1]) est manquée)\\
+\tab{2}\ \ \ \ ) ou len(liste\_touchees)==taille\_max :\\
+\tab{5}Enlever le bateau de taille len(liste\_touchees) des bateaux restants\\
+\tab{5}Éliminer les cases adjacentes à celles de liste\_touchees\\
+\tab{5}Ajouter les cases de liste\_touchees à la liste coules\\
+\end{algo1}
+
+On parcourt les cases jouées de haut en bas et de gauche à droite. Quand on tombe sur une case touchée, on vérifie d'abord qu'on n'a pas déjà traité cette case, puis on détermine la direction d'un bateau éventuel (si pas de direction c'est que cette case est isolée et on l'ignore). 
+
+Ensuite on détermine le nombre de cases adjacentes touchées (grâce à la direction)
+
+Enfin on décide que le bateau est coulé si ses extrémités sont sur les bord de la grille ou on été marquées comme manquées. On marque alors ses cases adjacentes comme impossibles et on l'enlève de la liste des bateaux à chercher.
+
+Les listes \texttt{coules} et \texttt{checked} permettent de garder une trace des cases déjà traitées. La liste \texttt{coules} est global (un attribut de la classe \texttt{Joueur}. Elle garde la trace des cases déjà marquées comme appartenant à des bateaux coulés. La liste \texttt{checked} est locale et sert pour le parcours des cases jouées. Sans ces listes, la deuxième case touchée d'un bateau serait de nouveau traitée ce qui créerait une incohérence.
+
+\medskip
+
+Cet algorithme n'est utilisé que si le joueur est un joueur humain. En effet, l'algorithme de résolution automatique gère une file d'attente et possède sa propre méthode pour déterminer qu'un bateau est coulé. 
+
+
+
 \section{Algorithme de résolution}
 \subsection{Optimisation de la phase de tirs en aveugle}
 \subsubsection{Détermination des probabilités par échantillonnage}\label{case_max_echantillons}
@@ -153,7 +206,7 @@ On retourne (case\_max, pmax)\\
 
 C'est l'algorithme de niveau 4 qui crée une estimation de la distribution de probabilité avec des échantillons de flottes aléatoires. Aucune difficulté particulière n'est à signaler.
 
-
+\newpage
 \subsubsection{Détermination du nombre de bateaux possibles sur chaque case}\label{case_max}
 \texttt{Grille.case\_max(self)} :
 \begin{algo1}
