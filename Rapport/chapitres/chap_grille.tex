@@ -74,7 +74,7 @@ Si le paramètre \texttt{sens=1}, la détermination se fait dans les deux sens (
 
 \medskip
 
-La méthode \texttt{Grille.elimine\_petites(self)} parcourt toutes les cases vides et élimine celles dans lesquelles le plus petit bateau ne peut pas rentrer en mettant leur état à \texttt{-1}.
+La méthode \texttt{Grille.elimine\_cases(self)} parcourt toutes les cases vides et élimine celles dans lesquelles le plus petit bateau ne peut pas rentrer en mettant leur état à \texttt{-1}.
 
 \subsection{Liste de bateaux possibles sur chaque case}
 La méthode \texttt{Grille.get\_possibles(self)} renvoie d'une part la liste des bateaux possibles sur chaque case (ainsi que leur direction) et, d'autre part, la liste des positions (et directions) possibles pour chaque bateau. Pour ce faire on procède en deux temps :

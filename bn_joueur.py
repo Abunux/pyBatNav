@@ -190,7 +190,7 @@ class Joueur(object):
 						self.add_message("Je viens de couler le bateau de taille %d" % len(liste_touchees))
 						self.rem_bateau(len(liste_touchees))
 						self.elimine_adjacentes(liste_touchees)
-						self.checked += liste_touchees
+						self.coules += liste_touchees
 	
 	def clean_grille(self):
 		"""Élimine de la grille les cases impossibles"""
