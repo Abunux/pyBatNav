@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  1 FEB 2016 11:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  1 FEB 2016 13:00
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2230,13 +2230,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 ~Chapitre 6.
 
-Overfull \hbox (17.45668pt too wide) in paragraph at lines 8--9
+Overfull \hbox (17.45668pt too wide) in paragraph at lines 10--11
 \T1/futs/m/n/12 cha-cun des ca-rac-tères uti-li-sés est sto-cké dans une consta
 nte (par exemple \T1/lmtt/m/n/12 CAR_CX=u'\u253C'
  []
 
 [17]
-Overfull \hbox (1.20267pt too wide) in paragraph at lines 21--22
+Overfull \hbox (1.20267pt too wide) in paragraph at lines 23--24
 []\T1/futs/m/n/12 La fonc-tion \T1/lmtt/m/n/12 boite(texte, prefixe, longueur) 
 \T1/futs/m/n/12 per-met d'en-ca-drer le texte dans une
  []
@@ -2255,12 +2255,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [19]
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 110
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 112
 .
  (/usr/share/texmf/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (2.42714pt too wide) in paragraph at lines 139--140
+Overfull \hbox (2.42714pt too wide) in paragraph at lines 141--142
 []\T1/futs/m/n/12 Tests sta-tis-tiques des al-go-rithmes de ré-so-lu-tion avec 
 choix des pa-ra-mètres de la grille. 
  []
@@ -2793,9 +2793,9 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (402.11243pt too wide) in paragraph at lines 31--31
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fcc5
-cd1d588>, adversaire=<bn_joueur.Ordi object at 0x7fcc5cd2a0b8>, cheat=False)[] 
+Overfull \hbox (402.10542pt too wide) in paragraph at lines 31--31
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7efc2
+c59b5c0>, adversaire=<bn_joueur.Ordi object at 0x7efc2c5a80f0>, cheat=False)[] 
 
  []
 
@@ -2947,9 +2947,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [75]
-Overfull \hbox (402.09842pt too wide) in paragraph at lines 48--48
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fd9f
-a27f048>, adversaire=<bn_joueur.Ordi object at 0x7fd9f0ae57b8>, cheat=False)[] 
+Overfull \hbox (402.11243pt too wide) in paragraph at lines 48--48
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f3cf
+2342fd0>, adversaire=<bn_joueur.Ordi object at 0x7f3ce8bb17b8>, cheat=False)[] 
 
  []
 
@@ -3010,7 +3010,7 @@ File: ./docstrings/bn_stats.Stats  (verbatim)
 
 Overfull \hbox (420.63744pt too wide) in paragraph at lines 57--57
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10}, niveau_str='5')
+le={'xmax': 10, 'taille_bateaux': [5, 4, 3, 3, 2], 'ymax': 10}, niveau_str='5')
 [] 
  []
 
@@ -3466,7 +3466,7 @@ re/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts
 i8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (123 pages, 
-907439 bytes).
+907564 bytes).
 PDF statistics:
  500 PDF objects out of 1000 (max. 8388607)
  320 compressed objects within 4 object streams
