@@ -682,8 +682,8 @@ class MainConsole(object):
 		ok = False
 		while not ok :
 			try :
-				niveau = input("Niveau de l'algorithme (1 à 6) : ")
-				if niveau not in '123456' or niveau == '':
+				niveau = input("Niveau de l'algorithme (1|2|3|4|[5]|6) : ")
+				if niveau not in ['1', '2', '3', '4', '5', '6'] or niveau == '':
 					niveau = 5
 				else : 
 					niveau = int(niveau)
@@ -816,7 +816,7 @@ class MainConsole(object):
 		taille_bateaux = [5, 4, 3, 3, 2]
 		# Paramètres des parties à simuler
 		info("Paramètres par défaut : xmax=%d, ymax=%d, bateaux=%s\n" % (xmax, ymax, taille_bateaux))
-		rep = input("Voulez-vous changer ces paramètres ? [o|[N]] ")
+		rep = input("Voulez-vous changer ces paramètres ? [o|[n]] ")
 		if rep.lower()=='o' :
 			ok = False
 			while not ok :
@@ -851,7 +851,7 @@ class MainConsole(object):
 	def launch_menu(self):
 		"""Menu de lancement """
 		#~ defaut = self.launch_test_algo
-		#~ defaut = self.jeu_contre_ordi*
+		#~ defaut = self.jeu_contre_ordi
 		defaut = self.jeu_solo
 		
 		clear()

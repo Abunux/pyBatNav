@@ -175,9 +175,9 @@ On parcourt les cases jouées de haut en bas et de gauche à droite. Quand on to
 
 Ensuite on détermine le nombre de cases adjacentes touchées (grâce à la direction)
 
-Enfin on décide que le bateau est coulé si ses extrémités sont sur les bord de la grille ou on été marquées comme manquées. On marque alors ses cases adjacentes comme impossibles et on l'enlève de la liste des bateaux à chercher.
+Enfin on décide que le bateau est coulé si ses extrémités sont sur les bords de la grille ou ont été marquées comme manquées, ou si sa taille est celle de plus grand bateau restant à trouver. On marque alors ses cases adjacentes comme impossibles et on l'enlève de la liste des bateaux à chercher.
 
-Les listes \texttt{coules} et \texttt{checked} permettent de garder une trace des cases déjà traitées. La liste \texttt{coules} est global (un attribut de la classe \texttt{Joueur}. Elle garde la trace des cases déjà marquées comme appartenant à des bateaux coulés. La liste \texttt{checked} est locale et sert pour le parcours des cases jouées. Sans ces listes, la deuxième case touchée d'un bateau serait de nouveau traitée ce qui créerait une incohérence.
+Les listes \texttt{coules} et \texttt{checked} permettent de garder une trace des cases déjà traitées. La liste \texttt{coules} est global (un attribut de la classe \texttt{Joueur}). Elle garde la trace des cases déjà marquées comme appartenant à des bateaux coulés. La liste \texttt{checked} est locale et sert pour le parcours des cases jouées. Sans ces listes, la deuxième case touchée d'un bateau serait de nouveau traitée ce qui créerait une incohérence.
 
 \medskip
 
