@@ -31,7 +31,7 @@ Afin d'obtenir des résultats comparables, tous les temps ont été mesurés sur
 \newpage
 \section{Niveau 1}
 Dans ce niveau tous les tirs sont aléatoires uniformément sur les cases vides, et il n'y a pas de phase de tirs ciblés.\\
-On obtient les résultats suivants sur un échantillon de $n=100\,000$ parties :
+On obtient les résultats suivants sur un échantillon de $n=1\,000\,000$ parties :
 
 \begin{center}
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=1_n=1000000.png}}
@@ -42,14 +42,14 @@ Comme on pouvait s'y attendre, les résultats sont catastrophiques. Par contre l
 \section{Niveau 2}
 Au niveau 2, la phase de tirs en aveugle est aléatoire uniformément sur les cases vide, mais on ajoute la phase de tirs ciblés lorsqu'on touche un bateau.
 
-Les résultats sur $n=100\,000$ parties sont les suivants :
+Les résultats sur $n=1\,000\,000$ parties sont les suivants :
 
 \begin{center}
-\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=2_n=100000.png}}
+\fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=2_n=1000000.png}}
 \end{center}
 
 Le fait de gérer la phase de tirs ciblés change radicalement les résultats. La forme de la courbe de distribution est d'ailleurs totalement différente de la précédente.\\
-Par contre la résolutions prend 6 fois plus de temps.
+Par contre la résolutions prend 8 fois plus de temps.
 \newpage
 \section{Niveau 3}
 Au niveau 3, la phase de tirs en aveugle est encore aléatoire mais uniquement sur les cases noires.
@@ -60,7 +60,7 @@ Les résultats sur $n=100\,000$ parties sont les suivants :
 \fbox{\includegraphics[scale=0.7]{./media/distrib_HAL_niveau=3_n=100000.png}}
 \end{center}
 
-On note une amélioration significative des performances, sans pour autant sacrifier en temps de résolution, au contraire puisqu'il faut moins de coups en aveugle pour finir la grille. Les résultats sont également plus homogènes ($\sigma=6,05$ au lieu de $8,41$ précédemment).
+On note une amélioration significative des performances, sans pour autant sacrifier en temps de résolution, au contraire puisqu'il faut moins de coups en aveugle pour finir la grille. Les résultats sont également plus homogènes ($\sigma=6,05$ au lieu de $8,40$ précédemment).
 
 \newpage
 \section{Niveau 4}

@@ -53,7 +53,6 @@
 \contentsline {chapter}{\numberline {7}Interface graphique}{21}
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{23}
 \contentsline {chapter}{\numberline {9}Conclusion}{25}
-\newpage 
 \contentsline {part}{Annexes}{29}
 \contentsline {chapter}{\numberline {A}\IeC {\'E}tude des algorithmes cl\IeC {\'e}s}{29}
 \contentsline {section}{\numberline {1}Gestion de la grille}{29}
