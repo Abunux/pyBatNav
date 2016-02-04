@@ -155,18 +155,21 @@ Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
 \tab{2}Si case\_isolee est Vraie :\\
 \tab{3}On continue la boucle (on ignore cette case)\\
 \tab{2}0\sto k\\
-\tab{2}Tant que case[0]+k*direction[0] < xmax et case[1]+k*direction[1] < ymax\\
-\tab{3}et (case[0]+k*direction[0],case[1]+k*direction[1]) est marquée touchée :\\
+\tab{2}Tant que case[0]+k*direction[0] < xmax\\
+\tab{3}et case[1]+k*direction[1] < ymax\\
+\tab{3}et (case[0]+k*direction[0],case[1]+k*direction[1])\\
+\tab{3} est marquée touchée :\\
 \tab{4}On ajoute la case (case[0]+k*direction[0],case[1]+k*direction[1])\\
 \tab{5}aux listes checked et liste\_touchees\\
 \tab{4}k += 1\\
 \tab{2}Si (\\
 \tab{2}\ \ \ \ (case[direction[1]]== 0 \\
-\tab{2}\ \ \ \ \ \ ou (case[0]-direction[0], case[1]-direction[1]) est manquée)\\
+\tab{2}\ \ \ \ \ \ ou (case[0]-direction[0],case[1]-direction[1]) est manquée)\\
 \tab{2}\ \ ou (case[direction[1]]+k== dimensions[direction[1] \\
-\tab{2}\ \ \ \ \ \ ou (case[0]+k*direction[0], case[1]+k*direction[1]) est manquée)\\
+\tab{2}\ \ \ \ \ \ ou (case[0]+k*direction[0],case[1]+k*direction[1]) est manquée)\\
 \tab{2}\ \ \ \ ) ou len(liste\_touchees)==taille\_max :\\
-\tab{5}Enlever le bateau de taille len(liste\_touchees) des bateaux restants\\
+\tab{5}Enlever le bateau de taille len(liste\_touchees)\\
+\tab{6}des bateaux restants\\
 \tab{5}Éliminer les cases adjacentes à celles de liste\_touchees\\
 \tab{5}Ajouter les cases de liste\_touchees à la liste coules\\
 \end{algo1}

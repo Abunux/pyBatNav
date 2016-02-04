@@ -15,7 +15,7 @@
 \contentsline {subsection}{\numberline {2.1}Pr\IeC {\'e}sentation}{5}
 \contentsline {subsection}{\numberline {2.2}\IeC {\'E}tat de la grille}{6}
 \contentsline {subsection}{\numberline {2.3}Gestion des espaces vides}{6}
-\contentsline {subsection}{\numberline {2.4}Liste de bateaux possibles sur chaque case}{6}
+\contentsline {subsection}{\numberline {2.4}Liste des bateaux possibles sur chaque case}{6}
 \contentsline {subsection}{\numberline {2.5}Gestion de la flotte}{7}
 \contentsline {subsubsection}{\numberline {2.5.1}Ajout d'un bateau}{7}
 \contentsline {subsubsection}{\numberline {2.5.2}Cr\IeC {\'e}ation d'un flotte al\IeC {\'e}atoire}{7}

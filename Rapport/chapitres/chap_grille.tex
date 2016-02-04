@@ -76,8 +76,8 @@ Si le paramètre \texttt{sens=1}, la détermination se fait dans les deux sens (
 
 La méthode \texttt{Grille.elimine\_cases(self)} parcourt toutes les cases vides et élimine celles dans lesquelles le plus petit bateau ne peut pas rentrer en mettant leur état à \texttt{-1}.
 
-\subsection{Liste de bateaux possibles sur chaque case}
-La méthode \texttt{Grille.get\_possibles(self)} renvoie d'une part la liste des bateaux possibles sur chaque case (ainsi que leur direction) et, d'autre part, la liste des positions (et directions) possibles pour chaque bateau. Pour ce faire on procède en deux temps :
+\subsection{Liste des bateaux possibles sur chaque case}
+La méthode \texttt{Grille.get\_possibles(self)} renvoie d'une part la liste des bateaux possibles démarrant sur chaque case (ainsi que leurs directions) et, d'autre part, la liste des positions (et directions) de départ possibles pour chaque bateau. Pour ce faire on procède en deux temps :
 \begin{itemize}
 \item Dans un premier temps, on parcours la liste des cases vides et pour chacune de ces cases on détermine, pour chaque bateau et chaque direction (droite et bas), s'il peut démarrer sur cette case. Cela fournit le dictionnaire \texttt{Grille.possibles\_cases} indexé par les cases et dont les éléments sont une liste de tuples de la forme \texttt{(taille, direction)}.\\
 Par exemple : \texttt{\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
