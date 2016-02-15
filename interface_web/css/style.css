@@ -1,7 +1,7 @@
 body{
 	background-color:black;
 }
-
+/*
 h1{
 	text-align:center;
 	font-variant:small-caps;
@@ -16,6 +16,30 @@ h1{
 	color:black;
 	background-color:#BBBBBB;
 	width:1150px;
+}
+*/
+
+h1{
+	text-align:center;
+	font-variant:small-caps;
+	font-size:40px;
+	font-family:Verdana;
+	display:block;
+	margin:0;
+}
+
+#titre{
+	display:block;
+	margin:auto;
+	margin-top:10px;
+	margin-bottom:10px;
+	border: 5px solid white;
+	border-radius:20px;
+	width:1150px;
+	background-color:#BBBBBB;
+	color:black;
+	padding-left:10px;
+	padding-bottom:8px;
 }
 
 #myCanvas{

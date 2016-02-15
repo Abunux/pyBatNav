@@ -67,7 +67,12 @@ if ordi.grille_suivi.fini() :
 # Création de la page
 print(html_header)
 print("<body>")
-print("<h1>Résolution automatique</h1>")
+
+print("""<div id="titre">
+	<button class="boutton" style="float:left;" name="index" onclick='window.location="../index.html"'>Retour</button>
+	<h1>Résolution automatique</h1>
+	</div>
+	""")
 
 print(r"""
 	<div id="game">
@@ -111,8 +116,6 @@ print(r"""
 			ctx.fillRect(x+1,y+1,largCase-2,largCase-2);
 		}
 
-		
-
 		// Dessin de la grille
 		ctx.font = "20px Arial";
 		ctx.textAlign = "center";
@@ -153,11 +156,8 @@ while ordi.messages :
 print("</p>")
 print("</div>")
 
-
-
-
 if  fini :
-	print("""<button class="boutton" style="margin:auto; margin-top:10px; display:block;" onclick='window.location="ordi.py?id=0"'>
+	print("""<button class="boutton" style="margin:auto; margin-top:10px; display:block;" onclick='window.location="ordi.py?id=0"' autofocus>
 	Nouvelle partie
 	</button>'
 	""")
@@ -172,6 +172,5 @@ else :
 		sh['ordi']=ordi
 	finally :
 		sh.close
-
 
 print("</body>")

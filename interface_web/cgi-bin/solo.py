@@ -8,8 +8,6 @@ import shelve
 from bn_grille import *
 from bn_joueur import *
 
-
-
 html_header = """<!DOCTYPE html>
 
 <head>
@@ -45,7 +43,6 @@ if 'jy' in form :
 else :
 	jy = None
 
-
 # Gestion de la session
 sh = shelve.open(os.path.join("sessions","session_%s"% ID))
 if first :
@@ -56,7 +53,7 @@ if first :
 		grille = GrilleJoueur()
 		grille.init_bateaux_alea()
 		joueur.grille_adverse = grille
-		sh['joueur']=joueur
+		sh['joueur'] = joueur
 	finally :
 		sh.close
 else :
@@ -79,7 +76,11 @@ if jx!=None and jy!=None :
 # Création de la page
 print(html_header)
 print("<body>")
-print("<h1>Partie solo</h1>")
+print("""<div id="titre">
+	<button class="boutton" style="float:left;" name="index" onclick='window.location="../index.html"'>Retour</button>
+	<h1>Partie solo</h1>
+	</div>
+	""")
 
 print(r"""
 	<div id="game">
@@ -123,8 +124,6 @@ print(r"""
 			ctx.fillRect(x+1,y+1,largCase-2,largCase-2);
 		}
 
-		
-
 		// Dessin de la grille
 		ctx.font = "20px Arial";
 		ctx.textAlign = "center";
@@ -155,7 +154,6 @@ for i in range(joueur.grille_suivi.xmax):
 			print("marqueCase(%d,%d,'touche');\n"%(i,j))
 		elif joueur.grille_suivi.etat[(i,j)] == -1 :
 			print("marqueCase(%d,%d,'manque');\n"%(i,j))
-			
 
 print("</script>")
 print('<p id="infos">')
@@ -165,7 +163,6 @@ while joueur.messages :
 print("</p>")
 print("</div>")
 if fini :
-
 	print("""<button class="boutton" style="margin:auto; margin-top:10px; display:block;" onclick='window.location="solo.py?id=0"'>
 		Nouvelle partie
 		</button>'
@@ -197,11 +194,3 @@ else :
 		sh.close
 
 print("</body>")
-
-
-
-
-	
-
-
-
