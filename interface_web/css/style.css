@@ -48,17 +48,15 @@ h1{
 	display:inline-block;
 	vertical-align: top;
 	cursor: crosshair;
-
 }
 
 #infos {
-	
 	color:#000000;
 	background-color: #CCCCFF;
 	border:3px solid black;
 	border-radius:10px;
 	padding: 10px;
-	height:350px;
+	height:370px;
 	overflow:auto;
 	width:620px;
 	display:inline-block;

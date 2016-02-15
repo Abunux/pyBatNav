@@ -1,8 +1,8 @@
 import os, sys
 from http.server import HTTPServer, CGIHTTPRequestHandler
 
-# Source : https://www.safaribooksonline.com/library/view/programming-python-4th/9781449398712/ch01s08.html
-
+# Source pour la partie serveur: 
+# https://www.safaribooksonline.com/library/view/programming-python-4th/9781449398712/ch01s08.html
 
 # Effaçage des sessions antérieures éventuelles
 for session in os.listdir("sessions"):

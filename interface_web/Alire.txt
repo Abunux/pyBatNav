@@ -1,3 +1,5 @@
 Lancer le script server.py
 
 Accéder à la page http://localhost:8000/index.html
+
+Il est conseillé d'utiliser un navigateur récent (testé avec la dernière version de Firefox)
