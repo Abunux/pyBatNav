@@ -1,0 +1,70 @@
+body{
+	background-color:black;
+}
+
+h1{
+	text-align:center;
+	font-variant:small-caps;
+	font-size:40px;
+	font-family:Verdana;
+	display:block;
+	margin:auto;
+	margin-top:10px;
+	margin-bottom:10px;
+	border: 3px solid white;
+	border-radius:10px;
+	color:black;
+	background-color:#BBBBBB;
+	width:1150px;
+}
+
+#myCanvas{
+	padding:10px; 
+	margin:auto; 
+	display:inline-block;
+	vertical-align: top;
+	cursor: crosshair;
+
+}
+
+#infos {
+	
+	color:#000000;
+	background-color: #CCCCFF;
+	border:3px solid black;
+	border-radius:10px;
+	padding: 10px;
+	height:350px;
+	overflow:auto;
+	width:620px;
+	display:inline-block;
+	padding:10px;
+	margin : 20px;
+	margin-top : 40px;
+	vertical-alignment:top;
+}
+
+#game{
+	margin:auto;
+	background-color:#BBBBBB;
+	border:5px solid white;
+	width:1150px;
+	border-radius:20px;
+}
+
+.boutton{
+	margin:auto; 
+	margin-top:10px; 
+	display:block;
+	font-size:16px;
+	font-family:Verdana;
+	border: 3px solid white;
+	padding:5px;
+	background-color:#BBDDBB;
+	border-radius: 5px;
+}
+
+.boutton:hover{
+	//color:white;
+	background-color:#88AA88;
+}
