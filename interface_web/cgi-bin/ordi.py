@@ -10,10 +10,11 @@ from bn_joueur import *
 
 html_header = """<!DOCTYPE html>
 
+<html>
 <head>
 <title>Bataille navale</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/style_game.css">
 \n"""
 
 
@@ -174,3 +175,4 @@ else :
 		sh.close
 
 print("</body>")
+print("</html>")

@@ -51,6 +51,7 @@ h1{
 }
 
 #infos {
+	font-family:"Courier New", Courier, Monospace;
 	color:#000000;
 	background-color: #CCCCFF;
 	border:3px solid black;

@@ -1,64 +1,29 @@
 <!DOCTYPE html>
 
-<head>
-	<title>Bataille Navalle</title>
-	<meta charset="UTF-8">
-	<style>
-		body{
-			background-color: black;
-			color : white;
-			font-family:Verdana;
-		}
-		
-		h1{
-			//text-align:center;
-			font-variant:small-caps;
-			font-size:40px;
-			font-family:Verdana;
-			display:block;
-		}
-		
-		a{
-			color:white;
-			//text-decoration:none;
-		}
-		
-		ul{
-			list-style-type:none;
-			padding:0;
-			margin:0;
-		}
-		
-		li{
-			margin:20px;
-			display:inline-block;
-		}
-		
-		ul li a{
-			color:white;
-			border:3px solid white;
-			border-radius : 5px;
-			padding:5px;
-			text-decoration:none;
-			font-family:Verdana;
-		}
-		
-		ul li a:hover{
-			color:black;
-			background-color:white;
-		}
-	</style>
-</head>
+<html>
+	<head>
+		<title>Bataille Navale</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="./css/style_index.css">
+	</head>
 
-<body>
-	<h1>Bataille Navalle</h1>
+	<body>
+		<div id="titre">
+		<h1>Bataille Navale</h1>
 
-	<p>	Projet de validation de la formation ISN 2015/2016 de l'académie de Lyon.</p>
-	<p>Auteurs : Frédéric Muller et Lionel Reboul</p>
-	<p>Licence : <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank">Créative Commons BY-NC-SA v4.0</a> </p>
-	<p>Lien vers le <a href="https://github.com/Abunux/pyBatNav" target="_blank">code source du projet</a></p>
-	<ul>
-		<li><a href="cgi-bin/solo.py?id=0">Lancer une partie solo</a></li>
-		<li><a href="cgi-bin/ordi.py?id=0">Résolution par l'algorithme</a></li>
-	</ul>
-</body>
+		<h2>Projet de validation de la formation ISN 2015/2016 de l'académie de Lyon.</h2>
+		</div>
+		<div id="infos">
+		<p>Auteurs : Frédéric Muller et Lionel Reboul</p>
+		<p>Lien vers le <a href="https://github.com/Abunux/pyBatNav" target="_blank">code source du projet</a></p>
+		<p>Licence : <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank">Créative Commons BY-NC-SA v4.0</a></p>
+		</div>
+		<div id="liens">
+		<ul>
+			<li><a href="cgi-bin/solo.py?id=0">Lancer une partie solo</a></li>
+			<li><a href="cgi-bin/ordi.py?id=0">Résolution par l'algorithme</a></li>
+		</ul>
+		</div>
+		
+	</body>
+</html>
