@@ -20,83 +20,80 @@ h1{
 */
 
 h1{
+	display:block;
+	margin:0;
 	text-align:center;
 	font-variant:small-caps;
 	font-size:40px;
 	font-family:Verdana;
-	display:block;
-	margin:0;
 }
 
 #titre{
 	display:block;
+	width:1150px;
 	margin:auto;
 	margin-top:10px;
 	margin-bottom:10px;
-	border: 5px solid white;
-	border-radius:20px;
-	width:1150px;
-	background-color:#BBBBBB;
-	color:black;
 	padding-left:10px;
 	padding-bottom:8px;
+	color:black;
+	background-color:#BBBBBB;
+	border: 5px solid white;
+	border-radius:20px;
 }
 
 #myCanvas1{
+	display:inline-block;
 	padding:10px; 
 	margin:auto; 
-	display:inline-block;
 	vertical-align: top;
 	cursor: crosshair;
 }
 
 #myCanvas2{
+	display:inline-block;
 	padding:10px; 
 	margin:auto; 
-	display:inline-block;
 	vertical-align: top;
 	cursor: not-allowed;
 }
 
 #infos {
-	font-family:"Courier New", Courier, Monospace;
-	color:#000000;
-	//background-color: #CCCCFF;
-	background-color: #CCCCCC;
-	border:3px solid black;
-	border-radius:10px;
-	padding: 10px;
+	display:inline-block;
+	vertical-alignment:top;
+	width:620px;
 	height:370px;
 	overflow:auto;
-	width:620px;
-	display:inline-block;
 	padding:10px;
 	margin : 20px;
 	margin-top : 40px;
-	vertical-alignment:top;
+	font-family:"Courier New", Courier, Monospace;
+	color:#000000;
+	background-color: #CCCCCC;
+	border:3px solid black;
+	border-radius:10px;
 }
 
 #game{
+	width:1150px;
 	margin:auto;
 	background-color:#BBBBBB;
 	border:5px solid white;
-	width:1150px;
 	border-radius:20px;
 }
 
 .boutton{
+	display:block;
 	margin:auto; 
 	margin-top:10px; 
-	display:block;
+	padding:5px;
 	font-size:16px;
 	font-family:Verdana;
-	border: 3px solid white;
-	padding:5px;
 	background-color:#BBDDBB;
+	border: 3px solid white;
 	border-radius: 5px;
 }
 
 .boutton:hover{
-	//color:white;
 	background-color:#88AA88;
 }

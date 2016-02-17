@@ -1,55 +1,51 @@
 body{
 	background-color: black;
-	color : white;
 	font-family:Verdana;
+	color : white;
 }
 
 #titre{
 	display:block;
+	width:1150px;
 	margin:auto;
 	margin-top:10px;
 	margin-bottom:10px;
-	border: 5px solid white;
-	border-radius:20px;
-	width:1150px;
-	background-color:#BBBBBB;
-	color:black;
 	padding-left:10px;
 	padding-bottom:8px;
+	color:black;
+	background-color:#BBBBBB;
+	border: 5px solid white;
+	border-radius:20px;
 }
 
 h1{
+	display:block;
 	text-align:center;
 	font-variant:small-caps;
 	font-size:40px;
 	font-family:Verdana;
-	display:block;
 }
 
 h2{
+	display:block;
 	text-align:center;
 	font-variant:small-caps;
 	font-weight:bold;
 	font-size:25px;
-/*
-	margin-bottom:40px;
-*/
-	display:block;
 }
 
 #infos{
+	width:1150px;
 	padding:8px;
 	margin:auto;
-	background-color:#BBBBBB;
 	color:black;
+	background-color:#BBBBBB;
 	border:5px solid white;
-	width:1150px;
 	border-radius:20px;
 }
 
 a{
 	color:black;
-	//text-decoration:none;
 }
 
 a:hover{
@@ -63,28 +59,26 @@ a:hover{
 }
 
 ul{
-	list-style-type:none;
+	display:block;
 	padding:10px;
 	margin:auto;
-	display:block;
+	list-style-type:none;
 }
 
 li{
+	display:inline-block;
 	margin:auto;
 	margin-top:20px;
 	margin-left:20px;
 	margin-right:20px;
-	//margin-right:20px;
-	display:inline-block;
 }
 
 ul li a{
-	background-color:#BBDDBB;
-	//color:white;
+	padding:10px;
 	color:black;
+	background-color:#BBDDBB;
 	border:3px solid white;
 	border-radius : 5px;
-	padding:10px;
 	text-decoration:none;
 	font-family:Verdana;
 }
@@ -92,5 +86,4 @@ ul li a{
 ul li a:hover{
 	color:black;
 	background-color:#88AA88;
-	//background-color:white;
 }
