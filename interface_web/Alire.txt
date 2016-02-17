@@ -1,5 +1,7 @@
 Lancer le script server.py
 
+Attention à bien mettre les droits en exécutions aux fichiers du répertoire ./cgi-bin/
+
 Accéder à la page http://localhost:8000/index.html
 
 Il est conseillé d'utiliser un navigateur récent (testé avec la dernière version de Firefox)
