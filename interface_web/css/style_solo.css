@@ -42,7 +42,7 @@ h1{
 	padding-bottom:8px;
 }
 
-#myCanvas{
+#myCanvas1{
 	padding:10px; 
 	margin:auto; 
 	display:inline-block;
@@ -50,10 +50,19 @@ h1{
 	cursor: crosshair;
 }
 
+#myCanvas2{
+	padding:10px; 
+	margin:auto; 
+	display:inline-block;
+	vertical-align: top;
+	cursor: not-allowed;
+}
+
 #infos {
 	font-family:"Courier New", Courier, Monospace;
 	color:#000000;
-	background-color: #CCCCFF;
+	//background-color: #CCCCFF;
+	background-color: #CCCCCC;
 	border:3px solid black;
 	border-radius:10px;
 	padding: 10px;

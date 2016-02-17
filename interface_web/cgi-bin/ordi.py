@@ -14,7 +14,7 @@ html_header = """<!DOCTYPE html>
 <head>
 <title>Bataille navale</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/style_game.css">
+<link rel="stylesheet" type="text/css" href="../css/style_solo.css">
 \n"""
 
 
@@ -77,11 +77,11 @@ print("""<div id="titre">
 
 print(r"""
 	<div id="game">
-	<canvas id="myCanvas" width="430" height="430">
+	<canvas id="myCanvas2" width="430" height="430">
 	</canvas> 
 
 	<script>
-		var canvas = document.getElementById("myCanvas");
+		var canvas = document.getElementById("myCanvas2");
 		var ctx = canvas.getContext("2d");
 		// Marges
 		var margeLeft=30;
@@ -108,7 +108,7 @@ print(r"""
 			} else if (etat=='manque'){
 				ctx.fillStyle = "#44DD44";
 			} else if (etat=='bateau'){
-				ctx.fillStyle = "#00FFFF";
+				ctx.fillStyle = "#44DDDD";
 			} else {
 				ctx.fillStyle = "#FFFFFF";
 			}
