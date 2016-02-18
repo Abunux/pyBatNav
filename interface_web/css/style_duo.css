@@ -84,14 +84,18 @@ h1{
 
 #infos {
 	display:block;
+/*
 	vertical-alignment:top;
+*/
 	width:1000px;
 	height:60px;
 	overflow:auto;
-	padding: 10px;
 	padding:10px;
 	margin : auto;
 	margin-top : 10px;
+/*
+	margin-bottom:10px;
+*/
 	font-family:"Courier New", Courier, Monospace;
 	text-align:left;
 	color:#000000;
@@ -103,6 +107,7 @@ h1{
 #game{
 	width:1150px;
 	margin:auto;
+	padding:10px;
 	text-align:center;
 	background-color:#BBBBBB;
 	border:5px solid white;
