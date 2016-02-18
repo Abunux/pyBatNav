@@ -1,47 +1,8 @@
-body{
-	background-color:black;
-}
+@import "style_base.css";
+
 /*
-h1{
-	text-align:center;
-	font-variant:small-caps;
-	font-size:40px;
-	font-family:Verdana;
-	display:block;
-	margin:auto;
-	margin-top:10px;
-	margin-bottom:10px;
-	border: 3px solid white;
-	border-radius:10px;
-	color:black;
-	background-color:#BBBBBB;
-	width:1150px;
-}
+Style pour l'affichage de deux grilles
 */
-
-h1{
-	display:block;
-	margin:0;
-	text-align:center;
-	font-variant:small-caps;
-	font-size:40px;
-	font-family:Verdana;
-}
-
-#titre{
-	display:block;
-	width:1150px;
-	margin:auto;
-	margin-top:10px;
-	margin-bottom:10px;
-	padding-left:10px;
-	padding-bottom:8px;
-	color:black;
-	background-color:#BBBBBB;
-	border: 5px solid white;
-	border-radius:20px;
-}
-
 
 .nom{
 	width:200px;
@@ -55,24 +16,14 @@ h1{
 	border-radius:5px;
 }
 
-#myCanvas1{
-	display:inline-block;
-	padding:10px; 
-	margin:auto;
+#canvasJoueur{
 	margin-left:30px; 
 	margin-right:30px;
-	vertical-align: top;
-	cursor: crosshair;
 }
 
-#myCanvas2{
-	display:inline-block;
-	padding:10px; 
-	margin:auto;
+#canvasOrdi{
 	margin-left:30px; 
 	margin-right:30px;
-	vertical-align: top;
-	cursor: not-allowed;
 }
 
 .grille{
@@ -82,51 +33,21 @@ h1{
 	text-align:center;
 }
 
-#infos {
-	display:block;
-/*
-	vertical-alignment:top;
-*/
-	width:1000px;
-	height:60px;
-	overflow:auto;
-	padding:10px;
-	margin : auto;
-	margin-top : 10px;
-/*
-	margin-bottom:10px;
-*/
-	font-family:"Courier New", Courier, Monospace;
-	text-align:left;
-	color:#000000;
-	background-color: #CCCCCC;
-	border:3px solid black;
-	border-radius:10px;
-}
-
 #game{
-	width:1150px;
-	margin:auto;
 	padding:10px;
 	text-align:center;
-	background-color:#BBBBBB;
-	border:5px solid white;
-	border-radius:20px;
 }
 
-.boutton{
+#infos {
 	display:block;
-	margin:auto; 
-	margin-top:10px; 
-	padding:5px;
-	font-size:16px;
-	font-family:Verdana;
-	border: 3px solid white;
-	background-color:#BBDDBB;
-	border-radius: 5px;
+	width:1000px;
+	height:60px;
+	margin : auto;
+	margin-top : 10px;
+	text-align:left;
 }
 
-.boutton:hover{
-	background-color:#88AA88;
-}
+
+
+
 

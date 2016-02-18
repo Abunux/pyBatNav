@@ -1,99 +1,15 @@
-body{
-	background-color:black;
-}
+@import "style_base.css";
+
 /*
-h1{
-	text-align:center;
-	font-variant:small-caps;
-	font-size:40px;
-	font-family:Verdana;
-	display:block;
-	margin:auto;
-	margin-top:10px;
-	margin-bottom:10px;
-	border: 3px solid white;
-	border-radius:10px;
-	color:black;
-	background-color:#BBBBBB;
-	width:1150px;
-}
+Style pour l'affichage d'une seule grille
 */
-
-h1{
-	display:block;
-	margin:0;
-	text-align:center;
-	font-variant:small-caps;
-	font-size:40px;
-	font-family:Verdana;
-}
-
-#titre{
-	display:block;
-	width:1150px;
-	margin:auto;
-	margin-top:10px;
-	margin-bottom:10px;
-	padding-left:10px;
-	padding-bottom:8px;
-	color:black;
-	background-color:#BBBBBB;
-	border: 5px solid white;
-	border-radius:20px;
-}
-
-#myCanvas1{
-	display:inline-block;
-	padding:10px; 
-	margin:auto; 
-	vertical-align: top;
-	cursor: crosshair;
-}
-
-#myCanvas2{
-	display:inline-block;
-	padding:10px; 
-	margin:auto; 
-	vertical-align: top;
-	cursor: not-allowed;
-}
 
 #infos {
 	display:inline-block;
 	vertical-alignment:top;
 	width:620px;
 	height:370px;
-	overflow:auto;
-	padding:10px;
 	margin : 20px;
 	margin-top : 40px;
-	font-family:"Courier New", Courier, Monospace;
-	color:#000000;
-	background-color: #CCCCCC;
-	border:3px solid black;
-	border-radius:10px;
 }
 
-#game{
-	width:1150px;
-	margin:auto;
-	background-color:#BBBBBB;
-	border:5px solid white;
-	border-radius:20px;
-}
-
-.boutton{
-	display:block;
-	margin:auto; 
-	margin-top:10px; 
-	padding:5px;
-	font-size:16px;
-	font-family:Verdana;
-	background-color:#BBDDBB;
-	border: 3px solid white;
-	border-radius: 5px;
-}
-
-.boutton:hover{
-	background-color:#88AA88;
-}
