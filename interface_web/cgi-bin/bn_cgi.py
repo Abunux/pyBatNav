@@ -1,5 +1,21 @@
 #!/usr/bin/python3
 
+"""Module bn_cgi
+
+Crée un interface web à l'aide d'un script cgi
+Lancer le fichier server.py et aller sur http://localhost:8000/index.html
+La session est suvegardée dans un fichier ./sessions/session_ID de la racine web
+Les paramètres suivants sont passés en cgi :
+	- session : l'ID de la session
+	- mode : mode de jeu (solo, ordi seul ou partie contre l'ordi)
+	- jx, jy : les coordonnées cliquées
+
+Auteurs : Frédéric Muller et Lionel Reboul
+
+Licence CC BY-NC-SA
+
+Version 0.1.0"""
+
 from random import *
 import os
 import cgi
@@ -20,15 +36,21 @@ form = cgi.FieldStorage()
 	# 0 : solo
 	# 1 : joueur contre l'ordi
 	# 2 : ordi seul
+	# mode <= 1 : il y a un joueur
+	# mode >= 1 : il y a un ordi
+	# mode != 1 : un seul joueur
 try :
 	mode = int(cgi.escape(form['mode'].value))
 except :
 	mode = 0
-if mode > 2 : 
+if mode > 2 or mode < 0:
 	mode = 0
 titre = ["Partie solo", "Partie contre l'ordinateur", "Résolution automatique"][mode]
 
-html_header = """<!DOCTYPE html>
+# Création du <header> de la page
+# (note : sauter une ligne avant le doctype)
+html_header = """
+<!DOCTYPE html>
 
 <html>
 	<head>
@@ -40,7 +62,7 @@ if mode != 1 :
 	html_header += """		<link rel="stylesheet" type="text/css" href="../css/style_solo.css">\n"""
 else :
 	html_header += """		<link rel="stylesheet" type="text/css" href="../css/style_duo.css">\n"""
-	
+
 # Récupération ou création de l'ID de session
 try :
 	sessionID = cgi.escape(form['id'].value)
@@ -54,39 +76,31 @@ if sessionID=='0' or noID or not os.path.isfile(os.path.join("sessions", "sessio
 else:
 	ID = sessionID
 	first = False
+	
+# Sauvegarde de l'ID de session dans la page et fin du header
 html_header += "		<script>var sessionID=%s;</script>\n" % ID
 html_header += "	</head>\n\n"
-
-# Case jouée
-if 'jx' in form :
-	jx = int(cgi.escape(form['jx'].value))
-else :
-	jx = None
-if 'jy' in form :
-	jy = int(cgi.escape(form['jy'].value))
-else :
-	jy = None
 
 # Gestion de la session
 sh = shelve.open(os.path.join("sessions", "session_%s" % ID))
 if first :
-	# 1er lancement, on crée la partie
+	# Si 1er lancement, on crée la partie
 	try :
 		# Création des joueurs
 		ordi = Ordi()
 		joueur = Joueur()
-		
+
 		# Initialisation des grilles de chacun
 		grille_ordi = GrilleJoueur()
 		grille_ordi.init_bateaux_alea()
 		grille_joueur = GrilleJoueur()
 		grille_joueur.init_bateaux_alea()
-		
+
 		ordi.grille_joueur = grille_ordi
 		ordi.grille_adverse = grille_joueur
 		joueur.grille_joueur = grille_joueur
 		joueur.grille_adverse = grille_ordi
-		
+
 		# Sauvegarde des joueurs
 		sh['ordi'] = ordi
 		sh['joueur'] = joueur
@@ -98,10 +112,21 @@ else :
 		joueur = sh['joueur']
 		ordi = sh['ordi']
 	finally :
-		sh.close 
+		sh.close
 
 # Déroulement de la partie
 # ------------------------
+# Case jouée
+if 'jx' in form :
+	jx = int(cgi.escape(form['jx'].value))
+else :
+	jx = None
+if 'jy' in form :
+	jy = int(cgi.escape(form['jy'].value))
+else :
+	jy = None
+	
+# Coup suivant ou fin de partie
 fini = False
 if mode == 0 :
 	if jx != None and jy != None :
@@ -151,12 +176,12 @@ elif mode ==2 :		# Grille de l'ordinateur
 else :			# Deux grilles
 	html_body += """			<div class="grille">
 				<p class="nom">%s</p>
-				<canvas id="canvasJoueur" width="430" height="430"></canvas> 
+				<canvas id="canvasJoueur" width="430" height="430"></canvas>
 			</div>
 			<div class="grille">
 				<p class="nom">%s</p>
-				<canvas id="canvasOrdi" width="430" height="430"></canvas> 
-			</div>\n\n"""%(nom_joueur, nom_ordi)
+				<canvas id="canvasOrdi" width="430" height="430"></canvas>
+			</div>\n\n""" % (nom_joueur, nom_ordi)
 
 # Javascript pour gérer le canvas
 html_body += "			<script>\n"
@@ -166,7 +191,7 @@ if mode <= 1 :		# Grille du joueur
 if mode >= 1 :		# Grille de l'ordinateur
 	html_body += """				var canvas2 = document.getElementById("canvasOrdi");
 				var ctx2 = canvas2.getContext("2d");\n"""
-		
+
 html_body += """
 				// Marges pour les lettres et les chiffres
 				var margeLeft = 30;
@@ -181,13 +206,13 @@ html_body += """
 				}
 
 				function coord2case(x, y){
-					// Récupère les coordonnées d'une case	
+					// Récupère les coordonnées d'une case
 					return {'i':Math.floor((x-margeLeft)/largCase), 'j':Math.floor((y-margeTop)/largCase)};
 				}
-				
+
 				// Marquage des cases
 				function marqueCase(ctx, i, j, etat){
-					// Marque une case suivant son état
+					// Marque la case (i,j) de la grille ctx suivant son état
 					if (etat == 'touche'){
 						ctx.fillStyle = "#DD4444";
 					} else if (etat == 'manque'){
@@ -212,16 +237,16 @@ if mode <= 1 :		# Grille du joueur
 				for(var i=0; i<10; i++){
 					ctx1.fillText(String.fromCharCode(65+i), margeLeft+largCase/2+largCase*i, margeTop-5);
 				}
-				for(var i=0; i<=10; i++){	
+				for(var i=0; i<=10; i++){
 					ctx1.moveTo(margeLeft, margeLeft+largCase*i);
 					ctx1.lineTo(margeLeft+10*largCase, margeLeft+largCase*i);
 					ctx1.stroke();
 				}
 					// Colonnes
-				for(var i=0; i<10; i++){		
+				for(var i=0; i<10; i++){
 					ctx1.fillText(i, margeLeft-15, margeTop+largCase/2+5+largCase*i);
 				}
-				for(var i=0; i<=10; i++){	
+				for(var i=0; i<=10; i++){
 					ctx1.moveTo(margeLeft+largCase*i, margeTop);
 					ctx1.lineTo(margeLeft+largCase*i, margeTop+10*largCase);
 					ctx1.stroke();
@@ -236,16 +261,16 @@ if mode >= 1 :		# Grille de l'ordinateur
 				for(var i=0; i<10; i++){
 					ctx2.fillText(String.fromCharCode(65+i), margeLeft+largCase/2+largCase*i, margeTop-5);
 				}
-				for(var i=0; i<=10; i++){	
+				for(var i=0; i<=10; i++){
 					ctx2.moveTo(margeLeft, margeLeft+largCase*i);
 					ctx2.lineTo(margeLeft+10*largCase, margeLeft+largCase*i);
 					ctx2.stroke();
 				}
 					// Colonnes
-				for(var i=0; i<10; i++){		
+				for(var i=0; i<10; i++){
 					ctx2.fillText(i, margeLeft-15, margeTop+largCase/2+5+largCase*i);
 				}
-				for(var i=0; i<=10; i++){	
+				for(var i=0; i<=10; i++){
 					ctx2.moveTo(margeLeft+largCase*i, margeTop);
 					ctx2.lineTo(margeLeft+largCase*i, margeTop+10*largCase);
 					ctx2.stroke();
@@ -331,7 +356,7 @@ else :
 		html_body += """		<button class="boutton" style="margin:auto; margin-top:10px; display:block;" onclick='window.location="bn_cgi.py?id="+sessionID+"&mode=%d"'>
 	Coup suivant
 	</button>\n""" % mode
-	
+
 	# Sauvegarde de l'état de la partie
 	sh = shelve.open(os.path.join("sessions", "session_%s" % ID))
 	try :

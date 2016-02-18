@@ -5,46 +5,46 @@ Style pour l'affichage de deux grilles
 */
 
 .nom{
-	width:200px;
-	margin:auto;
-	padding:5px;
-	text-align:center;
-	font-size:20px;
-	font-family:Verdana;
-	background-color: #CCCCCC;
-	border: 3px solid black;
-	border-radius:5px;
+	width : 200px;
+	margin : auto;
+	padding : 5px;
+	text-align : center;
+	font-size : 20px;
+	font-family : Verdana;
+	background-color :  #CCCCCC;
+	border :  3px solid black;
+	border-radius : 5px;
 }
 
 #canvasJoueur{
-	margin-left:30px; 
-	margin-right:30px;
+	margin-left : 30px; 
+	margin-right : 30px;
 }
 
 #canvasOrdi{
-	margin-left:30px; 
-	margin-right:30px;
+	margin-left : 30px; 
+	margin-right : 30px;
 }
 
 .grille{
-	display:inline-block;
-	margin:auto; 
-	padding-top:5px;
-	text-align:center;
+	display : inline-block;
+	margin : auto; 
+	padding-top : 5px;
+	text-align : center;
 }
 
 #game{
-	padding:10px;
-	text-align:center;
+	padding : 10px;
+	text-align : center;
 }
 
-#infos {
-	display:block;
-	width:1000px;
-	height:60px;
+#infos{
+	display : block;
+	width : 1000px;
+	height : 60px;
 	margin : auto;
 	margin-top : 10px;
-	text-align:left;
+	text-align : left;
 }
 
 

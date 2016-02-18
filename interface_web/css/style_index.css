@@ -1,89 +1,93 @@
+/*
+Styles pour la page d'index
+*/
+
 body{
-	background-color: black;
-	font-family:Verdana;
-	color : white;
+	background-color :  black;
+	font-family : Verdana;
+	color  :  white;
 }
 
 #titre{
-	display:block;
-	width:1150px;
-	margin:auto;
-	margin-top:10px;
-	margin-bottom:10px;
-	padding-left:10px;
-	padding-bottom:8px;
-	color:black;
-	background-color:#BBBBBB;
-	border: 5px solid white;
-	border-radius:20px;
+	display : block;
+	width : 1150px;
+	margin : auto;
+	margin-top : 10px;
+	margin-bottom : 10px;
+	padding-left : 10px;
+	padding-bottom : 8px;
+	color : black;
+	background-color : #BBBBBB;
+	border :  5px solid white;
+	border-radius : 20px;
 }
 
 h1{
-	display:block;
-	text-align:center;
-	font-variant:small-caps;
-	font-size:40px;
-	font-family:Verdana;
+	display : block;
+	text-align : center;
+	font-variant : small-caps;
+	font-size : 40px;
+	font-family : Verdana;
 }
 
 h2{
-	display:block;
-	text-align:center;
-	font-variant:small-caps;
-	font-weight:bold;
-	font-size:25px;
+	display : block;
+	text-align : center;
+	font-variant : small-caps;
+	font-weight : bold;
+	font-size : 25px;
 }
 
 #infos{
-	width:1150px;
-	padding:8px;
-	margin:auto;
-	color:black;
-	background-color:#BBBBBB;
-	border:5px solid white;
-	border-radius:20px;
+	width : 1150px;
+	padding : 8px;
+	margin : auto;
+	color : black;
+	background-color : #BBBBBB;
+	border : 5px solid white;
+	border-radius : 20px;
 }
 
 a{
-	color:black;
+	color : black;
 }
 
 a:hover{
-	color:white;
+	color : white;
 }
 
 #liens{
-	width:1150px;
-	margin:auto;
-	text-align:center;
+	width : 1150px;
+	margin : auto;
+	text-align : center;
 }
 
-ul{
-	display:block;
-	padding:10px;
-	margin:auto;
-	list-style-type:none;
+#liens ul{
+	display : block;
+	padding : 10px;
+	margin : auto;
+	list-style-type : none;
 }
 
-li{
-	display:inline-block;
-	margin:auto;
-	margin-top:20px;
-	margin-left:20px;
-	margin-right:20px;
+#liens li{
+	display : inline-block;
+	margin : auto;
+	margin-top : 20px;
+	margin-left : 20px;
+	margin-right : 20px;
 }
 
-ul li a{
-	padding:10px;
-	color:black;
-	background-color:#BBDDBB;
-	border:3px solid white;
-	border-radius : 5px;
-	text-decoration:none;
-	font-family:Verdana;
+#liens ul li a{
+	padding : 10px;
+	color : black;
+	background-color : #BBDDBB;
+	border : 3px solid white;
+	border-radius  :  5px;
+	text-decoration : none;
+	font-family : Verdana;
 }
 
-ul li a:hover{
-	color:black;
-	background-color:#88AA88;
+#liens ul li a:hover{
+	color : black;
+	background-color : #88AA88;
 }
