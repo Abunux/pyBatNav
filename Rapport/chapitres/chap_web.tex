@@ -11,6 +11,28 @@ Celle-ci crée un serveur web, grâce au sous-module \texttt{HTTPServer} du modu
 Le deuxième rôle de \texttt{serveur.py} est d'effacer les anciens fichiers de session au cas où il en resterait.
 
 \section{HTML et CSS}
-Le fichier \texttt{index.html} présente rapidement le projet et permet de lancer les trois modes de jeu : jeu solo, résolution automatique seule et partie contre l'ordinateur. Son style est basé sur le fichier \texttt{./css/style\_index.css}.
+Le fichier \texttt{index.html} présente rapidement le projet et permet de lancer les trois modes de jeu : jeu solo, résolution automatique seule et partie contre l'ordinateur. Son style CSS est dans le fichier \texttt{./css/style\_index.css}.
 
-Lors du lancement d'une partie, le code de la page est généré par le script \texttt{bn\_cgi.py} et le style de la page est dans le fichier \texttt{./css/style\_solo.css} ou \texttt{./css/style\_duos.css}, suivant s'il faut afficher une ou deux grilles. Ces deux styles héritent de \texttt{./css/style\_base.css} qui contient leurs éléments communs.
+Lors du lancement d'une partie, le code de la page est généré par le script \texttt{bn\_cgi.py} et le style CSS de la page est dans les fichiers \texttt{./css/style\_solo.css} ou \texttt{./css/style\_duos.css}, suivant s'il faut afficher une ou deux grilles. Ces deux styles héritent de \texttt{./css/style\_base.css} qui contient leurs éléments communs.
+
+Le dessin de la grille est effectué par un \texttt{canvas} en HTML5. Cet objet permet de dessiner grâce à des fonctions en Javascript. La récupération des coordonnées de la souris est également gérée en Javascript.
+
+\section{Script cgi}
+Un script \texttt{cgi} permet de générer du code source HTML pour l'envoyer au serveur en fonction des données qu'il reçoit. Ici, ces données sont :
+\begin{itemize}
+\item \texttt{id} : l'identificateur de la partie, égal à 0 au premier lancement.
+\item \texttt{mode} : le mode de jeu (0 : partie solo, 1 : partie contre l'ordinateur, 2 : résolution automatique).
+\item \texttt{jx} et \texttt{jy} : les coordonnées de la case cliquée par le joueur. 
+\end{itemize}
+Une URL sera donc de la forme :\\
+\texttt{http://localhost:8000/cgi-bin/bn\_cgi.py?id=638229159\&mode=1\&jx=2\&jy=6}
+
+Le script va alors récupérer ces paramètres et lancer une action de jeu appropriée : 
+\begin{itemize}
+\item Si l'\texttt{id} vaut 0, on vient de lancer le script pour la première fois. On crée donc un \texttt{id} aléatoire et on crée les acteurs du jeu (joueurs, grilles) que l'on sauvegarde dans un fichier de session.\\
+Sinon, on récupère les données du jeu dans le fichier de session correspondant.\\
+Cet \texttt{id} est sauvegardé dans le code HTML de la page dans une variable Javascript \texttt{sessionID}.
+\item \texttt{mode} va déterminer l'action à entreprendre : faire jouer l'ordinateur ou le joueur, et également déterminer la feuille de style.
+\end{itemize}
+
+Une fois ces paramètres déterminés, et les objets de jeu créés, le script va créer le source HTML et les fonctions Javascript d'affichage du canvas. Grâce à la variable \texttt{sessionID}, on pourra faire des liens dynamiques vers la page suivante de la partie. 

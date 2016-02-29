@@ -1,0 +1,114 @@
+\select@language {french}
+\select@language {french}
+\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation du projet}{1}
+\contentsline {section}{\numberline {1}Le jeu de la bataille navale}{1}
+\contentsline {section}{\numberline {2}Objectifs du projet}{1}
+\contentsline {section}{\numberline {3}Liste des modules du projet}{2}
+\contentsline {section}{\numberline {4}\IeC {\`A} propos des annexes}{2}
+\contentsline {chapter}{\numberline {2}Quelques fonctions utiles}{3}
+\contentsline {section}{\numberline {1}Coordonn\IeC {\'e}es des cases}{3}
+\contentsline {section}{\numberline {2}Constantes de direction}{3}
+\contentsline {section}{\numberline {3}Param\IeC {\`e}tres en ligne de commande}{3}
+\contentsline {chapter}{\numberline {3}Gestion de la grille}{5}
+\contentsline {section}{\numberline {1}La classe Bateau}{5}
+\contentsline {section}{\numberline {2}La classe Grille}{5}
+\contentsline {subsection}{\numberline {2.1}Pr\IeC {\'e}sentation}{5}
+\contentsline {subsection}{\numberline {2.2}\IeC {\'E}tat de la grille}{6}
+\contentsline {subsection}{\numberline {2.3}Gestion des espaces vides}{6}
+\contentsline {subsection}{\numberline {2.4}Liste des bateaux possibles sur chaque case}{6}
+\contentsline {subsection}{\numberline {2.5}Gestion de la flotte}{7}
+\contentsline {subsubsection}{\numberline {2.5.1}Ajout d'un bateau}{7}
+\contentsline {subsubsection}{\numberline {2.5.2}Cr\IeC {\'e}ation d'un flotte al\IeC {\'e}atoire}{7}
+\contentsline {subsection}{\numberline {2.6}Fin de la partie}{7}
+\contentsline {chapter}{\numberline {4}Gestion des joueurs et de la partie}{9}
+\contentsline {section}{\numberline {1}La classe Joueur}{9}
+\contentsline {section}{\numberline {2}La classe Partie}{9}
+\contentsline {chapter}{\numberline {5}Algorithme de r\IeC {\'e}solution}{11}
+\contentsline {section}{\numberline {1}Phase de tir en aveugle}{11}
+\contentsline {subsection}{\numberline {1.1}Tirs al\IeC {\'e}atoires}{11}
+\contentsline {subsubsection}{\numberline {1.1.1}M\IeC {\'e}thode na\IeC {\"\text {i}}ve}{11}
+\contentsline {subsubsection}{\numberline {1.1.2}M\IeC {\'e}thode des cases noires}{12}
+\contentsline {subsection}{\numberline {1.2}Optimisations}{12}
+\contentsline {subsubsection}{\numberline {1.2.1}M\IeC {\'e}thode par \IeC {\'e}chantillonnage}{12}
+\contentsline {subsubsection}{\numberline {1.2.2}M\IeC {\'e}thode par \IeC {\'e}num\IeC {\'e}ration de tous les cas}{12}
+\contentsline {subsubsection}{\numberline {1.2.3}M\IeC {\'e}thodes par comptage}{12}
+\contentsline {section}{\numberline {2}Phase de tir cibl\IeC {\'e}}{12}
+\contentsline {subsection}{\numberline {2.1}Premier tir}{13}
+\contentsline {subsubsection}{\numberline {2.1.1}Cr\IeC {\'e}ation de la liste des cases adjacentes}{13}
+\contentsline {subsubsection}{\numberline {2.1.2}Optimisation de la file d'attente}{13}
+\contentsline {subsection}{\numberline {2.2}Deuxi\IeC {\`e}me tir}{14}
+\contentsline {subsubsection}{\numberline {2.2.1}Deuxi\IeC {\`e}me tir touch\IeC {\'e}}{15}
+\contentsline {subsubsection}{\numberline {2.2.2}Deuxi\IeC {\`e}me tir manqu\IeC {\'e}}{15}
+\contentsline {subsection}{\numberline {2.3}Tirs suivants}{15}
+\contentsline {chapter}{\numberline {6}Affichage console}{17}
+\contentsline {section}{\numberline {1}Pr\IeC {\'e}liminaires}{17}
+\contentsline {subsection}{\numberline {1.1}Constantes graphiques}{17}
+\contentsline {subsection}{\numberline {1.2}Effacer le terminal}{17}
+\contentsline {subsection}{\numberline {1.3}Fusion des deux grilles}{17}
+\contentsline {subsection}{\numberline {1.4}Autres fonctions d'affichage}{18}
+\contentsline {section}{\numberline {2}Affichage des grilles}{18}
+\contentsline {subsection}{\numberline {2.1}Affichage simple de la grille}{18}
+\contentsline {subsection}{\numberline {2.2}Affichage de la grille avec ses propres bateaux en gras}{18}
+\contentsline {section}{\numberline {3}Modes de jeu}{20}
+\contentsline {chapter}{\numberline {7}Interface graphique}{21}
+\contentsline {chapter}{\numberline {8}Interface web}{23}
+\contentsline {section}{\numberline {1}Serveur web}{23}
+\contentsline {section}{\numberline {2}HTML et CSS}{23}
+\contentsline {section}{\numberline {3}Script cgi}{23}
+\contentsline {chapter}{\numberline {9}Point de vue p\IeC {\'e}dagogique}{25}
+\contentsline {chapter}{\numberline {10}Conclusion}{27}
+\contentsline {part}{Annexes}{31}
+\contentsline {chapter}{\numberline {A}\IeC {\'E}tude des algorithmes cl\IeC {\'e}s}{31}
+\contentsline {section}{\numberline {1}Gestion de la grille}{31}
+\contentsline {subsection}{\numberline {1.1}D\IeC {\'e}termination des espaces vides}{31}
+\contentsline {subsection}{\numberline {1.2}D\IeC {\'e}termination des bateaux possibles d\IeC {\'e}marrant sur chaque case et des placements possibles de chaque bateaux}{32}
+\contentsline {subsection}{\numberline {1.3}Cr\IeC {\'e}ation de bateaux al\IeC {\'e}atoires}{33}
+\contentsline {subsubsection}{\numberline {1.3.1}Ajout d'un bateau al\IeC {\'e}atoire}{33}
+\contentsline {subsubsection}{\numberline {1.3.2}Cr\IeC {\'e}ation d'une flotte al\IeC {\'e}atoire}{33}
+\contentsline {section}{\numberline {2}D\IeC {\'e}termination des bateaux coul\IeC {\'e}s}{34}
+\contentsline {section}{\numberline {3}Algorithme de r\IeC {\'e}solution}{35}
+\contentsline {subsection}{\numberline {3.1}Optimisation de la phase de tirs en aveugle}{35}
+\contentsline {subsubsection}{\numberline {3.1.1}D\IeC {\'e}termination des probabilit\IeC {\'e}s par \IeC {\'e}chantillonnage}{35}
+\contentsline {subsubsection}{\numberline {3.1.2}D\IeC {\'e}termination du nombre de bateaux possibles sur chaque case}{36}
+\contentsline {subsubsection}{\numberline {3.1.3}\IeC {\'E}num\IeC {\'e}ration de tous les cas}{37}
+\contentsline {subsection}{\numberline {3.2}Gestion de la file d'attente}{39}
+\contentsline {subsubsection}{\numberline {3.2.1}Cr\IeC {\'e}ation de la file d'attente}{39}
+\contentsline {subsubsection}{\numberline {3.2.2}Optimisation de la file d'attente}{40}
+\contentsline {subsubsection}{\numberline {3.2.3}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup touch\IeC {\'e}}{41}
+\contentsline {subsubsection}{\numberline {3.2.4}Mise \IeC {\`a} jour apr\IeC {\`e}s le deuxi\IeC {\`e}me coup manqu\IeC {\'e}}{42}
+\contentsline {subsection}{\numberline {3.3}Algorithme complet de r\IeC {\'e}solution}{43}
+\contentsline {section}{\numberline {4}D\IeC {\'e}roulement de la partie}{44}
+\contentsline {chapter}{\numberline {B}\IeC {\'E}tude statistique des algorithmes de r\IeC {\'e}solution}{45}
+\contentsline {section}{\numberline {1}Niveau 1}{46}
+\contentsline {section}{\numberline {2}Niveau 2}{47}
+\contentsline {section}{\numberline {3}Niveau 3}{48}
+\contentsline {section}{\numberline {4}Niveau 4}{49}
+\contentsline {subsection}{\numberline {4.1}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=10}}{49}
+\contentsline {subsection}{\numberline {4.2}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=100}}{50}
+\contentsline {subsection}{\numberline {4.3}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=1\tmspace +\thinmuskip {.1667em}000}}{51}
+\contentsline {subsection}{\numberline {4.4}\IeC {\'E}chantillons de taille \texttt {nb\_echantillons=1\tmspace +\thinmuskip {.1667em}000}}{52}
+\contentsline {subsection}{\numberline {4.5}Conclusion sur le niveau 4}{53}
+\contentsline {section}{\numberline {5}Niveau 5}{54}
+\contentsline {section}{\numberline {6}Niveau 6}{55}
+\contentsline {subsection}{\numberline {6.1}Seuil \IeC {\'e}gal \IeC {\`a} 60}{55}
+\contentsline {subsection}{\numberline {6.2}Seuil \IeC {\'e}gal \IeC {\`a} 70}{56}
+\contentsline {subsection}{\numberline {6.3}Conclusion sur le niveau 6}{56}
+\contentsline {section}{\numberline {7}Conclusions}{57}
+\contentsline {chapter}{\numberline {C}Codes des caract\IeC {\`e}res graphiques}{59}
+\contentsline {chapter}{\numberline {D}Documentation des modules}{61}
+\contentsline {section}{\numberline {1}Module bn\_grille.py}{61}
+\contentsline {subsection}{\numberline {1.1}Classe Bateau}{61}
+\contentsline {subsection}{\numberline {1.2}Classe Grille}{62}
+\contentsline {section}{\numberline {2}Module bn\_joueur.py}{64}
+\contentsline {subsection}{\numberline {2.1}Classe Joueur}{64}
+\contentsline {subsection}{\numberline {2.2}Classe Ordi}{66}
+\contentsline {subsection}{\numberline {2.3}Classe Partie}{69}
+\contentsline {section}{\numberline {3}Module bn\_console.py}{70}
+\contentsline {subsection}{\numberline {3.1}Classe GrilleC}{70}
+\contentsline {subsection}{\numberline {3.2}Classe JoueurC}{73}
+\contentsline {subsection}{\numberline {3.3}Classe OrdiC}{74}
+\contentsline {subsection}{\numberline {3.4}Classe PartieC}{78}
+\contentsline {subsection}{\numberline {3.5}Classe MainConsole}{79}
+\contentsline {section}{\numberline {4}Module bn\_stats.py}{80}
+\contentsline {subsection}{\numberline {4.1}Classe Stats}{80}
+\contentsline {chapter}{\numberline {E}L'algorithme en action}{83}
