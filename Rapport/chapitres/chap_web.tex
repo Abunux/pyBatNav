@@ -29,7 +29,7 @@ Une URL sera donc de la forme :\\
 
 Le script va alors récupérer ces paramètres et lancer une action de jeu appropriée : 
 \begin{itemize}
-\item Si l'\texttt{id} vaut 0, on vient de lancer le script pour la première fois. On crée donc un \texttt{id} aléatoire et on crée les acteurs du jeu (joueurs, grilles) que l'on sauvegarde dans un fichier de session.\\
+\item Si l'\texttt{id} vaut 0, on vient de lancer le script pour la première fois. On crée donc un \texttt{id} aléatoire et on crée les acteurs du jeu (joueurs et grilles) que l'on sauvegarde dans un fichier de session.\\
 Sinon, on récupère les données du jeu dans le fichier de session correspondant.\\
 Cet \texttt{id} est sauvegardé dans le code HTML de la page dans une variable Javascript \texttt{sessionID}.
 \item \texttt{mode} va déterminer l'action à entreprendre : faire jouer l'ordinateur ou le joueur, et également déterminer la feuille de style.

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  29 FEB 2016 14:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  29 FEB 2016 16:57
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
-**Muller_Reboul_ISN2016_BatailleNavale_Rapport.tex
-(./Muller_Reboul_ISN2016_BatailleNavale_Rapport.tex
+**Muller_ISN2016_BatailleNavale_Rapport.tex
+(./Muller_ISN2016_BatailleNavale_Rapport.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (./macros/preambule_macros.tex
@@ -1815,8 +1815,8 @@ Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
 \tab@size=\count305
 \listing@line=\count306
 )
-(./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux)
-\openout1 = `Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux'.
+(./Muller_ISN2016_BatailleNavale_Rapport.aux)
+\openout1 = `Muller_ISN2016_BatailleNavale_Rapport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -1996,18 +1996,18 @@ Package pdftex.def Info: ./media/CC-Logo.png used on input line 45.
 [2 <./media/CC-Logo.png>] [3] [4
 
 
-]
-(./Muller_Reboul_ISN2016_BatailleNavale_Rapport.toc
+] (./Muller_ISN2016_BatailleNavale_Rapport.toc
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <12> not available
 (Font)              Font shape `T1/futs/b/n' tried instead on input line 3.
- [5
+
+[5
 
 ]
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/futs/b/n' tried instead on input line 60.
  [6])
 \tf@toc=\write5
-\openout5 = `Muller_Reboul_ISN2016_BatailleNavale_Rapport.toc'.
+\openout5 = `Muller_ISN2016_BatailleNavale_Rapport.toc'.
 
 )
 
@@ -2833,9 +2833,9 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (402.07741pt too wide) in paragraph at lines 31--31
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7fa8e
-b9de668>, adversaire=<bn_joueur.Ordi object at 0x7fa8eb9d3390>, cheat=False)[] 
+Overfull \hbox (402.10542pt too wide) in paragraph at lines 31--31
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7efd2
+e27a6a0>, adversaire=<bn_joueur.Ordi object at 0x7efd2e2871d0>, cheat=False)[] 
 
  []
 
@@ -2987,9 +2987,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [77]
-Overfull \hbox (402.10542pt too wide) in paragraph at lines 48--48
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7ff21
-ae1b0b8>, adversaire=<bn_joueur.Ordi object at 0x7ff2116cc828>, cheat=False)[] 
+Overfull \hbox (402.09842pt too wide) in paragraph at lines 48--48
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f810
+000f128>, adversaire=<bn_joueur.Ordi object at 0x7f80f68c0898>, cheat=False)[] 
 
  []
 
@@ -3050,7 +3050,7 @@ File: ./docstrings/bn_stats.Stats  (verbatim)
 
 Overfull \hbox (420.63744pt too wide) in paragraph at lines 57--57
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'taille_bateaux': [5, 4, 3, 3, 2], 'ymax': 10, 'xmax': 10}, niveau_str='5')
+le={'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10, 'ymax': 10}, niveau_str='5')
 [] 
  []
 
@@ -3445,7 +3445,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[119] (./Muller_Reboul_ISN2016_BatailleNavale_Rapport.aux) )
+[119] (./Muller_ISN2016_BatailleNavale_Rapport.aux) )
 (\end occurred inside a group at level 36)
 
 ### simple group (level 36) entered at line 1275 ({)
@@ -3487,12 +3487,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ### bottom level 
 Here is how much of TeX's memory you used:
  26317 strings out of 493304
- 505240 string characters out of 6139871
+ 505163 string characters out of 6139871
  776003 words of memory out of 5000000
  28877 multiletter control sequences out of 15000+600000
  199923 words of font info for 185 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 51i,12n,71p,866b,1390s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,12n,71p,859b,1390s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/tex
 mf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
 base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-m
@@ -3505,8 +3505,8 @@ re/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts
 /utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr
 i8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Muller_Reboul_ISN2016_BatailleNavale_Rapport.pdf (127 pages, 
-917175 bytes).
+Output written on Muller_ISN2016_BatailleNavale_Rapport.pdf (127 pages, 917289 
+bytes).
 PDF statistics:
  513 PDF objects out of 1000 (max. 8388607)
  329 compressed objects within 4 object streams
