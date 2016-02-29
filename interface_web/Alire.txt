@@ -1,6 +1,10 @@
 Lancer le script server.py
 
-Attention à bien mettre les droits en exécutions aux fichiers du répertoire ./cgi-bin/
+Attention à bien mettre les droits en exécution aux fichiers du répertoire ./cgi-bin/
+
+Sous Mac OS, remplacer la première ligne par du fichier bn_cgi.py :
+#!/anaconda/bin/python
+(Merci Christophe)
 
 Accéder à la page http://localhost:8000/index.html
 

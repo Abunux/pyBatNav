@@ -4,7 +4,7 @@
 
 Interface de jeu en mode console
 
-Auteurs : Frédéric Muller et Lionel Reboul
+Auteur : Frédéric Muller
 
 Licence CC BY-NC-SA
 
@@ -886,7 +886,7 @@ class MainConsole(object):
      ╚══════════════════════════════════════════════════════════════════╝
 """)
 		info("             Projet de formation ISN 2015/2016 de l'académie de Lyon")
-		info("                Auteurs : Frédéric Muller et Lionel Reboul")
+		info("                Auteur : Frédéric Muller")
 		info("                Code du projet : https://github.com/Abunux/pyBatNav")
 		info("                Licence Creative Common CC BY-NC-SA")
 		info("                Projet démarré le 14/11/2015")

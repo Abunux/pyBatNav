@@ -30,7 +30,7 @@ Afin de pouvoir faire évoluer les règles, elle prend les paramètres suivants 
 \end{itemize}
 \medskip
 
-Dans la mesure où la grille a deux utilisations différentes (la grille du joueur et la grille de suivi des coups), nous avons d'abord décidé de créer deux classes héritées de \texttt{Grille} lors de la conception du projet, \texttt{GrilleJoueur(Grille)} et \texttt{GrilleSuivi(Grille)}, afin de distinguer leurs méthodes spécifiques. Après coup nous nous sommes rendu compte que cela n'apportait pas d'avantage significatif en terme de qualité de code donc nous ne les utiliserons pas, mais elles sont encore présentes dans notre code pour une évolution future du projet.
+Dans la mesure où la grille a deux utilisations différentes (la grille du joueur et la grille de suivi des coups), j'ai d'abord décidé de créer deux classes héritées de \texttt{Grille} lors de la conception du projet, \texttt{GrilleJoueur(Grille)} et \texttt{GrilleSuivi(Grille)}, afin de distinguer leurs méthodes spécifiques. Après coup je me suis rendu compte que cela n'apportait pas d'avantage significatif en terme de qualité de code donc je ne les utiliserai pas, mais elles sont encore présentes dans mon code pour une évolution future du projet.
 
 \subsection{État de la grille}
 
@@ -79,7 +79,7 @@ La méthode \texttt{Grille.elimine\_cases(self)} parcourt toutes les cases vides
 \subsection{Liste des bateaux possibles sur chaque case}
 La méthode \texttt{Grille.get\_possibles(self)} renvoie d'une part la liste des bateaux possibles démarrant sur chaque case (ainsi que leurs directions) et, d'autre part, la liste des positions (et directions) de départ possibles pour chaque bateau. Pour ce faire on procède en deux temps :
 \begin{itemize}
-\item Dans un premier temps, on parcours la liste des cases vides et pour chacune de ces cases on détermine, pour chaque bateau et chaque direction (droite et bas), s'il peut démarrer sur cette case. Cela fournit le dictionnaire \texttt{Grille.possibles\_cases} indexé par les cases et dont les éléments sont une liste de tuples de la forme \texttt{(taille, direction)}.\\
+\item Dans un premier temps, on parcourt la liste des cases vides et pour chacune de ces cases on détermine, pour chaque bateau et chaque direction (droite et bas), s'il peut démarrer sur cette case. Cela fournit le dictionnaire \texttt{Grille.possibles\_cases} indexé par les cases et dont les éléments sont une liste de tuples de la forme \texttt{(taille, direction)}.\\
 Par exemple : \texttt{\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
 \item Dans un deuxième temps, on "retourne" ce dictionnaire pour obtenir le dictionnaire \texttt{Grille.possibles} indexé par les tailles des bateaux et dont les éléments sont une liste de tuples de la forme \texttt{(case, direction)}.\\
 Par exemple : \texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...\}}
@@ -87,7 +87,7 @@ Par exemple : \texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 
 
 \medskip
 
-Cette méthode va nous servir à faire plusieurs choses :
+Cette méthode va servir à faire plusieurs choses :
 \begin{itemize}
 \item Créer une flotte aléatoire grâce au dictionnaire \texttt{Grille.possibles}, dans la méthode \texttt{Grille.init\_bateaux\_alea(self)}.
 \item Déterminer la case optimale dans l'algorithme de résolution au niveau 5.

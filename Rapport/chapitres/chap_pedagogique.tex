@@ -1,12 +1,29 @@
 \chapter{Point de vue pédagogique}
 
-Bien évidemment, ce projet dépasse largement ce qui est exigible d'un élève (même très bon) de lycée. Certains points peuvent néanmoins être abordés en simplifiant certaines parties et en l'abordant soit comme une série de TP guidés (les élèves doivent coder le contenu des fonctions dont on leur donne le prototype), soit comme projet de fin d'année. De part sa richesse, on peut également aborder ce projet comme trame pour introduire différentes notions de programmation. On pourra aborder les points suivants :
+Bien évidemment, ce projet dépasse largement ce qui est exigible d'un élève (même très bon) de lycée. Certains points peuvent néanmoins être abordés en simplifiant certaines parties et en l'abordant soit comme une série de TP guidés (les élèves doivent coder le contenu des fonctions dont on leur donne le prototype), soit comme projet de fin d'année. De part sa richesse, on peut également aborder ce projet comme trame pour introduire différentes notions de programmation. 
+
+On pourra aborder les points suivants :
 \begin{itemize}
-\item La structure de la grille : un bon exemple de codage d'une structure complexe (définir les états des cases, utilisation d'un dictionnaire ou d'une liste double, tests des cases valides,...).
+\item La structure de la grille : un bon exemple de codage d'une structure complexe (définir les états des cases, utilisation d'un dictionnaire ou d'une liste double, test des cases valides,...).
 \item Le placement de bateaux : sûrement la partie la moins évidente, mais oblige à réfléchir sur la façon de définir un bateau.
 \item L'affichage (simple) de la grille en console : utilisation de boucles imbriquées et de tests pour afficher les bons symboles, et gestion de la mises en page.
-\item Éventuellement une interface graphique en utilisant des boutons ou un canevas pour les cases.
+\item Une interface graphique en \texttt{tkinter} en utilisant des boutons ou un canevas pour les cases. Pour les plus en avance, on peut également créer une interface web en HTML5 utilisant un script \texttt{cgi}.
 \item La possibilité pour un joueur de tirer sur une case et retour du résultat.
-\item Une résolution de la grille par l'ordinateur avec uniquement des tirs aléatoires sur les cases vides (les plus en avance pourront réfléchir à des méthodes plus évoluées).
+\item Une résolution de la grille par l'ordinateur avec uniquement des tirs aléatoires sur les cases vides (les plus en avance pourront réfléchir à des méthodes plus évoluées, comme la gestion de la file d'attente).
+\item La détection des bateaux coulés par le joueur.
+\item La création d'un menu pour le choix de jeu (solo, contre l'ordinateur,...).
+\end{itemize}
+
+\medskip
+
+À côté de ça de nombreux points plus techniques peuvent être abordés comme :
+\begin{itemize}
+\item Mise en place de modules et utilisation d'un dépôt de code (GIT).
+\item Introduction à la programmation orientée objet (POO).
+\item Gestion de la validité des données entrées par l'utilisateur en mode console, gestion des exceptions.
+\item Gestion de l'encodage Unicode.
+\item Lancement de commandes systèmes (pour effacer le terminal).
+\item Mise en place d'outils d'analyse statistique (indicateurs et graphiques) pour la résolution automatique.
+
 \end{itemize}
 

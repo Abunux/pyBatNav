@@ -3,7 +3,7 @@
 
 Implémente les constantes et quelques fonctions utiles
 
-Auteurs : Frédéric Muller et Lionel Reboul
+Auteur : Frédéric Muller
 
 Licence CC BY-NC-SA
 

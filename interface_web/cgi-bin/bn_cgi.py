@@ -10,7 +10,7 @@ Les paramètres suivants sont passés en cgi :
 	- mode : mode de jeu (solo, ordi seul ou partie contre l'ordi)
 	- jx, jy : les coordonnées cliquées
 
-Auteurs : Frédéric Muller et Lionel Reboul
+Auteur : Frédéric Muller
 
 Licence CC BY-NC-SA
 

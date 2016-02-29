@@ -6,7 +6,7 @@ Implémente les classes :
 		pour résoudre une grille automatiquement
 	- Partie : déroulement d'une partie
  
-Auteurs : Frédéric Muller et Lionel Reboul
+Auteur : Frédéric Muller
 
 Licence CC BY-NC-SA
 

@@ -24,7 +24,7 @@
 
  Programme principal
 
- Auteurs : Frédéric Muller et Lionel Reboul
+ Auteur : Frédéric Muller
  Code du projet : https://github.com/Abunux/pyBatNav
  Licence Creative Common CC BY-NC-SA
 

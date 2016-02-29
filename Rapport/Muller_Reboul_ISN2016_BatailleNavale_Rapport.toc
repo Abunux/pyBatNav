@@ -88,7 +88,7 @@
 \contentsline {section}{\numberline {6}Niveau 6}{53}
 \contentsline {subsection}{\numberline {6.1}Seuil \IeC {\'e}gal \IeC {\`a} 60}{53}
 \contentsline {subsection}{\numberline {6.2}Seuil \IeC {\'e}gal \IeC {\`a} 70}{54}
-\contentsline {subsection}{\numberline {6.3}Conclusion}{54}
+\contentsline {subsection}{\numberline {6.3}Conclusion sur le niveau 6}{54}
 \contentsline {section}{\numberline {7}Conclusions}{55}
 \contentsline {chapter}{\numberline {C}Codes des caract\IeC {\`e}res graphiques}{57}
 \contentsline {chapter}{\numberline {D}Documentation des modules}{59}

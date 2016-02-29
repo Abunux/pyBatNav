@@ -6,7 +6,7 @@ Implémente les classes :
 		pour résoudre une grille automatiquement
 	- Partie : déroulement d'une partie
  
-Auteurs : Frédéric Muller et Lionel Reboul
+Auteur : Frédéric Muller
 
 Licence CC BY-NC-SA
 
@@ -131,7 +131,7 @@ class Joueur(object):
 		ne peut pas rentrer"""
 		cases_eliminees = self.grille_suivi.elimine_cases_joueur()
 		for c in cases_eliminees :
-			self.add_message("J'élimine la cases %s : zone trop petite pour le plus petit bateau de taille %d" % (alpha(c), self.grille_suivi.taille_min))
+			self.add_message("J'élimine la case %s : zone trop petite pour le plus petit bateau de taille %d" % (alpha(c), self.grille_suivi.taille_min))
 	
 	def rem_bateau(self, taille):
 		"""Enlève le dernier bateau coulé"""

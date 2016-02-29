@@ -6,7 +6,7 @@ Implémente les classes :
 		- GrilleJoueur : dérivée de Grille, la grille où on place ses bateaux
 		- GrilleSuivi : dérivée de Grille, la grille de suivi des coups
  
-Auteurs : Frédéric Muller et Lionel Reboul
+Auteur : Frédéric Muller
 
 Licence CC BY-NC-SA
 

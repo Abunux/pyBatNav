@@ -2,7 +2,7 @@
 
 \section{Le jeu de la bataille navale}
 Le jeu de la bataille navale est un jeu qui se joue à deux joueurs.\\
-Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, à tour de rôle, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{} (on ne rejoue pas après avoir touché). Nous avons pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre l'algorithme de résolution un petit peu plus intéressant.\\
+Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, à tour de rôle, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{} (on ne rejoue pas après avoir touché). J'ai pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre l'algorithme de résolution un petit peu plus intéressant.\\
 Les bateaux peuvent être placés horizontalement ou verticalement et deux bateaux ne peuvent pas se trouver sur des cases adjacentes.
 
 Les paramètres de jeu retenus dans ce projet sont ceux du jeu original, mais ils peuvent être facilement modifiés, à savoir que la grille est un carré 10 cases de côté et la composition de la flotte est la suivante :
@@ -23,11 +23,11 @@ Notons tout de suite quelques implications stratégiques de ces règles qui sero
 \end{itemize}
 
 \section{Objectifs du projet}
-Nos objectifs ont été les suivants :
+Mes objectifs ont été les suivants :
 \begin{itemize}
 \item Définir une structure de données pour modéliser la grille de jeu, ainsi que les joueurs.
 \item Implémenter un algorithme de résolution par l'ordinateur qui soit le plus performant possible (en nombre de coups ainsi qu'en temps de résolution d'un grille) et en faire une étude statistique complète.
-\item Avoir une interface permettant de jouer contre l'ordinateur, d'une part en mode console et, d'autre part, avec le module tkinter. Nous avons également rajouté une interface web en HTML5 utilisant un \texttt{canvas}, une communication via un script \texttt{cgi} et quelques fonctions en Javscript, à titre de démonstration.
+\item Avoir une interface permettant de jouer contre l'ordinateur, d'une part en mode console et, d'autre part, avec le module tkinter. J'ai également rajouté une interface web en HTML5 utilisant un \texttt{canvas}, une communication via un script \texttt{cgi} et quelques fonctions en Javscript, à titre de démonstration.
 \end{itemize}
 
 \section{Liste des modules du projet}
@@ -43,7 +43,7 @@ Afin de faciliter les développement et la maintenance du projet, celui-ci a ét
 
 \bigskip
 
-Afin d'améliorer la collaboration, l'ensemble du code source du projet a été déposé sur un compte GitHub à l'adresse \texttt{https://github.com/Abunux/pyBatNav}
+L'ensemble du code source du projet a été déposé sur mon compte GitHub à l'adresse \texttt{https://github.com/Abunux/pyBatNav}
 
 \section{À propos des annexes}
 Vu l'ampleur du projet et la contrainte de taille du rapport, de nombreux points sont abordés en annexe, à partir de la page \pageref{annexes}. On y trouve notamment les principaux algorithmes du programme, l'étude statistique des différents algorithmes de résolution ainsi que des points techniques du code et un exemple de résolution pas à pas.

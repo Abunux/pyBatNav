@@ -1,8 +1,6 @@
 # pyBatNav
 Projet de bataille navale dans le cadre de la formation ISN 2015/2016 de l'académie de Lyon
 
-Auteurs :
-  - Frédéric Muller
-  - Lionel Reboul
+Auteur : Frédéric Muller (Lycée Arbez Carme)
   
-Licence : CC BY-NC-SA
+Licence : CC BY-NC-SA v4.0

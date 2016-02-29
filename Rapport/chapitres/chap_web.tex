@@ -1,0 +1,16 @@
+\chapter{Interface web}
+
+Le dossier \texttt{interface\_web} contient les fichiers pour une interface web. Celle-ci est réalisée en HTML5 et CCS3 et utilise des \texttt{canvas} dont la gestion est faite en Javascript. La communication avec les modules du projet se fait via le script cgi \texttt{bn\_cgi.py}. Un serveur minimal est également implémenté dans le fichier \texttt{serveur.py}.
+
+Au premier lancement d'une partie, le script crée un ID aléatoire et va sauvegarder les données de la partie dans le fichier \texttt{./sessions/session\_ID} grâce au module built-in \texttt{shelve}. Cet ID est stocké enduite dans le code source de la page HTML en tant que variable Javascript.
+
+\section{Serveur web}
+La partie serveur est gérée par le fichier \texttt{serveur.py}.
+Celle-ci crée un serveur web, grâce au sous-module \texttt{HTTPServer} du module  \texttt{http.server}, sur le port 8000 accessible uniquement en local (\texttt{localhost} ou \texttt{127.0.0.1}). La gestion des scripts \texttt{cgi} est faite par le sous module \texttt{CGIHTTPRequestHandler} du module \texttt{http.server}.
+
+Le deuxième rôle de \texttt{serveur.py} est d'effacer les anciens fichiers de session au cas où il en resterait.
+
+\section{HTML et CSS}
+Le fichier \texttt{index.html} présente rapidement le projet et permet de lancer les trois modes de jeu : jeu solo, résolution automatique seule et partie contre l'ordinateur. Son style est basé sur le fichier \texttt{./css/style\_index.css}.
+
+Lors du lancement d'une partie, le code de la page est généré par le script \texttt{bn\_cgi.py} et le style de la page est dans le fichier \texttt{./css/style\_solo.css} ou \texttt{./css/style\_duos.css}, suivant s'il faut afficher une ou deux grilles. Ces deux styles héritent de \texttt{./css/style\_base.css} qui contient leurs éléments communs.
