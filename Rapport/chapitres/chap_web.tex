@@ -2,7 +2,7 @@
 
 Le dossier \texttt{interface\_web} contient les fichiers pour une interface web. Celle-ci est réalisée en HTML5 et CCS3 et utilise des \texttt{canvas} dont la gestion est faite en Javascript. La communication avec les modules du projet se fait via le script cgi \texttt{bn\_cgi.py}. Un serveur minimal est également implémenté dans le fichier \texttt{serveur.py}.
 
-Au premier lancement d'une partie, le script crée un ID aléatoire et va sauvegarder les données de la partie dans le fichier \texttt{./sessions/session\_ID} grâce au module built-in \texttt{shelve}. Cet ID est stocké enduite dans le code source de la page HTML en tant que variable Javascript.
+Un problème rencontré a été la persistance des données de jeu entre les lancements successifs du scripts (les différentes pages). Pour résoudre ce problème, au premier lancement d'une partie, le script crée un ID aléatoire et va sauvegarder les données de la partie dans le fichier \texttt{./sessions/session\_ID} grâce au module built-in \texttt{shelve}. Cet ID est stocké enduite dans le code source de la page HTML en tant que variable Javascript. Il ne restera alors plus qu'à recharger ces donnés lors des coups suivants.
 
 \section{Serveur web}
 La partie serveur est gérée par le fichier \texttt{serveur.py}.
@@ -36,3 +36,8 @@ Cet \texttt{id} est sauvegardé dans le code HTML de la page dans une variable J
 \end{itemize}
 
 Une fois ces paramètres déterminés, et les objets de jeu créés, le script va créer le source HTML et les fonctions Javascript d'affichage du canvas. Grâce à la variable \texttt{sessionID}, on pourra faire des liens dynamiques vers la page suivante de la partie. 
+
+\section{Évolutions possibles}
+Grâce à cette infrastructure, on peut tout à fait envisager des créer une base de données des utilisateurs connectés et organiser des parties à deux joueurs, garder des traces de leurs statistiques (nombre de partie jouées, gagnées, nombre de coups moyens,...).
+
+Par ailleurs, cette partie étant juste expérimentale, je n'ai pas implémenté la possibilité pour un joueur de placer lui même ses bateaux, mais ce ne serait pas difficile à faire (juste un petit peu long). 

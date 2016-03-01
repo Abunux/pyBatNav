@@ -53,7 +53,8 @@
 \contentsline {chapter}{\numberline {7}Interface web}{21}
 \contentsline {section}{\numberline {1}Serveur web}{21}
 \contentsline {section}{\numberline {2}HTML et CSS}{21}
-\contentsline {section}{\numberline {3}Script cgi}{21}
+\contentsline {section}{\numberline {3}Script cgi}{22}
+\contentsline {section}{\numberline {4}\IeC {\'E}volutions possibles}{22}
 \contentsline {chapter}{\numberline {8}Point de vue p\IeC {\'e}dagogique}{23}
 \contentsline {chapter}{\numberline {9}Conclusion}{25}
 \contentsline {part}{Annexes}{29}
