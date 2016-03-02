@@ -2,6 +2,8 @@
 
 from tkinter import *
 from tkinter import messagebox
+from tkinter.scrolledtext import *
+
 from bn_utiles import *
 from bn_grille import *
 from bn_joueur import *
@@ -104,23 +106,37 @@ class GrilleSuiviTK(GrilleSuivi, GrilleTK):
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+
+
+
 class JoueurTK(Joueur):
 	def __init__(self, nom='Joueur', master=None):
 		Joueur.__init__(self, nom=nom)
 		self.grille_joueur = GrilleJoueurTK()
 		self.grille_adverse = GrilleJoueurTK()
 		self.grille_suivi = GrilleSuiviTK()
-		
+		self.master = master
 		self.turn = True
 		
-		self.grille_suivi.canvas.bind("<Button-1>", self.joue_coup)
+		#~ self.grille_suivi.canvas.bind("<Button-1>", self.joue_coup)
 		
 	# Voilà un exemple de surcharge
 	def affiche_messages(self, affiche = True):
+		#~ if affiche :
+			#~ while self.messages :
+				#~ for widj in self.master.pack_slaves() :
+					#~ if isinstance(widj, "tkinter.Frame") :
+						#~ widj.insert(self.messages.pop(0))
 		if affiche :
-			while self.messages :
-				# À adapter pour la fenêtre de débug
-				print(self.messages.pop(0))
+			for widj in self.master.pack_slaves() :
+				if isinstance(widj, Frame) :
+					for w in widj.pack_slaves():
+					#~ print(widj.pack_slaves())
+						if isinstance(w, ScrolledText):
+					#~ while self.messages :
+							w.insert(END,self.messages.pop(0)+'\n')
+						#~ widj.insert("test")
+				#~ print(self.messages.pop(0))
 				
 	def joue_coup(self, event):
 		x, y = self.grille_suivi.canvas.canvasx(event.x), self.grille_suivi.canvas.canvasy(event.y)
@@ -129,6 +145,9 @@ class JoueurTK(Joueur):
 		if self.turn :
 			#~ print(i,j)
 			self.tire((i,j))
+			#~ self.affiche_messages()
+			#~ print(self.master.pack_slaves())
+			#~ print(self.master.children.values())
 			self.grille_suivi.affiche_adverse(self.grille_adverse)
 			if self.grille_suivi.fini() :
 				messagebox.showinfo("","Partie terminée en %d coups" % self.essais)
@@ -144,6 +163,49 @@ class OrdiTK(Ordi, JoueurTK):
 
 
 
+class MainTK(Frame):
+	def __init__(self, parent):
+		self.parent = parent
+		Frame.__init__(self, parent)
+		parent.title("Bataille navale")
+		parent.resizable(False, False)
+		self.pack()
+		
+		self.solo()
+		
+	def solo(self):
+		def click_solo(event):
+			x, y = joueur.grille_suivi.canvas.canvasx(event.x), joueur.grille_suivi.canvas.canvasy(event.y)
+			(i, j) = joueur.grille_suivi.coord2case(x,y)
+			if joueur.turn :
+				joueur.tire((i,j))
+				debug.delete('1.0', END)
+				while joueur.messages :
+					debug.insert(END, joueur.messages.pop(0)+'\n')
+				joueur.grille_suivi.affiche_adverse(joueur.grille_adverse)
+				if joueur.grille_suivi.fini() :
+					messagebox.showinfo("","Partie terminée en %d coups" % joueur.essais)
+					joueur.turn = False
+					
+		grille = GrilleTK(master=self.parent)
+		grille.init_bateaux_alea()
+		joueur = JoueurTK(master=self.parent)
+		joueur.grille_adverse = grille
+		joueur.grille_suivi.pack(side=LEFT)
+		joueur.grille_suivi.affiche_adverse(joueur.grille_adverse)
+		
+		joueur.grille_suivi.canvas.bind("<Button-1>", click_solo)
+		
+		debug = ScrolledText(master=self.parent)
+		debug.pack(side=RIGHT)
+			
+
+		
+		#~ self.menubar = Menu(self)
+		#~ self.filemenu = Menu(self.menubar, tearoff=0)
+		#~ 
+		#~ self.filemenu.add_command(label="Nouvelle partie", command=pass)
+
 # ---------------------------------------------------------------------------------------------------------------
 # Interface graphique
 # ---------------------------------------------------------------------------------------------------------------
@@ -153,19 +215,18 @@ class OrdiTK(Ordi, JoueurTK):
 
 if __name__ == "__main__":
 	root = Tk()
-	grille = GrilleTK(master=root)
-	#~ grille.pack()
-	grille.init_bateaux_alea()
-	#~ grille.affiche_adverse()
-	#~ grille2 = GrilleTK(master=root)
-	#~ grille2.pack()
+	#~ grille = GrilleTK(master=root)
+	#~ grille.init_bateaux_alea()
 	#~ 
+	#~ debug = ScrolledText(master=root)
+	#~ debug.pack(side=RIGHT)
+	#~ 
+	#~ joueur = JoueurTK(master=root)
+	#~ joueur.grille_adverse = grille
+	#~ joueur.grille_suivi.pack(side=LEFT)
+	#~ joueur.grille_suivi.affiche_adverse(joueur.grille_adverse)
 	
-	joueur = JoueurTK()
-	joueur.grille_adverse = grille
-	joueur.grille_suivi.pack()
-	joueur.grille_suivi.affiche_adverse(joueur.grille_adverse)
 	
-	
+	app = MainTK(root)
 	
 	root.mainloop()
