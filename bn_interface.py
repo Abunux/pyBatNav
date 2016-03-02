@@ -158,8 +158,9 @@ class JoueurTK(Joueur):
 #
 
 class OrdiTK(Ordi, JoueurTK):
-	def __init__(self, nom='HAL'):
+	def __init__(self, nom='HAL', master=None):
 		Ordi.__init__(self, nom=nom)
+		JoueurTK.__init__(self, nom=nom, master=master)
 
 
 
@@ -171,22 +172,52 @@ class MainTK(Frame):
 		parent.resizable(False, False)
 		self.pack()
 		
-		self.solo()
+		self.menubar = Menu(self)
+		self.newmenu = Menu(self.menubar, tearoff=0)		
+		self.newmenu.add_command(label="Partie solo", command=self.jeu_solo)
+		self.newmenu.add_command(label="Résolution automatique", command=self.jeu_ordi)		
+		self.newmenu.add_separator()
+		self.newmenu.add_command(label="Quitter", command=self.quit)
+		self.menubar.add_cascade(label="Nouvelle partie", menu=self.newmenu)
+		#~ self.aboutmenu = Menu(self.menubar, tearoff=0)
+		#~ self.aboutmenu.add_command(label
 		
-	def solo(self):
+		
+		self.parent.config(menu=self.menubar)
+		
+		#~ self.solo()
+		#~ self.jeu_ordi()
+	
+		grille1 = GrilleTK(master=self.parent)
+		grille2 = GrilleTK(master=self.parent)
+		info = ScrolledText(master=self.parent)
+		
+		grille1.pack(side=LEFT)
+		grille2.pack(side=RIGHT)
+		
+		grille1.affiche()
+		grille2.affiche()
+		
+	def clear_widgets(self):
+		for widj in self.parent.pack_slaves() :
+			if not isinstance(widj, MainTK) :
+				widj.destroy()
+	
+	def jeu_solo(self):
 		def click_solo(event):
 			x, y = joueur.grille_suivi.canvas.canvasx(event.x), joueur.grille_suivi.canvas.canvasy(event.y)
 			(i, j) = joueur.grille_suivi.coord2case(x,y)
-			if joueur.turn :
+			if joueur.turn and 0<=i<joueur.grille_suivi.xmax and 0<=j<joueur.grille_suivi.ymax :
 				joueur.tire((i,j))
-				debug.delete('1.0', END)
+				info.delete('1.0', END)
 				while joueur.messages :
-					debug.insert(END, joueur.messages.pop(0)+'\n')
+					info.insert(END, joueur.messages.pop(0)+'\n')
 				joueur.grille_suivi.affiche_adverse(joueur.grille_adverse)
 				if joueur.grille_suivi.fini() :
 					messagebox.showinfo("","Partie terminée en %d coups" % joueur.essais)
 					joueur.turn = False
-					
+		
+		self.clear_widgets()
 		grille = GrilleTK(master=self.parent)
 		grille.init_bateaux_alea()
 		joueur = JoueurTK(master=self.parent)
@@ -196,15 +227,38 @@ class MainTK(Frame):
 		
 		joueur.grille_suivi.canvas.bind("<Button-1>", click_solo)
 		
-		debug = ScrolledText(master=self.parent)
-		debug.pack(side=RIGHT)
+		info = ScrolledText(master=self.parent)
+		info.pack(side=RIGHT)
 			
-
+	def jeu_ordi(self) :
+		def suivant(event) :
+			if ordi.turn :
+				ordi.coup_suivant()
+				info.delete('1.0', END)
+				while ordi.messages :
+					info.insert(END, ordi.messages.pop(0)+'\n')
+				ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
+				if ordi.grille_suivi.fini() :
+					messagebox.showinfo("","Partie terminée en %d coups" % ordi.essais)
+					ordi.turn = False
 		
-		#~ self.menubar = Menu(self)
-		#~ self.filemenu = Menu(self.menubar, tearoff=0)
-		#~ 
-		#~ self.filemenu.add_command(label="Nouvelle partie", command=pass)
+		self.clear_widgets()
+		grille = GrilleTK(master=self.parent)
+		grille.init_bateaux_alea()
+		ordi = OrdiTK()
+		ordi.grille_adverse = grille
+		ordi.grille_suivi.pack(side=LEFT)
+		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
+		
+		info = ScrolledText(master=self.parent)
+		info.pack(side=RIGHT)
+		
+		bt_next = Button(text="Next")
+		bt_next.pack(side=BOTTOM)
+		bt_next.bind("<Button-1>", suivant)
+		
+		
+
 
 # ---------------------------------------------------------------------------------------------------------------
 # Interface graphique
