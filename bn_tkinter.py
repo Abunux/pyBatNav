@@ -13,6 +13,7 @@ Version 0.1.0"""
 from tkinter import *
 from tkinter import messagebox
 from tkinter.scrolledtext import *
+from tkinter.ttk import Combobox
 
 from bn_utiles import *
 from bn_grille import *
@@ -135,24 +136,70 @@ class JoueurTK(Joueur):
 #
 
 class OrdiTK(Ordi, JoueurTK):
-	def __init__(self, nom='HAL', master=None, cursor="arrow"):
-		Ordi.__init__(self, nom=nom)
+	def __init__(self, nom='HAL', niveau=5, nb_echantillons=100, seuil=20, master=None, cursor="arrow"):
+		Ordi.__init__(self, nom=nom, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 		JoueurTK.__init__(self, nom=nom, master=master, cursor=cursor)
 
 
 class LevelWindow(object):
 	def __init__(self, parent):
-		self.ordi = OrdiTK()
 		self.window = Toplevel(parent)
+		self.window.title("Paramètres")
+		self.window.bind("<Return>", self.valide)
 		
-		Label(self.window,text="Paramètres de l'algorithme").pack()
+		self.lv_param={}
+		self.lv_param['niveau'] = 5
+		self.lv_param['seuil'] = 0
+		self.lv_param['échantillons'] = 100
 		
+		Label(self.window,text="Paramètres de l'algorithme",font=("Helvetica", 16)).pack()
+		
+		self.frame_param = Frame(self.window)
+		self.frame_param.pack(fill=BOTH, padx=10, pady=10)
+		
+		self.cb_lv = Combobox(self.frame_param, values=["Niveau 1", "Niveau 2", "Niveau 3", "Niveau 4", "Niveau 5", "Niveau 6"], state="readonly")
+		self.cb_lv.pack(side=LEFT)
+		self.cb_lv.current(4)
+		self.cb_lv.bind("<<ComboboxSelected>>", self.on_cb_change)
+		
+		self.lb_param = Label(self.frame_param, text="")
+		self.txt_param = Text(self.frame_param, height=1, width=6)
+		self.txt_param.insert(END, "0")
+		
+		Label(self.window, bg="white", justify=LEFT, bd = 5, padx=5, pady=5, relief=RIDGE,
+				text="""Niveau 1 : Que des tirs aléatoires uniformes sans file d'attente
+Niveau 2 : Tirs aléatoires uniforme et file d'attente
+Niveau 3 : Tirs aléatoires sur les cases noires et file d'attente
+Niveau 4 : Optimisation par des échantillons
+Niveau 5 : Optimisation par nombre de bateaux local
+Niveau 6 : Optimisation par énumération de tous les arrangements à partir d'un seuil""").pack(padx=10, pady=10)
 		
 		Button(self.window, text="OK", command=self.valide).pack()
+	
+	def on_cb_change(self, event) :
+		niveau = self.cb_lv.current()+1
+		self.lv_param['niveau'] = niveau
 		
-	def valide(self):
-		self.level = 1
-		
+		if niveau == 4 :
+			self.lb_param['text'] = "Échantillons : "
+			self.txt_param.delete('1.0', END)
+			self.txt_param.insert(END, "100")
+			self.lb_param.pack(side=LEFT, padx=10)
+			self.txt_param.pack(side=LEFT)
+		elif niveau == 6 :
+			self.lb_param['text'] = "Seuil : "
+			self.txt_param.delete('1.0', END)
+			self.txt_param.insert(END, "60")
+			self.lb_param.pack(side=LEFT, padx=10)
+			self.txt_param.pack(side=LEFT)
+		else :
+			self.lb_param.pack_forget()
+			self.txt_param.pack_forget()
+			
+	def valide(self, event=None):
+		self.lv_param['seuil'] = int(self.txt_param.get('1.0', END)[:-1])
+		self.lv_param['échantillons'] = int(self.txt_param.get('1.0', END)[:-1])
+		self.window.destroy()
 
 
 class MainTK(Frame):
@@ -177,14 +224,15 @@ class MainTK(Frame):
 		self.parent.config(menu=self.menubar)
 		
 		
-		self.main_frame = Frame(master=self.parent, bg="white")
+		self.main_frame = Frame(master=self.parent, bg="black")
 		self.main_frame.pack(fill=BOTH, expand=1)
 		self.main_frame.update()
 		
 		width_main_frame, height_main_frame = self.main_frame.winfo_width(), self.main_frame.winfo_height()
 		can_fond = Canvas(master=self.main_frame, width=width_main_frame, height=height_main_frame, bg="white")
 		can_fond.pack(fill=BOTH)
-		can_fond.create_text(width_main_frame//2, height_main_frame//2, text="""     ╔══════════════════════════════════════════════════════════════════╗
+		can_fond.create_text(width_main_frame//2, height_main_frame//2, 
+			text="""     ╔══════════════════════════════════════════════════════════════════╗
      ║                                                                  ║
      ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
      ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
@@ -207,7 +255,8 @@ class MainTK(Frame):
                 Code du projet : https://github.com/Abunux/pyBatNav
                 Licence Creative Common CC BY-NC-SA
                 Projet démarré le 14/11/2015
-		""", font=("Courier", 10))
+		""", 
+			font=("Courier", 10))
 		
 
 	def clear_widgets(self):
@@ -231,6 +280,7 @@ class MainTK(Frame):
 					
 		self.parent.title("Bataille navale - Partie solo")
 		self.clear_widgets()
+		
 		grille = GrilleTK()
 		grille.init_bateaux_alea()
 		joueur = JoueurTK(master=self.main_frame, cursor="X_cursor")
@@ -240,8 +290,9 @@ class MainTK(Frame):
 		
 		joueur.grille_suivi.canvas.bind("<Button-1>", click_solo)
 		
-		info = ScrolledText(master=self.main_frame, wrap=WORD, padx=5)
+		info = ScrolledText(master=self.main_frame, wrap=WORD, padx=5, relief=RIDGE)
 		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
+		info.insert(END, "C'est parti !")
 			
 	def jeu_ordi(self) :
 		def suivant(event) :
@@ -253,39 +304,43 @@ class MainTK(Frame):
 				ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 				if ordi.grille_suivi.fini() :
 					info.insert(END, "Partie terminée en %d coups" % ordi.essais )
-					messagebox.showinfo("","Partie terminée en %d coups" % ordi.essais)
+					messagebox.showinfo("", "Partie terminée en %d coups" % ordi.essais)
 					ordi.turn = False
 		
 		level_win = LevelWindow(self.parent)
 		self.parent.wait_window(level_win.window)
-		print(level_win.level)
-		self.parent.title("Bataille navale - Résolution automatique")
+		niveau = level_win.lv_param['niveau']
+		seuil = level_win.lv_param['seuil']
+		nb_echantillons = level_win.lv_param['échantillons']
+		titre = "Bataille navale - Résolution automatique - "
+		if niveau == 4 :
+			titre += "4(%d)" % nb_echantillons
+		elif niveau == 6 :
+			titre += "6(%d)" % seuil
+		else :
+			titre += "%d" % niveau
+		self.parent.title(titre)
+		
 		self.clear_widgets()
 		frame_grille = Frame(master=self.main_frame, bg="white")
 		frame_grille.pack(side=LEFT, fill=Y, padx=10, pady=5)
+		
 		grille = GrilleTK()
 		grille.init_bateaux_alea()
-		ordi = OrdiTK(master=frame_grille)
+		ordi = OrdiTK(master=frame_grille, niveau=niveau, seuil=seuil, nb_echantillons=nb_echantillons)
 		ordi.grille_adverse = grille
 		ordi.grille_suivi.pack(side=TOP)
 		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 		
 		info = ScrolledText(master=self.main_frame, wrap=WORD, padx=5)
 		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
+		info.insert(END, "C'est parti !")
 		
 		bt_next = Button(master=frame_grille, text="Coup suivant")
 		bt_next.pack(side=BOTTOM)
 		bt_next.bind("<Button-1>", suivant)
 		
 		
-
-
-# ---------------------------------------------------------------------------------------------------------------
-# Interface graphique
-# ---------------------------------------------------------------------------------------------------------------
-
-
-
 
 if __name__ == "__main__":
 	root = Tk()
