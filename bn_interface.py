@@ -31,6 +31,7 @@ class GrilleTK(Grille, Frame):
 		self.largCase = 40
 		self.can_width = 1.5*self.margeLeft+self.xmax*self.largCase
 		self.can_height = height=1.5*self.margeTop+self.ymax*self.largCase
+		#~ print(self.can_width, self.can_height)
 		self.canvas = Canvas(self, width=self.can_width, height=self.can_height)
 		self.canvas.pack()
 		
@@ -41,9 +42,9 @@ class GrilleTK(Grille, Frame):
 		for i in range(self.ymax+1) :
 			self.canvas.create_line(self.margeLeft+i*self.largCase, self.margeTop, self.margeLeft+i*self.largCase, self.margeTop+self.ymax*self.largCase)
 		for i in range(self.xmax):
-			self.canvas.create_text(self.margeLeft/2, self.margeTop+i*self.largCase+self.largCase/2, text=str(i), font=("Helvetica",12))
+			self.canvas.create_text(self.margeLeft/2, self.margeTop+i*self.largCase+self.largCase/2, text=str(i), font=("Helvetica", 12))
 		for i in range(self.xmax):
-			self.canvas.create_text(self.margeLeft+i*self.largCase+self.largCase/2, self.margeTop/2, text=chr(i+65), font=("Helvetica",12))
+			self.canvas.create_text(self.margeLeft+i*self.largCase+self.largCase/2, self.margeTop/2, text=chr(i+65), font=("Helvetica", 12))
 			
 	def coord2case(self, x, y) :
 		return (int((x-self.margeLeft)//self.largCase), int((y-self.margeTop)//self.largCase))
@@ -63,7 +64,7 @@ class GrilleTK(Grille, Frame):
 			symbole = "O"
 		else :
 			symbole = ""
-		self.canvas.create_text(x+self.largCase/2, y+self.largCase/2, text=symbole, font=("Helvetica",12))
+		self.canvas.create_text(x+self.largCase/2, y+self.largCase/2, text=symbole, font=("Helvetica", 12))
 	
 	def clear_canvas(self):
 		self.canvas.delete("all")
@@ -93,16 +94,16 @@ class GrilleTK(Grille, Frame):
 #----------------------------------------------------------------------------------------------------------------
 #
 class GrilleJoueurTK(GrilleJoueur, GrilleTK):
-	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
+	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], master=None):
 		GrilleJoueur.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
-		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
+		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux,master=master )
 #
 #----------------------------------------------------------------------------------------------------------------
 #
 class GrilleSuiviTK(GrilleSuivi, GrilleTK):
-	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
+	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], master=None):
 		GrilleSuivi.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
-		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
+		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux,master=master)
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -112,9 +113,9 @@ class GrilleSuiviTK(GrilleSuivi, GrilleTK):
 class JoueurTK(Joueur):
 	def __init__(self, nom='Joueur', master=None):
 		Joueur.__init__(self, nom=nom)
-		self.grille_joueur = GrilleJoueurTK()
-		self.grille_adverse = GrilleJoueurTK()
-		self.grille_suivi = GrilleSuiviTK()
+		self.grille_joueur = GrilleJoueurTK(master=master)
+		self.grille_adverse = GrilleJoueurTK(master=master)
+		self.grille_suivi = GrilleSuiviTK(master=master)
 		self.master = master
 		self.turn = True
 		
@@ -168,8 +169,9 @@ class MainTK(Frame):
 	def __init__(self, parent):
 		self.parent = parent
 		Frame.__init__(self, parent)
-		parent.title("Bataille navale")
-		parent.resizable(False, False)
+		self.parent.title("Bataille navale")
+		self.parent.resizable(False, False)
+		self.parent.geometry("800x480")
 		self.pack()
 		
 		self.menubar = Menu(self)
@@ -181,27 +183,59 @@ class MainTK(Frame):
 		self.menubar.add_cascade(label="Nouvelle partie", menu=self.newmenu)
 		#~ self.aboutmenu = Menu(self.menubar, tearoff=0)
 		#~ self.aboutmenu.add_command(label
-		
-		
+			
 		self.parent.config(menu=self.menubar)
+		
+		
+		self.main_frame = Frame(master=self.parent, bg="red")
+		self.main_frame.pack(fill=BOTH, expand=1)
+		self.main_frame.update()
+		
+		width_main_frame, height_main_frame = self.main_frame.winfo_width(), self.main_frame.winfo_height()
+		can_fond = Canvas(master=self.main_frame, width=width_main_frame, height=height_main_frame, bg="white")
+		can_fond.pack(fill=BOTH)
+		#~ can_fond.create_text(width_main_frame//2, height_main_frame//2, text="Bataille navale", font=("Helvetica", 40, "bold"))
+		can_fond.create_text(width_main_frame//2, height_main_frame//2, text="""     ╔══════════════════════════════════════════════════════════════════╗
+     ║                                                                  ║
+     ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
+     ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
+     ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
+     ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
+     ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
+     ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
+     ║                                                                  ║
+     ║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
+     ║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
+     ║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
+     ║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
+     ║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
+     ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
+     ║                                                                  ║
+     ╚══════════════════════════════════════════════════════════════════╝
+		
+		
+		""", font=("Courrier New", 10, "bold"))
 		
 		#~ self.solo()
 		#~ self.jeu_ordi()
 	
-		grille1 = GrilleTK(master=self.parent)
-		grille2 = GrilleTK(master=self.parent)
-		info = ScrolledText(master=self.parent)
+		#~ grille1 = GrilleTK(master=self.parent)
+		#~ grille2 = GrilleTK(master=self.parent)
+		#~ info = ScrolledText(master=self.parent)
+		#~ 
+		#~ grille1.pack(side=LEFT)
+		#~ grille2.pack(side=RIGHT)
+		#~ 
+		#~ grille1.affiche()
+		#~ grille2.affiche()
 		
-		grille1.pack(side=LEFT)
-		grille2.pack(side=RIGHT)
-		
-		grille1.affiche()
-		grille2.affiche()
-		
+	#~ def clear_widgets(self):
+		#~ for widj in self.parent.pack_slaves() :
+			#~ if not isinstance(widj, MainTK) :
+				#~ widj.destroy()
 	def clear_widgets(self):
-		for widj in self.parent.pack_slaves() :
-			if not isinstance(widj, MainTK) :
-				widj.destroy()
+		for widj in self.main_frame.pack_slaves() :
+			widj.destroy()
 	
 	def jeu_solo(self):
 		def click_solo(event):
@@ -218,17 +252,17 @@ class MainTK(Frame):
 					joueur.turn = False
 		
 		self.clear_widgets()
-		grille = GrilleTK(master=self.parent)
+		grille = GrilleTK()
 		grille.init_bateaux_alea()
-		joueur = JoueurTK(master=self.parent)
+		joueur = JoueurTK(master=self.main_frame)
 		joueur.grille_adverse = grille
-		joueur.grille_suivi.pack(side=LEFT)
+		joueur.grille_suivi.pack(side=LEFT, fill=Y)
 		joueur.grille_suivi.affiche_adverse(joueur.grille_adverse)
 		
 		joueur.grille_suivi.canvas.bind("<Button-1>", click_solo)
 		
-		info = ScrolledText(master=self.parent)
-		info.pack(side=RIGHT)
+		info = ScrolledText(master=self.main_frame)
+		info.pack(side=RIGHT, fill=Y)
 			
 	def jeu_ordi(self) :
 		def suivant(event) :
@@ -243,17 +277,19 @@ class MainTK(Frame):
 					ordi.turn = False
 		
 		self.clear_widgets()
-		grille = GrilleTK(master=self.parent)
+		frame_grille = Frame(master=self.main_frame)
+		frame_grille.pack(side=LEFT, fill=Y)
+		grille = GrilleTK()
 		grille.init_bateaux_alea()
-		ordi = OrdiTK()
+		ordi = OrdiTK(master=frame_grille)
 		ordi.grille_adverse = grille
-		ordi.grille_suivi.pack(side=LEFT)
+		ordi.grille_suivi.pack(side=TOP)
 		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 		
-		info = ScrolledText(master=self.parent)
-		info.pack(side=RIGHT)
+		info = ScrolledText(master=self.main_frame)
+		info.pack(side=RIGHT, fill=Y)
 		
-		bt_next = Button(text="Next")
+		bt_next = Button(master=frame_grille, text="Next")
 		bt_next.pack(side=BOTTOM)
 		bt_next.bind("<Button-1>", suivant)
 		
