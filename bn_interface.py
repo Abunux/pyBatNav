@@ -1,4 +1,14 @@
-# Version 0.0.0
+#!/usr/bin/python3
+
+"""Module bn_tkinter
+
+Interface de jeu en mode graphique
+
+Auteur : Frédéric Muller
+
+Licence CC BY-NC-SA
+
+Version 0.1.0"""
 
 from tkinter import *
 from tkinter import messagebox
@@ -31,8 +41,7 @@ class GrilleTK(Grille, Frame):
 		self.largCase = 40
 		self.can_width = 1.5*self.margeLeft+self.xmax*self.largCase
 		self.can_height = height=1.5*self.margeTop+self.ymax*self.largCase
-		#~ print(self.can_width, self.can_height)
-		self.canvas = Canvas(self, width=self.can_width, height=self.can_height)
+		self.canvas = Canvas(self, width=self.can_width, height=self.can_height, bg="white")
 		self.canvas.pack()
 		
 		
@@ -119,40 +128,7 @@ class JoueurTK(Joueur):
 		self.master = master
 		self.turn = True
 		
-		#~ self.grille_suivi.canvas.bind("<Button-1>", self.joue_coup)
-		
-	# Voilà un exemple de surcharge
-	def affiche_messages(self, affiche = True):
-		#~ if affiche :
-			#~ while self.messages :
-				#~ for widj in self.master.pack_slaves() :
-					#~ if isinstance(widj, "tkinter.Frame") :
-						#~ widj.insert(self.messages.pop(0))
-		if affiche :
-			for widj in self.master.pack_slaves() :
-				if isinstance(widj, Frame) :
-					for w in widj.pack_slaves():
-					#~ print(widj.pack_slaves())
-						if isinstance(w, ScrolledText):
-					#~ while self.messages :
-							w.insert(END,self.messages.pop(0)+'\n')
-						#~ widj.insert("test")
-				#~ print(self.messages.pop(0))
-				
-	def joue_coup(self, event):
-		x, y = self.grille_suivi.canvas.canvasx(event.x), self.grille_suivi.canvas.canvasy(event.y)
-		(i, j) = self.grille_suivi.coord2case(x,y)
-		#~ print(i,j)
-		if self.turn :
-			#~ print(i,j)
-			self.tire((i,j))
-			#~ self.affiche_messages()
-			#~ print(self.master.pack_slaves())
-			#~ print(self.master.children.values())
-			self.grille_suivi.affiche_adverse(self.grille_adverse)
-			if self.grille_suivi.fini() :
-				messagebox.showinfo("","Partie terminée en %d coups" % self.essais)
-				self.turn = False
+
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -168,10 +144,10 @@ class OrdiTK(Ordi, JoueurTK):
 class MainTK(Frame):
 	def __init__(self, parent):
 		self.parent = parent
-		Frame.__init__(self, parent)
+		Frame.__init__(self, parent, bg="white")
 		self.parent.title("Bataille navale")
 		self.parent.resizable(False, False)
-		self.parent.geometry("800x480")
+		self.parent.geometry("800x490")
 		self.pack()
 		
 		self.menubar = Menu(self)
@@ -187,14 +163,13 @@ class MainTK(Frame):
 		self.parent.config(menu=self.menubar)
 		
 		
-		self.main_frame = Frame(master=self.parent, bg="red")
+		self.main_frame = Frame(master=self.parent, bg="white")
 		self.main_frame.pack(fill=BOTH, expand=1)
 		self.main_frame.update()
 		
 		width_main_frame, height_main_frame = self.main_frame.winfo_width(), self.main_frame.winfo_height()
 		can_fond = Canvas(master=self.main_frame, width=width_main_frame, height=height_main_frame, bg="white")
 		can_fond.pack(fill=BOTH)
-		#~ can_fond.create_text(width_main_frame//2, height_main_frame//2, text="Bataille navale", font=("Helvetica", 40, "bold"))
 		can_fond.create_text(width_main_frame//2, height_main_frame//2, text="""     ╔══════════════════════════════════════════════════════════════════╗
      ║                                                                  ║
      ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
@@ -212,27 +187,15 @@ class MainTK(Frame):
      ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
      ║                                                                  ║
      ╚══════════════════════════════════════════════════════════════════╝
+
+             Projet de formation ISN 2015/2016 de l'académie de Lyon
+                Auteur : Frédéric Muller
+                Code du projet : https://github.com/Abunux/pyBatNav
+                Licence Creative Common CC BY-NC-SA
+                Projet démarré le 14/11/2015
+		""", font=("Courier", 10))
 		
-		
-		""", font=("Courrier New", 10, "bold"))
-		
-		#~ self.solo()
-		#~ self.jeu_ordi()
-	
-		#~ grille1 = GrilleTK(master=self.parent)
-		#~ grille2 = GrilleTK(master=self.parent)
-		#~ info = ScrolledText(master=self.parent)
-		#~ 
-		#~ grille1.pack(side=LEFT)
-		#~ grille2.pack(side=RIGHT)
-		#~ 
-		#~ grille1.affiche()
-		#~ grille2.affiche()
-		
-	#~ def clear_widgets(self):
-		#~ for widj in self.parent.pack_slaves() :
-			#~ if not isinstance(widj, MainTK) :
-				#~ widj.destroy()
+
 	def clear_widgets(self):
 		for widj in self.main_frame.pack_slaves() :
 			widj.destroy()
@@ -241,28 +204,30 @@ class MainTK(Frame):
 		def click_solo(event):
 			x, y = joueur.grille_suivi.canvas.canvasx(event.x), joueur.grille_suivi.canvas.canvasy(event.y)
 			(i, j) = joueur.grille_suivi.coord2case(x,y)
-			if joueur.turn and 0<=i<joueur.grille_suivi.xmax and 0<=j<joueur.grille_suivi.ymax :
+			if joueur.turn and 0 <= i < joueur.grille_suivi.xmax and 0 <= j < joueur.grille_suivi.ymax :
 				joueur.tire((i,j))
 				info.delete('1.0', END)
 				while joueur.messages :
 					info.insert(END, joueur.messages.pop(0)+'\n')
-				joueur.grille_suivi.affiche_adverse(joueur.grille_adverse)
+				joueur.grille_suivi.affiche()
 				if joueur.grille_suivi.fini() :
-					messagebox.showinfo("","Partie terminée en %d coups" % joueur.essais)
+					info.insert(END, "Partie terminée en %d coups" % joueur.essais )
+					messagebox.showinfo("", "Partie terminée en %d coups" % joueur.essais)
 					joueur.turn = False
-		
+					
+		self.parent.title("Bataille navale - Partie solo")
 		self.clear_widgets()
 		grille = GrilleTK()
 		grille.init_bateaux_alea()
 		joueur = JoueurTK(master=self.main_frame)
 		joueur.grille_adverse = grille
-		joueur.grille_suivi.pack(side=LEFT, fill=Y)
-		joueur.grille_suivi.affiche_adverse(joueur.grille_adverse)
+		joueur.grille_suivi.pack(side=LEFT, padx=10, pady=10)
+		joueur.grille_suivi.affiche()
 		
 		joueur.grille_suivi.canvas.bind("<Button-1>", click_solo)
 		
-		info = ScrolledText(master=self.main_frame)
-		info.pack(side=RIGHT, fill=Y)
+		info = ScrolledText(master=self.main_frame, wrap=WORD, padx=5)
+		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
 			
 	def jeu_ordi(self) :
 		def suivant(event) :
@@ -273,12 +238,14 @@ class MainTK(Frame):
 					info.insert(END, ordi.messages.pop(0)+'\n')
 				ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 				if ordi.grille_suivi.fini() :
+					info.insert(END, "Partie terminée en %d coups" % ordi.essais )
 					messagebox.showinfo("","Partie terminée en %d coups" % ordi.essais)
 					ordi.turn = False
 		
+		self.parent.title("Bataille navale - Résolution automatique")
 		self.clear_widgets()
-		frame_grille = Frame(master=self.main_frame)
-		frame_grille.pack(side=LEFT, fill=Y)
+		frame_grille = Frame(master=self.main_frame, bg="white")
+		frame_grille.pack(side=LEFT, fill=Y, padx=10, pady=5)
 		grille = GrilleTK()
 		grille.init_bateaux_alea()
 		ordi = OrdiTK(master=frame_grille)
@@ -286,10 +253,10 @@ class MainTK(Frame):
 		ordi.grille_suivi.pack(side=TOP)
 		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 		
-		info = ScrolledText(master=self.main_frame)
-		info.pack(side=RIGHT, fill=Y)
+		info = ScrolledText(master=self.main_frame, wrap=WORD, padx=5)
+		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
 		
-		bt_next = Button(master=frame_grille, text="Next")
+		bt_next = Button(master=frame_grille, text="Coup suivant")
 		bt_next.pack(side=BOTTOM)
 		bt_next.bind("<Button-1>", suivant)
 		

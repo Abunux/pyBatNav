@@ -85,9 +85,9 @@ def clear():
 	else:
 		os.system('clear') 
 
-def info(*args):
-	"""Affiche les infos à l'écran"""
-	print(*args)
+#~ def print(*args):
+	#~ """Affiche les prints à l'écran"""
+	#~ print(*args)
 	
 def enter_to_continue():
 	input("Appuyez sur Entrée pour continuer ")
@@ -365,12 +365,12 @@ class GrilleC(Grille) :
 	def affiche(self):
 		"""Affiche une grille"""
 		self.make_chaine()
-		info(self.chaine)
+		print(self.chaine)
 		
 	def affiche_adverse(self, grille=None):
 		"""Affiche la grille de suivi de l'adversaire 
 		en entourant nos propres bateaux"""
-		info(self.make_chaine_adverse(grille))
+		print(self.make_chaine_adverse(grille))
 		
 
 class GrilleJoueurC(GrilleC, GrilleJoueur):
@@ -411,7 +411,7 @@ class JoueurC(Joueur):
 	def affiche_messages(self, affiche=True):
 		"""Affiche les messages du joueur"""
 		if affiche :
-			info(boite('\n'.join(self.messages), prefixe="<%s> " % self.nom))
+			print(boite('\n'.join(self.messages), prefixe="<%s> " % self.nom))
 			self.messages = []
 		
 	def joue_coup(self):
@@ -460,9 +460,9 @@ class JoueurC(Joueur):
 		self.grille_suivi.affiche_adverse(self.grille_adverse)
 		self.add_message("Bravo !! Partie terminée en %d coups" % self.essais)
 		self.affiche_messages()
-		#~ info("Grille de l'adversaire :")
+		#~ print("Grille de l'adversaire :")
 		#~ self.grille_adverse.affiche()
-		info("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
+		print("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -474,7 +474,7 @@ class OrdiC(JoueurC, Ordi):
 		
 	def resolution(self, affiche=True, grille=None):
 		"""Lance la résolution de la grille par l'ordinateur"""
-		# affiche : affichage ou non des informations (pour les tests)
+		# affiche : affichage ou non des printrmations (pour les tests)
 		
 		# Lancement du chrono
 		start = time()
@@ -545,21 +545,21 @@ class PartieC(Partie):
 		
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
-		info("Placement du bateau de taille %d" % taille)
+		print("Placement du bateau de taille %d" % taille)
 		
 		case = input("Case de départ : ")
 		try :
 			case = coord(case)
 		except :
-			info("Saisie invalide")
-			info()
+			print("Saisie invalide")
+			print()
 			return False
 			
-		info("Direction :")
-		info("  H : Haut")
-		info("  B : Bas")
-		info("  D : Droite")
-		info("  G : Gauche")
+		print("Direction :")
+		print("  H : Haut")
+		print("  B : Bas")
+		print("  D : Droite")
+		print("  G : Gauche")
 		d = input("Direction : ")
 		if d.upper() == 'H' :
 			direction = HAUT
@@ -580,11 +580,11 @@ class PartieC(Partie):
 		if rep.lower() == 'n' :
 			for taille in self.joueur.grille_joueur.taille_bateaux[::-1] :
 				clear()
-				info(boite("Placement de vos bateaux", larg_fen=0))
+				print(boite("Placement de vos bateaux", larg_fen=0))
 				self.joueur.grille_joueur.affiche_adverse()
 				while not self.add_bateau_joueur(taille):
-					info("Le bateau de taille %d ne convient pas" % taille)
-					info()
+					print("Le bateau de taille %d ne convient pas" % taille)
+					print()
 		else :
 			self.joueur.grille_joueur.init_bateaux_alea()
 		
@@ -610,7 +610,7 @@ class PartieC(Partie):
 		grille2 = self.adversaire.chaine_nom
 		grille2 += self.adversaire.grille_suivi.make_chaine_adverse(self.joueur.grille_joueur)
 		
-		info(fusionne(grille1, grille2))
+		print(fusionne(grille1, grille2))
 	
 	def lance_partie(self):
 		"""Lance une partie à deux joueurs"""
@@ -619,16 +619,16 @@ class PartieC(Partie):
 		self.get_bateaux_adverse()
 		self.adversaire.grille_adverse = self.joueur.grille_joueur
 		clear()
-		info(boite("Votre grille de jeu", larg_fen=0))
+		print(boite("Votre grille de jeu", larg_fen=0))
 		self.joueur.grille_joueur.affiche_adverse()
 		
 		# Détermination du joueur qui commence
 		joueur_en_cours = rand.randint(0,1) 
 		if  joueur_en_cours == 0 :
-			info(boite("Vous allez commencer", larg_fen=0))
+			print(boite("Vous allez commencer", larg_fen=0))
 		else :
-			info(boite("%s va commencer" % self.adversaire.nom, larg_fen=0))
-		info()
+			print(boite("%s va commencer" % self.adversaire.nom, larg_fen=0))
+		print()
 		enter_to_continue()
 		
 		# Début de la partie
@@ -658,11 +658,11 @@ class PartieC(Partie):
 		# Fin de la partie
 		clear()
 		self.affiche_grilles(fin=True)
-		info()
+		print()
 		if self.joueur.grille_suivi.fini():
-			info(boite("Bravo !! Vous avez gagné en %d coups" % self.joueur.essais))
+			print(boite("Bravo !! Vous avez gagné en %d coups" % self.joueur.essais))
 		else :
-			info(boite("%s a gagné en %d coups" % (self.adversaire.nom, self.adversaire.essais)))
+			print(boite("%s a gagné en %d coups" % (self.adversaire.nom, self.adversaire.essais)))
 
 
 #
@@ -689,7 +689,7 @@ class MainConsole(object):
 					niveau = int(niveau)
 				ok = True
 			except :
-					info("Saisie invalide\n")
+					print("Saisie invalide\n")
 					ok = False
 		return niveau
 	
@@ -702,7 +702,7 @@ class MainConsole(object):
 					nb_echantillons = int(input("Taille des échantillons : "))
 					ok = True
 				except :
-					info("Saisie invalide\n")
+					print("Saisie invalide\n")
 					ok = False
 			return nb_echantillons
 		else :
@@ -717,7 +717,7 @@ class MainConsole(object):
 					seuil = int(input("Seuil : "))
 					ok = True
 				except :
-					info("Saisie invalide\n")
+					print("Saisie invalide\n")
 					ok = False
 			return seuil
 		else :
@@ -761,7 +761,7 @@ class MainConsole(object):
 		# Lancement de la simulation
 		temps_resolution = 0
 		distrib = [0]*(xmax*ymax+1)
-		info("Lancement de la simulation : %s" % (strftime("%d/%m/%Y %H:%M:%S",localtime(time()))))
+		print("Lancement de la simulation : %s" % (strftime("%d/%m/%Y %H:%M:%S",localtime(time()))))
 		start = time()
 		for k in range(n):
 			(essais, temps) = self.jeu_ordi(affiche=False, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
@@ -769,13 +769,13 @@ class MainConsole(object):
 			distrib[essais] += 1
 			# Affichage de l'avancement de la simulation
 			if k==0 :
-				info("Temps pour la 1ère simulation : %.2f seconde" % (time()-start))
+				print("Temps pour la 1ère simulation : %.2f seconde" % (time()-start))
 				t_estime = (n-1)*(time()-start)
-				info("Temps total estimé : %.2f secondes (%s)" % (t_estime, strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_estime))))
-				info("(CTRL+C pour annuler la simulation)")
+				print("Temps total estimé : %.2f secondes (%s)" % (t_estime, strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_estime))))
+				print("(CTRL+C pour annuler la simulation)")
 			if (k+1) % (n/10) == 0 :
 				t_restant = (n-k-1)*(time()-start)/(k+1)
-				info("Avancement : %d%% (Temps restant estimé : %.2f secondes (%s))" % (100*(k+1)//n, t_restant,strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_restant)) ))
+				print("Avancement : %d%% (Temps restant estimé : %.2f secondes (%s))" % (100*(k+1)//n, t_restant,strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_restant)) ))
 		
 		# Résultats de la simulation
 		tmoy = temps_resolution/n
@@ -789,18 +789,18 @@ class MainConsole(object):
 
 		stats = Stats(data=distrib, filename=filename, tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau_str=niveau_str)
 		
-		info()
-		info(boite("Résultats de la simulation", larg_fen=0))
-		info()
-		info("Dimensions de la grille : %d*%d" % (xmax , ymax))
-		info("Liste des bateaux : %s" % str(taille_bateaux))
-		info("Niveau de l'algorithme : %s" % niveau_str)
-		info("Nombre de parties : %d" % n)
-		info()
+		print()
+		print(boite("Résultats de la simulation", larg_fen=0))
+		print()
+		print("Dimensions de la grille : %d*%d" % (xmax , ymax))
+		print("Liste des bateaux : %s" % str(taille_bateaux))
+		print("Niveau de l'algorithme : %s" % niveau_str)
+		print("Nombre de parties : %d" % n)
+		print()
 		stats.resume_stat()
-		info()	
-		info("Temps moyen par partie : %.5f secondes" % (temps_resolution/n))
-		info("Temps total            : %.2f secondes" % (time()-start))
+		print()	
+		print("Temps moyen par partie : %.5f secondes" % (temps_resolution/n))
+		print("Temps total            : %.2f secondes" % (time()-start))
 		
 		stats.save_data()
 		
@@ -815,7 +815,7 @@ class MainConsole(object):
 		xmax = ymax = 10
 		taille_bateaux = [5, 4, 3, 3, 2]
 		# Paramètres des parties à simuler
-		info("Paramètres par défaut : xmax=%d, ymax=%d, bateaux=%s\n" % (xmax, ymax, taille_bateaux))
+		print("Paramètres par défaut : xmax=%d, ymax=%d, bateaux=%s\n" % (xmax, ymax, taille_bateaux))
 		rep = input("Voulez-vous changer ces paramètres ? [o|[n]] ")
 		if rep.lower()=='o' :
 			ok = False
@@ -827,7 +827,7 @@ class MainConsole(object):
 					taille_bateaux = [int(t) for t in tb.split(' ')]
 					ok = True
 				except :
-					info("Saisie invalide\n")
+					print("Saisie invalide\n")
 					ok = False
 		
 		niveau = self.get_niveau()
@@ -840,7 +840,7 @@ class MainConsole(object):
 				n = int(input("Nombre de parties : "))
 				ok = True
 			except :
-				info("Saisie invalide\n")
+				print("Saisie invalide\n")
 				ok = False
 		# Lancement du test
 		self.test_algo(n=n, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
@@ -855,19 +855,19 @@ class MainConsole(object):
 		defaut = self.jeu_solo
 		
 		clear()
-		info(boite("""
+		print(boite("""
  Pour un affichage du jeu optimal, veuillez passer 
  en mode plein écran (F11),régler les couleurs du  
  terminal en écriture noire sur fond blanc et, si 
  besoin, diminuer la taille de la police (pour une 
  résolution de 1024x768, une taille 12 convient). 
 """, larg_fen=0))
-		info()
+		print()
 		enter_to_continue()
 		clear()
 		
 		# source : http://patorjk.com/software/taag/
-		info("""     ╔══════════════════════════════════════════════════════════════════╗
+		print("""     ╔══════════════════════════════════════════════════════════════════╗
      ║                                                                  ║
      ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
      ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
@@ -885,13 +885,13 @@ class MainConsole(object):
      ║                                                                  ║
      ╚══════════════════════════════════════════════════════════════════╝
 """)
-		info("             Projet de formation ISN 2015/2016 de l'académie de Lyon")
-		info("                Auteur : Frédéric Muller")
-		info("                Code du projet : https://github.com/Abunux/pyBatNav")
-		info("                Licence Creative Common CC BY-NC-SA")
-		info("                Projet démarré le 14/11/2015")
+		print("             Projet de formation ISN 2015/2016 de l'académie de Lyon")
+		print("                Auteur : Frédéric Muller")
+		print("                Code du projet : https://github.com/Abunux/pyBatNav")
+		print("                Licence Creative Common CC BY-NC-SA")
+		print("                Projet démarré le 14/11/2015")
 		# source : http://www.chris.com/ascii/index.php?art=transportation/nautical
-		info(r"""
+		print(r"""
                                      |__
                                      |\/
                                      ---
@@ -906,13 +906,13 @@ class MainConsole(object):
 |                                                                     BB-61/
  \_________________________________________________________________________|
  """)
-		info()
+		print()
 		
 		while True :
 			enter_to_continue()
 			clear()
-			info(boite("Choix du jeu", larg_fen=0))
-			info("""  J : Jeu contre l'ordinateur
+			print(boite("Choix du jeu", larg_fen=0))
+			print("""  J : Jeu contre l'ordinateur
   S : Jeu en solo sur une grille aléatoire
   O : Résolution d'une grille par l'ordinateur
   T : Test des performances de l'algorithme de résolution
@@ -948,8 +948,8 @@ class MainConsole(object):
 				
 				
 			elif choix.lower() == 'q' :
-				info()
-				info("Au revoir...")
+				print()
+				print("Au revoir...")
 				quit()
 			
 			# Par défaut
