@@ -32,7 +32,7 @@ class BateauTK(Bateau):
 #
 
 class GrilleTK(Grille, Frame):
-	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], master=None):
+	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], master=None, cursor="arrow"):
 		Grille.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		Frame.__init__(self, master)
 		
@@ -41,7 +41,7 @@ class GrilleTK(Grille, Frame):
 		self.largCase = 40
 		self.can_width = 1.5*self.margeLeft+self.xmax*self.largCase
 		self.can_height = height=1.5*self.margeTop+self.ymax*self.largCase
-		self.canvas = Canvas(self, width=self.can_width, height=self.can_height, bg="white")
+		self.canvas = Canvas(self, width=self.can_width, height=self.can_height, bg="white", cursor=cursor)
 		self.canvas.pack()
 		
 		
@@ -103,16 +103,16 @@ class GrilleTK(Grille, Frame):
 #----------------------------------------------------------------------------------------------------------------
 #
 class GrilleJoueurTK(GrilleJoueur, GrilleTK):
-	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], master=None):
+	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], master=None, cursor="arrow"):
 		GrilleJoueur.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
-		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux,master=master )
+		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux,master=master, cursor=cursor)
 #
 #----------------------------------------------------------------------------------------------------------------
 #
 class GrilleSuiviTK(GrilleSuivi, GrilleTK):
-	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], master=None):
+	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], master=None, cursor="arrow"):
 		GrilleSuivi.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
-		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux,master=master)
+		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux,master=master, cursor=cursor)
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -120,11 +120,11 @@ class GrilleSuiviTK(GrilleSuivi, GrilleTK):
 
 
 class JoueurTK(Joueur):
-	def __init__(self, nom='Joueur', master=None):
+	def __init__(self, nom='Joueur', master=None, cursor="arrow"):
 		Joueur.__init__(self, nom=nom)
-		self.grille_joueur = GrilleJoueurTK(master=master)
-		self.grille_adverse = GrilleJoueurTK(master=master)
-		self.grille_suivi = GrilleSuiviTK(master=master)
+		self.grille_joueur = GrilleJoueurTK(master=master, cursor=cursor)
+		self.grille_adverse = GrilleJoueurTK(master=master, cursor=cursor)
+		self.grille_suivi = GrilleSuiviTK(master=master, cursor=cursor)
 		self.master = master
 		self.turn = True
 		
@@ -135,10 +135,24 @@ class JoueurTK(Joueur):
 #
 
 class OrdiTK(Ordi, JoueurTK):
-	def __init__(self, nom='HAL', master=None):
+	def __init__(self, nom='HAL', master=None, cursor="arrow"):
 		Ordi.__init__(self, nom=nom)
-		JoueurTK.__init__(self, nom=nom, master=master)
+		JoueurTK.__init__(self, nom=nom, master=master, cursor=cursor)
 
+
+class LevelWindow(object):
+	def __init__(self, parent):
+		self.ordi = OrdiTK()
+		self.window = Toplevel(parent)
+		
+		Label(self.window,text="Paramètres de l'algorithme").pack()
+		
+		
+		Button(self.window, text="OK", command=self.valide).pack()
+		
+	def valide(self):
+		self.level = 1
+		
 
 
 class MainTK(Frame):
@@ -219,7 +233,7 @@ class MainTK(Frame):
 		self.clear_widgets()
 		grille = GrilleTK()
 		grille.init_bateaux_alea()
-		joueur = JoueurTK(master=self.main_frame)
+		joueur = JoueurTK(master=self.main_frame, cursor="X_cursor")
 		joueur.grille_adverse = grille
 		joueur.grille_suivi.pack(side=LEFT, padx=10, pady=10)
 		joueur.grille_suivi.affiche()
@@ -242,6 +256,9 @@ class MainTK(Frame):
 					messagebox.showinfo("","Partie terminée en %d coups" % ordi.essais)
 					ordi.turn = False
 		
+		level_win = LevelWindow(self.parent)
+		self.parent.wait_window(level_win.window)
+		print(level_win.level)
 		self.parent.title("Bataille navale - Résolution automatique")
 		self.clear_widgets()
 		frame_grille = Frame(master=self.main_frame, bg="white")
