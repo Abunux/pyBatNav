@@ -305,16 +305,16 @@ html_body += "			</script>\n"
 html_body += '			<p id="infos">\n'
 if first :
 	html_body += "				C'est parti !\n"
-# Dans le mode 1, à deux joueurs, on ne fait apparître que les infos essentielles
+# Dans le mode 1, à deux joueurs, on ne fait apparaître que les infos essentielles
+if mode == 1 :
+	joueur.filtre_messages()
+	ordi.filtre_messages()
 while joueur.messages :
 	mess = joueur.messages.pop(0)
-	if mode !=1 or (mode == 1 and ("Touché" in mess or "Manqué" in mess or "déjà" in mess.lower() or "gagné" in mess)) :
-		html_body += "				&lt%s&gt "% nom_joueur + mess + " <br>\n"
+	html_body += "				&lt%s&gt "% nom_joueur + mess + " <br>\n"
 while ordi.messages :
 	mess = ordi.messages.pop(0)
-	if mode !=1 or (mode == 1 and ("Touché" in mess or "Manqué" in mess  or "gagné" in mess)) :
-		html_body += "			&lt%s&gt " % nom_ordi + mess
-		html_body += "			<br>\n"
+	html_body += "			&lt%s&gt " % nom_ordi + mess + " <br>\n"
 html_body += "			</p>\n"
 html_body += "		</div>\n"
 

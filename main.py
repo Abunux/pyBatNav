@@ -29,7 +29,7 @@
  Licence Creative Common CC BY-NC-SA
 
  Projet démarré le 14/11/2015
- Dernière màj : 27/01/2016
+ Dernière màj : 04/03/2016
  Version 0.1.0"""
 
 
@@ -51,14 +51,14 @@ if __name__== '__main__' :
 	if options.interface.lower() == "console" :
 		app = MainConsole()
 	elif options.interface.lower() == "tkinter" :
-		print("Interface tkinter à implémenter")
+		app = MainTK()
 	else :
 		print("""Choix de l'interface :
   C : Console
   T : Tkinter""")
 		choix = input("Votre choix (C|t) : ")
 		if choix.lower() == 't' :
-			print("Interface tkinter à implémenter")
+			app = MainTK()
 		else :
 			app = MainConsole()
 

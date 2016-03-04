@@ -51,7 +51,15 @@ class Joueur(object):
 	def add_message(self, texte) :
 		"""Ajoute le message texte à la file des messages"""
 		self.messages.append(texte)
-		
+	
+	def filtre_messages(self) :
+		"""Ne garde que les messages essentiels"""
+		tmp_messages = []
+		for message in self.messages :
+			if "Touché" in message or "Manqué" in message  or "gagné" in message or "déjà" in message.lower() :
+				tmp_messages.append(message)
+		self.messages = tmp_messages[:]
+	
 	def affiche_messages(self, affiche=True):
 		"""Affiche la liste des messages"""
 		# Méthode à surcharger suivant l'interface
