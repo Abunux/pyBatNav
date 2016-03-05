@@ -252,46 +252,6 @@ if __name__ == "__main__" :
 #
 # -------------------------------------------------------------------------------------------
 
-# Loi normale asymétrique
-# https://fr.wikipedia.org/wiki/Loi_normale_asym%C3%A9trique
-def gamma(distrib):
-	m = moyenne(distrib)
-	s = sigma(distrib)
-	g = 0
-	for k in range(len(distrib)) :
-		g += distrib[k]*((k-m)/s)**3
-	return g/sum(distrib)
-
-def delta(distrib):
-	g = abs(gamma(distrib))
-	return sqrt(pi/2)*(g**(1/3))/sqrt(g**(2/3)+((4-pi)/2)**(2/3))
-
-def norm_asym_param(distrib):
-	d = delta(distrib)
-	alpha = d/sqrt(1-d**2)
-	omega = s/sqrt(1-2*d**2/pi)
-	xi = m-omega*d*sqrt(2/pi)
-	return {"alpha":alpha, "omega":omega, "xi":xi}
-
-def phi(x):
-	return 1/sqrt(2*pi)*exp(-x**2/2)
-
-def Phi(x):
-	return 0.5*(1+erf(x/sqrt(2)))
-	
-def f(x, omega, xi, alpha):
-	return (2/omega)*phi((x-xi)/omega)*Phi(alpha*(x-xi)/omega)
-
-#~ x = np.arange(mini, maxi,0.01)
-
-#~ y = []
-#~ for k in range(len(x)):
-	#~ y.append(f(x[k],omega,xi,alpha))
-
-#~ plt.plot(x, distrib_n, color='g')
-#~ plt.plot(x,y, color='k')
-
-
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 

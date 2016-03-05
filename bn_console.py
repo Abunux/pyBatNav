@@ -80,15 +80,15 @@ CAR_MANQ = u'\u25EF' 	# Manqué : ◯
 #
 def clear():
 	"""Efface la console"""
-	if (os.name == 'nt'):  
+	if (os.name == 'nt'):
 		os.system('cls')
 	else:
-		os.system('clear') 
+		os.system('clear')
 
 #~ def print(*args):
 	#~ """Affiche les prints à l'écran"""
 	#~ print(*args)
-	
+
 def enter_to_continue():
 	input("Appuyez sur Entrée pour continuer ")
 
@@ -119,7 +119,7 @@ def boite(texte, prefixe ='', larg_fen = 98):
 		chaine += "║ %s%s" % (prefixe, ligne) + ' '*(larg_fen-(len(ligne)+len(prefixe)+1)) + '║' + '\n'
 	chaine += '╚' + '═'*larg_fen + '╝'
 	return chaine
-	
+
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -127,20 +127,20 @@ class GrilleC(Grille) :
 	"""Affichage de la grille en mode console"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
 		Grille.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
-		
+
 		# Chaine de caractères pour affichage de la grille
 		self.chaine = ""
-		
+
 	#
 	# Affichage en console ---------------------------------------------
 	#
 	def make_chaine(self):
 		"""Crée la grille avec des caractères graphiques"""
 		self.chaine = ""
-		
+
 		# Ligne du haut
 		self.chaine += '    ' + CAR_CHG + (CAR_H*3 + CAR_TH)*(self.xmax-1) + CAR_H*3 + CAR_CHD + '\n'
-		
+
 		# Ligne des lettres des colonnes
 		self.chaine += '    ' + CAR_V
 		for i in range(self.xmax):
@@ -150,15 +150,15 @@ class GrilleC(Grille) :
 			else :
 				self.chaine += ' ' + chr(i+65) + ' ' + CAR_V + '\n'
 				#~ chaine += ' ' + str(i) + ' ' + CAR_V + '\n'
-				
+
 		#Ligne sous les lettres
 		self.chaine += CAR_CHG + (CAR_H*3+CAR_CX)*self.xmax + CAR_H*3 + CAR_TD + '\n'
-		
+
 		# Lignes suivantes
 		for j in range(self.ymax):
 			# 1ère colonne (chiffres des lignes)
 			chaine_tmp = CAR_V + ' ' + str(j) + ' ' + CAR_V
-			
+
 			# Cases suivantes
 			for i in range(self.xmax):
 				if self.etat[(i,j)] == 1 :
@@ -169,17 +169,17 @@ class GrilleC(Grille) :
 					symbole = ' '
 				chaine_tmp += ' ' + symbole + ' ' + CAR_V
 			self.chaine += chaine_tmp + '\n'
-			
+
 			# Sépartion lignes intermédiaires
 			if j != self.ymax-1 :
 				self.chaine += CAR_TG + (CAR_H*3+CAR_CX)*self.xmax + CAR_H*3 + CAR_TD + '\n'
-				
+
 			# Dernière ligne
 			else :
 				self.chaine += CAR_CBG + (CAR_H*3+CAR_TB)*self.xmax + CAR_H*3 + CAR_CBD + '\n'
-		
+
 		return self.chaine
-		
+
 	def make_chaine_adverse(self, grille=None):
 		"""Crée la grille avec des caractères graphiques en entourant
 		en gras les bateaux de la grille passée en paramètre"""
@@ -196,16 +196,16 @@ class GrilleC(Grille) :
 		#~ ├───┼───┼───┼───┼───┼───┼───┼───╄━━━╃───╂───┨
 		#~ │ 9 │   │   │   │   │   │   │   │   │   ┃   ┃
 		#~ └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┺━━━┛
-		
+
 		# grille est la grille du joueur, celle pour laquelle on entoure les bateaux en gras
 		if not grille :
 			grille = self
-		
+
 		chaine = ""
-		
+
 		# Ligne du haut
 		chaine += '    ' + CAR_CHG + (CAR_H*3 + CAR_TH)*(grille.xmax-1) + CAR_H*3 + CAR_CHD + '\n'
-		
+
 		# Ligne des lettres des colonnes
 		chaine += '    '+CAR_V
 		for i in range(grille.xmax):
@@ -215,7 +215,7 @@ class GrilleC(Grille) :
 			else :
 				chaine += ' ' + chr(i+65) + ' ' + CAR_V + '\n'
 				#~ chaine += ' '+str(i)+' '+CAR_V+'\n'
-				
+
 		# Ligne sous les lettres
 		j = 0
 		chaine += CAR_CHG + CAR_H*3
@@ -241,12 +241,12 @@ class GrilleC(Grille) :
 			chaine += CAR_GTDH + '\n'
 		else :
 			chaine += CAR_TD + '\n'
-		
+
 		# Lignes suivantes
 		for j in range(grille.ymax):
 			# 1ère colonne (chiffres des lignes)
 			chaine += CAR_V + ' ' + str(j) + ' '
-			
+
 			# Cases suivantes
 			for i in range(grille.xmax):
 				# Symbole est l'état de la case dans la grille de suivi
@@ -256,7 +256,7 @@ class GrilleC(Grille) :
 					symbole = ' ' + CAR_MANQ + ' '
 				else :
 					symbole = '   '
-					
+
 				# Création de la ligne
 				if grille.etat[(i,j)] == 1 :
 					if (i == 0 or grille.etat[(i-1, j)] != 1) :
@@ -273,7 +273,7 @@ class GrilleC(Grille) :
 				chaine += CAR_GV + '\n'
 			else :
 				chaine += CAR_V + '\n'
-			
+
 			# Sépartion lignes intermédiaires
 			if j != grille.ymax-1 :
 				chaine += CAR_TG + CAR_H*3
@@ -332,7 +332,7 @@ class GrilleC(Grille) :
 						chaine += CAR_GTDH + '\n'
 					else :
 						chaine += CAR_TD + '\n'
-				
+
 			# Dernière ligne
 			else :
 				chaine += CAR_CBG + CAR_H*3
@@ -360,18 +360,18 @@ class GrilleC(Grille) :
 					chaine += CAR_CBD + '\n'
 
 		return chaine
-		
-		
+
+
 	def affiche(self):
 		"""Affiche une grille"""
 		self.make_chaine()
 		print(self.chaine)
-		
+
 	def affiche_adverse(self, grille=None):
-		"""Affiche la grille de suivi de l'adversaire 
+		"""Affiche la grille de suivi de l'adversaire
 		en entourant nos propres bateaux"""
 		print(self.make_chaine_adverse(grille))
-		
+
 
 class GrilleJoueurC(GrilleC, GrilleJoueur):
 	"""La grille sur laquelle chaque joueur place ses bateaux"""
@@ -398,7 +398,7 @@ class JoueurC(Joueur):
 		self.grille_joueur = GrilleJoueurC()
 		self.grille_adverse = GrilleJoueurC()
 		self.grille_suivi = GrilleSuiviC()
-		
+
 		# Largeur de la zone d'affichage de la grille
 		self.long_affiche = 5 + 4*self.grille_suivi.xmax
 		# Création de la boîte d'affichage du nom
@@ -413,7 +413,7 @@ class JoueurC(Joueur):
 		if affiche :
 			print(boite('\n'.join(self.messages), prefixe="<%s> " % self.nom))
 			self.messages = []
-		
+
 	def joue_coup(self):
 		"""Joue un coup sur une case"""
 		ok = False
@@ -434,7 +434,7 @@ class JoueurC(Joueur):
 					self.add_message("%s : Coup invalide" % case)
 					self.affiche_messages()
 		#~ self.affiche_messages()
-	
+
 	#
 	# Partie solo sur une grille aléatoire -----------------------------
 	#
@@ -449,12 +449,12 @@ class JoueurC(Joueur):
 				self.grille_suivi.affiche_adverse(self.grille_adverse)
 			else :
 				self.grille_suivi.affiche()
-			
+
 			self.affiche_messages()
-			
+
 			# Joue un coup
 			self.joue_coup()
-			
+
 		# Fin de partie
 		clear()
 		self.grille_suivi.affiche_adverse(self.grille_adverse)
@@ -471,11 +471,11 @@ class OrdiC(JoueurC, Ordi):
 	def __init__(self, nom='HAL', niveau=4, nb_echantillons=100, seuil=20):
 		Ordi.__init__(self, nom=nom, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 		JoueurC.__init__(self, nom)
-		
+
 	def resolution(self, affiche=True, grille=None):
 		"""Lance la résolution de la grille par l'ordinateur"""
 		# affiche : affichage ou non des printrmations (pour les tests)
-		
+
 		# Lancement du chrono
 		start = time()
 		self.add_message("C'est parti !!!")
@@ -484,29 +484,29 @@ class OrdiC(JoueurC, Ordi):
 			if affiche :
 				clear()
 				self.grille_suivi.affiche_adverse(grille)
-			
+
 			self.affiche_messages(affiche=affiche)
-			
+
 			self.coup_suivant()
-			
+
 			if affiche :
 				input("Entrée pour continuer")
-			
+
 		# Fin de la partie
 		if affiche :
 			clear()
 			self.grille_suivi.affiche_adverse(grille)
-			
+
 		self.add_message("Partie terminée en %d coups" % self.essais)
 		self.affiche_messages(affiche=affiche)
-		
+
 		# On renvoie de temps de résolution de la grille pour les tests de performance
 		return time()-start
 
 	def resolution_latex(self, affiche=True, grille=None):
 		"""Lance la résolution de la grille par l'ordinateur
 		avec affichage en LaTeX pour copier-coller dans le rapport"""
-		
+
 		# Lancement du chrono
 		start = time()
 		self.add_message("C'est parti !!!")
@@ -516,19 +516,19 @@ class OrdiC(JoueurC, Ordi):
 				print(r"{\scriptsize")
 				print(r"\begin{verbatim}")
 				self.grille_suivi.affiche_adverse(grille)
-			
+
 			self.affiche_messages(affiche=affiche)
 			print(r"\end{verbatim}}")
 			print(r"\hrule")
 			print()
 			self.coup_suivant()
-			
+
 		# Fin de la partie
 		if affiche :
 			print(r"{\scriptsize")
 			print(r"\begin{verbatim}")
 			self.grille_suivi.affiche_adverse(grille)
-			
+
 		self.add_message("Partie terminée en %d coups" % self.essais)
 		self.affiche_messages(affiche=affiche)
 		print(r"\end{verbatim}}\hrule")
@@ -541,12 +541,12 @@ class PartieC(Partie):
 	"""Partie à deux joueurs en mode console"""
 	def __init__(self, joueur=Joueur(), adversaire=Ordi(), cheat=False):
 		Partie.__init__(self, joueur=joueur, adversaire=adversaire, cheat=cheat)
-		
-		
+
+
 	def add_bateau_joueur(self, taille):
 		"""Ajoute un bateau pour le joueur"""
 		print("Placement du bateau de taille %d" % taille)
-		
+
 		case = input("Case de départ : ")
 		try :
 			case = coord(case)
@@ -554,7 +554,7 @@ class PartieC(Partie):
 			print("Saisie invalide")
 			print()
 			return False
-			
+
 		print("Direction :")
 		print("  H : Haut")
 		print("  B : Bas")
@@ -569,11 +569,11 @@ class PartieC(Partie):
 			direction = DROITE
 		elif d.upper() == 'G' :
 			direction = GAUCHE
-		
+
 		bateau = Bateau(taille, case, direction)
 
 		return self.joueur.add_bateau(taille, case, direction)
-		
+
 	def place_bateaux_joueur(self):
 		"""Place tous les bateaux du joueur"""
 		rep = input("Voulez-vous un placement aléatoire ([o]|n) ? ")
@@ -587,16 +587,16 @@ class PartieC(Partie):
 					print()
 		else :
 			self.joueur.grille_joueur.init_bateaux_alea()
-		
+
 		for case in self.joueur.grille_joueur.etat :
 			if self.joueur.grille_joueur.etat[case] == -1 :
-				self.joueur.grille_joueur.etat[case] = 0 
+				self.joueur.grille_joueur.etat[case] = 0
 
 	#
 	# Lancement de la partie -------------------------------------------
 	#
 	def affiche_grilles(self, fin=False):
-		"""Affiche les deux grilles cote à cote, 
+		"""Affiche les deux grilles cote à cote,
 		avec les noms des joueurs"""
 		clear()
 		grille1 = self.joueur.chaine_nom
@@ -606,12 +606,12 @@ class PartieC(Partie):
 			grille1 += self.joueur.grille_suivi.make_chaine_adverse(self.adversaire.grille_joueur)
 		else :
 			grille1 += self.joueur.grille_suivi.make_chaine()
-			
+
 		grille2 = self.adversaire.chaine_nom
 		grille2 += self.adversaire.grille_suivi.make_chaine_adverse(self.joueur.grille_joueur)
-		
+
 		print(fusionne(grille1, grille2))
-	
+
 	def lance_partie(self):
 		"""Lance une partie à deux joueurs"""
 		# Placement des bateaux
@@ -621,16 +621,16 @@ class PartieC(Partie):
 		clear()
 		print(boite("Votre grille de jeu", larg_fen=0))
 		self.joueur.grille_joueur.affiche_adverse()
-		
+
 		# Détermination du joueur qui commence
-		joueur_en_cours = rand.randint(0,1) 
+		joueur_en_cours = rand.randint(0,1)
 		if  joueur_en_cours == 0 :
 			print(boite("Vous allez commencer", larg_fen=0))
 		else :
 			print(boite("%s va commencer" % self.adversaire.nom, larg_fen=0))
 		print()
 		enter_to_continue()
-		
+
 		# Début de la partie
 		nb_coups = 0
 		while not self.joueur.grille_suivi.fini() and not self.adversaire.grille_suivi.fini() :
@@ -643,7 +643,7 @@ class PartieC(Partie):
 				self.affiche_grilles()
 				self.joueur.affiche_messages()
 				enter_to_continue()
-			
+
 			# L'adversaire joue
 			else :
 				clear()
@@ -651,10 +651,10 @@ class PartieC(Partie):
 				self.affiche_grilles()
 				self.adversaire.affiche_messages()
 				enter_to_continue()
-			
+
 			# Changement de joueur
 			joueur_en_cours = (joueur_en_cours + 1) % 2
-				
+
 		# Fin de la partie
 		clear()
 		self.affiche_grilles(fin=True)
@@ -685,14 +685,14 @@ class MainConsole(object):
 				niveau = input("Niveau de l'algorithme (1|2|3|4|[5]|6) : ")
 				if niveau not in ['1', '2', '3', '4', '5', '6'] or niveau == '':
 					niveau = 5
-				else : 
+				else :
 					niveau = int(niveau)
 				ok = True
 			except :
 					print("Saisie invalide\n")
 					ok = False
 		return niveau
-	
+
 	def get_nb_echantillons(self, niveau):
 		"""Pour le niveau 4, demande la taille des échantillons"""
 		if niveau == 4 :
@@ -707,7 +707,7 @@ class MainConsole(object):
 			return nb_echantillons
 		else :
 			return 100 # Cette valeur n'a aucune importance
-	
+
 	def get_seuil(self, niveau):
 		"""Pour le niveau 6, demande le seuil"""
 		if niveau == 6 :
@@ -722,7 +722,7 @@ class MainConsole(object):
 			return seuil
 		else :
 			return 20 # Cette valeur n'a aucune importance
-	
+
 	def jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2], niveau=5, nb_echantillons=100, seuil=20):
 		"""Résolution d'une grille par l'ordinateur"""
 		# Initialisation de la partie
@@ -732,7 +732,7 @@ class MainConsole(object):
 		ordi.grille_adverse = grille
 		ordi.grille_suivi = GrilleSuiviC(xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		ordi.grille_suivi.reinit()
-		
+
 		temps = ordi.resolution(affiche=affiche, grille=grille)
 		return (ordi.essais, temps) # Pour les tests de performance
 
@@ -776,7 +776,7 @@ class MainConsole(object):
 			if (k+1) % (n/10) == 0 :
 				t_restant = (n-k-1)*(time()-start)/(k+1)
 				print("Avancement : %d%% (Temps restant estimé : %.2f secondes (%s))" % (100*(k+1)//n, t_restant,strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_restant)) ))
-		
+
 		# Résultats de la simulation
 		tmoy = temps_resolution/n
 		if niveau == 4 :
@@ -788,7 +788,7 @@ class MainConsole(object):
 		filename = "distrib_HAL_niveau=%s_n=%d" % (niveau_str, n)
 
 		stats = Stats(data=distrib, filename=filename, tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau_str=niveau_str)
-		
+
 		print()
 		print(boite("Résultats de la simulation", larg_fen=0))
 		print()
@@ -798,16 +798,16 @@ class MainConsole(object):
 		print("Nombre de parties : %d" % n)
 		print()
 		stats.resume_stat()
-		print()	
+		print()
 		print("Temps moyen par partie : %.5f secondes" % (temps_resolution/n))
 		print("Temps total            : %.2f secondes" % (time()-start))
-		
+
 		stats.save_data()
-		
+
 		stats.histogramme(save=True)
-		
+
 		return distrib # Pour tests futurs
-	
+
 	def launch_test_algo(self):
 		"""Lancement de la procédure de test
 		de l'algorithme de résolution"""
@@ -829,11 +829,11 @@ class MainConsole(object):
 				except :
 					print("Saisie invalide\n")
 					ok = False
-		
+
 		niveau = self.get_niveau()
 		nb_echantillons = self.get_nb_echantillons(niveau)
 		seuil = self.get_seuil(niveau)
-		
+
 		ok = False
 		while not ok :
 			try :
@@ -844,7 +844,7 @@ class MainConsole(object):
 				ok = False
 		# Lancement du test
 		self.test_algo(n=n, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
-	
+
 	#
 	# Menu de lancement ------------------------------------------------
 	#
@@ -853,19 +853,19 @@ class MainConsole(object):
 		#~ defaut = self.launch_test_algo
 		#~ defaut = self.jeu_contre_ordi
 		defaut = self.jeu_solo
-		
+
 		clear()
 		print(boite("""
- Pour un affichage du jeu optimal, veuillez passer 
- en mode plein écran (F11),régler les couleurs du  
- terminal en écriture noire sur fond blanc et, si 
- besoin, diminuer la taille de la police (pour une 
- résolution de 1024x768, une taille 12 convient). 
+ Pour un affichage du jeu optimal, veuillez passer
+ en mode plein écran (F11),régler les couleurs du
+ terminal en écriture noire sur fond blanc et, si
+ besoin, diminuer la taille de la police (pour une
+ résolution de 1024x768, une taille 12 convient).
 """, larg_fen=0))
 		print()
 		enter_to_continue()
 		clear()
-		
+
 		# source : http://patorjk.com/software/taag/
 		print("""     ╔══════════════════════════════════════════════════════════════════╗
      ║                                                                  ║
@@ -907,7 +907,7 @@ class MainConsole(object):
  \_________________________________________________________________________|
  """)
 		print()
-		
+
 		while True :
 			enter_to_continue()
 			clear()
@@ -919,23 +919,23 @@ class MainConsole(object):
   Q : Quitter
 	  """)
 			choix = input("Votre choix ([j]|s|o|t|q) : ")
-			
+
 			if choix.lower() == 's' :
 				rep = input("Activer le mode triche (o|[n]) ? ")
 				if rep.lower() == 'o' :
 					self.jeu_solo(cheat=True)
 				else :
 					self.jeu_solo(cheat=False)
-					
+
 			elif choix.lower() == 't' :
 				self.launch_test_algo()
-				
+
 			elif choix.lower() == 'o' :
 				niveau = self.get_niveau()
 				nb_echantillons = self.get_nb_echantillons(niveau)
 				seuil = self.get_seuil(niveau)
 				self.jeu_ordi(niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
-				
+
 			elif choix.lower() == 'j' :
 				nom = input("Votre nom [Toto] : ")
 				if nom == '' :
@@ -945,13 +945,13 @@ class MainConsole(object):
 					self.jeu_contre_ordi(cheat=True, nom=nom)
 				else :
 					self.jeu_contre_ordi(cheat=False, nom=nom)
-				
-				
+
+
 			elif choix.lower() == 'q' :
 				print()
 				print("Au revoir...")
 				quit()
-			
+
 			# Par défaut
 			else :
 				defaut()

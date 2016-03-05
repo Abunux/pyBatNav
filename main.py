@@ -35,18 +35,18 @@
 
 import argparse
 
-from bn_interface import *
 from bn_console import *
+from bn_tkinter import *
 
 if __name__== '__main__' :
 	"""Programme principal"""
-	
+
 	# Récupération des arguments en ligne de commande
 	parser = argparse.ArgumentParser(description='Jeu de bataille navale')
 	parser.add_argument('--interface', '-i', action="store", dest="interface", help="Choix de l'interface : 'console' ou 'tkinter'", default="")
-	
+
 	options = parser.parse_args()
-	
+
 	# Lancement de l'interface
 	if options.interface.lower() == "console" :
 		app = MainConsole()

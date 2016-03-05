@@ -32,11 +32,11 @@ TOUTES_DIR = (1,1)
 
 def signe(x):
 	"""Retourne le signe de x"""
-	if x > 0 : 
+	if x > 0 :
 		return 1
-	elif x < 0 : 
+	elif x < 0 :
 		return -1
-	else : 
+	else :
 		return 0
 
 def alpha(case):
@@ -45,6 +45,6 @@ def alpha(case):
 	return chr(case[0]+65)+str(case[1])
 
 def coord(case_alpha):
-	"""Convertit une case en coordonnées 
+	"""Convertit une case en coordonnées
 	par ex "C3" devient (2,3)"""
 	return (ord(case_alpha[0].upper())-65, int(case_alpha[1]))

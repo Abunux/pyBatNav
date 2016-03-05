@@ -76,7 +76,7 @@ if sessionID=='0' or noID or not os.path.isfile(os.path.join("sessions", "sessio
 else:
 	ID = sessionID
 	first = False
-	
+
 # Sauvegarde de l'ID de session dans la page et fin du header
 html_header += "		<script>var sessionID=%s;</script>\n" % ID
 html_header += "	</head>\n\n"
@@ -125,7 +125,7 @@ if 'jy' in form :
 	jy = int(cgi.escape(form['jy'].value))
 else :
 	jy = None
-	
+
 # Coup suivant ou fin de partie
 fini = False
 if mode == 0 :
