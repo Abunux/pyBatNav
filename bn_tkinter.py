@@ -19,12 +19,11 @@ from bn_grille import *
 from bn_joueur import *
 
 # Constantes de couleur :
-#~ COLOR_OK = "green"
 COLOR_OK = "#00FF00"
-#~ COLOR_NO = "red"
 COLOR_NO = "#FF0000"
 COLOR_BOAT = "cyan"
 COLOR_CURS = "#E8E8E8"
+COLOR_FOND = "white"
 
 # ---------------------------------------------------------------------------------------------------------------
 # Classes héritées de celles de bn_grille et bn_joueur
@@ -50,9 +49,8 @@ class GrilleTK(Grille, Frame):
 		self.largCase = 40
 		self.can_width = 1.5*self.margeLeft+self.xmax*self.largCase
 		self.can_height = height=1.5*self.margeTop+self.ymax*self.largCase
-		self.canvas = Canvas(self, width=self.can_width, height=self.can_height, bg="white", cursor=cursor)
+		self.canvas = Canvas(self, width=self.can_width, height=self.can_height, bg="white", highlightthickness=0, cursor=cursor)
 		self.canvas.pack()
-		
 		
 	def init_canvas(self):
 		"""Dessin initial de la grille"""
@@ -255,9 +253,6 @@ class PartieTK(Partie):
 		Partie.__init__(self, joueur=joueur, adversaire=adversaire, cheat=cheat)
 		self.parent = parent
 		
-		
-
-
 #----------------------------------------------------------------------------------------------------------------
 #								Fenêtres graphiques
 #----------------------------------------------------------------------------------------------------------------
@@ -466,7 +461,7 @@ class MainTK(Frame):
 		self.parent.config(menu=self.menubar)
 		
 		# Frame principale
-		self.main_frame = Frame(self.parent, name="main_frame", bg="black")
+		self.main_frame = Frame(self.parent, name="main_frame", bg=COLOR_FOND)
 		self.main_frame.pack(fill=BOTH, expand=1)
 		self.main_frame.update()
 		
@@ -513,7 +508,7 @@ class MainTK(Frame):
 		self.parent.title("Bataille navale - Partie solo")
 		self.parent.geometry("980x490")
 		self.clear_widgets()
-		info = Text(self.main_frame, name="info", wrap=WORD, padx=5, relief=RIDGE)
+		info = Text(self.main_frame, name="info", wrap=WORD,  bd=5, relief=RIDGE, padx=5)
 		joueur = JoueurTK(parent=self.main_frame)#, cursor="X_cursor")
 		joueur.grille_adverse.init_bateaux_alea()
 		joueur.grille_suivi.pack(side=LEFT, padx=10, pady=10)
@@ -525,10 +520,10 @@ class MainTK(Frame):
 		"""Lance une résolution automatique"""
 		self.parent.geometry("980x490")
 		self.clear_widgets()
-		frame_grille = Frame(self.main_frame, bg="black")
+		frame_grille = Frame(self.main_frame, bg=COLOR_FOND)
 		frame_grille.pack(side=LEFT, fill=Y, padx=10, pady=5)
 		
-		info = Text(self.main_frame, name="info", wrap=WORD, padx=5)
+		info = Text(self.main_frame, name="info", wrap=WORD, bd=5, relief=RIDGE, padx=5)
 		
 		ordi = OrdiTK(parent=frame_grille)
 		ordi.grille_adverse.init_bateaux_alea()
@@ -600,20 +595,20 @@ class MainTK(Frame):
 		self.parent.geometry("980x620")
 		self.clear_widgets()
 		
-		frame_grilles = Frame(self.main_frame, bg="black")
-		frame_grille1 = Frame(frame_grilles, bg="black")
+		frame_grilles = Frame(self.main_frame, bg=COLOR_FOND)
+		frame_grille1 = Frame(frame_grilles, bg=COLOR_FOND)
 		frame_grille1.pack(side=LEFT, padx=10, pady=5)
-		frame_grille2 = Frame(frame_grilles, bg="black")
+		frame_grille2 = Frame(frame_grilles, bg=COLOR_FOND)
 		frame_grille2.pack(side=RIGHT, padx=10, pady=5)
 		frame_grilles.pack(fill=X)
 		
-		info = Text(self.main_frame, name="info", wrap=WORD, padx=5)
+		info = Text(self.main_frame, name="info", wrap=WORD, bd=5, relief=RIDGE, padx=5)
 		
 		joueur = JoueurTK(parent=frame_grille1)
 		ordi = OrdiTK(parent=frame_grille2)
 		
-		Label(frame_grille1, text=joueur.nom, bg="white",font=("Helvetica", 16) ,relief=RIDGE, padx=10, pady=5).pack(pady=10)
-		Label(frame_grille2, text=ordi.nom, bg="white",font=("Helvetica", 16) ,relief=RIDGE, padx=10, pady=5).pack(pady=10)
+		Label(frame_grille1, text=joueur.nom, bg="white",font=("Helvetica", 16) , padx=10, pady=5).pack(pady=10)
+		Label(frame_grille2, text=ordi.nom, bg="white",font=("Helvetica", 16) , padx=10, pady=5).pack(pady=10)
 		joueur.grille_suivi.pack(padx=10, pady=10)
 		ordi.grille_suivi.pack(padx=10, pady=10)
 		
@@ -646,10 +641,8 @@ class MainTK(Frame):
 		info.insert(END, "C'est parti !\n")
 		
 		if rand.randint(0,1) == 0 :
-			#~ joueur.turn = True
 			messagebox.showinfo("Début de partie", "Vous allez commencer")
 		else :
-			#~ joueur.turn = False
 			messagebox.showinfo("Début de partie", "%s  va commencer" % ordi.nom)
 			ordi.coup_suivant()
 			ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
