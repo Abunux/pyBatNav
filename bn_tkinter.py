@@ -12,12 +12,19 @@ Version 0.1.0"""
 
 from tkinter import *
 from tkinter import messagebox
-from tkinter.scrolledtext import *
 from tkinter.ttk import Combobox
 
 from bn_utiles import *
 from bn_grille import *
 from bn_joueur import *
+
+# Constantes de couleur :
+#~ COLOR_OK = "green"
+COLOR_OK = "#00FF00"
+#~ COLOR_NO = "red"
+COLOR_NO = "#FF0000"
+COLOR_BOAT = "cyan"
+COLOR_CURS = "#E8E8E8"
 
 # ---------------------------------------------------------------------------------------------------------------
 # Classes héritées de celles de bn_grille et bn_joueur
@@ -62,18 +69,18 @@ class GrilleTK(Grille, Frame):
 		"""Convertit les coordonnées graphiques en coordonées de cases"""
 		return (int((x-self.margeLeft)//self.largCase), int((y-self.margeTop)//self.largCase))
 		
-	def case2coord(self, i, j):
+	def case2coord(self,case):
 		"""Convertit les coordonnées de cases en coordonées de graphiques"""
-		return (self.margeLeft+i*self.largCase, self.margeTop+j*self.largCase)
+		return (self.margeLeft+case[0]*self.largCase, self.margeTop+case[1]*self.largCase)
 	
-	def color_case(self, i, j, couleur):
+	def color_case(self, case, couleur):
 		"""Colorie une case"""
-		(x, y) = self.case2coord(i,j) 
-		self.canvas.create_rectangle(x+1, y+1, x+self.largCase-1, y+self.largCase-1, fill=couleur)
+		(x, y) = self.case2coord(case) 
+		self.canvas.create_rectangle(x+1, y+1, x+self.largCase, y+self.largCase, width=0, fill=couleur)
 	
-	def marque_case(self, i, j, etat) :
+	def marque_case(self, case, etat) :
 		"""Marque une case touchée ou manquée"""
-		(x, y) = self.case2coord(i,j) 
+		(x, y) = self.case2coord(case) 
 		if etat == 1 :
 			symbole = "X"
 		elif etat == -1 :
@@ -92,7 +99,7 @@ class GrilleTK(Grille, Frame):
 		self.init_canvas()
 		for i in range(self.xmax):
 			for j in range(self.ymax):
-				self.marque_case(i, j, self.etat[(i,j)])
+				self.marque_case((i, j), self.etat[(i,j)])
 		
 	def affiche_adverse(self, grille=None) :
 		"""Affiche le canvas en coloriant les bateaux adverses""" 
@@ -103,33 +110,35 @@ class GrilleTK(Grille, Frame):
 		for i in range(self.xmax):
 			for j in range(self.ymax):
 				if grille.etat[(i,j)] == 1 :
-					self.color_case(i, j, "cyan")
+					self.color_case((i, j), COLOR_BOAT)
 		for i in range(self.xmax):
 			for j in range(self.ymax):
-				self.marque_case(i, j, self.etat[(i,j)])
-	
+				self.marque_case((i, j), self.etat[(i,j)])
 	
 #		
 #----------------------------------------------------------------------------------------------------------------
 #
+
 class GrilleJoueurTK(GrilleJoueur, GrilleTK):
 	def __init__(self, xmax=10, ymax=10, taille_bateaux=[5, 4, 3, 3, 2], parent=None, cursor="arrow"):
 		GrilleJoueur.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, parent=parent, cursor=cursor)
+
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+
 class GrilleSuiviTK(GrilleSuivi, GrilleTK):
 	def __init__(self, xmax=10, ymax=10, taille_bateaux=[5, 4, 3, 3, 2], parent=None, cursor="arrow"):
 		GrilleSuivi.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		GrilleTK.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux, parent=parent, cursor=cursor)
+
 #
 #----------------------------------------------------------------------------------------------------------------
 #
 
-
-
 class JoueurTK(Joueur):
+	"""Joueur en mode tkinter"""
 	def __init__(self, nom='Joueur', parent=None, cursor="arrow"):
 		Joueur.__init__(self, nom=nom)
 		# Container où afficher les grilles
@@ -150,20 +159,26 @@ class JoueurTK(Joueur):
 		self.grille_suivi.canvas.bind("<Motion>", self.move_on_grille)
 		
 	def click_grille(self, event):
+		"""Quand on clique sur la grille, joue un coup"""
 		x, y = self.grille_suivi.canvas.canvasx(event.x), self.grille_suivi.canvas.canvasy(event.y)
 		(i, j) = self.grille_suivi.coord2case(x, y)
 		if self.playable and self.turn :
 			self.joue_coup(i,j)
+		self.grille_suivi.color_case((i, j), COLOR_CURS)
+		self.grille_suivi.marque_case((i, j), self.grille_suivi.etat[(i,j)])
 	
 	def move_on_grille(self, event):
-		x, y = self.grille_suivi.canvas.canvasx(event.x), self.grille_suivi.canvas.canvasy(event.y)
-		(i, j) = self.grille_suivi.coord2case(x, y)
-		self.grille_suivi.affiche()
-		if self.playable and 0 <= i < self.grille_suivi.xmax and 0 <= j < self.grille_suivi.ymax :
-			self.grille_suivi.color_case(i, j, "#F8F8F8")
-			self.grille_suivi.marque_case(i, j, self.grille_suivi.etat[(i,j)])
+		"""Quand le curseur se déplace sur la grille, coloration de la case survolée"""
+		if self.playable :
+			x, y = self.grille_suivi.canvas.canvasx(event.x), self.grille_suivi.canvas.canvasy(event.y)
+			(i, j) = self.grille_suivi.coord2case(x, y)
+			self.grille_suivi.affiche()
+			if  0 <= i < self.grille_suivi.xmax and 0 <= j < self.grille_suivi.ymax :
+				self.grille_suivi.color_case((i, j), COLOR_CURS)
+				self.grille_suivi.marque_case((i, j), self.grille_suivi.etat[(i,j)])
 	
 	def joue_coup(self, i, j):
+		"""Joue un coup"""
 		if 0 <= i < self.grille_suivi.xmax and 0 <= j < self.grille_suivi.ymax :
 			self.tire((i,j))
 			self.grille_suivi.affiche()
@@ -174,6 +189,7 @@ class JoueurTK(Joueur):
 				self.playable = False
 		
 	def affiche_messages(self, filtre=False):
+		"""Affiche la liste des messages"""
 		if filtre :
 			self.filtre_messages()
 		self.info.delete('1.0', END)
@@ -181,17 +197,24 @@ class JoueurTK(Joueur):
 			self.info.insert(END, self.messages.pop(0)+'\n')
 			
 	def place_bateaux(self) :
-		self.window_place = Toplevel(self.parent)
-		grille = GrilleJoueurTK(parent=self.window_place)
-		grille.pack()
-		grille.affiche()
-		
+		"""Place les bateaux du joueur"""
+		place_win = PlaceWindow(self.parent)
+		place_win.window.transient(self.parent)
+		place_win.window.grab_set()
+		self.parent.wait_window(place_win.window)
+		if place_win.termine :
+			for bateau in place_win.bateaux :
+				self.grille_joueur.add_bateau(bateau)
+		else :
+			messagebox.showerror("Erreur", "Vous n'avez pas placé tous vos bateaux.\nPlacement aléatoire.")
+			self.grille_joueur.init_bateaux_alea()
 
 #
 #----------------------------------------------------------------------------------------------------------------
 #
 
 class OrdiTK(Ordi, JoueurTK):
+	"""Ordinateur en mode tkinter"""
 	def __init__(self, nom='HAL', niveau=5, nb_echantillons=100, seuil=20, parent=None, cursor="arrow"):
 		Ordi.__init__(self, nom=nom, niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 		JoueurTK.__init__(self, nom=nom, parent=parent, cursor=cursor)
@@ -203,13 +226,17 @@ class OrdiTK(Ordi, JoueurTK):
 			pass
 			
 	def get_niveau(self) :
+		"""Règlage du niveau de l'algorithme"""
 		level_win = LevelWindow(self.parent)
+		level_win.window.transient(self.parent)
+		level_win.window.grab_set()
 		self.parent.wait_window(level_win.window)
 		self.niveau = level_win.lv_param['niveau']
 		self.seuil = level_win.lv_param['seuil']
 		self.nb_echantillons = level_win.lv_param['échantillons']
 		
 	def click_suivant(self, event=None) :
+		"""Quand on clic pour le coup suivant"""
 		if self.turn :
 			self.coup_suivant()
 			self.grille_suivi.affiche_adverse(self.grille_adverse)
@@ -266,7 +293,7 @@ class LevelWindow(object):
 		
 		Label(self.window, bg="white", justify=LEFT, bd = 5, padx=5, pady=5, relief=RIDGE,
 				text="""Niveau 1 : Que des tirs aléatoires uniformes sans file d'attente
-Niveau 2 : Tirs aléatoires uniforme et file d'attente
+Niveau 2 : Tirs aléatoires uniformes et file d'attente
 Niveau 3 : Tirs aléatoires sur les cases noires et file d'attente
 Niveau 4 : Optimisation par des échantillons
 Niveau 5 : Optimisation par nombre de bateaux local
@@ -301,17 +328,116 @@ Niveau 6 : Optimisation par énumération de tous les arrangements à partir d'u
 		self.lv_param['échantillons'] = int(self.txt_param.get('1.0', END)[:-1])
 		self.window.destroy()
 
-#~ class PlaceWindow(object):
-	#~ def __init__(self, parent):
-		#~ self.bateaux = []
-		#~ self.window = Toplevel(parent)
+class PlaceWindow(object):
+	"""Fenêtre de placement des bateaux"""
+	def __init__(self, parent, taille_bateaux=[5, 4, 3, 3, 2]):
+		self.parent = parent
+		self.window = Toplevel(self.parent)
+		self.window.title("Placement de vos bateaux")
 		
-	
+		self.lb_titre = Label(self.window, text="", bg="white", font=("Helvetica", 16))
+		self.lb_titre.pack(fill=X)
+		
+		self.bateaux = []
+		self.taille_bateaux = taille_bateaux[:]
+		
+		joueur = JoueurTK(parent=self.parent)
+		self.grille = GrilleJoueurTK(parent=self.window)
+		self.grille.pack()
+		self.grille.affiche()
+		
+		self.next_bateau()
+		
+		self.grille.canvas.bind("<Button-1>", self.on_click)
+		self.grille.canvas.bind("<Motion>", self.on_move)
+		
+		self.termine = False		# Si tous les bateaux ont été placés
+		self.first_click = True		# Clique au départ du bateau
+		
+	def test_case_depart(self, case):
+		"""Teste si le bateau en cours est plaçable à partir de cette case"""
+		if not self.grille.test_case(case) :
+			return False
+		for sens in [HAUT, BAS, GAUCHE, DROITE] :
+			if self.grille.test_bateau(Bateau(self.current_taille, case, sens)) :
+				return True
+		return False
+		
+	def next_bateau(self) :
+		"""Place le bateau suivant ou quitte"""
+		if self.taille_bateaux :
+			self.current_taille = self.taille_bateaux.pop(0)
+			self.lb_titre['text'] = "Placement du bateau de taille %d" % self.current_taille
+		else :
+			self.termine = True
+			self.window.destroy()
+		
+	def on_click(self, event) :
+		"""Quand on clique sur une case"""
+		x, y = self.grille.canvas.canvasx(event.x), self.grille.canvas.canvasy(event.y)
+		(i, j) = self.grille.coord2case(x, y)
+		# Premier clic, on marque la case de départ
+		if self.first_click :
+			self.case_depart = (i,j)
+			self.end_possibles = [] 
+			if self.test_case_depart((i,j)) :
+				self.grille.color_case((i, j), COLOR_BOAT)
+				for sens in [HAUT, BAS, GAUCHE, DROITE] :
+					bateau = Bateau(self.current_taille, (i,j), sens)
+					if self.grille.test_bateau(bateau) :
+						self.end_possibles.append(bateau.end)
+						self.grille.color_case(bateau.end, COLOR_OK)
+				self.first_click = False
+		# Deuxième clic, on crée le bateau
+		else :
+			if (i,j) not in self.end_possibles :
+				return
+			if   i>self.case_depart[0] : sens = DROITE
+			elif i<self.case_depart[0] : sens = GAUCHE
+			elif j>self.case_depart[1] : sens = BAS
+			elif j<self.case_depart[1] : sens = HAUT
+			
+			bateau = Bateau(self.current_taille, self.case_depart, sens)
+			self.bateaux.append(bateau)
+			self.grille.add_bateau(bateau)
+			self.grille.affiche_adverse()
+			self.next_bateau()
+				
+			self.first_click = True
+				
+	def on_move(self, event):
+		"""Déplacement du curseur sur la grille"""
+		x, y = self.grille.canvas.canvasx(event.x), self.grille.canvas.canvasy(event.y)
+		(i, j) = self.grille.coord2case(x, y)
+		if 0 <= i < self.grille.xmax and 0 <= j < self.grille.ymax :
+			# Pas de bateau en cours de création, on colorie les cases possibles ou non
+			if self.first_click : 
+				self.grille.affiche_adverse()
+				if self.test_case_depart((i,j)) :
+					couleur = COLOR_OK
+				else :
+					couleur = COLOR_NO
+				self.grille.color_case((i, j), couleur)
+				self.grille.marque_case((i, j), self.grille.etat[(i,j)])
+			# Case de fin du bateau, on crée un apperçu
+			else :
+				if   i>self.case_depart[0] : sens = DROITE
+				elif i<self.case_depart[0] : sens = GAUCHE
+				elif j>self.case_depart[1] : sens = BAS
+				elif j<self.case_depart[1] : sens = HAUT
+				if (i,j) in self.end_possibles :
+					bateau = Bateau(self.current_taille, self.case_depart, sens)
+					for case in bateau.cases :
+						self.grille.color_case(case, COLOR_BOAT)
+				else :
+					self.grille.affiche_adverse()
+					self.grille.color_case(self.case_depart, COLOR_BOAT)
+					for case in self.end_possibles :
+						self.grille.color_case(case, COLOR_OK)
 	
 #
 #----------------------------------------------------------------------------------------------------------------
 #
-
 
 class MainTK(Frame):
 	"""Fenêtre principale"""
@@ -383,6 +509,7 @@ class MainTK(Frame):
 			widj.destroy()
 
 	def jeu_solo(self) :
+		"""Lance une partie solo"""
 		self.parent.title("Bataille navale - Partie solo")
 		self.parent.geometry("980x490")
 		self.clear_widgets()
@@ -395,6 +522,7 @@ class MainTK(Frame):
 		info.insert(END, "C'est parti !\n")
 
 	def jeu_ordi(self) :
+		"""Lance une résolution automatique"""
 		self.parent.geometry("980x490")
 		self.clear_widgets()
 		frame_grille = Frame(self.main_frame, bg="black")
@@ -404,8 +532,17 @@ class MainTK(Frame):
 		
 		ordi = OrdiTK(parent=frame_grille)
 		ordi.grille_adverse.init_bateaux_alea()
-		ordi.get_niveau()
+		ordi.grille_suivi.pack(side=TOP)
+		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 		
+		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
+		
+		bt_next = Button(frame_grille, text="Coup suivant")
+		bt_next.pack(side=BOTTOM)
+		bt_next.bind("<Button-1>", ordi.click_suivant)
+		self.parent.bind("<Return>", ordi.click_suivant)
+		
+		ordi.get_niveau()		
 		titre = "Bataille navale - Résolution automatique - Niveau "
 		if ordi.niveau == 4 :
 			titre += "4(%d)" % ordi.nb_echantillons
@@ -415,37 +552,17 @@ class MainTK(Frame):
 			titre += "%d" % ordi.niveau
 		self.parent.title(titre)
 		
-		ordi.grille_suivi.pack(side=TOP)
-		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
-		
-		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
 		info.insert(END, "C'est parti !\n")
 		
-		bt_next = Button(frame_grille, text="Coup suivant")
-		bt_next.pack(side=BOTTOM)
-		bt_next.bind("<Button-1>", ordi.click_suivant)
-		self.parent.bind("<Return>", ordi.click_suivant)
-		
-	
 	def jeu_contre_ordi(self):
-		frame_grilles = Frame(self.main_frame, bg="black")
-		frame_grille1 = Frame(frame_grilles, bg="black")
-		frame_grille1.pack(side=LEFT, padx=10, pady=5)
-		frame_grille2 = Frame(frame_grilles, bg="black")
-		frame_grille2.pack(side=RIGHT, padx=10, pady=5)
-		frame_grilles.pack(fill=X)
-		
-		joueur = JoueurTK(parent=frame_grille1, cursor="X_cursor")
-		
-		joueur.place_bateaux()
-		
-	def jeu_contre_ordi0(self):
+		"""Lance une partie contre l'ordinateur"""
 		def click_grille(event):
+			"""Déroulement du jeu, quand on clique sur la grille"""
 			fini = False
 			x, y = joueur.grille_suivi.canvas.canvasx(event.x), joueur.grille_suivi.canvas.canvasy(event.y)
 			(i, j) = joueur.grille_suivi.coord2case(x,y)
 			ok = joueur.grille_suivi.test_case( (i, j) )
-			if joueur.turn and 0 <= i < joueur.grille_suivi.xmax and 0 <= j < joueur.grille_suivi.ymax :
+			if joueur.turn and joueur.playable and 0 <= i < joueur.grille_suivi.xmax and 0 <= j < joueur.grille_suivi.ymax :
 				joueur.tire((i,j))
 				info.delete('1.0', END)
 				joueur.grille_suivi.affiche()
@@ -454,15 +571,21 @@ class MainTK(Frame):
 					fini = True	
 					joueur.add_message("Bravo ! Vous avez gagné en %d coups" % joueur.essais)
 					joueur.turn = False
+					joueur.playable = False
+					joueur.grille_suivi.affiche_adverse(ordi.grille_joueur)
+					ordi.grille_suivi.affiche_adverse(joueur.grille_joueur)
 				else :
 					if ok :
 						ordi.coup_suivant()
 						ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 						if ordi.grille_suivi.fini():
-							ordi.add_message("L'ordinateur a gagné en %d coups" % ordi.essais)
-							ordi.turn = False
 							gagnant = 1
 							fini = True
+							ordi.add_message("L'ordinateur a gagné en %d coups" % ordi.essais)
+							ordi.turn = False
+							joueur.playable = False
+							joueur.grille_suivi.affiche_adverse(ordi.grille_joueur)
+							ordi.grille_suivi.affiche_adverse(joueur.grille_joueur)
 				joueur.filtre_messages()
 				while joueur.messages :
 					info.insert(END, "<%s> %s\n" % (joueur.nom, joueur.messages.pop(0)))
@@ -474,25 +597,8 @@ class MainTK(Frame):
 				elif fini and gagnant == 1 :
 					messagebox.showinfo("Fin de partie", "L'ordinateur a gagné en %d coups" % ordi.essais)
 		
-		
-		level_win = LevelWindow(self.parent)
-		self.parent.wait_window(level_win.window)
-		niveau = level_win.lv_param['niveau']
-		seuil = level_win.lv_param['seuil']
-		nb_echantillons = level_win.lv_param['échantillons']
-		titre = "Bataille navale - Partie contre l'ordinateur - Niveau "
-		if niveau == 4 :
-			titre += "4(%d)" % nb_echantillons
-		elif niveau == 6 :
-			titre += "6(%d)" % seuil
-		else :
-			titre += "%d" % niveau
-		self.parent.title(titre)
-		
 		self.parent.geometry("980x620")
 		self.clear_widgets()
-		
-		
 		
 		frame_grilles = Frame(self.main_frame, bg="black")
 		frame_grille1 = Frame(frame_grilles, bg="black")
@@ -501,31 +607,42 @@ class MainTK(Frame):
 		frame_grille2.pack(side=RIGHT, padx=10, pady=5)
 		frame_grilles.pack(fill=X)
 		
-		grille_ordi = GrilleJoueurTK()
-		grille_ordi.init_bateaux_alea()
-		grille_joueur = GrilleJoueurTK()
-		grille_joueur.init_bateaux_alea()
+		info = Text(self.main_frame, name="info", wrap=WORD, padx=5)
 		
-		joueur = JoueurTK(parent=frame_grille1, cursor="X_cursor")
-		ordi = OrdiTK(parent=frame_grille2, niveau=niveau, seuil=seuil, nb_echantillons=nb_echantillons)
-		
-		ordi.grille_joueur = grille_ordi
-		ordi.grille_adverse = grille_joueur
-		joueur.grille_joueur = grille_joueur
-		joueur.grille_adverse = grille_ordi
+		joueur = JoueurTK(parent=frame_grille1)
+		ordi = OrdiTK(parent=frame_grille2)
 		
 		Label(frame_grille1, text=joueur.nom, bg="white",font=("Helvetica", 16) ,relief=RIDGE, padx=10, pady=5).pack(pady=10)
 		Label(frame_grille2, text=ordi.nom, bg="white",font=("Helvetica", 16) ,relief=RIDGE, padx=10, pady=5).pack(pady=10)
-		
 		joueur.grille_suivi.pack(padx=10, pady=10)
 		ordi.grille_suivi.pack(padx=10, pady=10)
+		
+		info.pack(side=BOTTOM, fill=X, padx=10, pady=10)
+		
+		joueur.grille_suivi.affiche()
+		ordi.grille_suivi.affiche()
+		
+		ordi.get_niveau()
+		titre = "Bataille navale - Partie contre l'ordinateur - Niveau "
+		if ordi.niveau == 4 :
+			titre += "4(%d)" % ordi.nb_echantillons
+		elif ordi.niveau == 6 :
+			titre += "6(%d)" % ordi.seuil
+		else :
+			titre += "%d" % ordi.niveau
+		self.parent.title(titre)
+			
+		joueur.place_bateaux()
+		
+		ordi.grille_joueur.init_bateaux_alea()
+		ordi.grille_adverse = joueur.grille_joueur
+		joueur.grille_adverse = ordi.grille_joueur
+		
 		joueur.grille_suivi.affiche()
 		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 		
 		joueur.grille_suivi.canvas.bind("<Button-1>", click_grille)
 		
-		info = ScrolledText(self.main_frame, wrap=WORD, padx=5)
-		info.pack(side=BOTTOM, fill=X, padx=10, pady=10)
 		info.insert(END, "C'est parti !\n")
 		
 		if rand.randint(0,1) == 0 :
@@ -540,19 +657,6 @@ class MainTK(Frame):
 			while ordi.messages :
 				info.insert(END, "<%s> %s\n" % (ordi.nom, ordi.messages.pop(0)))
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
 if __name__ == "__main__":
 	app = MainTK()
-	#~ j = JoueurTK()
 	
