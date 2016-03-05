@@ -164,8 +164,8 @@ class JoueurTK(Joueur):
 		(i, j) = self.grille_suivi.coord2case(x, y)
 		if self.playable and self.turn :
 			self.joue_coup(i,j)
-		self.grille_suivi.color_case((i, j), COLOR_CURS)
-		self.grille_suivi.marque_case((i, j), self.grille_suivi.etat[(i,j)])
+			self.grille_suivi.color_case((i, j), COLOR_CURS)
+			self.grille_suivi.marque_case((i, j), self.grille_suivi.etat[(i,j)])
 	
 	def move_on_grille(self, event):
 		"""Quand le curseur se déplace sur la grille, coloration de la case survolée"""
