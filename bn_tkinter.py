@@ -206,7 +206,7 @@ class JoueurTK(Joueur):
 			for bateau in place_win.bateaux :
 				self.grille_joueur.add_bateau(bateau)
 		else :
-			messagebox.showinfo("", "Placement de vos bateaux aléatoire.")
+			messagebox.showinfo("", "Placement aléatoire de vos bateaux")
 			self.grille_joueur.init_bateaux_alea()
 
 #
@@ -234,6 +234,13 @@ class OrdiTK(Ordi, JoueurTK):
 		self.niveau = level_win.lv_param['niveau']
 		self.seuil = level_win.lv_param['seuil']
 		self.nb_echantillons = level_win.lv_param['échantillons']
+		if self.niveau == 4 :
+			self.niveau_str = "4(%d)" % self.nb_echantillons
+		elif self.niveau == 6 :
+			self.niveau_str = "6(%d)" % self.seuil
+		else :
+			self.niveau_str = "%d" % self.niveau
+		
 
 	def click_suivant(self, event=None) :
 		"""Quand on clic pour le coup suivant"""
@@ -465,7 +472,7 @@ class MainTK(Frame):
 		self.parent.resizable(False, False)
 		self.parent.geometry("980x490")
 		self.pack()
-
+		
 		# Barre de menu
 		self.menubar = Menu(self)
 		self.newmenu = Menu(self.menubar, tearoff=0)
@@ -523,32 +530,36 @@ class MainTK(Frame):
 
 	def jeu_solo(self) :
 		"""Lance une partie solo"""
+		# Création de la frame principale
 		self.parent.title("Bataille navale - Partie solo")
 		self.parent.geometry("980x490")
 		self.clear_widgets()
+		
 		info = Text(self.main_frame, name="info", wrap=WORD,  bd=5, relief=RIDGE, padx=5)
+		
 		joueur = JoueurTK(parent=self.main_frame)#, cursor="X_cursor")
 		joueur.grille_adverse.init_bateaux_alea()
 		joueur.grille_suivi.pack(side=LEFT, padx=10, pady=10)
 		joueur.grille_suivi.affiche()
+		
 		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
 		info.insert(END, "C'est parti !\n")
 
 	def jeu_ordi(self) :
 		"""Lance une résolution automatique"""
+		# Création de la frame principale
 		self.parent.geometry("980x490")
 		self.clear_widgets()
 		frame_grille = Frame(self.main_frame, bg=COLOR_FOND)
 		frame_grille.pack(side=LEFT, fill=Y, padx=10, pady=5)
 
 		info = Text(self.main_frame, name="info", wrap=WORD, bd=5, relief=RIDGE, padx=5)
+		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
 
 		ordi = OrdiTK(parent=frame_grille)
 		ordi.grille_adverse.init_bateaux_alea()
 		ordi.grille_suivi.pack(side=TOP)
 		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
-
-		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
 
 		bt_next = Button(frame_grille, text="Coup suivant")
 		bt_next.pack(side=BOTTOM)
@@ -556,15 +567,8 @@ class MainTK(Frame):
 		self.parent.bind("<Return>", ordi.click_suivant)
 
 		ordi.get_niveau()
-		titre = "Bataille navale - Résolution automatique - Niveau "
-		if ordi.niveau == 4 :
-			titre += "4(%d)" % ordi.nb_echantillons
-		elif ordi.niveau == 6 :
-			titre += "6(%d)" % ordi.seuil
-		else :
-			titre += "%d" % ordi.niveau
-		self.parent.title(titre)
-
+		self.parent.title("Bataille navale - Résolution automatique - Niveau " + ordi.niveau_str)
+		
 		info.insert(END, "C'est parti !\n")
 
 	def jeu_contre_ordi(self):
@@ -574,19 +578,13 @@ class MainTK(Frame):
 			fini = False
 			x, y = joueur.grille_suivi.canvas.canvasx(event.x), joueur.grille_suivi.canvas.canvasy(event.y)
 			(i, j) = joueur.grille_suivi.coord2case(x,y)
-			ok = joueur.grille_suivi.test_case( (i, j) )
+			ok = joueur.grille_suivi.test_case((i, j))
 			if joueur.turn and joueur.playable and 0 <= i < joueur.grille_suivi.xmax and 0 <= j < joueur.grille_suivi.ymax :
 				joueur.tire((i,j))
-				info.delete('1.0', END)
 				joueur.grille_suivi.affiche()
 				if joueur.grille_suivi.fini() :
 					gagnant = 0
 					fini = True
-					joueur.add_message("Bravo ! Vous avez gagné en %d coups" % joueur.essais)
-					joueur.turn = False
-					joueur.playable = False
-					joueur.grille_suivi.affiche_adverse(ordi.grille_joueur)
-					ordi.grille_suivi.affiche_adverse(joueur.grille_joueur)
 				else :
 					if ok :
 						ordi.coup_suivant()
@@ -594,22 +592,31 @@ class MainTK(Frame):
 						if ordi.grille_suivi.fini():
 							gagnant = 1
 							fini = True
-							ordi.add_message("L'ordinateur a gagné en %d coups" % ordi.essais)
-							ordi.turn = False
-							joueur.playable = False
-							joueur.grille_suivi.affiche_adverse(ordi.grille_joueur)
-							ordi.grille_suivi.affiche_adverse(joueur.grille_joueur)
+				
+				# Affichage des messages
+				info.delete('1.0', END)
 				joueur.filtre_messages()
 				while joueur.messages :
 					info.insert(END, "<%s> %s\n" % (joueur.nom, joueur.messages.pop(0)))
 				ordi.filtre_messages()
 				while ordi.messages :
 					info.insert(END, "<%s> %s\n" % (ordi.nom, ordi.messages.pop(0)))
-				if fini and gagnant == 0 :
-					messagebox.showinfo("Fin de partie", "Bravo ! Vous avez gagné en %d coups" % joueur.essais)
-				elif fini and gagnant == 1 :
-					messagebox.showinfo("Fin de partie", "L'ordinateur a gagné en %d coups" % ordi.essais)
-
+					
+				# Fin de partie
+				if fini :
+					if gagnant == 0 :
+						info.insert(END, "Bravo ! Vous avez gagné en %d coups" % joueur.essais)
+						joueur.turn = False
+						messagebox.showinfo("Fin de partie", "Bravo ! Vous avez gagné en %d coups" % joueur.essais)
+					else :
+						info.insert(END, "L'ordinateur a gagné en %d coups" % ordi.essais)
+						ordi.turn = False
+						messagebox.showinfo("Fin de partie", "L'ordinateur a gagné en %d coups" % ordi.essais)
+					joueur.playable = False
+					joueur.grille_suivi.affiche_adverse(ordi.grille_joueur)
+					ordi.grille_suivi.affiche_adverse(joueur.grille_joueur)
+		
+		# Création de la frame principale
 		self.parent.geometry("980x620")
 		self.clear_widgets()
 
@@ -634,16 +641,10 @@ class MainTK(Frame):
 
 		joueur.grille_suivi.affiche()
 		ordi.grille_suivi.affiche()
-
+		
+		# Initialisations des paramètres de jeu
 		ordi.get_niveau()
-		titre = "Bataille navale - Partie contre l'ordinateur - Niveau "
-		if ordi.niveau == 4 :
-			titre += "4(%d)" % ordi.nb_echantillons
-		elif ordi.niveau == 6 :
-			titre += "6(%d)" % ordi.seuil
-		else :
-			titre += "%d" % ordi.niveau
-		self.parent.title(titre)
+		self.parent.title("Bataille navale - Partie contre l'ordinateur - Niveau " + ordi.niveau_str)
 
 		joueur.place_bateaux()
 
@@ -655,9 +656,9 @@ class MainTK(Frame):
 		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 
 		joueur.grille_suivi.canvas.bind("<Button-1>", click_grille)
-
+		
+		# Lancement de la partie
 		info.insert(END, "C'est parti !\n")
-
 		if rand.randint(0,1) == 0 :
 			messagebox.showinfo("Début de partie", "Vous allez commencer")
 		else :

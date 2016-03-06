@@ -6,10 +6,12 @@ Cette interface devait être réalisée par mon binôme, mais ce dernier ayant a
 
 \section{Principes de l'interface}
 
-Le point principal se situe dans la grille \texttt{GrilleTK(Grille)} qui implémente les fonctionnalités graphiques (avec un \texttt{canvas}) des grilles.
+Le point principal se situe dans la classe \texttt{GrilleTK(Grille)} qui implémente les fonctionnalités graphiques (avec un \texttt{canvas}) des grilles.
 
-La fenêtre principale est basée sur une \texttt{Frame} (\texttt{main\_frame}) dans laquelle on va placer les grilles, ainsi que des fenêtres de texte. Entre chaque partie on l'efface en supprimant tous ses widgets enfants, obtenus dans la liste \texttt{main\_frame.pack\_slaves()}, grâce à leurs méthodes \texttt{destroy()}. 
+La fenêtre principale est basée sur une \texttt{Frame},\texttt{main\_frame}, dans laquelle on va placer les grilles, ainsi que des fenêtres de texte. Entre chaque partie on l'efface en supprimant tous ses widgets enfants, obtenus dans la liste \texttt{main\_frame.pack\_slaves()}, grâce à leurs méthodes \texttt{destroy()}. 
 
 J'ai également créé deux fenêtres annexes pour placer nos bateaux (\texttt{PlaceWin}) et choisir pour le niveau de l'algorithme (\texttt{LevelWin}).
 
 Enfin les classes \texttt{JoueurTK(Joueur)} et \texttt{OrdiTK(Ordi, JoueurTK)} implémentent les fonctions graphiques, et notamment la gestion des événements souris, aux joueurs. Notons que pour pouvoir accéder à la boîte de texte \texttt{info} de l'interface principale qui affiche les informations de partie, on met l'attribut \texttt{name="info"} à ce widget et on y accède depuis la classe \texttt{JoueurTK(Joueur)} via \texttt{self.parent.children["info"]}, où \texttt{self.parent} est la frame principale (\texttt{main\_frame}).
+
+\section{Affichage et gestion des grilles}

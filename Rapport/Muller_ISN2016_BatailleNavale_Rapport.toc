@@ -111,6 +111,13 @@
 \contentsline {subsection}{\numberline {3.3}Classe OrdiC}{75}
 \contentsline {subsection}{\numberline {3.4}Classe PartieC}{78}
 \contentsline {subsection}{\numberline {3.5}Classe MainConsole}{79}
-\contentsline {section}{\numberline {4}Module bn\_stats.py}{80}
-\contentsline {subsection}{\numberline {4.1}Classe Stats}{80}
-\contentsline {chapter}{\numberline {E}L'algorithme en action}{83}
+\contentsline {section}{\numberline {4}Module bn\_tkinter}{80}
+\contentsline {subsection}{\numberline {4.1}Classe GrilleTK}{80}
+\contentsline {subsection}{\numberline {4.2}Classe JoueurTK}{104}
+\contentsline {subsection}{\numberline {4.3}Classe OrdiTK}{106}
+\contentsline {subsection}{\numberline {4.4}Classe LevelWindow}{110}
+\contentsline {subsection}{\numberline {4.5}Classe PlaceWindow}{110}
+\contentsline {subsection}{\numberline {4.6}Classe PlaceWindow}{111}
+\contentsline {section}{\numberline {5}Module bn\_stats.py}{133}
+\contentsline {subsection}{\numberline {5.1}Classe Stats}{133}
+\contentsline {chapter}{\numberline {E}L'algorithme en action}{135}
