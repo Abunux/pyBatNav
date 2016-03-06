@@ -20,11 +20,12 @@ from bn_joueur import *
 
 # Constantes de couleur
 # ---------------------
-COLOR_OK = "#00FF00"	# Case valide
-COLOR_NO = "#FF0000"	# Case enon valide
-COLOR_BOAT = "cyan"		# Case occupée par un bateau
-COLOR_CURS = "#E8E8E8"	# Case sous le curseur
-COLOR_FOND = "white"	# Fond de la frame principale
+COLOR_OK = "#00FF00"    # Case valide
+COLOR_NO = "#FF0000"    # Case enon valide
+COLOR_BOAT = "cyan"     # Case occupée par un bateau
+COLOR_NOIRE = "#F8F8F8" # Case "noire"
+COLOR_CURS = "#E8E8E8"  # Case sous le curseur
+COLOR_FOND = "white"    # Fond de la frame principale
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -90,8 +91,51 @@ class GrilleTK(Grille, Frame):
 	def clear_canvas(self):
 		"""Efface le canvas"""
 		self.canvas.delete("all")
+		self.init_canvas()
 
-	def affiche(self):
+	def color_noires(self) :
+		"""Colorie une case sur deux"""
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				if (i+j) % 2 == 0 :
+					self.color_case((i, j), COLOR_NOIRE)
+
+	def color_bateaux_adverse(self, grille=None) :
+		"""Colorie les bateaux adverse sur la grille"""
+		if not grille :
+			grille = self
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				if grille.etat[(i,j)] == 1 :
+					self.color_case((i, j), COLOR_BOAT)
+					
+	def color_bateaux_coules(self, coules=[]):
+		for case in coules :
+			self.color_case(case, COLOR_BOAT)
+		
+
+	def marque_cases(self):
+		"""Marque toutes les cases de la grille suvant leur état"""
+		for i in range(self.xmax):
+			for j in range(self.ymax):
+				self.marque_case((i, j))
+
+	def affiche(self, coules=[]):
+		"""Affiche le canvas"""
+		self.clear_canvas()
+		self.color_noires()
+		self.color_bateaux_coules(coules)
+		self.marque_cases()
+
+	def affiche_adverse(self, grille=None) :
+		"""Affiche le canvas en coloriant les bateaux adverses"""
+		self.clear_canvas()
+		self.color_noires()
+		self.color_bateaux_adverse(grille)
+		self.marque_cases()
+
+
+	def affiche0(self):
 		"""Affiche le canvas"""
 		self.clear_canvas()
 		self.init_canvas()
@@ -99,7 +143,7 @@ class GrilleTK(Grille, Frame):
 			for j in range(self.ymax):
 				self.marque_case((i, j))
 
-	def affiche_adverse(self, grille=None) :
+	def affiche_adverse0(self, grille=None) :
 		"""Affiche le canvas en coloriant les bateaux adverses"""
 		if not grille :
 			grille = self
@@ -145,8 +189,8 @@ class JoueurTK(Joueur):
 		self.grille_adverse = GrilleJoueurTK(parent=parent, cursor=cursor)
 		self.grille_suivi = GrilleSuiviTK(parent=parent, cursor=cursor)
 
-		self.turn = True		# Si c'est au tour de joueur de jouer
-		self.playable = True	# Si c'est possible de jouer
+		self.turn = True        # Si c'est au tour de joueur de jouer
+		self.playable = True    # Si c'est possible de jouer
 
 		try :
 			self.info = self.parent.children["info"]
@@ -171,7 +215,7 @@ class JoueurTK(Joueur):
 		if self.playable :
 			x, y = self.grille_suivi.canvas.canvasx(event.x), self.grille_suivi.canvas.canvasy(event.y)
 			(i, j) = self.grille_suivi.coord2case(x, y)
-			self.grille_suivi.affiche()
+			self.grille_suivi.affiche(self.coules)
 			if  0 <= i < self.grille_suivi.xmax and 0 <= j < self.grille_suivi.ymax :
 				self.grille_suivi.color_case((i, j), COLOR_CURS)
 				self.grille_suivi.marque_case((i, j))
@@ -180,7 +224,7 @@ class JoueurTK(Joueur):
 		"""Joue un coup"""
 		if 0 <= i < self.grille_suivi.xmax and 0 <= j < self.grille_suivi.ymax :
 			self.tire((i,j))
-			self.grille_suivi.affiche()
+			self.grille_suivi.affiche(self.coules)
 			self.affiche_messages()
 			if self.grille_suivi.fini() :
 				self.playable = False
@@ -240,7 +284,7 @@ class OrdiTK(Ordi, JoueurTK):
 			self.niveau_str = "6(%d)" % self.seuil
 		else :
 			self.niveau_str = "%d" % self.niveau
-		
+
 
 	def click_suivant(self, event=None) :
 		"""Quand on clic pour le coup suivant"""
@@ -264,7 +308,7 @@ class OrdiTK(Ordi, JoueurTK):
 		#~ self.parent = parent
 
 #----------------------------------------------------------------------------------------------------------------
-#								Fenêtres graphiques
+#                               Fenêtres graphiques
 #----------------------------------------------------------------------------------------------------------------
 
 
@@ -279,12 +323,12 @@ class LevelWindow(object):
 
 		# Initialisation et création de la fenêtre
 		self.window = Toplevel(parent)
-		self.window.geometry("580x180")
+		self.window.geometry("580x160")
 		self.window.title("Paramètres")
 		self.window.resizable(False, False)
 		self.window.bind("<Return>", self.valide)
 
-		Label(self.window,text="Niveau de l'algorithme",font=("Helvetica", 16)).pack()
+		Label(self.window,text="Niveau de l'algorithme",font=("Helvetica", 16)).pack(pady=5)
 
 		self.frame_param = Frame(self.window)
 		self.frame_param.pack(fill=BOTH, padx=10, pady=10)
@@ -309,11 +353,11 @@ class LevelWindow(object):
 							  "Niveau 6 : Optimisation par énumération de tous les arrangements à partir d'un seuil"]
 		frame_infos = Frame(self.window)
 		frame_infos.pack(fill=X)
-		self.lb_info = Label(frame_infos, justify=LEFT, padx=5, pady=5)
+		self.lb_info = Label(frame_infos, justify=LEFT,  pady=5)
 		self.lb_info['text'] = self.infos_niveaux[self.cb_lv.current()]
-		self.lb_info.pack(side=LEFT, padx=10, pady=10)
-		
-		Button(self.window, text="OK", command=self.valide).pack(side=BOTTOM, pady=10)
+		self.lb_info.pack(side=LEFT, padx=10)
+
+		Button(self.window, text="Valider", command=self.valide).pack(side=BOTTOM, pady=5)
 
 	def on_cb_change(self, event=None) :
 		"""Quand on change le niveau"""
@@ -321,7 +365,7 @@ class LevelWindow(object):
 		niveau = self.cb_lv.current()+1
 		self.lv_param['niveau'] = niveau
 		self.lb_info['text'] = self.infos_niveaux[self.cb_lv.current()]
-		
+
 		# Pour les niveaux 4 et 6, paramètres supplémentaires
 		if niveau == 4 :
 			self.lb_param['text'] = "Échantillons : "
@@ -362,17 +406,17 @@ class PlaceWindow(object):
 		self.grille = GrilleJoueurTK(parent=self.window)
 		self.grille.pack()
 		self.grille.affiche()
-		
+
 		self.bt_close = Button(self.window, text="Fermer cette fenêtre et \nplacer les bateaux aléatoirement", command = self.window.destroy)
 		self.bt_close.pack(padx=10, pady=10)
-		
+
 		self.next_bateau()
 
 		self.grille.canvas.bind("<Button-1>", self.on_click)
 		self.grille.canvas.bind("<Motion>", self.on_move)
 
-		self.termine = False		# Si tous les bateaux ont été placés
-		self.first_click = True		# Clique au départ du bateau
+		self.termine = False        # Si tous les bateaux ont été placés
+		self.first_click = True     # Clique au départ du bateau
 
 	def test_case_depart(self, case):
 		"""Teste si le bateau en cours est plaçable à partir de cette case"""
@@ -472,7 +516,7 @@ class MainTK(Frame):
 		self.parent.resizable(False, False)
 		self.parent.geometry("980x490")
 		self.pack()
-		
+
 		# Barre de menu
 		self.menubar = Menu(self)
 		self.newmenu = Menu(self.menubar, tearoff=0)
@@ -496,28 +540,28 @@ class MainTK(Frame):
 		can_fond.pack(fill=BOTH)
 		can_fond.create_text(width_main_frame//2, height_main_frame//2,
 			text="""     ╔══════════════════════════════════════════════════════════════════╗
-     ║                                                                  ║
-     ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
-     ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
-     ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
-     ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
-     ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
-     ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
-     ║                                                                  ║
-     ║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
-     ║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
-     ║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
-     ║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
-     ║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
-     ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
-     ║                                                                  ║
-     ╚══════════════════════════════════════════════════════════════════╝
+	 ║                                                                  ║
+	 ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
+	 ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
+	 ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
+	 ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
+	 ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
+	 ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
+	 ║                                                                  ║
+	 ║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
+	 ║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
+	 ║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
+	 ║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
+	 ║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
+	 ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
+	 ║                                                                  ║
+	 ╚══════════════════════════════════════════════════════════════════╝
 
-             Projet de formation ISN 2015/2016 de l'académie de Lyon
-                Auteur : Frédéric Muller
-                Code du projet : https://github.com/Abunux/pyBatNav
-                Licence Creative Common CC BY-NC-SA
-                Projet démarré le 14/11/2015
+			 Projet de formation ISN 2015/2016 de l'académie de Lyon
+				Auteur : Frédéric Muller
+				Code du projet : https://github.com/Abunux/pyBatNav
+				Licence Creative Common CC BY-NC-SA
+				Projet démarré le 14/11/2015
 		""",
 			font=("Courier", 10))
 
@@ -534,14 +578,14 @@ class MainTK(Frame):
 		self.parent.title("Bataille navale - Partie solo")
 		self.parent.geometry("980x490")
 		self.clear_widgets()
-		
+
 		info = Text(self.main_frame, name="info", wrap=WORD,  bd=5, relief=RIDGE, padx=5)
-		
+
 		joueur = JoueurTK(parent=self.main_frame)#, cursor="X_cursor")
 		joueur.grille_adverse.init_bateaux_alea()
 		joueur.grille_suivi.pack(side=LEFT, padx=10, pady=10)
 		joueur.grille_suivi.affiche()
-		
+
 		info.pack(side=RIGHT, fill=Y, padx=10, pady=10)
 		info.insert(END, "C'est parti !\n")
 
@@ -568,7 +612,7 @@ class MainTK(Frame):
 
 		ordi.get_niveau()
 		self.parent.title("Bataille navale - Résolution automatique - Niveau " + ordi.niveau_str)
-		
+
 		info.insert(END, "C'est parti !\n")
 
 	def jeu_contre_ordi(self):
@@ -592,7 +636,7 @@ class MainTK(Frame):
 						if ordi.grille_suivi.fini():
 							gagnant = 1
 							fini = True
-				
+
 				# Affichage des messages
 				info.delete('1.0', END)
 				joueur.filtre_messages()
@@ -601,9 +645,12 @@ class MainTK(Frame):
 				ordi.filtre_messages()
 				while ordi.messages :
 					info.insert(END, "<%s> %s\n" % (ordi.nom, ordi.messages.pop(0)))
-					
+
 				# Fin de partie
 				if fini :
+					joueur.playable = False
+					joueur.grille_suivi.affiche_adverse(ordi.grille_joueur)
+					ordi.grille_suivi.affiche_adverse(joueur.grille_joueur)
 					if gagnant == 0 :
 						info.insert(END, "Bravo ! Vous avez gagné en %d coups" % joueur.essais)
 						joueur.turn = False
@@ -612,10 +659,7 @@ class MainTK(Frame):
 						info.insert(END, "L'ordinateur a gagné en %d coups" % ordi.essais)
 						ordi.turn = False
 						messagebox.showinfo("Fin de partie", "L'ordinateur a gagné en %d coups" % ordi.essais)
-					joueur.playable = False
-					joueur.grille_suivi.affiche_adverse(ordi.grille_joueur)
-					ordi.grille_suivi.affiche_adverse(joueur.grille_joueur)
-		
+
 		# Création de la frame principale
 		self.parent.geometry("980x620")
 		self.clear_widgets()
@@ -641,8 +685,8 @@ class MainTK(Frame):
 
 		joueur.grille_suivi.affiche()
 		ordi.grille_suivi.affiche()
-		
-		# Initialisations des paramètres de jeu
+
+		# Initialisation des paramètres de jeu
 		ordi.get_niveau()
 		self.parent.title("Bataille navale - Partie contre l'ordinateur - Niveau " + ordi.niveau_str)
 
@@ -656,7 +700,7 @@ class MainTK(Frame):
 		ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
 
 		joueur.grille_suivi.canvas.bind("<Button-1>", click_grille)
-		
+
 		# Lancement de la partie
 		info.insert(END, "C'est parti !\n")
 		if rand.randint(0,1) == 0 :
