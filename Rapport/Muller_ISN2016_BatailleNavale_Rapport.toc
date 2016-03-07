@@ -52,6 +52,7 @@
 \contentsline {section}{\numberline {3}Modes de jeu}{20}
 \contentsline {chapter}{\numberline {7}Interface graphique}{21}
 \contentsline {section}{\numberline {1}Principes de l'interface}{21}
+\contentsline {section}{\numberline {2}Affichage et gestion des grilles}{21}
 \contentsline {chapter}{\numberline {8}Interface web}{23}
 \contentsline {section}{\numberline {1}Serveur web}{23}
 \contentsline {section}{\numberline {2}HTML et CSS}{23}
@@ -116,8 +117,8 @@
 \contentsline {subsection}{\numberline {4.2}Classe JoueurTK}{104}
 \contentsline {subsection}{\numberline {4.3}Classe OrdiTK}{106}
 \contentsline {subsection}{\numberline {4.4}Classe LevelWindow}{110}
-\contentsline {subsection}{\numberline {4.5}Classe PlaceWindow}{110}
+\contentsline {subsection}{\numberline {4.5}Classe PlaceWindow}{111}
 \contentsline {subsection}{\numberline {4.6}Classe PlaceWindow}{111}
 \contentsline {section}{\numberline {5}Module bn\_stats.py}{133}
 \contentsline {subsection}{\numberline {5.1}Classe Stats}{133}
-\contentsline {chapter}{\numberline {E}L'algorithme en action}{135}
+\contentsline {chapter}{\numberline {E}L'algorithme en action}{137}

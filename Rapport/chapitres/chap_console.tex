@@ -22,7 +22,6 @@ La fonction \texttt{centre(chaine, longueur)} centre la chaîne sur un espace de
 
 La fonction \texttt{boite(texte, prefixe, longueur)} permet d'encadrer le texte dans une boîte de longueur donnée, chaque ligne étant précédée d'un préfixe. Cette fonction sera utilisée pour afficher la liste des messages pour chaque joueur à chaque tour, les préfixe servant à identifier l'auteur du message.
 
-Notons enfin qu'afin de pouvoir réutiliser le code de ce module dans d'autres contextes (comme une interface en \texttt{tkinter}), la fonction \texttt{print(*args)} a été encapsulée dans une fonction \texttt{info(*args)} de sorte qu'il suffit de surcharger cette dernière pour envoyer l'affichage ailleurs (par exemple dans une boîte de texte dans une fenêtre graphique)
 
 \section{Affichage des grilles}
 La classe \texttt{GrilleC(Grille)} hérite de la classe \texttt{Grille} en ajoutant uniquement les fonctions d'affichage.
@@ -103,9 +102,9 @@ L'affichage sera alors le suivant :
 \label{deux_joueurs}
 {\scriptsize
 \begin{boxedverbatim}
-                  ╔══════╗                     ┃                     ╔═════╗                   
-                  ║ Toto ║                     ┃                     ║ HAL ║                   
-                  ╚══════╝                     ┃                     ╚═════╝                   
+                 ╔════════╗                    ┃                     ╔═════╗                   
+                 ║ Joueur ║                    ┃                     ║ HAL ║                   
+                 ╚════════╝                    ┃                     ╚═════╝                   
     ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐  ┃      ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
     │ A │ B │ C │ D │ E │ F │ G │ H │ I │ J │  ┃      │ A │ B │ C │ D │ E │ F │ G │ H │ I │ J │
 ┌───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤  ┃  ┌───┼───┼───╆━━━╅───┼───┼───┼───┼───┼───┼───┤

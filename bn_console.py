@@ -746,7 +746,7 @@ class MainConsole(object):
         joueur.grille_adverse = grille
         joueur.jeu_solo(cheat=cheat)
 
-    def jeu_contre_ordi(self, cheat=False, nom="Toto"):
+    def jeu_contre_ordi(self, cheat=False, nom="Joueur"):
         """Partie en duel contre l'ordinateur"""
         joueur = JoueurC(nom)
         niveau = self.get_niveau()
@@ -936,7 +936,7 @@ class MainConsole(object):
                 self.jeu_ordi(niveau=niveau, nb_echantillons=nb_echantillons, seuil=seuil)
 
             elif choix.lower() == 'j' :
-                nom = input("Votre nom [Toto] : ")
+                nom = input("Votre nom [Joueur] : ")
                 if nom == '' :
                     nom = "Toto"
                 rep = input("Activer le mode triche (o|[n]) ? ")

@@ -52,6 +52,14 @@ class GrilleTK(Grille, Frame):
 		self.can_height = height=1.5*self.margeTop+self.ymax*self.largCase
 		self.canvas = Canvas(self, width=self.can_width, height=self.can_height, bg="white", highlightthickness=0, cursor=cursor)
 		self.canvas.pack()
+	
+	def coord2case(self, x, y) :
+		"""Convertit les coordonnées graphiques en coordonées de cases"""
+		return (int((x-self.margeLeft)//self.largCase), int((y-self.margeTop)//self.largCase))
+
+	def case2coord(self,case):
+		"""Convertit les coordonnées de cases en coordonées de graphiques"""
+		return (self.margeLeft+case[0]*self.largCase, self.margeTop+case[1]*self.largCase)
 
 	def init_canvas(self):
 		"""Dessin initial de la grille"""
@@ -63,19 +71,11 @@ class GrilleTK(Grille, Frame):
 			self.canvas.create_text(self.margeLeft/2, self.margeTop+i*self.largCase+self.largCase/2, text=str(i), font=("Helvetica", 12))
 		for i in range(self.xmax):
 			self.canvas.create_text(self.margeLeft+i*self.largCase+self.largCase/2, self.margeTop/2, text=chr(i+65), font=("Helvetica", 12))
-
-	def coord2case(self, x, y) :
-		"""Convertit les coordonnées graphiques en coordonées de cases"""
-		return (int((x-self.margeLeft)//self.largCase), int((y-self.margeTop)//self.largCase))
-
-	def case2coord(self,case):
-		"""Convertit les coordonnées de cases en coordonées de graphiques"""
-		return (self.margeLeft+case[0]*self.largCase, self.margeTop+case[1]*self.largCase)
-
-	def color_case(self, case, couleur):
-		"""Colorie une case"""
-		(x, y) = self.case2coord(case)
-		self.canvas.create_rectangle(x+1, y+1, x+self.largCase, y+self.largCase, width=0, fill=couleur)
+	
+	def clear_canvas(self):
+		"""Réinitialise le canvas"""
+		self.canvas.delete("all")
+		self.init_canvas()
 
 	def marque_case(self, case) :
 		"""Marque une case touchée ou manquée"""
@@ -88,10 +88,10 @@ class GrilleTK(Grille, Frame):
 			symbole = ""
 		self.canvas.create_text(x+self.largCase/2, y+self.largCase/2, text=symbole, font=("Helvetica", 12))
 
-	def clear_canvas(self):
-		"""Efface le canvas"""
-		self.canvas.delete("all")
-		self.init_canvas()
+	def color_case(self, case, couleur):
+		"""Colorie une case"""
+		(x, y) = self.case2coord(case)
+		self.canvas.create_rectangle(x+1, y+1, x+self.largCase, y+self.largCase, width=0, fill=couleur)
 
 	def color_noires(self) :
 		"""Colorie une case sur deux"""
@@ -110,6 +110,7 @@ class GrilleTK(Grille, Frame):
 					self.color_case((i, j), COLOR_BOAT)
 					
 	def color_bateaux_coules(self, coules=[]):
+		"""Colorie les cases des bateaux coulés"""
 		for case in coules :
 			self.color_case(case, COLOR_BOAT)
 		
@@ -133,29 +134,6 @@ class GrilleTK(Grille, Frame):
 		self.color_noires()
 		self.color_bateaux_adverse(grille)
 		self.marque_cases()
-
-
-	def affiche0(self):
-		"""Affiche le canvas"""
-		self.clear_canvas()
-		self.init_canvas()
-		for i in range(self.xmax):
-			for j in range(self.ymax):
-				self.marque_case((i, j))
-
-	def affiche_adverse0(self, grille=None) :
-		"""Affiche le canvas en coloriant les bateaux adverses"""
-		if not grille :
-			grille = self
-		self.clear_canvas()
-		self.init_canvas()
-		for i in range(self.xmax):
-			for j in range(self.ymax):
-				if grille.etat[(i,j)] == 1 :
-					self.color_case((i, j), COLOR_BOAT)
-		for i in range(self.xmax):
-			for j in range(self.ymax):
-				self.marque_case((i, j))
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -485,10 +463,10 @@ class PlaceWindow(object):
 				self.grille.marque_case((i, j))
 			# Case de fin du bateau, on crée un apperçu
 			else :
-				if   i>self.case_depart[0] : sens = DROITE
-				elif i<self.case_depart[0] : sens = GAUCHE
-				elif j>self.case_depart[1] : sens = BAS
-				elif j<self.case_depart[1] : sens = HAUT
+				if   i>self.case_depart[0] and j==self.case_depart[1] : sens = DROITE
+				elif i<self.case_depart[0] and j==self.case_depart[1] : sens = GAUCHE
+				elif j>self.case_depart[1] and i==self.case_depart[0] : sens = BAS
+				elif j<self.case_depart[1] and i==self.case_depart[0] : sens = HAUT
 				if (i,j) in self.end_possibles :
 					bateau = Bateau(self.current_taille, self.case_depart, sens)
 					for case in bateau.cases :
@@ -625,7 +603,7 @@ class MainTK(Frame):
 			ok = joueur.grille_suivi.test_case((i, j))
 			if joueur.turn and joueur.playable and 0 <= i < joueur.grille_suivi.xmax and 0 <= j < joueur.grille_suivi.ymax :
 				joueur.tire((i,j))
-				joueur.grille_suivi.affiche()
+				joueur.grille_suivi.affiche(coules=joueur.coules)
 				if joueur.grille_suivi.fini() :
 					gagnant = 0
 					fini = True
