@@ -31,14 +31,6 @@ COLOR_FOND = "white"    # Fond de la frame principale
 #----------------------------------------------------------------------------------------------------------------
 #
 
-class BateauTK(Bateau):
-	def __init__(self, taille, start, sens):
-		Bateau.__init__(self, taille, start, sens)
-
-#
-#----------------------------------------------------------------------------------------------------------------
-#
-
 class GrilleTK(Grille, Frame):
 	"""Crée un widget pour afficher et gérer les grilles"""
 	def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2], parent=None, cursor="arrow"):
