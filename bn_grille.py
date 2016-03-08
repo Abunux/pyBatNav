@@ -609,6 +609,7 @@ class GrilleSuivi(Grille):
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+
 # Différents tests
 if __name__ == "__main__" :
     #~ grille = Grille(xmax=6, ymax=6,taille_bateaux=[2,2,3])

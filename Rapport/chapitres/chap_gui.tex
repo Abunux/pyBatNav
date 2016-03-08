@@ -1,17 +1,71 @@
 \chapter{Interface graphique}
 
-Une interface réalisée grâce à la bibliothèque \texttt{tkinter} est codée dans le fichier \texttt{bn\_tkinter}. Dans cette interface, on a la possibilité de joueur seul sur une grille aléatoire, de voir l'algorithme de résolution (avec choix du niveau) et de jouer contre l'algorithme (avec choix du niveau de ce dernier et placement de nos bateaux).
+Une interface réalisée grâce à la bibliothèque \texttt{tkinter} est codée dans le fichier \texttt{bn\_tkinter}. Dans cette interface, on a la possibilité de jouer seul sur une grille aléatoire, de voir l'algorithme de résolution (avec choix du niveau) et de jouer contre l'algorithme (avec choix du niveau de ce dernier et placement de nos bateaux).
 
-Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant las date de rendu de projet, j'ai du la coder très rapidement et, malgré l'urgence, je suis assez satisfait du résultat.
+Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement.
 
-\section{Principes de l'interface}
-
-Le point principal se situe dans la classe \texttt{GrilleTK(Grille)} qui implémente les fonctionnalités graphiques (avec un \texttt{canvas}) des grilles.
-
-La fenêtre principale est basée sur une \texttt{Frame},\texttt{main\_frame}, dans laquelle on va placer les grilles, ainsi que des fenêtres de texte. Entre chaque partie on l'efface en supprimant tous ses widgets enfants, obtenus dans la liste \texttt{main\_frame.pack\_slaves()}, grâce à leurs méthodes \texttt{destroy()}. 
-
-J'ai également créé deux fenêtres annexes pour placer nos bateaux (\texttt{PlaceWin}) et choisir pour le niveau de l'algorithme (\texttt{LevelWin}).
-
-Enfin les classes \texttt{JoueurTK(Joueur)} et \texttt{OrdiTK(Ordi, JoueurTK)} implémentent les fonctions graphiques, et notamment la gestion des événements souris, aux joueurs. Notons que pour pouvoir accéder à la boîte de texte \texttt{info} de l'interface principale qui affiche les informations de partie, on met l'attribut \texttt{name="info"} à ce widget et on y accède depuis la classe \texttt{JoueurTK(Joueur)} via \texttt{self.parent.children["info"]}, où \texttt{self.parent} est la frame principale (\texttt{main\_frame}).
+%\section{Principes de l'interface}
+%
+%Le point principal se situe dans la classe \texttt{GrilleTK(Grille)} qui implémente les fonctionnalités graphiques (avec un \texttt{canvas}) des grilles.
+%
+%%\medskip
+%%
+%%La fenêtre principale est basée sur une \texttt{Frame},  \texttt{main\_frame}, dans laquelle on va placer les grilles, ainsi qu'une fenêtre de texte. Entre chaque partie on l'efface en supprimant tous ses widgets enfants, obtenus dans la liste \texttt{main\_frame.pack\_slaves()}, grâce à leurs méthodes \texttt{destroy()}. 
+%
+%\medskip
+%
+%J'ai également créé deux fenêtres annexes pour placer nos bateaux (\texttt{PlaceWin}) et choisir pour le niveau de l'algorithme (\texttt{LevelWin}).
+%
+%\medskip
+%
+%Enfin les classes \texttt{JoueurTK(Joueur)} et \texttt{OrdiTK(Ordi, JoueurTK)} implémentent les fonctions graphiques, et notamment la gestion des événements souris, des joueurs.
+%% Notons que pour pouvoir accéder à la boîte de texte \texttt{info} de l'interface principale qui affiche les informations de partie, on met l'attribut \texttt{name="info"} à ce widget et on y accède depuis la classe \texttt{JoueurTK(Joueur)} via \texttt{self.parent.children["info"]}, où \texttt{self.parent} est la frame principale (\texttt{main\_frame}).
 
 \section{Affichage et gestion des grilles}
+La classe \texttt{GrilleTK}, héritée de la classe \texttt{Grille} implémente le \texttt{canvas} sur sur lequel on va dessiner les grilles.
+
+Sur ce \texttt{canvas}, on définit les marges \texttt{marge\_left} et \texttt{marge\_top} à gauche et en haut pour les intitulés des colonnes et des lignes, ainsi que la largeur des cases \texttt{largeur\_case}. 
+
+\medskip
+
+Les passages de coordonnées graphiques aux coordonnées des cases, et réciproquement, sont gérés via  une transformation affine par les méthodes \texttt{GrilletK.coord2case(self, x, y)} et \texttt{GrilletK.case2coord(self, case)}. Notons les méthodes \texttt{canvasx} et \texttt{canvasy} de l'objet \texttt{canvas} qui permettent de récupérer les coordonnées graphiques du curseur dans un repère associé au \texttt{canvas}.
+
+\medskip
+
+Enfin toute une série de méthodes vont permettre de marquer les cases suivant leur état, de colorier les bateaux adverses ou les bateaux coulés.  
+
+\section{Fenêtre principale}
+La fenêtre principale est constituée d'un menu pour lancer une partie et d'une \texttt{Frame} principale, \texttt{main\_frame}. Sur cette \texttt{Frame}, on va dessiner les grilles et une fenêtre de texte pour les informations de partie.
+
+\medskip
+
+Entre chaque partie on va effacer le contenu de cette \texttt{Frame} en supprimant tous ses widgets enfants (en fait ceux "packés") , obtenus dans la liste \texttt{main\_frame.pack\_slaves()}, grâce à leurs méthodes \texttt{destroy()}. 
+
+\section{Gestion des joueurs et de l'ordinateur}
+La classe \texttt{JoueurTK(Joueur)} fournit les interactions entre la grille du joueur et les événements souris. Afin de distinguer un joueur humain (qui peut donc agir avec la souris sur la grille), on a un attribut \texttt{Joueur.playable}.
+
+Le fait de déplacer le curseur sur la grille de suivi met la case survolée en surbrillance et le fait de cliquer joue un coup.
+
+Il faut également pouvoir afficher les informations sur la boîte de texte de la \texttt{Frame} parent. Ceci est possible  en mettant l'option \texttt{name="info"} à la boîte de texte \texttt{infos} de la \texttt{main\_frame} et en y accédant via \texttt{self.parent.children["info"]}.
+
+Enfin le placement des bateaux est implémenté comme détaillé ci-dessous.
+
+\medskip
+
+L'ordinateur, quant à lui, est géré par la classe \texttt{OrdiTK(Ordi, JoueurTK)} avec un paramètre \texttt{playable=False}.
+
+\section{Fenêtres supplémentaire}
+\subsection{Choix du niveau de l'algorithme}
+La choix du niveau de l'algorithme s'effectue dans une fenêtre de type \texttt{Toplevel} dans la classe \texttt{LevelWin}.\\
+Le choix du niveau s'effectue dans un \texttt{Combobox} du sous-module \texttt{ttk} et à chaque changement de valeur, un événement est déclenché pour, d'une part mettre à jour la description du niveau et, d'autre part, afficher une boîte de texte permettant de rentrer des paramètres supplémentaires pour les niveaux 4 et 6.
+
+\subsection{Placement des bateaux}
+La choix du niveau de l'algorithme s'effectue dans une fenêtre de type \texttt{Toplevel} dans la classe \texttt{PlaceWin}.\\
+Pour chaque bateau à placer, le principe est le suivant :
+\begin{itemize}
+\item Lorsque l'utilisateur clique une première fois sur la grille, sa case est mémorisée et le drapeau \texttt{first\_click} est mis à \texttt{False}.\\
+On détermine alors tous les bateaux valides démarrant sur cette case et on colorie leurs cases de fin.
+\item  Lors du déplacement du curseur sur une case de fin possible, un aperçu du bateau est mis en couleur.
+\item Lors du clique sur la case de fin, le bateau est validé et le drapeau \texttt{first\_click} est remis à \texttt{True}.
+\end{itemize}
+Si on ferme prématurément cette fenêtre, les bateaux sont placés aléatoirement.

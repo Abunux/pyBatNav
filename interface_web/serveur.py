@@ -5,13 +5,14 @@ from http.server import HTTPServer, CGIHTTPRequestHandler
 
 def launch_serveur():
 	# Effaçage des sessions antérieures éventuelles
-	for session in os.listdir("sessions"):
+	for session in os.listdir(os.path.join("interface_web","sessions")):
 		os.remove(os.path.join("sessions", session))
 
 	# Source pour la partie serveur:
 	# https://www.safaribooksonline.com/library/view/programming-python-4th/9781449398712/ch01s08.html
 
-	webdir = '.'	# Répertoire des pages html et du dossier cgi-bin
+	webdir = './interface_web'	# Répertoire des pages html et du dossier cgi-bin
+	#~ webdir = '.'	# Répertoire des pages html et du dossier cgi-bin
 	port = 8000		# Port
 
 	print("Serveur lancé")

@@ -45,32 +45,32 @@ class GrilleTK(Grille, Frame):
 		Grille.__init__(self, xmax=xmax, ymax=ymax, taille_bateaux=taille_bateaux)
 		Frame.__init__(self, parent)
 
-		self.margeLeft = 30
-		self.margeTop = 30
-		self.largCase = 40
-		self.can_width = 1.5*self.margeLeft+self.xmax*self.largCase
-		self.can_height = height=1.5*self.margeTop+self.ymax*self.largCase
+		self.marge_left = 30
+		self.marge_top = 30
+		self.largeur_case = 40
+		self.can_width = 1.5*self.marge_left+self.xmax*self.largeur_case
+		self.can_height = height=1.5*self.marge_top+self.ymax*self.largeur_case
 		self.canvas = Canvas(self, width=self.can_width, height=self.can_height, bg="white", highlightthickness=0, cursor=cursor)
 		self.canvas.pack()
 	
 	def coord2case(self, x, y) :
 		"""Convertit les coordonnées graphiques en coordonées de cases"""
-		return (int((x-self.margeLeft)//self.largCase), int((y-self.margeTop)//self.largCase))
+		return (int((x-self.marge_left)//self.largeur_case), int((y-self.marge_top)//self.largeur_case))
 
 	def case2coord(self,case):
 		"""Convertit les coordonnées de cases en coordonées de graphiques"""
-		return (self.margeLeft+case[0]*self.largCase, self.margeTop+case[1]*self.largCase)
+		return (self.marge_left+case[0]*self.largeur_case, self.marge_top+case[1]*self.largeur_case)
 
 	def init_canvas(self):
 		"""Dessin initial de la grille"""
 		for i in range(self.xmax+1) :
-			self.canvas.create_line(self.margeLeft, self.margeTop+i*self.largCase, self.margeLeft+self.xmax*self.largCase, self.margeTop+i*self.largCase)
+			self.canvas.create_line(self.marge_left, self.marge_top+i*self.largeur_case, self.marge_left+self.xmax*self.largeur_case, self.marge_top+i*self.largeur_case)
 		for i in range(self.ymax+1) :
-			self.canvas.create_line(self.margeLeft+i*self.largCase, self.margeTop, self.margeLeft+i*self.largCase, self.margeTop+self.ymax*self.largCase)
+			self.canvas.create_line(self.marge_left+i*self.largeur_case, self.marge_top, self.marge_left+i*self.largeur_case, self.marge_top+self.ymax*self.largeur_case)
 		for i in range(self.xmax):
-			self.canvas.create_text(self.margeLeft/2, self.margeTop+i*self.largCase+self.largCase/2, text=str(i), font=("Helvetica", 12))
+			self.canvas.create_text(self.marge_left/2, self.marge_top+i*self.largeur_case+self.largeur_case/2, text=str(i), font=("Helvetica", 12))
 		for i in range(self.xmax):
-			self.canvas.create_text(self.margeLeft+i*self.largCase+self.largCase/2, self.margeTop/2, text=chr(i+65), font=("Helvetica", 12))
+			self.canvas.create_text(self.marge_left+i*self.largeur_case+self.largeur_case/2, self.marge_top/2, text=chr(i+65), font=("Helvetica", 12))
 	
 	def clear_canvas(self):
 		"""Réinitialise le canvas"""
@@ -86,12 +86,12 @@ class GrilleTK(Grille, Frame):
 			symbole = "O"
 		else :
 			symbole = ""
-		self.canvas.create_text(x+self.largCase/2, y+self.largCase/2, text=symbole, font=("Helvetica", 12))
+		self.canvas.create_text(x+self.largeur_case/2, y+self.largeur_case/2, text=symbole, font=("Helvetica", 12))
 
 	def color_case(self, case, couleur):
 		"""Colorie une case"""
 		(x, y) = self.case2coord(case)
-		self.canvas.create_rectangle(x+1, y+1, x+self.largCase, y+self.largCase, width=0, fill=couleur)
+		self.canvas.create_rectangle(x+1, y+1, x+self.largeur_case, y+self.largeur_case, width=0, fill=couleur)
 
 	def color_noires(self) :
 		"""Colorie une case sur deux"""
@@ -167,7 +167,7 @@ class JoueurTK(Joueur):
 		self.grille_adverse = GrilleJoueurTK(parent=parent, cursor=cursor)
 		self.grille_suivi = GrilleSuiviTK(parent=parent, cursor=cursor)
 
-		self.turn = True        # Si c'est au tour de joueur de jouer
+		self.turn = True        # Si c'est au tour de joueur de jouer (pour une évolution à deux joueurs humains)
 		self.playable = True    # Si c'est possible de jouer
 
 		try :
@@ -518,28 +518,28 @@ class MainTK(Frame):
 		can_fond.pack(fill=BOTH)
 		can_fond.create_text(width_main_frame//2, height_main_frame//2,
 			text="""     ╔══════════════════════════════════════════════════════════════════╗
-	 ║                                                                  ║
-	 ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
-	 ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
-	 ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
-	 ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
-	 ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
-	 ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
-	 ║                                                                  ║
-	 ║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
-	 ║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
-	 ║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
-	 ║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
-	 ║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
-	 ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
-	 ║                                                                  ║
-	 ╚══════════════════════════════════════════════════════════════════╝
+     ║                                                                  ║
+     ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
+     ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
+     ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
+     ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
+     ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
+     ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
+     ║                                                                  ║
+     ║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
+     ║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
+     ║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
+     ║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
+     ║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
+     ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
+     ║                                                                  ║
+     ╚══════════════════════════════════════════════════════════════════╝
 
-			 Projet de formation ISN 2015/2016 de l'académie de Lyon
-				Auteur : Frédéric Muller
-				Code du projet : https://github.com/Abunux/pyBatNav
-				Licence Creative Common CC BY-NC-SA
-				Projet démarré le 14/11/2015
+            Projet de formation ISN 2015/2016 de l'académie de Lyon
+                 Auteur : Frédéric Muller
+                 Code du projet : https://github.com/Abunux/pyBatNav
+                 Licence Creative Common CC BY-NC-SA
+                 Projet démarré le 14/11/2015
 		""",
 			font=("Courier", 10))
 
