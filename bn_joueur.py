@@ -314,7 +314,7 @@ class Ordi(Joueur):
 
     def add_adjacentes_premiere(self):
         """Ajoute les cases adjacentes possibles à
-        la premiere case touchée dans la  file d'attente"""
+        la première case touchée dans la  file d'attente"""
         # Récupération des cases adjacentes en fonction de la taille du plus petit bateau restant
         adj = self.grille_suivi.adjacent(self.case_touchee)
         self.grille_suivi.get_taille_min()

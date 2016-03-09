@@ -2,7 +2,7 @@
 
 Une interface réalisée grâce à la bibliothèque \texttt{tkinter} est codée dans le fichier \texttt{bn\_tkinter}. Dans cette interface, on a la possibilité de jouer seul sur une grille aléatoire, de voir l'algorithme de résolution (avec choix du niveau) et de jouer contre l'algorithme (avec choix du niveau de ce dernier et placement de nos bateaux).
 
-Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement.
+Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement. C'est également pourquoi cette partie du rapport est moins détaillée, par faute de temps.
 
 %\section{Principes de l'interface}
 %
@@ -46,7 +46,7 @@ La classe \texttt{JoueurTK(Joueur)} fournit les interactions entre la grille du 
 
 Le fait de déplacer le curseur sur la grille de suivi met la case survolée en surbrillance et le fait de cliquer joue un coup.
 
-Il faut également pouvoir afficher les informations sur la boîte de texte de la \texttt{Frame} parent. Ceci est possible  en mettant l'option \texttt{name="info"} à la boîte de texte \texttt{infos} de la \texttt{main\_frame} et en y accédant via \texttt{self.parent.children["info"]}.
+Il faut également pouvoir afficher les informations sur la boîte de texte de la \texttt{Frame} parent. Ceci est possible  en mettant l'option \texttt{name="info"} à la boîte de texte \texttt{infos} de la \texttt{main\_frame} et en y accédant via \texttt{Joueur.parent.children["info"]}.
 
 Enfin le placement des bateaux est implémenté comme détaillé ci-dessous.
 

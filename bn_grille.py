@@ -139,7 +139,7 @@ class Grille(object):
     #
     # Gestion des espaces impossibles ----------------------------------
     #
-    def get_max_space(self, case, direction=TOUTES_DIR, sens=1):
+    def get_max_space(self, case, direction=TOUTES_DIR, face=True):
         """Renvoie la plus grande place possible sur cette case
         dans une direction"""
         # sens = 0 : ne compte qu'à droite ou en bas (pour l'IA)
@@ -155,7 +155,7 @@ class Grille(object):
             m += 1
             x += direction[0]
             y += direction[1]
-        if sens == 1 :
+        if  face:
             # Comptage des cases libres sur toute une direction
             x = case[0]
             y = case[1]
@@ -265,7 +265,7 @@ class Grille(object):
         # Regarde pour chaque case vide la taille maxi d'un bateau dans chaque direction
         for case in self.vides :
             for direction in [DROITE, BAS] :
-                tmax = self.get_max_space(case, direction=direction, sens=0)
+                tmax = self.get_max_space(case, direction=direction, face=0)
                 self.possibles_case[case] += [(taille, direction) for taille in tmp_taille_bateaux if taille <= tmax]
 
         # Liste des cases de départ et sens possibles pour chaque bateau
@@ -615,7 +615,7 @@ if __name__ == "__main__" :
     #~ grille = Grille(xmax=6, ymax=6,taille_bateaux=[2,2,3])
     #~ grille = Grille(xmax=4, ymax=4,taille_bateaux=[3,3])
     #~ grille = Grille(xmax=3, ymax=3,taille_bateaux=[2,3])
-    grille = Grille(xmax=10, ymax=10,taille_bateaux=[5])
+    grille = Grille(xmax=10, ymax=10,taille_bateaux=[5,4])
     #~ grille = Grille(xmax=2, ymax=2,taille_bateaux=[2,2])
     #~ grille = Grille()
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  8 MAR 2016 12:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  8 MAR 2016 12:53
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2436,13 +2436,9 @@ Overfull \hbox (4.74535pt too wide) in paragraph at lines 42--43
 liste \T1/lmtt/m/n/12 main_frame.pack_slaves()\T1/futs/m/n/12 ,
  []
 
+[21
 
-Underfull \vbox (badness 1297) has occurred while \output is active []
-
- [21
-
-])
-(./chapitres/chap_web.tex
+]) (./chapitres/chap_web.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -3015,9 +3011,9 @@ runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
 
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (402.09842pt too wide) in paragraph at lines 31--31
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f85a
-404a6d8>, adversaire=<bn_joueur.Ordi object at 0x7f85a4056208>, cheat=False)[] 
+Overfull \hbox (402.08441pt too wide) in paragraph at lines 31--31
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f4c6
+244a6d8>, adversaire=<bn_joueur.Ordi object at 0x7f4c62456240>, cheat=False)[] 
 
  []
 
@@ -3171,9 +3167,9 @@ ed.
 
 File: ./docstrings/bn_console.PartieC  (verbatim)
 
-Overfull \hbox (402.08441pt too wide) in paragraph at lines 48--48
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f6cd
-e6003c8>, adversaire=<bn_joueur.Ordi object at 0x7f6cde600550>, cheat=False)[] 
+Overfull \hbox (402.09842pt too wide) in paragraph at lines 48--48
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f64b
+4c733c8>, adversaire=<bn_joueur.Ordi object at 0x7f64b4c73550>, cheat=False)[] 
 
  []
 
@@ -4592,7 +4588,7 @@ File: ./docstrings/bn_stats.Stats  (verbatim)
 
 Overfull \hbox (420.63744pt too wide) in paragraph at lines 83--83
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'xmax': 10, 'ymax': 10, 'taille_bateaux': [5, 4, 3, 3, 2]}, niveau_str='5')
+le={'taille_bateaux': [5, 4, 3, 3, 2], 'ymax': 10, 'xmax': 10}, niveau_str='5')
 [] 
  []
 
@@ -5005,7 +5001,7 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 80.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 80.
 Package rerunfilecheck Info: File `Muller_ISN2016_BatailleNavale_Rapport.out' h
 as not changed.
-(rerunfilecheck)             Checksum: 09C9474D5B71F0D30A410B6ED63D8463;7774.
+(rerunfilecheck)             Checksum: 7238F40210456119A999AFB6D5C3AD30;7787.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 80.
  )
 (\end occurred inside a group at level 36)
@@ -5050,11 +5046,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 80.
 Here is how much of TeX's memory you used:
  30180 strings out of 493304
  562745 string characters out of 6139871
- 854154 words of memory out of 5000000
+ 855154 words of memory out of 5000000
  32392 multiletter control sequences out of 15000+600000
  199923 words of font info for 185 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 51i,12n,71p,859b,1422s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,12n,71p,1273b,1422s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/tex
 mf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
 base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fourier/fourier-m
@@ -5067,7 +5063,7 @@ re/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts
 /utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr
 i8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Muller_ISN2016_BatailleNavale_Rapport.pdf (181 pages, 1011953
+Output written on Muller_ISN2016_BatailleNavale_Rapport.pdf (181 pages, 1012741
  bytes).
 PDF statistics:
  1564 PDF objects out of 1728 (max. 8388607)

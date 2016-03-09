@@ -6,11 +6,11 @@ Le fait de rédiger cette partie a permis de prendre du recul sur ces algorithme
 
 
 \subsection{Détermination des espaces vides}\label{get_max_space}
-\texttt{Grille.get\_max\_space(self, case, direction, sens)} :
+\texttt{Grille.get\_max\_space(self, case, direction, face=True)} :
 \begin{algo1}
 Si direction == TOUTES\_DIRECTIONS :\\
-\tab{1} On renvoie le maximum de get\_max\_space(case, HORIZONTAL, sens=1)\\
-\tab{2} et get\_max\_space(case, VERTICAL, sens=1)\\
+\tab{1} On renvoie le maximum de get\_max\_space(case, HORIZONTAL)\\
+\tab{2} et get\_max\_space(case, VERTICAL)\\
 direction[0]\sto dh\\
 direction[1]\sto dv\\
 1\sto m\\
@@ -20,7 +20,7 @@ Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
 \tab{1}m+1\sto m\\
 \tab{1}x+dh\sto x\\
 \tab{1}y+dv\sto y\\
-Si sens == 1 (on regarde dans l'autre sens):\\
+Si face (on regarde dans l'autre sens):\\
 \tab{1}case[0]\sto x\\
 \tab{1}case[1]\sto y\\
 \tab{1}Tant que la case (x-dh, y-dv) est vide et est dans la grille :\\

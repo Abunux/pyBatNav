@@ -56,7 +56,7 @@ Notons également l'utilisation de l'attribut \texttt{Grille.vides} qui est la l
 Enfin, la méthode \texttt{Grille.adjacent(self, case)} renvoie la liste de cases adjacentes à une case donnée.
 
 \subsection{Gestion des espaces vides}
-La méthodes \texttt{Grille.get\_max\_space(self, case, direction, sens)} renvoie le nombre de cases vides dans une direction donnée. Grâce aux constantes de direction, un seul calcul est nécessaire pour englober tous les cas (horizontal et vertical). L'algorithme est donné en annexe \ref{algo_liste}, page \pageref{get_max_space}.
+La méthodes \texttt{Grille.get\_max\_space(self, case, direction, face=True)} renvoie le nombre de cases vides dans une direction donnée. Grâce aux constantes de direction, un seul calcul est nécessaire pour englober tous les cas (horizontal et vertical). L'algorithme est donné en annexe \ref{algo_liste}, page \pageref{get_max_space}.
 %\begin{algo1}
 %direction[0]\sto dh\\
 %direction[1]\sto dv\\
@@ -70,7 +70,7 @@ La méthodes \texttt{Grille.get\_max\_space(self, case, direction, sens)} renvoi
 %Retourner m\\
 %\end{algo1}
 
-Si le paramètre \texttt{sens=1}, la détermination se fait dans les deux sens (espace libre total horizontal ou vertical).
+Si le paramètre \texttt{face==True}, la détermination se fait dans les deux sens (espace libre total horizontal ou vertical).
 
 \medskip
 
