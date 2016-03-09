@@ -32,10 +32,12 @@ soit avec : $ ./main.py
 
 soit avec : $ python3 main.py
 
-Le programme main.py accepte un argument en ligne de commande --interface :
-- ./main.py --interface console : pour une interface console
-- ./main.py --interface tkinter : pour l'interface grpahique
-- ./main.py --interface web : pour l'interface web. Il faut alors ouvrir la page http://localhost:8000/index.html dans son navigateur
+Le programme main.py accepte un argument facultatif en ligne de commande pour l'interface :
+- ./main.py --console : pour une interface console
+- ./main.py --tkinter : pour l'interface grpahique
+- ./main.py --web : pour l'interface web. Il faut alors ouvrir la page http://localhost:8000/index.html dans son navigateur
+
+Si aucune interface n'est précisée, une menu propose d'en choisir une.
 
 Il est également possible de lancer directement les fichiers :
 - bn_console.py
