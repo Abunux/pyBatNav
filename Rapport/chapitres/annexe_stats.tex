@@ -20,7 +20,7 @@ On répète $n$ fois la résolution sur une grille aléatoire, chaque fois diff�
 
 Le calcul du temps se fait en lançant un chronomètre grâce à la fonction \texttt{time()} du module \texttt{time}, qui renvoie le nombre de seconde écoulées depuis epoch (le 1\up{er} janvier 1970). Donc en sauvegardant cette valeur au début de la simulation dans une variable \texttt{start} et en calculant \texttt{time()-start} à la fin de la simulation, on obtient le temps total écoulé. Afin de chronométrer uniquement le temps de résolution (et non de la création de la grille), ce chronomètre est mis à jour uniquement lors de la résolution effective.
 
-L'algorithme de test affiche une estimation du temps restant (ainsi que de la date et l'heure de la fin de la simulation) basé sur le temps de la première résolution (donc très approximative), ainsi que l'avancement par tranches de 10\%.
+L'algorithme de test, disponible uniquement dans l'interface console, affiche une estimation du temps restant (ainsi que de la date et l'heure de la fin de la simulation) basé sur le temps de la première résolution (donc très approximative), ainsi que l'avancement par tranches de 10\%.
 
 Afin d'obtenir des résultats comparables, tous les temps ont été mesurés sur le même ordinateur disposant d'un processeur Intel i7-4800-MQ cadencé à 2,7 GHz en mode monoprocesseur, de 16 Go de mémoire vive et tournant sous un système Linux 64 bits (Xubuntu 14.04).
 

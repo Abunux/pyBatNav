@@ -1,0 +1,47 @@
+Help on class Stats in bn_stats:
+
+bn_stats.Stats = class Stats(builtins.object)
+ |  Implémente les outils d'étude statistique
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, data=None, filename='', tmoy=0, param_grille={'taille_bateaux': [5, 4, 3, 3, 2], 'ymax': 10, 'xmax': 10}, niveau_str='5')
+ |  
+ |  get_all_stats(self)
+ |      Récupère tous les indicateurs statistiques
+ |  
+ |  get_effectif(self)
+ |      Calcul de l'effectif total
+ |  
+ |  get_maxi(self)
+ |      Calcul du maximum
+ |  
+ |  get_mini(self)
+ |      Calcul du minimum
+ |  
+ |  get_mode(self)
+ |      Calcul du mode
+ |  
+ |  get_moyenne(self)
+ |      Calcul de la moyenne
+ |  
+ |  get_quartiles(self)
+ |      Calcul des quartiles. Renvoie une liste [Q1, Med, Q3].
+ |      Q1 et Q3 sont les termes de rangs ceil(n/4) et ceil(3n/4)
+ |      La médiane est définie comme le terme de rang ceil(n/2)
+ |  
+ |  get_sigma(self)
+ |      Calcul de l'écart-type
+ |  
+ |  histogramme(self, show=True, save=True)
+ |      Crée la représentation graphique des données avec :
+ |      - Un histogramme des fréquences
+ |      - Un diagramme en boîte à moustache
+ |      - Tous les indicateurs statistiques
+ |  
+ |  load_data(self)
+ |      Charge les données à partir d'un fichier texte
+ |  
+ |  save_data(self)
+ |      Sauvegarde les données dans un fichier texte
+

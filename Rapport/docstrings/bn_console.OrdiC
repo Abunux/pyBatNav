@@ -1,0 +1,131 @@
+Help on class OrdiC in bn_console:
+
+bn_console.OrdiC = class OrdiC(JoueurC, bn_joueur.Ordi)
+ |  Résoultion de la grille en mode console
+ |  
+ |  Method resolution order:
+ |      OrdiC
+ |      JoueurC
+ |      bn_joueur.Ordi
+ |      bn_joueur.Joueur
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, nom='HAL', niveau=4, nb_echantillons=100, seuil=20)
+ |  
+ |  resolution(self, affiche=True, grille=None)
+ |      Lance la résolution de la grille par l'ordinateur
+ |  
+ |  resolution_latex(self, affiche=True, grille=None)
+ |      Lance la résolution de la grille par l'ordinateur
+ |      avec affichage en LaTeX pour copier-coller dans le rapport
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from JoueurC:
+ |  
+ |  affiche_messages(self, affiche=True)
+ |      Affiche les messages du joueur
+ |  
+ |  jeu_solo(self, cheat=True)
+ |      Lance une partie solo sur une grille aléatoire
+ |  
+ |  joue_coup(self)
+ |      Joue un coup sur une case
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from bn_joueur.Ordi:
+ |  
+ |  add_adjacentes_premiere(self)
+ |      Ajoute les cases adjacentes possibles à
+ |      la première case touchée dans la  file d'attente
+ |  
+ |  add_queue(self, case)
+ |      Ajoute la case à la file d'attente
+ |  
+ |  affiche_bateaux(self)
+ |      Affiche la liste des bateaux restant à couler
+ |  
+ |  affiche_queue(self)
+ |      Affiche le contenu de la file d'attente
+ |  
+ |  affiche_suivi(self)
+ |      Affiche la grille de suivi des coups
+ |  
+ |  coup_suivant(self)
+ |      Fait jouer à l'ordinateur le coup suivant
+ |  
+ |  elimine_adjacentes(self)
+ |      Élimine les cases adjacents à un bateau coulé
+ |  
+ |  elimine_petites(self)
+ |      Élimine les cases dans lesquelles le plus petit bateau
+ |      ne peut pas rentrer
+ |  
+ |  make_case_aleatoire(self)
+ |      Choisit une case aléatoire (suivant l'algorithme choisi)
+ |  
+ |  pop_queue(self)
+ |      Récupère, en l'enlevant, le premier élément de la queue
+ |  
+ |  rem_bateau(self)
+ |      Enlève le dernier bateau coulé
+ |  
+ |  rem_queue(self, case)
+ |      Enlève la case de la file d'attente
+ |  
+ |  shuffle_queue(self)
+ |      Mélange les cases de la file d'attente en les triant
+ |      par ordre décroissant des bateaux possibles
+ |  
+ |  test_plus_grand(self)
+ |      Renvoie True si on a touché autant de cases que
+ |      le plus grand bateau restant
+ |  
+ |  tire_case_courante(self)
+ |      Tire sur la case courante
+ |  
+ |  update_queue_manque(self)
+ |      Met à jour la file d'attente en éliminant une direction
+ |      impossible, après avoir manqué la case en face
+ |  
+ |  update_queue_touche(self)
+ |      Met à jour la file d'attente en enlevant les cases
+ |      qui ne sont pas dans la bonne direction après avoir
+ |      touché une 2ème fois
+ |  
+ |  vide_queue(self)
+ |      Vide la file d'attente
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from bn_joueur.Joueur:
+ |  
+ |  add_bateau(self, taille, start, direction)
+ |      Ajoute un bateau sur la grille du joueur
+ |  
+ |  add_message(self, texte)
+ |      Ajoute le message texte à la file des messages
+ |  
+ |  case_aleatoire(self)
+ |      Retourne une case aléatoire parmi les cases vides
+ |      (tire sur les cases noires tant qu'il en reste)
+ |  
+ |  check_coules(self)
+ |      Vérifie les bateaux coulés sur la grille
+ |      et les enlève de la liste des bateaux à chercher
+ |      en marquant leurs case adjacentes comme impossibles
+ |  
+ |  clean_grille(self)
+ |      Élimine de la grille les cases impossibles
+ |  
+ |  filtre_messages(self)
+ |      Ne garde que les messages essentiels
+ |  
+ |  tire(self, case)
+ |      Tire sur la case (x,y)
+ |      Renvoie True si la case est touchée,
+ |      False si non touché ou case invalide
+ |  
+ |  tire_aleatoire(self)
+ |      Tire sur une case aléatoire
+

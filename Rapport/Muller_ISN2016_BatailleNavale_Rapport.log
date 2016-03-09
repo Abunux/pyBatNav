@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  9 MAR 2016 21:32
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  9 MAR 2016 22:16
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2245,20 +2245,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 ~Chapitre 5.
 
-Overfull \hbox (24.39217pt too wide) in paragraph at lines 7--8
+Overfull \hbox (24.39217pt too wide) in paragraph at lines 3--4
 \T1/lmtt/m/n/12 bn_joueur.py\T1/futs/m/n/12 , dans la mé-thode \T1/lmtt/m/n/12 
 Ordi.coup_suivant(self)\T1/futs/m/n/12 . L'at-tri-but \T1/lmtt/m/n/12 Ordi.case
 _courante
  []
 
 
-Overfull \hbox (36.35437pt too wide) in paragraph at lines 11--12
+Overfull \hbox (36.35437pt too wide) in paragraph at lines 7--8
 []\T1/futs/m/n/12 Différents al-go-rithmes de ré-so-lu-tion sont im-plé-men-tés
  et choi-sis avec l'at-tri-but \T1/lmtt/m/n/12 Ordi.niveau \T1/futs/m/n/12 : 
  []
 
 [11]
-Overfull \hbox (10.945pt too wide) in paragraph at lines 121--122
+Overfull \hbox (10.945pt too wide) in paragraph at lines 117--118
 []\T1/futs/m/n/12 Lors du pre-mier tir tou-ché après la phase de tir en aveugle
 , l'at-tri-but \T1/lmtt/m/n/12 Ordi.case_touchee
  []
@@ -2270,24 +2270,24 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [12]
-LaTeX Font Info:    Try loading font information for T1+phv on input line 143.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 139.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 143.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 139.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.5pt on input line 143.
+(Font)              scaled to size 10.5pt on input line 139.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.5pt on input line 145.
+(Font)              scaled to size 10.5pt on input line 141.
 
-Overfull \hbox (13.77136pt too wide) in paragraph at lines 157--158
+Overfull \hbox (13.77136pt too wide) in paragraph at lines 153--154
 \T1/futs/m/n/12 nombre de ba-teaux pos-sibles. C'est le rôle de la mé-thode \T1
 /lmtt/m/n/12 Grille.case_max_touchee(self,
  []
 
 
-Overfull \hbox (19.3282pt too wide) in paragraph at lines 161--163
+Overfull \hbox (19.3282pt too wide) in paragraph at lines 157--159
 \T1/futs/m/n/12 ment la même chose). Pour chaque taille de ba-teau à cou-ler po
 s-sible conte-nant \T1/lmtt/m/n/12 case_touchee
  []
@@ -2299,7 +2299,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [13]
-Overfull \hbox (4.60515pt too wide) in paragraph at lines 292--293
+Overfull \hbox (4.60515pt too wide) in paragraph at lines 288--289
 \T1/lmtt/m/n/12 sorted(probas_liste, key=lambda proba: proba[1], reverse = True
 ) \T1/futs/m/n/12 et que l'on
  []
@@ -2498,7 +2498,7 @@ Overfull \hbox (1.18723pt too wide) in paragraph at lines 83--92
  []
 
 
-Overfull \hbox (1.18723pt too wide) in paragraph at lines 98--112
+Overfull \hbox (1.18723pt too wide) in paragraph at lines 101--115
  [] 
  []
 
@@ -2509,7 +2509,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [33]
-Overfull \hbox (25.88724pt too wide) in paragraph at lines 138--175
+Overfull \hbox (25.88724pt too wide) in paragraph at lines 145--182
  [] 
  []
 
@@ -2531,12 +2531,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [35]
-Overfull \hbox (38.23724pt too wide) in paragraph at lines 215--227
+Overfull \hbox (38.23724pt too wide) in paragraph at lines 222--234
  [] 
  []
 
 
-Overfull \hbox (26.5737pt too wide) in paragraph at lines 231--232
+Overfull \hbox (26.5737pt too wide) in paragraph at lines 238--239
 \T1/futs/m/n/12 boucle. \T1/lmtt/m/n/12 case+k*direction \T1/futs/m/n/12 si-gni
 -fie \T1/lmtt/m/n/12 (case[0]+k*direction[0],case[1]+k*direction[1])\T1/futs/m/
 n/12 . 
@@ -2570,8 +2570,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [39]
-Overfull \hbox (19.93346pt too wide) in paragraph at lines 371--372
-[]\T1/futs/m/n/12 Notons que dans cet al-go-rithme on en s'in-té-resse qu'aux c
+Overfull \hbox (19.93346pt too wide) in paragraph at lines 378--379
+[]\T1/futs/m/n/12 Notons que dans cet al-go-rithme on ne s'in-té-resse qu'aux c
 ases ad-ja-centes à \T1/lmtt/m/n/12 case_touchee\T1/futs/m/n/12 . 
  []
 
@@ -2582,7 +2582,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [40]
-Overfull \hbox (50.58725pt too wide) in paragraph at lines 383--400
+Overfull \hbox (50.58725pt too wide) in paragraph at lines 390--407
  [] 
  []
 
@@ -2600,7 +2600,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [42]
-Overfull \hbox (13.53723pt too wide) in paragraph at lines 440--474
+Overfull \hbox (13.53723pt too wide) in paragraph at lines 447--481
  [] 
  []
 
@@ -2842,7 +2842,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [60]
 Annexe D.
 
-Overfull \hbox (4.82674pt too wide) in paragraph at lines 3--4
+Overfull \hbox (4.82674pt too wide) in paragraph at lines 3--10
 \T1/futs/m/n/12 mande \T1/lmtt/m/n/12 pydoc3 <module.Classe> \T1/futs/m/n/12 et
  sont gé-né-rés par les docs-trings à l'in-té-rieur de chaque
  []
@@ -2851,7 +2851,7 @@ runsystem(pydoc3 bn_grille.Bateau > ./docstrings/bn_grille.Bateau)...executed.
 
 File: ./docstrings/bn_grille.Bateau  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 12--12
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 13--13
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2859,8 +2859,6 @@ Overfull \hbox (13.08723pt too wide) in paragraph at lines 12--12
 [61
 
 ]
-runsystem(pydoc3 bn_grille.Grille > ./docstrings/bn_grille.Grille)...executed.
-
 File: ./docstrings/bn_grille.Grille  (verbatim)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2883,12 +2881,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [63]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 18--18
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 19--19
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
-
-runsystem(pydoc3 bn_joueur.Joueur > ./docstrings/bn_joueur.Joueur)...executed.
 
 File: ./docstrings/bn_joueur.Joueur  (verbatim)
 
@@ -2908,12 +2904,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [65]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 23--23
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 24--24
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
-
-runsystem(pydoc3 bn_joueur.Ordi > ./docstrings/bn_joueur.Ordi)...executed.
 
 File: ./docstrings/bn_joueur.Ordi  (verbatim)
 
@@ -2933,7 +2927,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [67]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 27--27
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 28--28
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2949,23 +2943,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [68]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 27--27
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 28--28
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
-runsystem(pydoc3 bn_joueur.Partie > ./docstrings/bn_joueur.Partie)...executed.
-
 File: ./docstrings/bn_joueur.Partie  (verbatim)
 
-Overfull \hbox (402.08441pt too wide) in paragraph at lines 31--31
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f45e
-9029358>, adversaire=<bn_joueur.Ordi object at 0x7f45e9029e80>, cheat=False)[] 
+Overfull \hbox (402.09142pt too wide) in paragraph at lines 32--32
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f7f4
+5179390>, adversaire=<bn_joueur.Ordi object at 0x7f7f45179eb8>, cheat=False)[] 
 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 31--31
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 32--32
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -2977,12 +2969,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [69]
-runsystem(pydoc3 bn_console.GrilleC > ./docstrings/bn_console.GrilleC)...execut
-ed.
-
 File: ./docstrings/bn_console.GrilleC  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 36--36
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 37--37
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3014,17 +3003,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [72]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 36--36
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 37--37
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
-runsystem(pydoc3 bn_console.JoueurC > ./docstrings/bn_console.JoueurC)...execut
-ed.
-
 File: ./docstrings/bn_console.JoueurC  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 40--40
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 41--41
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3036,7 +3022,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [73]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 40--40
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 41--41
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3052,17 +3038,15 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [74]
-runsystem(pydoc3 bn_console.OrdiC > ./docstrings/bn_console.OrdiC)...executed.
-
 File: ./docstrings/bn_console.OrdiC  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 44--44
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 45--45
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 44--44
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 45--45
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3084,7 +3068,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [76]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 44--44
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 45--45
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3100,19 +3084,16 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [77]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 44--44
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 45--45
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
-runsystem(pydoc3 bn_console.PartieC > ./docstrings/bn_console.PartieC)...execut
-ed.
-
 File: ./docstrings/bn_console.PartieC  (verbatim)
 
-Overfull \hbox (402.09842pt too wide) in paragraph at lines 48--48
-[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f579
-dc28cf8>, adversaire=<bn_joueur.Ordi object at 0x7f579d5f3cf8>, cheat=False)[] 
+Overfull \hbox (402.11243pt too wide) in paragraph at lines 49--49
+[] \T1/lmtt/m/n/12 |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7ff3a
+e178cf8>, adversaire=<bn_joueur.Ordi object at 0x7ff3adb43cf8>, cheat=False)[] 
 
  []
 
@@ -3123,19 +3104,16 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [78]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 48--48
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 49--49
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 48--48
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 49--49
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
-
-runsystem(pydoc3 bn_console.MainConsole > ./docstrings/bn_console.MainConsole).
-..executed.
 
 File: ./docstrings/bn_console.MainConsole  (verbatim)
 
@@ -3145,25 +3123,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [79]
-Overfull \hbox (315.66238pt too wide) in paragraph at lines 52--52
+Overfull \hbox (315.66238pt too wide) in paragraph at lines 53--53
 [] \T1/lmtt/m/n/12 |  jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bat
 eaux=[5, 4, 3, 3, 2], niveau=5, nb_echantillons=100, seuil=20)[] 
  []
 
 
-Overfull \hbox (284.78737pt too wide) in paragraph at lines 52--52
+Overfull \hbox (284.78737pt too wide) in paragraph at lines 53--53
 [] \T1/lmtt/m/n/12 |  test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=
 [5, 4, 3, 3, 2], niveau=4, nb_echantillons=100, seuil=20)[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 52--52
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 53--53
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
-
-runsystem(pydoc3 bn_tkinter.GrilleTK > ./docstrings/bn_tkinter.GrilleTK)...exec
-uted.
 
 File: ./docstrings/bn_tkinter.GrilleTK  (verbatim)
 
@@ -3173,7 +3148,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [80]
-Overfull \hbox (155.1123pt too wide) in paragraph at lines 57--57
+Overfull \hbox (155.1123pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  __init__(self, xmax=10, ymax=10, taille_bateaux=[5, 4, 3,
  3, 2], parent=None, cursor='arrow')[] 
  []
@@ -3189,7 +3164,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [81]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3215,19 +3190,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [83]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3253,25 +3228,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [85]
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 57--57
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      <Alt-A> for pressing A and the Alt key (KeyPress can 
 be omitted).[] 
  []
 
 
-Overfull \hbox (68.66226pt too wide) in paragraph at lines 57--57
+Overfull \hbox (68.66226pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Bind will return an identifier to allow deletion of t
 he bound function with[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 57--57
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Bind to all widgets at an event SEQUENCE a call to fu
 nction FUNC.[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 57--57
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      it will replace the previous function. See bind for t
 he return value.[] 
  []
@@ -3287,25 +3262,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [86]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      With no argument return the list of all bindtags asso
 ciated with[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      this widget. With a list of strings as argument the b
 indtags are[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      set to this list. The bindtags determine in which ord
 er events are[] 
  []
 
 
-Overfull \hbox (50.13725pt too wide) in paragraph at lines 57--57
+Overfull \hbox (50.13725pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      or FILE_NAME.  Type defaults to STRING, except on X11
 , where the default[] 
  []
@@ -3321,7 +3296,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [87]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      weight (how much does additional space propagate to t
 his column)[] 
  []
@@ -3337,7 +3312,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [88]
-Overfull \hbox (99.53728pt too wide) in paragraph at lines 57--57
+Overfull \hbox (99.53728pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return a boolean value for Tcl boolean values true an
 d false given as parameter.[] 
  []
@@ -3363,13 +3338,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [90]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      weight (how much does additional space propagate to t
 his column)[] 
  []
 
 
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 57--57
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      of the slaves will determine the size of this widget.
  If no argument[] 
  []
@@ -3385,7 +3360,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [91]
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 57--57
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      of the slaves will determine the size of this widget.
  If no argument[] 
  []
@@ -3401,19 +3376,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [92]
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 57--57
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      of the slaves will determine the size of this widget.
  If no argument[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 57--57
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      to use. A keyword parameter type specifies the form o
 f data to be[] 
  []
 
 
-Overfull \hbox (43.96225pt too wide) in paragraph at lines 57--57
+Overfull \hbox (43.96225pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      fetched, defaulting to STRING except on X11, where UT
 F8_STRING is tried[] 
  []
@@ -3429,13 +3404,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [93]
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 57--57
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Send Tcl command CMD to different interpreter INTERP 
 to be executed.[] 
  []
 
 
-Overfull \hbox (25.43024pt too wide) in paragraph at lines 57--57
+Overfull \hbox (25.43024pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Change the color scheme to light brown as used in Tk 
 3.6 and before.[] 
  []
@@ -3451,7 +3426,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [94]
-Overfull \hbox (50.13725pt too wide) in paragraph at lines 57--57
+Overfull \hbox (50.13725pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return previous widget in the focus order. See tk_foc
 usNext for details.[] 
  []
@@ -3467,19 +3442,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [95]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Unbind for a all widgets with bindtag CLASSNAME for e
 vent SEQUENCE[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Enter event loop until all idle callbacks have been c
 alled. This[] 
  []
 
 
-Overfull \hbox (19.26224pt too wide) in paragraph at lines 57--57
+Overfull \hbox (19.26224pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      will update the display of windows but not process ev
 ents caused by[] 
  []
@@ -3495,13 +3470,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [96]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return the widget which is at the root coordinates RO
 OTX, ROOTY.[] 
  []
 
 
-Overfull \hbox (37.78725pt too wide) in paragraph at lines 57--57
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return geometry string for this widget in the form "w
 idthxheight+X+Y".[] 
  []
@@ -3517,7 +3492,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [97]
-Overfull \hbox (50.13725pt too wide) in paragraph at lines 57--57
+Overfull \hbox (50.13725pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return a tuple of x and y coordinates of the pointer 
 on the root window.[] 
  []
@@ -3533,19 +3508,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [98]
-Overfull \hbox (37.78725pt too wide) in paragraph at lines 57--57
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return the number of pixels of the height of the scre
 en of this widget[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return information of the X-Server of the screen of t
 his widget in[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return true if the widget and all its higher ancestor
 s are mapped.[] 
  []
@@ -3561,25 +3536,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [99]
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 57--57
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Each item in the list consists of a visual name (see 
 winfo_visual), a[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 57--57
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return the height of the virtual root window associat
 ed with this[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Return the width of the virtual root window associate
 d with this[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3595,55 +3570,55 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [100]
-Overfull \hbox (19.26224pt too wide) in paragraph at lines 57--57
+Overfull \hbox (19.26224pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Convert a string or number to a floating point number
 , if possible.[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 57--57
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Convert a number or string to an integer, or return 0
  if no arguments[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 57--57
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      are given.  If x is a number, return x.__int__().  Fo
 r floating point[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      If x is not a number or if base is given, then x must
  be a string,[] 
  []
 
 
-Overfull \hbox (19.26224pt too wide) in paragraph at lines 57--57
+Overfull \hbox (19.26224pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      bytes, or bytearray instance representing an integer 
 literal in the[] 
  []
 
 
-Overfull \hbox (50.13725pt too wide) in paragraph at lines 57--57
+Overfull \hbox (50.13725pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      given base.  The literal can be preceded by '+' or '-
 ' and be surrounded[] 
  []
 
 
-Overfull \hbox (31.60524pt too wide) in paragraph at lines 57--57
+Overfull \hbox (31.60524pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      by whitespace.  The base defaults to 10.  Valid bases
  are 0 and 2-36.[] 
  []
 
 
-Overfull \hbox (56.31226pt too wide) in paragraph at lines 57--57
+Overfull \hbox (56.31226pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Base 0 means to interpret the base from the string as
  an integer literal.[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3659,31 +3634,31 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [101]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      side=TOP or BOTTOM or LEFT or RIGHT -  where to add t
 his widget.[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      side=TOP or BOTTOM or LEFT or RIGHT -  where to add t
 his widget.[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (37.78725pt too wide) in paragraph at lines 57--57
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      anchor=NSEW (or subset) - position anchor according t
 o given direction[] 
  []
 
 
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 57--57
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |                        relative to width of master (1.0 is
  the same width[] 
  []
@@ -3699,55 +3674,55 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [102]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |                         relative to height of master (1.0 
 is the same[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      bordermode="inside" or "outside" - whether to take bo
 rder width of[] 
  []
 
 
-Overfull \hbox (37.78725pt too wide) in paragraph at lines 57--57
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      anchor=NSEW (or subset) - position anchor according t
 o given direction[] 
  []
 
 
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 57--57
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |                        relative to width of master (1.0 is
  the same width[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |                         relative to height of master (1.0 
 is the same[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      bordermode="inside" or "outside" - whether to take bo
 rder width of[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 57--57
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 57--57
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Position a widget in the parent widget in a grid. Use
  as options:[] 
  []
 
 
-Overfull \hbox (43.96225pt too wide) in paragraph at lines 57--57
+Overfull \hbox (43.96225pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      column=number - use cell identified with given column
  (starting with 0)[] 
  []
@@ -3763,31 +3738,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [103]
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 57--57
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      row=number - use cell identified with given row (star
 ting with 0)[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 57--57
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      Position a widget in the parent widget in a grid. Use
  as options:[] 
  []
 
 
-Overfull \hbox (43.96225pt too wide) in paragraph at lines 57--57
+Overfull \hbox (43.96225pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      column=number - use cell identified with given column
  (starting with 0)[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 57--57
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 58--58
 [] \T1/lmtt/m/n/12 |      row=number - use cell identified with given row (star
 ting with 0)[] 
  []
-
-runsystem(pydoc3 bn_tkinter.JoueurTK > ./docstrings/bn_tkinter.JoueurTK)...exec
-uted.
 
 File: ./docstrings/bn_tkinter.JoueurTK  (verbatim)
 
@@ -3801,13 +3773,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [104]
-Overfull \hbox (56.31226pt too wide) in paragraph at lines 61--61
+Overfull \hbox (56.31226pt too wide) in paragraph at lines 62--62
 [] \T1/lmtt/m/n/12 |      Quand le curseur se déplace sur la grille, coloration
  de la case survolée[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 61--61
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 62--62
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3823,13 +3795,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [105]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 61--61
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 62--62
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
-
-runsystem(pydoc3 bn_tkinter.OrdiTK > ./docstrings/bn_tkinter.OrdiTK)...executed
-.
 
 File: ./docstrings/bn_tkinter.OrdiTK  (verbatim)
 
@@ -3843,13 +3812,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [106]
-Overfull \hbox (167.46231pt too wide) in paragraph at lines 65--65
+Overfull \hbox (167.46231pt too wide) in paragraph at lines 66--66
 [] \T1/lmtt/m/n/12 |  __init__(self, nom='HAL', niveau=5, nb_echantillons=100, 
 seuil=20, parent=None, cursor='arrow')[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 65--65
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 66--66
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3875,19 +3844,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [108]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 65--65
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 66--66
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (56.31226pt too wide) in paragraph at lines 65--65
+Overfull \hbox (56.31226pt too wide) in paragraph at lines 66--66
 [] \T1/lmtt/m/n/12 |      Quand le curseur se déplace sur la grille, coloration
  de la case survolée[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 65--65
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 66--66
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3903,17 +3872,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [109]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 65--65
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 66--66
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
-runsystem(pydoc3 bn_tkinter.LevelWindow > ./docstrings/bn_tkinter.LevelWindow).
-..executed.
-
 File: ./docstrings/bn_tkinter.LevelWindow  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 69--69
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 70--70
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3925,18 +3891,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [110]
-runsystem(pydoc3 bn_tkinter.PlaceWindow > ./docstrings/bn_tkinter.PlaceWindow).
-..executed.
-
 File: ./docstrings/bn_tkinter.PlaceWindow  (verbatim)
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 73--73
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 74--74
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
-
-runsystem(pydoc3 bn_tkinter.MainTK > ./docstrings/bn_tkinter.MainTK)...executed
-.
 
 File: ./docstrings/bn_tkinter.MainTK  (verbatim)
 
@@ -3950,13 +3910,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [111]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -3982,13 +3942,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [113]
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 77--77
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      <Alt-A> for pressing A and the Alt key (KeyPress can 
 be omitted).[] 
  []
 
 
-Overfull \hbox (68.66226pt too wide) in paragraph at lines 77--77
+Overfull \hbox (68.66226pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Bind will return an identifier to allow deletion of t
 he bound function with[] 
  []
@@ -4004,31 +3964,31 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [114]
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 77--77
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Bind to all widgets at an event SEQUENCE a call to fu
 nction FUNC.[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 77--77
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      it will replace the previous function. See bind for t
 he return value.[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      With no argument return the list of all bindtags asso
 ciated with[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      this widget. With a list of strings as argument the b
 indtags are[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      set to this list. The bindtags determine in which ord
 er events are[] 
  []
@@ -4044,13 +4004,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [115]
-Overfull \hbox (50.13725pt too wide) in paragraph at lines 77--77
+Overfull \hbox (50.13725pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      or FILE_NAME.  Type defaults to STRING, except on X11
 , where the default[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      weight (how much does additional space propagate to t
 his column)[] 
  []
@@ -4076,7 +4036,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [117]
-Overfull \hbox (99.53728pt too wide) in paragraph at lines 77--77
+Overfull \hbox (99.53728pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return a boolean value for Tcl boolean values true an
 d false given as parameter.[] 
  []
@@ -4092,13 +4052,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [118]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      weight (how much does additional space propagate to t
 his column)[] 
  []
 
 
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 77--77
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      of the slaves will determine the size of this widget.
  If no argument[] 
  []
@@ -4124,13 +4084,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [120]
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 77--77
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      of the slaves will determine the size of this widget.
  If no argument[] 
  []
 
 
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 77--77
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      of the slaves will determine the size of this widget.
  If no argument[] 
  []
@@ -4146,13 +4106,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [121]
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 77--77
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      to use. A keyword parameter type specifies the form o
 f data to be[] 
  []
 
 
-Overfull \hbox (43.96225pt too wide) in paragraph at lines 77--77
+Overfull \hbox (43.96225pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      fetched, defaulting to STRING except on X11, where UT
 F8_STRING is tried[] 
  []
@@ -4168,19 +4128,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [122]
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 77--77
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Send Tcl command CMD to different interpreter INTERP 
 to be executed.[] 
  []
 
 
-Overfull \hbox (25.43024pt too wide) in paragraph at lines 77--77
+Overfull \hbox (25.43024pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Change the color scheme to light brown as used in Tk 
 3.6 and before.[] 
  []
 
 
-Overfull \hbox (50.13725pt too wide) in paragraph at lines 77--77
+Overfull \hbox (50.13725pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return previous widget in the focus order. See tk_foc
 usNext for details.[] 
  []
@@ -4196,25 +4156,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [123]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Unbind for a all widgets with bindtag CLASSNAME for e
 vent SEQUENCE[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 77--77
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Enter event loop until all pending events have been p
 rocessed by Tcl.[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Enter event loop until all idle callbacks have been c
 alled. This[] 
  []
 
 
-Overfull \hbox (19.26224pt too wide) in paragraph at lines 77--77
+Overfull \hbox (19.26224pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      will update the display of windows but not process ev
 ents caused by[] 
  []
@@ -4230,7 +4190,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [124]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return the widget which is at the root coordinates RO
 OTX, ROOTY.[] 
  []
@@ -4246,13 +4206,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [125]
-Overfull \hbox (37.78725pt too wide) in paragraph at lines 77--77
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return geometry string for this widget in the form "w
 idthxheight+X+Y".[] 
  []
 
 
-Overfull \hbox (50.13725pt too wide) in paragraph at lines 77--77
+Overfull \hbox (50.13725pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return a tuple of x and y coordinates of the pointer 
 on the root window.[] 
  []
@@ -4268,7 +4228,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [126]
-Overfull \hbox (37.78725pt too wide) in paragraph at lines 77--77
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return the number of pixels of the height of the scre
 en of this widget[] 
  []
@@ -4284,31 +4244,31 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [127]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return information of the X-Server of the screen of t
 his widget in[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return true if the widget and all its higher ancestor
 s are mapped.[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 77--77
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Each item in the list consists of a visual name (see 
 winfo_visual), a[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 77--77
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return the height of the virtual root window associat
 ed with this[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Return the width of the virtual root window associate
 d with this[] 
  []
@@ -4324,31 +4284,31 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [128]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (19.26224pt too wide) in paragraph at lines 77--77
+Overfull \hbox (19.26224pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Convert a string or number to a floating point number
 , if possible.[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 77--77
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Convert a number or string to an integer, or return 0
  if no arguments[] 
  []
 
 
-Overfull \hbox (31.61224pt too wide) in paragraph at lines 77--77
+Overfull \hbox (31.61224pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      are given.  If x is a number, return x.__int__().  Fo
 r floating point[] 
  []
@@ -4364,43 +4324,43 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [129]
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      If x is not a number or if base is given, then x must
  be a string,[] 
  []
 
 
-Overfull \hbox (19.26224pt too wide) in paragraph at lines 77--77
+Overfull \hbox (19.26224pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      bytes, or bytearray instance representing an integer 
 literal in the[] 
  []
 
 
-Overfull \hbox (50.13725pt too wide) in paragraph at lines 77--77
+Overfull \hbox (50.13725pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      given base.  The literal can be preceded by '+' or '-
 ' and be surrounded[] 
  []
 
 
-Overfull \hbox (31.60524pt too wide) in paragraph at lines 77--77
+Overfull \hbox (31.60524pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      by whitespace.  The base defaults to 10.  Valid bases
  are 0 and 2-36.[] 
  []
 
 
-Overfull \hbox (56.31226pt too wide) in paragraph at lines 77--77
+Overfull \hbox (56.31226pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Base 0 means to interpret the base from the string as
  an integer literal.[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      side=TOP or BOTTOM or LEFT or RIGHT -  where to add t
 his widget.[] 
  []
@@ -4416,37 +4376,37 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [130]
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      side=TOP or BOTTOM or LEFT or RIGHT -  where to add t
 his widget.[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (37.78725pt too wide) in paragraph at lines 77--77
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      anchor=NSEW (or subset) - position anchor according t
 o given direction[] 
  []
 
 
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 77--77
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |                        relative to width of master (1.0 is
  the same width[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |                         relative to height of master (1.0 
 is the same[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      bordermode="inside" or "outside" - whether to take bo
 rder width of[] 
  []
@@ -4462,49 +4422,49 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [131]
-Overfull \hbox (37.78725pt too wide) in paragraph at lines 77--77
+Overfull \hbox (37.78725pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      anchor=NSEW (or subset) - position anchor according t
 o given direction[] 
  []
 
 
-Overfull \hbox (25.43724pt too wide) in paragraph at lines 77--77
+Overfull \hbox (25.43724pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |                        relative to width of master (1.0 is
  the same width[] 
  []
 
 
-Overfull \hbox (0.73723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (0.73723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |                         relative to height of master (1.0 
 is the same[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      bordermode="inside" or "outside" - whether to take bo
 rder width of[] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 77--77
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 77--77
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Position a widget in the parent widget in a grid. Use
  as options:[] 
  []
 
 
-Overfull \hbox (43.96225pt too wide) in paragraph at lines 77--77
+Overfull \hbox (43.96225pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      column=number - use cell identified with given column
  (starting with 0)[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 77--77
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      row=number - use cell identified with given row (star
 ting with 0)[] 
  []
@@ -4520,24 +4480,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [132]
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 77--77
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      Position a widget in the parent widget in a grid. Use
  as options:[] 
  []
 
 
-Overfull \hbox (43.96225pt too wide) in paragraph at lines 77--77
+Overfull \hbox (43.96225pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      column=number - use cell identified with given column
  (starting with 0)[] 
  []
 
 
-Overfull \hbox (6.91223pt too wide) in paragraph at lines 77--77
+Overfull \hbox (6.91223pt too wide) in paragraph at lines 78--78
 [] \T1/lmtt/m/n/12 |      row=number - use cell identified with given row (star
 ting with 0)[] 
  []
-
-runsystem(pydoc3 bn_stats.Stats > ./docstrings/bn_stats.Stats)...executed.
 
 File: ./docstrings/bn_stats.Stats  (verbatim)
 
@@ -4547,14 +4505,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [133]
-Overfull \hbox (420.63744pt too wide) in paragraph at lines 83--83
+Overfull \hbox (420.63744pt too wide) in paragraph at lines 84--84
 [] \T1/lmtt/m/n/12 |  __init__(self, data=None, filename='', tmoy=0, param_gril
-le={'taille_bateaux': [5, 4, 3, 3, 2], 'xmax': 10, 'ymax': 10}, niveau_str='5')
+le={'taille_bateaux': [5, 4, 3, 3, 2], 'ymax': 10, 'xmax': 10}, niveau_str='5')
 [] 
  []
 
 
-Overfull \hbox (13.08723pt too wide) in paragraph at lines 83--83
+Overfull \hbox (13.08723pt too wide) in paragraph at lines 84--84
 [] \T1/lmtt/m/n/12 |  ---------------------------------------------------------
 -------------[] 
  []
@@ -4956,7 +4914,7 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 80.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 80.
 Package rerunfilecheck Info: File `Muller_ISN2016_BatailleNavale_Rapport.out' h
 as not changed.
-(rerunfilecheck)             Checksum: 5287368078CEFE648B783431A9F4C98C;3827.
+(rerunfilecheck)             Checksum: 4F36CAA119344FB7FA46AEF4F3E9A80C;3858.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 80.
  )
 (\end occurred inside a group at level 36)
@@ -4999,10 +4957,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 80.
 ### simple group (level 1) entered at line 4 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 30128 strings out of 493304
- 561828 string characters out of 6139871
+ 30129 strings out of 493304
+ 561842 string characters out of 6139871
  854154 words of memory out of 5000000
- 32342 multiletter control sequences out of 15000+600000
+ 32343 multiletter control sequences out of 15000+600000
  199923 words of font info for 185 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  51i,12n,71p,859b,1422s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -5018,7 +4976,7 @@ re/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts
 /utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr
 i8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Muller_ISN2016_BatailleNavale_Rapport.pdf (179 pages, 1006000
+Output written on Muller_ISN2016_BatailleNavale_Rapport.pdf (179 pages, 1006870
  bytes).
 PDF statistics:
  1349 PDF objects out of 1440 (max. 8388607)

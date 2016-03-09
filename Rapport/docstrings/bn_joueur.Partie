@@ -1,0 +1,23 @@
+Help on class Partie in bn_joueur:
+
+bn_joueur.Partie = class Partie(builtins.object)
+ |  Gère le déroulement de la partie
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7f7f45179390>, adversaire=<bn_joueur.Ordi object at 0x7f7f45179eb8>, cheat=False)
+ |  
+ |  add_bateau_joueur(self, taille)
+ |      Ajoute un bateau pour le joueur
+ |  
+ |  get_bateaux_adverse(self)
+ |      Récupère la liste des bateaux adverses
+ |  
+ |  get_coup_adverse(self)
+ |      Récupère le coup de l'adversaire
+ |  
+ |  lance_partie(self)
+ |      Lance une partie à deux joueurs
+ |  
+ |  place_bateaux_joueur(self)
+ |      Place tous les bateaux du joueur

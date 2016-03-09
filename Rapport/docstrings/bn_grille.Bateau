@@ -1,0 +1,14 @@
+Help on class Bateau in bn_grille:
+
+bn_grille.Bateau = class Bateau(builtins.object)
+ |  Classe pour définir les bateaux
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, taille, start, sens)
+ |      Un bateau est défini par :
+ |          - Sa taille
+ |          - Son point de départ (start)
+ |          - Son sens (DROITE, GAUCHE, BAS, HAUT)
+ |      On récupère les cases occupées par le bateau
+ |      ainsi que les cases adjacentes

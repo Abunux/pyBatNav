@@ -1,0 +1,31 @@
+Help on class MainTK in bn_tkinter:
+
+bn_tkinter.MainTK = class MainTK(tkinter.Frame)
+ |  Fenêtre principale
+ |  
+ |  Method resolution order:
+ |      MainTK
+ |      tkinter.Frame
+ |      tkinter.Widget
+ |      tkinter.BaseWidget
+ |      tkinter.Misc
+ |      tkinter.Pack
+ |      tkinter.Place
+ |      tkinter.Grid
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self)
+ |  
+ |  clear_widgets(self)
+ |      Vide tous les widgets de la frame principale
+ |  
+ |  jeu_contre_ordi(self)
+ |      Lance une partie contre l'ordinateur
+ |  
+ |  jeu_ordi(self)
+ |      Lance une résolution automatique
+ |  
+ |  jeu_solo(self)
+ |      Lance une partie solo

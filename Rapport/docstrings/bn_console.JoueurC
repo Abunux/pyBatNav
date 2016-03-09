@@ -1,0 +1,65 @@
+Help on class JoueurC in bn_console:
+
+bn_console.JoueurC = class JoueurC(bn_joueur.Joueur)
+ |  Joueur en mode console
+ |  
+ |  Method resolution order:
+ |      JoueurC
+ |      bn_joueur.Joueur
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, nom='Joueur')
+ |  
+ |  affiche_messages(self, affiche=True)
+ |      Affiche les messages du joueur
+ |  
+ |  jeu_solo(self, cheat=True)
+ |      Lance une partie solo sur une grille aléatoire
+ |  
+ |  joue_coup(self)
+ |      Joue un coup sur une case
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from bn_joueur.Joueur:
+ |  
+ |  add_bateau(self, taille, start, direction)
+ |      Ajoute un bateau sur la grille du joueur
+ |  
+ |  add_message(self, texte)
+ |      Ajoute le message texte à la file des messages
+ |  
+ |  case_aleatoire(self)
+ |      Retourne une case aléatoire parmi les cases vides
+ |      (tire sur les cases noires tant qu'il en reste)
+ |  
+ |  check_coules(self)
+ |      Vérifie les bateaux coulés sur la grille
+ |      et les enlève de la liste des bateaux à chercher
+ |      en marquant leurs case adjacentes comme impossibles
+ |  
+ |  clean_grille(self)
+ |      Élimine de la grille les cases impossibles
+ |  
+ |  elimine_adjacentes(self, cases)
+ |      Élimine les cases adjacents à un bateau coulé
+ |  
+ |  elimine_petites(self)
+ |      Élimine les cases dans lesquelles le plus petit bateau
+ |      ne peut pas rentrer
+ |  
+ |  filtre_messages(self)
+ |      Ne garde que les messages essentiels
+ |  
+ |  rem_bateau(self, taille)
+ |      Enlève le dernier bateau coulé
+ |  
+ |  tire(self, case)
+ |      Tire sur la case (x,y)
+ |      Renvoie True si la case est touchée,
+ |      False si non touché ou case invalide
+ |  
+ |  tire_aleatoire(self)
+ |      Tire sur une case aléatoire
+

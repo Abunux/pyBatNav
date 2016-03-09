@@ -1,0 +1,58 @@
+Help on class Joueur in bn_joueur:
+
+bn_joueur.Joueur = class Joueur(builtins.object)
+ |  Classe pour définir le joueur
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, nom='Joueur')
+ |      Initialisation du joueur
+ |  
+ |  add_bateau(self, taille, start, direction)
+ |      Ajoute un bateau sur la grille du joueur
+ |  
+ |  add_message(self, texte)
+ |      Ajoute le message texte à la file des messages
+ |  
+ |  affiche_messages(self, affiche=True)
+ |      Affiche la liste des messages
+ |  
+ |  case_aleatoire(self)
+ |      Retourne une case aléatoire parmi les cases vides
+ |      (tire sur les cases noires tant qu'il en reste)
+ |  
+ |  check_coules(self)
+ |      Vérifie les bateaux coulés sur la grille
+ |      et les enlève de la liste des bateaux à chercher
+ |      en marquant leurs case adjacentes comme impossibles
+ |  
+ |  clean_grille(self)
+ |      Élimine de la grille les cases impossibles
+ |  
+ |  elimine_adjacentes(self, cases)
+ |      Élimine les cases adjacents à un bateau coulé
+ |  
+ |  elimine_petites(self)
+ |      Élimine les cases dans lesquelles le plus petit bateau
+ |      ne peut pas rentrer
+ |  
+ |  filtre_messages(self)
+ |      Ne garde que les messages essentiels
+ |  
+ |  jeu_solo(self)
+ |      Lance une partie solo sur une grille aléatoire
+ |  
+ |  joue_coup(self)
+ |      Joue un coup
+ |  
+ |  rem_bateau(self, taille)
+ |      Enlève le dernier bateau coulé
+ |  
+ |  tire(self, case)
+ |      Tire sur la case (x,y)
+ |      Renvoie True si la case est touchée,
+ |      False si non touché ou case invalide
+ |  
+ |  tire_aleatoire(self)
+ |      Tire sur une case aléatoire
+

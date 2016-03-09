@@ -1,0 +1,99 @@
+Help on class Grille in bn_grille:
+
+bn_grille.Grille = class Grille(builtins.object)
+ |  Classe pour définir la grille de jeu
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, xmax=10, ymax=10, taille_bateaux=[5, 4, 3, 3, 2])
+ |      Initialisation de la grille de jeu
+ |      Les cases sont numérotées de 0 à (x|y)max-1
+ |  
+ |  add_bateau(self, bateau)
+ |      Ajoute un bateau dans la grille
+ |      et met à jour les états des cases adjacentes
+ |  
+ |  add_bateau_alea(self, taille)
+ |      Ajoute un bateau aléatoire de taille donnée
+ |  
+ |  adjacent(self, case)
+ |      Retourne la liste des cases vides adjacentes à case
+ |      dans l'ordre : DROITE, GAUCHE, HAUT, BAS
+ |  
+ |  affiche(self)
+ |      Affiche la grille
+ |  
+ |  case_max(self, affiche=False)
+ |      Détermine la case qui contient le plus de bateaux et
+ |      regardant sur chaque case le nombre de bateaux possibles
+ |  
+ |  case_max_all(self, affiche_all=False)
+ |      Détermination de la case optimale par énumération de
+ |      toutes les répartitions possibles de bateaux
+ |  
+ |  case_max_echantillons(self, nb_echantillons=100, affiche=False)
+ |      Calcul des probabilités sur chaque case vide de contenir
+ |      un bateau. Retourne la case la plus probable en essayant
+ |      différents arrangements des bateaux restants
+ |  
+ |  case_max_touchee(self, case_touchee)
+ |      Retourne le nombre de bateaux possibles
+ |      sur chaque case adjacentes à case (qui vient d'être touchée)
+ |  
+ |  copie_grille_tmp(self)
+ |      Crée une copie temporaire de la grille
+ |  
+ |  elimine_cases(self)
+ |      Élimine les cases dans lesquelles
+ |      le plus petit bateau ne peut pas rentrer
+ |  
+ |  elimine_cases_joueur(self)
+ |      Élimine les cases dans lesquelles
+ |      le plus petit bateau ne peut pas rentrer
+ |      Version pour le joueur
+ |  
+ |  fini(self)
+ |      Renvoie True si tous les bateaux ont été coulés
+ |  
+ |  get_max_space(self, case, direction=(1, 1), face=True)
+ |      Renvoie la plus grande place possible sur cette case
+ |      dans une direction
+ |  
+ |  get_possibles(self, affiche=False, tri=False)
+ |      Crée la liste des bateaux possibles démarrant sur chaque case
+ |      ainsi que la liste des cases et directions possibles pour
+ |      chaque bateau
+ |  
+ |  get_taille_max(self)
+ |      Met à jour la taille du bateau le plus grand restant
+ |  
+ |  get_taille_min(self)
+ |      Met à jour la taille du bateau le plus petit restant
+ |  
+ |  init_bateaux_alea(self)
+ |      Initialise une grille avec des bateaux aléatoires
+ |  
+ |  is_touche(self, case)
+ |      Teste si la case contient un bateau
+ |  
+ |  make_all(self, gtmp, affiche_all=False)
+ |      Crée toutes les répartitions possibles de bateaux
+ |      de manière récursive
+ |  
+ |  reinit(self)
+ |      Réinitialisation de la grille
+ |  
+ |  rem_bateau(self, taille)
+ |      Enlève le bateau de taille taille de la liste
+ |  
+ |  test_bateau(self, bateau)
+ |      Test si le bateau est valide (rentre bien) dans la grille
+ |  
+ |  test_case(self, case)
+ |      Teste si une case est valide (dans la grille) et vide
+ |  
+ |  update(self)
+ |      Met à jour les paramètres de la grille
+ |  
+ |  update_vides(self)
+ |      Met à jour la liste des cases vides

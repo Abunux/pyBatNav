@@ -1,0 +1,20 @@
+Help on class PlaceWindow in bn_tkinter:
+
+bn_tkinter.PlaceWindow = class PlaceWindow(builtins.object)
+ |  Fenêtre de placement des bateaux
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, parent, taille_bateaux=[5, 4, 3, 3, 2])
+ |  
+ |  next_bateau(self)
+ |      Place le bateau suivant ou quitte
+ |  
+ |  on_clic(self, event)
+ |      Quand on clique sur une case
+ |  
+ |  on_move(self, event)
+ |      Déplacement du curseur sur la grille
+ |  
+ |  test_case_depart(self, case)
+ |      Teste si le bateau en cours est plaçable à partir de cette case

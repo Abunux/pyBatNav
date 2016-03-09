@@ -93,6 +93,9 @@ Sinon :\\
 
 Si \texttt{possibles[taille]} est vide, cela signifie qu'on ne peut pas placer ce bateau et donc en renvoie Faux pour éviter une situation de blocage par la suite, sinon on renvoie Vrai pour indiquer que tout s'est bien passé.
 
+
+
+
 \subsubsection{Création d'une flotte aléatoire}\label{init_alea}
 \texttt{Grille.init\_alea(self)} :
 \begin{algo1}
@@ -111,7 +114,11 @@ Tant que nb\_bateaux < nombre de bateaux à placer :\\
 Enfin on copie l'état de gtmp dans notre grille \\
 \end{algo1}
 
-Pour placer chaque bateau, on utilise la fonction précédente avec sa valeur de sortie (vrai ou faux) qui permet de savoir si le placement a été possible.
+Pour placer chaque bateau, on utilise la fonction précédente avec sa valeur de sortie (Vrai ou Faux) qui permet de savoir si le placement a été possible.
+
+\medskip
+
+Cet algorithme a un problème important : si, dans les paramètres de la grille, tous les bateaux ne peuvent pas rentrer, il boucle sans fin. Je m'en suis rendu compte à quelques jours de la date de retour du projet et n'ai pas trouvé de solution immédiate. On peut limiter le nombre d'essais en cas de blocages, mais ce n'est pas convainquant. On peut aussi utiliser la fonction \texttt{Grille.case\_max\_all()} pour trouver au moins un arrangement possible mais cette dernière peut devenir beaucoup trop longue en cas de réponse négative.
 
 %\begin{algo1}
 %0\sto nb\_bateaux\\
@@ -231,7 +238,7 @@ C'est l'algorithme de niveau 5 qui détermine, pour chaque case, le nombre de ba
 Dans la mesure où la liste \texttt{possibles[taille]} ne donne que les points de départ de chaque bateau, il est nécessaire de parcourir toutes ses cases occupée dans la dernière boucle. \texttt{case+k*direction} signifie \texttt{(case[0]+k*direction[0],case[1]+k*direction[1])}.
 
 \newpage
-\subsubsection{Énumération de tous les cas}
+\subsubsection{Énumération de tous les cas}\label{case_max_all}
 \texttt{Grille.case\_max\_all(self)} :
 \begin{algo1}
 gtmp est une copie temporaire de la grille\\
@@ -368,7 +375,7 @@ On renvoie cette liste\\
 Le fait de boucler sur les directions \texttt{HORIZONTAL} et \texttt{VERTICAL}, c'est-à-dire dans\texttt{[(1,0), (0,1)]}, permet de condenser les calculs sur ces deux directions dans une seule boucle.\\
 \texttt{ct[direction[1]]} et \texttt{direction[direction[1]]} permettent d'obtenir respectivement \texttt{ct[0]} et \texttt{direction[0]} dans le cas horizontal, et \texttt{ct[1]} et \texttt{direction[1]} dans le cas vertical.
 
-Notons que dans cet algorithme on en s'intéresse qu'aux cases adjacentes à \texttt{case\_touchee}.
+Notons que dans cet algorithme on ne s'intéresse qu'aux cases adjacentes à \texttt{case\_touchee}.
 
 \medskip
 

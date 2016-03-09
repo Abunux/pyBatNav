@@ -1,0 +1,38 @@
+Help on class MainConsole in bn_console:
+
+bn_console.MainConsole = class MainConsole(builtins.object)
+ |  Programme principal en mode console
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self)
+ |  
+ |  get_nb_echantillons(self, niveau)
+ |      Pour le niveau 4, demande la taille des échantillons
+ |  
+ |  get_niveau(self)
+ |      Demande le niveau de l'ordinateur
+ |  
+ |  get_seuil(self, niveau)
+ |      Pour le niveau 6, demande le seuil
+ |  
+ |  jeu_contre_ordi(self, cheat=False, nom='Joueur')
+ |      Partie en duel contre l'ordinateur
+ |  
+ |  jeu_ordi(self, affiche=True, xmax=10, ymax=10, taille_bateaux=[5, 4, 3, 3, 2], niveau=5, nb_echantillons=100, seuil=20)
+ |      Résolution d'une grille par l'ordinateur
+ |  
+ |  jeu_solo(self, cheat=False)
+ |      Jeu solo sur une grille aléatoire
+ |  
+ |  launch_menu(self)
+ |      Menu de lancement
+ |  
+ |  launch_test_algo(self)
+ |      Lancement de la procédure de test
+ |      de l'algorithme de résolution
+ |  
+ |  test_algo(self, n=1000, xmax=10, ymax=10, taille_bateaux=[5, 4, 3, 3, 2], niveau=4, nb_echantillons=100, seuil=20)
+ |      Test de l'agorithme de résolution sur n parties
+ |      et affichage des statistiques
+

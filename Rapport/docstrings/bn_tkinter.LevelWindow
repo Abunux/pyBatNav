@@ -1,0 +1,14 @@
+Help on class LevelWindow in bn_tkinter:
+
+bn_tkinter.LevelWindow = class LevelWindow(builtins.object)
+ |  Fenêtre de configuration du niveau de l'algorithme
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, parent)
+ |  
+ |  on_cb_change(self, event=None)
+ |      Quand on change le niveau
+ |  
+ |  valide(self, event=None)
+ |      Validation des paramètres

@@ -1,0 +1,35 @@
+Help on class PartieC in bn_console:
+
+bn_console.PartieC = class PartieC(bn_joueur.Partie)
+ |  Partie à deux joueurs en mode console
+ |  
+ |  Method resolution order:
+ |      PartieC
+ |      bn_joueur.Partie
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, joueur=<bn_joueur.Joueur object at 0x7ff3ae178cf8>, adversaire=<bn_joueur.Ordi object at 0x7ff3adb43cf8>, cheat=False)
+ |  
+ |  add_bateau_joueur(self, taille)
+ |      Ajoute un bateau pour le joueur
+ |  
+ |  affiche_grilles(self, fin=False)
+ |      Affiche les deux grilles cote à cote,
+ |      avec les noms des joueurs
+ |  
+ |  lance_partie(self)
+ |      Lance une partie à deux joueurs
+ |  
+ |  place_bateaux_joueur(self)
+ |      Place tous les bateaux du joueur
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from bn_joueur.Partie:
+ |  
+ |  get_bateaux_adverse(self)
+ |      Récupère la liste des bateaux adverses
+ |  
+ |  get_coup_adverse(self)
+ |      Récupère le coup de l'adversaire
