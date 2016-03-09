@@ -18,14 +18,17 @@ from bn_utiles import *
 from bn_grille import *
 from bn_joueur import *
 
-# Constantes de couleur
-# ---------------------
-COLOR_OK    = "#00FF00"    # Case valide
-COLOR_NO    = "#FF0000"    # Case non valide
-COLOR_BOAT  = "cyan"       # Case occupée par un bateau
-COLOR_NOIRE = "#F8F8F8"    # Case "noire"
-COLOR_CURS  = "#E8E8E8"    # Case sous le curseur
-COLOR_FOND  = "white"      # Fond de la frame principale
+# Constantes de couleur (pas très esthétique mais facilement modifiable)
+# ----------------------------------------------------------------------
+COLOR_OK      = "#00FF00"    # Case valide
+COLOR_NO      = "#FF0000"    # Case non valide
+COLOR_BOAT    = "cyan"       # Case occupée par un bateau
+COLOR_NOIRE   = "#F8F8F8"    # Case "noire"
+COLOR_CURS    = "#E8E8E8"    # Case sous le curseur
+COLOR_FOND    = "white"      # Fond de la frame principale
+COLOR_QUEUE_M = "yellow"     # File d'attente manqué
+COLOR_QUEUE_T = "orange"     # File d'attente touché
+
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -173,7 +176,7 @@ class JoueurTK(Joueur):
 		"""Quand on clique sur la grille, joue un coup"""
 		x, y = self.grille_suivi.canvas.canvasx(event.x), self.grille_suivi.canvas.canvasy(event.y)
 		(i, j) = self.grille_suivi.coord2case(x, y)
-		if self.playable and self.turn :
+		if self.playable and self.turn and self.grille_suivi.test_case((i,j)):
 			self.joue_coup(i,j)
 			self.grille_suivi.marque_case((i, j))
 
@@ -259,6 +262,12 @@ class OrdiTK(Ordi, JoueurTK):
 		if self.turn :
 			self.coup_suivant()
 			self.grille_suivi.affiche_adverse(self.grille_adverse)
+			# Colorie les cases de la file d'attente
+			for case in self.queue :
+				if self.grille_adverse.etat[case] == 1 :
+					self.grille_suivi.color_case(case, COLOR_QUEUE_T)
+				else :
+					self.grille_suivi.color_case(case, COLOR_QUEUE_M)
 			self.affiche_messages()
 			if self.grille_suivi.fini() :
 				self.info.insert(END, "Partie terminée en %d coups" % self.essais )

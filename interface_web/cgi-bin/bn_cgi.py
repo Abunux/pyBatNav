@@ -347,6 +347,7 @@ else :
     # Récupération des événements souris
         html_body += """        <script>
             // Événements souris
+            // Inspiré de : http://stackoverflow.com/questions/9880279/how-do-i-add-a-simple-onclick-event-handler-to-a-canvas-element
             var elem = document.getElementById('canvasJoueur'),
                 elemLeft = elem.offsetLeft,
                 elemTop = elem.offsetTop;

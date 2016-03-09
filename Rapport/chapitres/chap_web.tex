@@ -24,8 +24,12 @@ Un script \texttt{cgi} permet de générer du code source HTML pour l'envoyer au
 \item \texttt{mode} : le mode de jeu (0 : partie solo, 1 : partie contre l'ordinateur, 2 : résolution automatique).
 \item \texttt{jx} et \texttt{jy} : les coordonnées de la case cliquée par le joueur. 
 \end{itemize}
-Une URL sera donc de la forme :\\
+Une URL sera donc de la forme :
+\begin{center}
 \texttt{http://localhost:8000/cgi-bin/bn\_cgi.py?id=638229159\&mode=1\&jx=2\&jy=6}
+\end{center}
+
+\medskip
 
 Le script va alors récupérer ces paramètres et lancer une action de jeu appropriée : 
 \begin{itemize}

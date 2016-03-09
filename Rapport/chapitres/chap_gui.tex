@@ -2,7 +2,7 @@
 
 Une interface réalisée grâce à la bibliothèque \texttt{tkinter} est codée dans le fichier \texttt{bn\_tkinter}. Dans cette interface, on a la possibilité de jouer seul sur une grille aléatoire, de voir l'algorithme de résolution (avec choix du niveau) et de jouer contre l'algorithme (avec choix du niveau de ce dernier et placement de nos bateaux).
 
-Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement. Je ne suis d'ailleurs pas totalement satisfait du résultat, même si elle est fonctionnelle. C'est également pourquoi cette partie du rapport est moins détaillée, par faute de temps.
+Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement. Je ne suis d'ailleurs pas totalement satisfait du résultat, même si elle est fonctionnelle (j'avais encore plein d'idées). C'est également pourquoi cette partie du rapport est moins détaillée, par faute de temps.
 
 %\section{Principes de l'interface}
 %
@@ -24,11 +24,11 @@ Cette interface devait être réalisée par mon binôme, mais ce dernier ayant a
 \section{Affichage et gestion des grilles}
 La classe \texttt{GrilleTK}, héritée de la classe \texttt{Grille} implémente le \texttt{canvas} sur sur lequel on va dessiner les grilles.
 
-Sur ce \texttt{canvas}, on définit les marges \texttt{marge\_left} et \texttt{marge\_top} à gauche et en haut pour les intitulés des colonnes et des lignes, ainsi que la largeur des cases \texttt{largeur\_case}. 
+Sur ce \texttt{canvas}, on définit les marges \texttt{marge\_left} et \texttt{marge\_top} à gauche et en haut pour les intitulés des lignes et des colonnes, ainsi que la largeur des cases \texttt{largeur\_case}. 
 
 \medskip
 
-Les passages de coordonnées graphiques aux coordonnées des cases, et réciproquement, sont gérés via  une transformation affine par les méthodes \texttt{GrilletK.coord2case(self, x, y)} et \texttt{GrilletK.case2coord(self, case)}. Notons les méthodes \texttt{canvasx} et \texttt{canvasy} de l'objet \texttt{canvas} qui permettent de récupérer les coordonnées graphiques du curseur dans un repère associé au \texttt{canvas}.
+Les passages de coordonnées graphiques aux coordonnées des cases, et réciproquement, sont gérés via  une transformation affine par les méthodes \texttt{GrilleTK.coord2case(self, x, y)} et \texttt{GrilleTK.case2coord(self, case)}. Notons les méthodes \texttt{canvasx} et \texttt{canvasy} de l'objet \texttt{canvas} qui permettent de récupérer les coordonnées graphiques du curseur dans un repère associé au \texttt{canvas}.
 
 \medskip
 

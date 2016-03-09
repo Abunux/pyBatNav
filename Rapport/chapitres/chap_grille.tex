@@ -245,7 +245,7 @@ Une fois que le compte des bateaux possibles a été effectué sur chacune des c
 
 
 \subsection{Gestion de la flotte}
-Le classe \texttt{Grille} contient toutes les méthodes nécessaires pour gérer la flotte de bateaux. Les méthodes \texttt{Grille.get\_taille\_max(self)} et \texttt{Grille.get\_taille\_min(self)} mettent à jour respectivement la taille maximum et la taille minimum des bateaux restant à trouver. La méthode \texttt{Grille.rem\_bateau(self, taille)} permet de supprimer de la liste \texttt{Grille.taille\_bateaux} un bateau coulé.
+Le classe \texttt{Grille} contient toutes les méthodes nécessaires pour gérer la flotte de bateaux. Les méthodes \texttt{Grille.get\_taille\_max(self)} et \texttt{Grille.get\_taille\_min(self)} mettent à jour respectivement la taille maximum et la taille minimum des bateaux restant à trouver. La méthode \texttt{Grille.rem\_bateau(self, taille)} permet de supprimer un bateau de la liste \texttt{Grille.taille\_bateaux}.
 
 \subsubsection{Ajout d'un bateau}
 La méthode \texttt{Grille.add\_bateau(self, bateau)} permet d'ajouter un bateau (instance de la classe \texttt{Bateau}) après avoir testé sa validité via la méthode \texttt{Grille.test\_bateau(self, bateau)}, et marque ses cases adjacentes comme impossibles.

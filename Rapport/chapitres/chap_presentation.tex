@@ -2,7 +2,7 @@
 
 \section{Le jeu de la bataille navale}
 Le jeu de la bataille navale est un jeu qui se joue à deux joueurs.\\
-Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, à tour de rôle, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{} (on ne rejoue pas après avoir touché). J'ai pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre l'algorithme de résolution un petit peu plus intéressant.\\
+Chaque joueur dispose d'une grille sur laquelle il place des bateaux rectangulaires de différentes tailles et essaie, à tour de rôle, de deviner l'emplacement des bateaux de l'adversaire par des tirs successifs, ce dernier annonçant à chaque coup \og manqué \fg{} ou \og touché \fg{} (on ne rejoue pas après avoir touché). J'ai pris le parti de ne pas annoncer \og coulé \fg{} lorsque toutes les cases d'un bateau ont été touchées pour rendre les algorithmes un petit peu plus intéressant.\\
 Les bateaux peuvent être placés horizontalement ou verticalement et deux bateaux ne peuvent pas se trouver sur des cases adjacentes.
 
 Les paramètres de jeu retenus dans ce projet sont ceux du jeu original, mais ils peuvent être facilement modifiés, à savoir que la grille est un carré 10 cases de côté et la composition de la flotte est la suivante :
@@ -33,7 +33,7 @@ Mes objectifs ont été les suivants :
 \section{Liste des modules du projet}
 Afin de faciliter les développement et la maintenance du projet, celui-ci a été décomposé en un certain nombre de modules :
 \begin{itemize}
-\item \texttt{main.py} : le programme principal. Il permet, via un argument \texttt{-\hspace*{1pt}-interface} en ligne de commande de choisir l'interface de jeu (\texttt{console} ou \texttt{tkinter}).
+\item \texttt{main.py} : le programme principal. Il permet, via un argument en ligne de commande de choisir l'interface de jeu.
 \item \texttt{bn\_utiles.py} : contient quelques fonctions utiles ainsi que les constantes du projet.
 \item \texttt{bn\_grille.py} : gère la grille et les bateaux.
 \item \texttt{bn\_joueur.py} : gère les joueurs et implémente l'algorithme de résolution.
@@ -48,7 +48,7 @@ Afin de faciliter les développement et la maintenance du projet, celui-ci a ét
 Par ailleurs, le dossier \texttt{interface\_web} contient l'interface web dans les fichiers suivants :
 \begin{itemize}
 \item \texttt{index.html} : la page d'accueil de l'interface web.
-\item Le dossier \texttt{cgi-bin} contient le fichier \texttt{bn\_cgi.py} qui gère les pages de jeu, ainsi qu'une copie de \texttt{bn\_grille.py}, \texttt{bn\_joueur.py} et \texttt{bn\_utiles.py}.
+\item Le dossier \texttt{cgi-bin} contient le fichier \texttt{bn\_cgi.py} qui gère les pages de jeu, ainsi qu'une copie des fichiers \texttt{bn\_grille.py}, \texttt{bn\_joueur.py} et \texttt{bn\_utiles.py} (un simple lien symbolique suffirait).
 \item Le dossier \texttt{css} contient les feuilles de style \texttt{CSS}.
 \end{itemize}
 
