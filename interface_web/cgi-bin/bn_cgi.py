@@ -1,10 +1,13 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 """Module bn_cgi
 
 Crée un interface web à l'aide d'un script cgi
-Lancer le fichier server.py et aller sur http://localhost:8000/index.html
+
+Lancer le fichier bn_webserver.py et aller sur http://localhost:8000/index.html
+
 La session est suvegardée dans un fichier ./sessions/session_ID de la racine web
+
 Les paramètres suivants sont passés en cgi :
     - session : l'ID de la session
     - mode : mode de jeu (solo, ordi seul ou partie contre l'ordi)
@@ -82,7 +85,11 @@ html_header += "        <script>var sessionID=%s;</script>\n" % ID
 html_header += "    </head>\n\n"
 
 # Gestion de la session
-sh = shelve.open(os.path.join("sessions", "session_%s" % ID))
+try :
+    sh = shelve.open(os.path.join("sessions", "session_%s" % ID))
+except :
+    first = True
+
 if first :
     # Si 1er lancement, on crée la partie
     try :
@@ -331,7 +338,10 @@ if fini :
     elif mode == 2 or (mode == 1 and gagnant == 1) :
         html_body += """<script>alert("%s a gagné en %d coups.")</script>\n""" % (nom_ordi, ordi.essais)
     # Suppression de la session
-    os.remove(os.path.join("sessions", "session_%s" % ID))
+    try :
+        os.remove(os.path.join("sessions", "session_%s" % ID))
+    except :
+        pass
 else :
     if mode <= 1 :
     # Récupération des événements souris
@@ -358,8 +368,8 @@ else :
     </button>\n""" % mode
 
     # Sauvegarde de l'état de la partie
-    sh = shelve.open(os.path.join("sessions", "session_%s" % ID))
     try :
+        sh = shelve.open(os.path.join("sessions", "session_%s" % ID))
         sh['joueur']=joueur
         sh['ordi']=ordi
     finally :

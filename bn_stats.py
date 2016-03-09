@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Module bn_stats
 
 Implémente les classes :
@@ -9,16 +11,12 @@ Licence CC BY-NC-SA
 
 Version 0.1.0"""
 
-
 from bn_grille import *
 
 from math import *
 
 import numpy as np
 import matplotlib.pyplot as plt
-
-# Intégration de matplotlib dans tkinter :
-# http://matplotlib.org/examples/user_interfaces/embedding_in_tk.html
 
 class Stats(object):
     """Implémente les outils d'étude statistique"""
@@ -88,19 +86,6 @@ class Stats(object):
         self.get_mode()
         self.get_moyenne()
         self.get_sigma()
-
-    def resume_stat(self) :
-        """Affiche un résumé statistique"""
-        print("Mini : %d" % self.mini)
-        print("Q1 : %d" % self.quartiles[0])
-        print("Med : %d" % self.quartiles[1])
-        print("Q3 : %d" % self.quartiles[2])
-        print("Maxi : %d" % self.maxi)
-        print()
-        print("Mode : %d" % self.mode)
-        print()
-        print("Moyenne : %.2f" % self.moyenne)
-        print("Sigma : %.2f" % self.sigma)
 
     def get_effectif(self) :
         """Calcul de l'effectif total"""

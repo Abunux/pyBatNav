@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Module bn_grille
 
 Implémente les classes :
@@ -142,7 +144,7 @@ class Grille(object):
     def get_max_space(self, case, direction=TOUTES_DIR, face=True):
         """Renvoie la plus grande place possible sur cette case
         dans une direction"""
-        # sens = 0 : ne compte qu'à droite ou en bas (pour l'IA)
+        # face=False : ne compte qu'à droite ou en bas (pour l'IA)
         # car DROITE=HORIZONTAL et BAS=VERTICAL, donc obligé de spécifier
         if direction == TOUTES_DIR:
             return max(self.get_max_space(case, HORIZONTAL), self.get_max_space(case, VERTICAL))
@@ -466,7 +468,7 @@ class Grille(object):
 
         gtmp = self.copie_grille_tmp()
         self.nb_repart = 0
-        global start_iter, n_iter
+        global start_iter, n_iter # Pour les tests
         start_iter = time()
         n_iter = 0
         self.make_all(gtmp, affiche_all)
@@ -482,7 +484,8 @@ class Grille(object):
         return (case_max, pmax)
 
     def make_all(self, gtmp, affiche_all=False):
-        """Crée toutes les répartitions possibles de bateaux"""
+        """Crée toutes les répartitions possibles de bateaux
+        de manière récursive"""
         # affiche_all : affiche toutes les grilles pendant leur création
         global start_iter, n_iter
         if len(gtmp.taille_bateaux) == 0 :
@@ -507,8 +510,6 @@ class Grille(object):
             gtmp2 = gtmp.copie_grille_tmp()
             gtmp2.add_bateau(Bateau(taille, case, direction))
             gtmp2.rem_bateau(taille)
-            #~ if affiche_all :
-                #~ gtmp2.affiche()
             self.make_all(gtmp2, affiche_all)
 
     #
@@ -612,19 +613,14 @@ class GrilleSuivi(Grille):
 
 # Différents tests
 if __name__ == "__main__" :
-    #~ grille = Grille(xmax=6, ymax=6,taille_bateaux=[2,2,3])
-    #~ grille = Grille(xmax=4, ymax=4,taille_bateaux=[3,3])
-    #~ grille = Grille(xmax=3, ymax=3,taille_bateaux=[2,3])
-    grille = Grille(xmax=10, ymax=10,taille_bateaux=[5,4])
-    #~ grille = Grille(xmax=2, ymax=2,taille_bateaux=[2,2])
-    #~ grille = Grille()
+    # Test de toutes les répartitions possibles de bateaux sur la grille
+    grille = Grille(xmax=4, ymax=3, taille_bateaux=[2,3])
 
     launch_time = strftime("%d/%m/%Y %H:%M:%S",localtime(time()))
     print(launch_time)
     start = time()
 
-    grille.case_max_all()
-    #~ grille.case_max_all(affiche_all=True)
+    grille.case_max_all(affiche_all=True)
 
     print()
     print("Temps : %.2f seconde" % (time()-start))
@@ -639,53 +635,3 @@ if __name__ == "__main__" :
             print(grille.probas_all[(i,j)], end=' ')
         i = grille.xmax-1
         print(grille.probas_all[(i,j)])
-
-
-
-
-
-
-    #~ case=(4,8)
-    #~ print(grille.case_max_touchee(case))
-    #~ print(grille.case_max_touchee0(case))
-    #~ grille.etat[(1,2)]=1
-    #~ grille.etat[(3,2)]=-1
-    #~ print(grille.case_max_touchee((1,2)))
-    #~ for i in range(7):
-        #~ for j in range(10):
-            #~ grille.etat[(i,j)]=-1
-    #~ start = time()
-    #~ grille.get_possibles()
-    #~ grille.init_bateaux_alea()
-    #~ print(time()-start)
-    #~ quit()
-    #~ print(grille.possibles)
-    #~ input()
-    #~ for taille in grille.possibles :
-        #~ print("Taille %d :" % taille)
-        #~ print("-----------")
-        #~ i=1
-        #~ for pos in grille.possibles[taille] :
-            #~ print(i,pos[0], pos[1])
-            #~ i+=1
-        #~ print()
-    #~ for case in grille.vides :
-        #~ print(case,grille.possibles_case[case])
-    #~ quit()
-    # Essai de calcul de probabilité pour chaque case de contenir un bateau
-    #~ grille = GrilleSuivi()
-
-        #~
-    #~ start = time()
-    #~ grille.init_bateaux_alea()
-    #~ print(time()-start)
-    #~ grille.affiche()
-    #~ quit()
-    #~
-    #~ quit()
-    #~ n = int(input("Taille de l'échantillon : "))
-    #~ print()
-    #~ start = time()
-    #~ grille.case_max_echantillons(1000, affiche=True)
-    #~ print(time()-start)
-

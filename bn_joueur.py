@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Module bn_joueurs
 
 Implémente les classes :
@@ -11,7 +13,6 @@ Auteur : Frédéric Muller
 Licence CC BY-NC-SA
 
 Version 0.1.0"""
-
 
 from time import time
 
@@ -552,7 +553,6 @@ class Partie(object):
         for taille in self.joueur.grille_joueur.taille_bateaux :
             while not self.add_bateau_joueur(taille):
                 info("Le bateau de taille %d ne convient pas" % taille)
-
 
     #
     # Gestion de l'adversaire ------------------------------------------

@@ -1,11 +1,15 @@
-Lancer le script server.py
+Lancer le script bn_webserver.py
 
-Attention à bien mettre les droits en exécution aux fichiers du répertoire ./cgi-bin/
+Attention à bien mettre les droits en exécution aux fichiers du répertoire ./interface_web/cgi-bin/
 
 Sous Mac OS, remplacer la première ligne par du fichier bn_cgi.py :
 #!/anaconda/bin/python
 (Merci Christophe)
+Sous Windows ça doit être #!python3
+(mais je n'ai pas Windows pour tester)
 
 Accéder à la page http://localhost:8000/index.html
 
-Il est conseillé d'utiliser un navigateur récent (testé avec la dernière version de Firefox)
+Il est conseillé d'utiliser un navigateur récent.
+Testé avec succès avec Firefox(44.0.2) et Chromium(48.0.2564.116)
+sur un système Linux 64 bits (Xubuntu 14.04)

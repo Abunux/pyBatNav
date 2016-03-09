@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 """
  ╔══════════════════════════════════════════════════════════════════╗
@@ -26,12 +26,11 @@
 
  Auteur : Frédéric Muller
  Code du projet : https://github.com/Abunux/pyBatNav
- Licence Creative Common CC BY-NC-SA
+ Licence Creative Common CC BY-NC-SA v4.0
 
  Projet démarré le 14/11/2015
  Dernière màj : 04/03/2016
  Version 0.1.0"""
-
 
 import argparse
 
@@ -44,22 +43,23 @@ if __name__== '__main__' :
 
     # Récupération des arguments en ligne de commande
     parser = argparse.ArgumentParser(description='Jeu de bataille navale')
-    parser.add_argument('--interface', '-i', action="store", dest="interface", help="Choix de l'interface : 'tkinter', 'console' ou 'web'", default="")
-
+    parser.add_argument('--console','-c', action="store_true", dest="console", default=False, help="Interface console")
+    parser.add_argument('--tkinter','-t', action="store_true", dest="tkinter", default=False, help="Interface tkinter")
+    parser.add_argument('--web', '-w', action="store_true", dest="web", default=False, help="Interface web (serveur)")
     options = parser.parse_args()
 
     # Lancement de l'interface
-    if options.interface.lower() == "console" :
+    if options.console :
         app = MainConsole()
-    elif options.interface.lower() == "tkinter" :
+    elif options.tkinter :
         app = MainTK()
-    elif options.interface.lower() == "web" :
+    elif options.web :
         launch_serveur()
     else :
         print("""Choix de l'interface :
   T : Tkinter
   C : Console
-  W : Web""")
+  W : Web (serveur)""")
         choix = input("Votre choix ([t]|c|w) : ")
         if choix.lower() == 'c' :
             app = MainConsole()
@@ -67,5 +67,3 @@ if __name__== '__main__' :
             launch_serveur()
         else :
             app = MainTK()
-
-

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 """Module bn_tkinter
 
@@ -20,12 +20,12 @@ from bn_joueur import *
 
 # Constantes de couleur
 # ---------------------
-COLOR_OK = "#00FF00"    # Case valide
-COLOR_NO = "#FF0000"    # Case enon valide
-COLOR_BOAT = "cyan"     # Case occupée par un bateau
-COLOR_NOIRE = "#F8F8F8" # Case "noire"
-COLOR_CURS = "#E8E8E8"  # Case sous le curseur
-COLOR_FOND = "white"    # Fond de la frame principale
+COLOR_OK    = "#00FF00"    # Case valide
+COLOR_NO    = "#FF0000"    # Case non valide
+COLOR_BOAT  = "cyan"       # Case occupée par un bateau
+COLOR_NOIRE = "#F8F8F8"    # Case "noire"
+COLOR_CURS  = "#E8E8E8"    # Case sous le curseur
+COLOR_FOND  = "white"      # Fond de la frame principale
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ class GrilleTK(Grille, Frame):
 		self.can_height = height=1.5*self.marge_top+self.ymax*self.largeur_case
 		self.canvas = Canvas(self, width=self.can_width, height=self.can_height, bg="white", highlightthickness=0, cursor=cursor)
 		self.canvas.pack()
-	
+
 	def coord2case(self, x, y) :
 		"""Convertit les coordonnées graphiques en coordonées de cases"""
 		return (int((x-self.marge_left)//self.largeur_case), int((y-self.marge_top)//self.largeur_case))
@@ -63,7 +63,7 @@ class GrilleTK(Grille, Frame):
 			self.canvas.create_text(self.marge_left/2, self.marge_top+i*self.largeur_case+self.largeur_case/2, text=str(i), font=("Helvetica", 12))
 		for i in range(self.xmax):
 			self.canvas.create_text(self.marge_left+i*self.largeur_case+self.largeur_case/2, self.marge_top/2, text=chr(i+65), font=("Helvetica", 12))
-	
+
 	def clear_canvas(self):
 		"""Réinitialise le canvas"""
 		self.canvas.delete("all")
@@ -100,12 +100,11 @@ class GrilleTK(Grille, Frame):
 			for j in range(self.ymax):
 				if grille.etat[(i,j)] == 1 :
 					self.color_case((i, j), COLOR_BOAT)
-					
+
 	def color_bateaux_coules(self, coules=[]):
 		"""Colorie les cases des bateaux coulés"""
 		for case in coules :
 			self.color_case(case, COLOR_BOAT)
-		
 
 	def marque_cases(self):
 		"""Marque toutes les cases de la grille suvant leur état"""
@@ -176,17 +175,17 @@ class JoueurTK(Joueur):
 		(i, j) = self.grille_suivi.coord2case(x, y)
 		if self.playable and self.turn :
 			self.joue_coup(i,j)
-			if self.playable : # Pour ne pas recolorier la case en fin de partie
-				self.grille_suivi.color_case((i, j), COLOR_CURS)
-				self.grille_suivi.marque_case((i, j))
+			self.grille_suivi.marque_case((i, j))
 
 	def move_on_grille(self, event):
 		"""Quand le curseur se déplace sur la grille, coloration de la case survolée"""
 		if self.playable :
 			x, y = self.grille_suivi.canvas.canvasx(event.x), self.grille_suivi.canvas.canvasy(event.y)
 			(i, j) = self.grille_suivi.coord2case(x, y)
+			# Effaçage de la précédente case surlignée
 			self.grille_suivi.affiche(self.coules)
-			if  0 <= i < self.grille_suivi.xmax and 0 <= j < self.grille_suivi.ymax :
+			# Coloriage de la case survolée
+			if self.grille_suivi.test_case((i,j)):
 				self.grille_suivi.color_case((i, j), COLOR_CURS)
 				self.grille_suivi.marque_case((i, j))
 
@@ -234,9 +233,9 @@ class OrdiTK(Ordi, JoueurTK):
 		JoueurTK.__init__(self, nom=nom, parent=parent, cursor=cursor)
 
 		self.playable = False
-		try :
+		try:
 			self.info = self.parent.master.children["info"]
-		except :
+		except:
 			pass
 
 	def get_niveau(self) :
@@ -254,7 +253,6 @@ class OrdiTK(Ordi, JoueurTK):
 			self.niveau_str = "6(%d)" % self.seuil
 		else :
 			self.niveau_str = "%d" % self.niveau
-
 
 	def click_suivant(self, event=None) :
 		"""Quand on clic pour le coup suivant"""
@@ -281,7 +279,6 @@ class OrdiTK(Ordi, JoueurTK):
 #                               Fenêtres graphiques
 #----------------------------------------------------------------------------------------------------------------
 
-
 class LevelWindow(object):
 	"""Fenêtre de configuration du niveau de l'algorithme"""
 	def __init__(self, parent):
@@ -296,6 +293,7 @@ class LevelWindow(object):
 		self.window.geometry("580x160")
 		self.window.title("Paramètres")
 		self.window.resizable(False, False)
+		self.window.protocol("WM_DELETE_WINDOW", self.valide)
 		self.window.bind("<Return>", self.valide)
 
 		Label(self.window,text="Niveau de l'algorithme",font=("Helvetica", 16)).pack(pady=5)
@@ -359,6 +357,10 @@ class LevelWindow(object):
 		self.lv_param['échantillons'] = int(self.txt_param.get('1.0', END)[:-1])
 		self.window.destroy()
 
+#
+#----------------------------------------------------------------------------------------------------------------
+#
+
 class PlaceWindow(object):
 	"""Fenêtre de placement des bateaux"""
 	def __init__(self, parent, taille_bateaux=[5, 4, 3, 3, 2]):
@@ -382,11 +384,11 @@ class PlaceWindow(object):
 
 		self.next_bateau()
 
-		self.grille.canvas.bind("<Button-1>", self.on_click)
+		self.grille.canvas.bind("<Button-1>", self.on_clic)
 		self.grille.canvas.bind("<Motion>", self.on_move)
 
 		self.termine = False        # Si tous les bateaux ont été placés
-		self.first_click = True     # Clique au départ du bateau
+		self.first_clic = True     # Clique au départ du bateau
 
 	def test_case_depart(self, case):
 		"""Teste si le bateau en cours est plaçable à partir de cette case"""
@@ -406,12 +408,12 @@ class PlaceWindow(object):
 			self.termine = True
 			self.window.destroy()
 
-	def on_click(self, event) :
+	def on_clic(self, event) :
 		"""Quand on clique sur une case"""
 		x, y = self.grille.canvas.canvasx(event.x), self.grille.canvas.canvasy(event.y)
 		(i, j) = self.grille.coord2case(x, y)
 		# Premier clic, on marque la case de départ
-		if self.first_click :
+		if self.first_clic :
 			self.case_depart = (i,j)
 			self.end_possibles = []
 			if self.test_case_depart((i,j)) :
@@ -421,15 +423,15 @@ class PlaceWindow(object):
 					if self.grille.test_bateau(bateau) :
 						self.end_possibles.append(bateau.end)
 						self.grille.color_case(bateau.end, COLOR_OK)
-				self.first_click = False
+				self.first_clic = False
 		# Deuxième clic, on crée le bateau
 		else :
 			if (i,j) not in self.end_possibles :
 				return
-			if   i>self.case_depart[0] : sens = DROITE
-			elif i<self.case_depart[0] : sens = GAUCHE
-			elif j>self.case_depart[1] : sens = BAS
-			elif j<self.case_depart[1] : sens = HAUT
+			if   i>self.case_depart[0] and j==self.case_depart[1] : sens = DROITE
+			elif i<self.case_depart[0] and j==self.case_depart[1] : sens = GAUCHE
+			elif j>self.case_depart[1] and i==self.case_depart[0] : sens = BAS
+			elif j<self.case_depart[1] and i==self.case_depart[0] : sens = HAUT
 
 			bateau = Bateau(self.current_taille, self.case_depart, sens)
 			self.bateaux.append(bateau)
@@ -437,7 +439,7 @@ class PlaceWindow(object):
 			self.grille.affiche_adverse()
 			self.next_bateau()
 
-			self.first_click = True
+			self.first_clic = True
 
 	def on_move(self, event):
 		"""Déplacement du curseur sur la grille"""
@@ -445,7 +447,7 @@ class PlaceWindow(object):
 		(i, j) = self.grille.coord2case(x, y)
 		if 0 <= i < self.grille.xmax and 0 <= j < self.grille.ymax :
 			# Pas de bateau en cours de création, on colorie les cases possibles ou non
-			if self.first_click :
+			if self.first_clic :
 				self.grille.affiche_adverse()
 				if self.test_case_depart((i,j)) :
 					couleur = COLOR_OK
@@ -468,8 +470,13 @@ class PlaceWindow(object):
 					self.grille.color_case(self.case_depart, COLOR_BOAT)
 					for case in self.end_possibles :
 						self.grille.color_case(case, COLOR_OK)
+		# Si on bouge en dehors de la grille
 		else :
 			self.grille.affiche_adverse()
+			if not self.first_clic :
+				self.grille.color_case(self.case_depart, COLOR_BOAT)
+				for case in self.end_possibles :
+					self.grille.color_case(case, COLOR_OK)
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -509,30 +516,29 @@ class MainTK(Frame):
 		can_fond = Canvas(self.main_frame, width=width_main_frame, height=height_main_frame, bg="white")
 		can_fond.pack(fill=BOTH)
 		can_fond.create_text(width_main_frame//2, height_main_frame//2,
-			text="""     ╔══════════════════════════════════════════════════════════════════╗
-     ║                                                                  ║
-     ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
-     ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
-     ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
-     ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
-     ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
-     ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
-     ║                                                                  ║
-     ║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
-     ║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
-     ║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
-     ║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
-     ║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
-     ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
-     ║                                                                  ║
-     ╚══════════════════════════════════════════════════════════════════╝
+			text="""╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
+║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
+║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
+║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
+║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
+║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
+║                                                                  ║
+║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
+║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
+║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
+║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
+║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
+║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
 
-            Projet de formation ISN 2015/2016 de l'académie de Lyon
-                 Auteur : Frédéric Muller
-                 Code du projet : https://github.com/Abunux/pyBatNav
-                 Licence Creative Common CC BY-NC-SA
-                 Projet démarré le 14/11/2015
-		""",
+Projet de formation ISN 2015/2016 de l'académie de Lyon
+  Auteur : Frédéric Muller
+  Code du projet : https://github.com/Abunux/pyBatNav
+  Licence Creative Common CC BY-NC-SA v4.0
+  Projet démarré le 14/11/2015""",
 			font=("Courier", 10))
 
 		root.mainloop()
@@ -541,6 +547,13 @@ class MainTK(Frame):
 		"""Vide tous les widgets de la frame principale"""
 		for widj in self.main_frame.pack_slaves() :
 			widj.destroy()
+
+	def test_algo(self) :
+		# Création de la frame principale
+		self.parent.title("Bataille navale - Partie solo")
+		self.parent.geometry("980x490")
+		self.clear_widgets()
+		
 
 	def jeu_solo(self) :
 		"""Lance une partie solo"""

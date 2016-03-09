@@ -2,7 +2,7 @@
 
 Une interface réalisée grâce à la bibliothèque \texttt{tkinter} est codée dans le fichier \texttt{bn\_tkinter}. Dans cette interface, on a la possibilité de jouer seul sur une grille aléatoire, de voir l'algorithme de résolution (avec choix du niveau) et de jouer contre l'algorithme (avec choix du niveau de ce dernier et placement de nos bateaux).
 
-Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement. C'est également pourquoi cette partie du rapport est moins détaillée, par faute de temps.
+Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement. Je ne suis d'ailleurs pas totalement satisfait du résultat, même si elle est fonctionnelle. C'est également pourquoi cette partie du rapport est moins détaillée, par faute de temps.
 
 %\section{Principes de l'interface}
 %
@@ -64,9 +64,9 @@ Le niveau est déterminé dans un \texttt{Combobox} du sous-module \texttt{ttk} 
 La choix du niveau de l'algorithme s'effectue dans une fenêtre de type \texttt{Toplevel} dans la classe \texttt{PlaceWin}.\\
 Pour chaque bateau à placer, le principe est le suivant :
 \begin{itemize}
-\item Lorsque l'utilisateur clique une première fois sur la grille, sa case est mémorisée et le drapeau \texttt{first\_click} est mis à \texttt{False}.\\
+\item Lorsque l'utilisateur clique une première fois sur la grille, sa case est mémorisée et le drapeau \texttt{first\_clic} est mis à \texttt{False}.\\
 On détermine alors tous les bateaux valides démarrant sur cette case et on colorie leurs cases de fin.
 \item  Lors du déplacement du curseur sur une case de fin possible, un aperçu du bateau est mis en couleur.
-\item Lors du clique sur la case de fin, le bateau est validé et le drapeau \texttt{first\_click} est remis à \texttt{True}.
+\item Lors du clic sur la case de fin, le bateau est validé et le drapeau \texttt{first\_clic} est remis à \texttt{True}.
 \end{itemize}
 Si on ferme prématurément cette fenêtre, les bateaux sont placés aléatoirement.

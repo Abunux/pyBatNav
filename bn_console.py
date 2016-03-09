@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 """Module bn_console
 
@@ -10,12 +10,9 @@ Licence CC BY-NC-SA
 
 Version 0.1.0"""
 
-
 import os
 from math import *
 from time import *
-import matplotlib.pyplot as plt
-import numpy as np
 
 from bn_grille import *
 from bn_joueur import *
@@ -68,8 +65,6 @@ CAR_GCX = u'\u254B'     # Croix Gras Centrale : ╋
 CAR_GCXH = u'\u253F'    # Croix Gras Horizontal : ┿
 CAR_GCXV = u'\u2542'    # Croix Gras Vertical : ╂
 
-
-
 # Touché / Manqué
 # ---------------
 CAR_TOUCH = u'\u2716'   # Touché : ✖
@@ -78,16 +73,13 @@ CAR_MANQ = u'\u25EF'    # Manqué : ◯
 #
 # Fonctions utiles ----------------------------------------------------------------------------------------------
 #
+
 def clear():
     """Efface la console"""
     if (os.name == 'nt'):
         os.system('cls')
     else:
         os.system('clear')
-
-#~ def print(*args):
-    #~ """Affiche les prints à l'écran"""
-    #~ print(*args)
 
 def enter_to_continue():
     input("Appuyez sur Entrée pour continuer ")
@@ -123,6 +115,7 @@ def boite(texte, prefixe ='', larg_fen = 98):
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+
 class GrilleC(Grille) :
     """Affichage de la grille en mode console"""
     def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
@@ -372,6 +365,9 @@ class GrilleC(Grille) :
         en entourant nos propres bateaux"""
         print(self.make_chaine_adverse(grille))
 
+#
+#----------------------------------------------------------------------------------------------------------------
+#
 
 class GrilleJoueurC(GrilleC, GrilleJoueur):
     """La grille sur laquelle chaque joueur place ses bateaux"""
@@ -382,6 +378,7 @@ class GrilleJoueurC(GrilleC, GrilleJoueur):
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+
 class GrilleSuiviC(GrilleC, GrilleSuivi):
     """La grille de suivi des coups joués"""
     def __init__(self, xmax=10, ymax=10, taille_bateaux = [5, 4, 3, 3, 2]):
@@ -391,6 +388,7 @@ class GrilleSuiviC(GrilleC, GrilleSuivi):
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+
 class JoueurC(Joueur):
     """Joueur en mode console"""
     def __init__(self, nom='Joueur'):
@@ -433,7 +431,6 @@ class JoueurC(Joueur):
                 except :
                     self.add_message("%s : Coup invalide" % case)
                     self.affiche_messages()
-        #~ self.affiche_messages()
 
     #
     # Partie solo sur une grille aléatoire -----------------------------
@@ -460,12 +457,12 @@ class JoueurC(Joueur):
         self.grille_suivi.affiche_adverse(self.grille_adverse)
         self.add_message("Bravo !! Partie terminée en %d coups" % self.essais)
         self.affiche_messages()
-        #~ print("Grille de l'adversaire :")
-        #~ self.grille_adverse.affiche()
         print("Coups joués : ", ' '.join([alpha(case) for case in self.cases_jouees]))
+
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+
 class OrdiC(JoueurC, Ordi):
     """Résoultion de la grille en mode console"""
     def __init__(self, nom='HAL', niveau=4, nb_echantillons=100, seuil=20):
@@ -537,6 +534,7 @@ class OrdiC(JoueurC, Ordi):
 #
 #----------------------------------------------------------------------------------------------------------------
 #
+
 class PartieC(Partie):
     """Partie à deux joueurs en mode console"""
     def __init__(self, joueur=Joueur(), adversaire=Ordi(), cheat=False):
@@ -664,7 +662,6 @@ class PartieC(Partie):
         else :
             print(boite("%s a gagné en %d coups" % (self.adversaire.nom, self.adversaire.essais)))
 
-
 #
 #----------------------------------------------------------------------------------------------------------------
 #
@@ -736,7 +733,6 @@ class MainConsole(object):
         temps = ordi.resolution(affiche=affiche, grille=grille)
         return (ordi.essais, temps) # Pour les tests de performance
 
-
     def jeu_solo(self, cheat=False):
         """Jeu solo sur une grille aléatoire"""
         # Initialisation de la partie
@@ -748,6 +744,7 @@ class MainConsole(object):
 
     def jeu_contre_ordi(self, cheat=False, nom="Joueur"):
         """Partie en duel contre l'ordinateur"""
+        # Initialisation de la partie
         joueur = JoueurC(nom)
         niveau = self.get_niveau()
         nb_echantillons = self.get_nb_echantillons(niveau)
@@ -777,7 +774,10 @@ class MainConsole(object):
                 print("Avancement : %d%% (Temps restant estimé : %.2f secondes (%s))" % (100*(k+1)//n, t_restant,strftime("%d/%m/%Y %H:%M:%S",localtime(time()+t_restant)) ))
 
         # Résultats de la simulation
+        # --------------------------
         tmoy = temps_resolution/n
+
+        # Nom de la simulation
         if niveau == 4 :
             niveau_str = "4(%d)" % nb_echantillons
         elif niveau == 6 :
@@ -786,6 +786,7 @@ class MainConsole(object):
             niveau_str = "%d" % niveau
         filename = "distrib_HAL_niveau=%s_n=%d" % (niveau_str, n)
 
+        # Calcul et affichage des statistiques
         stats = Stats(data=distrib, filename=filename, tmoy=tmoy, param_grille={'xmax':xmax, 'ymax':ymax, 'taille_bateaux':taille_bateaux}, niveau_str=niveau_str)
 
         print()
@@ -796,13 +797,22 @@ class MainConsole(object):
         print("Niveau de l'algorithme : %s" % niveau_str)
         print("Nombre de parties : %d" % n)
         print()
-        stats.resume_stat()
+        print("Mini : %d" % stats.mini)
+        print("Q1 : %d" % stats.quartiles[0])
+        print("Med : %d" % stats.quartiles[1])
+        print("Q3 : %d" % stats.quartiles[2])
+        print("Maxi : %d" % stats.maxi)
+        print()
+        print("Mode : %d" % stats.mode)
+        print()
+        print("Moyenne : %.2f" % stats.moyenne)
+        print("Sigma : %.2f" % stats.sigma)
         print()
         print("Temps moyen par partie : %.5f secondes" % (temps_resolution/n))
         print("Temps total            : %.2f secondes" % (time()-start))
+        print()
 
         stats.save_data()
-
         stats.histogramme(save=True)
 
         return distrib # Pour tests futurs
@@ -813,8 +823,10 @@ class MainConsole(object):
         clear()
         xmax = ymax = 10
         taille_bateaux = [5, 4, 3, 3, 2]
+        print(boite("Test de l'algorithme de résolution", larg_fen=0))
+        print()
         # Paramètres des parties à simuler
-        print("Paramètres par défaut : xmax=%d, ymax=%d, bateaux=%s\n" % (xmax, ymax, taille_bateaux))
+        print("Paramètres par défaut : xmax=%d, ymax=%d, bateaux=%s" % (xmax, ymax, taille_bateaux))
         rep = input("Voulez-vous changer ces paramètres ? [o|[n]] ")
         if rep.lower()=='o' :
             ok = False
@@ -828,7 +840,6 @@ class MainConsole(object):
                 except :
                     print("Saisie invalide\n")
                     ok = False
-
         niveau = self.get_niveau()
         nb_echantillons = self.get_nb_echantillons(niveau)
         seuil = self.get_seuil(niveau)
@@ -849,9 +860,7 @@ class MainConsole(object):
     #
     def launch_menu(self):
         """Menu de lancement """
-        #~ defaut = self.launch_test_algo
-        defaut = self.jeu_contre_ordi
-        #~ defaut = self.jeu_solo
+        defaut = self.launch_test_algo
 
         clear()
         print(boite("""
@@ -887,7 +896,7 @@ class MainConsole(object):
         print("             Projet de formation ISN 2015/2016 de l'académie de Lyon")
         print("                Auteur : Frédéric Muller")
         print("                Code du projet : https://github.com/Abunux/pyBatNav")
-        print("                Licence Creative Common CC BY-NC-SA")
+        print("                Licence Creative Common CC BY-NC-SA v4.0")
         print("                Projet démarré le 14/11/2015")
         # source : http://www.chris.com/ascii/index.php?art=transportation/nautical
         print(r"""
@@ -917,7 +926,7 @@ class MainConsole(object):
   T : Test des performances de l'algorithme de résolution
   Q : Quitter
       """)
-            choix = input("Votre choix ([j]|s|o|t|q) : ")
+            choix = input("Votre choix (j|s|o|[t]|q) : ")
 
             if choix.lower() == 's' :
                 rep = input("Activer le mode triche (o|[n]) ? ")
@@ -938,13 +947,12 @@ class MainConsole(object):
             elif choix.lower() == 'j' :
                 nom = input("Votre nom [Joueur] : ")
                 if nom == '' :
-                    nom = "Toto"
+                    nom = "Joueur"
                 rep = input("Activer le mode triche (o|[n]) ? ")
                 if rep.lower() == 'o' :
                     self.jeu_contre_ordi(cheat=True, nom=nom)
                 else :
                     self.jeu_contre_ordi(cheat=False, nom=nom)
-
 
             elif choix.lower() == 'q' :
                 print()
