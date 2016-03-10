@@ -76,7 +76,7 @@ CAR_MANQ = u'\u25EF'    # Manqué : ◯
 
 def clear():
     """Efface la console"""
-    if (os.name == 'nt'):
+    if os.name == 'nt':
         os.system('cls')
     else:
         os.system('clear')

@@ -26,7 +26,7 @@
 
 Lancement :
 -----------
-Il y a pas mal de problèmes avec pyzo. Il a un bug connu avec matplotlib, son affichage console n'est pas terrible et il y a un problèmes avec les polices en tkinter. 
+Il y a pas mal de problèmes avec pyzo. Il a un bug connu avec matplotlib, son affichage console n'est pas terrible et il y a des problèmes avec les polices en tkinter. 
 Il est donc fortement conseillé de lancer le programme main.py directement dans une console :
 
 soit avec : $ ./main.py
@@ -45,3 +45,10 @@ Il est également possible de lancer directement les fichiers :
 - bn_tkinter.py
 - bn_webserveur.py
 
+Imortant :
+----------
+N'ayant que des machines sous Linux à disposition, il m'a été impossible de tester mon code sous Windows, ni sous MacOS.
+
+J'espère qu'il fonctionne sous ces systèmes (il devrait en théorie)
+
+En cas de problème avec l'interface web, lire le fichier ALire.txt du dossier interface_web

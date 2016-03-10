@@ -73,7 +73,7 @@ try :
 except :
     noID = True
 
-if sessionID=='0' or noID or not os.path.isfile(os.path.join("sessions", "session_%s" % sessionID)):
+if sessionID=='0' or noID :
     first = True
     ID = str(randint(1,1000000000))
 else:
@@ -334,14 +334,17 @@ if fini :
         """ % mode
     # Affichage de la boîte du gagnant
     if mode == 0 or (mode == 1 and gagnant == 0) :
-        html_body += """<script>alert("Bravo ! Vous avez gagné en %d coups.")</script>\n""" % joueur.essais
+        html_body += """<script>alert("Bravo ! Vous avez fini en %d coups.")</script>\n""" % joueur.essais
     elif mode == 2 or (mode == 1 and gagnant == 1) :
-        html_body += """<script>alert("%s a gagné en %d coups.")</script>\n""" % (nom_ordi, ordi.essais)
+        html_body += """<script>alert("%s a fini en %d coups.")</script>\n""" % (nom_ordi, ordi.essais)
     # Suppression de la session
-    try :
-        os.remove(os.path.join("sessions", "session_%s" % ID))
-    except :
-        pass
+    # (les .bak et .dir ne sont pas effacés, c'est totalement incompréhensible...)
+    for ext in ["", ".dat", ".bak", ".dir"] :
+        try :
+            os.remove(os.path.join("sessions", "session_%s%s" % (ID, ext)))
+        except :
+            pass
+
 else :
     if mode <= 1 :
     # Récupération des événements souris
@@ -380,8 +383,16 @@ else :
 html_body += "  </body>\n"
 html_body += "</html>"
 
+def clean_html(texte) :
+    """Remplace les accents par leurs équivalents en HTML"""
+    convert={'à':'&agrave', 'é':'&eacute', 'è':'&egrave', 'ê':'&ecirc'}
+    for char in convert :
+        texte = texte.replace(char, convert[char])
+    return texte
+
 # Affichage de la page
 # --------------------
-print(html_header)
-print(html_body)
+print(clean_html(html_header))
+print(clean_html(html_body))
+
 

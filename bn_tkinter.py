@@ -30,6 +30,8 @@ COLOR_QUEUE_M  = "yellow"     # File d'attente manqué
 COLOR_QUEUE_T  = "orange"     # File d'attente touché
 COLOR_COURANTE = "#FF00FF"   # Case courante
 
+#~ FONT = "Helvetica"
+FONT = "Verdana"
 
 #
 #----------------------------------------------------------------------------------------------------------------
@@ -64,9 +66,9 @@ class GrilleTK(Grille, Frame):
 		for i in range(self.ymax+1) :
 			self.canvas.create_line(self.marge_left+i*self.largeur_case, self.marge_top, self.marge_left+i*self.largeur_case, self.marge_top+self.ymax*self.largeur_case)
 		for i in range(self.xmax):
-			self.canvas.create_text(self.marge_left/2, self.marge_top+i*self.largeur_case+self.largeur_case/2, text=str(i), font=("Helvetica", 12))
+			self.canvas.create_text(self.marge_left/2, self.marge_top+i*self.largeur_case+self.largeur_case/2, text=str(i), font=(FONT, 12))
 		for i in range(self.xmax):
-			self.canvas.create_text(self.marge_left+i*self.largeur_case+self.largeur_case/2, self.marge_top/2, text=chr(i+65), font=("Helvetica", 12))
+			self.canvas.create_text(self.marge_left+i*self.largeur_case+self.largeur_case/2, self.marge_top/2, text=chr(i+65), font=(FONT, 12))
 
 	def clear_canvas(self):
 		"""Réinitialise le canvas"""
@@ -84,7 +86,7 @@ class GrilleTK(Grille, Frame):
 			#~ symbole = u'\u25EF'
 		else :
 			symbole = ""
-		self.canvas.create_text(x+self.largeur_case/2, y+self.largeur_case/2, text=symbole, font=("Helvetica", 12))
+		self.canvas.create_text(x+self.largeur_case/2, y+self.largeur_case/2, text=symbole, font=(FONT, 12))
 
 	def color_case(self, case, couleur):
 		"""Colorie une case"""
@@ -311,7 +313,7 @@ class LevelWindow(object):
 		self.window.protocol("WM_DELETE_WINDOW", self.valide)
 		self.window.bind("<Return>", self.valide)
 
-		Label(self.window,text="Niveau de l'algorithme",font=("Helvetica", 16)).pack(pady=5)
+		Label(self.window,text="Niveau de l'algorithme",font=(FONT, 16)).pack(pady=5)
 
 		self.frame_param = Frame(self.window)
 		self.frame_param.pack(fill=BOTH, padx=10, pady=10)
@@ -383,7 +385,7 @@ class PlaceWindow(object):
 		self.window = Toplevel(self.parent, bg="white")
 		self.window.title("Placement de vos bateaux")
 		self.window.resizable(False, False)
-		self.lb_titre = Label(self.window, text="", bg="white", font=("Helvetica", 16))
+		self.lb_titre = Label(self.window, text="", bg="white", font=(FONT, 16))
 		self.lb_titre.pack(fill=X)
 
 		self.bateaux = []
@@ -647,8 +649,8 @@ class MainTK(Frame):
 		joueur = JoueurTK(parent=frame_grille1)
 		ordi = OrdiTK(parent=frame_grille2)
 
-		Label(frame_grille1, text=joueur.nom, bg="white",font=("Helvetica", 16) , padx=10, pady=5).pack()
-		Label(frame_grille2, text=ordi.nom, bg="white",font=("Helvetica", 16) , padx=10, pady=5).pack()
+		Label(frame_grille1, text=joueur.nom, bg="white",font=(FONT, 16) , padx=10, pady=5).pack()
+		Label(frame_grille2, text=ordi.nom, bg="white",font=(FONT, 16) , padx=10, pady=5).pack()
 		joueur.grille_suivi.pack(padx=10, pady=10)
 		ordi.grille_suivi.pack(padx=10, pady=10)
 
