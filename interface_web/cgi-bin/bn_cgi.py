@@ -337,8 +337,9 @@ if fini :
         html_body += """<script>alert("Bravo ! Vous avez fini en %d coups.")</script>\n""" % joueur.essais
     elif mode == 2 or (mode == 1 and gagnant == 1) :
         html_body += """<script>alert("%s a fini en %d coups.")</script>\n""" % (nom_ordi, ordi.essais)
+
     # Suppression de la session
-    # (les .bak et .dir ne sont pas effacés, c'est totalement incompréhensible...)
+    # (sous windows, les .bak et .dir ne sont pas effacés, c'est totalement incompréhensible...)
     for ext in ["", ".dat", ".bak", ".dir"] :
         try :
             os.remove(os.path.join("sessions", "session_%s%s" % (ID, ext)))
@@ -347,7 +348,7 @@ if fini :
 
 else :
     if mode <= 1 :
-    # Récupération des événements souris
+        # Récupération des événements souris
         html_body += """        <script>
             // Événements souris
             // Inspiré de : http://stackoverflow.com/questions/9880279/how-do-i-add-a-simple-onclick-event-handler-to-a-canvas-element
