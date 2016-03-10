@@ -29,7 +29,7 @@
  Licence Creative Common CC BY-NC-SA v4.0
 
  Projet démarré le 14/11/2015
- Dernière màj : 04/03/2016
+ Dernière màj : 10/03/2016
  Version 0.1.0"""
 
 import argparse

@@ -26,7 +26,8 @@
 
 Lancement :
 -----------
-Il y a un problème avec pyzo et matplotlib, et l'affichage console de pyzo n'est pas terrible. Il est donc fortement conseillé de lancer le programme main.py directement dans une console :
+Il y a pas mal de problèmes avec pyzo. Il a un bug connu avec matplotlib, son affichage console n'est pas terrible et il y a un problèmes avec les polices en tkinter. 
+Il est donc fortement conseillé de lancer le programme main.py directement dans une console :
 
 soit avec : $ ./main.py
 

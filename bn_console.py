@@ -204,7 +204,7 @@ class GrilleC(Grille) :
         for i in range(grille.xmax):
             if i != grille.xmax-1 :
                 chaine += ' ' + chr(i+65) + ' ' + CAR_V
-                #~ chaine += ' '+str(i)+' '+CAR_V
+                #~ chaine += ' '+str(i)+' '+CAR_V          # Intitulés en chiffres des colonnes
             else :
                 chaine += ' ' + chr(i+65) + ' ' + CAR_V + '\n'
                 #~ chaine += ' '+str(i)+' '+CAR_V+'\n'
@@ -874,30 +874,8 @@ class MainConsole(object):
         enter_to_continue()
         clear()
 
-        # source : http://patorjk.com/software/taag/
-        print("""     ╔══════════════════════════════════════════════════════════════════╗
-     ║                                                                  ║
-     ║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
-     ║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
-     ║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
-     ║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
-     ║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
-     ║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
-     ║                                                                  ║
-     ║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
-     ║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
-     ║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
-     ║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
-     ║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
-     ║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
-     ║                                                                  ║
-     ╚══════════════════════════════════════════════════════════════════╝
-""")
-        print("             Projet de formation ISN 2015/2016 de l'académie de Lyon")
-        print("                Auteur : Frédéric Muller")
-        print("                Code du projet : https://github.com/Abunux/pyBatNav")
-        print("                Licence Creative Common CC BY-NC-SA v4.0")
-        print("                Projet démarré le 14/11/2015")
+        print(TITRE)
+
         # source : http://www.chris.com/ascii/index.php?art=transportation/nautical
         print(r"""
                                      |__

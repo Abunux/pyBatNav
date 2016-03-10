@@ -20,14 +20,15 @@ from bn_joueur import *
 
 # Constantes de couleur (pas très esthétique mais facilement modifiable)
 # ----------------------------------------------------------------------
-COLOR_OK      = "#00FF00"    # Case valide
-COLOR_NO      = "#FF0000"    # Case non valide
-COLOR_BOAT    = "cyan"       # Case occupée par un bateau
-COLOR_NOIRE   = "#F8F8F8"    # Case "noire"
-COLOR_CURS    = "#E8E8E8"    # Case sous le curseur
-COLOR_FOND    = "white"      # Fond de la frame principale
-COLOR_QUEUE_M = "yellow"     # File d'attente manqué
-COLOR_QUEUE_T = "orange"     # File d'attente touché
+COLOR_FOND     = "white"      # Fond de la frame principale
+COLOR_NOIRE    = "#F8F8F8"    # Case "noire"
+COLOR_BOAT     = "cyan"       # Case occupée par un bateau
+COLOR_CURS     = "#D0D0D0"    # Case sous le curseur
+COLOR_OK       = "#00FF00"    # Case valide
+COLOR_NO       = "#FF0000"    # Case non valide
+COLOR_QUEUE_M  = "yellow"     # File d'attente manqué
+COLOR_QUEUE_T  = "orange"     # File d'attente touché
+COLOR_COURANTE = "#FF00FF"   # Case courante
 
 
 #
@@ -77,8 +78,10 @@ class GrilleTK(Grille, Frame):
 		(x, y) = self.case2coord(case)
 		if self.etat[case] == 1 :
 			symbole = "X"
+			#~ symbole = u'\u2716'       # Plus joli mais pb avec pyzo
 		elif self.etat[case] == -1 :
 			symbole = "O"
+			#~ symbole = u'\u25EF'
 		else :
 			symbole = ""
 		self.canvas.create_text(x+self.largeur_case/2, y+self.largeur_case/2, text=symbole, font=("Helvetica", 12))
@@ -268,10 +271,13 @@ class OrdiTK(Ordi, JoueurTK):
 					self.grille_suivi.color_case(case, COLOR_QUEUE_T)
 				else :
 					self.grille_suivi.color_case(case, COLOR_QUEUE_M)
+			self.grille_suivi.color_case(self.case_courante, COLOR_COURANTE)
+			self.grille_suivi.marque_case(self.case_courante)
 			self.affiche_messages()
 			if self.grille_suivi.fini() :
 				self.info.insert(END, "Partie terminée en %d coups" % self.essais )
 				messagebox.showinfo("Fin de partie", "Partie terminée en %d coups" % self.essais)
+				self.grille_suivi.affiche_adverse(self.grille_adverse)
 				self.turn = False
 
 #
@@ -520,35 +526,12 @@ class MainTK(Frame):
 		self.main_frame.pack(fill=BOTH, expand=1)
 		self.main_frame.update()
 
-		# Fond d'écran avant le lancement d'une partie
+		# Fond d'écran avant le lancement d'une partie (on pourrait mettre une image)
 		width_main_frame, height_main_frame = self.main_frame.winfo_width(), self.main_frame.winfo_height()
 		can_fond = Canvas(self.main_frame, width=width_main_frame, height=height_main_frame, bg="white")
 		can_fond.pack(fill=BOTH)
 		can_fond.create_text(width_main_frame//2, height_main_frame//2,
-			text="""╔══════════════════════════════════════════════════════════════════╗
-║                                                                  ║
-║   ██████╗  █████╗ ████████╗ █████╗ ██╗██╗     ██╗     ███████╗   ║
-║   ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██║██║     ██║     ██╔════╝   ║
-║   ██████╔╝███████║   ██║   ███████║██║██║     ██║     █████╗     ║
-║   ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║     ██║     ██╔══╝     ║
-║   ██████╔╝██║  ██║   ██║   ██║  ██║██║███████╗███████╗███████╗   ║
-║   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝   ║
-║                                                                  ║
-║        ███╗   ██╗ █████╗ ██╗   ██╗ █████╗ ██╗     ███████╗       ║
-║        ████╗  ██║██╔══██╗██║   ██║██╔══██╗██║     ██╔════╝       ║
-║        ██╔██╗ ██║███████║██║   ██║███████║██║     █████╗         ║
-║        ██║╚██╗██║██╔══██║╚██╗ ██╔╝██╔══██║██║     ██╔══╝         ║
-║        ██║ ╚████║██║  ██║ ╚████╔╝ ██║  ██║███████╗███████╗       ║
-║        ╚═╝  ╚═══╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝       ║
-║                                                                  ║
-╚══════════════════════════════════════════════════════════════════╝
-
-Projet de formation ISN 2015/2016 de l'académie de Lyon
-  Auteur : Frédéric Muller
-  Code du projet : https://github.com/Abunux/pyBatNav
-  Licence Creative Common CC BY-NC-SA v4.0
-  Projet démarré le 14/11/2015""",
-			font=("Courier", 10))
+			text=TITRE, font=("Courier", 10))
 
 		root.mainloop()
 
@@ -556,13 +539,6 @@ Projet de formation ISN 2015/2016 de l'académie de Lyon
 		"""Vide tous les widgets de la frame principale"""
 		for widj in self.main_frame.pack_slaves() :
 			widj.destroy()
-
-	def test_algo(self) :
-		# Création de la frame principale
-		self.parent.title("Bataille navale - Partie solo")
-		self.parent.geometry("980x490")
-		self.clear_widgets()
-		
 
 	def jeu_solo(self) :
 		"""Lance une partie solo"""
@@ -573,7 +549,7 @@ Projet de formation ISN 2015/2016 de l'académie de Lyon
 
 		info = Text(self.main_frame, name="info", wrap=WORD,  bd=5, relief=RIDGE, padx=5)
 
-		joueur = JoueurTK(parent=self.main_frame)#, cursor="X_cursor")
+		joueur = JoueurTK(parent=self.main_frame)
 		joueur.grille_adverse.init_bateaux_alea()
 		joueur.grille_suivi.pack(side=LEFT, padx=10, pady=10)
 		joueur.grille_suivi.affiche()
@@ -614,20 +590,18 @@ Projet de formation ISN 2015/2016 de l'académie de Lyon
 			fini = False
 			x, y = joueur.grille_suivi.canvas.canvasx(event.x), joueur.grille_suivi.canvas.canvasy(event.y)
 			(i, j) = joueur.grille_suivi.coord2case(x,y)
-			ok = joueur.grille_suivi.test_case((i, j))
-			if joueur.turn and joueur.playable and 0 <= i < joueur.grille_suivi.xmax and 0 <= j < joueur.grille_suivi.ymax :
+			if joueur.turn and joueur.playable and joueur.grille_suivi.test_case((i,j)):
 				joueur.tire((i,j))
 				joueur.grille_suivi.affiche(coules=joueur.coules)
 				if joueur.grille_suivi.fini() :
 					gagnant = 0
 					fini = True
 				else :
-					if ok :
-						ordi.coup_suivant()
-						ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
-						if ordi.grille_suivi.fini():
-							gagnant = 1
-							fini = True
+					ordi.coup_suivant()
+					ordi.grille_suivi.affiche_adverse(ordi.grille_adverse)
+					if ordi.grille_suivi.fini():
+						gagnant = 1
+						fini = True
 
 				# Affichage des messages
 				info.delete('1.0', END)
@@ -640,9 +614,12 @@ Projet de formation ISN 2015/2016 de l'académie de Lyon
 
 				# Fin de partie
 				if fini :
+					# On ne peut plus cliquer sur la grille
 					joueur.playable = False
+					# Affichage de la solution
 					joueur.grille_suivi.affiche_adverse(ordi.grille_joueur)
 					ordi.grille_suivi.affiche_adverse(joueur.grille_joueur)
+					# Annoce du gagnant
 					if gagnant == 0 :
 						info.insert(END, "Bravo ! Vous avez gagné en %d coups" % joueur.essais)
 						joueur.turn = False
@@ -651,8 +628,10 @@ Projet de formation ISN 2015/2016 de l'académie de Lyon
 						info.insert(END, "L'ordinateur a gagné en %d coups" % ordi.essais)
 						ordi.turn = False
 						messagebox.showinfo("Fin de partie", "L'ordinateur a gagné en %d coups" % ordi.essais)
-
+		
+		# -------------------------------
 		# Création de la frame principale
+		# -------------------------------
 		self.parent.geometry("980x620")
 		self.clear_widgets()
 
@@ -678,7 +657,9 @@ Projet de formation ISN 2015/2016 de l'académie de Lyon
 		joueur.grille_suivi.affiche()
 		ordi.grille_suivi.affiche()
 
+		# ------------------------------------
 		# Initialisation des paramètres de jeu
+		# ------------------------------------
 		ordi.get_niveau()
 		self.parent.title("Bataille navale - Partie contre l'ordinateur - Niveau " + ordi.niveau_str)
 
@@ -693,10 +674,14 @@ Projet de formation ISN 2015/2016 de l'académie de Lyon
 
 		joueur.grille_suivi.canvas.bind("<Button-1>", click_grille)
 
+		# ----------------------
 		# Lancement de la partie
+		# ----------------------
 		info.insert(END, "C'est parti !\n")
+		# Le joueur commence
 		if rand.randint(0,1) == 0 :
 			messagebox.showinfo("Début de partie", "Vous allez commencer")
+		# L'ordinateur commence
 		else :
 			messagebox.showinfo("Début de partie", "%s  va commencer" % ordi.nom)
 			ordi.coup_suivant()
