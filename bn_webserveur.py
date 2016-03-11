@@ -36,9 +36,10 @@ def launch_serveur():
 En cas de problème, si par exemple votre navigateur vous propose de
 télécharger le fichier bn_cgi.py, lisez le fichier ALire.txt situé
 dans le répertoire interface_web.
+Contact : maths.muller@gmail.com
 """)
     print("----------------------------------------------------")
-    print("Log de connexion :\n")
+    print("\nLog de connexion :\n")
 
     # Lancement du serveur en mode démon
     # On le stop avec CTRL+C
