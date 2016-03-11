@@ -22,91 +22,106 @@ from bn_stats import *
 # Caractères graphiques (pour faire la grille)
 # --------------------------------------------
 
-# IMPORTANT : EN CAS DE PROBLÈME AVEC UNICODE (PLANTAGE OU AFFICHAGE MOCHE)
-# COMMENTEZ LES LIGNES CI-DESSOUS ET DÉCOMMENTEZ CELLES QUI SUIVENT
+print("""
+ Pour un affichage du jeu optimal, vous avez besoin de pouvoir
+ afficher au moins 125 caractères par lignes. Sous Windows, clic droit
+ sur la barre de titre du terminal, Propriétés et régler la largeur du
+ tampon à 125.""")
 
-# http://www.unicode.org/charts/ --> Box Drawing (U2500.pdf)
+# Le terminal Windows a des soucis avec Unicode (les caractères gras de la grille
+# font planter le programme), aussi j'ai mis un jeu de caractères de secours.
+print("""
+ Ce programme peut afficher les grilles en caractères unicodes.
+ En cas de problème d'affichage ou de plantage, il faut désactiver
+ cette fonctionnalité.
+ """)
+uni = input("Voulez-vous utiliser les caractères Unicodes ([o]|n) ? ")
 
-# Caractères simples pour la grille
-# ---------------------------------
-# Traits
-CAR_H = u'\u2500'       # Trait Horizontal : ─
-CAR_V = u'\u2502'       # Trait Vertical : │
-# Coins
-CAR_CHG = u'\u250C'     # Coin Haut Gauche : ┌
-CAR_CHD = u'\u2510'     # Coin Haut Droite : ┐
-CAR_CBG = u'\u2514'     # Coin Bas Gauche : └
-CAR_CBD = u'\u2518'     # Coin Bas Droite : ┘
-# T
-CAR_TH = u'\u252C'      # T Haut : ┬
-CAR_TB = u'\u2534'      # T Bas : ┴
-CAR_TG = u'\u251C'      # T Gauche : ├
-CAR_TD = u'\u2524'      # T Droite : ┤
-# +
-CAR_CX = u'\u253C'      # Croix Centrale : ┼
+if uni.lower() != 'n' :
+    UNI = True
+    print("Caractères Unicodes activés\n")
+    # http://www.unicode.org/charts/ --> Box Drawing (U2500.pdf)
 
-# Caractères en gras pour les bateaux
-# -----------------------------------
-# Traits
-CAR_GH = u'\u2501'      # Trait Gras Horizontal : ━
-CAR_GV = u'\u2503'      # Trait Gras Vertical : ┃
-# T
-CAR_GTB = u'\u2537'     # T Gras Bas : ┷
-CAR_GTD = u'\u2528'     # T Gras Droite : ┨
-CAR_GTDH = u'\u252A'    # T Droite Haut : ┪
-CAR_GTDB = u'\u2529'    # T Droite Bas : ┩
-CAR_GTBG = u'\u253A'    # T Bas Gauche : ┺
-CAR_GTBD = u'\u2539'    # T Bas Droite : ┹
+    # Caractères simples pour la grille
+    # ---------------------------------
+    # Traits
+    CAR_H = u'\u2500'       # Trait Horizontal : ─
+    CAR_V = u'\u2502'       # Trait Vertical : │
+    # Coins
+    CAR_CHG = u'\u250C'     # Coin Haut Gauche : ┌
+    CAR_CHD = u'\u2510'     # Coin Haut Droite : ┐
+    CAR_CBG = u'\u2514'     # Coin Bas Gauche : └
+    CAR_CBD = u'\u2518'     # Coin Bas Droite : ┘
+    # T
+    CAR_TH = u'\u252C'      # T Haut : ┬
+    CAR_TB = u'\u2534'      # T Bas : ┴
+    CAR_TG = u'\u251C'      # T Gauche : ├
+    CAR_TD = u'\u2524'      # T Droite : ┤
+    # +
+    CAR_CX = u'\u253C'      # Croix Centrale : ┼
 
-# Coins
-CAR_GCBD = u'\u251B'    # Coin Gras Bas Droite : ┛
-# +
-CAR_GCXHG = u'\u2546'   # Croix Gras Haut Gauche : ╆
-CAR_GCXHD = u'\u2545'   # Croix Gras Haut Droite : ╅
-CAR_GCXBG = u'\u2544'   # Croix Gras Bas Gauche : ╄
-CAR_GCXBD = u'\u2543'   # Croix Gras Bas Droite : ╃
-CAR_GCX = u'\u254B'     # Croix Gras Centrale : ╋
-CAR_GCXH = u'\u253F'    # Croix Gras Horizontal : ┿
-CAR_GCXV = u'\u2542'    # Croix Gras Vertical : ╂
+    # Caractères en gras pour les bateaux
+    # -----------------------------------
+    # Traits
+    CAR_GH = u'\u2501'      # Trait Gras Horizontal : ━
+    CAR_GV = u'\u2503'      # Trait Gras Vertical : ┃
+    # T
+    CAR_GTB = u'\u2537'     # T Gras Bas : ┷
+    CAR_GTD = u'\u2528'     # T Gras Droite : ┨
+    CAR_GTDH = u'\u252A'    # T Droite Haut : ┪
+    CAR_GTDB = u'\u2529'    # T Droite Bas : ┩
+    CAR_GTBG = u'\u253A'    # T Bas Gauche : ┺
+    CAR_GTBD = u'\u2539'    # T Bas Droite : ┹
 
-# Touché / Manqué
-# ---------------
-CAR_TOUCH = u'\u2716'   # Touché : ✖
-CAR_MANQ = u'\u25EF'    # Manqué : ◯
+    # Coins
+    CAR_GCBD = u'\u251B'    # Coin Gras Bas Droite : ┛
+    # +
+    CAR_GCXHG = u'\u2546'   # Croix Gras Haut Gauche : ╆
+    CAR_GCXHD = u'\u2545'   # Croix Gras Haut Droite : ╅
+    CAR_GCXBG = u'\u2544'   # Croix Gras Bas Gauche : ╄
+    CAR_GCXBD = u'\u2543'   # Croix Gras Bas Droite : ╃
+    CAR_GCX = u'\u254B'     # Croix Gras Centrale : ╋
+    CAR_GCXH = u'\u253F'    # Croix Gras Horizontal : ┿
+    CAR_GCXV = u'\u2542'    # Croix Gras Vertical : ╂
 
-# LIGNES À DÉCOMMENTER EN CAS DEE PROBLÈME AVEC UNICODE
+    # Touché / Manqué
+    # ---------------
+    CAR_TOUCH = u'\u2716'   # Touché : ✖
+    CAR_MANQ = u'\u25EF'    # Manqué : ◯
 
-#~ CAR_H = '-'
-#~ CAR_V = '|'
-#~ CAR_CHG = ' '
-#~ CAR_CHD = ' '
-#~ CAR_CBG = ' '
-#~ CAR_CBD = ' '
-#~ CAR_TH = ' '
-#~ CAR_TB = ' '
-#~ CAR_TG = ' '
-#~ CAR_TD = ' '
-#~ CAR_CX = '+'
-#~ CAR_GH = '-'
-#~ CAR_GV = '|'
-#~ CAR_GTB = ' '
-#~ CAR_GTD = ' '
-#~ CAR_GTDH = ' '
-#~ CAR_GTDB = ' '
-#~ CAR_GTBG = ' '
-#~ CAR_GTBD = ' '
-#~ CAR_GCBD = ' '
-#~ CAR_GCXHG = '+'
-#~ CAR_GCXHD = '+'
-#~ CAR_GCXBG = '+'
-#~ CAR_GCXBD = '+'
-#~ CAR_GCX = '+'
-#~ CAR_GCXH = '+'
-#~ CAR_GCXV = '+'
-#~ CAR_TOUCH = 'x'
-#~ CAR_MANQ =  'o'
-
-
+else :
+    UNI = False
+    print("Caractères Unicodes désactivés\n")
+    # Caractères de secours
+    CAR_H = '-'
+    CAR_V = '|'
+    CAR_CHG = ' '
+    CAR_CHD = ' '
+    CAR_CBG = ' '
+    CAR_CBD = ' '
+    CAR_TH = ' '
+    CAR_TB = ' '
+    CAR_TG = ' '
+    CAR_TD = ' '
+    CAR_CX = '+'
+    CAR_GH = '-'
+    CAR_GV = '|'
+    CAR_GTB = ' '
+    CAR_GTD = ' '
+    CAR_GTDH = ' '
+    CAR_GTDB = ' '
+    CAR_GTBG = ' '
+    CAR_GTBD = ' '
+    CAR_GCBD = ' '
+    CAR_GCXHG = '+'
+    CAR_GCXHD = '+'
+    CAR_GCXBG = '+'
+    CAR_GCXBD = '+'
+    CAR_GCX = '+'
+    CAR_GCXH = '+'
+    CAR_GCXV = '+'
+    CAR_TOUCH = 'x'
+    CAR_MANQ =  'o'
 
 #
 # Fonctions utiles ----------------------------------------------------------------------------------------------
@@ -900,36 +915,11 @@ class MainConsole(object):
         """Menu de lancement """
         defaut = self.launch_test_algo
 
-        clear()
-        print(boite("""
- Pour un affichage du jeu optimal, veuillez passer
- en mode plein écran (F11),régler les couleurs du
- terminal en écriture noire sur fond blanc et, si
- besoin, diminuer la taille de la police (pour une
- résolution de 1024x768, une taille 12 convient).
-""", larg_fen=0))
-        print()
         enter_to_continue()
         clear()
 
         print(TITRE)
 
-        # source : http://www.chris.com/ascii/index.php?art=transportation/nautical
-        print(r"""
-                                     |__
-                                     |\/
-                                     ---
-                                     / | [
-                              !      | |||
-                            _/|     _/|-++'
-                        +  +--|    |--|--|_ |-
-                     { /|__|  |/\__|  |--- |||__/
-                    +---------------___[}-_===_.'____                 /\
-                ____`-' ||___-{]_| _[}-  |     |_[___\==--            \/   _
- __..._____--==/___]_|__|_____________________________[___\==--____,------' .7
-|                                                                     BB-61/
- \_________________________________________________________________________|
- """)
         print()
 
         while True :

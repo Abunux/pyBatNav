@@ -49,10 +49,10 @@ N'ayant que des machines sous Linux à disposition, tout mon développement a é
 
 Par contre il m'a été impossible de tester mon code sous MacOS, et pour les tests sous Windows j'ai du utiliser une machine virtuelle.
 
-Sous Windows il y a beaucoup de problèmes :
+Sous Windows il y a quelques problèmes :
 - La figure statistique sous pyzo ne marche pas (matplotlib plante, c'est un bug connu). Il faut installer à part matplotlib et numpy et lancer directement "main.py -c"
-- Dans l'interface console, si on lance main.py à partir d'un terminal, il plante au moment de lancer une partie. C'est un problème avec les caractères Unicodes que je n'avais pas sous Linux, dû à la gestion de ces caractères par le terminal Windows. On peut le pseudo-contourner en tapant "chcp 65001" avant de lancer le programme et en changeant la police (mais ça marche très très mal).
-- Par contre avec PyZo, l'interface console marche bien (mais est très moche car on ne peut pas effacer l'écran).
+- Dans l'interface console, si on lance main.py à partir d'un terminal, il plante au moment de lancer une partie. C'est un problème avec les caractères Unicodes, que je n'avais pas sous Linux, dû à la gestion de ces caractères par le terminal Windows. Du coup j'ai rajouté un mode avec des caractères de secours (mais on perd l'encadrement des bateaux).
+- Sous PyZo, les caractères unicodes marchent bien (mais c'est très moche car on ne peut pas effacer l'écran).
 - J'ai eu quelques soucis avec le script cgi, mais c'est réglé.
 
 Également, en cas de problème avec l'interface web, lire le fichier ALire.txt du dossier interface_web. 

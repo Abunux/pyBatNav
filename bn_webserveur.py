@@ -33,19 +33,13 @@ def launch_serveur():
     print("Page accessible sur http://localhost:8000/index.html")
     print("----------------------------------------------------")
     print("""
-En cas de problème, si par exemple votre navigateur vous propose de 
-télécharger le fichier bn_cgi.py, vérifiez les points suivants :
-  - Le fichier ./interface_web/cgi-bin/bn_cgi.py doit avoir les droits 
-en exécution (chmod +x ./interface_web/cgi-bin/bn_cgi.py)
-  - Le shebang (la première ligne) du fichier bn_cgi.py correspond à
-votre OS :
-    - Sous Linux (et universel) : #!/usr/bin/env python3
-    - Sous MacOS : #!/anaconda/bin/python
-    - Sous Windows : #!python3 
+En cas de problème, si par exemple votre navigateur vous propose de
+télécharger le fichier bn_cgi.py, lisez le fichier ALire.txt situé
+dans le répertoire interface_web.
 """)
     print("----------------------------------------------------")
     print("Log de connexion :\n")
-    
+
     # Lancement du serveur en mode démon
     # On le stop avec CTRL+C
     serveur.serve_forever()

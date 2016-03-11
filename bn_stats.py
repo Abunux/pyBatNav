@@ -182,7 +182,7 @@ class Stats(object):
             fig = plt.figure()
         except :
             print("""
-Création de la figure statistique impossible 
+Création de la figure statistique impossible
 (numpy et matplotlib manquants)
 """)
             return

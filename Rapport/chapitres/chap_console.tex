@@ -7,7 +7,7 @@ Il est fortement conseillé de mettre la fenêtre de terminal en plein écran af
 
 \section{Préliminaires}
 \subsection{Constantes graphiques}
-Pour afficher les grilles j'utilise des caractères graphiques en unicode (famille Box Drawing de codes U2500 à U257F). Ceux-ci donnent tous les outils afin de fabriquer des grilles, y compris avec des caractères gras. Pour des raisons de commodité, le code de chacun des caractères utilisés est stocké dans une constante (par exemple \texttt{CAR\_CX=u'\textbackslash u253C'} correspond à la croix centrale \texttt{┼}). La liste complète des codes des caractères utilisés est donnée en annexe \ref{annexe_codescar} page \pageref{annexe_codescar}.
+Pour afficher les grilles j'utilise des caractères graphiques en unicode (famille Box Drawing de codes U2500 à U257F). Ceux-ci donnent tous les outils afin de fabriquer des grilles, y compris avec des caractères gras. Le code de chacun des caractères utilisés est stocké dans une constante (par exemple \texttt{CAR\_CX=u'\textbackslash u253C'} correspond à la croix centrale \texttt{┼}). La liste complète des codes des caractères utilisés est donnée en annexe \ref{annexe_codescar} page \pageref{annexe_codescar}. Pour des raisons de compatibilité j'ai rajouté un jeu de caractères de secours pour les terminaux qui ne gèrent pas (ou mal)  Unicode.
 
 \subsection{Effacer le terminal}
 Le module \texttt{os} permet d'une part d'accéder à la version du système d'exploitation avec \texttt{os.name} et, d'autre part, de lancer des commandes système avec \texttt{os.system(commande)}. La combinaison de ces deux commandes permet facilement de pouvoir effacer l'écran en utilisant la commande \texttt{cls} sous Windows et \texttt{clear} sous Linux.
