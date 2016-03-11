@@ -54,7 +54,10 @@ bn_tkinter.GrilleTK = class GrilleTK(bn_grille.Grille, tkinter.Frame)
  |  
  |  marque_cases(self)
  |      Marque toutes les cases de la grille suvant leur état
- |  
+ |
+ |  text_case(self, case, symbole)
+ |      Met un symbole dans une case
+ |
  |  ----------------------------------------------------------------------
  |  Methods inherited from bn_grille.Grille:
  |  
