@@ -74,6 +74,11 @@ class GrilleTK(Grille, Frame):
         """Réinitialise le canvas"""
         self.canvas.delete("all")
         self.init_canvas()
+        
+    def text_case(self, case, symbole):
+        """Met un symbole dans une case"""
+        (x, y) = self.case2coord(case)
+        self.canvas.create_text(x+self.largeur_case/2, y+self.largeur_case/2, text=symbole, font=(FONT, 12))
 
     def marque_case(self, case) :
         """Marque une case touchée ou manquée"""
@@ -265,11 +270,15 @@ class OrdiTK(Ordi, JoueurTK):
             self.coup_suivant()
             self.grille_suivi.affiche_adverse(self.grille_adverse)
             # Colorie les cases de la file d'attente
+            k = 1
             for case in self.queue :
                 if self.grille_adverse.etat[case] == 1 :
                     self.grille_suivi.color_case(case, COLOR_QUEUE_T)
                 else :
                     self.grille_suivi.color_case(case, COLOR_QUEUE_M)
+                self.grille_suivi.text_case(case, str(k))
+                k += 1
+                  
             self.grille_suivi.color_case(self.case_courante, COLOR_COURANTE)
             self.grille_suivi.marque_case(self.case_courante)
             self.affiche_messages()
