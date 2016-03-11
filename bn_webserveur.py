@@ -29,8 +29,8 @@ def launch_serveur():
     # Affichage des infos de lancement
     print()
     print("----------------------------------------------------")
-    print("Serveur lancé")
-    print("Page accessible sur http://localhost:8000/index.html")
+    print("Serveur lancé sur le port %s" % port)
+    print("Page accessible sur http://localhost:%s/index.html" % port)
     print("----------------------------------------------------")
     print("""
 En cas de problème, si par exemple votre navigateur vous propose de
