@@ -28,7 +28,7 @@ COLOR_OK       = "#00FF00"    # Case valide
 COLOR_NO       = "#FF0000"    # Case non valide
 COLOR_QUEUE_M  = "yellow"     # File d'attente manqué
 COLOR_QUEUE_T  = "orange"     # File d'attente touché
-COLOR_COURANTE = "#FF00FF"   # Case courante
+COLOR_COURANTE = "#FF00FF"    # Case courante
 
 #~ FONT = "Helvetica"
 FONT = "Verdana"
@@ -78,15 +78,12 @@ class GrilleTK(Grille, Frame):
 	def marque_case(self, case) :
 		"""Marque une case touchée ou manquée"""
 		(x, y) = self.case2coord(case)
+		a = 0.3
 		if self.etat[case] == 1 :
-			symbole = "X"
-			#~ symbole = u'\u2716'       # Plus joli mais pb avec pyzo
+			self.canvas.create_line(x+a*self.largeur_case, y+a*self.largeur_case, x+(1-a)*self.largeur_case, y+(1-a)*self.largeur_case, width=2)
+			self.canvas.create_line(x+a*self.largeur_case, y+(1-a)*self.largeur_case, x+(1-a)*self.largeur_case, y+a*self.largeur_case, width=2)
 		elif self.etat[case] == -1 :
-			symbole = "O"
-			#~ symbole = u'\u25EF'
-		else :
-			symbole = ""
-		self.canvas.create_text(x+self.largeur_case/2, y+self.largeur_case/2, text=symbole, font=(FONT, 12))
+			self.canvas.create_oval(x+a*self.largeur_case, y+a*self.largeur_case, x+(1-a)*self.largeur_case, y+(1-a)*self.largeur_case, width=2)
 
 	def color_case(self, case, couleur):
 		"""Colorie une case"""

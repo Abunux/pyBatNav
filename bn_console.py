@@ -21,6 +21,10 @@ from bn_stats import *
 # --------------------------------------------
 # Caractères graphiques (pour faire la grille)
 # --------------------------------------------
+
+# IMPORTANT : EN CAS DE PROBLÈME AVEC UNICODE (PLANTAGE OU AFFICHAGE MOCHE)
+# COMMENTEZ LES LIGNES CI-DESSOUS ET DÉCOMMENTEZ CELLES QUI SUIVENT
+
 # http://www.unicode.org/charts/ --> Box Drawing (U2500.pdf)
 
 # Caractères simples pour la grille
@@ -69,6 +73,40 @@ CAR_GCXV = u'\u2542'    # Croix Gras Vertical : ╂
 # ---------------
 CAR_TOUCH = u'\u2716'   # Touché : ✖
 CAR_MANQ = u'\u25EF'    # Manqué : ◯
+
+# LIGNES À DÉCOMMENTER EN CAS DEE PROBLÈME AVEC UNICODE
+
+#~ CAR_H = '-'
+#~ CAR_V = '|'
+#~ CAR_CHG = ' '
+#~ CAR_CHD = ' '
+#~ CAR_CBG = ' '
+#~ CAR_CBD = ' '
+#~ CAR_TH = ' '
+#~ CAR_TB = ' '
+#~ CAR_TG = ' '
+#~ CAR_TD = ' '
+#~ CAR_CX = '+'
+#~ CAR_GH = '-'
+#~ CAR_GV = '|'
+#~ CAR_GTB = ' '
+#~ CAR_GTD = ' '
+#~ CAR_GTDH = ' '
+#~ CAR_GTDB = ' '
+#~ CAR_GTBG = ' '
+#~ CAR_GTBD = ' '
+#~ CAR_GCBD = ' '
+#~ CAR_GCXHG = '+'
+#~ CAR_GCXHD = '+'
+#~ CAR_GCXBG = '+'
+#~ CAR_GCXBD = '+'
+#~ CAR_GCX = '+'
+#~ CAR_GCXH = '+'
+#~ CAR_GCXV = '+'
+#~ CAR_TOUCH = 'x'
+#~ CAR_MANQ =  'o'
+
+
 
 #
 # Fonctions utiles ----------------------------------------------------------------------------------------------

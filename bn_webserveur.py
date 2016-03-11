@@ -32,7 +32,6 @@ def launch_serveur():
     print("Serveur lancé")
     print("Page accessible sur http://localhost:8000/index.html")
     print("----------------------------------------------------")
-    print()
     print("""
 En cas de problème, si par exemple votre navigateur vous propose de 
 télécharger le fichier bn_cgi.py, vérifiez les points suivants :
@@ -40,9 +39,9 @@ télécharger le fichier bn_cgi.py, vérifiez les points suivants :
 en exécution (chmod +x ./interface_web/cgi-bin/bn_cgi.py)
   - Le shebang (la première ligne) du fichier bn_cgi.py correspond à
 votre OS :
-    - Sous Linux : #!/usr/bin/env python3
+    - Sous Linux (et universel) : #!/usr/bin/env python3
     - Sous MacOS : #!/anaconda/bin/python
-    - Sous Windows : #!python3
+    - Sous Windows : #!python3 
 """)
     print("----------------------------------------------------")
     print("Log de connexion :\n")

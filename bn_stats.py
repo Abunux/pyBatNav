@@ -15,8 +15,16 @@ from bn_grille import *
 
 from math import *
 
-import numpy as np
-import matplotlib.pyplot as plt
+try :
+    import numpy as np
+    import matplotlib.pyplot as plt
+except :
+    print("""
+------------------------------------------------------------------
+Attention, vous devez installer les librairies numpy et matplotlib
+Sinon vous ne pourrez pas avoir les figures statistiques.
+------------------------------------------------------------------
+""")
 
 class Stats(object):
     """Implémente les outils d'étude statistique"""
@@ -170,7 +178,14 @@ class Stats(object):
 
         # Figure statistique
         # ------------------
-        fig = plt.figure()
+        try :
+            fig = plt.figure()
+        except :
+            print("""
+Création de la figure statistique impossible 
+(numpy et matplotlib manquants)
+""")
+            return
 
         # Création de l'histogramme
         for k in range(self.mini, self.maxi+1):
