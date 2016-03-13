@@ -87,7 +87,7 @@ Au final, le temps de résolution est linéaire en $n$ pour des gains de perform
 On peut essayer de déterminer tous les arrangements de bateaux possibles sur la grille à chaque coup, de manière récursive. Cette approche semble optimale mais malheureusement, vu le nombre de configurations, cette approche est inutilisable sur une grille standard. Elle est néanmoins implémentée dans la méthode \texttt{Grille.case\_max\_all(self)}.
 
 \subsubsection{Méthodes par comptage}
-Dans cette méthode, on va compter pour chaque case le nombre de bateaux possibles contenant celle-ci et tirer sur celle qui en contient le plus.
+Dans cette méthode, on va compter pour chaque case le nombre de bateaux possibles contenant celle-ci. Par exemple, sur une grille vide la case $(0,0)$ contient 5 bateaux horizontaux (5, 4, 3, 3 et 2) et 5 verticaux (les mêmes), soit 10 bateaux.
 
 La méthode \texttt{Grille.case\_max(self)} renvoie la case optimale, ainsi que le nombre de bateaux qu'elle contient. L'algorithme est donné en annexe \ref{algo_liste}, page \pageref{case_max}.
 

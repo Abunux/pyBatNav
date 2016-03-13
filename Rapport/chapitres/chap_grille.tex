@@ -49,11 +49,11 @@ La méthode \texttt{Grille.test\_case(self, case)} permet de déterminer si une 
 
 \medskip
 
-Notons également l'utilisation de l'attribut \texttt{Grille.vides} qui est la liste des cases vides. Bien entendu, cette classe contient une fonction \texttt{Grille.update(self)} de mise à jour jour de l'état de la grille (liste des cases vides, tailles du plus petit et du plus grand bateau restant).
+Notons également l'utilisation de l'attribut \texttt{Grille.vides} qui est la liste des cases vides. Bien entendu, cette classe contient une fonction \texttt{Grille.update(self)} de mise à jour de l'état de la grille (liste des cases vides, tailles du plus petit et du plus grand bateau restant).
 
 \medskip
 
-Enfin, la méthode \texttt{Grille.adjacent(self, case)} renvoie la liste de cases adjacentes à une case donnée.
+Enfin, la méthode \texttt{Grille.adjacent(self, case)} renvoie la liste des cases adjacentes à une case donnée.
 
 \subsection{Gestion des espaces vides}
 La méthodes \texttt{Grille.get\_max\_space(self, case, direction, face=True)} renvoie le nombre de cases vides dans une direction donnée. Grâce aux constantes de direction, un seul calcul est nécessaire pour englober tous les cas (horizontal et vertical). L'algorithme est donné en annexe \ref{algo_liste}, page \pageref{get_max_space}.
@@ -274,4 +274,4 @@ Pour créer une flotte aléatoire, on utilise la méthode \texttt{Grille.init\_b
 %\end{algo1}
 
 \subsection{Fin de la partie}
-L'attribut \texttt{Grille.somme\_taille}, initialisé dès le départ avec la classe \texttt{Grille}, contient le nombre total de cases à toucher. La méthode \texttt{Grille.fini(self)} compare donc ce nombre avec le nombre de cases touchée dans \texttt{Grille.etat} pour déterminer si la grille a été résolue.
+L'attribut \texttt{Grille.somme\_taille}, initialisé dès le départ avec la classe \texttt{Grille}, contient le nombre total de cases à toucher. La méthode \texttt{Grille.fini(self)} compare donc ce nombre avec le nombre de cases touchées dans \texttt{Grille.etat} pour déterminer si la grille a été résolue.

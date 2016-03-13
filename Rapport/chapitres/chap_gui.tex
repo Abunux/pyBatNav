@@ -1,8 +1,8 @@
 \chapter{Interface graphique}
 
-Une interface réalisée grâce à la bibliothèque \texttt{tkinter} est codée dans le fichier \texttt{bn\_tkinter}. Dans cette interface, on a la possibilité de jouer seul sur une grille aléatoire, de voir l'algorithme de résolution (avec choix du niveau) et de jouer contre l'algorithme (avec choix du niveau de ce dernier et placement de nos bateaux).
+Une interface graphique est codée dans le fichier \texttt{bn\_tkinter.py}. Elle est réalisée grâce à la bibliothèque \texttt{tkinter}. Dans cette interface, on a la possibilité de jouer seul sur une grille aléatoire, de voir l'algorithme de résolution (avec choix du niveau) et de jouer contre l'algorithme (avec choix du niveau de ce dernier et placement de nos bateaux).
 
-Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement. Je ne suis d'ailleurs pas totalement satisfait du résultat, même si elle est fonctionnelle (j'avais encore plein d'idées). C'est également pourquoi cette partie du rapport est moins détaillée, par faute de temps.
+Cette interface devait être réalisée par mon binôme, mais ce dernier ayant abandonné la formation quelques semaines avant la date de rendu de projet, j'ai dû la coder très rapidement. C'est d'ailleurs  pourquoi cette partie du rapport est moins détaillée, par faute de temps.
 
 %\section{Principes de l'interface}
 %
@@ -22,7 +22,7 @@ Cette interface devait être réalisée par mon binôme, mais ce dernier ayant a
 %% Notons que pour pouvoir accéder à la boîte de texte \texttt{info} de l'interface principale qui affiche les informations de partie, on met l'attribut \texttt{name="info"} à ce widget et on y accède depuis la classe \texttt{JoueurTK(Joueur)} via \texttt{self.parent.children["info"]}, où \texttt{self.parent} est la frame principale (\texttt{main\_frame}).
 
 \section{Affichage et gestion des grilles}
-La classe \texttt{GrilleTK}, héritée de la classe \texttt{Grille} implémente le \texttt{canvas} sur sur lequel on va dessiner les grilles.
+La classe \texttt{GrilleTK}, héritée de la classe \texttt{Grille} implémente le \texttt{canvas} sur lequel on va dessiner les grilles.
 
 Sur ce \texttt{canvas}, on définit les marges \texttt{marge\_left} et \texttt{marge\_top} à gauche et en haut pour les intitulés des lignes et des colonnes, ainsi que la largeur des cases \texttt{largeur\_case}. 
 
@@ -32,7 +32,7 @@ Les passages de coordonnées graphiques aux coordonnées des cases, et réciproq
 
 \medskip
 
-Enfin toute une série de méthodes vont permettre de marquer les cases suivant leur état, de colorier les bateaux adverses ou les bateaux coulés.  
+Enfin toute une série de méthodes vont permettre de marquer les cases suivant leur état, de pouvoir y placer un caractère ou encore de les colorier.
 
 \section{Fenêtre principale}
 La fenêtre principale est constituée d'un menu pour lancer une partie et d'une \texttt{Frame} principale, \texttt{main\_frame}. Sur cette \texttt{Frame}, on va dessiner les grilles et une fenêtre de texte pour les informations de partie.

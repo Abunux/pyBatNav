@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  11 MAR 2016 13:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  13 MAR 2016 17:51
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2156,9 +2156,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 ~Chapitre 3.
 [5]
-Overfull \hbox (0.37125pt too wide) in paragraph at lines 56--57
+Overfull \hbox (5.18324pt too wide) in paragraph at lines 56--57
 []\T1/futs/m/n/12 Enfin, la mé-thode \T1/lmtt/m/n/12 Grille.adjacent(self, case
-) \T1/futs/m/n/12 ren-voie la liste de cases ad-ja-centes
+) \T1/futs/m/n/12 ren-voie la liste des cases ad-ja-centes
  []
 
 
@@ -2370,13 +2370,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [20]
 ~Chapitre 7.
 
-Overfull \hbox (24.1565pt too wide) in paragraph at lines 3--4
-[]\T1/futs/m/n/12 Une in-ter-face réa-li-sée grâce à la bi-blio-thèque \T1/lmtt
-/m/n/12 tkinter \T1/futs/m/n/12 est co-dée dans le fi-chier \T1/lmtt/m/n/12 bn_
-tkinter\T1/futs/m/n/12 .
- []
-
-
 Overfull \hbox (25.03238pt too wide) in paragraph at lines 31--32
 \T1/futs/m/n/12 ment, sont gé-rés via une trans-for-ma-tion af-fine par les mé-
 thodes \T1/lmtt/m/n/12 GrilleTK.coord2case(self,
@@ -2430,13 +2423,8 @@ Underfull \vbox (badness 1748) has occurred while \output is active []
 
  [23
 
-]
-Overfull \hbox (12.55052pt too wide) in paragraph at lines 42--43
-\T1/futs/m/n/12 source HTML et les fonc-tions Ja-vas-cript d'af-fi-chage du can
--vas. Grâce à la va-riable \T1/lmtt/m/n/12 sessionID\T1/futs/m/n/12 ,
- []
-
-) (./chapitres/chap_pedagogique.tex
+])
+(./chapitres/chap_pedagogique.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -3697,7 +3685,7 @@ re/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/texlive/texmf-dist/fonts
 /utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr
 i8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Muller_ISN2016_BatailleNavale_Rapport.pdf (133 pages, 948506 
+Output written on Muller_ISN2016_BatailleNavale_Rapport.pdf (133 pages, 948552 
 bytes).
 PDF statistics:
  1147 PDF objects out of 1200 (max. 8388607)
