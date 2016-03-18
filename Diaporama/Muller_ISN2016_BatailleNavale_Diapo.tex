@@ -1,0 +1,155 @@
+\input{macros/preambule_beamer}
+
+
+\useoutertheme[hooks]{tree}
+\useinnertheme{rounded}
+\usecolortheme{seahorse}
+\usecolortheme{orchid}
+
+
+
+\title[Bataille navale]{\textsc{Bataille navale}}
+\subtitle{Projet de validation ISN 2016}
+\author{Frédéric Muller}
+\institute{Lycée Arbez Carme}
+\date{}
+
+\AtBeginSubsection[]
+%\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan}
+    \tableofcontents[currentsection,currentsubsection,    subsubsectionstyle=hide]
+  \end{frame}
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan}
+    \tableofcontents[currentsection,currentsubsection,    subsubsectionstyle=hide]
+  \end{frame}
+}
+
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Les structures de données}
+\subsection{Constantes de direction}
+\begin{frame}{Constantes de direction}
+\begin{itemize}
+\item \texttt{DROITE = (1, 0)} 
+\item \texttt{GAUCHE = (-1, 0)}
+\item \texttt{BAS = (0, 1)}
+\item \texttt{HAUT = (0, -1)}
+\item \texttt{TOUTES\_DIR = (1, 1)}
+\end{itemize}
+\end{frame}
+
+\subsection{Structure de la grille}
+\begin{frame}{Initialisation}
+Paramètres de la grille (modifiables) :
+\begin{itemize}
+\item \texttt{xmax, ymax} : dimensions de la grille
+\item \texttt{taille\_bateaux} : liste contenant les bateaux
+\end{itemize}
+Initialisations :
+\begin{itemize}
+\item \texttt{Grille.somme\_taille} : nombre total de cases à toucher (pour déterminer la fin de la partie).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{État de la grille}
+Dictionnaire \texttt{Grille.etat} indexé par des tuple \texttt{(i, j)} de coordonnées de cases.\\
+\texttt{Grille.etat[(i,j)]=}
+\begin{itemize}
+\item $0$ : case vide
+\item $1$ : case touchée (ou contenant un bateau)
+\item $-1$ : case manquée ou impossible
+\end{itemize}
+
+\texttt{Grille.vides} : liste des cases vides
+\end{frame}
+
+\begin{frame}
+Méthodes de contrôle :
+\begin{itemize}
+\item \texttt{Grille.test\_case(self, case)} : \texttt{True} si la case est vide et dans la grille
+\item \texttt{Grille.is\_touche(self, case)} : \texttt{True} si la case contient un bateau
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Espaces vides}
+\texttt{Grille.get\_max\_space(self, case, direction, face=True)} : renvoie l'espace vide maximal dans une direction.\\
+Si \texttt{face==True}, la détermination se fait dans les deux sens (espace libre total horizontal ou vertical).\\~\\
+\texttt{Grille.elimine\_cases(self)} : élimine les cases vides dans lesquelles le plus petit bateau ne peut pas rentrer.
+\end{frame}
+
+%\begin{frame}[allowframebreaks]
+%Si direction == TOUTES\_DIRECTIONS :\\
+%\tab{1} On renvoie le maximum de get\_max\_space(case, HORIZONTAL)\\
+%\tab{2} et get\_max\_space(case, VERTICAL)\\~\\
+%direction[0]\sto dh\\
+%direction[1]\sto dv\\
+%1\sto m\\
+%\framebreak
+%case[0]\sto x\\
+%case[1]\sto y\\
+%Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
+%\tab{1}m+1\sto m\\
+%\tab{1}x+dh\sto x\\
+%\tab{1}y+dv\sto y\\
+%\framebreak
+%Si face (on regarde dans l'autre sens):\\
+%\tab{1}case[0]\sto x\\
+%\tab{1}case[1]\sto y\\
+%\tab{1}Tant que la case (x-dh, y-dv) est vide et est dans la grille :\\
+%\tab{2}m+1\sto m\\
+%\tab{2}x-dh\sto x\\
+%\tab{2}y-dv\sto y\\~\\
+%Retourner m\\
+%\end{frame}
+
+\begin{frame}{Bateaux possibles}
+\texttt{Grille.get\_possibles(self)} renvoie :
+\begin{itemize}
+\item La liste des bateaux possibles démarrant sur chaque case (ainsi que leurs directions)\\
+Par exemple : \texttt{\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
+\item La liste des positions (et directions) de départ possibles pour chaque bateau\\
+\texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...\}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Gestion de la flotte}
+Gestion de la liste \texttt{Grille.taille\_bateaux} :
+\begin{itemize}
+\item \texttt{Grille.get\_taille\_max(self)} et \texttt{Grille.get\_taille\_min(self)} : mise à jour respectivement de la taille maximum et la taille minimum des bateaux restant à trouver
+\item \texttt{Grille.rem\_bateau(self, taille)} : supprime un bateau de la liste \texttt{Grille.taille\_bateaux}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Ajout d'un bateau :
+\begin{itemize}
+\item \texttt{Grille.test\_bateau(self, bateau)} : test si le bateau est valide
+\item \texttt{Grille.add\_bateau(self, bateau)} : ajout d'un bateau 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Flotte aléatoire :
+\begin{itemize}
+\item \texttt{Grille.add\_bateau\_alea(self, taille)} : ajout d'un bateau aléatoire de taille donnée sur la grille
+\item \texttt{Grille.init\_bateaux\_alea(self)} : génération d'une flotte aléatoire
+\end{itemize}
+\end{frame}
+
+
+
+\end{document}

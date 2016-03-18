@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.24pt}
+\select@language {french}
+\select@language {french}
+\beamer@sectionintoc {1}{Les structures de donn\IeC {\'e}es}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Constantes de direction}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Structure de la grille}{5}{0}{1}

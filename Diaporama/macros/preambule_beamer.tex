@@ -1,0 +1,392 @@
+\documentclass[mathserif,xcolor=table]{beamer}
+\usepackage{etex}
+\reserveinserts{28}
+% ---------------------------------------------------------------------------
+%				Packages
+% ---------------------------------------------------------------------------
+
+% texdoc <nom_package> pour avoir des infos
+
+\usepackage[utf8]{inputenc}						% Encodage français
+\usepackage[frenchb]{babel}						% Mise en forme française
+\usepackage[T1]{fontenc}						% Encodage caractères français
+
+\usepackage{fourier}							% Différents symboles et polices
+\usepackage[scaled=0.875]{helvet}				% Font générale
+\usepackage{courier}							% Font télétype
+\renewcommand{\ttdefault}{lmtt}					% Font télétype
+\usepackage{frcursive}							% Ecriture manuscrite type écolier
+\usepackage{calligra}							% Ecriture manuscrite classieuse
+\usepackage{verbatim}							% Commentaires
+
+\usepackage{amsfonts,amsmath,amssymb}			% Symboles maths
+\usepackage{bm}									% Symboles maths en gras \bm{}
+\usepackage{amstext}							% Texte en mode math de taille adaptée
+\usepackage{amsopn}								% \DeclareMathOperator
+\usepackage{mathrsfs}							% Symboles maths
+\usepackage{mathtools}							% Symboles maths
+\usepackage{theorem}							% Mise en forme des théorèmes
+
+\usepackage{textcomp}							% Symboles
+\usepackage{pifont}								% Symboles "ding"
+\usepackage{wasysym}							% Symboles (smiley et logos)
+\usepackage{epsdice}							% Symboles (faces d'un dé)
+\usepackage[normalem]{ulem}						% Fioritures de texte (barré, etc...)
+\usepackage{cancel}								% Barrer du texte (simplifier termes)
+\usepackage{fancybox}							% Boîtes
+
+\usepackage{tabularx}							% Tableaux évolués
+\usepackage{diagbox}							% Cases en diagonale
+%~ \usepackage{tabls}							% Espaces dans les tableaux (conflit avec bclogo)
+\usepackage{multirow}							% Fusionner les lignes d'un tableau
+\usepackage[table]{xcolor}
+\usepackage{enumerate}							% Enumérations personnalisées
+%\usepackage{enumitem}							% Reprendre une énumération [start=n]
+\usepackage{multicol}							% Environnement multicolonnes
+\usepackage{fancyhdr}							% En-têtes et pieds de page
+%~ \usepackage[np]{numprint}					% Mise en forme des nombres
+
+%\usepackage[usenames, dvipsnames]{xcolor}		% Couleurs
+\usepackage{graphicx}							% Insérer des images
+\usepackage{pgf, tikz, tkz-tab, tkz-fct}		% Graphiques avec Tikz
+\usetikzlibrary{arrows}
+\usetikzlibrary{snakes}
+\usepackage{alterqcm}							% QCM
+\usepackage[tikz]{bclogo}						% Boites à logo
+
+%\usepackage{titlesec}							% Mise en forme des titres de sections
+\usepackage{lastpage}							% Dernière page : \pageref{LastPage}
+
+\usepackage{ifthen}								% Programmation conditions
+\usepackage{multido}							% Boucles
+\usepackage{calc}								% Calculs
+
+% ---------------------------------------------------------------------------
+%				Macros simples (caractères)
+% ---------------------------------------------------------------------------
+
+\newcommand{\euro}{\eurologo{}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\D}{\ensuremath{\mathbb{D}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\e}{\text{e}}
+\renewcommand{\i}{\text{i}}
+\newcommand{\s}{\ensuremath{\mathcal{S}}}
+\newcommand{\sol}[1]{\mathcal{S}=\left\lbrace #1 \right\rbrace}
+\newcommand{\ou}{\mbox{ ou }}
+\newcommand{\et}{\mbox{ et }}
+\newcommand{\si}{\mbox{ si }}
+\newcommand{\Df}{\ensuremath{\mathcal{D}_f}}
+\newcommand{\Cf}{\ensuremath{\mathcal{C}_f}}
+
+\renewcommand{\P}{\ensuremath{\text{P}}}
+\newcommand{\card}{\text{card}}
+\newcommand{\E}{\text{E}}
+\newcommand{\V}{\text{V}}
+
+\newcommand{\FI}{\textbf{F.I.}}
+
+\newcommand{\eq}{\ \Leftrightarrow\ } % ou \iff
+\newcommand{\implique}{\Rightarrow}
+\newcommand{\pheq}{\phantom{\eq}}
+\newcommand{\egdef}{\stackrel{\textit{déf}}{=}}
+
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\le}{\leqslant}
+\newcommand{\supeg}{\geqslant}
+\newcommand{\infeg}{\leqslant}
+
+\newcommand{\lacco}{\left\lbrace}
+\newcommand{\racco}{\right\rbrace}
+\newcommand{\labs}{\left|}
+\newcommand{\rabs}{\right|}
+
+\newcommand{\inclus}{\subset}
+\newcommand{\ninclus}{\not\subset}
+\newcommand{\union}{\cup}
+\newcommand{\inter}{\cap}
+
+\newcommand{\non}[1]{\text{non(}#1\text{)}}
+
+\newcommand{\dx}{~\text{d}x}
+\newcommand{\dt}{~\text{d}t}
+
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\abs}[1]{|#1|}
+
+\newcommand{\pinf}{+\infty}
+\newcommand{\minf}{-\infty}
+\newcommand{\pminf}{\pm\infty}
+
+\newcommand{\para}{\ /\!\!/\ }
+
+\newcommand{\comb}[2]{\text{C}_{#1}^{#2}}
+
+\newcommand{\vect}[1]{\mathchoice
+	{\overrightarrow{\displaystyle\mathstrut#1\,\,}}
+	{\overrightarrow{\textstyle\mathstrut#1\,\,}}
+	{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}
+	{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+\def\Oij{$\left(\text{O},~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O},~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O},~\vect{u},~\vect{v}\right)$}
+
+\definecolor{gris}{gray}{0.85}
+\newcommand{\surl}[1]{\colorbox{gris}{\textbf{#1}}}
+
+\renewcommand{\emph}{\textbf}
+
+\newcommand{\saut}{\ \\}
+\newcommand{\lignesep}{\vspace*{5pt}\hrule\vspace*{5pt}}
+
+\newcommand{\fct}[5]{
+	\begin{array}[t]{r ccl}
+	{#1}\ : \ &{#2}&\longrightarrow&{#3}\\
+	&{#4}&\longmapsto&{#5}
+	\end{array}}
+
+\newcommand{\encadre}[1]{\fbox{\begin{minipage}{\textwidth}
+#1
+\end{minipage}}}
+
+%\newcommand{\boite}[1]{\fbox{\Huge\phantom{A}\hspace*{#1}}}
+\newcommand{\boite}[1]{\fbox{\rule[-0.2cm]{0pt}{0.6cm}\hspace*{#1}}}
+
+
+\newcommand{\suit}{\begin{tikzpicture}
+\draw[color=white](-0.4em,0em)--(-0.25em,0em);
+\draw ((-0.25em,-0.15em)--(0.07em,0.18em);
+\draw (0.07em,0.18em) arc (135:0:0.25em);
+\draw (0.5em,0em) arc (-180:-45:0.25em);
+\draw (0.93em,-0.18em)--(1.36em,0.25em);
+\draw (1.01em,0.25em)--(1.36em,0.25em)--(1.36em,-0.1em);
+\draw[color=white](1.40em,0em)--(1.55em,0em);
+\end{tikzpicture}}
+
+
+%\newcommand{\suit}{\hookrightarrow}
+
+% Commande programmation Casio
+
+\newcommand{\touche}[1]{\fbox{\texttt{#1}}}
+
+\newcommand{\toucheF}[2]{
+$\underset{\text{\scriptsize F#2}}{\touche{#1}}$
+}
+
+\newcommand{\sto}{$\rightarrow$}
+
+%\newcommand{\toucheFF}[2]{\begin{tabular}[t]{c}
+%\touche{#1}\\
+%{\scriptsize F#2}
+%\end{tabular}}
+
+\newcommand{\suiv}{$\vartriangleright$} % Menu suivant
+
+\newcommand{\rl}{\begin{tikzpicture}[scale=0.7] % Retour à la ligne de la Casio
+\draw[color=white] (0,0)--(0,0);
+\draw [<-] (0.2em,0.2em)--(1em,0.2em)--(1em,0.8em);
+\end{tikzpicture}}
+
+\newcommand{\disp}{\begin{tikzpicture}[scale=0.7] % Triangle de la Casio
+\draw[color=white] (0,0)--(0,0);
+\fill (0.2em,0em)--(0.8em,0em)--(0.8em,0.8em)--(0.2em,0em);
+\draw[color=white] (1em,1em)--(1em,1em);
+\end{tikzpicture}}
+
+\newcommand{\vers}{$\rightarrow$}
+
+\newcommand{\enonce}{\textbf{Énoncé :}}
+\newcommand{\solut}{\textbf{Solution :}}
+\newcommand{\tq}{~,~}
+
+\newcommand{\xmin}{x_{\text{min}}}
+\newcommand{\xmax}{x_{\text{max}}}
+
+% -------------------- Symboles : -------------------------------------------
+
+\newcommand{\happy}{\smiley}
+\newcommand{\sad}{\frownie}
+
+\newcommand{\attention}{\danger}
+\newcommand{\piege}{\bomb}
+\newcommand{\interdit}{\noway}
+
+\newcommand{\facede}[1]{\epsdice{#1}}
+
+\newcommand{\hand}{\text{\ding{43}}}
+\newcommand{\victory}{\text{\ding{44}}}
+
+\newcommand{\trefle}{\text{\ding{168}}}
+\newcommand{\carreau}{\text{\ding{169}}}
+\newcommand{\coeur}{\text{\ding{170}}}
+\newcommand{\pique}{\text{\ding{171}}}
+
+\newcommand{\checkbox}{\text{\ding{114}}}
+\newcommand{\checkedbox}{\text{\mbox{\ding{114}\hspace{-.7em}\raisebox{.2ex}[1ex]{\ding{51}}}}}
+
+\newcommand{\scisors}{\ding{34}}
+\newcommand{\couperici}{\scisors\dotfill\textit{\small{couper ici}}\dotfill\scisors}
+
+% ---------------------------------------------------------------------------
+% 				Environnements 
+% ---------------------------------------------------------------------------
+
+% ------------------------ Théorèmes ----------------------------------------
+\newenvironment{Th}{\begin{block}{Théorème}}{\end{block}}
+\newenvironment{Dem}{\begin{block}{Démonstration}}{\end{block}}
+\newenvironment{DemBac}{\begin{block}{Démonstration BAC}}{\end{block}}
+\newenvironment{Ex}{\begin{block}{Exemple}}{\end{block}}
+\newenvironment{Rem}{\begin{block}{Remarque}}{\end{block}}
+%\newenvironment{Rem}{\textbf{Remarque :}\\}{}
+\newenvironment{Def}{\begin{block}{Définition}}{\end{block}}
+\newenvironment{Prop}{\begin{block}{Propriété}}{\end{block}}
+\newenvironment{Exo}{\begin{block}{Exercice}}{\end{block}}
+\newenvironment{Algo}{\begin{block}{Algorithme}}{\end{block}}
+
+
+
+
+
+
+
+
+
+
+%\theorembodyfont{\normalfont} \theoremstyle{break}
+%\newtheorem{Th}{Théorème}[section]
+%\newtheorem{Dem}{Démonstration}[section]
+%\newtheorem{DemBac}{Démonstration (démo Bac)}[section]
+%\newtheorem{Exmp}{Exemple}[section]
+%\newtheorem{Rem}{Remarque}[section]
+%\newtheorem{Def}{Définition}[section]
+%\newtheorem{Nota}{Notations}[section]
+%\newtheorem{Prop}{Propriété}[section]
+%\newtheorem{Exo}{Exercice}[section]
+%\newtheorem{App}{Application}[section]
+%\newtheorem{Cons}{Conséquence}[section]
+%\newtheorem{Ex}{Exemple}[section]
+%\newtheorem{Algo}{Algorithme}[section]
+
+
+%\newcommand{\Ex}{\noindent\textbf{Exemple : }}
+\newcommand{\Rappel}{\noindent\textbf{Rappel : }}
+
+% ------------------------ Python --------------------------------------------
+
+\newcounter{cptspace}
+%\newcommand{\tab}[1]{
+%	\setcounter{cptspace}{#1}
+%	\whiledo{\value{cptspace}>0}{
+%		\hspace*{0em}\hspace*{0em}
+%		\addtocounter{cptspace}{-1}}}
+
+\newcommand{\tab}[1]{
+	\setcounter{cptspace}{#1}
+	\whiledo{\value{cptspace}>0}{
+		\hspace*{0.25cm}
+		\addtocounter{cptspace}{-1}}}
+
+\newcommand{\prompt}{{>}{>}{>}\ }
+
+\newenvironment{python}
+	{\par\ttfamily\small\vspace{0.2cm}
+	\setbox0=\hbox\bgroup
+	\begin{minipage}{\textwidth}
+	\vspace{0.2cm}
+%	\begin{tabbing}
+	}
+	{\vspace{0.2cm}
+%	\end{tabbing}
+	\end{minipage}
+	\egroup
+    \fbox{\box0}
+	\par\rmfamily\normalsize\vspace{0.2cm}\noindent
+	}
+
+\newenvironment{algo1}
+	{\begin{center}\begin{tabular}{|>{\texttt\bgroup}l<{\egroup}|}
+	\hline}
+	{\hline
+	\end{tabular}\end{center}
+	}
+
+%\newenvironment{python}
+%	{\par\ttfamily\small\vspace{0.2cm}
+%	\begin{bclogo}[couleurBord=black, arrondi = 0.1, logo={}, barre = none]{Code python :}
+%%	\begin{minipage}{\textwidth}
+%%	\vspace{0.2cm}
+%	}
+%	{%\vspace{0.2cm}
+%%	\end{minipage}
+%	\end{bclogo}
+%	\par\rmfamily\normalsize\vspace{0.2cm}\noindent
+%	}
+
+\newcommand{\pyth}[1]{\texttt{#1}}
+
+% -------------------------- Boites bclogo -----------------------------------
+\newenvironment{warning}
+	{\begin{bclogo}[couleurBord=black, arrondi = 0.1, logo = \bcattention]}%{\Large\attention}]}
+	{\end{bclogo}}
+	
+\newenvironment{forbidden}
+	{\begin{bclogo}[couleurBord=black, arrondi = 0.1, logo = \bcinterdit]}%{\Large\interdit}]}
+	{\end{bclogo}}
+
+% ---------------------------------------------------------------------------
+% 				Raccoucis clavier
+% ---------------------------------------------------------------------------
+
+\newcommand{\fctsurI}[3]{
+	Soit $#1$ la fonction définie sur $#3$ par $$#1(x)=#2$$}
+	
+\newcommand{\hp}{Hors programme de TSTI2D}
+
+% ---------------------------------------------------------------------------
+%				Macros évoluées
+% ---------------------------------------------------------------------------
+
+% ----------------- \tournerpage --------------------------------------------
+% Indique de tourner la page en bas de page
+%
+\def\tournerpage{\vfill%
+	\begin{flushright}	
+		\textbf{Tourner la page }$\mathbf{\rightarrow}$
+	\end{flushright}
+	\newpage}
+
+
+% -------------------- Numérotations des questions et puces -----------------
+
+%\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+%\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+%\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+%\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+%\renewcommand{\labelenumiii}{\textbullet}
+
+\AtBeginDocument{\renewcommand{\labelitemi}{\textbullet}}
+\AtBeginDocument{\renewcommand{\labelitemii}{\textbullet}}
+
+
+% % -------------------- Réglages divers------------------------------------- 
+
+\everymath{\displaystyle\everymath{}}		% Toutes les équations en mode \displaystyle
+\DecimalMathComma							% Virgule comme séparateur décimal
+\frenchspacing								% Espaces français
+\setlength{\parindent}{0pt}					% Pas d'indentation de paragraphes
+
+\colorlet{gris1}{black!20}
+\colorlet{gris2}{black!30}
+
+% ----------------------------------------------------------------------------
+
+% =============================================================================
+% 								FIN PREAMBULE
+% =============================================================================
