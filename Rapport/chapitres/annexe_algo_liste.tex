@@ -144,9 +144,9 @@ Cet algorithme a un problème important : si, dans les paramètres de la grille,
 \texttt{xmax} et \texttt{ymax} sont les dimensions de la grille et \texttt{dimensions=(xmax, ymax)}.
 \begin{algo1}
 coules est une variable globale contenant\\
-\tab{1}la liste de case marquées comme coulées\\
+\tab{1}la liste des cases marquées comme coulées\\
 checked est une liste vide\\
-Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
+Pour chaque case dans les cases jouées triées en ordre lexicographique :\\
 \tab{1}liste\_touchees est une liste vide\\
 \tab{1}Si case a été marquée comme touchee :\\
 \tab{2}Si case est dans checked ou dans coules :\\
@@ -172,7 +172,7 @@ Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
 \tab{2}Si (\\
 \tab{2}\ \ \ \ (case[direction[1]]== 0 \\
 \tab{2}\ \ \ \ \ \ ou (case[0]-direction[0],case[1]-direction[1]) est manquée)\\
-\tab{2}\ \ ou (case[direction[1]]+k== dimensions[direction[1] \\
+\tab{2}\ \ et (case[direction[1]]+k== dimensions[direction[1]] \\
 \tab{2}\ \ \ \ \ \ ou (case[0]+k*direction[0],case[1]+k*direction[1]) est manquée)\\
 \tab{2}\ \ \ \ ) ou len(liste\_touchees)==taille\_max :\\
 \tab{5}Enlever le bateau de taille len(liste\_touchees)\\
@@ -332,7 +332,7 @@ Pour direction dans [HORIZONTAL, VERTICAL] :\\
 \tab{2}Pour case dans adjacent :\\
 \tab{3}Si case[k]==case\_touchee[k] :\\
 \tab{4}Ajouter case à la file d'attente\\
-\tab{3}Sinon afficher que cette direction ne convient pas\\
+\tab{1}Sinon afficher que cette direction ne convient pas\\
 \end{algo1}
 
 Pas de grande difficulté sur celui-ci. On se contente de regarder si le plus petit bateau rentre dans chaque direction et on ajoute à la file d'attente les cases correspondantes.
@@ -392,7 +392,7 @@ Si case\_courante[1] == case\_touchee[1] :\\
 \tab{1}direction=HORIZONTAL\\
 Sinon :\\
 \tab{1}direction=VERTICAL\\
-Si on vient de découvrir la direction du bateau (len(liste\_touchee==1)):\\
+Si on vient de découvrir la direction du bateau (len(liste\_touchee)==1):\\
 \tab{1}On affiche cette direction\\
 \tab{1}On enlève les cases \\
 \tab{3} (case\_touchee[0]-direction[1], case\_touchee[1]-direction[0])\\ 
