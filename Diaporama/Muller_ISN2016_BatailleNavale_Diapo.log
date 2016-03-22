@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  21 MAR 2016 17:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  22 MAR 2016 17:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2166,10 +2166,14 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [34
 
-] [35
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 325--325
+ [] 
+ []
+
+[35
 
 ] [36
-
 
 ] [37
 
@@ -2177,12 +2181,13 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 ] [38
 
 
-] (./Muller_ISN2016_BatailleNavale_Diapo.toc)
-[39
+] [39
+
 
 ] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [40
 
-] [41
+]
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [41
 
 ] [42
 
@@ -2190,12 +2195,12 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [44
 
-]
-[45
+] [45
 
 ] [46
 
-] [47
+]
+[47
 
 ] [48
 
@@ -2207,10 +2212,10 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [52
 
-]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [53
+] [53
 
-] [54
+] (./Muller_ISN2016_BatailleNavale_Diapo.toc)
+[54
 
 ] [55
 
@@ -2220,8 +2225,7 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [58
 
-]
-[59
+] [59
 
 ] [60
 
@@ -2241,7 +2245,8 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [68
 
-] [69
+]
+[69
 
 ] [70
 
@@ -2251,8 +2256,7 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [73
 
-]
-[74
+] [74
 
 ] [75
 
@@ -2299,14 +2303,14 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 ] [95
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 710.
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 760.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 9.58124pt on input line 710.
+(Font)              scaled to size 9.58124pt on input line 760.
  [96
 
 ] [97
@@ -2375,9 +2379,9 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 824.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 874.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.58124pt on input line 824.
+(Font)              scaled to size 9.58124pt on input line 874.
  [126
 
 ] [127
@@ -2417,7 +2421,7 @@ File: ./media/distrib_HAL_niveau=1_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=1_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=1_n=1000000.png used on inp
-ut line 906.
+ut line 956.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [140
 
@@ -2427,7 +2431,7 @@ File: ./media/distrib_HAL_niveau=2_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=2_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=2_n=1000000.png used on inp
-ut line 913.
+ut line 963.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [141
 
@@ -2437,7 +2441,7 @@ File: ./media/distrib_HAL_niveau=3_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=3_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=3_n=1000000.png used on inp
-ut line 920.
+ut line 970.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [142
 
@@ -2447,7 +2451,7 @@ File: ./media/distrib_HAL_niveau=4(10)_n=100000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(10)_n=100000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10)_n=100000.png used on 
-input line 928.
+input line 978.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [143
 
@@ -2457,7 +2461,7 @@ File: ./media/distrib_HAL_niveau=4(100)_n=10000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(100)_n=10000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(100)_n=10000.png used on 
-input line 935.
+input line 985.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [144
 
@@ -2467,7 +2471,7 @@ File: ./media/distrib_HAL_niveau=4(1000)_n=1000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(1000)_n=1000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(1000)_n=1000.png used on 
-input line 942.
+input line 992.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [145
 
@@ -2477,13 +2481,13 @@ File: ./media/distrib_HAL_niveau=4(10000)_n=100.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(10000)_n=100.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10000)_n=100.png used on 
-input line 949.
+input line 999.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [146
 
  <./media/distrib_HAL_niveau=4(10000)_n=100.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.22774pt on input line 969.
+(Font)              scaled to size 6.22774pt on input line 1019.
  [147
 
 ] [148
@@ -2494,7 +2498,7 @@ File: ./media/distrib_HAL_niveau=5_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=5_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=5_n=1000000.png used on inp
-ut line 995.
+ut line 1045.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [149
 
@@ -2504,7 +2508,7 @@ File: ./media/distrib_HAL_niveau=6(60)_n=10000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=6(60)_n=10000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=6(60)_n=10000.png used on i
-nput line 1002.
+nput line 1052.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [150
 
@@ -2514,7 +2518,7 @@ File: ./media/distrib_HAL_niveau=6(70)_n=1000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=6(70)_n=1000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=6(70)_n=1000.png used on in
-put line 1009.
+put line 1059.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [151
 
@@ -2532,25 +2536,25 @@ put line 1009.
 
  
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1029.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1029.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1079.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1079.
 (./Muller_ISN2016_BatailleNavale_Diapo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1029.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1029.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1079.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1079.
 
 Package rerunfilecheck Info: File `Muller_ISN2016_BatailleNavale_Diapo.out' has
  not changed.
-(rerunfilecheck)             Checksum: 404DD432A0698F7DA593A4D6F5D2512D;698.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1029.
+(rerunfilecheck)             Checksum: 97070A019DF373D195CAE3030F26ADFB;698.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1079.
  ) 
 Here is how much of TeX's memory you used:
- 26868 strings out of 493304
- 492947 string characters out of 6139871
- 653370 words of memory out of 5000000
- 29149 multiletter control sequences out of 15000+600000
+ 26872 strings out of 493304
+ 492999 string characters out of 6139871
+ 653438 words of memory out of 5000000
+ 29153 multiletter control sequences out of 15000+600000
  87322 words of font info for 89 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 57i,15n,71p,473b,799s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,15n,71p,473b,994s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
 fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/
 fourier/fourier-mlit.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/four
@@ -2559,7 +2563,7 @@ re/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvr8a.pfb>
-Output written on Muller_ISN2016_BatailleNavale_Diapo.pdf (152 pages, 719029 by
+Output written on Muller_ISN2016_BatailleNavale_Diapo.pdf (152 pages, 720350 by
 tes).
 PDF statistics:
  4925 PDF objects out of 5155 (max. 8388607)

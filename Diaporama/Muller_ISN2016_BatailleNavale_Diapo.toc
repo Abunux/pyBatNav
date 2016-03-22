@@ -5,9 +5,9 @@
 \beamer@subsectionintoc {1}{1}{Constantes de direction}{3}{0}{1}
 \beamer@subsectionintoc {1}{2}{Structure de la grille}{5}{0}{1}
 \beamer@subsectionintoc {1}{3}{Structure des joueurs}{31}{0}{1}
-\beamer@sectionintoc {2}{Algorithme de r\IeC {\'e}solution}{39}{0}{2}
-\beamer@subsectionintoc {2}{1}{Principe g\IeC {\'e}n\IeC {\'e}ral}{40}{0}{2}
-\beamer@subsectionintoc {2}{2}{Tirs en aveugle}{53}{0}{2}
+\beamer@sectionintoc {2}{Algorithme de r\IeC {\'e}solution}{40}{0}{2}
+\beamer@subsectionintoc {2}{1}{Principe g\IeC {\'e}n\IeC {\'e}ral}{41}{0}{2}
+\beamer@subsectionintoc {2}{2}{Tirs en aveugle}{54}{0}{2}
 \beamer@subsectionintoc {2}{3}{Tirs cibl\IeC {\'e}s}{82}{0}{2}
 \beamer@subsectionintoc {2}{4}{Algorithme complet de r\IeC {\'e}solution}{134}{0}{2}
 \beamer@subsectionintoc {2}{5}{\IeC {\'E}tude statistique}{139}{0}{2}
