@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  22 MAR 2016 17:45
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  22 MAR 2016 21:42
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2167,7 +2167,7 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 ] [34
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 325--325
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 329--329
  [] 
  []
 
@@ -2303,14 +2303,14 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 325--325
 ] [95
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 760.
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 764.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 9.58124pt on input line 760.
+(Font)              scaled to size 9.58124pt on input line 764.
  [96
 
 ] [97
@@ -2379,9 +2379,9 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 874.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 878.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.58124pt on input line 874.
+(Font)              scaled to size 9.58124pt on input line 878.
  [126
 
 ] [127
@@ -2421,7 +2421,7 @@ File: ./media/distrib_HAL_niveau=1_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=1_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=1_n=1000000.png used on inp
-ut line 956.
+ut line 960.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [140
 
@@ -2431,7 +2431,7 @@ File: ./media/distrib_HAL_niveau=2_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=2_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=2_n=1000000.png used on inp
-ut line 963.
+ut line 967.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [141
 
@@ -2441,7 +2441,7 @@ File: ./media/distrib_HAL_niveau=3_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=3_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=3_n=1000000.png used on inp
-ut line 970.
+ut line 974.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [142
 
@@ -2451,7 +2451,7 @@ File: ./media/distrib_HAL_niveau=4(10)_n=100000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(10)_n=100000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10)_n=100000.png used on 
-input line 978.
+input line 982.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [143
 
@@ -2461,7 +2461,7 @@ File: ./media/distrib_HAL_niveau=4(100)_n=10000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(100)_n=10000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(100)_n=10000.png used on 
-input line 985.
+input line 989.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [144
 
@@ -2471,7 +2471,7 @@ File: ./media/distrib_HAL_niveau=4(1000)_n=1000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(1000)_n=1000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(1000)_n=1000.png used on 
-input line 992.
+input line 996.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [145
 
@@ -2481,13 +2481,13 @@ File: ./media/distrib_HAL_niveau=4(10000)_n=100.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(10000)_n=100.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10000)_n=100.png used on 
-input line 999.
+input line 1003.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [146
 
  <./media/distrib_HAL_niveau=4(10000)_n=100.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.22774pt on input line 1019.
+(Font)              scaled to size 6.22774pt on input line 1023.
  [147
 
 ] [148
@@ -2498,7 +2498,7 @@ File: ./media/distrib_HAL_niveau=5_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=5_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=5_n=1000000.png used on inp
-ut line 1045.
+ut line 1049.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [149
 
@@ -2508,7 +2508,7 @@ File: ./media/distrib_HAL_niveau=6(60)_n=10000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=6(60)_n=10000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=6(60)_n=10000.png used on i
-nput line 1052.
+nput line 1056.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [150
 
@@ -2518,7 +2518,7 @@ File: ./media/distrib_HAL_niveau=6(70)_n=1000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=6(70)_n=1000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=6(70)_n=1000.png used on in
-put line 1059.
+put line 1063.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
  [151
 
@@ -2536,16 +2536,16 @@ put line 1059.
 
  
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1079.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1079.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1083.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1083.
 (./Muller_ISN2016_BatailleNavale_Diapo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1079.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1079.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1083.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1083.
 
 Package rerunfilecheck Info: File `Muller_ISN2016_BatailleNavale_Diapo.out' has
  not changed.
 (rerunfilecheck)             Checksum: 97070A019DF373D195CAE3030F26ADFB;698.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1079.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1083.
  ) 
 Here is how much of TeX's memory you used:
  26872 strings out of 493304
@@ -2563,7 +2563,7 @@ re/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvr8a.pfb>
-Output written on Muller_ISN2016_BatailleNavale_Diapo.pdf (152 pages, 720350 by
+Output written on Muller_ISN2016_BatailleNavale_Diapo.pdf (152 pages, 720434 by
 tes).
 PDF statistics:
  4925 PDF objects out of 5155 (max. 8388607)
