@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  22 MAR 2016 21:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.2.26)  23 MAR 2016 08:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2166,14 +2166,10 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [34
 
-]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 329--329
- [] 
- []
-
-[35
+] [35
 
 ] [36
+
 
 ] [37
 
@@ -2181,101 +2177,311 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 329--329
 ] [38
 
 
-] [39
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
 
-
-] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [40
+[39
 
 ]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [41
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
 
-] [42
-
-] [43
-
-] [44
-
-] [45
-
-] [46
+[40
 
 ]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[41
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[42
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[43
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[44
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[45
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[46
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
 [47
 
-] [48
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
 
-] [49
+[48
 
-] [50
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
 
-] [51
+[49
 
-] [52
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
 
-] [53
+[50
 
-] (./Muller_ISN2016_BatailleNavale_Diapo.toc)
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[51
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[52
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[53
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
 [54
 
-] [55
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
 
-] [56
-
-] [57
-
-] [58
-
-] [59
-
-] [60
-
-] [61
-
-] [62
-
-] [63
-
-] [64
-
-] [65
-
-] [66
-
-] [67
-
-] [68
+[55
 
 ]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[56
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[57
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[58
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[59
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[60
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[61
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[62
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[63
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[64
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[65
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[66
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[67
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[68
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
 [69
 
-] [70
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
 
-] [71
-
-] [72
-
-] [73
-
-] [74
-
-] [75
-
-] [76
-
-] [77
-
-] [78
-
-] [79
-
-] [80
-
-] [81
+[70
 
 ]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [82
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
 
-] [83
+[71
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[72
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[73
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[74
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[75
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[76
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[77
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[78
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[79
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[80
+
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 496--496
+[][]  
+ []
+
+[81
+
+] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [82
+
+]
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [83
 
 ] [84
 
@@ -2285,10 +2491,10 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 329--329
 
 ] [87
 
-]
-[88
+] [88
 
-] [89
+]
+[89
 
 ] [90
 
@@ -2302,23 +2508,14 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 329--329
 
 ] [95
 
-]
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 764.
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
-File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
-)
-LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 9.58124pt on input line 764.
- [96
+] (./Muller_ISN2016_BatailleNavale_Diapo.toc)
+[96
 
 ] [97
 
 ] [98
 
-]
-[99
+] [99
 
 ] [100
 
@@ -2338,14 +2535,14 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 
 ] [108
 
-] [109
+]
+[109
 
 ] [110
 
 ] [111
 
-]
-[112
+] [112
 
 ] [113
 
@@ -2355,9 +2552,7 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 
 ] [116
 
-
 ] [117
-
 
 ] [118
 
@@ -2365,24 +2560,19 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 
 ] [120
 
-] [121
+]
+[121
 
 ] [122
 
 ] [123
 
-
-]
-[124
+] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [124
 
 ] [125
 
 ]
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 878.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.58124pt on input line 878.
- [126
+[126
 
 ] [127
 
@@ -2398,131 +2588,235 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 
 ] [133
 
-]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [134
+] [134
 
 ] [135
 
 ] [136
 
-
 ] [137
 
+]
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 886.
 
-] [138
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
+File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
+)
+LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
+(Font)              scaled to size 9.58124pt on input line 886.
+ [138
+
+] [139
+
+] [140
+
+]
+[141
+
+] [142
+
+] [143
+
+] [144
+
+] [145
+
+] [146
+
+] [147
+
+] [148
+
+] [149
+
+] [150
+
+] [151
+
+] [152
+
+]
+[153
+
+] [154
+
+] [155
+
+] [156
+
+] [157
+
+] [158
+
+
+] [159
+
+
+] [160
+
+] [161
+
+] [162
+
+] [163
+
+] [164
+
+]
+[165
+
+
+] [166
+
+] [167
+
+]
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 1000.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 9.58124pt on input line 1000.
+ [168
+
+] [169
+
+] [170
+
+] [171
+
+] [172
+
+] [173
+
+] [174
+
+] [175
+
+]
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [176
+
+] [177
+
+] [178
+
+
+] [179
+
+
+] [180
 
 
 ]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [139
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [181
 
 ]
-<./media/distrib_HAL_niveau=1_n=1000000.png, id=4409, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=1_n=1000000.png, id=5688, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=1_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=1_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=1_n=1000000.png used on inp
-ut line 960.
+ut line 1082.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [140
+ [182
 
  <./media/distrib_HAL_niveau=1_n=1000000.png>]
-<./media/distrib_HAL_niveau=2_n=1000000.png, id=4444, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=2_n=1000000.png, id=5722, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=2_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=2_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=2_n=1000000.png used on inp
-ut line 967.
+ut line 1089.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [141
+ [183
 
  <./media/distrib_HAL_niveau=2_n=1000000.png>]
-<./media/distrib_HAL_niveau=3_n=1000000.png, id=4476, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=3_n=1000000.png, id=5754, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=3_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=3_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=3_n=1000000.png used on inp
-ut line 974.
+ut line 1096.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [142
+ [184
 
  <./media/distrib_HAL_niveau=3_n=1000000.png>]
-<./media/distrib_HAL_niveau=4(10)_n=100000.png, id=4508, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(10)_n=100000.png, id=5787, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=4(10)_n=100000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(10)_n=100000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10)_n=100000.png used on 
-input line 982.
+input line 1104.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [143
+ [185
 
  <./media/distrib_HAL_niveau=4(10)_n=100000.png>]
-<./media/distrib_HAL_niveau=4(100)_n=10000.png, id=4540, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(100)_n=10000.png, id=5819, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=4(100)_n=10000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(100)_n=10000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(100)_n=10000.png used on 
-input line 989.
+input line 1111.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [144
+ [186
 
  <./media/distrib_HAL_niveau=4(100)_n=10000.png>]
-<./media/distrib_HAL_niveau=4(1000)_n=1000.png, id=4573, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(1000)_n=1000.png, id=5851, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=4(1000)_n=1000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(1000)_n=1000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(1000)_n=1000.png used on 
-input line 996.
+input line 1118.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [145
+ [187
 
  <./media/distrib_HAL_niveau=4(1000)_n=1000.png>]
-<./media/distrib_HAL_niveau=4(10000)_n=100.png, id=4606, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=4(10000)_n=100.png, id=5884, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=4(10000)_n=100.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=4(10000)_n=100.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10000)_n=100.png used on 
-input line 1003.
+input line 1125.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [146
+ [188
 
  <./media/distrib_HAL_niveau=4(10000)_n=100.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.22774pt on input line 1023.
- [147
+(Font)              scaled to size 6.22774pt on input line 1145.
+ [189
 
-] [148
+] [190
 
 ]
-<./media/distrib_HAL_niveau=5_n=1000000.png, id=4700, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=5_n=1000000.png, id=5978, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=5_n=1000000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=5_n=1000000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=5_n=1000000.png used on inp
-ut line 1049.
+ut line 1171.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [149
+ [191
 
  <./media/distrib_HAL_niveau=5_n=1000000.png>]
-<./media/distrib_HAL_niveau=6(60)_n=10000.png, id=4732, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=6(60)_n=10000.png, id=6010, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=6(60)_n=10000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=6(60)_n=10000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=6(60)_n=10000.png used on i
-nput line 1056.
+nput line 1178.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [150
+ [192
 
  <./media/distrib_HAL_niveau=6(60)_n=10000.png>]
-<./media/distrib_HAL_niveau=6(70)_n=1000.png, id=4764, 578.16pt x 433.62pt>
+<./media/distrib_HAL_niveau=6(70)_n=1000.png, id=6043, 578.16pt x 433.62pt>
 File: ./media/distrib_HAL_niveau=6(70)_n=1000.png Graphic file (type png)
 
 <use ./media/distrib_HAL_niveau=6(70)_n=1000.png>
 Package pdftex.def Info: ./media/distrib_HAL_niveau=6(70)_n=1000.png used on in
-put line 1063.
+put line 1185.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [151
+ [193
 
- <./media/distrib_HAL_niveau=6(70)_n=1000.png>] [152
+ <./media/distrib_HAL_niveau=6(70)_n=1000.png>] [194
 
 ]
 \tf@nav=\write7
@@ -2536,25 +2830,25 @@ put line 1063.
 
  
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1083.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1083.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1205.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1205.
 (./Muller_ISN2016_BatailleNavale_Diapo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1083.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1083.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1205.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1205.
 
 Package rerunfilecheck Info: File `Muller_ISN2016_BatailleNavale_Diapo.out' has
  not changed.
-(rerunfilecheck)             Checksum: 97070A019DF373D195CAE3030F26ADFB;698.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1083.
+(rerunfilecheck)             Checksum: F51D3BDBFBE9D4A23E49B838E77542CB;699.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1205.
  ) 
 Here is how much of TeX's memory you used:
- 26872 strings out of 493304
- 492999 string characters out of 6139871
- 653438 words of memory out of 5000000
- 29153 multiletter control sequences out of 15000+600000
+ 26958 strings out of 493304
+ 493906 string characters out of 6139871
+ 667690 words of memory out of 5000000
+ 29155 multiletter control sequences out of 15000+600000
  87322 words of font info for 89 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 57i,15n,71p,473b,994s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,15n,71p,473b,955s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
 fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/
 fourier/fourier-mlit.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/four
@@ -2563,11 +2857,11 @@ re/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvr8a.pfb>
-Output written on Muller_ISN2016_BatailleNavale_Diapo.pdf (152 pages, 720434 by
+Output written on Muller_ISN2016_BatailleNavale_Diapo.pdf (194 pages, 853591 by
 tes).
 PDF statistics:
- 4925 PDF objects out of 5155 (max. 8388607)
- 4373 compressed objects within 44 object streams
- 315 named destinations out of 1000 (max. 500000)
+ 6222 PDF objects out of 7423 (max. 8388607)
+ 5532 compressed objects within 56 object streams
+ 399 named destinations out of 1000 (max. 500000)
  293 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -49,132 +49,132 @@
 \headcommand {\beamer@framepages {34}{34}}
 \headcommand {\slideentry {1}{3}{5}{35/35}{Structure des joueurs}{0}}
 \headcommand {\beamer@framepages {35}{35}}
-\headcommand {\slideentry {1}{3}{6}{36/36}{Structure des joueurs}{0}}
-\headcommand {\beamer@framepages {36}{36}}
-\headcommand {\slideentry {1}{3}{6}{36/37}{Structure des joueurs}{0}}
-\headcommand {\beamer@framepages {36}{37}}
-\headcommand {\slideentry {1}{3}{6}{36/38}{Structure des joueurs}{0}}
-\headcommand {\beamer@framepages {36}{38}}
-\headcommand {\slideentry {1}{3}{6}{36/39}{Structure des joueurs}{0}}
-\headcommand {\beamer@framepages {36}{39}}
-\headcommand {\sectionentry {2}{Algorithme de r\IeC {\'e}solution}{40}{Algorithme de r\IeC {\'e}solution}{0}}
-\headcommand {\beamer@sectionpages {2}{39}}
-\headcommand {\beamer@subsectionpages {31}{39}}
-\headcommand {\slideentry {2}{0}{7}{40/40}{}{0}}
-\headcommand {\beamer@framepages {40}{40}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{41}{Principe g\IeC {\'e}n\IeC {\'e}ral}}\headcommand {\beamer@subsectionpages {40}{40}}
-\headcommand {\slideentry {2}{1}{1}{41/41}{Principe g\IeC {\'e}n\IeC {\'e}ral}{0}}
-\headcommand {\beamer@framepages {41}{41}}
-\headcommand {\slideentry {2}{1}{2}{42/44}{Principe g\IeC {\'e}n\IeC {\'e}ral}{0}}
-\headcommand {\beamer@framepages {42}{44}}
-\headcommand {\slideentry {2}{1}{3}{45/47}{Principe g\IeC {\'e}n\IeC {\'e}ral}{0}}
-\headcommand {\beamer@framepages {45}{47}}
-\headcommand {\slideentry {2}{1}{4}{48/53}{Principe g\IeC {\'e}n\IeC {\'e}ral}{0}}
-\headcommand {\beamer@framepages {48}{53}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{54}{Tirs en aveugle}}\headcommand {\beamer@subsectionpages {41}{53}}
-\headcommand {\slideentry {2}{2}{1}{54/54}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {54}{54}}
-\headcommand {\slideentry {2}{2}{2}{55/58}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {55}{58}}
-\headcommand {\slideentry {2}{2}{3}{59/62}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {59}{62}}
-\headcommand {\slideentry {2}{2}{4}{63/65}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {63}{65}}
-\headcommand {\slideentry {2}{2}{5}{66/66}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {66}{66}}
-\headcommand {\slideentry {2}{2}{6}{67/69}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {67}{69}}
-\headcommand {\slideentry {2}{2}{7}{70/76}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {70}{76}}
-\headcommand {\slideentry {2}{2}{8}{77/77}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {77}{77}}
-\headcommand {\slideentry {2}{2}{9}{78/79}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {78}{79}}
-\headcommand {\slideentry {2}{2}{10}{80/80}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {80}{80}}
-\headcommand {\slideentry {2}{2}{11}{81/81}{Tirs en aveugle}{0}}
-\headcommand {\beamer@framepages {81}{81}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{82}{Tirs cibl\IeC {\'e}s}}\headcommand {\beamer@subsectionpages {54}{81}}
-\headcommand {\slideentry {2}{3}{1}{82/82}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\slideentry {1}{3}{5}{35/36}{Structure des joueurs}{0}}
+\headcommand {\beamer@framepages {35}{36}}
+\headcommand {\slideentry {1}{3}{5}{35/37}{Structure des joueurs}{0}}
+\headcommand {\beamer@framepages {35}{37}}
+\headcommand {\slideentry {1}{3}{5}{35/38}{Structure des joueurs}{0}}
+\headcommand {\beamer@framepages {35}{38}}
+\headcommand {\slideentry {1}{3}{6}{39/81}{Structure des joueurs}{0}}
+\headcommand {\beamer@framepages {39}{81}}
+\headcommand {\sectionentry {2}{Algorithme de r\IeC {\'e}solution}{82}{Algorithme de r\IeC {\'e}solution}{0}}
+\headcommand {\beamer@sectionpages {2}{81}}
+\headcommand {\beamer@subsectionpages {31}{81}}
+\headcommand {\slideentry {2}{0}{7}{82/82}{}{0}}
 \headcommand {\beamer@framepages {82}{82}}
-\headcommand {\slideentry {2}{3}{2}{83/84}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {83}{84}}
-\headcommand {\slideentry {2}{3}{3}{85/87}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {85}{87}}
-\headcommand {\slideentry {2}{3}{4}{88/88}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {88}{88}}
-\headcommand {\slideentry {2}{3}{5}{89/89}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {89}{89}}
-\headcommand {\slideentry {2}{3}{6}{90/90}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {90}{90}}
-\headcommand {\slideentry {2}{3}{7}{91/111}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {91}{111}}
-\headcommand {\slideentry {2}{3}{8}{112/114}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {112}{114}}
-\headcommand {\slideentry {2}{3}{9}{115/115}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {115}{115}}
-\headcommand {\slideentry {2}{3}{9}{115/116}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {115}{116}}
-\headcommand {\slideentry {2}{3}{9}{115/117}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {115}{117}}
-\headcommand {\slideentry {2}{3}{10}{118/121}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {118}{121}}
-\headcommand {\slideentry {2}{3}{11}{122/122}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{83}{Principe g\IeC {\'e}n\IeC {\'e}ral}}\headcommand {\beamer@subsectionpages {82}{82}}
+\headcommand {\slideentry {2}{1}{1}{83/83}{Principe g\IeC {\'e}n\IeC {\'e}ral}{0}}
+\headcommand {\beamer@framepages {83}{83}}
+\headcommand {\slideentry {2}{1}{2}{84/86}{Principe g\IeC {\'e}n\IeC {\'e}ral}{0}}
+\headcommand {\beamer@framepages {84}{86}}
+\headcommand {\slideentry {2}{1}{3}{87/89}{Principe g\IeC {\'e}n\IeC {\'e}ral}{0}}
+\headcommand {\beamer@framepages {87}{89}}
+\headcommand {\slideentry {2}{1}{4}{90/95}{Principe g\IeC {\'e}n\IeC {\'e}ral}{0}}
+\headcommand {\beamer@framepages {90}{95}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{96}{Tirs en aveugle}}\headcommand {\beamer@subsectionpages {83}{95}}
+\headcommand {\slideentry {2}{2}{1}{96/96}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {96}{96}}
+\headcommand {\slideentry {2}{2}{2}{97/100}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {97}{100}}
+\headcommand {\slideentry {2}{2}{3}{101/104}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {101}{104}}
+\headcommand {\slideentry {2}{2}{4}{105/107}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {105}{107}}
+\headcommand {\slideentry {2}{2}{5}{108/108}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {108}{108}}
+\headcommand {\slideentry {2}{2}{6}{109/111}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {109}{111}}
+\headcommand {\slideentry {2}{2}{7}{112/118}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {112}{118}}
+\headcommand {\slideentry {2}{2}{8}{119/119}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {119}{119}}
+\headcommand {\slideentry {2}{2}{9}{120/121}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {120}{121}}
+\headcommand {\slideentry {2}{2}{10}{122/122}{Tirs en aveugle}{0}}
 \headcommand {\beamer@framepages {122}{122}}
-\headcommand {\slideentry {2}{3}{11}{122/123}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {122}{123}}
-\headcommand {\slideentry {2}{3}{12}{124/125}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {124}{125}}
-\headcommand {\slideentry {2}{3}{13}{126/127}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {126}{127}}
-\headcommand {\slideentry {2}{3}{14}{128/128}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {128}{128}}
-\headcommand {\slideentry {2}{3}{15}{129/130}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {129}{130}}
-\headcommand {\slideentry {2}{3}{16}{131/133}{Tirs cibl\IeC {\'e}s}{0}}
-\headcommand {\beamer@framepages {131}{133}}
-\headcommand {\beamer@subsectionentry {0}{2}{4}{134}{Algorithme complet de r\IeC {\'e}solution}}\headcommand {\beamer@subsectionpages {82}{133}}
-\headcommand {\slideentry {2}{4}{1}{134/134}{Algorithme complet de r\IeC {\'e}solution}{0}}
-\headcommand {\beamer@framepages {134}{134}}
-\headcommand {\slideentry {2}{4}{2}{135/135}{Algorithme complet de r\IeC {\'e}solution}{0}}
-\headcommand {\beamer@framepages {135}{135}}
-\headcommand {\slideentry {2}{4}{2}{135/136}{Algorithme complet de r\IeC {\'e}solution}{0}}
-\headcommand {\beamer@framepages {135}{136}}
-\headcommand {\slideentry {2}{4}{2}{135/137}{Algorithme complet de r\IeC {\'e}solution}{0}}
-\headcommand {\beamer@framepages {135}{137}}
-\headcommand {\slideentry {2}{4}{2}{135/138}{Algorithme complet de r\IeC {\'e}solution}{0}}
-\headcommand {\beamer@framepages {135}{138}}
-\headcommand {\beamer@subsectionentry {0}{2}{5}{139}{\IeC {\'E}tude statistique}}\headcommand {\beamer@subsectionpages {134}{138}}
-\headcommand {\slideentry {2}{5}{1}{139/139}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {139}{139}}
-\headcommand {\slideentry {2}{5}{2}{140/140}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {140}{140}}
-\headcommand {\slideentry {2}{5}{3}{141/141}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {141}{141}}
-\headcommand {\slideentry {2}{5}{4}{142/142}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {142}{142}}
-\headcommand {\slideentry {2}{5}{5}{143/143}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {143}{143}}
-\headcommand {\slideentry {2}{5}{6}{144/144}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {144}{144}}
-\headcommand {\slideentry {2}{5}{7}{145/145}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {145}{145}}
-\headcommand {\slideentry {2}{5}{8}{146/146}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {146}{146}}
-\headcommand {\slideentry {2}{5}{9}{147/147}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {147}{147}}
-\headcommand {\slideentry {2}{5}{10}{148/148}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {148}{148}}
-\headcommand {\slideentry {2}{5}{11}{149/149}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {149}{149}}
-\headcommand {\slideentry {2}{5}{12}{150/150}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {150}{150}}
-\headcommand {\slideentry {2}{5}{13}{151/151}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {151}{151}}
-\headcommand {\slideentry {2}{5}{14}{152/152}{\IeC {\'E}tude statistique}{0}}
-\headcommand {\beamer@framepages {152}{152}}
-\headcommand {\beamer@partpages {1}{152}}
-\headcommand {\beamer@subsectionpages {139}{152}}
-\headcommand {\beamer@sectionpages {40}{152}}
-\headcommand {\beamer@documentpages {152}}
+\headcommand {\slideentry {2}{2}{11}{123/123}{Tirs en aveugle}{0}}
+\headcommand {\beamer@framepages {123}{123}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{124}{Tirs cibl\IeC {\'e}s}}\headcommand {\beamer@subsectionpages {96}{123}}
+\headcommand {\slideentry {2}{3}{1}{124/124}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {124}{124}}
+\headcommand {\slideentry {2}{3}{2}{125/126}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {125}{126}}
+\headcommand {\slideentry {2}{3}{3}{127/129}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {127}{129}}
+\headcommand {\slideentry {2}{3}{4}{130/130}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {130}{130}}
+\headcommand {\slideentry {2}{3}{5}{131/131}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {131}{131}}
+\headcommand {\slideentry {2}{3}{6}{132/132}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {132}{132}}
+\headcommand {\slideentry {2}{3}{7}{133/153}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {133}{153}}
+\headcommand {\slideentry {2}{3}{8}{154/156}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {154}{156}}
+\headcommand {\slideentry {2}{3}{9}{157/157}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {157}{157}}
+\headcommand {\slideentry {2}{3}{9}{157/158}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {157}{158}}
+\headcommand {\slideentry {2}{3}{9}{157/159}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {157}{159}}
+\headcommand {\slideentry {2}{3}{10}{160/163}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {160}{163}}
+\headcommand {\slideentry {2}{3}{11}{164/164}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {164}{164}}
+\headcommand {\slideentry {2}{3}{11}{164/165}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {164}{165}}
+\headcommand {\slideentry {2}{3}{12}{166/167}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {166}{167}}
+\headcommand {\slideentry {2}{3}{13}{168/169}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {168}{169}}
+\headcommand {\slideentry {2}{3}{14}{170/170}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {170}{170}}
+\headcommand {\slideentry {2}{3}{15}{171/172}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {171}{172}}
+\headcommand {\slideentry {2}{3}{16}{173/175}{Tirs cibl\IeC {\'e}s}{0}}
+\headcommand {\beamer@framepages {173}{175}}
+\headcommand {\beamer@subsectionentry {0}{2}{4}{176}{Algorithme complet de r\IeC {\'e}solution}}\headcommand {\beamer@subsectionpages {124}{175}}
+\headcommand {\slideentry {2}{4}{1}{176/176}{Algorithme complet de r\IeC {\'e}solution}{0}}
+\headcommand {\beamer@framepages {176}{176}}
+\headcommand {\slideentry {2}{4}{2}{177/177}{Algorithme complet de r\IeC {\'e}solution}{0}}
+\headcommand {\beamer@framepages {177}{177}}
+\headcommand {\slideentry {2}{4}{2}{177/178}{Algorithme complet de r\IeC {\'e}solution}{0}}
+\headcommand {\beamer@framepages {177}{178}}
+\headcommand {\slideentry {2}{4}{2}{177/179}{Algorithme complet de r\IeC {\'e}solution}{0}}
+\headcommand {\beamer@framepages {177}{179}}
+\headcommand {\slideentry {2}{4}{2}{177/180}{Algorithme complet de r\IeC {\'e}solution}{0}}
+\headcommand {\beamer@framepages {177}{180}}
+\headcommand {\beamer@subsectionentry {0}{2}{5}{181}{\IeC {\'E}tude statistique}}\headcommand {\beamer@subsectionpages {176}{180}}
+\headcommand {\slideentry {2}{5}{1}{181/181}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {181}{181}}
+\headcommand {\slideentry {2}{5}{2}{182/182}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {182}{182}}
+\headcommand {\slideentry {2}{5}{3}{183/183}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {183}{183}}
+\headcommand {\slideentry {2}{5}{4}{184/184}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {184}{184}}
+\headcommand {\slideentry {2}{5}{5}{185/185}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {185}{185}}
+\headcommand {\slideentry {2}{5}{6}{186/186}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {186}{186}}
+\headcommand {\slideentry {2}{5}{7}{187/187}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {187}{187}}
+\headcommand {\slideentry {2}{5}{8}{188/188}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {188}{188}}
+\headcommand {\slideentry {2}{5}{9}{189/189}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {189}{189}}
+\headcommand {\slideentry {2}{5}{10}{190/190}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {190}{190}}
+\headcommand {\slideentry {2}{5}{11}{191/191}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {191}{191}}
+\headcommand {\slideentry {2}{5}{12}{192/192}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {192}{192}}
+\headcommand {\slideentry {2}{5}{13}{193/193}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {193}{193}}
+\headcommand {\slideentry {2}{5}{14}{194/194}{\IeC {\'E}tude statistique}{0}}
+\headcommand {\beamer@framepages {194}{194}}
+\headcommand {\beamer@partpages {1}{194}}
+\headcommand {\beamer@subsectionpages {181}{194}}
+\headcommand {\beamer@sectionpages {82}{194}}
+\headcommand {\beamer@documentpages {194}}
 \headcommand {\def \inserttotalframenumber {80}}
