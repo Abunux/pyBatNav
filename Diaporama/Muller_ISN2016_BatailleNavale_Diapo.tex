@@ -321,6 +321,180 @@ Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
 \end{frame}
 }
 
+%\begin{frame}
+%\begin{columns}[T,onlytextwidth]
+%\begin{column}{0.4\textwidth}
+%\begin{tikzpicture}[scale=0.5]
+%\draw (0,1)--(10,1);
+%\draw (-1,0)--(-1,-10);
+%%\draw (-1,0)--(10,0);
+%%\draw (-1,-1)--(10,-1);
+%%\draw (-1,-2)--(10,-2);
+%%\draw (-1,-3)--(10,-3);
+%\foreach \x in {0,1,...,10}{
+%\draw (\x,1)--(\x,-10);
+%\draw (-1,-\x)--(10,-\x);
+%}
+%\foreach \x in {0,1,...,9}{
+%\draw (\x+0.5,0.5) node{\x};
+%\draw (-0.5,-\x-0.5) node{\x};
+%}
+%
+%\draw<1>[fill=green](0,0) rectangle(1,-1);
+%\draw<2-4>[fill=red](0,-1) rectangle(1,-2);
+%\draw<3>[fill=green](1,-1) rectangle(2,-2);
+%\draw<4>[fill=green](0,-2) rectangle(1,-3);
+%
+%\draw<5>[fill=green](0,-2) rectangle(1,-3);
+%\draw<6>[fill=green](0,-3) rectangle(1,-4);
+%\draw<7>[fill=green](0,-4) rectangle(1,-5);
+%\draw<8>[fill=green](0,-5) rectangle(1,-6);
+%\draw<9>[fill=green](0,-6) rectangle(1,-7);
+%\draw<10>[fill=green](0,-7) rectangle(1,-8);
+%\draw<11>[fill=green](0,-8) rectangle(1,-9);
+%\draw<12>[fill=green](0,-9) rectangle(1,-10);
+%\draw<13>[fill=green](1,0) rectangle(2,-1);
+%\draw<14>[fill=green](1,-1) rectangle(2,-2);
+%\draw<15>[fill=green](1,-2) rectangle(2,-3);
+%
+%\draw<16-17>[fill=red](1,-3) rectangle(2,-4);
+%\draw<17>[fill=red](2,-3) rectangle(3,-4);
+%\draw<17>[very thick](1,-3.5)--(3,-3.5);
+%
+%\draw<18->[fill=red](1,-3) rectangle(2,-4);
+%\draw<19->[fill=red](2,-3) rectangle(3,-4);
+%\draw<20>[fill=green](3,-3) rectangle(4,-4);
+%
+%\draw<21>[fill=gray!50](0,-3) rectangle(1,-4);
+%
+%\draw<22>[fill=green](1,-4) rectangle(2,-5);
+%
+%\draw<23-25>[fill=red](1,-5) rectangle(2,-6);
+%\draw<24>[fill=green](2,-5) rectangle(3,-6);
+%\draw<25>[fill=red](1,-6) rectangle(2,-7);
+%\draw<25>[very thick](1.5,-5)--(1.5,-7);
+%
+%\draw<26->[fill=red](1,-5) rectangle(2,-6);
+%\draw<27->[fill=red](1,-6) rectangle(2,-7);
+%\draw<28->[fill=red](1,-7) rectangle(2,-8);
+%\draw<29>[fill=green](1,-8) rectangle(2,-9);
+%
+%\draw<30>[fill=gray!50](1,-4) rectangle(2,-5);
+%
+%\draw<31>[fill=green](1,-8) rectangle(2,-9);
+%\draw<32>[fill=green](1,-9) rectangle(2,-10);
+%\draw<33>[fill=green](2,0) rectangle(3,-1);
+%
+%\draw<34-35>[fill=red](2,-1) rectangle(3,-2);
+%\draw<35>[fill=red](3,-1) rectangle(4,-2);
+%\draw<35>[very thick](2,-1.5)--(4,-1.5);
+%
+%\draw<36-42>[fill=red](2,-1) rectangle(3,-2);
+%\draw<37-42>[fill=red](3,-1) rectangle(4,-2);
+%\draw<38-42>[fill=red](4,-1) rectangle(5,-2);
+%\draw<39-42>[fill=red](5,-1) rectangle(6,-2);
+%\draw<40>[fill=green](6,-1) rectangle(7,-2);
+%
+%\draw<41>[fill=green](1,-1) rectangle(2,-2);
+%\draw<42>[fill=green](6,-1) rectangle(7,-2);
+%
+%
+%\draw<43->[fill=cyan](2,-1) rectangle(3,-2);
+%\draw<43->[fill=cyan](3,-1) rectangle(4,-2);
+%\draw<43->[fill=cyan](4,-1) rectangle(5,-2);
+%\draw<43->[fill=cyan](5,-1) rectangle(6,-2);
+%
+%
+%\draw<43> (2.5,-0.5) node{O};
+%\draw<43> (3.5,-0.5) node{O};
+%\draw<43> (4.5,-0.5) node{O};
+%\draw<43> (5.5,-0.5) node{O};
+%\draw<43> (2.5,-2.5) node{O};
+%\draw<43> (3.5,-2.5) node{O};
+%\draw<43> (4.5,-2.5) node{O};
+%\draw<43> (5.5,-2.5) node{O};
+%
+%
+%
+%
+%\draw (0.5,-4.5) node{O};
+%\draw (0.5,-7.5) node{O};
+%\draw (1.5,-1.5) node{O};
+%\draw (1.5,-2.5) node{O};
+%\draw (6.5,-1.5) node{O};
+%
+%\draw (0.5,-1.5) node{X};
+%\draw (1.5,-3.5) node{X};
+%\draw (2.5,-3.5) node{X};
+%\draw (1.5,-5.5) node{X};
+%\draw (1.5,-6.5) node{X};
+%\draw (1.5,-7.5) node{X};
+%\draw (2.5,-1.5) node{X};
+%\draw (3.5,-1.5) node{X};
+%\draw (4.5,-1.5) node{X};
+%\draw (5.5,-1.5) node{X};
+%
+%
+%\end{tikzpicture}
+%
+%\end{column}
+%
+%\begin{column}{0.4\textwidth}
+%Case : \only<1>{(0,0)}\only<2-4>{(0,1)}\only<5>{(0,2)}\only<6>{(0,3)}\only<7>{(0,4)}\only<8>{(0,5)}\only<9>{(0,6)}\only<10>{(0,7)}\only<11>{(0,8)}\only<12>{(0,9)}\only<13>{(1,0)}\only<14>{(1,1)}\only<15>{(1,2)}\only<16-21>{(1,3)}\only<22>{(1,4)}\only<23-30>{(1,5)}\only<31>{(1,8)}\only<32>{(1,9)}\only<33>{(2,0)}\only<34-43>{(2,1)}
+%
+%\only<4>{Case isolée}
+%\only<17>{Direction : DROITE}
+%\only<18>{k=0\par}
+%\only<18>{liste\_touches :\par} 
+%\only<18>{[(1,3)]}
+%\only<19>{k=1\par}
+%\only<19>{liste\_touches :\par} 
+%\only<19>{[(1,3), (2,3)]}
+%\only<20-21>{k=2\par}
+%\only<20-21>{liste\_touches :\par} 
+%\only<20-21>{[(1,3), (2,3)]\par}
+%\only<21>{Bateau non coulé}
+%
+%\only<25>{Direction : BAS}
+%\only<26>{k=0\par}
+%\only<26>{liste\_touches :\par} 
+%\only<26>{[(1,5)]}
+%\only<27>{k=1\par}
+%\only<27>{liste\_touches :\par} 
+%\only<27>{[(1,5), (1,6)]}
+%\only<28>{k=2\par}
+%\only<28>{liste\_touches :\par} 
+%\only<28>{[(1,5), (1,6), (1,7)]}
+%\only<29>{k=3\par}
+%\only<29>{liste\_touches :\par} 
+%\only<29>{[(1,5), (1,6), (1,7)]}
+%\only<30>{Bateau non coulé}
+%
+%\only<35>{Direction : DROITE}
+%\only<36>{k=0\par}
+%\only<36>{liste\_touches :\par} 
+%\only<36>{[(2,1)]}
+%\only<37>{k=1\par}
+%\only<37>{liste\_touches :\par} 
+%\only<37>{[(2,1), (3,1)]}
+%\only<38>{k=2\par}
+%\only<38>{liste\_touches :\par} 
+%\only<38>{[(2,1), (3,1), (4,1)]}
+%\only<39>{k=3\par}
+%\only<39>{liste\_touches :\par} 
+%\only<39>{[(2,1), (3,1), (4,1), (5,1)]}
+%\only<40>{k=4\par}
+%\only<40>{liste\_touches :\par} 
+%\only<40>{[(2,1), (3,1), (4,1), (5,1)]}
+%\only<42-43>{Bateau coulé !\par}
+%\only<43>{Élimination des cases adjacentes et mémorisation de ses cases dans la liste Joueur.coules}
+%
+%\end{column}
+%
+%\end{columns}
+%
+%\end{frame}
+
 \begin{frame}
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.4\textwidth}
@@ -340,80 +514,67 @@ Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
 \draw (-0.5,-\x-0.5) node{\x};
 }
 
-\draw<1>[fill=green](0,0) rectangle(1,-1);
-\draw<2-4>[fill=red](0,-1) rectangle(1,-2);
-\draw<3>[fill=green](1,-1) rectangle(2,-2);
-\draw<4>[fill=green](0,-2) rectangle(1,-3);
+\draw<1-3>[fill=red](0,-1) rectangle(1,-2);
+\draw<2>[fill=green](1,-1) rectangle(2,-2);
+\draw<3>[fill=green](0,-2) rectangle(1,-3);
 
-\draw<5>[fill=green](0,-2) rectangle(1,-3);
-\draw<6>[fill=green](0,-3) rectangle(1,-4);
-\draw<7>[fill=green](0,-4) rectangle(1,-5);
-\draw<8>[fill=green](0,-5) rectangle(1,-6);
-\draw<9>[fill=green](0,-6) rectangle(1,-7);
-\draw<10>[fill=green](0,-7) rectangle(1,-8);
-\draw<11>[fill=green](0,-8) rectangle(1,-9);
-\draw<12>[fill=green](0,-9) rectangle(1,-10);
-\draw<13>[fill=green](1,0) rectangle(2,-1);
-\draw<14>[fill=green](1,-1) rectangle(2,-2);
-\draw<15>[fill=green](1,-2) rectangle(2,-3);
+\draw<4>[fill=green](0,-4) rectangle(1,-5);
+\draw<5>[fill=green](0,-7) rectangle(1,-8);
+\draw<6>[fill=green](1,-1) rectangle(2,-2);
+\draw<7>[fill=green](1,-2) rectangle(2,-3);
 
-\draw<16-17>[fill=red](1,-3) rectangle(2,-4);
-\draw<17>[fill=red](2,-3) rectangle(3,-4);
-\draw<17>[very thick](1,-3.5)--(3,-3.5);
+\draw<8-9>[fill=red](1,-3) rectangle(2,-4);
+\draw<9>[fill=red](2,-3) rectangle(3,-4);
+\draw<9>[very thick](1,-3.5)--(3,-3.5);
 
-\draw<18->[fill=red](1,-3) rectangle(2,-4);
-\draw<19->[fill=red](2,-3) rectangle(3,-4);
-\draw<20>[fill=green](3,-3) rectangle(4,-4);
+\draw<10->[fill=red](1,-3) rectangle(2,-4);
+\draw<11->[fill=red](2,-3) rectangle(3,-4);
+\draw<12>[fill=green](3,-3) rectangle(4,-4);
 
-\draw<21>[fill=gray!50](0,-3) rectangle(1,-4);
+\draw<13>[fill=gray!50](0,-3) rectangle(1,-4);
 
-\draw<22>[fill=green](1,-4) rectangle(2,-5);
+\draw<14-16>[fill=red](1,-5) rectangle(2,-6);
+\draw<15>[fill=green](2,-5) rectangle(3,-6);
+\draw<16>[fill=red](1,-6) rectangle(2,-7);
+\draw<16>[very thick](1.5,-5)--(1.5,-7);
 
-\draw<23-25>[fill=red](1,-5) rectangle(2,-6);
-\draw<24>[fill=green](2,-5) rectangle(3,-6);
-\draw<25>[fill=red](1,-6) rectangle(2,-7);
-\draw<25>[very thick](1.5,-5)--(1.5,-7);
+\draw<17->[fill=red](1,-5) rectangle(2,-6);
+\draw<18->[fill=red](1,-6) rectangle(2,-7);
+\draw<19->[fill=red](1,-7) rectangle(2,-8);
+\draw<20>[fill=green](1,-8) rectangle(2,-9);
 
-\draw<26->[fill=red](1,-5) rectangle(2,-6);
-\draw<27->[fill=red](1,-6) rectangle(2,-7);
-\draw<28->[fill=red](1,-7) rectangle(2,-8);
-\draw<29>[fill=green](1,-8) rectangle(2,-9);
+\draw<21>[fill=gray!50](1,-4) rectangle(2,-5);
 
-\draw<30>[fill=gray!50](1,-4) rectangle(2,-5);
+\draw<22-23>[fill=red](2,-1) rectangle(3,-2);
+\draw<23>[fill=red](3,-1) rectangle(4,-2);
+\draw<23>[very thick](2,-1.5)--(4,-1.5);
 
-\draw<31>[fill=green](1,-8) rectangle(2,-9);
-\draw<32>[fill=green](1,-9) rectangle(2,-10);
-\draw<33>[fill=green](2,0) rectangle(3,-1);
+\draw<24-30>[fill=red](2,-1) rectangle(3,-2);
+\draw<25-30>[fill=red](3,-1) rectangle(4,-2);
+\draw<26-30>[fill=red](4,-1) rectangle(5,-2);
+\draw<27-30>[fill=red](5,-1) rectangle(6,-2);
+\draw<28>[fill=green](6,-1) rectangle(7,-2);
 
-\draw<34-35>[fill=red](2,-1) rectangle(3,-2);
-\draw<35>[fill=red](3,-1) rectangle(4,-2);
-\draw<35>[very thick](2,-1.5)--(4,-1.5);
-
-\draw<36-42>[fill=red](2,-1) rectangle(3,-2);
-\draw<37-42>[fill=red](3,-1) rectangle(4,-2);
-\draw<38-42>[fill=red](4,-1) rectangle(5,-2);
-\draw<39-42>[fill=red](5,-1) rectangle(6,-2);
-\draw<40>[fill=green](6,-1) rectangle(7,-2);
-
-\draw<41>[fill=green](1,-1) rectangle(2,-2);
-\draw<42>[fill=green](6,-1) rectangle(7,-2);
+\draw<29>[fill=green](1,-1) rectangle(2,-2);
+\draw<30>[fill=green](6,-1) rectangle(7,-2);
 
 
-\draw<43->[fill=cyan](2,-1) rectangle(3,-2);
-\draw<43->[fill=cyan](3,-1) rectangle(4,-2);
-\draw<43->[fill=cyan](4,-1) rectangle(5,-2);
-\draw<43->[fill=cyan](5,-1) rectangle(6,-2);
+\draw<31->[fill=cyan](2,-1) rectangle(3,-2);
+\draw<31->[fill=cyan](3,-1) rectangle(4,-2);
+\draw<31->[fill=cyan](4,-1) rectangle(5,-2);
+\draw<31->[fill=cyan](5,-1) rectangle(6,-2);
 
 
-\draw<43> (2.5,-0.5) node{O};
-\draw<43> (3.5,-0.5) node{O};
-\draw<43> (4.5,-0.5) node{O};
-\draw<43> (5.5,-0.5) node{O};
-\draw<43> (2.5,-2.5) node{O};
-\draw<43> (3.5,-2.5) node{O};
-\draw<43> (4.5,-2.5) node{O};
-\draw<43> (5.5,-2.5) node{O};
+\draw<31> (2.5,-0.5) node{O};
+\draw<31> (3.5,-0.5) node{O};
+\draw<31> (4.5,-0.5) node{O};
+\draw<31> (5.5,-0.5) node{O};
+\draw<31> (2.5,-2.5) node{O};
+\draw<31> (3.5,-2.5) node{O};
+\draw<31> (4.5,-2.5) node{O};
+\draw<31> (5.5,-2.5) node{O};
 
+\draw<32>[fill=green](6,-1) rectangle(7,-2);
 
 
 
@@ -440,61 +601,60 @@ Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
 \end{column}
 
 \begin{column}{0.4\textwidth}
-Case : \only<1>{(0,0)}\only<2-4>{(0,1)}\only<5>{(0,2)}\only<6>{(0,3)}\only<7>{(0,4)}\only<8>{(0,5)}\only<9>{(0,6)}\only<10>{(0,7)}\only<11>{(0,8)}\only<12>{(0,9)}\only<13>{(1,0)}\only<14>{(1,1)}\only<15>{(1,2)}\only<16-21>{(1,3)}\only<22>{(1,4)}\only<23-30>{(1,5)}\only<31>{(1,8)}\only<32>{(1,9)}\only<33>{(2,0)}\only<34-43>{(2,1)}
+Case : \only<1-3>{(0,1)}\only<4>{(0,4)}\only<5>{(0,7)}\only<6>{(1,1)}\only<7>{(1,2)}\only<8-13>{(1,3)}\only<14-21>{(1,5)}\only<22-31>{(2,1)}\only<32>{(6,1)}
 
-\only<4>{Case isolée}
-\only<17>{Direction : DROITE}
-\only<18>{k=0\par}
+\only<3>{Case isolée}
+\only<9>{Direction : DROITE}
+\only<10>{k=0\par}
+\only<10>{liste\_touches :\par} 
+\only<10>{[(1,3)]}
+\only<11>{k=1\par}
+\only<11>{liste\_touches :\par} 
+\only<11>{[(1,3), (2,3)]}
+\only<12-13>{k=2\par}
+\only<12-13>{liste\_touches :\par} 
+\only<12-13>{[(1,3), (2,3)]\par}
+\only<13>{Bateau non coulé}
+
+\only<16>{Direction : BAS}
+\only<17>{k=0\par}
+\only<17>{liste\_touches :\par} 
+\only<17>{[(1,5)]}
+\only<18>{k=1\par}
 \only<18>{liste\_touches :\par} 
-\only<18>{[(1,3)]}
-\only<19>{k=1\par}
+\only<18>{[(1,5), (1,6)]}
+\only<19>{k=2\par}
 \only<19>{liste\_touches :\par} 
-\only<19>{[(1,3), (2,3)]}
-\only<20-21>{k=2\par}
-\only<20-21>{liste\_touches :\par} 
-\only<20-21>{[(1,3), (2,3)]\par}
+\only<19>{[(1,5), (1,6), (1,7)]}
+\only<20>{k=3\par}
+\only<20>{liste\_touches :\par} 
+\only<20>{[(1,5), (1,6), (1,7)]}
 \only<21>{Bateau non coulé}
 
-\only<25>{Direction : BAS}
-\only<26>{k=0\par}
+\only<23>{Direction : DROITE}
+\only<24>{k=0\par}
+\only<24>{liste\_touches :\par} 
+\only<24>{[(2,1)]}
+\only<25>{k=1\par}
+\only<25>{liste\_touches :\par} 
+\only<25>{[(2,1), (3,1)]}
+\only<26>{k=2\par}
 \only<26>{liste\_touches :\par} 
-\only<26>{[(1,5)]}
-\only<27>{k=1\par}
+\only<26>{[(2,1), (3,1), (4,1)]}
+\only<27>{k=3\par}
 \only<27>{liste\_touches :\par} 
-\only<27>{[(1,5), (1,6)]}
-\only<28>{k=2\par}
+\only<27>{[(2,1), (3,1), (4,1), (5,1)]}
+\only<28>{k=4\par}
 \only<28>{liste\_touches :\par} 
-\only<28>{[(1,5), (1,6), (1,7)]}
-\only<29>{k=3\par}
-\only<29>{liste\_touches :\par} 
-\only<29>{[(1,5), (1,6), (1,7)]}
-\only<30>{Bateau non coulé}
-
-\only<35>{Direction : DROITE}
-\only<36>{k=0\par}
-\only<36>{liste\_touches :\par} 
-\only<36>{[(2,1)]}
-\only<37>{k=1\par}
-\only<37>{liste\_touches :\par} 
-\only<37>{[(2,1), (3,1)]}
-\only<38>{k=2\par}
-\only<38>{liste\_touches :\par} 
-\only<38>{[(2,1), (3,1), (4,1)]}
-\only<39>{k=3\par}
-\only<39>{liste\_touches :\par} 
-\only<39>{[(2,1), (3,1), (4,1), (5,1)]}
-\only<40>{k=4\par}
-\only<40>{liste\_touches :\par} 
-\only<40>{[(2,1), (3,1), (4,1), (5,1)]}
-\only<42-43>{Bateau coulé !\par}
-\only<43>{Élimination des cases adjacentes et mémorisation de ses cases dans la liste Joueur.coules}
+\only<28>{[(2,1), (3,1), (4,1), (5,1)]}
+\only<30-31>{Bateau coulé !\par}
+\only<31>{Élimination des cases adjacentes et mémorisation de ses cases dans la liste Joueur.coules}
 
 \end{column}
 
 \end{columns}
 
 \end{frame}
-
 
 
 
@@ -635,6 +795,455 @@ case\_max est la case qui a le plus de possibilités pmax\\
 On retourne (case\_max, pmax)\\
 \end{frame}
 }
+
+
+\begin{frame}
+
+\begin{center}
+
+\only<1-5>{Bateaux de taille 5 :}
+\only<6>{Bateaux de taille 4 :}
+\only<7>{Tous les bateaux :}
+
+\bigskip 
+
+\begin{tikzpicture}[scale=0.5]
+\draw (0,1)--(10,1);
+\draw (-1,0)--(-1,-10);
+%\draw (-1,0)--(10,0);
+%\draw (-1,-1)--(10,-1);
+%\draw (-1,-2)--(10,-2);
+%\draw (-1,-3)--(10,-3);
+\foreach \x in {0,1,...,10}{
+\draw (\x,1)--(\x,-10);
+\draw (-1,-\x)--(10,-\x);
+}
+\foreach \x in {0,1,...,9}{
+\draw (\x+0.5,0.5) node{\x};
+\draw (-0.5,-\x-0.5) node{\x};
+}
+
+\draw<1-2>[fill=gray!50](0,0) rectangle(1,-1);
+
+\draw<1>(0.5,-0.5) node{1};
+\draw<1-4>(0.5,-1.5) node{1};
+\draw<1-4>(0.5,-2.5) node{1};
+\draw<1-4>(0.5,-3.5) node{1};
+\draw<1-4>(0.5,-4.5) node{1};
+\draw<1>[very thick](0,0) rectangle (1,-5);
+
+\draw<2-4>(0.5,-0.5) node{2};
+\draw<2>(1.5,-0.5) node{1};
+\draw<2-3>(2.5,-0.5) node{1};
+\draw<2-3>(3.5,-0.5) node{1};
+\draw<2-3>(4.5,-0.5) node{1};
+\draw<2>[very thick](0,0) rectangle (5,-1);
+
+\draw<3-4>[fill=gray!50](1,0) rectangle(2,-1);
+
+\draw<3>(1.5,-0.5) node{2};
+\draw<3-4>(1.5,-1.5) node{1};
+\draw<3-4>(1.5,-2.5) node{1};
+\draw<3-4>(1.5,-3.5) node{1};
+\draw<3-4>(1.5,-4.5) node{1};
+\draw<3>[very thick](1,0) rectangle (2,-5);
+
+\draw<4-4>(1.5,-0.5) node{3};
+\draw<4-4>(2.5,-0.5) node{2};
+\draw<4-4>(3.5,-0.5) node{2};
+\draw<4-4>(4.5,-0.5) node{2};
+\draw<4-4>(5.5,-0.5) node{1};
+\draw<4>[very thick](1,0) rectangle (6,-1);
+
+\draw<5>[fill=gray!50](5,-9) rectangle(6,-10);
+
+\draw<5>(0.5,-0.5) node{2};
+\draw<5>(1.5,-0.5) node{3};
+\draw<5>(2.5,-0.5) node{4};
+\draw<5>(3.5,-0.5) node{5};
+\draw<5>(4.5,-0.5) node{6};
+\draw<5>(5.5,-0.5) node{6};
+\draw<5>(6.5,-0.5) node{5};
+\draw<5>(7.5,-0.5) node{4};
+\draw<5>(8.5,-0.5) node{3};
+\draw<5>(9.5,-0.5) node{2};
+
+\draw<5>(0.5,-1.5) node{3};
+\draw<5>(1.5,-1.5) node{4};
+\draw<5>(2.5,-1.5) node{5};
+\draw<5>(3.5,-1.5) node{6};
+\draw<5>(4.5,-1.5) node{7};
+\draw<5>(5.5,-1.5) node{7};
+\draw<5>(6.5,-1.5) node{6};
+\draw<5>(7.5,-1.5) node{5};
+\draw<5>(8.5,-1.5) node{4};
+\draw<5>(9.5,-1.5) node{3};
+
+\draw<5>(0.5,-2.5) node{4};
+\draw<5>(1.5,-2.5) node{5};
+\draw<5>(2.5,-2.5) node{6};
+\draw<5>(3.5,-2.5) node{7};
+\draw<5>(4.5,-2.5) node{8};
+\draw<5>(5.5,-2.5) node{8};
+\draw<5>(6.5,-2.5) node{7};
+\draw<5>(7.5,-2.5) node{6};
+\draw<5>(8.5,-2.5) node{5};
+\draw<5>(9.5,-2.5) node{4};
+
+\draw<5>(0.5,-3.5) node{5};
+\draw<5>(1.5,-3.5) node{6};
+\draw<5>(2.5,-3.5) node{7};
+\draw<5>(3.5,-3.5) node{8};
+\draw<5>(4.5,-3.5) node{9};
+\draw<5>(5.5,-3.5) node{9};
+\draw<5>(6.5,-3.5) node{8};
+\draw<5>(7.5,-3.5) node{7};
+\draw<5>(8.5,-3.5) node{6};
+\draw<5>(9.5,-3.5) node{5};
+
+\draw<5>(0.5,-4.5) node{6};
+\draw<5>(1.5,-4.5) node{7};
+\draw<5>(2.5,-4.5) node{8};
+\draw<5>(3.5,-4.5) node{9};
+\draw<5>(4.5,-4.5) node{10};
+\draw<5>(5.5,-4.5) node{10};
+\draw<5>(6.5,-4.5) node{9};
+\draw<5>(7.5,-4.5) node{8};
+\draw<5>(8.5,-4.5) node{7};
+\draw<5>(9.5,-4.5) node{6};
+
+\draw<5>(0.5,-5.5) node{6};
+\draw<5>(1.5,-5.5) node{7};
+\draw<5>(2.5,-5.5) node{8};
+\draw<5>(3.5,-5.5) node{9};
+\draw<5>(4.5,-5.5) node{10};
+\draw<5>(5.5,-5.5) node{10};
+\draw<5>(6.5,-5.5) node{9};
+\draw<5>(7.5,-5.5) node{8};
+\draw<5>(8.5,-5.5) node{7};
+\draw<5>(9.5,-5.5) node{6};
+
+\draw<5>(0.5,-6.5) node{5};
+\draw<5>(1.5,-6.5) node{6};
+\draw<5>(2.5,-6.5) node{7};
+\draw<5>(3.5,-6.5) node{8};
+\draw<5>(4.5,-6.5) node{9};
+\draw<5>(5.5,-6.5) node{9};
+\draw<5>(6.5,-6.5) node{8};
+\draw<5>(7.5,-6.5) node{7};
+\draw<5>(8.5,-6.5) node{6};
+\draw<5>(9.5,-6.5) node{5};
+
+\draw<5>(0.5,-7.5) node{4};
+\draw<5>(1.5,-7.5) node{5};
+\draw<5>(2.5,-7.5) node{6};
+\draw<5>(3.5,-7.5) node{7};
+\draw<5>(4.5,-7.5) node{8};
+\draw<5>(5.5,-7.5) node{8};
+\draw<5>(6.5,-7.5) node{7};
+\draw<5>(7.5,-7.5) node{6};
+\draw<5>(8.5,-7.5) node{5};
+\draw<5>(9.5,-7.5) node{4};
+
+\draw<5>(0.5,-8.5) node{3};
+\draw<5>(1.5,-8.5) node{4};
+\draw<5>(2.5,-8.5) node{5};
+\draw<5>(3.5,-8.5) node{6};
+\draw<5>(4.5,-8.5) node{7};
+\draw<5>(5.5,-8.5) node{7};
+\draw<5>(6.5,-8.5) node{6};
+\draw<5>(7.5,-8.5) node{5};
+\draw<5>(8.5,-8.5) node{4};
+\draw<5>(9.5,-8.5) node{3};
+
+\draw<5>(0.5,-9.5) node{2};
+\draw<5>(1.5,-9.5) node{3};
+\draw<5>(2.5,-9.5) node{4};
+\draw<5>(3.5,-9.5) node{5};
+\draw<5>(4.5,-9.5) node{6};
+\draw<5>(5.5,-9.5) node{6};
+\draw<5>(6.5,-9.5) node{5};
+\draw<5>(7.5,-9.5) node{4};
+\draw<5>(8.5,-9.5) node{3};
+\draw<5>(9.5,-9.5) node{2};
+
+\draw<5>[very thick](5,-9) rectangle (10,-10);
+
+\draw<6>(0.5,-0.5) node{4};
+\draw<6>(1.5,-0.5) node{6};
+\draw<6>(2.5,-0.5) node{8};
+\draw<6>(3.5,-0.5) node{10};
+\draw<6>(4.5,-0.5) node{11};
+\draw<6>(5.5,-0.5) node{11};
+\draw<6>(6.5,-0.5) node{10};
+\draw<6>(7.5,-0.5) node{8};
+\draw<6>(8.5,-0.5) node{6};
+\draw<6>(9.5,-0.5) node{4};
+
+\draw<6>(0.5,-1.5) node{6};
+\draw<6>(1.5,-1.5) node{8};
+\draw<6>(2.5,-1.5) node{10};
+\draw<6>(3.5,-1.5) node{12};
+\draw<6>(4.5,-1.5) node{13};
+\draw<6>(5.5,-1.5) node{13};
+\draw<6>(6.5,-1.5) node{12};
+\draw<6>(7.5,-1.5) node{10};
+\draw<6>(8.5,-1.5) node{8};
+\draw<6>(9.5,-1.5) node{6};
+
+\draw<6>(0.5,-2.5) node{8};
+\draw<6>(1.5,-2.5) node{10};
+\draw<6>(2.5,-2.5) node{12};
+\draw<6>(3.5,-2.5) node{14};
+\draw<6>(4.5,-2.5) node{15};
+\draw<6>(5.5,-2.5) node{15};
+\draw<6>(6.5,-2.5) node{14};
+\draw<6>(7.5,-2.5) node{12};
+\draw<6>(8.5,-2.5) node{10};
+\draw<6>(9.5,-2.5) node{8};
+
+\draw<6>(0.5,-3.5) node{10};
+\draw<6>(1.5,-3.5) node{12};
+\draw<6>(2.5,-3.5) node{14};
+\draw<6>(3.5,-3.5) node{16};
+\draw<6>(4.5,-3.5) node{17};
+\draw<6>(5.5,-3.5) node{17};
+\draw<6>(6.5,-3.5) node{16};
+\draw<6>(7.5,-3.5) node{14};
+\draw<6>(8.5,-3.5) node{12};
+\draw<6>(9.5,-3.5) node{10};
+
+\draw<6>(0.5,-4.5) node{11};
+\draw<6>(1.5,-4.5) node{13};
+\draw<6>(2.5,-4.5) node{15};
+\draw<6>(3.5,-4.5) node{17};
+\draw<6>(4.5,-4.5) node{18};
+\draw<6>(5.5,-4.5) node{18};
+\draw<6>(6.5,-4.5) node{17};
+\draw<6>(7.5,-4.5) node{15};
+\draw<6>(8.5,-4.5) node{13};
+\draw<6>(9.5,-4.5) node{11};
+
+\draw<6>(0.5,-5.5) node{11};
+\draw<6>(1.5,-5.5) node{13};
+\draw<6>(2.5,-5.5) node{15};
+\draw<6>(3.5,-5.5) node{17};
+\draw<6>(4.5,-5.5) node{18};
+\draw<6>(5.5,-5.5) node{18};
+\draw<6>(6.5,-5.5) node{17};
+\draw<6>(7.5,-5.5) node{15};
+\draw<6>(8.5,-5.5) node{13};
+\draw<6>(9.5,-5.5) node{11};
+
+\draw<6>(0.5,-6.5) node{10};
+\draw<6>(1.5,-6.5) node{12};
+\draw<6>(2.5,-6.5) node{14};
+\draw<6>(3.5,-6.5) node{16};
+\draw<6>(4.5,-6.5) node{17};
+\draw<6>(5.5,-6.5) node{17};
+\draw<6>(6.5,-6.5) node{16};
+\draw<6>(7.5,-6.5) node{14};
+\draw<6>(8.5,-6.5) node{12};
+\draw<6>(9.5,-6.5) node{10};
+
+\draw<6>(0.5,-7.5) node{8};
+\draw<6>(1.5,-7.5) node{10};
+\draw<6>(2.5,-7.5) node{12};
+\draw<6>(3.5,-7.5) node{14};
+\draw<6>(4.5,-7.5) node{15};
+\draw<6>(5.5,-7.5) node{15};
+\draw<6>(6.5,-7.5) node{14};
+\draw<6>(7.5,-7.5) node{12};
+\draw<6>(8.5,-7.5) node{10};
+\draw<6>(9.5,-7.5) node{8};
+
+\draw<6>(0.5,-8.5) node{6};
+\draw<6>(1.5,-8.5) node{8};
+\draw<6>(2.5,-8.5) node{10};
+\draw<6>(3.5,-8.5) node{12};
+\draw<6>(4.5,-8.5) node{13};
+\draw<6>(5.5,-8.5) node{13};
+\draw<6>(6.5,-8.5) node{12};
+\draw<6>(7.5,-8.5) node{10};
+\draw<6>(8.5,-8.5) node{8};
+\draw<6>(9.5,-8.5) node{6};
+
+\draw<6>(0.5,-9.5) node{4};
+\draw<6>(1.5,-9.5) node{6};
+\draw<6>(2.5,-9.5) node{8};
+\draw<6>(3.5,-9.5) node{10};
+\draw<6>(4.5,-9.5) node{11};
+\draw<6>(5.5,-9.5) node{11};
+\draw<6>(6.5,-9.5) node{10};
+\draw<6>(7.5,-9.5) node{8};
+\draw<6>(8.5,-9.5) node{6};
+\draw<6>(9.5,-9.5) node{4};
+
+
+\draw<7>(0.5,-0.5) node{10};
+\draw<7>(1.5,-0.5) node{15};
+\draw<7>(2.5,-0.5) node{19};
+\draw<7>(3.5,-0.5) node{21};
+\draw<7>(4.5,-0.5) node{22};
+\draw<7>(5.5,-0.5) node{22};
+\draw<7>(6.5,-0.5) node{21};
+\draw<7>(7.5,-0.5) node{19};
+\draw<7>(8.5,-0.5) node{15};
+\draw<7>(9.5,-0.5) node{10};
+
+\draw<7>(0.5,-1.5) node{15};
+\draw<7>(1.5,-1.5) node{20};
+\draw<7>(2.5,-1.5) node{24};
+\draw<7>(3.5,-1.5) node{26};
+\draw<7>(4.5,-1.5) node{27};
+\draw<7>(5.5,-1.5) node{27};
+\draw<7>(6.5,-1.5) node{26};
+\draw<7>(7.5,-1.5) node{24};
+\draw<7>(8.5,-1.5) node{20};
+\draw<7>(9.5,-1.5) node{15};
+
+\draw<7>(0.5,-2.5) node{19};
+\draw<7>(1.5,-2.5) node{24};
+\draw<7>(2.5,-2.5) node{28};
+\draw<7>(3.5,-2.5) node{30};
+\draw<7>(4.5,-2.5) node{31};
+\draw<7>(5.5,-2.5) node{31};
+\draw<7>(6.5,-2.5) node{30};
+\draw<7>(7.5,-2.5) node{28};
+\draw<7>(8.5,-2.5) node{24};
+\draw<7>(9.5,-2.5) node{19};
+
+\draw<7>(0.5,-3.5) node{21};
+\draw<7>(1.5,-3.5) node{26};
+\draw<7>(2.5,-3.5) node{30};
+\draw<7>(3.5,-3.5) node{32};
+\draw<7>(4.5,-3.5) node{33};
+\draw<7>(5.5,-3.5) node{33};
+\draw<7>(6.5,-3.5) node{32};
+\draw<7>(7.5,-3.5) node{30};
+\draw<7>(8.5,-3.5) node{26};
+\draw<7>(9.5,-3.5) node{21};
+
+\draw<7>(0.5,-4.5) node{22};
+\draw<7>(1.5,-4.5) node{27};
+\draw<7>(2.5,-4.5) node{31};
+\draw<7>(3.5,-4.5) node{33};
+\draw<7>(4.5,-4.5) node{34};
+\draw<7>(5.5,-4.5) node{34};
+\draw<7>(6.5,-4.5) node{33};
+\draw<7>(7.5,-4.5) node{31};
+\draw<7>(8.5,-4.5) node{27};
+\draw<7>(9.5,-4.5) node{22};
+
+\draw<7>(0.5,-5.5) node{22};
+\draw<7>(1.5,-5.5) node{27};
+\draw<7>(2.5,-5.5) node{31};
+\draw<7>(3.5,-5.5) node{33};
+\draw<7>(4.5,-5.5) node{34};
+\draw<7>(5.5,-5.5) node{34};
+\draw<7>(6.5,-5.5) node{33};
+\draw<7>(7.5,-5.5) node{31};
+\draw<7>(8.5,-5.5) node{27};
+\draw<7>(9.5,-5.5) node{22};
+
+\draw<7>(0.5,-6.5) node{21};
+\draw<7>(1.5,-6.5) node{26};
+\draw<7>(2.5,-6.5) node{30};
+\draw<7>(3.5,-6.5) node{32};
+\draw<7>(4.5,-6.5) node{33};
+\draw<7>(5.5,-6.5) node{33};
+\draw<7>(6.5,-6.5) node{32};
+\draw<7>(7.5,-6.5) node{30};
+\draw<7>(8.5,-6.5) node{26};
+\draw<7>(9.5,-6.5) node{21};
+
+\draw<7>(0.5,-7.5) node{19};
+\draw<7>(1.5,-7.5) node{24};
+\draw<7>(2.5,-7.5) node{28};
+\draw<7>(3.5,-7.5) node{30};
+\draw<7>(4.5,-7.5) node{31};
+\draw<7>(5.5,-7.5) node{31};
+\draw<7>(6.5,-7.5) node{30};
+\draw<7>(7.5,-7.5) node{28};
+\draw<7>(8.5,-7.5) node{24};
+\draw<7>(9.5,-7.5) node{19};
+
+\draw<7>(0.5,-8.5) node{15};
+\draw<7>(1.5,-8.5) node{20};
+\draw<7>(2.5,-8.5) node{24};
+\draw<7>(3.5,-8.5) node{26};
+\draw<7>(4.5,-8.5) node{27};
+\draw<7>(5.5,-8.5) node{27};
+\draw<7>(6.5,-8.5) node{26};
+\draw<7>(7.5,-8.5) node{24};
+\draw<7>(8.5,-8.5) node{20};
+\draw<7>(9.5,-8.5) node{15};
+
+\draw<7>(0.5,-9.5) node{10};
+\draw<7>(1.5,-9.5) node{15};
+\draw<7>(2.5,-9.5) node{19};
+\draw<7>(3.5,-9.5) node{21};
+\draw<7>(4.5,-9.5) node{22};
+\draw<7>(5.5,-9.5) node{22};
+\draw<7>(6.5,-9.5) node{21};
+\draw<7>(7.5,-9.5) node{19};
+\draw<7>(8.5,-9.5) node{15};
+\draw<7>(9.5,-9.5) node{10};
+
+
+
+
+%\draw<3>(0.5,-0.5) node{3};
+%\draw<3-4>(0.5,-1.5) node{2};
+%\draw<3-4>(0.5,-2.5) node{2};
+%\draw<3-4>(0.5,-3.5) node{2};
+%\draw<3-4>(0.5,-4.5) node{1};
+%\draw<3>[very thick](0,0) rectangle (1,-4);
+%
+%\draw<4>(0.5,-0.5) node{4};
+%\draw<4-5>(1.5,-0.5) node{2};
+%\draw<4-5>(2.5,-0.5) node{2};
+%\draw<4-5>(3.5,-0.5) node{2};
+%\draw<4-5>(4.5,-0.5) node{1};
+%\draw<4>[very thick](0,0) rectangle (4,-1);
+%
+%\draw<5>(0.5,-0.5) node{6};
+%\draw<5-6>(0.5,-1.5) node{4};
+%\draw<5-6>(0.5,-2.5) node{4};
+%\draw<5-6>(0.5,-3.5) node{2};
+%\draw<5-6>(0.5,-4.5) node{1};
+%\draw<5>[very thick](0,0) rectangle (1,-3);
+%
+%\draw<6>(0.5,-0.5) node{8};
+%\draw<6-7>(1.5,-0.5) node{4};
+%\draw<6-7>(2.5,-0.5) node{4};
+%\draw<6-7>(3.5,-0.5) node{2};
+%\draw<6-7>(4.5,-0.5) node{1};
+%\draw<6>[very thick](0,0) rectangle (3,-1);
+%
+%\draw<7>(0.5,-0.5) node{9};
+%\draw<7-8>(0.5,-1.5) node{5};
+%\draw<7-8>(0.5,-2.5) node{4};
+%\draw<7-8>(0.5,-3.5) node{2};
+%\draw<7-8>(0.5,-4.5) node{1};
+%\draw<7>[very thick](0,0) rectangle (1,-2);
+%
+%\draw<8>(0.5,-0.5) node{10};
+%\draw<8-9>(1.5,-0.5) node{5};
+%\draw<8-9>(2.5,-0.5) node{4};
+%\draw<8-9>(3.5,-0.5) node{2};
+%\draw<8-9>(4.5,-0.5) node{1};
+%\draw<8>[very thick](0,0) rectangle (2,-1);
+
+\end{tikzpicture}
+\end{center}
+
+
+\end{frame}
+
+
+
+
 
 \begin{frame}{Méthode exhaustive}
 Détermination récursive de tous les arrangements de bateaux possibles et comptage du nombre de cases occupées \\~\\  \pause
@@ -1074,21 +1683,21 @@ On affiche enfin le nombre de coups\\
 
 \subsection{Étude statistique}
 
-\begin{frame}{Niveau 1}
+\begin{frame}{Niveau 1 : que des tirs aléatoires}
 Résultats sur $n=1\,000\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=1_n=1000000.png}}
 \end{center}
 \end{frame}
 
-\begin{frame}{Niveau 2}
+\begin{frame}{Niveau 2 : tirs aléatoires + file}
 Résultats sur $n=1\,000\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=2_n=1000000.png}}
 \end{center}
 \end{frame}
 
-\begin{frame}{Niveau 3}
+\begin{frame}{Niveau 3 : cases noires + file}
 Résultats sur $n=1\,000\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=3_n=1000000.png}}
@@ -1096,28 +1705,28 @@ Résultats sur $n=1\,000\,000$ parties :
 \end{frame}
 
 
-\begin{frame}{Niveau 4(10)}
+\begin{frame}{Niveau 4(10) : échantillons de taille 10}
 Résultats sur $n=100\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=4(10)_n=100000.png}}
 \end{center}
 \end{frame}
 
-\begin{frame}{Niveau 4(100)}
+\begin{frame}{Niveau 4(100) : échantillons de taille 100}
 Résultats sur $n=10\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=4(100)_n=10000.png}}
 \end{center}
 \end{frame}
 
-\begin{frame}{Niveau 4(1000)}
+\begin{frame}{Niveau 4(1000) : échantillons de taille 1000}
 Résultats sur $n=1\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=4(1000)_n=1000.png}}
 \end{center}
 \end{frame}
 
-\begin{frame}{Niveau 4(10000)}
+\begin{frame}{Niveau 4(10000) : échantillons de taille 10000}
 Résultats sur $n=100$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=4(10000)_n=100.png}}
@@ -1163,21 +1772,21 @@ $t_{moy}$ (en secondes)& 0,29 & 2,5 & 23,5 & 247\\
 \end{frame}
 
 
-\begin{frame}{Niveau 5}
+\begin{frame}{Niveau 5 : nombre local de bateaux}
 Résultats sur $n=1\,000\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=5_n=1000000.png}}
 \end{center}
 \end{frame}
 
-\begin{frame}{Niveau 6(60)}
+\begin{frame}{Niveau 6(60) : tous les arrangements, seuil=60}
 Résultats sur $n=10\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=6(60)_n=10000.png}}
 \end{center}
 \end{frame}
 
-\begin{frame}{Niveau 6(70)}
+\begin{frame}{Niveau 6(70) : tous les arrangements, seuil=70}
 Résultats sur $n=1\,000$ parties :
 \begin{center}
 \fbox{\includegraphics[scale=0.4]{./media/distrib_HAL_niveau=6(70)_n=1000.png}}
@@ -1197,6 +1806,66 @@ Résultats sur $n=1\,000$ parties :
 3 & 6(70) & 1\,000 & 42,34 & 6,26 & $[41,95~;~42,73]$\\
 \hline
 \end{tabular}
+\end{center}
+\end{frame}
+
+\section{Le reste dont je n'aurai pas le temps de parler}
+\begin{frame}{Interface console}
+\begin{itemize}
+\item Menu de choix de mode de jeu\pause
+\item Étude statistique des algorithmes\pause
+\item Affichages de la grille, et surlignage des bateaux
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Interface web}
+\begin{itemize}
+\item Script \texttt{cgi}\pause
+\item Gestion d'un \texttt{canvas} et de la souris en JavaScript\pause
+\item Sauvegarde des paramètres de la partie
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Interface en \texttt{tkinter}}
+\begin{itemize}
+\item Différentes fenêtres\pause
+\item Placement des bateaux\pause
+\item Illustration graphique de l'algorithme de résolution
+\end{itemize}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+Un projet passionnant et prenant\pause
+
+\medskip
+
+Réalisé entièrement en solo\pause
+
+\medskip
+
+Un travail conséquent :\pause
+
+\begin{itemize}
+\item 4 mois de travail intensif\\ \pause
+\item Plus de 200 heures de travail\\ \pause
+\item 3500 lignes de code Python\\ \pause
+\item 2000 lignes de \LaTeX pour le rapport\\ \pause
+\item 1500  lignes de \LaTeX pour le diaporama\\ \pause
+\end{itemize}
+Et quelques nuits blanches de réflexion...
+\end{frame}
+
+\begin{frame}{}
+
+\begin{center}
+\textsc{\Huge Merci de votre attention}
+
+\bigskip
+Passons aux questions...
+
+
 \end{center}
 \end{frame}
 

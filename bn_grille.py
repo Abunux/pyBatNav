@@ -408,11 +408,10 @@ class Grille(object):
         if affiche :
             for j in range(self.ymax):
                 for i in range(self.xmax-1):
-                    print("%.4f"%(self.probas[(i,j)]), end=' ')
-                print("%.4f"%self.probas[(self.xmax-1,j)])
+                    print("%d"%(self.probas[(i,j)]), end=' ')
+                print("%d"%self.probas[(self.xmax-1,j)])
 
             print()
-            print("Temps : %.4f secondes" % (time()-start))
             print("Case max :", self.case_proba)
             print("Proba max : %.5f" % self.pmax)
 
@@ -613,25 +612,7 @@ class GrilleSuivi(Grille):
 
 # Différents tests
 if __name__ == "__main__" :
-    # Test de toutes les répartitions possibles de bateaux sur la grille
-    grille = Grille(xmax=4, ymax=3, taille_bateaux=[2,3])
+    grille = Grille(xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2])
+    grille.case_max(affiche=True)
+    quit()
 
-    launch_time = strftime("%d/%m/%Y %H:%M:%S",localtime(time()))
-    print(launch_time)
-    start = time()
-
-    grille.case_max_all(affiche_all=True)
-
-    print()
-    print("Temps : %.2f seconde" % (time()-start))
-    print("Nombre d'itérations : %d " % n_iter)
-    print("Nombre de répartitions : %d " % grille.nb_repart)
-    print()
-    print("Début :", launch_time)
-    print("Fin :", strftime("%d/%m/%Y %H:%M:%S",localtime(time())))
-    print()
-    for j in range(grille.ymax) :
-        for i in range(grille.xmax-1):
-            print(grille.probas_all[(i,j)], end=' ')
-        i = grille.xmax-1
-        print(grille.probas_all[(i,j)])
