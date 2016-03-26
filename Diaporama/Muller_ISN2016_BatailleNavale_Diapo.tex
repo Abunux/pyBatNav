@@ -8,6 +8,13 @@
 \newunicodechar{┨}{\pmboxdrawuni{2528}}
 \newunicodechar{┩}{\pmboxdrawuni{2529}}
 
+\newcommand\modulo[2]{\@tempcnta=#1
+        \divide\@tempcnta by #2
+        \multiply\@tempcnta by #2
+        \multiply\@tempcnta by -1
+        \advance\@tempcnta by #1\relax
+        \the\@tempcnta}
+
 \useoutertheme[hooks]{tree}
 \useinnertheme{rounded}
 \usecolortheme{seahorse}
@@ -700,11 +707,40 @@ Seule méthode qui permet de finir la grille uniquement avec des tirs en aveugle
 
 
 \begin{frame}{Tirs sur les cases noires}
-Tir sur une case sur deux aléatoirement\\~\\ \pause
-Meilleurs performances que le précédent\\~\\ \pause
-Facile à implémenter\\~\\ \pause
-Nécessite que le plus petit bateau à trouver soit au moins de taille 2
+\only<1>{Tir sur une case sur deux aléatoirement\\~\\}
+\only<1>{
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+\draw (0,1)--(10,1);
+\draw (-1,0)--(-1,-10);
+%\draw (-1,0)--(10,0);
+%\draw (-1,-1)--(10,-1);
+%\draw (-1,-2)--(10,-2);
+%\draw (-1,-3)--(10,-3);
+\foreach \x in {0,1,...,10}{
+\draw (\x,1)--(\x,-10);
+\draw (-1,-\x)--(10,-\x);
+}
+\foreach \x in {0,1,...,9}{
+\draw (\x+0.5,0.5) node{\x};
+\draw (-0.5,-\x-0.5) node{\x};
+}
+
+\foreach \k in {0,1}{
+	\foreach \y in {0,1,...,4}{
+		\foreach \x in {0,1,...,4}{
+			\draw[fill=gray!50] (2*\x+\k,-2*\y-\k) rectangle (2*\x+\k+1,-2*\y-\k-1);
+		}
+	}
+}
+\end{tikzpicture}
+\end{center}}
+
+\onslide<2->{Meilleurs performances que le précédent\\~\\}
+\onslide<3->{Facile à implémenter\\~\\}
+\onslide<4->{Nécessite que le plus petit bateau à trouver soit au moins de taille 2}
 \end{frame}
+
 
 \begin{frame}{Méthode par échantillonnage}
 Création de \texttt{nb\_echantillons} de répartitions aléatoires des bateaux restants et comptage du nombre de cases occupées\\~\\ \pause
