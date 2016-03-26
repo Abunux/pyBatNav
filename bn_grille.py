@@ -490,7 +490,8 @@ class Grille(object):
         if len(gtmp.taille_bateaux) == 0 :
             self.nb_repart += 1
             if affiche_all :
-                gtmp.affiche()
+                pass
+                #~ gtmp.affiche_latex(self.nb_repart)
             for case in self.probas_all :
                 if self.etat[case] == 0 and gtmp.etat[case] == 1 :
                     self.probas_all[case] +=1
@@ -506,9 +507,12 @@ class Grille(object):
             n_iter += 1
             #~ if n_iter % 10000 == 0 :
                 #~ print(n_iter, time()-start_iter)
+            
             gtmp2 = gtmp.copie_grille_tmp()
             gtmp2.add_bateau(Bateau(taille, case, direction))
             gtmp2.rem_bateau(taille)
+            #~ gtmp2.affiche_latex(n_iter)
+            gtmp2.affiche()
             self.make_all(gtmp2, affiche_all)
 
     #
@@ -525,7 +529,30 @@ class Grille(object):
     #
     # Affichage --------------------------------------------------------
     #
-
+    
+    def affiche_latex(self,k) :
+        #~ print(r"""\draw (0,1)--(10,1);
+#~ \draw (-1,0)--(-1,-10);
+#~ \foreach \x in {0,1,...,10}{
+#~ \draw (\x,1)--(\x,-10);
+#~ \draw (-1,-\x)--(10,-\x);
+#~ }
+#~ \foreach \x in {0,1,...,9}{
+#~ \draw (\x+0.5,0.5) node{\x};
+#~ \draw (-0.5,-\x-0.5) node{\x};
+#~ }
+#~ """)
+        
+        for i in range(self.xmax):
+            for j in range(self.ymax):
+                if self.etat[(i,j)]==1:
+                    print(r"\draw<%d> (%.1f,%.1f) node{X};" % (k,i+0.5, -j-0.5))
+                elif self.etat[(i,j)]==-1:
+                    print(r"\draw<%d>(%.1f,%.1f) node{O};" % (k,i+0.5, -j-0.5))
+    
+        print()
+    
+    
     def affiche(self):
         """Affiche la grille"""
         # Méthode à surcharger suivant l'interface
@@ -612,7 +639,30 @@ class GrilleSuivi(Grille):
 
 # Différents tests
 if __name__ == "__main__" :
-    grille = Grille(xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2])
-    grille.case_max(affiche=True)
-    quit()
+    #~ grille = Grille(xmax=10, ymax=10, taille_bateaux=[5,4,3,3,2])  
+    #~ grille.case_max(affiche=True)
+    #~ quit()
+
+    # Test de toutes les répartitions possibles de bateaux sur la grille
+    grille = Grille(xmax=5, ymax=4, taille_bateaux=[4,3,2])
+
+    launch_time = strftime("%d/%m/%Y %H:%M:%S",localtime(time()))
+    print(launch_time)
+    start = time()
+
+    grille.case_max_all(affiche_all=True)
+
+    print()
+    print("Temps : %.2f seconde" % (time()-start))
+    print("Nombre d'itérations : %d " % n_iter)
+    print("Nombre de répartitions : %d " % grille.nb_repart)
+    print()
+    print("Début :", launch_time)
+    print("Fin :", strftime("%d/%m/%Y %H:%M:%S",localtime(time())))
+    print()
+    for j in range(grille.ymax) :
+        for i in range(grille.xmax-1):
+            print(grille.probas_all[(i,j)], end=' ')
+        i = grille.xmax-1
+        print(grille.probas_all[(i,j)])
 

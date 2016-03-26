@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  24 MAR 2016 20:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  26 MAR 2016 10:09
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1801,6 +1801,159 @@ File: multido.tex 2010/05/14 v1.42 `multido' (tvz,hv)
 )
 \c@cptspace=\count307
 )
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pmboxdraw.sty
+Package: pmboxdraw 2011/03/24 v1.1 Poor man's box drawing characters (HO)
+Now handling font encoding pmboxdraw ...
+... processing UTF-8 mapping file for font encoding pmboxdraw
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pmboxdrawenc.dfu
+File: pmboxdrawenc.dfu 2011/03/24 v1.1 UTF-8 support for box drawing characters
+
+   defining Unicode char U+2500 (decimal 9472)
+   defining Unicode char U+2501 (decimal 9473)
+   defining Unicode char U+2502 (decimal 9474)
+   defining Unicode char U+2503 (decimal 9475)
+   defining Unicode char U+250C (decimal 9484)
+   defining Unicode char U+250D (decimal 9485)
+   defining Unicode char U+250E (decimal 9486)
+   defining Unicode char U+250F (decimal 9487)
+   defining Unicode char U+2510 (decimal 9488)
+   defining Unicode char U+2511 (decimal 9489)
+   defining Unicode char U+2512 (decimal 9490)
+   defining Unicode char U+2513 (decimal 9491)
+   defining Unicode char U+2514 (decimal 9492)
+   defining Unicode char U+2515 (decimal 9493)
+   defining Unicode char U+2516 (decimal 9494)
+   defining Unicode char U+2517 (decimal 9495)
+   defining Unicode char U+2518 (decimal 9496)
+   defining Unicode char U+2519 (decimal 9497)
+   defining Unicode char U+251A (decimal 9498)
+   defining Unicode char U+251B (decimal 9499)
+   defining Unicode char U+251C (decimal 9500)
+   defining Unicode char U+251D (decimal 9501)
+   defining Unicode char U+251E (decimal 9502)
+   defining Unicode char U+251F (decimal 9503)
+   defining Unicode char U+2520 (decimal 9504)
+   defining Unicode char U+2521 (decimal 9505)
+   defining Unicode char U+2522 (decimal 9506)
+   defining Unicode char U+2523 (decimal 9507)
+   defining Unicode char U+2524 (decimal 9508)
+   defining Unicode char U+252C (decimal 9516)
+   defining Unicode char U+252D (decimal 9517)
+   defining Unicode char U+252E (decimal 9518)
+   defining Unicode char U+252F (decimal 9519)
+   defining Unicode char U+2530 (decimal 9520)
+   defining Unicode char U+2531 (decimal 9521)
+   defining Unicode char U+2532 (decimal 9522)
+   defining Unicode char U+2533 (decimal 9523)
+   defining Unicode char U+2534 (decimal 9524)
+   defining Unicode char U+2535 (decimal 9525)
+   defining Unicode char U+2536 (decimal 9526)
+   defining Unicode char U+2537 (decimal 9527)
+   defining Unicode char U+2538 (decimal 9528)
+   defining Unicode char U+2539 (decimal 9529)
+   defining Unicode char U+253A (decimal 9530)
+   defining Unicode char U+253B (decimal 9531)
+   defining Unicode char U+253C (decimal 9532)
+   defining Unicode char U+253D (decimal 9533)
+   defining Unicode char U+253E (decimal 9534)
+   defining Unicode char U+253F (decimal 9535)
+   defining Unicode char U+2540 (decimal 9536)
+   defining Unicode char U+2541 (decimal 9537)
+   defining Unicode char U+2542 (decimal 9538)
+   defining Unicode char U+2543 (decimal 9539)
+   defining Unicode char U+2544 (decimal 9540)
+   defining Unicode char U+2545 (decimal 9541)
+   defining Unicode char U+2546 (decimal 9542)
+   defining Unicode char U+2547 (decimal 9543)
+   defining Unicode char U+2548 (decimal 9544)
+   defining Unicode char U+2549 (decimal 9545)
+   defining Unicode char U+254A (decimal 9546)
+   defining Unicode char U+254B (decimal 9547)
+   defining Unicode char U+2550 (decimal 9552)
+   defining Unicode char U+2551 (decimal 9553)
+   defining Unicode char U+2552 (decimal 9554)
+   defining Unicode char U+2553 (decimal 9555)
+   defining Unicode char U+2554 (decimal 9556)
+   defining Unicode char U+2555 (decimal 9557)
+   defining Unicode char U+2556 (decimal 9558)
+   defining Unicode char U+2557 (decimal 9559)
+   defining Unicode char U+2558 (decimal 9560)
+   defining Unicode char U+2559 (decimal 9561)
+   defining Unicode char U+255A (decimal 9562)
+   defining Unicode char U+255B (decimal 9563)
+   defining Unicode char U+255C (decimal 9564)
+   defining Unicode char U+255D (decimal 9565)
+   defining Unicode char U+255E (decimal 9566)
+   defining Unicode char U+255F (decimal 9567)
+   defining Unicode char U+2560 (decimal 9568)
+   defining Unicode char U+2561 (decimal 9569)
+   defining Unicode char U+2562 (decimal 9570)
+   defining Unicode char U+2563 (decimal 9571)
+   defining Unicode char U+2564 (decimal 9572)
+   defining Unicode char U+2565 (decimal 9573)
+   defining Unicode char U+2566 (decimal 9574)
+   defining Unicode char U+2567 (decimal 9575)
+   defining Unicode char U+2568 (decimal 9576)
+   defining Unicode char U+2569 (decimal 9577)
+   defining Unicode char U+256A (decimal 9578)
+   defining Unicode char U+256B (decimal 9579)
+   defining Unicode char U+256C (decimal 9580)
+   defining Unicode char U+2574 (decimal 9588)
+   defining Unicode char U+2575 (decimal 9589)
+   defining Unicode char U+2576 (decimal 9590)
+   defining Unicode char U+2577 (decimal 9591)
+   defining Unicode char U+2578 (decimal 9592)
+   defining Unicode char U+2579 (decimal 9593)
+   defining Unicode char U+257A (decimal 9594)
+   defining Unicode char U+257B (decimal 9595)
+   defining Unicode char U+257C (decimal 9596)
+   defining Unicode char U+257D (decimal 9597)
+   defining Unicode char U+257E (decimal 9598)
+   defining Unicode char U+257F (decimal 9599)
+   defining Unicode char U+2580 (decimal 9600)
+   defining Unicode char U+2581 (decimal 9601)
+   defining Unicode char U+2582 (decimal 9602)
+   defining Unicode char U+2583 (decimal 9603)
+   defining Unicode char U+2584 (decimal 9604)
+   defining Unicode char U+2585 (decimal 9605)
+   defining Unicode char U+2586 (decimal 9606)
+   defining Unicode char U+2587 (decimal 9607)
+   defining Unicode char U+2588 (decimal 9608)
+   defining Unicode char U+2589 (decimal 9609)
+   defining Unicode char U+258A (decimal 9610)
+   defining Unicode char U+258B (decimal 9611)
+   defining Unicode char U+258C (decimal 9612)
+   defining Unicode char U+258D (decimal 9613)
+   defining Unicode char U+258E (decimal 9614)
+   defining Unicode char U+258F (decimal 9615)
+   defining Unicode char U+2590 (decimal 9616)
+   defining Unicode char U+2591 (decimal 9617)
+   defining Unicode char U+2592 (decimal 9618)
+   defining Unicode char U+2593 (decimal 9619)
+   defining Unicode char U+2594 (decimal 9620)
+   defining Unicode char U+2595 (decimal 9621)
+   defining Unicode char U+2596 (decimal 9622)
+   defining Unicode char U+2597 (decimal 9623)
+   defining Unicode char U+2598 (decimal 9624)
+   defining Unicode char U+2599 (decimal 9625)
+   defining Unicode char U+259A (decimal 9626)
+   defining Unicode char U+259B (decimal 9627)
+   defining Unicode char U+259C (decimal 9628)
+   defining Unicode char U+259D (decimal 9629)
+   defining Unicode char U+259E (decimal 9630)
+   defining Unicode char U+259F (decimal 9631)
+)
+\pmbd@W=\dimen313
+\pmbd@H=\dimen314
+\pmbd@L=\dimen315
+\pmbd@Thin=\dimen316
+\pmbd@Thick=\dimen317
+\pmbd@Sep=\dimen318
+)
+(/usr/share/texlive/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
+Package: newunicodechar 2012/11/12 v1.1 Defining Unicode characters
+)
 (/usr/share/texmf/tex/latex/beamer/base/themes/outer/beamerouterthemetree.sty
 Package: beamerouterthemetree 2010/06/17  (rcs-revision d02a7cf4d8ae)
 )
@@ -1817,58 +1970,61 @@ Package: beamercolorthemeorchid 2010/06/17  (rcs-revision d02a7cf4d8ae)
 ) (./Muller_ISN2016_BatailleNavale_Diapo.aux)
 \openout1 = `Muller_ISN2016_BatailleNavale_Diapo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 36.
-LaTeX Font Info:    Try loading font information for FML+futm on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 43.
+LaTeX Font Info:    Try loading font information for FML+futm on input line 43.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmlfutm.fd
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 36.
-LaTeX Font Info:    Try loading font information for FMS+futm on input line 36.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 43.
+LaTeX Font Info:    Try loading font information for FMS+futm on input line 43.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmsfutm.fd
 File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
 )
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 36.
-LaTeX Font Info:    Try loading font information for FMX+futm on input line 36.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 43.
+LaTeX Font Info:    Try loading font information for FMX+futm on input line 43.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmxfutm.fd
 File: fmxfutm.fd futm-extension
 )
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 36.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 43.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 36.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for pmboxdraw/pmboxdraw/m/n on input line
+ 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 43.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.58124pt on input line 36.
+(Font)              scaled to size 9.58124pt on input line 43.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1907,13 +2063,13 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count308
-\scratchdimen=\dimen313
+\scratchdimen=\dimen319
 \scratchbox=\box95
 \nofMPsegments=\count309
 \nofMParguments=\count310
 \everyMPshowfont=\toks65
 \MPscratchCnt=\count311
-\MPscratchDim=\dimen314
+\MPscratchDim=\dimen320
 \MPnumerator=\count312
 \makeMPintoPDFobject=\count313
 \everyMPtoPDFconversion=\toks66
@@ -1934,7 +2090,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box96
-Package hyperref Info: Link coloring OFF on input line 36.
+Package hyperref Info: Link coloring OFF on input line 43.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1944,9 +2100,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count314
 )
-LaTeX Info: Redefining \ref on input line 36.
-LaTeX Info: Redefining \pageref on input line 36.
-LaTeX Info: Redefining \nameref on input line 36.
+LaTeX Info: Redefining \ref on input line 43.
+LaTeX Info: Redefining \pageref on input line 43.
+LaTeX Info: Redefining \nameref on input line 43.
 
 (./Muller_ISN2016_BatailleNavale_Diapo.out)
 (./Muller_ISN2016_BatailleNavale_Diapo.out)
@@ -1956,37 +2112,37 @@ LaTeX Info: Redefining \nameref on input line 36.
 \symnumbers=\mathgroup13
 \sympureletters=\mathgroup14
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  T1/futs/m/n --> T1/futs/m/n on input line 36.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 36.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 36.
+(Font)                  T1/futs/m/n --> T1/futs/m/n on input line 43.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 43.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 36.
+(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 36.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 36.
+(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 43.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  T1/futs/m/it --> T1/futs/m/it on input line 36.
+(Font)                  T1/futs/m/it --> T1/futs/m/it on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/futs/m/it --> T1/futs/m/it on input line 36.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 36.
+(Font)                  T1/futs/m/it --> T1/futs/m/it on input line 43.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/lmtt/m/n on input line 36.
+(Font)                  OT1/cmtt/m/n --> T1/lmtt/m/n on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/lmtt/m/n on input line 36.
+(Font)                  OT1/cmtt/m/n --> T1/lmtt/m/n on input line 43.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/futs/m/n --> T1/futs/bx/n on input line 36.
+(Font)                  T1/futs/m/n --> T1/futs/bx/n on input line 43.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/futs/m/it --> T1/futs/bx/it on input line 36.
+(Font)                  T1/futs/m/it --> T1/futs/bx/it on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  T1/futs/m/n --> T1/futs/bx/n on input line 36.
+(Font)                  T1/futs/m/n --> T1/futs/bx/n on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/futs/bx/n --> T1/futs/bx/n on input line 36.
+(Font)                  T1/futs/bx/n --> T1/futs/bx/n on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/phv/m/n --> T1/phv/bx/n on input line 36.
+(Font)                  T1/phv/m/n --> T1/phv/bx/n on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/futs/m/it --> T1/futs/bx/it on input line 36.
+(Font)                  T1/futs/m/it --> T1/futs/bx/it on input line 43.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/lmtt/m/n --> T1/lmtt/bx/n on input line 36.
+(Font)                  T1/lmtt/m/n --> T1/lmtt/bx/n on input line 43.
 
 (/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-basic-dicti
 onary/translator-basic-dictionary-English.dict
@@ -2012,39 +2168,39 @@ Dictionary: translator-numbers-dictionary, Language: English
 tionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 36.
-LaTeX Info: Redefining \degres on input line 36.
+LaTeX Info: Redefining \includegraphics on input line 43.
+LaTeX Info: Redefining \degres on input line 43.
 
 
 Package frenchb.ldf Warning: The definition of \@makecaption has been changed,
 (frenchb.ldf)                frenchb will NOT customise it;
-(frenchb.ldf)                reported on input line 36.
+(frenchb.ldf)                reported on input line 43.
 
-LaTeX Info: Redefining \dots on input line 36.
+LaTeX Info: Redefining \dots on input line 43.
 
 Package frenchb.ldf Warning: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)                compatibility with enumerate package,
-(frenchb.ldf)                 on input line 36.
+(frenchb.ldf)                 on input line 43.
 
-LaTeX Info: Redefining \up on input line 36.
+LaTeX Info: Redefining \up on input line 43.
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             http://www.ctan.org/tex-archive/ 
 (lastpage)             macros/latex/contrib/pageslts/ 
 (lastpage)             or
 (lastpage)             http://www.ctan.org/tex-archive/ 
 (lastpage)             install/macros/latex/contrib/pageslts.tds.zip
-(lastpage)             ! on input line 36.
+(lastpage)             ! on input line 43.
 (./Muller_ISN2016_BatailleNavale_Diapo.nav)
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 5.25pt on input line 36.
+(Font)              scaled to size 5.25pt on input line 43.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 12.59999pt on input line 40.
+(Font)              scaled to size 12.59999pt on input line 47.
 LaTeX Font Info:    Font shape `T1/phv/m/sc' will be
-(Font)              scaled to size 12.59999pt on input line 40.
+(Font)              scaled to size 12.59999pt on input line 47.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.0pt on input line 40.
+(Font)              scaled to size 7.0pt on input line 47.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 3.5pt on input line 40.
+(Font)              scaled to size 3.5pt on input line 47.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [2
@@ -2053,7 +2209,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (./Muller_ISN2016_BatailleNavale_Diapo.toc) [3
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 52.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 59.
 
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -2067,45 +2223,45 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ] [7
 
 ]
-LaTeX Font Info:    Try loading font information for T1+futs on input line 77.
+LaTeX Font Info:    Try loading font information for T1+futs on input line 84.
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/t1futs.fd
 File: t1futs.fd 2004/03/02 Fontinst v1.926 font definitions for T1/futs.
 )
-LaTeX Font Info:    Try loading font information for FML+futmi on input line 77
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 84
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmlfutmi.fd
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 77.
+(Font)              scaled to size 10.07397pt on input line 84.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 77.
+(Font)              scaled to size 7.63599pt on input line 84.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 77.
-LaTeX Font Info:    Try loading font information for U+msa on input line 77.
+(Font)              scaled to size 5.51999pt on input line 84.
+LaTeX Font Info:    Try loading font information for U+msa on input line 84.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 77.
+LaTeX Font Info:    Try loading font information for U+msb on input line 84.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 77.
+(Font)              scaled to size 10.07397pt on input line 84.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 77.
+(Font)              scaled to size 7.63599pt on input line 84.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 77.
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 77.
+(Font)              scaled to size 5.51999pt on input line 84.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 84.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 77.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 84.
 
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
@@ -2155,9 +2311,9 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [29
 
-] [30
+] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [30
 
-] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [31
+] [31
 
 ]
 [32
@@ -2168,243 +2324,243 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 
 ] [35
 
+
 ] [36
 
 
 ] [37
 
 
-] [38
+]
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
+[][]  
+ []
 
+[38
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [39
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [40
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [41
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [42
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [43
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [44
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [45
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [46
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [47
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [48
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [49
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [50
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [51
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [52
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [53
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [54
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [55
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [56
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [57
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [58
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [59
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [60
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [61
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [62
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [63
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [64
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [65
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [66
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [67
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [68
 
 ]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
+Overfull \hbox (33.97601pt too wide) in paragraph at lines 659--659
 [][]  
  []
 
 [69
 
-]
-Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
-[][]  
- []
-
-[70
-
-] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [71
+] (./Muller_ISN2016_BatailleNavale_Diapo.toc) [70
 
 ]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [72
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [71
+
+] [72
 
 ] [73
 
@@ -2414,10 +2570,10 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
 
 ] [76
 
-] [77
-
 ]
-[78
+[77
+
+] [78
 
 ] [79
 
@@ -2429,10 +2585,10 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
 
 ] [83
 
-] [84
-
 ] (./Muller_ISN2016_BatailleNavale_Diapo.toc)
-[85
+[84
+
+] [85
 
 ] [86
 
@@ -2460,10 +2616,10 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
 
 ] [98
 
-] [99
-
 ]
-[100
+[99
+
+] [100
 
 ] [101
 
@@ -2502,21 +2658,29 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
 
 ] [118
 
-] [119
-
 ]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [120
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 1286
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
+File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
+)
+LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
+(Font)              scaled to size 9.58124pt on input line 1286.
+ [119
+
+] [120
 
 ] [121
 
-] [122
+]
+[122
 
 ] [123
 
 ] [124
 
-]
-[125
+] [125
 
 ] [126
 
@@ -2535,22 +2699,13 @@ Overfull \hbox (33.97601pt too wide) in paragraph at lines 657--657
 ] [133
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 1495
-.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
-File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
-)
-LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 9.58124pt on input line 1495.
- [134
+[134
 
 ] [135
 
 ] [136
 
-]
-[137
+] [137
 
 ] [138
 
@@ -2568,14 +2723,14 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 
 ] [145
 
-] [146
+]
+[146
 
 ] [147
 
 ] [148
 
-]
-[149
+] [149
 
 ] [150
 
@@ -2587,36 +2742,29 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 
 ] [154
 
-
 ] [155
-
 
 ] [156
 
 ] [157
 
-] [158
+]
+[158
 
 ] [159
 
 ] [160
 
-]
-[161
-
+] [161
 
 ] [162
 
 ] [163
 
-]
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 1609.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.58124pt on input line 1609.
- [164
+] [164
 
-] [165
+]
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [165
 
 ] [166
 
@@ -2626,12 +2774,12 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 
 ] [169
 
-] [170
+]
+[170
 
 ] [171
 
-]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [172
+] [172
 
 ] [173
 
@@ -2643,127 +2791,43 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 
 ] [176
 
+] [177
+
+] [178
+
+] [179
+
+] [180
+
+] [181
 
 ]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [177
+[182
 
-]
-<./media/distrib_HAL_niveau=1_n=1000000.png, id=5597, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=1_n=1000000.png Graphic file (type png)
+] [183
 
-<use ./media/distrib_HAL_niveau=1_n=1000000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=1_n=1000000.png used on inp
-ut line 1691.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [178
+] [184
 
- <./media/distrib_HAL_niveau=1_n=1000000.png>]
-<./media/distrib_HAL_niveau=2_n=1000000.png, id=5631, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=2_n=1000000.png Graphic file (type png)
-
-<use ./media/distrib_HAL_niveau=2_n=1000000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=2_n=1000000.png used on inp
-ut line 1698.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [179
-
- <./media/distrib_HAL_niveau=2_n=1000000.png>]
-<./media/distrib_HAL_niveau=3_n=1000000.png, id=5663, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=3_n=1000000.png Graphic file (type png)
-
-<use ./media/distrib_HAL_niveau=3_n=1000000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=3_n=1000000.png used on inp
-ut line 1705.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [180
-
- <./media/distrib_HAL_niveau=3_n=1000000.png>]
-<./media/distrib_HAL_niveau=4(10)_n=100000.png, id=5696, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=4(10)_n=100000.png Graphic file (type png)
-
-<use ./media/distrib_HAL_niveau=4(10)_n=100000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10)_n=100000.png used on 
-input line 1713.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [181
-
- <./media/distrib_HAL_niveau=4(10)_n=100000.png>]
-<./media/distrib_HAL_niveau=4(100)_n=10000.png, id=5729, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=4(100)_n=10000.png Graphic file (type png)
-
-<use ./media/distrib_HAL_niveau=4(100)_n=10000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=4(100)_n=10000.png used on 
-input line 1720.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [182
-
- <./media/distrib_HAL_niveau=4(100)_n=10000.png>]
-<./media/distrib_HAL_niveau=4(1000)_n=1000.png, id=5761, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=4(1000)_n=1000.png Graphic file (type png)
-
-<use ./media/distrib_HAL_niveau=4(1000)_n=1000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=4(1000)_n=1000.png used on 
-input line 1727.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [183
-
- <./media/distrib_HAL_niveau=4(1000)_n=1000.png>]
-<./media/distrib_HAL_niveau=4(10000)_n=100.png, id=5793, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=4(10000)_n=100.png Graphic file (type png)
-
-<use ./media/distrib_HAL_niveau=4(10000)_n=100.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10000)_n=100.png used on 
-input line 1734.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [184
-
- <./media/distrib_HAL_niveau=4(10000)_n=100.png>]
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.22774pt on input line 1754.
- [185
+] [185
 
 ] [186
 
-]
-<./media/distrib_HAL_niveau=5_n=1000000.png, id=5887, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=5_n=1000000.png Graphic file (type png)
+] [187
 
-<use ./media/distrib_HAL_niveau=5_n=1000000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=5_n=1000000.png used on inp
-ut line 1780.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [187
+] [188
 
- <./media/distrib_HAL_niveau=5_n=1000000.png>]
-<./media/distrib_HAL_niveau=6(60)_n=10000.png, id=5921, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=6(60)_n=10000.png Graphic file (type png)
+] [189
 
-<use ./media/distrib_HAL_niveau=6(60)_n=10000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=6(60)_n=10000.png used on i
-nput line 1787.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [188
+] [190
 
- <./media/distrib_HAL_niveau=6(60)_n=10000.png>]
-<./media/distrib_HAL_niveau=6(70)_n=1000.png, id=5953, 578.16pt x 433.62pt>
-File: ./media/distrib_HAL_niveau=6(70)_n=1000.png Graphic file (type png)
-
-<use ./media/distrib_HAL_niveau=6(70)_n=1000.png>
-Package pdftex.def Info: ./media/distrib_HAL_niveau=6(70)_n=1000.png used on in
-put line 1794.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
- [189
-
- <./media/distrib_HAL_niveau=6(70)_n=1000.png>] [190
-
-] (./Muller_ISN2016_BatailleNavale_Diapo.toc)
-[191
+] [191
 
 ] [192
 
 ] [193
 
-] [194
+]
+[194
 
 ] [195
 
@@ -2777,13 +2841,9 @@ put line 1794.
 
 ] [200
 
-]
-(./Muller_ISN2016_BatailleNavale_Diapo.toc) [201
+] [201
 
-]
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.2625pt on input line 1858.
- [202
+] [202
 
 ] [203
 
@@ -2794,20 +2854,208 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 ]
 [206
 
+
 ] [207
 
 ] [208
 
-] [209
+]
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 2138.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 9.58124pt on input line 2138.
+ [209
 
 ] [210
 
+] [211
+
+] [212
+
+] [213
+
+] [214
+
+] [215
+
+] [216
+
+]
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [217
+
+] [218
+
+] [219
+
+
+] [220
+
+
+] [221
+
+
+]
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [222
+
+]
+<./media/distrib_HAL_niveau=1_n=1000000.png, id=6972, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=1_n=1000000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=1_n=1000000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=1_n=1000000.png used on inp
+ut line 2220.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [223
+
+ <./media/distrib_HAL_niveau=1_n=1000000.png>]
+<./media/distrib_HAL_niveau=2_n=1000000.png, id=7007, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=2_n=1000000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=2_n=1000000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=2_n=1000000.png used on inp
+ut line 2227.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [224
+
+ <./media/distrib_HAL_niveau=2_n=1000000.png>]
+<./media/distrib_HAL_niveau=3_n=1000000.png, id=7040, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=3_n=1000000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=3_n=1000000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=3_n=1000000.png used on inp
+ut line 2234.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [225
+
+ <./media/distrib_HAL_niveau=3_n=1000000.png>]
+<./media/distrib_HAL_niveau=4(10)_n=100000.png, id=7072, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=4(10)_n=100000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=4(10)_n=100000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10)_n=100000.png used on 
+input line 2242.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [226
+
+ <./media/distrib_HAL_niveau=4(10)_n=100000.png>]
+<./media/distrib_HAL_niveau=4(100)_n=10000.png, id=7104, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=4(100)_n=10000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=4(100)_n=10000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=4(100)_n=10000.png used on 
+input line 2249.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [227
+
+ <./media/distrib_HAL_niveau=4(100)_n=10000.png>]
+<./media/distrib_HAL_niveau=4(1000)_n=1000.png, id=7136, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=4(1000)_n=1000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=4(1000)_n=1000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=4(1000)_n=1000.png used on 
+input line 2256.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [228
+
+ <./media/distrib_HAL_niveau=4(1000)_n=1000.png>]
+<./media/distrib_HAL_niveau=4(10000)_n=100.png, id=7169, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=4(10000)_n=100.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=4(10000)_n=100.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=4(10000)_n=100.png used on 
+input line 2263.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [229
+
+ <./media/distrib_HAL_niveau=4(10000)_n=100.png>]
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 6.22774pt on input line 2283.
+ [230
+
+] [231
+
+]
+<./media/distrib_HAL_niveau=5_n=1000000.png, id=7263, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=5_n=1000000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=5_n=1000000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=5_n=1000000.png used on inp
+ut line 2309.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [232
+
+ <./media/distrib_HAL_niveau=5_n=1000000.png>]
+<./media/distrib_HAL_niveau=6(60)_n=10000.png, id=7296, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=6(60)_n=10000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=6(60)_n=10000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=6(60)_n=10000.png used on i
+nput line 2316.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [233
+
+ <./media/distrib_HAL_niveau=6(60)_n=10000.png>]
+<./media/distrib_HAL_niveau=6(70)_n=1000.png, id=7328, 578.16pt x 433.62pt>
+File: ./media/distrib_HAL_niveau=6(70)_n=1000.png Graphic file (type png)
+
+<use ./media/distrib_HAL_niveau=6(70)_n=1000.png>
+Package pdftex.def Info: ./media/distrib_HAL_niveau=6(70)_n=1000.png used on in
+put line 2323.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [234
+
+ <./media/distrib_HAL_niveau=6(70)_n=1000.png>] [235
+
+] (./Muller_ISN2016_BatailleNavale_Diapo.toc)
+[236
+
+] [237
+
+] [238
+
+] [239
+
+] [240
+
+] [241
+
+] [242
+
+] [243
+
+] [244
+
+] [245
+
+]
+(./Muller_ISN2016_BatailleNavale_Diapo.toc) [246
+
+]
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.2625pt on input line 2386.
+ [247
+
+] [248
+
+] [249
+
+] [250
+
+]
+[251
+
+] [252
+
+] [253
+
+] [254
+
 ]
 LaTeX Font Info:    Font shape `T1/phv/m/sc' will be
-(Font)              scaled to size 9.58124pt on input line 1870.
+(Font)              scaled to size 9.58124pt on input line 2398.
 LaTeX Font Info:    Font shape `T1/phv/m/sc' will be
-(Font)              scaled to size 21.77pt on input line 1870.
- [211
+(Font)              scaled to size 21.77pt on input line 2398.
+ [255
 
 ]
 \tf@nav=\write7
@@ -2821,38 +3069,70 @@ LaTeX Font Info:    Font shape `T1/phv/m/sc' will be
 
  
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1874.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1874.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2402.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2402.
 (./Muller_ISN2016_BatailleNavale_Diapo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1874.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1874.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2402.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2402.
 
-Package rerunfilecheck Info: File `Muller_ISN2016_BatailleNavale_Diapo.out' has
- not changed.
-(rerunfilecheck)             Checksum: 4C7361F7890EE3E72E280C73F86D7537;828.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1874.
+
+
+Package rerunfilecheck Warning: File `Muller_ISN2016_BatailleNavale_Diapo.out' 
+has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Muller_ISN2016_BatailleNavale_Diapo
+.out':
+(rerunfilecheck)             Before: 8544E57469FAD236C17563D9F9223849;828
+(rerunfilecheck)             After:  A005740F15F59387D5D2894B96F95CCD;828.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2402.
  ) 
 Here is how much of TeX's memory you used:
- 27031 strings out of 493304
- 494773 string characters out of 6139871
- 736900 words of memory out of 5000000
- 29184 multiletter control sequences out of 15000+600000
+ 27596 strings out of 493304
+ 501380 string characters out of 6139871
+ 759631 words of memory out of 5000000
+ 29645 multiletter control sequences out of 15000+600000
  100866 words of font info for 96 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  57i,15n,71p,473b,955s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist
-/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/
-fourier/fourier-mlit.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/four
-ier/fourier-ms.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/sha
-re/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/
-utopia/putri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb
-8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Muller_ISN2016_BatailleNavale_Diapo.pdf (211 pages, 909018 by
-tes).
+pdfTeX warning (dest): name{Navigation256} has been referenced but does not e
+xist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Outline0.2.5.223} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Outline0.2.4.218} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Outline0.2.3.166} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Outline0.2.2.85} has been referenced but does not e
+xist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Outline0.2.1.72} has been referenced but does not e
+xist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Outline0.1.3.31} has been referenced but does not e
+xist, replaced by a fixed one
+
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/f
+onts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/fo
+urier/fourier-mlit.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fourie
+r/fourier-ms.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share
+/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/ut
+opia/putri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on Muller_ISN2016_BatailleNavale_Diapo.pdf (255 pages, 1010655 b
+ytes).
 PDF statistics:
- 6762 PDF objects out of 7423 (max. 8388607)
- 6036 compressed objects within 61 object streams
- 435 named destinations out of 1000 (max. 500000)
+ 8132 PDF objects out of 8907 (max. 8388607)
+ 7261 compressed objects within 73 object streams
+ 530 named destinations out of 1000 (max. 500000)
  309 words of extra memory for PDF output out of 10000 (max. 10000000)
 
