@@ -105,35 +105,38 @@ Si \texttt{face==True}, la détermination se fait dans les deux sens (espace lib
 \texttt{Grille.elimine\_cases(self)} : élimine les cases vides dans lesquelles le plus petit bateau ne peut pas rentrer.
 \end{frame}
 
-%\begin{frame}[allowframebreaks]
-%Si direction == TOUTES\_DIRECTIONS :\\
-%\tab{1} On renvoie le maximum de get\_max\_space(case, HORIZONTAL)\\
-%\tab{2} et get\_max\_space(case, VERTICAL)\\~\\
-%direction[0]\sto dh\\
-%direction[1]\sto dv\\
-%1\sto m\\
-%\framebreak
-%case[0]\sto x\\
-%case[1]\sto y\\
-%Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
-%\tab{1}m+1\sto m\\
-%\tab{1}x+dh\sto x\\
-%\tab{1}y+dv\sto y\\
-%\framebreak
-%Si face (on regarde dans l'autre sens):\\
-%\tab{1}case[0]\sto x\\
-%\tab{1}case[1]\sto y\\
-%\tab{1}Tant que la case (x-dh, y-dv) est vide et est dans la grille :\\
-%\tab{2}m+1\sto m\\
-%\tab{2}x-dh\sto x\\
-%\tab{2}y-dv\sto y\\~\\
-%Retourner m\\
-%\end{frame}
+{\setbeamercolor{background canvas}{bg=fondalgo}
+\begin{frame}[allowframebreaks]
+\texttt{Grille.get\_max\_space(self, case, direction, face=True)} : \\~\\
+Si direction == TOUTES\_DIRECTIONS :\\
+\tab{1} On renvoie le maximum de get\_max\_space(case, HORIZONTAL)\\
+\tab{2} et get\_max\_space(case, VERTICAL)\\~\\
+direction[0]\sto dh\\
+direction[1]\sto dv\\
+1\sto m\\
+\framebreak
+case[0]\sto x\\
+case[1]\sto y\\
+Tant que la case (x+dh, y+dv) est vide et est dans la grille :\\
+\tab{1}m+1\sto m\\
+\tab{1}x+dh\sto x\\
+\tab{1}y+dv\sto y\\
+\framebreak
+Si face (on regarde dans l'autre sens):\\
+\tab{1}case[0]\sto x\\
+\tab{1}case[1]\sto y\\
+\tab{1}Tant que la case (x-dh, y-dv) est vide et est dans la grille :\\
+\tab{2}m+1\sto m\\
+\tab{2}x-dh\sto x\\
+\tab{2}y-dv\sto y\\~\\
+Retourner m\\
+\end{frame}
+}
 
 \begin{frame}{Bateaux possibles}
 \texttt{Grille.get\_possibles(self)} renvoie :
 \begin{itemize}
-\item La liste des bateaux possibles démarrant sur chaque case (ainsi que leurs directions)\\
+\item La liste des bateaux possibles démarrant sur chaque case (ainsi que leurs directions) dans le dictionnaire \texttt{possibles\_case}\\
 Par exemple : \texttt{\{(0,0):[(5,(1,0)), (5,(0,1)),...], (0,1):...\}}
 \end{itemize}
 \end{frame}
@@ -144,10 +147,6 @@ Par exemple sur la case (0,0), avec la case (3,0) déjà manquée :
 \begin{tikzpicture}[scale=0.5]
 \draw (0,1)--(10,1);
 \draw (-1,0)--(-1,-10);
-%\draw (-1,0)--(10,0);
-%\draw (-1,-1)--(10,-1);
-%\draw (-1,-2)--(10,-2);
-%\draw (-1,-3)--(10,-3);
 \foreach \x in {0,1,...,10}{
 \draw (\x,1)--(\x,-10);
 \draw (-1,-\x)--(10,-\x);
@@ -173,7 +172,7 @@ Par exemple sur la case (0,0), avec la case (3,0) déjà manquée :
 \draw<6>[very thick, ->] (0.5,-0.5)--(1.5,-0.5);
 \end{tikzpicture}
 
-[ \only<1->{(5,(1,0))}\only<2->{ , (4,(1,0))}\only<3->{ , (3,(1,0))}\only<4->{ , (3,(0,1))}\only<5->{ , (2,(1,0))}\only<6->{ , (2,(0,1))} ]
+[ \only<1->{(5,(0,1))}\only<2->{ , (4,(0,1))}\only<3->{ , (3,(0,1))}\only<4->{ , (3,(1,0))}\only<5->{ , (2,(0,1))}\only<6->{ , (2,(1,0))} ]
 
 \end{center}
 \end{frame}
@@ -182,7 +181,7 @@ Par exemple sur la case (0,0), avec la case (3,0) déjà manquée :
 \begin{frame}{Bateaux possibles}
 \texttt{Grille.get\_possibles(self)} renvoie également:
 \begin{itemize}
-\item La liste des positions (et directions) de départ possibles pour chaque bateau\\
+\item La liste des positions (et directions) de départ possibles pour chaque bateau dans le dictionnaire \texttt{possibles}\\
 \texttt{\{5:[((0,0), (1,0)), ((0,0), (0,1)), ((1,0), (1,0)),...], 4:...\}}
 \end{itemize}
 \end{frame}
@@ -193,10 +192,6 @@ Par exemple, pour le bateau de taille 5 :
 \begin{tikzpicture}[scale=0.5]
 \draw (0,1)--(10,1);
 \draw (-1,0)--(-1,-10);
-%\draw (-1,0)--(10,0);
-%\draw (-1,-1)--(10,-1);
-%\draw (-1,-2)--(10,-2);
-%\draw (-1,-3)--(10,-3);
 \foreach \x in {0,1,...,10}{
 \draw (\x,1)--(\x,-10);
 \draw (-1,-\x)--(10,-\x);
@@ -233,6 +228,29 @@ Par exemple, pour le bateau de taille 5 :
 
 \end{center}
 \end{frame}
+
+{\setbeamercolor{background canvas}{bg=fondalgo}
+\begin{frame}[allowframebreaks]
+\texttt{Grille.get\_possibles(self)} :\\~\\
+On met à jour la liste des cases vides\\
+\# Récupération des bateaux possibles sur chaque case\\
+possibles\_case est un dictionnaire indexé par les cases\\
+Les éléments de possibles\_case sont des listes vides\\
+On récupère la liste unique des bateaux restants dans\\  \tab{1}tmp\_taille\_bateaux\\
+Pour chaque case vide :\\
+\tab{1}Pour chaque direction dans [DROITE, BAS] :\\
+\tab{2}tmax est l'espace maximum dans direction\\
+\tab{2}On ajoute à possible\_case[case] les tuples (taille, direction)\\
+\tab{3}pour les tailles dans tmp\_taille\_bateaux, si taille <= tmax\\
+\framebreak
+\# Récupération des position possibles pour chaque bateau\\
+possibles est un dictionnaire indexé par les tailles de bateaux\\
+Les éléments de possibles sont des listes vides\\
+Pour chaque case dans possible\_case :\\
+\tab{1}Pour chaque couple (taille, direction) dans possible\_case[case] :\\
+\tab{2}On ajoute (case, direction) à possibles[taille]\\ 
+\end{frame}
+}
 
 
 \begin{frame}{Gestion de la flotte}
@@ -330,179 +348,6 @@ Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
 \end{frame}
 }
 
-%\begin{frame}
-%\begin{columns}[T,onlytextwidth]
-%\begin{column}{0.4\textwidth}
-%\begin{tikzpicture}[scale=0.5]
-%\draw (0,1)--(10,1);
-%\draw (-1,0)--(-1,-10);
-%%\draw (-1,0)--(10,0);
-%%\draw (-1,-1)--(10,-1);
-%%\draw (-1,-2)--(10,-2);
-%%\draw (-1,-3)--(10,-3);
-%\foreach \x in {0,1,...,10}{
-%\draw (\x,1)--(\x,-10);
-%\draw (-1,-\x)--(10,-\x);
-%}
-%\foreach \x in {0,1,...,9}{
-%\draw (\x+0.5,0.5) node{\x};
-%\draw (-0.5,-\x-0.5) node{\x};
-%}
-%
-%\draw<1>[fill=green](0,0) rectangle(1,-1);
-%\draw<2-4>[fill=red](0,-1) rectangle(1,-2);
-%\draw<3>[fill=green](1,-1) rectangle(2,-2);
-%\draw<4>[fill=green](0,-2) rectangle(1,-3);
-%
-%\draw<5>[fill=green](0,-2) rectangle(1,-3);
-%\draw<6>[fill=green](0,-3) rectangle(1,-4);
-%\draw<7>[fill=green](0,-4) rectangle(1,-5);
-%\draw<8>[fill=green](0,-5) rectangle(1,-6);
-%\draw<9>[fill=green](0,-6) rectangle(1,-7);
-%\draw<10>[fill=green](0,-7) rectangle(1,-8);
-%\draw<11>[fill=green](0,-8) rectangle(1,-9);
-%\draw<12>[fill=green](0,-9) rectangle(1,-10);
-%\draw<13>[fill=green](1,0) rectangle(2,-1);
-%\draw<14>[fill=green](1,-1) rectangle(2,-2);
-%\draw<15>[fill=green](1,-2) rectangle(2,-3);
-%
-%\draw<16-17>[fill=red](1,-3) rectangle(2,-4);
-%\draw<17>[fill=red](2,-3) rectangle(3,-4);
-%\draw<17>[very thick](1,-3.5)--(3,-3.5);
-%
-%\draw<18->[fill=red](1,-3) rectangle(2,-4);
-%\draw<19->[fill=red](2,-3) rectangle(3,-4);
-%\draw<20>[fill=green](3,-3) rectangle(4,-4);
-%
-%\draw<21>[fill=gray!50](0,-3) rectangle(1,-4);
-%
-%\draw<22>[fill=green](1,-4) rectangle(2,-5);
-%
-%\draw<23-25>[fill=red](1,-5) rectangle(2,-6);
-%\draw<24>[fill=green](2,-5) rectangle(3,-6);
-%\draw<25>[fill=red](1,-6) rectangle(2,-7);
-%\draw<25>[very thick](1.5,-5)--(1.5,-7);
-%
-%\draw<26->[fill=red](1,-5) rectangle(2,-6);
-%\draw<27->[fill=red](1,-6) rectangle(2,-7);
-%\draw<28->[fill=red](1,-7) rectangle(2,-8);
-%\draw<29>[fill=green](1,-8) rectangle(2,-9);
-%
-%\draw<30>[fill=gray!50](1,-4) rectangle(2,-5);
-%
-%\draw<31>[fill=green](1,-8) rectangle(2,-9);
-%\draw<32>[fill=green](1,-9) rectangle(2,-10);
-%\draw<33>[fill=green](2,0) rectangle(3,-1);
-%
-%\draw<34-35>[fill=red](2,-1) rectangle(3,-2);
-%\draw<35>[fill=red](3,-1) rectangle(4,-2);
-%\draw<35>[very thick](2,-1.5)--(4,-1.5);
-%
-%\draw<36-42>[fill=red](2,-1) rectangle(3,-2);
-%\draw<37-42>[fill=red](3,-1) rectangle(4,-2);
-%\draw<38-42>[fill=red](4,-1) rectangle(5,-2);
-%\draw<39-42>[fill=red](5,-1) rectangle(6,-2);
-%\draw<40>[fill=green](6,-1) rectangle(7,-2);
-%
-%\draw<41>[fill=green](1,-1) rectangle(2,-2);
-%\draw<42>[fill=green](6,-1) rectangle(7,-2);
-%
-%
-%\draw<43->[fill=cyan](2,-1) rectangle(3,-2);
-%\draw<43->[fill=cyan](3,-1) rectangle(4,-2);
-%\draw<43->[fill=cyan](4,-1) rectangle(5,-2);
-%\draw<43->[fill=cyan](5,-1) rectangle(6,-2);
-%
-%
-%\draw<43> (2.5,-0.5) node{O};
-%\draw<43> (3.5,-0.5) node{O};
-%\draw<43> (4.5,-0.5) node{O};
-%\draw<43> (5.5,-0.5) node{O};
-%\draw<43> (2.5,-2.5) node{O};
-%\draw<43> (3.5,-2.5) node{O};
-%\draw<43> (4.5,-2.5) node{O};
-%\draw<43> (5.5,-2.5) node{O};
-%
-%
-%
-%
-%\draw (0.5,-4.5) node{O};
-%\draw (0.5,-7.5) node{O};
-%\draw (1.5,-1.5) node{O};
-%\draw (1.5,-2.5) node{O};
-%\draw (6.5,-1.5) node{O};
-%
-%\draw (0.5,-1.5) node{X};
-%\draw (1.5,-3.5) node{X};
-%\draw (2.5,-3.5) node{X};
-%\draw (1.5,-5.5) node{X};
-%\draw (1.5,-6.5) node{X};
-%\draw (1.5,-7.5) node{X};
-%\draw (2.5,-1.5) node{X};
-%\draw (3.5,-1.5) node{X};
-%\draw (4.5,-1.5) node{X};
-%\draw (5.5,-1.5) node{X};
-%
-%
-%\end{tikzpicture}
-%
-%\end{column}
-%
-%\begin{column}{0.4\textwidth}
-%Case : \only<1>{(0,0)}\only<2-4>{(0,1)}\only<5>{(0,2)}\only<6>{(0,3)}\only<7>{(0,4)}\only<8>{(0,5)}\only<9>{(0,6)}\only<10>{(0,7)}\only<11>{(0,8)}\only<12>{(0,9)}\only<13>{(1,0)}\only<14>{(1,1)}\only<15>{(1,2)}\only<16-21>{(1,3)}\only<22>{(1,4)}\only<23-30>{(1,5)}\only<31>{(1,8)}\only<32>{(1,9)}\only<33>{(2,0)}\only<34-43>{(2,1)}
-%
-%\only<4>{Case isolée}
-%\only<17>{Direction : DROITE}
-%\only<18>{k=0\par}
-%\only<18>{liste\_touches :\par} 
-%\only<18>{[(1,3)]}
-%\only<19>{k=1\par}
-%\only<19>{liste\_touches :\par} 
-%\only<19>{[(1,3), (2,3)]}
-%\only<20-21>{k=2\par}
-%\only<20-21>{liste\_touches :\par} 
-%\only<20-21>{[(1,3), (2,3)]\par}
-%\only<21>{Bateau non coulé}
-%
-%\only<25>{Direction : BAS}
-%\only<26>{k=0\par}
-%\only<26>{liste\_touches :\par} 
-%\only<26>{[(1,5)]}
-%\only<27>{k=1\par}
-%\only<27>{liste\_touches :\par} 
-%\only<27>{[(1,5), (1,6)]}
-%\only<28>{k=2\par}
-%\only<28>{liste\_touches :\par} 
-%\only<28>{[(1,5), (1,6), (1,7)]}
-%\only<29>{k=3\par}
-%\only<29>{liste\_touches :\par} 
-%\only<29>{[(1,5), (1,6), (1,7)]}
-%\only<30>{Bateau non coulé}
-%
-%\only<35>{Direction : DROITE}
-%\only<36>{k=0\par}
-%\only<36>{liste\_touches :\par} 
-%\only<36>{[(2,1)]}
-%\only<37>{k=1\par}
-%\only<37>{liste\_touches :\par} 
-%\only<37>{[(2,1), (3,1)]}
-%\only<38>{k=2\par}
-%\only<38>{liste\_touches :\par} 
-%\only<38>{[(2,1), (3,1), (4,1)]}
-%\only<39>{k=3\par}
-%\only<39>{liste\_touches :\par} 
-%\only<39>{[(2,1), (3,1), (4,1), (5,1)]}
-%\only<40>{k=4\par}
-%\only<40>{liste\_touches :\par} 
-%\only<40>{[(2,1), (3,1), (4,1), (5,1)]}
-%\only<42-43>{Bateau coulé !\par}
-%\only<43>{Élimination des cases adjacentes et mémorisation de ses cases dans la liste Joueur.coules}
-%
-%\end{column}
-%
-%\end{columns}
-%
-%\end{frame}
 
 \begin{frame}
 \begin{columns}[T,onlytextwidth]
@@ -510,10 +355,6 @@ Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
 \begin{tikzpicture}[scale=0.5]
 \draw (0,1)--(10,1);
 \draw (-1,0)--(-1,-10);
-%\draw (-1,0)--(10,0);
-%\draw (-1,-1)--(10,-1);
-%\draw (-1,-2)--(10,-2);
-%\draw (-1,-3)--(10,-3);
 \foreach \x in {0,1,...,10}{
 \draw (\x,1)--(\x,-10);
 \draw (-1,-\x)--(10,-\x);
@@ -574,14 +415,14 @@ Pour chaque case dans les cases jouees triées en ordre lexicographique :\\
 \draw<31->[fill=cyan](5,-1) rectangle(6,-2);
 
 
-\draw<31> (2.5,-0.5) node{O};
-\draw<31> (3.5,-0.5) node{O};
-\draw<31> (4.5,-0.5) node{O};
-\draw<31> (5.5,-0.5) node{O};
-\draw<31> (2.5,-2.5) node{O};
-\draw<31> (3.5,-2.5) node{O};
-\draw<31> (4.5,-2.5) node{O};
-\draw<31> (5.5,-2.5) node{O};
+\draw<31-> (2.5,-0.5) node{O};
+\draw<31-> (3.5,-0.5) node{O};
+\draw<31-> (4.5,-0.5) node{O};
+\draw<31-> (5.5,-0.5) node{O};
+\draw<31-> (2.5,-2.5) node{O};
+\draw<31-> (3.5,-2.5) node{O};
+\draw<31-> (4.5,-2.5) node{O};
+\draw<31-> (5.5,-2.5) node{O};
 
 \draw<32>[fill=green](6,-1) rectangle(7,-2);
 
@@ -713,10 +554,6 @@ Seule méthode qui permet de finir la grille uniquement avec des tirs en aveugle
 \begin{tikzpicture}[scale=0.5]
 \draw (0,1)--(10,1);
 \draw (-1,0)--(-1,-10);
-%\draw (-1,0)--(10,0);
-%\draw (-1,-1)--(10,-1);
-%\draw (-1,-2)--(10,-2);
-%\draw (-1,-3)--(10,-3);
 \foreach \x in {0,1,...,10}{
 \draw (\x,1)--(\x,-10);
 \draw (-1,-\x)--(10,-\x);
@@ -780,10 +617,6 @@ Par exemple sur une grille vierge, il y a 7 bateaux de taille 5 sur la case (3,2
 \begin{tikzpicture}[scale=0.5]
 \draw (0,1)--(10,1);
 \draw (-1,0)--(-1,-10);
-%\draw (-1,0)--(10,0);
-%\draw (-1,-1)--(10,-1);
-%\draw (-1,-2)--(10,-2);
-%\draw (-1,-3)--(10,-3);
 \foreach \x in {0,1,...,10}{
 \draw (\x,1)--(\x,-10);
 \draw (-1,-\x)--(10,-\x);
@@ -1224,66 +1057,14 @@ On retourne (case\_max, pmax)\\
 \draw<7>(8.5,-9.5) node{15};
 \draw<7>(9.5,-9.5) node{10};
 
-
-
-
-%\draw<3>(0.5,-0.5) node{3};
-%\draw<3-4>(0.5,-1.5) node{2};
-%\draw<3-4>(0.5,-2.5) node{2};
-%\draw<3-4>(0.5,-3.5) node{2};
-%\draw<3-4>(0.5,-4.5) node{1};
-%\draw<3>[very thick](0,0) rectangle (1,-4);
-%
-%\draw<4>(0.5,-0.5) node{4};
-%\draw<4-5>(1.5,-0.5) node{2};
-%\draw<4-5>(2.5,-0.5) node{2};
-%\draw<4-5>(3.5,-0.5) node{2};
-%\draw<4-5>(4.5,-0.5) node{1};
-%\draw<4>[very thick](0,0) rectangle (4,-1);
-%
-%\draw<5>(0.5,-0.5) node{6};
-%\draw<5-6>(0.5,-1.5) node{4};
-%\draw<5-6>(0.5,-2.5) node{4};
-%\draw<5-6>(0.5,-3.5) node{2};
-%\draw<5-6>(0.5,-4.5) node{1};
-%\draw<5>[very thick](0,0) rectangle (1,-3);
-%
-%\draw<6>(0.5,-0.5) node{8};
-%\draw<6-7>(1.5,-0.5) node{4};
-%\draw<6-7>(2.5,-0.5) node{4};
-%\draw<6-7>(3.5,-0.5) node{2};
-%\draw<6-7>(4.5,-0.5) node{1};
-%\draw<6>[very thick](0,0) rectangle (3,-1);
-%
-%\draw<7>(0.5,-0.5) node{9};
-%\draw<7-8>(0.5,-1.5) node{5};
-%\draw<7-8>(0.5,-2.5) node{4};
-%\draw<7-8>(0.5,-3.5) node{2};
-%\draw<7-8>(0.5,-4.5) node{1};
-%\draw<7>[very thick](0,0) rectangle (1,-2);
-%
-%\draw<8>(0.5,-0.5) node{10};
-%\draw<8-9>(1.5,-0.5) node{5};
-%\draw<8-9>(2.5,-0.5) node{4};
-%\draw<8-9>(3.5,-0.5) node{2};
-%\draw<8-9>(4.5,-0.5) node{1};
-%\draw<8>[very thick](0,0) rectangle (2,-1);
-
 \end{tikzpicture}
 \end{center}
-
-
 \end{frame}
-
-
-
-
 
 \begin{frame}{Méthode exhaustive}
 Détermination récursive de tous les arrangements de bateaux possibles et comptage du nombre de cases occupées \\~\\  \pause
 
 Algorithme exponentiel donc inutilisable tel quel
-
 
 \end{frame}
 
@@ -1931,10 +1712,6 @@ Sur la grille suivante, la case (6,2) a été manquée et la première case touc
 \begin{tikzpicture}[scale=0.5]
 \draw (0,1)--(10,1);
 \draw (-1,0)--(-1,-10);
-%\draw (-1,0)--(10,0);
-%\draw (-1,-1)--(10,-1);
-%\draw (-1,-2)--(10,-2);
-%\draw (-1,-3)--(10,-3);
 \foreach \x in {0,1,...,10}{
 \draw (\x,1)--(\x,-10);
 \draw (-1,-\x)--(10,-\x);
@@ -1963,18 +1740,6 @@ Sur la grille suivante, la case (6,2) a été manquée et la première case touc
 \draw<2> (3.5,-1.5) node{0};
 \draw<2> (3.5,-3.5) node{0};
 \draw<2>[very thick] (1,-2) rectangle (6,-3);
-%
-%\draw<3> (2.5,-2.5) node{3};
-%\draw<3> (4.5,-2.5) node{3};
-%\draw<3> (3.5,-1.5) node{0};
-%\draw<3> (3.5,-3.5) node{0};
-%\draw<3>[very thick] (2,-2) rectangle (7,-3);
-
-%\draw<3> (2.5,-2.5) node{3};
-%\draw<3> (4.5,-2.5) node{4};
-%\draw<3> (3.5,-1.5) node{0};
-%\draw<3> (3.5,-3.5) node{0};
-%\draw<3>[very thick] (3,-2) rectangle (8,-3);
 
 \draw<3> (2.5,-2.5) node{3};
 \draw<3> (4.5,-2.5) node{2};
@@ -2416,7 +2181,7 @@ Un travail conséquent :\pause
 \item 4 mois et plus de 200 heures de travail intensif\\ \pause
 \item 3500 lignes de code Python\\ \pause
 \item 2000 lignes de \LaTeX pour le rapport\\ \pause
-\item 2500  lignes de \LaTeX pour le diaporama\\ \pause
+\item 2000  lignes de \LaTeX pour le diaporama\\ \pause
 \end{itemize}
 Et quelques nuits blanches de réflexion...
 \end{frame}
@@ -2424,7 +2189,7 @@ Et quelques nuits blanches de réflexion...
 \begin{frame}{}
 
 \begin{center}
-\textsc{\Huge Merci de votre attention}
+{\Huge Merci de votre attention}
 
 \bigskip
 Passons aux questions...

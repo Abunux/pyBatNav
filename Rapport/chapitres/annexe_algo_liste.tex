@@ -51,9 +51,9 @@ Pour chaque case vide :\\
 \# Récupération des position possibles pour chaque bateau\\
 possibles est un dictionnaire indexé par les tailles de bateaux\\
 Les éléments de possibles sont des listes vides\\
-Pour chaque case index dans possible\_case :\\
+Pour chaque case dans possible\_case :\\
 \tab{1}Pour chaque couple (taille, direction) dans possible\_case[case] :\\
-\tab{2}On ajoute (taille, direction) à possibles[taille]\\ 
+\tab{2}On ajoute (case, direction) à possibles[taille]\\ 
 \end{algo1}
 
 Cet algorithme est un des points clés du projet. Dans un premier temps on récupère la liste de tous les bateaux possibles démarrant sur chaque case, ainsi que leurs directions possibles. Dans un deuxième temps on récupère, pour chaque bateau, ses placements possibles. 
